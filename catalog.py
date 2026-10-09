@@ -160,7 +160,9 @@ DATASET = {
                                                     for x in v),
                    "a list of namespaces relative to http://data.judaicalink.org/data/"),
     "replaces": SLUGS, "inputs": SLUGS, "generator": (lambda v: True, ""), "stable": TEXT,
-    "withdrawn": TEXT, "files": (lambda v: True, ""), "versions": (lambda v: True, ""),
+    "withdrawn": TEXT,
+    "aliases": (lambda v: is_str_list(v) and all(x.startswith("/") for x in v), "a list of paths starting with /"),
+    "files": (lambda v: True, ""), "versions": (lambda v: True, ""),
     "changelog": (lambda v: True, ""),
 }
 REQUIRED = ("slug", "title", "author", "license")

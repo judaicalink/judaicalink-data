@@ -48,6 +48,7 @@ is ready; Frankfurt gets the catalogue and its documentation and adapts their sy
 | `generator` | table `repo`, `path`: the generator script |
 | `stable` | version id of the recommended version (see below) |
 | `withdrawn` | reason, if the dataset should no longer be used (e.g. a test index) |
+| `aliases` | former URLs of the dataset's page on our sites, list of site-relative paths (Hugo redirects them to `/datasets/<slug>/`, so old links keep working) |
 | `[files]` | descriptions of files, table path → text; only where a file needs one (the usual data file and `-meta` file are described by the dataset) |
 
 ### Versions
@@ -183,6 +184,7 @@ Script-based, one commit, then curated by hand:
 - `dataslug`/`namespace_slugs` → `namespaces`; `script`, `referencedataset`, `supportdata` → `links`; the old
   `links` texts (link counts) → body; `category = "support"` → `kind = "support"`; `files` descriptions →
   `[files]` only where they say more than the dataset;
+- `aliases` stay as they are;
 - dropped: `productionurl`, `loaded`, `graph` at top level, `generator.gitweb` (→ `generator`/`commit`),
   `creators` (→ version `author`), empty fields (`concepts = ""`, `bookmarklet = ""`, …);
 - `kind`, `method`, `author` (current maintainer) by hand; `cmtest` gets `withdrawn`;
