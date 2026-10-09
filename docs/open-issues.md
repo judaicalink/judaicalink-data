@@ -29,6 +29,13 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   could link to our finder; they adopt `<slug>/<version>/<path>` when they next take over files.
 - **Process details:** versioning and archiving rules for dumps.
 
+- **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is `lokal/dumps-new` (87 files,
+  758 MB, `catalog.py collect`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
+  from the old paths?), then keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
+  delete the rest there.
+- **BEACON on the labs server:** `beacon-persons.txt` is still regenerated monthly on `labs:/data/dumps`
+  (several months produced an empty file); BEACON is now Frankfurt's, so the job should be stopped.
+
 ## URI space and catalogue consistency
 
 - **geo-coordinates** coins URIs without a namespace (`data/Aachen`, 2,701 places); no decision for this is
@@ -45,6 +52,11 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   `data/geo-coor`; rujen contains one junk subject `mailto%3Amail%40rujen.ru`.
 
 ## Data
+
+- **gba URIs changed** on 2025-03-21 ("Sanitize ids"): the 24 URIs of the version before are gone (e.g.
+  `data/gba/JecheskelEzechielLandau`). Check whether anything links to the old ones.
+- **Haskala occupations:** the regeneration of 2025 (not kept, 0015) had `jl:Occupation` for 32 persons, which
+  the kept version of 2019 lacks.
 
 - **Ontology:** the catalogue now names version 2025-11-27 (judaicalink-ontology `b26c961`, identical to
   ontology.judaicalink.org), in `lokal/dumps-additions/ontology/2025-11-27/`, not yet published. To do: rebuild

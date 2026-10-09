@@ -2,10 +2,15 @@
 """Catalogue tooling for judaicalink-data (decisions 0013, 0014).
 
     python3 catalog.py check [--catalog DIR] [--dumps DIR ...]
+    python3 catalog.py collect --from DIR [--from DIR ...] --to DIR [--dry-run]
 
 check   parses every entry in catalog/, checks the entry format of 0013 and reports errors and
         warnings; with --dumps, compares sizes and checksums with local copies of the files at
         DIR/<slug>/<version>/<path>. Exit status 1 if there are errors.
+collect builds a dumps tree <slug>/<version>/<path> with the files of all catalogued versions: each file
+        is looked up by size and sha256 in the --from directories (any layout) and hard-linked (copied
+        if that fails) into --to. Files already in place are checked; files in --to that the catalogue
+        does not name are reported, never deleted. Exit status 1 if a file is missing or differs.
 
 Standard library only.
 """
@@ -13,7 +18,9 @@ Standard library only.
 import argparse
 import datetime
 import hashlib
+import os
 import re
+import shutil
 import sys
 import tomllib
 from pathlib import Path
@@ -306,6 +313,68 @@ def cmd_check(args):
     return 1 if r.errors else 0
 
 
+def cmd_collect(args):
+    entries = [read_entry(p) for p in entry_files(args.catalog)]
+    wanted = {}  # relative path in the tree -> (bytes, sha256)
+    for e in entries:
+        for v in e.versions():
+            for f in v.get("files", []):
+                wanted[f"{e.name}/{v['version']}/{f['path']}"] = (f.get("bytes"), f.get("sha256"))
+    sizes = {b for b, _ in wanted.values()}
+    by_size = {}  # bytes -> files in the source directories with that size
+    for root in args.sources:
+        for dirpath, _, names in os.walk(root):
+            for n in names:
+                p = Path(dirpath) / n
+                if not p.is_symlink() and p.stat().st_size in sizes:
+                    by_size.setdefault(p.stat().st_size, []).append(p)
+    hashes = {}
+
+    def digest(p):
+        if p not in hashes:
+            hashes[p] = sha256(p)
+        return hashes[p]
+
+    missing = linked = present = 0
+    for rel, (size, sha) in sorted(wanted.items()):
+        target = args.to / rel
+        if not sha:
+            print(f"{rel}: no sha256 in the catalogue, skipped")
+            missing += 1
+            continue
+        if target.exists():
+            if target.stat().st_size == size and digest(target) == sha:
+                present += 1
+            else:
+                print(f"{rel}: differs from the catalogue")
+                missing += 1
+            continue
+        source = next((p for p in by_size.get(size, []) if digest(p) == sha), None)
+        if source is None:
+            print(f"{rel}: not found in the source directories")
+            missing += 1
+            continue
+        linked += 1
+        if args.dry_run:
+            print(f"{rel} <- {source}")
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            os.link(source, target)
+        except OSError:
+            shutil.copy2(source, target)
+    if args.to.exists():
+        for dirpath, _, names in os.walk(args.to):
+            for n in names:
+                rel = (Path(dirpath) / n).relative_to(args.to).as_posix()
+                if rel not in wanted:
+                    print(f"{rel}: in the tree but not in the catalogue")
+    verb = "to link" if args.dry_run else "linked"
+    print(f"{len(wanted)} files: {present} in place, {linked} {verb}, {missing} missing or different",
+          file=sys.stderr)
+    return 1 if missing else 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = ap.add_subparsers(dest="command", required=True)
@@ -315,6 +384,14 @@ def main():
     p.add_argument("--dumps", metavar="DIR", type=Path, action="append", default=[],
                    help="local dump directory with <slug>/<version>/<path>; repeatable")
     p.set_defaults(func=cmd_check)
+    p = sub.add_parser("collect", help="build a dumps tree <slug>/<version>/<path> from local files")
+    p.add_argument("--catalog", metavar="DIR", type=Path, default=CATALOG,
+                   help="catalogue directory (default: catalog/ of this repository)")
+    p.add_argument("--from", dest="sources", metavar="DIR", type=Path, action="append", required=True,
+                   help="directory to take files from (any layout, found by size and sha256); repeatable")
+    p.add_argument("--to", metavar="DIR", type=Path, required=True, help="the tree to build")
+    p.add_argument("--dry-run", action="store_true", help="only report what would be linked")
+    p.set_defaults(func=cmd_collect)
     args = ap.parse_args()
     sys.exit(args.func(args))
 

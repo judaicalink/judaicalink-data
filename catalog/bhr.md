@@ -6,24 +6,32 @@ date = "2017-09-14"
 website = "http://www.steinheim-institut.de/wiki/index.php/Biographisches_Handbuch_der_Rabbiner_%28BHR%29"
 example = "http://data.judaicalink.org/data/bhr/Abarbanell_Hirsch"
 namespaces = ["bhr"]
-stable = "2018-05-03"
+stable = "2018-10-24"
 
 [license]
 name = "CC4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
+[files]
+"Entityfacts-bhr-sameas.ttl.gz" = "Links of the persons to the GND and to EntityFacts (owl:sameAs)."
+
 [[versions]]
-version = "2018-05-03"
-issued = "2018-05-03"
+version = "2018-10-24"
+issued = "2018-10-24"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/bhr"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5. The EntityFacts links were on the dumps server but not in the catalogue."
 
   [[versions.files]]
   path = "bhr-final-05.ttl.gz"
   bytes = 1516250
   sha256 = "a64d950ecc572e9fb8bceb9d289647857fcc68bad0363b60ecc6f0625f5c959f"
+
+  [[versions.files]]
+  path = "Entityfacts-bhr-sameas.ttl.gz"
+  bytes = 32483
+  sha256 = "2f1706d67e03b34d204a6c578b0e2f421104a55b144a0afe2f99bfc1039602f4"
 
 [[changelog]]
 date = "2025-06-24"

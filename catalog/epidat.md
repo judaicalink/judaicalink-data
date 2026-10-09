@@ -22,8 +22,8 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 
   [[versions.files]]
   path = "epidat-final-01.ttl.gz"
-  bytes = 1603749
-  sha256 = "4372636c1a18af8e07e9396516d7d483f3009ab3eed87f2df18a70919dea1cad"
+  bytes = 1533441
+  sha256 = "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a"
 
 [[changelog]]
 date = "2022-06-29"

@@ -38,8 +38,8 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 
   [[versions.files]]
   path = "ep_GND_ids.json.gz"
-  bytes = 266113
-  sha256 = "eb4ef014eeda12cfc5cbd8c88a3fc71262e9d8a697695c9304402678a72b1675"
+  bytes = 265936
+  sha256 = "05a163d1c22be169f915b586ac350fb72ef181e9ed68cf6780efdb314710134c"
 
 [[changelog]]
 date = "2025-06-05"

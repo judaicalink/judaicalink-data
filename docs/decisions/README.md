@@ -20,3 +20,4 @@ consequences. Short is better than complete; link to the documentation that has 
 | [0012](0012-language.md) | Everything in English | 2026-10-07 |
 | [0013](0013-catalogue-format.md) | Catalogue entry format: datasets, versions (stable pointer), changelog; only slug, title, author, license required | 2026-10-08 |
 | [0014](0014-locations-dataindex-finder.md) | Locations only as prefixes; `dataindex.json` and the dataset finder; entries reach catalogues by copying | 2026-10-08 |
+| [0015](0015-dumps-clean-start.md) | Clean start of the dumps: one current version per dataset, best version kept, single files, built by checksum | 2026-10-09 |

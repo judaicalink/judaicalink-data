@@ -19,6 +19,9 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 repo = "https://github.com/wisslab/judaicalink-labs"
 path = "labs/data/management/commands/generate_rujen.py"
 
+[files]
+"rujen.jsonl.gz" = "Raw data crawled from rujen.ru, input of the generator."
+
 [[versions]]
 version = "2020-09-28"
 issued = "2020-09-28"
@@ -35,6 +38,11 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "rujen.ttl.gz"
   bytes = 6783508
   sha256 = "66b4fed0d221d93c85ee58934365310bc8fd230a4b15729362d3be2f7e8f7c82"
+
+  [[versions.files]]
+  path = "rujen.jsonl.gz"
+  bytes = 7829862
+  sha256 = "2ded560739a06d39eee86c0506aa093d961a144491a246efc09755f1d49b3d6e"
 
 [[changelog]]
 date = "2025-06-05"

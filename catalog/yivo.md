@@ -19,6 +19,9 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 repo = "https://github.com/wisslab/judaicalink-labs"
 path = "labs/data/management/commands/generate_yivo.py"
 
+[files]
+"yivo.jsonl.gz" = "Raw data crawled from the YIVO Encyclopedia, input of the generator."
+
 [[versions]]
 version = "2020-09-30"
 issued = "2020-09-30"
@@ -35,6 +38,11 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "yivo.ttl.gz"
   bytes = 695155
   sha256 = "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842"
+
+  [[versions.files]]
+  path = "yivo.jsonl.gz"
+  bytes = 913257
+  sha256 = "d86ff6504e24f869ae1e286e533b175c289b033ed735107add218f31269be6c1"
 
 [[changelog]]
 date = "2025-06-05"
