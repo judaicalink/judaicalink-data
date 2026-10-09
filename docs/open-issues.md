@@ -12,7 +12,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   links in the `-meta` files (placeholder `judaicalink-generators/…/kg-complements/`) to `judaicalink-data`,
   create the GitHub repository.
 - **Catalogue:** the 36 entries are in `catalog/` (copied from `judaicalink-site`, 2026-10-07), still in the
-  old format. Next: `catalog.py check`, the migration script and the hand curation
+  old format. `catalog.py check` exists (2026-10-09). Next: the migration script and the hand curation
   ([0013](decisions/0013-catalogue-format.md), section Migration), restructuring the archive, entries for our
   new datasets, then adapting judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue
   and its documentation to Frankfurt.
@@ -20,7 +20,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of
   the grown setup of the VM; where the platform code lives; whether a pubby-like frontend is needed.
 - **Catalogue tools and finder** ([0014](decisions/0014-locations-dataindex-finder.md)): `catalog.py
-  check|index|sync`, the finder page and template changes in `judaicalink-site`, restructuring the archive
+  index|sync`, the finder page and template changes in `judaicalink-site`, restructuring the archive
   to `<slug>/<version>/<path>`, finder page `/dataindex/`.
 - **To discuss with Frankfurt:** stable access URLs on data.judaicalink.org instead of web.judaicalink.org
   (0014); their loader expects `<slug>.meta.ttl` in one shared metadata graph (0006); their catalogue pages
