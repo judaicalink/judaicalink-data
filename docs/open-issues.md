@@ -46,13 +46,10 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 
 ## Data
 
-- **Ontology:** the archived version 2025-03-20 was a packaging error (a tar archive with the ontology of
-  2020-09-29) and is withdrawn; the new stable version 2025-11-27 is the current ontology (judaicalink-ontology
-  `b26c961`, identical to ontology.judaicalink.org), in `lokal/dumps-additions/ontology/2025-11-27/`, not yet
-  published. To do: rebuild `ontology-complements`, which redefines six terms of the current ontology
-  (`belongsToIssue`, `belongsToJournal`, `birthLocationURI`, `deathLocationURI`, `gitCommit`, `gitWeb`), and load
-  the new version in QLever. Three more archived `.gz` dumps are tar archives (epidat, haskala, ep-supp's
-  `ep_GND_ids.json.gz`); new versions should be plain gzip.
+- **Ontology:** the catalogue now names version 2025-11-27 (judaicalink-ontology `b26c961`, identical to
+  ontology.judaicalink.org), in `lokal/dumps-additions/ontology/2025-11-27/`, not yet published. To do: rebuild
+  `ontology-complements`, which redefines six terms of the current ontology (`belongsToIssue`,
+  `belongsToJournal`, `birthLocationURI`, `deathLocationURI`, `gitCommit`, `gitWeb`), and load it in QLever.
 
 - **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
   article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):

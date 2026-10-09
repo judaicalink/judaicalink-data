@@ -30,28 +30,10 @@ description = "The ontology as of judaicalink-ontology b26c961, as served on ont
   bytes = 2802
   sha256 = "272c3c59db7b705a452793f8c152e7e739e79d17383f56a1fdb68af9315af09a"
 
-[[versions]]
-version = "2025-03-20"
-issued = "2025-03-20"
-author = "Benjamin Schnabel"
-graph = "http://data.judaicalink.org/ontology"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5. A tar archive (despite the name) containing the ontology as of 2020-09-29 (judaicalink-ontology c8ebf38); later revisions of the ontology are not included."
-withdrawn = "Packaging error: contains the ontology of 2020-09-29 instead of the current one, as a tar archive. Use 2025-11-27."
-
-  [[versions.files]]
-  path = "judaicalink-ontology.ttl.gz"
-  bytes = 1407
-  sha256 = "da5e0596e1a76e061d2142bff3fda844715a7953041d2a5071672f7727a5f7fd"
-
-[[changelog]]
-date = "2026-10-09"
-author = "Kai Eckert"
-text = "Version 2025-03-20 withdrawn (packaging error: the ontology of 2020-09-29 in a tar archive); version 2025-11-27, the current ontology as plain gzip, is the stable version."
-
 [[changelog]]
 date = "2020-09-29"
 author = "Kai Eckert"
-text = "Turtle file generated from the documentation; this is the content of the archived version."
+text = "Turtle file generated from the documentation."
 
 [[changelog]]
 date = "2018-07-26"
