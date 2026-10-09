@@ -14,21 +14,28 @@ uri = "https://creativecommons.org/licenses/by-sa/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"
 
 [[versions]]
+version = "2025-03-21"
+issued = "2025-03-21"
+author = "Benjamin Schnabel"
+graph = "http://data.judaicalink.org/data/footprints"
+description = "Regenerated with the revised generator; contains only the types and names of the resources. The reason for the change is not known, so 2024-03-18 stays the stable version."
+
+  [[versions.files]]
+  path = "footprints.ttl.gz"
+  bytes = 445278
+  sha256 = "01973c29750d5dcb8b9557d75b861639d82d25246140c0c5f696b85b07c3dbe3"
+
+[[versions]]
 version = "2024-03-18"
 issued = "2024-03-18"
 author = "Christian Deuschle"
 graph = "http://data.judaicalink.org/data/footprints"
-description = "Generated with the footprints generator (judaicalink-generators); the published version until 2026 was the regeneration of 2025-03-21, which contains only the names."
+description = "The richer version: books with titles, owners, former owners, places, dates of publication, authors and languages; from the backup of the dumps of 2025-02-06."
 
   [[versions.files]]
   path = "footprints.ttl.gz"
   bytes = 1347325
   sha256 = "a5d06cb5f3c5aee2216f7cae92060a194d1598730ecd7f822f50f01ab4781deb"
-
-[[changelog]]
-date = "2025-03-21"
-author = "Benjamin Schnabel"
-text = "Generator revised and dataset regenerated; that version contained only the names and is not kept."
 
 [[changelog]]
 date = "2024-03-12"
