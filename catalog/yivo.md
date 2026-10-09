@@ -1,50 +1,47 @@
 +++
+slug = "yivo"
+title = "Yivo Encyclopedia"
 author = "Kai Eckert"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
+date = "2020-09-30"
 website = "http://www.yivoencyclopedia.org"
-picture = "/img/yivo_logo_black-on-white-135x68.jpg"
-aliases = [
-    "/encyclopediae/yivo-encyclopedia/",
-	"/datasets/yivo-encyclopedia/"
-]
-
-graph = "http://data.judaicalink.org/datasets/yivo"
-loaded = true
-category = "judaicalink"
-
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/yivo/"
-title = "Yivo Encyclopedia"
 example = "http://data.judaicalink.org/data/yivo/Moscow"
-slug = "yivo"
-namespace_slugs = [ "yivo",]
-date = 2020-09-30T09:05:13.093339Z
-[[creators]]
-name = "Kai Eckert"
-url = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
-
-[[files]]
-filename = "yivo-metadata.ttl.gz"
-filepath = "yivo/yivo-metadata.ttl.gz"
-url = "https://archive.judaicalink.org/dumps/yivo/yivo-metadata.ttl.gz"
-description = "Metadata for yivo dataset."
-
-[[files]]
-filename = "yivo.ttl.gz"
-filepath = "yivo/yivo.ttl.gz"
-url = "https://archive.judaicalink.org/dumps/yivo/yivo.ttl.gz"
-description = "RDF dump of the yivo dataset."
+picture = "/img/yivo_logo_black-on-white-135x68.jpg"
+namespaces = ["yivo"]
+aliases = ["/encyclopediae/yivo-encyclopedia/", "/datasets/yivo-encyclopedia/"]
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
 [generator]
-script = "generate_yivo.py"
-gitweb = "https://github.com/wisslab/judaicalink-labs/blob/master/labs/data/management/commands/generate_yivo.py"
+repo = "https://github.com/wisslab/judaicalink-labs"
+path = "labs/data/management/commands/generate_yivo.py"
+
+[[versions]]
+version = "2026-09-26"
+issued = "2020-09-30"
+author = "Kai Eckert"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 commit = "0a47e9521c85e423c937b5d314d7c544248c856c"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
+  [[versions.files]]
+  path = "yivo-metadata.ttl.gz"
+  bytes = 590
+  sha256 = "d4140495f8d283d5acf1255a4d429df4a392925bb4fd4a7e967ad04c1316cc08"
 
+  [[versions.files]]
+  path = "yivo.ttl.gz"
+  bytes = 695155
+  sha256 = "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 The YIVO Encyclopedia of Jews in Eastern Europe, courtesy of the YIVO Institute of Jewish Research, NY.

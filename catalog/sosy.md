@@ -1,29 +1,36 @@
 +++
+slug = "sosy"
+title = "Soundscape Synagogue"
 author = "Benjamin Schnabel"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
-date = "2022-07-06T16:00:00+02:00"
-title = "Soundscape Synagogue" 
+date = "2022-07-06"
 website = "https://www.soundscape-synagoge.de"
-dataslug = "sosy"
-graph = "http://data.judaicalink.org/data/sosy"  
-loaded = true
-category = "judaicalink"
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/sosy/"
 example = "https://data.judaicalink.org/data/html/sosy/Adler_Abraham"
-
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/sosy/current/sosy-final-01.ttl.gz"
-	
-	
-	description = "Soundscape Synagogue"
-	
+namespaces = ["sosy"]
+stable = "2026-09-26"
 
 [license]
 name = "CC4.0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 uri = "https://creativecommons.org/licenses/by/4.0/"
-	
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
+
+[[versions]]
+version = "2026-09-26"
+issued = "2022-07-06"
+author = "Benjamin Schnabel"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
+graph = "http://data.judaicalink.org/data/sosy"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "sosy-final-01.ttl.gz"
+  bytes = 12497
+  sha256 = "89890dd8b42bb09afd30809e8b8f963abf0e07a5ba402ecdf13e36fb295297d8"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 [Soundscape Synagogue](https://www.soundscape-synagoge.de) provides information on the musical heritage of Jewish communities in Europe. <!--more-->
 Here you will find knowledge on Jewish cantors of the past and present, as well as information on various traditions of Jewish-liturgical music, including texts, images, sound recordings and films. 

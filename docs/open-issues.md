@@ -11,9 +11,10 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **Move the generators** (`../kg-complements/`, `../qlever/`) into this repository, change the provenance
   links in the `-meta` files (placeholder `judaicalink-generators/…/kg-complements/`) to `judaicalink-data`,
   create the GitHub repository.
-- **Catalogue:** the 36 entries are in `catalog/` (copied from `judaicalink-site`, 2026-10-07), still in the
-  old format. `catalog.py check` exists (2026-10-09). Next: the migration script and the hand curation
-  ([0013](decisions/0013-catalogue-format.md), section Migration), restructuring the archive, entries for our
+- **Catalogue:** the 36 entries in `catalog/` are migrated to the format of
+  [0013](decisions/0013-catalogue-format.md) (2026-10-09, `catalog/migrate_0013.py`; `catalog.py check`
+  passes). Next: the hand curation (`author` as current maintainer, `kind`, `method`, `namespaces` checked
+  against the data, `occupations`, file descriptions), restructuring the archive, entries for our
   new datasets, then adapting judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue
   and its documentation to Frankfurt.
 - **Catalogue, open questions** (0013): redirects from the old archive paths; DOIs for archived versions.

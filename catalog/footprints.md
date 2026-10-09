@@ -1,29 +1,34 @@
-+++ 
-author = "Christian Deuschle" 
-authorlink = "" 
-date = "2024-03-12" 
-title = "Footprints - Jewish Books through Time and Place" 
-website = "https://footprints.ctl.columbia.edu/" 
-dataslug = "footprints" 
-graph = "http://data.judaicalink.org/data/footprints"
-loaded = true 
-category = "judaicalink" 
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/footprints/"
++++
+slug = "footprints"
+title = "Footprints - Jewish Books through Time and Place"
+author = "Christian Deuschle"
+date = "2024-03-12"
+website = "https://footprints.ctl.columbia.edu/"
 example = "http://data.judaicalink.org/data/footprints/0039ddb3-52b5-5644-bd42-a7ab92611d03"
+namespaces = ["footprints"]
+stable = "2026-09-26"
 
-
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/footprints/current/footprints.ttl.gz"
-	
-	
-	description = "Footprints - Jewish Books through Time and Place"
-	
 [license]
 name = "CC BY-SA 4.0"
+uri = "https://creativecommons.org/licenses/by-sa/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"
-uri = " https://creativecommons.org/licenses/by-sa/4.0/"
 
+[[versions]]
+version = "2026-09-26"
+issued = "2024-03-12"
+author = "Christian Deuschle"
+graph = "http://data.judaicalink.org/data/footprints"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "footprints.ttl.gz"
+  bytes = 445278
+  sha256 = "01973c29750d5dcb8b9557d75b861639d82d25246140c0c5f696b85b07c3dbe3"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 Footprints traces the history and movement of Jewish books since the inception of print. <!--more--> 
 

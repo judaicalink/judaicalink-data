@@ -1,28 +1,38 @@
 +++
+slug = "nli-persons"
+title = "Persons from NLI"
 author = "Maral Dadvar"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
-date = "2019-01-25T10:37:07+02:00"
-title = "Persons from NLI"
-dataslug = "nli"
-graph = "http://data.judaicalink.org/data/nli"
-loaded = true
-category = "judaicalink"
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/nli-persons/"
+date = "2019-01-25"
 example = "http://data.judaicalink.org/data/nli/Abner_"
-
-
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/nli/current/nli-persons.ttl.gz"  
-	description = "Persons extracted from the authority file of National Library of Israel."  
+namespaces = ["nli"]
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
-	
-	
-	
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
+
+[files]
+"nli-persons.ttl.gz" = "Persons extracted from the authority file of National Library of Israel."
+
+[[versions]]
+version = "2026-09-26"
+issued = "2019-01-25"
+author = "Maral Dadvar"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+graph = "http://data.judaicalink.org/data/nli"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "nli-persons.ttl.gz"
+  bytes = 4145903
+  sha256 = "4483d52aeabd8e2c52a58442db4cfbf6458f0579831653379dd31a7553b0b599"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 This dataset contains the authors extracted from the authority file of National LIbrary of Israel.

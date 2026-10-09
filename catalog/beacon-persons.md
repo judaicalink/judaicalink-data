@@ -1,25 +1,34 @@
 +++
+slug = "beacon-persons"
+title = "Beacon file - JudaicaLink Persons"
 author = "Benjamin Schnabel"
 authorlink = "https://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
-date = "2019-02-07T10:37:07+02:00"
-title = "Beacon file - JudaicaLink Persons"  
- 
-loaded = true
-category = "support"
- 
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/beacon-persons/"
-graph = "http://data.judaicalink.org/data/beacon-persons"  
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/beacon/current/beacon-persons.txt"  
-	description = "The Beacon file generated from JudaicaLink persons."
- 
+date = "2019-02-07"
+kind = "support"
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
-	
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
+
+[[versions]]
+version = "2026-09-26"
+issued = "2019-02-07"
+author = "Benjamin Schnabel"
+authorlink = "https://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
+graph = "http://data.judaicalink.org/data/beacon-persons"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "beacon-persons.txt"
+  bytes = 399614
+  sha256 = "0a4e1fd4800f1a22d661a2d8982dfd7ec6feaef0e3065d7a3d40216762110eb1"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 The Beacon file generated from JudaicaLink persons.

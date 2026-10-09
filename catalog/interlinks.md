@@ -1,29 +1,42 @@
 +++
+slug = "interlinks"
+title = "Encyclopedia Interlinks"
 author = "Kai Eckert and Maral Dadvar"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
-date = "2018-02-15T10:37:07+02:00"
-title = "Encyclopedia Interlinks"
-links = "152 entities. 700 person groups interlinked. Maximum 24 resource per group" 
-dataslug = "interlinks"
-graph = "http://data.judaicalink.org/data/interlinks"
-loaded = true
-category = "judaicalink"
-
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/interlinks/"
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/interlinks/current/interlinks.n3.gz"
-	description = "Links between JudaicaLink entities."
-	
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/interlinks/current/interlinks-04-enriched-09.ttl.gz"
-	description = "Links between JudaicaLink persons."
+date = "2018-02-15"
+namespaces = ["interlinks"]
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
-	
-	
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
+
+[files]
+"interlinks-04-enriched-09.ttl.gz" = "Links between JudaicaLink persons."
+
+[[versions]]
+version = "2026-09-26"
+issued = "2018-02-15"
+author = "Kai Eckert and Maral Dadvar"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
+graph = "http://data.judaicalink.org/data/interlinks"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "interlinks.n3.gz"
+  bytes = 1903
+  sha256 = "c9935e962444296c896ee094226ff4641532c8fc72d0c54bb8e9da7e797cc466"
+
+  [[versions.files]]
+  path = "interlinks-04-enriched-09.ttl.gz"
+  bytes = 35667
+  sha256 = "06363cc99920fb6eb2aed740b209a5514ab80867ec053774499c09bc91839bad"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 Links between JudaicaLink entities and persons. 
@@ -34,3 +47,5 @@ The first file includes only a very preliminary example for entity linking. This
 The links are created based on [DBpedia](http://www.dbpedia.org/), i.e., if two entities are linked to the same DBpedia concept (potentially via different language editions), they are considered the same.
 
 The second file contains links between the persons in all the existing datasets. For each group the transitive closure is also created and therefore each person is also interlinked to the external resources. 
+
+Counts in the former catalogue entry: links: 152 entities. 700 person groups interlinked. Maximum 24 resource per group.

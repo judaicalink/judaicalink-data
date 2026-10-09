@@ -1,27 +1,34 @@
 +++
-author = "Christian Deuschle" 
-authorlink = "" 
-date = "2024-06-03" 
-title = "Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen" 
-website = "http://www.steinheim-institut.de/ebib-djg-nrw/" 
-dataslug = "nrwbibdjg" 
-graph = "http://data.judaicalink.org/data/nrwbibdjg"
-loaded = true 
-category = "judaicalink" 
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/nrwbibdjg/"
+slug = "nrwbibdjg"
+title = "Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen"
+author = "Christian Deuschle"
+date = "2024-06-03"
+website = "http://www.steinheim-institut.de/ebib-djg-nrw/"
 example = "http://data.judaicalink.org/data/nrwbibdjg/112504981"
+namespaces = ["nrwbibdjg"]
+stable = "2026-09-26"
 
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/nrwbibdjg/current/nrwbibdjg.ttl.gz"
-	
-	
-	description = "Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen"
-	
 [license]
 name = "CC4.0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 uri = "https://creativecommons.org/licenses/by/4.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
+
+[[versions]]
+version = "2026-09-26"
+issued = "2024-06-03"
+author = "Christian Deuschle"
+graph = "http://data.judaicalink.org/data/nrwbibdjg"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "nrwbibdjg.ttl.gz"
+  bytes = 371256
+  sha256 = "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 The **Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen** (Bibliography of German-Jewish History in North Rhine-Westphalia) dataset provides bibliographic references on the history and culture of Jews in the region of North Rhine-Westphalia (NRW), Germany.
@@ -30,4 +37,3 @@ The bibliography compiled and constantly updated by Harald Lordick with its almo
 It works with georeferencing and with Linked Open Data (Gemeinsame Normdatei, GND). A corresponding BEACON file is available. The database system (in-house development) is based on XML/XSLT. 
 
 The dataset includes the titles provided by the Steinheim Institute, enriched with data about the authors from the GND.
-

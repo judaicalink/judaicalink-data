@@ -1,55 +1,52 @@
 +++
+slug = "rujen"
+title = "Encyclopedia of Russian Jewry"
 author = "Kai Eckert"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
-bookmarklet = "javascript:location.href=location.href.replace('http://dasjuedischehamburg.de/inhalt/', 'http://data.judaicalink.org/data/djh/')"
-concepts = "20,434"
-links = "30,052"
-persons = ""
-picture = "/img/rujen_logo.png"
+date = "2020-09-28"
 website = "http://www.rujen.ru"
-aliases = [
-    "/encyclopediae/encyclopediae-of-russion-jewry/",
-    "/datasets/encyclopediae-of-russion-jewry/"
-]
-loaded = true
-category = "judaicalink"
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/rujen/"
-graph = "http://data.judaicalink.org/datasets/rujen"
-
-title = "Encyclopedia of Russian Jewry"
 example = "http://data.judaicalink.org/data/rujen/ben-gurion"
-slug = "rujen"
-namespace_slugs = [ "rujen",]
-date = 2020-09-28T06:36:31.140834Z
-[[creators]]
-name = "Kai Eckert"
-url = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
-
-[[files]]
-filename = "rujen-metadata.ttl.gz"
-filepath = "rujen/rujen-metadata.ttl.gz"
-url = "https://archive.judaicalink.org/dumps/rujen/rujen-metadata.ttl.gz"
-description = "Metadata for rujen dataset."
-
-[[files]]
-filename = "rujen.ttl.gz"
-filepath = "rujen/rujen.ttl.gz"
-url = "https://archive.judaicalink.org/dumps/rujen/rujen.ttl.gz"
-description = "RDF dump of the rujen dataset."
+picture = "/img/rujen_logo.png"
+namespaces = ["rujen"]
+aliases = ["/encyclopediae/encyclopediae-of-russion-jewry/", "/datasets/encyclopediae-of-russion-jewry/"]
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
 [generator]
-script = "generate_rujen.py"
-gitweb = "https://github.com/wisslab/judaicalink-labs/blob/master/labs/data/management/commands/generate_rujen.py"
-commit = "1ac14f193f827f13a657a7f49dca0c0cf2bd7c25"
+repo = "https://github.com/wisslab/judaicalink-labs"
+path = "labs/data/management/commands/generate_rujen.py"
 
+[[versions]]
+version = "2026-09-26"
+issued = "2020-09-28"
+author = "Kai Eckert"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
+commit = "1ac14f193f827f13a657a7f49dca0c0cf2bd7c25"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "rujen-metadata.ttl.gz"
+  bytes = 603
+  sha256 = "5a2ca1ebe6db58a564551b379af6a257599c07a680d72680a9fd251ecb0bed9d"
+
+  [[versions.files]]
+  path = "rujen.ttl.gz"
+  bytes = 6783508
+  sha256 = "66b4fed0d221d93c85ee58934365310bc8fd230a4b15729362d3be2f7e8f7c82"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 Rujen.ru provides an Internet version of the Encyclopedia of Russian Jewry, which is published in Moscow since 1994, giving a comprehensive, objective picture of the life and activity of the Jews of Russia, the Soviet Union and the CIS.
 <!--more-->
 
 The encyclopedia is structurally divided into three parts: 1. biographical information, 2. local history of the Jewish community in pre-revolutionary Russia, the Soviet Union and the CIS, and 3. thematic information on concepts related to Jewish civilization, the contribution of the Jews of Russia in various fields of activity, various Jewish social, scientific, cultural organizations, etc. The originally published volumes contain more than 10,000 biographies and more than 10,000 place names. The electronic version contains corrections and additions in the form of new articles.
+
+Counts in the former catalogue entry: concepts: 20,434; links: 30,052.

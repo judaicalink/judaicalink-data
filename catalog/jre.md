@@ -1,27 +1,38 @@
 +++
+slug = "jre"
+title = "Resources on German-Jewish Education and Religion"
 author = "Maral Dadvar"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
-date = "2019-07-01T10:37:07+02:00"
-title = "Resources on German-Jewish Education and Religion" 
-dataslug = "jre"
-graph = "http://data.judaicalink.org/data/jre"
-loaded = true
-category = "judaicalink"
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/jre/"
+date = "2019-07-01"
 example = "http://data.judaicalink.org/data/jre/Hause_Benedict"
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/jre/current/jre.ttl.gz" 
-	
-	
-	description = "Dataset on Jewish education and religion"
+namespaces = ["jre"]
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
-	
+[files]
+"jre.ttl.gz" = "Dataset on Jewish education and religion"
+
+[[versions]]
+version = "2026-09-26"
+issued = "2019-07-01"
+author = "Maral Dadvar"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+graph = "http://data.judaicalink.org/data/jre"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "jre.ttl.gz"
+  bytes = 12926
+  sha256 = "938de30400eef55d65f129553a8c1e0156ac57aa2e1b81fb373f883bc464c932"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 Resources on German-Jewish Education and Religion provides access to bibliographical information on a variety of texts used in eighteen and nineteenth century Jewish education and religious practice, ranging from bible editions and anthologies, sermons and devotional works or textbooks and handbooks for Jewish education. The database is a beta-version and reflects a work in progress. It does not claim to be exhaustive and will need further development. However, some genres (i.e. sermons, hymn books, textbooks for Hebrew and religious instruction) are well represented in the data available.

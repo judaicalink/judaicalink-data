@@ -1,21 +1,21 @@
 +++
-author = "Benjamin Schnabel"
-authorlink = ""
-date = "2025-12-18T14:00:00+01:00"
+slug = "occupations"
 title = "Occupations"
+author = "Benjamin Schnabel"
+date = "2025-12-18"
 website = "https://www.judaicalink.org/"
-dataslug = "occupations"
-graph = "http://data.judaicalink.org/data/occupations"
-loaded = true
-category = "judaicalink"
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/occupations/"
 example = "http://data.judaicalink.org/data/occupation/rabbiner"
-
+namespaces = ["occupations"]
 
 [license]
 name = "CC BY 4.0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 uri = "https://creativecommons.org/licenses/by/4.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 The **Occupations** dataset provides a normalized and reusable collection of occupation concepts

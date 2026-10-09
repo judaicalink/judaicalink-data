@@ -1,47 +1,73 @@
 +++
+slug = "ep"
+title = "Entity Pages - Judaicalink"
 author = "Marco Rovera"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
-date = "2021-01-22T10:37:07+02:00"
-title = "Entity Pages - Judaicalink"
-links = "" 
-dataslug = "ep"
+date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
-graph = "http://data.judaicalink.org/data/ep"
-loaded = true
-category = "judaicalink"
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/ep/"
-script = "https://github.com/wisslab/judaicalink-generators/blob/master/entity-pages/ep_generator.md"
-supportdata = "https://web.judaicalink.org/datasets/ep-supp"
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/ep/entity_pages.ttl.gz"
-	description = "Entity Pages RDF data (2098149 triples)."
-	
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/ep/ep_labels.ttl.gz"
-	description = "preferred and alternative labels for entity pages. See `label_selector.ipynb` in the repository."
-	
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/ep/ep_locations.ttl"
-	description = "Entity Pages type classification - locations."
-
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/ep/ep_persons.ttl"
-	description = "Entity Pages type classification - persons."
-	
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/ep/ep_birth_death_date_loc.ttl"
-	description = "Birth/death dates and locations for Entity Pages."
-   	
-[[files]]
-	url = "https://archive.judaicalink.org/dumps/ep/subcategorization.ttl.gz"
-	description = "Subcategorization dataset for local Judaicalink resources."
+namespaces = ["ep"]
+inputs = ["ep-supp"]
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
+[[links]]
+url = "https://github.com/wisslab/judaicalink-generators/blob/master/entity-pages/ep_generator.md"
+label = "Generator script"
+
+[files]
+"entity_pages.ttl.gz" = "Entity Pages RDF data (2098149 triples)."
+"ep_labels.ttl.gz" = "preferred and alternative labels for entity pages. See `label_selector.ipynb` in the repository."
+"ep_locations.ttl" = "Entity Pages type classification - locations."
+"ep_persons.ttl" = "Entity Pages type classification - persons."
+"ep_birth_death_date_loc.ttl" = "Birth/death dates and locations for Entity Pages."
+"subcategorization.ttl.gz" = "Subcategorization dataset for local Judaicalink resources."
+
+[[versions]]
+version = "2026-09-26"
+issued = "2021-01-22"
+author = "Marco Rovera"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
+graph = "http://data.judaicalink.org/data/ep"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+
+  [[versions.files]]
+  path = "entity_pages.ttl.gz"
+  bytes = 25813822
+  sha256 = "06e4fc3e870e565b4c97db5f4d38ae97cba3c9fc5b15ba81264fda86a42420ea"
+
+  [[versions.files]]
+  path = "ep_labels.ttl.gz"
+  bytes = 6962357
+  sha256 = "44e5dec550100dbd5356033a128e2698488e43bb8cb99cef90be040f97590210"
+
+  [[versions.files]]
+  path = "ep_locations.ttl"
+  bytes = 183635
+  sha256 = "b035b3b2198b7ab304c5ebbf8c8eecda951b263563b295e02116516fa7ade718"
+
+  [[versions.files]]
+  path = "ep_persons.ttl"
+  bytes = 14948404
+  sha256 = "c5c8053f54ab758531eb1be05d0c7da7a7926da9e405bff98550c39c76cf3519"
+
+  [[versions.files]]
+  path = "ep_birth_death_date_loc.ttl"
+  bytes = 7708440
+  sha256 = "e2364f9703a864a9a9c2e80e3550d43ccd93c33aed1f48d0b9e1b2b0af5785e2"
+
+  [[versions.files]]
+  path = "subcategorization.ttl.gz"
+  bytes = 19243049
+  sha256 = "8b1d205a7d5a27ee2605afb8fc0e2d8cbf334ee702b55f48915838b02ec4935c"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 Entity Page data for Judaicalink. For further details see the documentation page https://github.com/wisslab/judaicalink-generators/blob/master/entity-pages/readme.md

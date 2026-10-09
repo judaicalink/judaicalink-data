@@ -1,61 +1,56 @@
 +++
+slug = "rujen-translation-supp"
+title = "Translations for Rujen (Google)"
 author = "Kai Eckert"
 authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
-picture = "/img/rujen_logo.png"
+date = "2020-09-28"
 website = "http://www.rujen.ru"
-aliases = [
-    "/encyclopediae/encyclopediae-of-russion-jewry/",
-    "/datasets/encyclopediae-of-russion-jewry/"
-]
-category = "support"
-productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/rujen-translation-supp/"
-referencedataset = "https://web.judaicalink.org/datasets/rujen-translation"
-
-title = "Translations for Rujen (Google)"
-date = 2020-09-28T14:47:50.877866Z
-[[creators]]
-name = "Kai Eckert"
-url = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
-referencedataset = "https://web.judaicalink.org/datasets/rujen-translation"
-
-[[files]]
-filename = "en_abstract_cache.csv"
-filepath = "rujen-translation/en_abstract_cache.csv"
-url = "https://archive.judaicalink.org/dumps/rujen-translation/en_abstract_cache.csv"
-description = ""
-
-
-[[files]]
-filename = "en_label_cache.csv"
-filepath = "rujen-translation/en_label_cache.csv"
-url = "https://archive.judaicalink.org/dumps/rujen-translation/en_label_cache.csv"
-description = ""
-
-[[files]]
-filename = "de_abstract_cache.csv"
-filepath = "rujen-translation/de_abstract_cache.csv"
-url = "https://archive.judaicalink.org/dumps/rujen-translation/de_abstract_cache.csv"
-description = ""
-
-[[files]]
-filename = "de_label_cache.csv"
-filepath = "rujen-translation/de_label_cache.csv"
-url = "https://archive.judaicalink.org/dumps/rujen-translation/de_label_cache.csv"
-description = ""
+picture = "/img/rujen_logo.png"
+kind = "support"
+aliases = ["/encyclopediae/encyclopediae-of-russion-jewry/", "/datasets/encyclopediae-of-russion-jewry/"]
+stable = "2026-09-26"
 
 [license]
 name = "CC0"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
 [generator]
-script = "generate_rujen_translation.py"
-gitweb = "https://github.com/wisslab/judaicalink-labs/blob/master/labs/data/management/commands/generate_rujen_translation.py"
+repo = "https://github.com/wisslab/judaicalink-labs"
+path = "labs/data/management/commands/generate_rujen_translation.py"
+
+[[versions]]
+version = "2026-09-26"
+issued = "2020-09-28"
+author = "Kai Eckert"
+authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 commit = "39f04c243cacadc2d12e602a8b1b0929d115413a"
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
+  [[versions.files]]
+  path = "en_abstract_cache.csv"
+  bytes = 12978879
+  sha256 = "7e13d21bc4a3cfac9de6220c70b308ed8981142edd917a698a59f67f331a2efa"
 
+  [[versions.files]]
+  path = "en_label_cache.csv"
+  bytes = 1153400
+  sha256 = "1dffca82435046b177f9be997085e7d93e2f966dbf94af7a205b7b9a856a9543"
 
+  [[versions.files]]
+  path = "de_abstract_cache.csv"
+  bytes = 13699350
+  sha256 = "16ef0ae7bc40e20600c653a53a76f1aae6ae985f4afa4d08531d0a207e3ee6ab"
+
+  [[versions.files]]
+  path = "de_label_cache.csv"
+  bytes = 1155852
+  sha256 = "4e95011df304864805b357de454084aa5e2544395e0182065adb364d577a8c2d"
+
+[[changelog]]
+date = "2026-10-09"
+text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
+refs = ["0013"]
 +++
 
 Support data for rujen translation.
-

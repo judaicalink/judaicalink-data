@@ -1,6 +1,6 @@
 # 0013 Catalogue entry format: datasets, versions, changelog
 
-Status: accepted · Date: 2026-10-08 (proposed 2026-10-07)
+Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data)
 
 ## Context
 
@@ -44,7 +44,7 @@ is ready; Frankfurt gets the catalogue and its documentation and adapts their sy
 | `method` | how the data was made, list: `curated`, `scraped`, `converted`, `deterministic`, `rule-based`, `lookup`, `statistical`, `ai-generated` |
 | `namespaces` | URI namespaces the dataset coins, list, relative to `http://data.judaicalink.org/data/` (sub-paths allowed: `nli/record`) |
 | `replaces` | slugs of the datasets this one supersedes, list ([0007](0007-complementary-and-superseding-datasets.md)); the inverse (`replaced_by`) is derived by the tooling |
-| `inputs` | slugs of our datasets this one is generated from, list (build order, rebuild triggers); external sources are named in `-meta` |
+| `inputs` | slugs of our datasets this one is generated from, list (build order, rebuild triggers): datasets of any kind, support data included; no versions here: the versions and files a run used are recorded in the `-meta` file of the resulting version ([0006](0006-graphs-and-meta.md)), as are external sources |
 | `generator` | table `repo`, `path`: the generator script |
 | `stable` | version id of the recommended version (see below) |
 | `withdrawn` | reason, if the dataset should no longer be used (e.g. a test index) |
@@ -181,10 +181,14 @@ Script-based, one commit, then curated by hand:
 
 - the 36 entries get `slug` (file name) and one version `2026-09-26` with `graph` from the old entry, files
   from the old `files` (paths relative to the new `<slug>/2026-09-26/`), `stable = "2026-09-26"`;
-- `dataslug`/`namespace_slugs` → `namespaces`; `script`, `referencedataset`, `supportdata` → `links`; the old
+- `dataslug`/`namespace_slugs` → `namespaces`; `script` → `links`; `supportdata` (a catalogue URL, which entries
+  must not name, 0014) → `inputs` of the main dataset, as it is generated from its support data;
+  `referencedataset` dropped (the inverse, derived by the tooling); the old
   `links` texts (link counts) → body; `category = "support"` → `kind = "support"`; `files` descriptions →
-  `[files]` only where they say more than the dataset;
-- `aliases` stay as they are;
+  `[files]` only where they say more than the dataset (not when they repeat the title, the body or each
+  other); non-empty `concepts`/`persons` counts go to the body like the `links` texts;
+- `aliases` stay as they are; an entry without files (`occupations`) gets no version;
+- bookmarklets are dropped (djh's maps an outdated site layout; rujen's is a copy of djh's);
 - dropped: `productionurl`, `loaded`, `graph` at top level, `generator.gitweb` (→ `generator`/`commit`),
   `creators` (→ version `author`), empty fields (`concepts = ""`, `bookmarklet = ""`, …);
 - `kind`, `method`, `author` (current maintainer) by hand; `cmtest` gets `withdrawn`;

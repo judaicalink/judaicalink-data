@@ -19,6 +19,21 @@ Mannheim catalogue; whether and how the site presents this catalogue later is st
 
 ## Format
 
+The entry format is defined in [0013](../docs/decisions/0013-catalogue-format.md) (fields, versions,
+changelog); locations are not part of the entries ([0014](../docs/decisions/0014-locations-dataindex-finder.md)).
+`python3 catalog.py check` (repository root) checks all entries.
+
+## Migration (2026-10-09)
+
+The entries were converted to the format of 0013 by [`migrate_0013.py`](migrate_0013.py), as described in
+0013 (section Migration), from the old entries in the commit before it; sizes and checksums were measured on
+the local copy of the archive. The script is kept as the record of the conversion; it only reads the old
+format and cannot be run again on the migrated entries. Hand curation follows in separate commits.
+
+## Former format (until 2026-10-09)
+
+This is the format of the archived catalogue in `judaicalink-site` and of the Frankfurt catalogue.
+
 Markdown with a TOML front matter between two `+++` lines, as used by Hugo
 (<https://gohugo.io/content-management/front-matter/>). The body is the description in Markdown; the part
 before `<!--more-->` is the summary shown in lists.
@@ -86,7 +101,7 @@ Readers: **H** = Hugo template `judaicalink-site/layouts/datasets/single.html`;
 F also reads `solr_core` (not used in any entry). Hugo and Frankfurt parse the front matter with
 different TOML parsers (Go; Python `toml` package): entries must stay valid for both.
 
-### Known problems of the current entries
+### Known problems of the former entries
 
 - `dataslug`, `graph`, dump directory and URI namespace do not match in several entries: epidat
   (`dataslug`/`graph` `epi`, URIs `data/epidat/`), dump directories `dbpedia-person`, `stolpersteine`,
