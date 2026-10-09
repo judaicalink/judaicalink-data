@@ -7,24 +7,46 @@ website = "http://ontology.judaicalink.org"
 example = "https://data.judaicalink.org/ontology/html/ontology/describedat"
 kind = "support"
 namespaces = ["ontology"]
-stable = "2025-03-20"
+stable = "2025-11-27"
 
 [license]
 name = "CC4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-ontology"
+path = "generate.py"
+
+[[versions]]
+version = "2025-11-27"
+issued = "2025-11-27"
+author = "Benjamin Schnabel"
+commit = "b26c961b3f5ff018985793134148714f2722c8b4"
+description = "The ontology as of judaicalink-ontology b26c961, as served on ontology.judaicalink.org."
+
+  [[versions.files]]
+  path = "judaicalink-ontology.ttl.gz"
+  bytes = 2802
+  sha256 = "272c3c59db7b705a452793f8c152e7e739e79d17383f56a1fdb68af9315af09a"
+
 [[versions]]
 version = "2025-03-20"
 issued = "2025-03-20"
 author = "Benjamin Schnabel"
 graph = "http://data.judaicalink.org/ontology"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5. A tar archive (despite the name) containing the ontology as of 2020-09-29 (judaicalink-ontology c8ebf38); later revisions of the ontology are not included. A tar archive (despite the name) containing the ontology as of 2020-09-29 (judaicalink-ontology c8ebf38); later revisions of the ontology are not included."
+description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5. A tar archive (despite the name) containing the ontology as of 2020-09-29 (judaicalink-ontology c8ebf38); later revisions of the ontology are not included."
+withdrawn = "Packaging error: contains the ontology of 2020-09-29 instead of the current one, as a tar archive. Use 2025-11-27."
 
   [[versions.files]]
   path = "judaicalink-ontology.ttl.gz"
   bytes = 1407
   sha256 = "da5e0596e1a76e061d2142bff3fda844715a7953041d2a5071672f7727a5f7fd"
+
+[[changelog]]
+date = "2026-10-09"
+author = "Kai Eckert"
+text = "Version 2025-03-20 withdrawn (packaging error: the ontology of 2020-09-29 in a tar archive); version 2025-11-27, the current ontology as plain gzip, is the stable version."
 
 [[changelog]]
 date = "2020-09-29"
