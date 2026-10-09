@@ -31,6 +31,12 @@ crawls behind rujen, yivo and stolpersteine.
   2020 by mistake).
 - Files that were on the server but not in the catalogue are added to their version where they belong: the
   EntityFacts links of bhr, the raw crawls of rujen, yivo and stolpersteine (inputs of the generators).
+- Removed from the catalogue, as test data or derived from other datasets: `cmtest` (a test sample of the
+  Compact Memory full text for Elasticsearch), `ep-supp` (indexes of the legacy entity pages, which
+  `ep-2026-10-06` replaces), `cm-tagme-supp` (the raw TagMe output, mostly noise, and a pickle duplicating
+  `cm-tagme`), `rujen-translation-supp` (caches holding the translations of `rujen-translation`),
+  `beacon-persons` (now produced by Frankfurt); from `compact-memory-supp` the pickle duplicating
+  `compact-memory` (its page metadata CSV, an input of `cm-structure` and `cm-journals`, stays).
 - Every file is a single file; the tar archives named `.gz` (epidat, `ep_GND_ids.json.gz`, haskala, ontology),
   each holding one file, are replaced by plain gzip files with the same content.
 - The tree is built by `catalog.py collect` from local copies, finding each file by its checksum; locally it
@@ -40,6 +46,7 @@ crawls behind rujen, yivo and stolpersteine.
 
 ## Consequences
 
+- Frankfurt's catalogue still lists the five removed datasets; they should drop them.
 - Links to the old paths on archive.judaicalink.org break unless redirects are set up (open question of 0013).
 - After the clean start, files on the archive are again never changed; versions are added. Removing versions
   later needs a new decision.

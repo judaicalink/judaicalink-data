@@ -7,7 +7,6 @@ website = "http://www.rujen.ru"
 example = "http://data.judaicalink.org/data/rujen/ben-gurion"
 picture = "/img/rujen_logo.png"
 namespaces = ["rujen"]
-inputs = ["rujen-translation-supp"]
 aliases = ["/encyclopediae/encyclopediae-of-russion-jewry/", "/datasets/encyclopediae-of-russion-jewry/"]
 stable = "2020-09-28"
 

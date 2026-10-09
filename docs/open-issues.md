@@ -11,7 +11,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **Move the generators** (`../kg-complements/`, `../qlever/`) into this repository, change the provenance
   links in the `-meta` files (placeholder `judaicalink-generators/…/kg-complements/`) to `judaicalink-data`,
   create the GitHub repository.
-- **Catalogue:** the 36 entries in `catalog/` are migrated to the format of
+- **Catalogue:** the entries in `catalog/` (31 since 0015) are migrated to the format of
   [0013](decisions/0013-catalogue-format.md) (2026-10-09, `catalog/migrate_0013.py`; `catalog.py check`
   passes). Next: the hand curation (`kind`, `method`, `namespaces` checked
   against the data, `occupations`, file descriptions), restructuring the archive, entries for our
@@ -24,13 +24,14 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   index|sync`, the finder page and template changes in `judaicalink-site` (also: show the changelog and the
   derived contributors on the dataset pages, 0013), restructuring the archive
   to `<slug>/<version>/<path>`, finder page `/dataindex/`.
-- **To discuss with Frankfurt:** stable access URLs on data.judaicalink.org instead of web.judaicalink.org
+- **To discuss with Frankfurt:** they can drop `cmtest`, `ep-supp`, `cm-tagme-supp`, `rujen-translation-supp` and
+  `beacon-persons` from their catalogue ([0015](decisions/0015-dumps-clean-start.md)); stable access URLs on data.judaicalink.org instead of web.judaicalink.org
   (0014); their loader expects `<slug>.meta.ttl` in one shared metadata graph (0006); their catalogue pages
   could link to our finder; they adopt `<slug>/<version>/<path>` when they next take over files.
 - **Process details:** versioning and archiving rules for dumps.
 
-- **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is `lokal/dumps-new` (91 files,
-  758 MB, `catalog.py collect`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
+- **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is `lokal/dumps-new` (79 files,
+  189 MB, `catalog.py collect`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
   from the old paths?), then keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
   delete the rest there.
 

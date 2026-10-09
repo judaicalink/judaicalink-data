@@ -5,7 +5,6 @@ author = "Kai Eckert"
 date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]
-inputs = ["ep-supp"]
 stable = "2021-05-28"
 
 [license]

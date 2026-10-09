@@ -16,19 +16,13 @@ url = "https://github.com/wisslab/judaicalink-generators/blob/master/compact-mem
 label = "Generator script"
 
 [files]
-"cm_tagme_pages_data.pickle.gz" = "Page metadata as raw data for Compact Memory, for pages where entity references have been found."
 "CM_Seiten_Metadaten.csv.gz" = "Original metadata (pagewise) for Compact Memory."
 
 [[versions]]
 version = "2021-01-19"
 issued = "2021-01-19"
 author = "Marco Rovera"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
-
-  [[versions.files]]
-  path = "cm_tagme_pages_data.pickle.gz"
-  bytes = 7323318
-  sha256 = "4df9d94b9157e87193967e4b4f2b8ffe3fe7a5ec0a847207e22271b4181a3887"
+description = "The original page metadata of the Visual Library (input of cm-structure and cm-journals); the pickle file of the archived state duplicated compact-memory and is not kept."
 
   [[versions.files]]
   path = "CM_Seiten_Metadaten.csv.gz"
