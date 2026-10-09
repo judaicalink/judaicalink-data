@@ -8,7 +8,10 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   `YYYY-MM-DD[-n]`, other schemes per dataset possible); the tooling can add the version entry (files,
   sizes, checksums, commit) to the dataset's catalogue entry, **only on request**, so experimental runs are
   not catalogued.
-- **Move the generators** (`../kg-complements/`, `../qlever/`) into this repository, change the provenance
+- **Generators:** `generators/<slug>/` documents the history and holds the original files of every dataset (step 1,
+  2026-10-10). Next: the generator framework, migrated generators (with a test against the kept version where the
+  inputs are on file), then the new datasets.
+- **Move the generators** (`../kg-complements/`) into this repository, change the provenance
   links in the `-meta` files (placeholder `judaicalink-generators/…/kg-complements/`) to `judaicalink-data`,
   create the GitHub repository.
 - **Catalogue:** the entries in `catalog/` (31 since 0015) are migrated to the format of
@@ -54,12 +57,19 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 
 ## Data
 
-- **gba URIs changed** on 2025-03-21 ("Sanitize ids"): the 24 URIs of the version before are gone (e.g.
-  `data/gba/JecheskelEzechielLandau`). Check whether anything links to the old ones.
+- **gba URIs changed** on 2025-03-21 (generator commit `6fce1cd`, `clean_url_string` replaces characters with `_`
+  instead of removing them): the 24 URIs of the version before are gone (e.g. `data/gba/JecheskelEzechielLandau` →
+  `Jecheskel__Ezechiel__Landau`). Check whether anything links to the old ones.
+- **Findings of the generator inventory** (`generators/*/README.md`): yivo 2020 lower-cased its IRIs, so the yivo
+  links of 2014links and `interlinks.n3` (2014 IRIs) do not resolve; epidat has names clipped by a hand repair of
+  2023 (`Jakob` → `Jako`); rujen-translation contains 293 broken literals `"Translated(src=…)"`; sosy uses HTML-view
+  URLs as `jl:occupation` values; the legacy entity pages made about 1.1 million cm-tagme references and
+  compact-memory pages into singleton pages (check that ep-2026-10-06 retires them); djh 2018 has non-ASCII
+  characters in IRIs; geo-enriched has an empty haskala file.
 - **Ontology:** the catalogue now names version 2025-11-27 (judaicalink-ontology `b26c961`, identical to
   ontology.judaicalink.org), in `lokal/dumps-additions/ontology/2025-11-27/`, not yet published. To do: rebuild
   `ontology-complements`, which redefines six terms of the current ontology (`belongsToIssue`,
-  `belongsToJournal`, `birthLocationURI`, `deathLocationURI`, `gitCommit`, `gitWeb`), and load it in QLever.
+  `belongsToJournal`, `birthLocationURI`, `deathLocationURI`, `gitCommit`, `gitWeb`), and load it in an endpoint (with the platform, 0016).
 
 - **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
   article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):

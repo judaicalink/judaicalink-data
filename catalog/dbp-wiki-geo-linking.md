@@ -10,9 +10,9 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
-[[links]]
-url = "https://github.com/wisslab/judaicalink-generators/blob/master/dbp-wiki-geo-linking/dbp-wiki-geo-linking.ipynb"
-label = "Generator script"
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/dbp-wiki-geo-linking"
 
 [[versions]]
 version = "2021-01-13"

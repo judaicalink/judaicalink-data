@@ -1,6 +1,6 @@
 # 0013 Catalogue entry format: datasets, versions, changelog
 
-Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`, changelog authors, dated legacy versions)
+Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`, changelog authors, dated legacy versions, generator folders)
 
 ## Context
 
@@ -45,7 +45,7 @@ is ready; Frankfurt gets the catalogue and its documentation and adapts their sy
 | `namespaces` | URI namespaces the dataset coins, list, relative to `http://data.judaicalink.org/data/` (sub-paths allowed: `nli/record`) |
 | `replaces` | slugs of the datasets this one supersedes, list ([0007](0007-complementary-and-superseding-datasets.md)); the inverse (`replaced_by`) is derived by the tooling |
 | `inputs` | slugs of our datasets this one is generated from, list (build order, rebuild triggers): datasets of any kind, support data included; no versions here: the versions and files a run used are recorded in the `-meta` file of the resulting version ([0006](0006-graphs-and-meta.md)), as are external sources |
-| `generator` | table `repo`, `path`: the generator script |
+| `generator` | table `repo`, `path`: the generator folder of the dataset in judaicalink-data (`generators/<slug>`), which documents the history of its generators and holds the maintained generator |
 | `stable` | version id of the recommended version (see below) |
 | `withdrawn` | reason, if the dataset should no longer be used (e.g. a test index) |
 | `aliases` | former URLs of the dataset's page on our sites, list of site-relative paths (Hugo redirects them to `/datasets/<slug>/`, so old links keep working) |
@@ -64,7 +64,7 @@ enters the catalogue only when it is added explicitly; experimental runs are not
 | `version` | **required (within a version).** Version id |
 | `issued` | date the version was made |
 | `author` | who made this version: name, or list of names (history; the dataset's `author` is the current maintainer) |
-| `commit` | commit of the generator that made it |
+| `commit` | commit of judaicalink-data whose generator made this version; not set for versions made before (their generators, repositories and commits are documented in `generators/<slug>/README.md`) |
 | `graph` | only for legacy versions: the graph name used when it was loaded, if not the dataset IRI |
 | `description` | short remark on this version |
 | `withdrawn` | reason, if this version should not be used (known error) |

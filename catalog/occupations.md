@@ -5,12 +5,16 @@ author = "Kai Eckert"
 date = "2025-12-18"
 website = "https://www.judaicalink.org/"
 example = "http://data.judaicalink.org/data/occupation/rabbiner"
-namespaces = ["occupations"]
+namespaces = ["occupation"]
 
 [license]
 name = "CC BY 4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
+
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/occupations"
 
 [[changelog]]
 date = "2025-12-18"

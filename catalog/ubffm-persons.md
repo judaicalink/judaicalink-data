@@ -12,6 +12,10 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/ubffm-persons"
+
 [files]
 "ubffm-authors.ttl.gz" = "Persons extracted from Judaica collection of University Library of Frankfurt. Names are both in transcription and Hebrew"
 "ubffm-authors-02.ttl.gz" = "Persons extracted from Judaica collection of University Library of Frankfurt. Names are only in transciption"

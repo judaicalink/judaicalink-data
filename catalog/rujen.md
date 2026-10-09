@@ -16,8 +16,8 @@ uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
 [generator]
-repo = "https://github.com/wisslab/judaicalink-labs"
-path = "labs/data/management/commands/generate_rujen.py"
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/rujen"
 
 [files]
 "rujen.jsonl.gz" = "Raw data crawled from rujen.ru, input of the generator."
@@ -26,7 +26,6 @@ path = "labs/data/management/commands/generate_rujen.py"
 version = "2020-09-28"
 issued = "2020-09-28"
 author = "Kai Eckert"
-commit = "1ac14f193f827f13a657a7f49dca0c0cf2bd7c25"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
   [[versions.files]]

@@ -21,3 +21,4 @@ consequences. Short is better than complete; link to the documentation that has 
 | [0013](0013-catalogue-format.md) | Catalogue entry format: datasets, versions (stable pointer), changelog; only slug, title, author, license required | 2026-10-08 |
 | [0014](0014-locations-dataindex-finder.md) | Locations only as prefixes; `dataindex.json` and the dataset finder; entries reach catalogues by copying | 2026-10-08 |
 | [0015](0015-dumps-clean-start.md) | Clean start of the dumps: dumps-clean versions plus richer earlier ones (stable), single files, built by checksum | 2026-10-09 |
+| [0016](0016-data-access-outside.md) | SPARQL endpoint, demonstrators and data access are not part of judaicalink-data | 2026-10-10 |

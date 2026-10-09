@@ -1,6 +1,6 @@
 # 0003 One universal repository: judaicalink-data
 
-Status: accepted · Date: 2026-10-07
+Status: accepted, amended by [0016](0016-data-access-outside.md) (`qlever/` stays outside) · Date: 2026-10-07
 
 ## Context
 

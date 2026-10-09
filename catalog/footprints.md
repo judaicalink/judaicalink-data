@@ -13,12 +13,16 @@ name = "CC BY-SA 4.0"
 uri = "https://creativecommons.org/licenses/by-sa/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/footprints"
+
 [[versions]]
 version = "2025-03-21"
 issued = "2025-03-21"
 author = "Benjamin Schnabel"
 graph = "http://data.judaicalink.org/data/footprints"
-description = "Regenerated with the revised generator; contains only the types and names of the resources. The reason for the change is not known, so 2024-03-18 stays the stable version."
+description = "Regenerated with a rewritten generator that keeps only the person loop (the book and place sections and the GND, VIAF and translation lookups were dropped, apparently because the old generator no longer ran); contains only the types and names of the resources. 2024-03-18 stays the stable version."
 
   [[versions.files]]
   path = "footprints.ttl.gz"

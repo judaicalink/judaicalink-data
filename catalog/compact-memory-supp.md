@@ -1,6 +1,6 @@
 +++
 slug = "compact-memory-supp"
-title = "Linking Compact Memory - Pages"
+title = "Compact Memory page metadata"
 author = "Kai Eckert"
 date = "2021-01-19"
 kind = "support"
@@ -11,9 +11,9 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
-[[links]]
-url = "https://github.com/wisslab/judaicalink-generators/blob/master/compact-memory-linking/cm_pages_rdf.ipynb"
-label = "Generator script"
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/compact-memory-supp"
 
 [files]
 "CM_Seiten_Metadaten.csv.gz" = "Original metadata (pagewise) for Compact Memory."
@@ -30,9 +30,9 @@ description = "The original page metadata of the Visual Library (input of cm-str
   sha256 = "7affff32c1da8451ffc536db0cb526d39b09848dfcb59fa70b820493616fcd08"
 
 [[changelog]]
-date = "2025-06-05"
+date = "2025-12-31"
 author = "Benjamin Schnabel"
-text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
+text = "The original xlsx export and the conversion notebook added to the workflow repository."
 +++
 Support data for Compact Memory - JL linking (pages).
 

@@ -12,6 +12,10 @@ name = "CC-BY-SA-3.0"
 uri = "https://creativecommons.org/licenses/by-sa/3.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/dbpedia-persons"
+
 [files]
 "persons-gndid.ttl.gz" = "GND links for all persons in this dataset."
 "Entityfacts-dbpedia-sameas.ttl.gz" = "EntityFacts links for all persons with an GND-id in this dataset."

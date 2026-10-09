@@ -12,9 +12,9 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
-[[links]]
-url = "https://github.com/wisslab/judaicalink-generators/blob/master/compact-memory-linking/cm_pages_rdf.ipynb"
-label = "Generator script"
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/compact-memory"
 
 [files]
 "cm_tagme_pages.ttl.gz" = "Page metadata in RDF for Compact Memory, for pages where entity references have been found (624682 triples)."

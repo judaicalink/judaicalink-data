@@ -13,6 +13,10 @@ name = "CC4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/bhr"
+
 [files]
 "Entityfacts-bhr-sameas.ttl.gz" = "Links of the persons to the GND and to EntityFacts (owl:sameAs)."
 
@@ -36,7 +40,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2025-06-24"
 author = "Benjamin Schnabel"
-text = "Bug fix in the generator (judaicalink-generators); the archived version was not regenerated."
+text = "A script of the generator reformatted for Python 3 (judaicalink-generators); the archived version was not regenerated."
 
 [[changelog]]
 date = "2017-10-02"

@@ -15,14 +15,13 @@ uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
 [generator]
-repo = "https://github.com/judaicalink/judaicalink-ontology"
-path = "generate.py"
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/ontology"
 
 [[versions]]
 version = "2025-11-27"
 issued = "2025-11-27"
 author = "Benjamin Schnabel"
-commit = "b26c961b3f5ff018985793134148714f2722c8b4"
 description = "The ontology as of judaicalink-ontology b26c961, as served on ontology.judaicalink.org."
 
   [[versions.files]]

@@ -1,0 +1,53 @@
+<Silk>
+<Prefixes>
+    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#" />
+    <Prefix id="dbpedia" namespace="http://dbpedia.org/ontology/" />
+    <Prefix id="gn" namespace="http://www.geonames.org/ontology#" />    
+    <Prefix id="skos" namespace="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix id="edm" namespace="http://www.europeana.eu/schemas/edm/"/>
+    <Prefix id="foaf" namespace="http://xmlns.com/foaf/0.1/"/>
+  </Prefixes>
+  <DataSources>
+    <DataSource id="onb" type="sparqlEndpoint">
+      <Param name="endpointURI" value="http://data.judaicalink.org/sparql/query" />
+	<Param name="graph" value="http://data.judaicalink.org/data/rujen" />
+    </DataSource>
+	<DataSource id="dbpedia" type="sparqlEndpoint">
+      <Param name="endpointURI" value="http://linkedgeodata.org/sparql" />
+      <Param name="graph" value="http://linkedgeodata.org" />
+    </DataSource>
+  </DataSources>
+
+ <Interlinks>
+<Interlink id="linkwab">
+  <LinkType>&lt;http://www.w3.org/2002/07/owl#sameAs&gt;</LinkType>
+  <SourceDataset dataSource="onb" var="a">
+   <RestrictTo> ?a rdf:type skos:Concept</RestrictTo>
+  </SourceDataset>
+  <TargetDataset dataSource="dbpedia" var="b">
+	<RestrictTo>
+    { { ?b &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://linkedgeodata.org/ontology/City&gt; } UNION { ?b &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://linkedgeodata.org/ontology/Town&gt; }UNION { ?b &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://linkedgeodata.org/ontology/Village&gt; }
+	UNION { ?b &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://linkedgeodata.org/ontology/Place&gt; } }
+	</RestrictTo>
+  </TargetDataset>
+  <LinkageRule>
+      <Compare id="unnamed_11" required="false" metric="jaroWinkler" threshold="0.1">
+          <TransformInput id="unnamed_13" function="lowerCase">
+              <Input path="?a/skos:prefLabel" />
+          </TransformInput>
+        <TransformInput id="unnamed_14" function="lowerCase">
+              <Input path="?b/rdfs:label" />
+          </TransformInput>
+      </Compare>
+  </LinkageRule>
+  <Filter/>
+  <Outputs>
+	<Output type="file" minConfidence="0.9">
+    <Param name="file" value="/home/dritze/Judaica/rujenPlaceLGDO.xml"/>
+    <Param name="format" value="ntriples"/>
+  </Output>
+  </Outputs>
+</Interlink>
+</Interlinks>
+</Silk>

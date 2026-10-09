@@ -13,6 +13,10 @@ stable = "2018-10-22"
 [license]
 name = "unknown"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/djh"
+
 [files]
 "djh.ttl.gz" = "Extraction from the encyclopedia 'Das Jüdische Hamburg'."
 

@@ -12,6 +12,10 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/geo-enriched"
+
 [files]
 "geo_interlinks.ttl" = "Mappings Geonames - JudaicaLink"
 

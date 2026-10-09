@@ -1,0 +1,1611 @@
+[
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round1/scripts/Scrapping_Persons_01.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 1143,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round1/scripts/Scrapping_Persons_01.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round1/scripts/ContentExtraction.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 4549,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round1/scripts/ContentExtraction.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round1/scripts/Encyc-to-RDF.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 2687,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round1/scripts/Encyc-to-RDF.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round1/scripts/Encyc-to-RDF-ID.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 2648,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round1/scripts/Encyc-to-RDF-ID.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round1/scripts/BHR-GND.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 3612,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round1/scripts/BHR-GND.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round1/scripts/BHR-vs-GND-01.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 2437,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round1/scripts/BHR-vs-GND-01.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round1/scripts/BHR-vs-JudaicaLink-01.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 2434,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round1/scripts/BHR-vs-JudaicaLink-01.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round2/scripts/Scrapping_Persons_03.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 6518,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round2/scripts/Scrapping_Persons_03.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round2/scripts/Integrate-new-old-02.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 4055,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-02.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round2/scripts/Integrate-new-old-03.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 3791,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-03.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "5a51e8c8f87613481b5bc9627738d9c3326f8b6a",
+  "commit_date": "2018-05-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/BHR/Round2/scripts/Integrate-new-old-04.py",
+  "file_last_changed": [
+   "5a51e8c",
+   "2018-05-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 3289,
+  "local": "bhr/original/judaicalink-loader@5a51e8c/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-04.py"
+ },
+ {
+  "slug": "bhr",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "abe8e67e1114cb00b8ada5b964fbdf828014f2e2",
+  "commit_date": "2018-10-24",
+  "commit_author": "Maral Dadvar",
+  "path": "bhr/Round2/scripts/Entityfacts-01.py",
+  "file_last_changed": [
+   "abe8e67",
+   "2018-10-24",
+   "Maral Dadvar"
+  ],
+  "bytes": 3281,
+  "local": "bhr/original/judaicalink-generators@abe8e67/bhr/Round2/scripts/Entityfacts-01.py"
+ },
+ {
+  "slug": "dbpedia-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "8668321129189c664e6e44ee0b745d99a000643a",
+  "commit_date": "2018-04-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia.py",
+  "file_last_changed": [
+   "54bae32",
+   "2017-04-21",
+   "Maral Dadvar"
+  ],
+  "bytes": 4143,
+  "local": "dbpedia-persons/original/judaicalink-loader@8668321/generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia.py"
+ },
+ {
+  "slug": "dbpedia-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "8668321129189c664e6e44ee0b745d99a000643a",
+  "commit_date": "2018-04-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia_modify.py",
+  "file_last_changed": [
+   "05c5248",
+   "2017-12-11",
+   "Maral Dadvar"
+  ],
+  "bytes": 2907,
+  "local": "dbpedia-persons/original/judaicalink-loader@8668321/generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia_modify.py"
+ },
+ {
+  "slug": "dbpedia-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "8668321129189c664e6e44ee0b745d99a000643a",
+  "commit_date": "2018-04-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia_modify_gnd.py",
+  "file_last_changed": [
+   "05c5248",
+   "2017-12-11",
+   "Maral Dadvar"
+  ],
+  "bytes": 2178,
+  "local": "dbpedia-persons/original/judaicalink-loader@8668321/generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia_modify_gnd.py"
+ },
+ {
+  "slug": "dbpedia-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "8668321129189c664e6e44ee0b745d99a000643a",
+  "commit_date": "2018-04-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_DBPedia/scripts/generated_persons_DBPedia_enrich.py",
+  "file_last_changed": [
+   "8668321",
+   "2018-04-03",
+   "Maral Dadvar"
+  ],
+  "bytes": 4129,
+  "local": "dbpedia-persons/original/judaicalink-loader@8668321/generators/Datasets/Persons_DBPedia/scripts/generated_persons_DBPedia_enrich.py"
+ },
+ {
+  "slug": "dbpedia-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "8668321129189c664e6e44ee0b745d99a000643a",
+  "commit_date": "2018-04-03",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_DBPedia/scripts/gndid_generator.py",
+  "file_last_changed": [
+   "e88a64e",
+   "2017-04-21",
+   "Maral Dadvar"
+  ],
+  "bytes": 3549,
+  "local": "dbpedia-persons/original/judaicalink-loader@8668321/generators/Datasets/Persons_DBPedia/scripts/gndid_generator.py"
+ },
+ {
+  "slug": "dbpedia-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "e1add334e0e47767a4e61bd98fa67429f7f00ae7",
+  "commit_date": "2017-03-23",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/gndid-generator.py",
+  "file_last_changed": [
+   "e1add33",
+   "2017-03-23",
+   "Maral Dadvar"
+  ],
+  "bytes": 3549,
+  "local": "dbpedia-persons/original/judaicalink-loader@e1add33/generators/gndid-generator.py"
+ },
+ {
+  "slug": "dbpedia-persons",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "abe8e67e1114cb00b8ada5b964fbdf828014f2e2",
+  "commit_date": "2018-10-24",
+  "commit_author": "Maral Dadvar",
+  "path": "dbpedia-persons/scripts/Entityfacts-01.py",
+  "file_last_changed": [
+   "abe8e67",
+   "2018-10-24",
+   "Maral Dadvar"
+  ],
+  "bytes": 3281,
+  "local": "dbpedia-persons/original/judaicalink-generators@abe8e67/dbpedia-persons/scripts/Entityfacts-01.py"
+ },
+ {
+  "slug": "gnd-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "a93751a6d1ad19ea8c3258ea3701c9114bfab6e0",
+  "commit_date": "2017-05-02",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_GND/scripts/person_generator_GND_01.py",
+  "file_last_changed": [
+   "a93751a",
+   "2017-05-02",
+   "Maral Dadvar"
+  ],
+  "bytes": 4314,
+  "local": "gnd-persons/original/judaicalink-loader@a93751a/generators/Datasets/Persons_GND/scripts/person_generator_GND_01.py"
+ },
+ {
+  "slug": "gnd-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "a93751a6d1ad19ea8c3258ea3701c9114bfab6e0",
+  "commit_date": "2017-05-02",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_GND/scripts/person_generator_GND_02.py",
+  "file_last_changed": [
+   "a93751a",
+   "2017-05-02",
+   "Maral Dadvar"
+  ],
+  "bytes": 4320,
+  "local": "gnd-persons/original/judaicalink-loader@a93751a/generators/Datasets/Persons_GND/scripts/person_generator_GND_02.py"
+ },
+ {
+  "slug": "gnd-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "a93751a6d1ad19ea8c3258ea3701c9114bfab6e0",
+  "commit_date": "2017-05-02",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_GND/scripts/person_generator_GND_Occontology_01.py",
+  "file_last_changed": [
+   "a93751a",
+   "2017-05-02",
+   "Maral Dadvar"
+  ],
+  "bytes": 4561,
+  "local": "gnd-persons/original/judaicalink-loader@a93751a/generators/Datasets/Persons_GND/scripts/person_generator_GND_Occontology_01.py"
+ },
+ {
+  "slug": "gnd-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "a93751a6d1ad19ea8c3258ea3701c9114bfab6e0",
+  "commit_date": "2017-05-02",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_GND/scripts/person_generator_GND_Occontology_02.py",
+  "file_last_changed": [
+   "a93751a",
+   "2017-05-02",
+   "Maral Dadvar"
+  ],
+  "bytes": 4556,
+  "local": "gnd-persons/original/judaicalink-loader@a93751a/generators/Datasets/Persons_GND/scripts/person_generator_GND_Occontology_02.py"
+ },
+ {
+  "slug": "gnd-persons",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "85f2bc5c2bfcf84395c57d24da5f1da6c4d5dd15",
+  "commit_date": "2018-02-13",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Persons_GND/scripts/Freimann-GND-enrich.py",
+  "file_last_changed": [
+   "85f2bc5",
+   "2018-02-13",
+   "Maral Dadvar"
+  ],
+  "bytes": 5941,
+  "local": "gnd-persons/original/judaicalink-loader@85f2bc5/generators/Datasets/Persons_GND/scripts/Freimann-GND-enrich.py"
+ },
+ {
+  "slug": "gnd-persons",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "6d2a287f5a4aee460e2677c46c7fff0f4b40d769",
+  "commit_date": "2018-07-25",
+  "commit_author": "Maral Dadvar",
+  "path": "gnd-persons/scripts/UB-gnd.py",
+  "file_last_changed": [
+   "6d2a287",
+   "2018-07-25",
+   "Maral Dadvar"
+  ],
+  "bytes": 4901,
+  "local": "gnd-persons/original/judaicalink-generators@6d2a287/gnd-persons/scripts/UB-gnd.py"
+ },
+ {
+  "slug": "gnd-persons",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "abe8e67e1114cb00b8ada5b964fbdf828014f2e2",
+  "commit_date": "2018-10-24",
+  "commit_author": "Maral Dadvar",
+  "path": "gnd-persons/scripts/Entityfacts-01.py",
+  "file_last_changed": [
+   "abe8e67",
+   "2018-10-24",
+   "Maral Dadvar"
+  ],
+  "bytes": 3281,
+  "local": "gnd-persons/original/judaicalink-generators@abe8e67/gnd-persons/scripts/Entityfacts-01.py"
+ },
+ {
+  "slug": "geo-coordinates",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "b21f1dd963759f20ac0ed7bb5c56e457cf3f19b8",
+  "commit_date": "2018-08-08",
+  "commit_author": "Maral Dadvar",
+  "path": "geocoordinates/scripts/Location-coor-02-02.py",
+  "file_last_changed": [
+   "b21f1dd",
+   "2018-08-08",
+   "Maral Dadvar"
+  ],
+  "bytes": 5463,
+  "local": "geo-coordinates/original/judaicalink-generators@b21f1dd/geocoordinates/scripts/Location-coor-02-02.py"
+ },
+ {
+  "slug": "geo-coordinates",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "b21f1dd963759f20ac0ed7bb5c56e457cf3f19b8",
+  "commit_date": "2018-08-08",
+  "commit_author": "Maral Dadvar",
+  "path": "geocoordinates/scripts/Locaion-coor-03.py",
+  "file_last_changed": [
+   "b21f1dd",
+   "2018-08-08",
+   "Maral Dadvar"
+  ],
+  "bytes": 5142,
+  "local": "geo-coordinates/original/judaicalink-generators@b21f1dd/geocoordinates/scripts/Locaion-coor-03.py"
+ },
+ {
+  "slug": "hirsch-family",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "40f7c98aa2157f9a533c160f80d678643c1509fd",
+  "commit_date": "2019-08-05",
+  "commit_author": "Maral Dadvar",
+  "path": "HirschFamily/scripts/CSV-to-RDF.py",
+  "file_last_changed": [
+   "40f7c98",
+   "2019-08-05",
+   "Maral Dadvar"
+  ],
+  "bytes": 2302,
+  "local": "hirsch-family/original/judaicalink-generators@40f7c98/HirschFamily/scripts/CSV-to-RDF.py"
+ },
+ {
+  "slug": "haskala",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "8f1538a1f255e49fa329ef8eb9d35c62f7bb37e3",
+  "commit_date": "2019-07-01",
+  "commit_author": "Maral Dadvar",
+  "path": "haskala/scripts/CSV-to-RDF-Haskala.py",
+  "file_last_changed": [
+   "8f1538a",
+   "2019-07-01",
+   "Maral Dadvar"
+  ],
+  "bytes": 3270,
+  "local": "haskala/original/judaicalink-generators@8f1538a/haskala/scripts/CSV-to-RDF-Haskala.py"
+ },
+ {
+  "slug": "haskala",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "8f1538a1f255e49fa329ef8eb9d35c62f7bb37e3",
+  "commit_date": "2019-07-01",
+  "commit_author": "Maral Dadvar",
+  "path": "haskala/scripts/CSV-to-RDF-Haskalanet.py",
+  "file_last_changed": [
+   "8f1538a",
+   "2019-07-01",
+   "Maral Dadvar"
+  ],
+  "bytes": 2267,
+  "local": "haskala/original/judaicalink-generators@8f1538a/haskala/scripts/CSV-to-RDF-Haskalanet.py"
+ },
+ {
+  "slug": "haskala",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "8f1538a1f255e49fa329ef8eb9d35c62f7bb37e3",
+  "commit_date": "2019-07-01",
+  "commit_author": "Maral Dadvar",
+  "path": "haskala/scripts/GND-enrich-02.py",
+  "file_last_changed": [
+   "8f1538a",
+   "2019-07-01",
+   "Maral Dadvar"
+  ],
+  "bytes": 3883,
+  "local": "haskala/original/judaicalink-generators@8f1538a/haskala/scripts/GND-enrich-02.py"
+ },
+ {
+  "slug": "haskala",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "f9b8215519166a50438e3269b3e016a773b5367b",
+  "commit_date": "2025-03-24",
+  "commit_author": "bsesic",
+  "path": "haskala/scripts/CSV-to-RDF-Haskala.py",
+  "file_last_changed": [
+   "f9b8215",
+   "2025-03-24",
+   "bsesic"
+  ],
+  "bytes": 3303,
+  "local": "haskala/original/judaicalink-generators@f9b8215/haskala/scripts/CSV-to-RDF-Haskala.py"
+ },
+ {
+  "slug": "haskala",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "f9b8215519166a50438e3269b3e016a773b5367b",
+  "commit_date": "2025-03-24",
+  "commit_author": "bsesic",
+  "path": "haskala/scripts/CSV-to-RDF-Haskalanet.py",
+  "file_last_changed": [
+   "f9b8215",
+   "2025-03-24",
+   "bsesic"
+  ],
+  "bytes": 2277,
+  "local": "haskala/original/judaicalink-generators@f9b8215/haskala/scripts/CSV-to-RDF-Haskalanet.py"
+ },
+ {
+  "slug": "haskala",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "f9b8215519166a50438e3269b3e016a773b5367b",
+  "commit_date": "2025-03-24",
+  "commit_author": "bsesic",
+  "path": "haskala/scripts/GND-enrich-02.py",
+  "file_last_changed": [
+   "f9b8215",
+   "2025-03-24",
+   "bsesic"
+  ],
+  "bytes": 3870,
+  "local": "haskala/original/judaicalink-generators@f9b8215/haskala/scripts/GND-enrich-02.py"
+ },
+ {
+  "slug": "nli-persons",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "724c8eeff9b1d53b54060e3a2738c7898ca885bd",
+  "commit_date": "2019-08-05",
+  "commit_author": "Maral Dadvar",
+  "path": "nli-persons/scripts/NLI-persons-03.py",
+  "file_last_changed": [
+   "724c8ee",
+   "2019-08-05",
+   "Maral Dadvar"
+  ],
+  "bytes": 5138,
+  "local": "nli-persons/original/judaicalink-generators@724c8ee/nli-persons/scripts/NLI-persons-03.py"
+ },
+ {
+  "slug": "interlinks",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "277524ace7c873842f3c827ec0212fc61a459c5d",
+  "commit_date": "2018-02-13",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-01.py",
+  "file_last_changed": [
+   "277524a",
+   "2018-02-13",
+   "Maral Dadvar"
+  ],
+  "bytes": 4987,
+  "local": "interlinks/original/judaicalink-loader@277524a/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-01.py"
+ },
+ {
+  "slug": "interlinks",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "277524ace7c873842f3c827ec0212fc61a459c5d",
+  "commit_date": "2018-02-13",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-02.py",
+  "file_last_changed": [
+   "277524a",
+   "2018-02-13",
+   "Maral Dadvar"
+  ],
+  "bytes": 5039,
+  "local": "interlinks/original/judaicalink-loader@277524a/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-02.py"
+ },
+ {
+  "slug": "interlinks",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "277524ace7c873842f3c827ec0212fc61a459c5d",
+  "commit_date": "2018-02-13",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-03.py",
+  "file_last_changed": [
+   "277524a",
+   "2018-02-13",
+   "Maral Dadvar"
+  ],
+  "bytes": 1843,
+  "local": "interlinks/original/judaicalink-loader@277524a/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-03.py"
+ },
+ {
+  "slug": "interlinks",
+  "repo": "judaicalink-loader",
+  "url": "https://github.com/judaicalink/judaicalink-loader",
+  "commit": "277524ace7c873842f3c827ec0212fc61a459c5d",
+  "commit_date": "2018-02-13",
+  "commit_author": "Maral Dadvar",
+  "path": "generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-04.py",
+  "file_last_changed": [
+   "277524a",
+   "2018-02-13",
+   "Maral Dadvar"
+  ],
+  "bytes": 3522,
+  "local": "interlinks/original/judaicalink-loader@277524a/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-04.py"
+ },
+ {
+  "slug": "stolperstein",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "22d71f829fbe497b802845aaffa80f0484b8311b",
+  "commit_date": "2019-07-31",
+  "commit_author": "Maral Dadvar",
+  "path": "stolpersteine/scripts/Stein-wiki-01.py",
+  "file_last_changed": [
+   "22d71f8",
+   "2019-07-31",
+   "Maral Dadvar"
+  ],
+  "bytes": 5550,
+  "local": "stolperstein/original/judaicalink-generators@22d71f8/stolpersteine/scripts/Stein-wiki-01.py"
+ },
+ {
+  "slug": "stolperstein",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "4a9e253b35590b5623c2c9212cfcedda8a7e150b",
+  "commit_date": "2020-10-06",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/generate_stolpersteine.py",
+  "file_last_changed": [
+   "4a9e253",
+   "2020-10-06",
+   "Kai Eckert"
+  ],
+  "bytes": 9980,
+  "local": "stolperstein/original/judaicalink-labs@4a9e253/labs/data/management/commands/generate_stolpersteine.py"
+ },
+ {
+  "slug": "stolperstein",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "4a9e253b35590b5623c2c9212cfcedda8a7e150b",
+  "commit_date": "2020-10-06",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/_dataset_command.py",
+  "file_last_changed": [
+   "4a9e253",
+   "2020-10-06",
+   "Kai Eckert"
+  ],
+  "bytes": 14948,
+  "local": "stolperstein/original/judaicalink-labs@4a9e253/labs/data/management/commands/_dataset_command.py"
+ },
+ {
+  "slug": "yivo",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "79440eddce7afc06ca7075f40ebe79b5bc696025",
+  "commit_date": "2020-09-30",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/generate_yivo.py",
+  "file_last_changed": [
+   "79440ed",
+   "2020-09-30",
+   "Kai Eckert"
+  ],
+  "bytes": 12211,
+  "local": "yivo/original/judaicalink-labs@79440ed/labs/data/management/commands/generate_yivo.py"
+ },
+ {
+  "slug": "yivo",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "79440eddce7afc06ca7075f40ebe79b5bc696025",
+  "commit_date": "2020-09-30",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/_dataset_command.py",
+  "file_last_changed": [
+   "af44b31",
+   "2020-09-28",
+   "Kai Eckert"
+  ],
+  "bytes": 14880,
+  "local": "yivo/original/judaicalink-labs@79440ed/labs/data/management/commands/_dataset_command.py"
+ },
+ {
+  "slug": "rujen",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "1ac14f193f827f13a657a7f49dca0c0cf2bd7c25",
+  "commit_date": "2020-09-28",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/generate_rujen.py",
+  "file_last_changed": [
+   "1ac14f1",
+   "2020-09-28",
+   "Kai Eckert"
+  ],
+  "bytes": 10755,
+  "local": "rujen/original/judaicalink-labs@1ac14f1/labs/data/management/commands/generate_rujen.py"
+ },
+ {
+  "slug": "rujen",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "1ac14f193f827f13a657a7f49dca0c0cf2bd7c25",
+  "commit_date": "2020-09-28",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/_dataset_command.py",
+  "file_last_changed": [
+   "4205d5b",
+   "2020-09-28",
+   "Kai Eckert"
+  ],
+  "bytes": 11993,
+  "local": "rujen/original/judaicalink-labs@1ac14f1/labs/data/management/commands/_dataset_command.py"
+ },
+ {
+  "slug": "rujen-translation",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "39f04c243cacadc2d12e602a8b1b0929d115413a",
+  "commit_date": "2020-09-28",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/generate_rujen_translation.py",
+  "file_last_changed": [
+   "39f04c2",
+   "2020-09-28",
+   "Kai Eckert"
+  ],
+  "bytes": 4560,
+  "local": "rujen-translation/original/judaicalink-labs@39f04c2/labs/data/management/commands/generate_rujen_translation.py"
+ },
+ {
+  "slug": "rujen-translation",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "39f04c243cacadc2d12e602a8b1b0929d115413a",
+  "commit_date": "2020-09-28",
+  "commit_author": "Kai Eckert",
+  "path": "labs/data/management/commands/_dataset_command.py",
+  "file_last_changed": [
+   "af44b31",
+   "2020-09-28",
+   "Kai Eckert"
+  ],
+  "bytes": 14880,
+  "local": "rujen-translation/original/judaicalink-labs@39f04c2/labs/data/management/commands/_dataset_command.py"
+ },
+ {
+  "slug": "date-enriched",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "e21387302da9355f2c5f472fae90b0da1cf31dd1",
+  "commit_date": "2020-07-31",
+  "commit_author": "Kai Eckert",
+  "path": "labs/enrichment/management/commands/date_enrichment.py",
+  "file_last_changed": [
+   "e213873",
+   "2020-07-31",
+   "Kai Eckert"
+  ],
+  "bytes": 2701,
+  "local": "date-enriched/original/judaicalink-labs@e213873/labs/enrichment/management/commands/date_enrichment.py"
+ },
+ {
+  "slug": "geo-enriched",
+  "repo": "judaicalink-labs",
+  "url": "https://github.com/judaicalink/judaicalink-labs",
+  "commit": "f4276a54a4bf89e1eebd1a47f0d1d40d5b3d825b",
+  "commit_date": "2020-08-03",
+  "commit_author": "Kai Eckert",
+  "path": "labs/enrichment/management/commands/geo_enrichment.py",
+  "file_last_changed": [
+   "f4276a5",
+   "2020-08-03",
+   "Kai Eckert"
+  ],
+  "bytes": 10391,
+  "local": "geo-enriched/original/judaicalink-labs@f4276a5/labs/enrichment/management/commands/geo_enrichment.py"
+ },
+ {
+  "slug": "djh",
+  "repo": "judaicalink-crawler",
+  "url": "https://github.com/kaiec/judaicalink-crawler",
+  "commit": "47b14cae871d779645390c729d697163b5db7d5c",
+  "commit_date": "2018-11-07",
+  "commit_author": "Kai Eckert",
+  "path": "djh-to-json.coffee",
+  "file_last_changed": [
+   "47b14ca",
+   "2018-11-07",
+   "Kai Eckert"
+  ],
+  "bytes": 3075,
+  "local": "djh/original/judaicalink-crawler@47b14ca/djh-to-json.coffee"
+ },
+ {
+  "slug": "djh",
+  "repo": "judaicalink-crawler",
+  "url": "https://github.com/kaiec/judaicalink-crawler",
+  "commit": "47b14cae871d779645390c729d697163b5db7d5c",
+  "commit_date": "2018-11-07",
+  "commit_author": "Kai Eckert",
+  "path": "djh-json-to-rdf.coffee",
+  "file_last_changed": [
+   "47b14ca",
+   "2018-11-07",
+   "Kai Eckert"
+  ],
+  "bytes": 2600,
+  "local": "djh/original/judaicalink-crawler@47b14ca/djh-json-to-rdf.coffee"
+ },
+ {
+  "slug": "djh",
+  "repo": "judaicalink-crawler",
+  "url": "https://github.com/kaiec/judaicalink-crawler",
+  "commit": "47b14cae871d779645390c729d697163b5db7d5c",
+  "commit_date": "2018-11-07",
+  "commit_author": "Kai Eckert",
+  "path": "crawler.coffee",
+  "file_last_changed": [
+   "47b14ca",
+   "2018-11-07",
+   "Kai Eckert"
+  ],
+  "bytes": 4314,
+  "local": "djh/original/judaicalink-crawler@47b14ca/crawler.coffee"
+ },
+ {
+  "slug": "djh",
+  "repo": "judaicalink-crawler",
+  "url": "https://github.com/kaiec/judaicalink-crawler",
+  "commit": "47b14cae871d779645390c729d697163b5db7d5c",
+  "commit_date": "2018-11-07",
+  "commit_author": "Kai Eckert",
+  "path": "package.json",
+  "file_last_changed": [
+   "47b14ca",
+   "2018-11-07",
+   "Kai Eckert"
+  ],
+  "bytes": 532,
+  "local": "djh/original/judaicalink-crawler@47b14ca/package.json"
+ },
+ {
+  "slug": "djh",
+  "repo": "judaicalink-crawler",
+  "url": "https://github.com/kaiec/judaicalink-crawler",
+  "commit": "47b14cae871d779645390c729d697163b5db7d5c",
+  "commit_date": "2018-11-07",
+  "commit_author": "Kai Eckert",
+  "path": "README.md",
+  "file_last_changed": [
+   "77cb25c",
+   "2014-06-17",
+   "Kai Eckert"
+  ],
+  "bytes": 99,
+  "local": "djh/original/judaicalink-crawler@47b14ca/README.md"
+ },
+ {
+  "slug": "ontology",
+  "repo": "judaicalink-ontology",
+  "url": "https://github.com/judaicalink/judaicalink-ontology",
+  "commit": "b26c961b3f5ff018985793134148714f2722c8b4",
+  "commit_date": "2025-11-27",
+  "commit_author": "Benjamin Schnabel",
+  "path": "generate.py",
+  "file_last_changed": [
+   "49159ed",
+   "2020-09-29",
+   "Kai Eckert"
+  ],
+  "bytes": 393,
+  "local": "ontology/original/judaicalink-ontology@b26c961/generate.py"
+ },
+ {
+  "slug": "cm-tagme",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12",
+  "commit_date": "2021-01-19",
+  "commit_author": "marcorovera",
+  "path": "compact-memory-linking/cm_tagme_resource_reference_data.ipynb",
+  "file_last_changed": [
+   "aefa2e5",
+   "2021-01-19",
+   "marcorovera"
+  ],
+  "bytes": 5353,
+  "local": "cm-tagme/original/judaicalink-generators@aefa2e5/compact-memory-linking/cm_tagme_resource_reference_data.ipynb"
+ },
+ {
+  "slug": "cm-tagme",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12",
+  "commit_date": "2021-01-19",
+  "commit_author": "marcorovera",
+  "path": "compact-memory-linking/cm_tagme_resource_reference_rdf.ipynb",
+  "file_last_changed": [
+   "aefa2e5",
+   "2021-01-19",
+   "marcorovera"
+  ],
+  "bytes": 3701,
+  "local": "cm-tagme/original/judaicalink-generators@aefa2e5/compact-memory-linking/cm_tagme_resource_reference_rdf.ipynb"
+ },
+ {
+  "slug": "cm-tagme",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12",
+  "commit_date": "2021-01-19",
+  "commit_author": "marcorovera",
+  "path": "compact-memory-linking/README.md",
+  "file_last_changed": [
+   "aefa2e5",
+   "2021-01-19",
+   "marcorovera"
+  ],
+  "bytes": 6592,
+  "local": "cm-tagme/original/judaicalink-generators@aefa2e5/compact-memory-linking/README.md"
+ },
+ {
+  "slug": "cm-tagme",
+  "repo": "workflow",
+  "url": "https://github.com/judaicalink/workflow",
+  "commit": "2c13f6a1fab1131dc909aefcdcb268c6cec59be0",
+  "commit_date": "2025-12-16",
+  "commit_author": "Benjamin Schnabel",
+  "path": "legacy/scripts/cm/scripts/entity_extraction/tagme_linker.ipynb",
+  "file_last_changed": [
+   "2c13f6a",
+   "2025-12-16",
+   "Benjamin Schnabel"
+  ],
+  "bytes": 27076,
+  "local": "cm-tagme/original/workflow@2c13f6a/legacy/scripts/cm/scripts/entity_extraction/tagme_linker.ipynb",
+  "note": "gcube token redacted in this copy"
+ },
+ {
+  "slug": "cm-tagme",
+  "repo": "workflow",
+  "url": "https://github.com/judaicalink/workflow",
+  "commit": "2c13f6a1fab1131dc909aefcdcb268c6cec59be0",
+  "commit_date": "2025-12-16",
+  "commit_author": "Benjamin Schnabel",
+  "path": "legacy/scripts/cm/scripts/jl_linking/tagme2pickle.ipynb",
+  "file_last_changed": [
+   "2c13f6a",
+   "2025-12-16",
+   "Benjamin Schnabel"
+  ],
+  "bytes": 3900,
+  "local": "cm-tagme/original/workflow@2c13f6a/legacy/scripts/cm/scripts/jl_linking/tagme2pickle.ipynb"
+ },
+ {
+  "slug": "compact-memory",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12",
+  "commit_date": "2021-01-19",
+  "commit_author": "marcorovera",
+  "path": "compact-memory-linking/cm_pages_data.ipynb",
+  "file_last_changed": [
+   "aefa2e5",
+   "2021-01-19",
+   "marcorovera"
+  ],
+  "bytes": 3006,
+  "local": "compact-memory/original/judaicalink-generators@aefa2e5/compact-memory-linking/cm_pages_data.ipynb"
+ },
+ {
+  "slug": "compact-memory",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12",
+  "commit_date": "2021-01-19",
+  "commit_author": "marcorovera",
+  "path": "compact-memory-linking/cm_pages_rdf.ipynb",
+  "file_last_changed": [
+   "aefa2e5",
+   "2021-01-19",
+   "marcorovera"
+  ],
+  "bytes": 3587,
+  "local": "compact-memory/original/judaicalink-generators@aefa2e5/compact-memory-linking/cm_pages_rdf.ipynb"
+ },
+ {
+  "slug": "compact-memory",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12",
+  "commit_date": "2021-01-19",
+  "commit_author": "marcorovera",
+  "path": "compact-memory-linking/README.md",
+  "file_last_changed": [
+   "aefa2e5",
+   "2021-01-19",
+   "marcorovera"
+  ],
+  "bytes": 6592,
+  "local": "compact-memory/original/judaicalink-generators@aefa2e5/compact-memory-linking/README.md"
+ },
+ {
+  "slug": "compact-memory-supp",
+  "repo": "workflow",
+  "url": "https://github.com/judaicalink/workflow",
+  "commit": "eee36e7baaa00c9016c5a135cdf6c578966a9b40",
+  "commit_date": "2025-12-31",
+  "commit_author": "Benjamin Schnabel",
+  "path": "metadata/excel_to_csv_metadata_frankfurt.ipynb",
+  "file_last_changed": [
+   "86980c2",
+   "2025-12-31",
+   "Benjamin Schnabel"
+  ],
+  "bytes": 1078,
+  "local": "compact-memory-supp/original/workflow@eee36e7/metadata/excel_to_csv_metadata_frankfurt.ipynb"
+ },
+ {
+  "slug": "dbp-wiki-geo-linking",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "de8480d8da80d423d9dbbb25d14318af70706da7",
+  "commit_date": "2021-01-13",
+  "commit_author": "marcorovera",
+  "path": "dbp-wiki-geo-linking/dbp-wiki-geo-linking.ipynb",
+  "file_last_changed": [
+   "de8480d",
+   "2021-01-13",
+   "marcorovera"
+  ],
+  "bytes": 5377,
+  "local": "dbp-wiki-geo-linking/original/judaicalink-generators@de8480d/dbp-wiki-geo-linking/dbp-wiki-geo-linking.ipynb"
+ },
+ {
+  "slug": "dbp-wiki-geo-linking",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "de8480d8da80d423d9dbbb25d14318af70706da7",
+  "commit_date": "2021-01-13",
+  "commit_author": "marcorovera",
+  "path": "dbp-wiki-geo-linking/readme.md",
+  "file_last_changed": [
+   "de8480d",
+   "2021-01-13",
+   "marcorovera"
+  ],
+  "bytes": 718,
+  "local": "dbp-wiki-geo-linking/original/judaicalink-generators@de8480d/dbp-wiki-geo-linking/readme.md"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "e6686ff1b20ef86a3c64ad217b4cf3f47dbff742",
+  "commit_date": "2021-01-05",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/ep_generator.md",
+  "file_last_changed": [
+   "e6686ff",
+   "2021-01-05",
+   "marcorovera"
+  ],
+  "bytes": 9384,
+  "local": "ep/original/judaicalink-generators@e6686ff/entity-pages/ep_generator.md"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "e6686ff1b20ef86a3c64ad217b4cf3f47dbff742",
+  "commit_date": "2021-01-05",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/ep_manager.py",
+  "file_last_changed": [
+   "e6686ff",
+   "2021-01-05",
+   "marcorovera"
+  ],
+  "bytes": 2663,
+  "local": "ep/original/judaicalink-generators@e6686ff/entity-pages/ep_manager.py"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "286651fe676261e4536d8a5a4416069d98bb2f27",
+  "commit_date": "2021-02-15",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/label_selector.ipynb",
+  "file_last_changed": [
+   "286651f",
+   "2021-02-15",
+   "marcorovera"
+  ],
+  "bytes": 5451,
+  "local": "ep/original/judaicalink-generators@286651f/entity-pages/label_selector.ipynb"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "b3df5f7c3996aee9f929bb5c1bd16b99a4c08f5f",
+  "commit_date": "2021-03-10",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/person_selector.ipynb",
+  "file_last_changed": [
+   "b3df5f7",
+   "2021-03-10",
+   "marcorovera"
+  ],
+  "bytes": 2282,
+  "local": "ep/original/judaicalink-generators@b3df5f7/entity-pages/person_selector.ipynb"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "b3df5f7c3996aee9f929bb5c1bd16b99a4c08f5f",
+  "commit_date": "2021-03-10",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/location_selector.ipynb",
+  "file_last_changed": [
+   "b3df5f7",
+   "2021-03-10",
+   "marcorovera"
+  ],
+  "bytes": 2487,
+  "local": "ep/original/judaicalink-generators@b3df5f7/entity-pages/location_selector.ipynb"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "747e73c2591e9d79203869f52ca6cc9789256441",
+  "commit_date": "2021-03-11",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/birth_death_date_loc_selector.ipynb",
+  "file_last_changed": [
+   "747e73c",
+   "2021-03-11",
+   "marcorovera"
+  ],
+  "bytes": 5887,
+  "local": "ep/original/judaicalink-generators@747e73c/entity-pages/birth_death_date_loc_selector.ipynb"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "4865ffdd910bc2b03074fdcdf279b30da87fdec5",
+  "commit_date": "2021-05-31",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/subcategorization.ipynb",
+  "file_last_changed": [
+   "4865ffd",
+   "2021-05-31",
+   "marcorovera"
+  ],
+  "bytes": 2866,
+  "local": "ep/original/judaicalink-generators@4865ffd/entity-pages/subcategorization.ipynb"
+ },
+ {
+  "slug": "ep",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "4865ffdd910bc2b03074fdcdf279b30da87fdec5",
+  "commit_date": "2021-05-31",
+  "commit_author": "marcorovera",
+  "path": "entity-pages/readme.md",
+  "file_last_changed": [
+   "4865ffd",
+   "2021-05-31",
+   "marcorovera"
+  ],
+  "bytes": 7296,
+  "local": "ep/original/judaicalink-generators@4865ffd/entity-pages/readme.md"
+ },
+ {
+  "slug": "ep",
+  "repo": "workflow",
+  "url": "https://github.com/judaicalink/workflow",
+  "commit": "2c13f6a1fab1131dc909aefcdcb268c6cec59be0",
+  "commit_date": "2025-12-16",
+  "commit_author": "Benjamin Schnabel",
+  "path": "legacy/scripts/jl/scripts/entity_pages/ep/ep_generator.md",
+  "file_last_changed": [
+   "2c13f6a",
+   "2025-12-16",
+   "Benjamin Schnabel"
+  ],
+  "bytes": 9492,
+  "local": "ep/original/workflow@2c13f6a/legacy/scripts/jl/scripts/entity_pages/ep/ep_generator.md"
+ },
+ {
+  "slug": "ep",
+  "repo": "workflow",
+  "url": "https://github.com/judaicalink/workflow",
+  "commit": "2c13f6a1fab1131dc909aefcdcb268c6cec59be0",
+  "commit_date": "2025-12-16",
+  "commit_author": "Benjamin Schnabel",
+  "path": "legacy/scripts/jl/scripts/entity_pages/ep/ep_manager.py",
+  "file_last_changed": [
+   "2c13f6a",
+   "2025-12-16",
+   "Benjamin Schnabel"
+  ],
+  "bytes": 2663,
+  "local": "ep/original/workflow@2c13f6a/legacy/scripts/jl/scripts/entity_pages/ep/ep_manager.py"
+ },
+ {
+  "slug": "epidat",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "bf6f5e398535d39e18c2c4753349b40eab2cb634",
+  "commit_date": "2022-07-27",
+  "commit_author": "bsesic",
+  "path": "epidat/scripts/generator.py",
+  "file_last_changed": [
+   "bf6f5e3",
+   "2022-07-27",
+   "bsesic"
+  ],
+  "bytes": 24533,
+  "local": "epidat/original/judaicalink-generators@bf6f5e3/epidat/scripts/generator.py"
+ },
+ {
+  "slug": "epidat",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "bf6f5e398535d39e18c2c4753349b40eab2cb634",
+  "commit_date": "2022-07-27",
+  "commit_author": "bsesic",
+  "path": "epidat/README.md",
+  "file_last_changed": [
+   "afb6a06",
+   "2022-06-27",
+   "bsesic"
+  ],
+  "bytes": 2272,
+  "local": "epidat/original/judaicalink-generators@bf6f5e3/epidat/README.md"
+ },
+ {
+  "slug": "footprints",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "830ad959e470a6ea45325c96d7d052024077523a",
+  "commit_date": "2024-03-18",
+  "commit_author": "Christian",
+  "path": "footprints/generator.py",
+  "file_last_changed": [
+   "173e91b",
+   "2024-03-14",
+   "Christian"
+  ],
+  "bytes": 31281,
+  "local": "footprints/original/judaicalink-generators@830ad95/footprints/generator.py"
+ },
+ {
+  "slug": "footprints",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "6dd187ea72f25e48a633f00772fc05b3c104e9cf",
+  "commit_date": "2025-03-21",
+  "commit_author": "bsesic",
+  "path": "footprints/generator.py",
+  "file_last_changed": [
+   "6dd187e",
+   "2025-03-21",
+   "bsesic"
+  ],
+  "bytes": 3225,
+  "local": "footprints/original/judaicalink-generators@6dd187e/footprints/generator.py"
+ },
+ {
+  "slug": "gba",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "6fce1cdac61d62f1cbdd710dde5ae2a401a5a05f",
+  "commit_date": "2025-03-21",
+  "commit_author": "bsesic",
+  "path": "gidal/scripts/generator.py",
+  "file_last_changed": [
+   "6fce1cd",
+   "2025-03-21",
+   "bsesic"
+  ],
+  "bytes": 4072,
+  "local": "gba/original/judaicalink-generators@6fce1cd/gidal/scripts/generator.py"
+ },
+ {
+  "slug": "hhkeydocs",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "033bd4a63656c847756c8f6e39035a288c411a91",
+  "commit_date": "2025-03-21",
+  "commit_author": "bsesic",
+  "path": "hhkeydocs/generator.py",
+  "file_last_changed": [
+   "033bd4a",
+   "2025-03-21",
+   "bsesic"
+  ],
+  "bytes": 8986,
+  "local": "hhkeydocs/original/judaicalink-generators@033bd4a/hhkeydocs/generator.py"
+ },
+ {
+  "slug": "nrwbibdjg",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "68c96929b12d1e2e22a07a9b81cf03ff90a1dd9e",
+  "commit_date": "2024-05-24",
+  "commit_author": "Christian",
+  "path": "nrwbibdjg/generator.py",
+  "file_last_changed": [
+   "68c9692",
+   "2024-05-24",
+   "Christian"
+  ],
+  "bytes": 9377,
+  "local": "nrwbibdjg/original/judaicalink-generators@68c9692/nrwbibdjg/generator.py"
+ },
+ {
+  "slug": "sosy",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "add17c080d559b584a0a2b47e08aeca159df8485",
+  "commit_date": "2022-07-07",
+  "commit_author": "bsesic",
+  "path": "soundscape-synagoge/scripts/generator.py",
+  "file_last_changed": [
+   "add17c0",
+   "2022-07-07",
+   "bsesic"
+  ],
+  "bytes": 11946,
+  "local": "sosy/original/judaicalink-generators@add17c0/soundscape-synagoge/scripts/generator.py"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "occupations/scripts/build.py",
+  "file_last_changed": [
+   "0cfd7da",
+   "2025-12-19",
+   "bsesic"
+  ],
+  "bytes": 17910,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/occupations/scripts/build.py"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "occupations/README.md",
+  "file_last_changed": [
+   "fcff1b5",
+   "2025-12-18",
+   "bsesic"
+  ],
+  "bytes": 1190,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/occupations/README.md"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "occupations/occupations.md",
+  "file_last_changed": [
+   "0cfd7da",
+   "2025-12-19",
+   "bsesic"
+  ],
+  "bytes": 1893,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/occupations/occupations.md"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "generator/base.py",
+  "file_last_changed": [
+   "4ecdef5",
+   "2025-11-27",
+   "bsesic"
+  ],
+  "bytes": 4772,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/generator/base.py"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "generator/loader.py",
+  "file_last_changed": [
+   "e64b6dd",
+   "2025-12-18",
+   "bsesic"
+  ],
+  "bytes": 21001,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/generator/loader.py"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "generator/metadata.py",
+  "file_last_changed": [
+   "fa1e8b3",
+   "2025-11-27",
+   "bsesic"
+  ],
+  "bytes": 3583,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/generator/metadata.py"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "generator/rdf.py",
+  "file_last_changed": [
+   "19a1ebd",
+   "2025-11-27",
+   "bsesic"
+  ],
+  "bytes": 396,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/generator/rdf.py"
+ },
+ {
+  "slug": "occupations",
+  "repo": "judaicalink-generators",
+  "url": "https://github.com/judaicalink/judaicalink-generators",
+  "commit": "0cfd7da85d43dfbea6d896baa41173a61b407cb4",
+  "commit_date": "2025-12-19",
+  "commit_author": "bsesic",
+  "path": "generator/util.py",
+  "file_last_changed": [
+   "f035cf8",
+   "2025-11-27",
+   "bsesic"
+  ],
+  "bytes": 1774,
+  "local": "occupations/original/judaicalink-generators@0cfd7da/generator/util.py"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Rujen/Config/rujenDBpediaAgentConfig.xml",
+  "file_last_changed": null,
+  "bytes": 2015,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Rujen/Config/rujenDBpediaAgentConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Rujen/Config/rujenDBpediaPlaceConfig.xml",
+  "file_last_changed": null,
+  "bytes": 2008,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Rujen/Config/rujenDBpediaPlaceConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Rujen/Config/rujenFreebaseConfig.xml",
+  "file_last_changed": null,
+  "bytes": 1921,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Rujen/Config/rujenFreebaseConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Rujen/Config/rujenLDGOPlaceConfig.xml",
+  "file_last_changed": null,
+  "bytes": 2437,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Rujen/Config/rujenLDGOPlaceConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Yivo/Config/yivoDBpediaAgentConfig.xml",
+  "file_last_changed": null,
+  "bytes": 1958,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Yivo/Config/yivoDBpediaAgentConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Yivo/Config/yivoDBpediaPlaceConfig.xml",
+  "file_last_changed": null,
+  "bytes": 1944,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Yivo/Config/yivoDBpediaPlaceConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Yivo/Config/yivoFreebaseConfig.xml",
+  "file_last_changed": null,
+  "bytes": 1913,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Yivo/Config/yivoFreebaseConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ },
+ {
+  "slug": "2014links",
+  "repo": "labs VM",
+  "url": null,
+  "commit": null,
+  "commit_date": "2017-02-08",
+  "commit_author": "Dominique Ritze",
+  "path": "/data/archive/data-loading/silkruns/Yivo/Config/yivoLDGOPlaceConfig.xml",
+  "file_last_changed": null,
+  "bytes": 2448,
+  "local": "2014links/original/labs-vm@2017-02-08/silkruns/Yivo/Config/yivoLDGOPlaceConfig.xml",
+  "note": "Silk link specification; also in /data/dumps/2014links/current/*/Config/ (identical)"
+ }
+]

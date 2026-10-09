@@ -12,9 +12,9 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
-[[links]]
-url = "https://github.com/wisslab/judaicalink-generators/blob/master/entity-pages/ep_generator.md"
-label = "Generator script"
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/ep"
 
 [files]
 "entity_pages.ttl.gz" = "Entity Pages RDF data (2098149 triples)."
@@ -87,6 +87,6 @@ author = "Marco Rovera"
 text = "First version (entity_pages.ttl.gz)."
 +++
 
-Entity Page data for Judaicalink. For further details see the documentation page https://github.com/wisslab/judaicalink-generators/blob/master/entity-pages/readme.md
+Entity Page data for Judaicalink. For further details see the documentation page https://github.com/judaicalink/judaicalink-generators/blob/4865ffdd910bc2b03074fdcdf279b30da87fdec5/entity-pages/readme.md
 
 <!--more-->

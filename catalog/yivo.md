@@ -16,8 +16,8 @@ uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
 [generator]
-repo = "https://github.com/wisslab/judaicalink-labs"
-path = "labs/data/management/commands/generate_yivo.py"
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/yivo"
 
 [files]
 "yivo.jsonl.gz" = "Raw data crawled from the YIVO Encyclopedia, input of the generator."
@@ -26,7 +26,6 @@ path = "labs/data/management/commands/generate_yivo.py"
 version = "2020-09-30"
 issued = "2020-09-30"
 author = "Kai Eckert"
-commit = "0a47e9521c85e423c937b5d314d7c544248c856c"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
   [[versions.files]]

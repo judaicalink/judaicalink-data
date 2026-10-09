@@ -11,6 +11,10 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/interlinks"
+
 [files]
 "interlinks-04-enriched-09.ttl.gz" = "Links between JudaicaLink persons."
 
@@ -39,7 +43,7 @@ text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-g
 [[changelog]]
 date = "2018-02-13"
 author = "Maral Dadvar"
-text = "Interlinks between persons added (interlink-persons-enriched.ttl.gz)."
+text = "Interlinks between persons added (first enriched interlinks)."
 
 [[changelog]]
 date = "2017-02-15"

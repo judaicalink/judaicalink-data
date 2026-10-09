@@ -16,14 +16,13 @@ uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
 [generator]
-repo = "https://github.com/wisslab/judaicalink-labs"
-path = "labs/data/management/commands/generate_rujen_translation.py"
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/rujen-translation"
 
 [[versions]]
 version = "2020-09-28"
 issued = "2020-09-28"
 author = "Kai Eckert"
-commit = "39f04c243cacadc2d12e602a8b1b0929d115413a"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
   [[versions.files]]

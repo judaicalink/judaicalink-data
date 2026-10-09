@@ -2,7 +2,7 @@
 slug = "epidat"
 title = "Epidat - Epigraphical Database"
 author = "Kai Eckert"
-date = "2021-06-29"
+date = "2022-06-29"
 website = "http://www.steinheim-institut.de/wiki/index.php/Epidat"
 example = "http://data.judaicalink.org/data/epi/AbrahamGottschalk"
 namespaces = ["epi"]
@@ -12,6 +12,10 @@ stable = "2023-07-14"
 name = "CC4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
+
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/epidat"
 
 [[versions]]
 version = "2023-07-14"

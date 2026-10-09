@@ -12,6 +12,10 @@ name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
+[generator]
+repo = "https://github.com/judaicalink/judaicalink-data"
+path = "generators/gnd-persons"
+
 [files]
 "generated_persons_GND.ttl.gz" = "Rabbis and people from Israel, extracted from GND."
 "generated_persons_GND_enriched.ttl.gz" = "Persons extracted from GND enriched with further information such as date and place of birth and death."
