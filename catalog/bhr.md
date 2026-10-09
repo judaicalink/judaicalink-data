@@ -1,8 +1,7 @@
 +++
 slug = "bhr"
 title = "Biographisches Handbuch der Rabbiner"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2017-09-14"
 website = "http://www.steinheim-institut.de/wiki/index.php/Biographisches_Handbuch_der_Rabbiner_%28BHR%29"
 example = "http://data.judaicalink.org/data/bhr/Abarbanell_Hirsch"

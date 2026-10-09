@@ -1,8 +1,7 @@
 +++
 slug = "ontology"
 title = "JudaicaLink Ontology"
-author = "Benjamin Schnabel"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
+author = "Kai Eckert"
 date = "2025-07-09"
 website = "http://ontology.judaicalink.org"
 example = "https://data.judaicalink.org/ontology/html/ontology/describedat"

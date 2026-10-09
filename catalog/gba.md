@@ -1,8 +1,7 @@
 +++
 slug = "gba"
 title = "Gidal Image Archive"
-author = "Benjamin Schnabel"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
+author = "Kai Eckert"
 date = "2022-07-08"
 website = "http://www.steinheim-institut.de/gba"
 example = "http://data.judaicalink.org/data/gba/Moses_Mendelssohn"

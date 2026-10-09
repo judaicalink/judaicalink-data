@@ -1,7 +1,7 @@
 +++
 slug = "occupations"
 title = "Occupations"
-author = "Benjamin Schnabel"
+author = "Kai Eckert"
 date = "2025-12-18"
 website = "https://www.judaicalink.org/"
 example = "http://data.judaicalink.org/data/occupation/rabbiner"

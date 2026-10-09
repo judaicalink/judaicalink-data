@@ -1,8 +1,7 @@
 +++
 slug = "ubffm-persons"
 title = "Persons from ubffm"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2019-01-25"
 example = "http://data.judaicalink.org/data/ubffm/Aaron_Emmerich_Gumpertz"
 namespaces = ["ubffm"]

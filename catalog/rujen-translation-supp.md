@@ -2,7 +2,6 @@
 slug = "rujen-translation-supp"
 title = "Translations for Rujen (Google)"
 author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 date = "2020-09-28"
 website = "http://www.rujen.ru"
 picture = "/img/rujen_logo.png"

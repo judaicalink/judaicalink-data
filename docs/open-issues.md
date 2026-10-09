@@ -13,7 +13,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   create the GitHub repository.
 - **Catalogue:** the 36 entries in `catalog/` are migrated to the format of
   [0013](decisions/0013-catalogue-format.md) (2026-10-09, `catalog/migrate_0013.py`; `catalog.py check`
-  passes). Next: the hand curation (`author` as current maintainer, `kind`, `method`, `namespaces` checked
+  passes). Next: the hand curation (`kind`, `method`, `namespaces` checked
   against the data, `occupations`, file descriptions), restructuring the archive, entries for our
   new datasets, then adapting judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue
   and its documentation to Frankfurt.

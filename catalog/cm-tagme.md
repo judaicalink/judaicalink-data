@@ -1,8 +1,7 @@
 +++
 slug = "cm-tagme"
 title = "Linking Compact Memory - Resources and References"
-author = "Marco Rovera"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
+author = "Kai Eckert"
 date = "2021-01-19"
 namespaces = ["cm-tagme"]
 inputs = ["cm-tagme-supp"]

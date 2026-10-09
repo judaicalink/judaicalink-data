@@ -1,8 +1,7 @@
 +++
 slug = "stolperstein"
 title = "Stolpersteine in Mainz"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2018-11-26"
 example = "http://data.judaicalink.org/data/stolpersteine/Goldschmitt_Leopold"
 namespaces = ["stolpersteine"]

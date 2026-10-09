@@ -1,8 +1,7 @@
 +++
 slug = "nli-persons"
 title = "Persons from NLI"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2019-01-25"
 example = "http://data.judaicalink.org/data/nli/Abner_"
 namespaces = ["nli"]

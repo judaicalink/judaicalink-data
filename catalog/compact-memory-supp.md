@@ -1,8 +1,7 @@
 +++
 slug = "compact-memory-supp"
 title = "Linking Compact Memory - Pages"
-author = "Marco Rovera"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
+author = "Kai Eckert"
 date = "2021-01-19"
 kind = "support"
 stable = "2026-09-26"

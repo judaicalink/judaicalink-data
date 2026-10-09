@@ -1,8 +1,7 @@
 +++
 slug = "interlinks"
 title = "Encyclopedia Interlinks"
-author = "Kai Eckert and Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
+author = "Kai Eckert"
 date = "2018-02-15"
 namespaces = ["interlinks"]
 stable = "2026-09-26"
@@ -18,8 +17,7 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [[versions]]
 version = "2026-09-26"
 issued = "2018-02-15"
-author = "Kai Eckert and Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
+author = "Kai Eckert, Maral Dadvar"
 graph = "http://data.judaicalink.org/data/interlinks"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

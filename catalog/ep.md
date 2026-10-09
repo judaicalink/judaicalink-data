@@ -1,8 +1,7 @@
 +++
 slug = "ep"
 title = "Entity Pages - Judaicalink"
-author = "Marco Rovera"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
+author = "Kai Eckert"
 date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]

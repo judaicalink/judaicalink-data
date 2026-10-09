@@ -2,7 +2,6 @@
 slug = "djh"
 title = "Das Jüdische Hamburg"
 author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 date = "2016-07-12"
 website = "http://dasjuedischehamburg.de/"
 example = "http://data.judaicalink.org/data/html/djh/ehre-ida"
@@ -20,8 +19,7 @@ name = "unknown"
 [[versions]]
 version = "2026-09-26"
 issued = "2016-07-12"
-author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
+author = "Kai Eckert, Maral Dadvar"
 graph = "http://data.judaicalink.org/data/djh"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

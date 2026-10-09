@@ -1,8 +1,7 @@
 +++
 slug = "sosy"
 title = "Soundscape Synagogue"
-author = "Benjamin Schnabel"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
+author = "Kai Eckert"
 date = "2022-07-06"
 website = "https://www.soundscape-synagoge.de"
 example = "https://data.judaicalink.org/data/html/sosy/Adler_Abraham"

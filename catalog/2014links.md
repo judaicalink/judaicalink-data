@@ -1,8 +1,7 @@
 +++
 slug = "2014links"
 title = "Links to external sources"
-author = "Dominique Ritze"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/dominique-ritze"
+author = "Kai Eckert"
 date = "2014-11-15"
 namespaces = ["2014links"]
 stable = "2026-09-26"

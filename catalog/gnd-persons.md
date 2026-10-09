@@ -1,8 +1,7 @@
 +++
 slug = "gnd-persons"
 title = "Persons from GND"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2018-07-25"
 example = "http://data.judaicalink.org/data/gnd/102182094"
 namespaces = ["gnd"]

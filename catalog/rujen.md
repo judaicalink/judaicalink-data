@@ -2,7 +2,6 @@
 slug = "rujen"
 title = "Encyclopedia of Russian Jewry"
 author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 date = "2020-09-28"
 website = "http://www.rujen.ru"
 example = "http://data.judaicalink.org/data/rujen/ben-gurion"

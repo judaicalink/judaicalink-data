@@ -1,8 +1,7 @@
 +++
 slug = "geo-coordinates"
 title = "Geographical Coordinates"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2018-10-04"
 example = "http://data.judaicalink.org/data/Aachen"
 namespaces = ["geo-coordinates"]

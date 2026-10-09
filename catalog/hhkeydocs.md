@@ -1,7 +1,7 @@
 +++
 slug = "hhkeydocs"
 title = "Hamburger Schlüsseldokumente zur deutsch-jüdischen Geschichte"
-author = "Christian Deuschle"
+author = "Kai Eckert"
 date = "2023-11-22"
 website = "https://schluesseldokumente.net/"
 example = "https://data.judaicalink.org/data/hhkeydocs/Albert_Rosengarten"

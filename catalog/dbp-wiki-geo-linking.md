@@ -1,8 +1,7 @@
 +++
 slug = "dbp-wiki-geo-linking"
 title = "DBpedia and Wikipedia Geographical External Links"
-author = "Marco Rovera"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
+author = "Kai Eckert"
 date = "2021-01-13"
 stable = "2026-09-26"
 

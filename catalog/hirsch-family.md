@@ -1,8 +1,7 @@
 +++
 slug = "hirsch-family"
 title = "Eine Jüdische Familie aus Aschaffenburg"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2018-11-01"
 example = "http://data.judaicalink.org/data/hirsch/1964"
 namespaces = ["hirsch"]

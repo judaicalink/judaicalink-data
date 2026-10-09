@@ -1,7 +1,7 @@
 +++
 slug = "nrwbibdjg"
 title = "Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen"
-author = "Christian Deuschle"
+author = "Kai Eckert"
 date = "2024-06-03"
 website = "http://www.steinheim-institut.de/ebib-djg-nrw/"
 example = "http://data.judaicalink.org/data/nrwbibdjg/112504981"

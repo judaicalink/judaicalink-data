@@ -1,7 +1,7 @@
 +++
 slug = "footprints"
 title = "Footprints - Jewish Books through Time and Place"
-author = "Christian Deuschle"
+author = "Kai Eckert"
 date = "2024-03-12"
 website = "https://footprints.ctl.columbia.edu/"
 example = "http://data.judaicalink.org/data/footprints/0039ddb3-52b5-5644-bd42-a7ab92611d03"

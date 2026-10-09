@@ -1,8 +1,7 @@
 +++
 slug = "epidat"
 title = "Epidat - Epigraphical Database"
-author = "Benjamin Schnabel"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel"
+author = "Kai Eckert"
 date = "2021-06-29"
 website = "http://www.steinheim-institut.de/wiki/index.php/Epidat"
 example = "http://data.judaicalink.org/data/epi/AbrahamGottschalk"

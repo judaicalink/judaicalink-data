@@ -1,8 +1,7 @@
 +++
 slug = "geo-enriched"
 title = "Geographic Enrichment"
-author = "Marco Rovera"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
+author = "Kai Eckert"
 date = "2019-12-18"
 example = "http://data.judaicalink.org/data/djh/banco-alma-henriette-del"
 namespaces = ["geo-enriched"]

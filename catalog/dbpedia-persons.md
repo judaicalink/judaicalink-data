@@ -1,8 +1,7 @@
 +++
 slug = "dbpedia-persons"
 title = "Persons from DBPedia"
-author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
+author = "Kai Eckert"
 date = "2018-11-02"
 example = "http://data.judaicalink.org/data/dbpedia/Aaron_Alfandari"
 namespaces = ["dbpedia"]

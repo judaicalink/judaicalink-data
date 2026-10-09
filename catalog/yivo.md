@@ -2,7 +2,6 @@
 slug = "yivo"
 title = "Yivo Encyclopedia"
 author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 date = "2020-09-30"
 website = "http://www.yivoencyclopedia.org"
 example = "http://data.judaicalink.org/data/yivo/Moscow"

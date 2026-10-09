@@ -2,7 +2,6 @@
 slug = "date-enriched"
 title = "Enrichment of Birth- and Deathdates"
 author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 date = "2020-07-31"
 example = "http://data.judaicalink.org/data/bhr/Aach_Löb"
 stable = "2026-09-26"

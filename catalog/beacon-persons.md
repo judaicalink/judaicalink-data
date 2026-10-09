@@ -1,8 +1,7 @@
 +++
 slug = "beacon-persons"
 title = "Beacon file - JudaicaLink Persons"
-author = "Benjamin Schnabel"
-authorlink = "https://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
+author = "Kai Eckert"
 date = "2019-02-07"
 kind = "support"
 stable = "2026-09-26"
@@ -14,7 +13,7 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 
 [[versions]]
 version = "2026-09-26"
-issued = "2019-02-07"
+issued = "2026-09-01"
 author = "Benjamin Schnabel"
 authorlink = "https://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
 graph = "http://data.judaicalink.org/data/beacon-persons"

@@ -1,8 +1,7 @@
 +++
 slug = "cmtest"
 title = "Compact Memory Test Sample"
-author = "Marco Rovera"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera/"
+author = "Kai Eckert"
 date = "2020-04-04"
 kind = "support"
 withdrawn = "A test index (Elasticsearch JSON) of a Compact Memory sample, not a dataset."
