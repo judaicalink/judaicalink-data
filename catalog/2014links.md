@@ -29,7 +29,6 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 version = "2026-09-26"
 issued = "2014-11-15"
 author = "Dominique Ritze"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/dominique-ritze"
 graph = "http://data.judaicalink.org/data/2014links"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

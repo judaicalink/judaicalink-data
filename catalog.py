@@ -127,6 +127,7 @@ def check_table(r, where, value, fields, required=()):
 TEXT = (is_str, "a non-empty string")
 URL = (is_url, "an http(s) URL")
 DATE = (is_date, "a date (YYYY-MM-DD...)")
+AUTHOR = (lambda v: is_str(v) or (is_str_list(v) and len(v) > 0), "a name or a list of names")
 SLUGS = (lambda v: isinstance(v, list) and all(isinstance(x, str) and SLUG.match(x) for x in v),
          "a list of slugs")
 COUNT = (lambda v: isinstance(v, int) and not isinstance(v, bool) and v >= 0, "a non-negative integer")
@@ -144,14 +145,14 @@ CHANGE = {"date": DATE, "text": TEXT, "version": TEXT,
 # Fields of a version other than files (checked separately).
 VERSION = {"version": (lambda v: isinstance(v, str) and SLUG.match(v),
                        "a slug (lower-case letters, digits, '-', '.')"),
-           "issued": DATE, "author": TEXT, "authorlink": URL,
+           "issued": DATE, "author": AUTHOR,
            "commit": (lambda v: isinstance(v, str) and re.match(r"^[0-9a-f]{7,40}$", v), "a commit hash"),
            "graph": URL, "description": TEXT, "withdrawn": TEXT, "files": (lambda v: True, "")}
 
 # Dataset fields; tables and lists of tables are checked separately.
 DATASET = {
     "slug": (lambda v: isinstance(v, str) and SLUG.match(v), "a slug (lower-case letters, digits, '-', '.')"),
-    "title": TEXT, "author": TEXT, "authorlink": URL, "license": (lambda v: True, ""),
+    "title": TEXT, "author": AUTHOR, "license": (lambda v: True, ""),
     "date": DATE, "website": URL, "links": (lambda v: True, ""), "example": URL, "picture": TEXT,
     "kind": (lambda v: v in KINDS, "one of " + ", ".join(sorted(KINDS))),
     "method": (lambda v: isinstance(v, list) and v and all(x in METHODS for x in v),

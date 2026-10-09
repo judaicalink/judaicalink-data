@@ -17,7 +17,6 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 version = "2026-09-26"
 issued = "2022-07-08"
 author = "Benjamin Schnabel"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/benjamin-schnabel/"
 graph = "http://data.judaicalink.org/data/gba"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

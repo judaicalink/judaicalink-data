@@ -23,7 +23,6 @@ label = "Generator script"
 version = "2026-09-26"
 issued = "2021-01-19"
 author = "Marco Rovera"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/marco-rovera"
 graph = "http://data.judaicalink.org/data/compact-memory"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

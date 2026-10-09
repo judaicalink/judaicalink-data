@@ -23,7 +23,6 @@ path = "labs/data/management/commands/generate_yivo.py"
 version = "2026-09-26"
 issued = "2020-09-30"
 author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 commit = "0a47e9521c85e423c937b5d314d7c544248c856c"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

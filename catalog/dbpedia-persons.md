@@ -20,7 +20,6 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.pn
 version = "2026-09-26"
 issued = "2018-11-02"
 author = "Maral Dadvar"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/maral-dadvar"
 graph = "http://data.judaicalink.org/data/dbpedia-persons"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

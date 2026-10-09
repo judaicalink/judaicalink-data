@@ -19,7 +19,7 @@ name = "unknown"
 [[versions]]
 version = "2026-09-26"
 issued = "2016-07-12"
-author = "Kai Eckert, Maral Dadvar"
+author = ["Kai Eckert", "Maral Dadvar"]
 graph = "http://data.judaicalink.org/data/djh"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

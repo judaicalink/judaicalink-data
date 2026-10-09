@@ -23,7 +23,6 @@ path = "labs/data/management/commands/generate_rujen.py"
 version = "2026-09-26"
 issued = "2020-09-28"
 author = "Kai Eckert"
-authorlink = "http://wiss.iuk.hdm-stuttgart.de/people/kai-eckert"
 commit = "1ac14f193f827f13a657a7f49dca0c0cf2bd7c25"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 

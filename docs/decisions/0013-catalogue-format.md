@@ -1,6 +1,6 @@
 # 0013 Catalogue entry format: datasets, versions, changelog
 
-Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data)
+Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`)
 
 ## Context
 
@@ -33,7 +33,7 @@ is ready; Frankfurt gets the catalogue and its documentation and adapts their sy
 |---|---|
 | `slug` | **required.** The id of the dataset, used everywhere: file name `<slug>.md`, graph IRI and dataset IRI `http://data.judaicalink.org/datasets/<slug>` ([0006](0006-graphs-and-meta.md)), dump paths `<slug>/<version>/<path>` (0014), Hugo page URL `/datasets/<slug>/` |
 | `title` | **required.** Name of the dataset |
-| `author`, `authorlink` | `author` **required**: the current maintainer (name), `authorlink` a URL for them |
+| `author` | **required.** The current maintainer: name, or list of names |
 | `license` | **required.** Table `name`, `uri`, `image` |
 | `date` | date of the entry (Hugo; sorting) |
 | `website` | the source of the data: the institution, project, website, API or dump location that owns or provides it (details in the body) |
@@ -63,7 +63,7 @@ enters the catalogue only when it is added explicitly; experimental runs are not
 |---|---|
 | `version` | **required (within a version).** Version id |
 | `issued` | date the version was made |
-| `author`, `authorlink` | who made this version (history; the dataset's `author` is the current maintainer) |
+| `author` | who made this version: name, or list of names (history; the dataset's `author` is the current maintainer) |
 | `commit` | commit of the generator that made it |
 | `graph` | only for legacy versions: the graph name used when it was loaded, if not the dataset IRI |
 | `description` | short remark on this version |
@@ -190,7 +190,7 @@ Script-based, one commit, then curated by hand:
 - `aliases` stay as they are; an entry without files (`occupations`) gets no version;
 - bookmarklets are dropped (djh's maps an outdated site layout; rujen's is a copy of djh's);
 - dropped: `productionurl`, `loaded`, `graph` at top level, `generator.gitweb` (→ `generator`/`commit`),
-  `creators` (→ version `author`), empty fields (`concepts = ""`, `bookmarklet = ""`, …);
+  `creators` (→ version `author`), `authorlink` (names only, no links to persons), empty fields (`concepts = ""`, `bookmarklet = ""`, …);
 - `kind`, `method`, `author` (current maintainer) by hand; `cmtest` gets `withdrawn`;
 - the archive is restructured to `<slug>/2026-09-26/<path>`; the `-meta` files of `lokal/dumps-additions/`
   are added to these versions and regenerated without download URLs (0014);
