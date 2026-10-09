@@ -5,7 +5,7 @@ author = "Kai Eckert"
 date = "2021-01-19"
 namespaces = ["compact-memory"]
 inputs = ["compact-memory-supp"]
-stable = "2026-09-26"
+stable = "2021-01-18"
 
 [license]
 name = "CC0"
@@ -20,8 +20,8 @@ label = "Generator script"
 "cm_tagme_pages.ttl.gz" = "Page metadata in RDF for Compact Memory, for pages where entity references have been found (624682 triples)."
 
 [[versions]]
-version = "2026-09-26"
-issued = "2021-01-19"
+version = "2021-01-18"
+issued = "2021-01-18"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/compact-memory"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -32,9 +32,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "6c6bbedb82547dd4b06d8969760b312a03b0b7233b6b6620e334a8d69adb0874"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
 +++
 Page metadata description in RDF for pages in Compact Memory where an entity mention has been found. The dataset describes pages, journals, journal issues and their relations, along with a pointer to the visual representation of each page in the Visual Library.
 

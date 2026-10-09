@@ -6,7 +6,7 @@ date = "2024-06-03"
 website = "http://www.steinheim-institut.de/ebib-djg-nrw/"
 example = "http://data.judaicalink.org/data/nrwbibdjg/112504981"
 namespaces = ["nrwbibdjg"]
-stable = "2026-09-26"
+stable = "2024-05-24"
 
 [license]
 name = "CC4.0"
@@ -14,8 +14,8 @@ uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2024-06-03"
+version = "2024-05-24"
+issued = "2024-05-24"
 author = "Christian Deuschle"
 graph = "http://data.judaicalink.org/data/nrwbibdjg"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -26,9 +26,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2024-12-03"
+author = "Benjamin Schnabel"
+text = "Description revised (again 2025-03-21 and 2025-12-18)."
 +++
 
 The **Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen** (Bibliography of German-Jewish History in North Rhine-Westphalia) dataset provides bibliographic references on the history and culture of Jews in the region of North Rhine-Westphalia (NRW), Germany.

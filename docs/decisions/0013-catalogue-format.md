@@ -1,6 +1,6 @@
 # 0013 Catalogue entry format: datasets, versions, changelog
 
-Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`)
+Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`, changelog authors, dated legacy versions)
 
 ## Context
 
@@ -83,8 +83,16 @@ substantially changed file structure usually means a new dataset.
 
 ### Changelog
 
-`[[changelog]]`: `date`, `text`, optional `version` and `refs` (decision numbers). Records what changed and
-why: new versions, stable pointer moved, superseded, files moved to the archive, description changed.
+`[[changelog]]`: `date`, `text`, optional `version`, `author` (name, or list of names) and `refs` (decision
+numbers). Records what changed and why: new versions, stable pointer moved, superseded, files moved to the
+archive, description changed. Only real changes to the dataset or its description are recorded, not changes
+of the maintainer or of the entry format.
+
+**Contributors.** Everyone who worked on a dataset is acknowledged: the contributors are derived from the
+authors of the versions and of the changelog entries, not stored. Work that produced no version we still have
+(an earlier state, a generator change that was never published) gets a changelog entry without `version`,
+with its author; in doubt, a person is rather listed than left out. The catalogue pages show the changelog
+and the contributors.
 
 ### Example
 
@@ -99,14 +107,14 @@ example = "http://data.judaicalink.org/data/nli/Abner_"
 kind = "records"
 method = ["converted"]
 namespaces = ["nli"]
-stable = "2026-09-26"
+stable = "2019-01-25"
 
 [license]
 name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 
 [[versions]]
-version = "2026-09-26"
+version = "2019-01-25"
 issued = "2019-01-25"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/nli"
@@ -120,6 +128,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 
 [[changelog]]
 date = "2026-10-06"
+author = "Kai Eckert"
 text = "Superseded by nli-records; links from the legacy URIs in ls-nli-legacy."
 refs = ["0007", "0010"]
 +++
@@ -179,8 +188,9 @@ The person and work records of the NLI authority export behind nli-persons, one 
 
 Script-based, one commit, then curated by hand:
 
-- the 36 entries get `slug` (file name) and one version `2026-09-26` with `graph` from the old entry, files
-  from the old `files` (paths relative to the new `<slug>/2026-09-26/`), `stable = "2026-09-26"`;
+- the 36 entries get `slug` (file name) and one version with `graph` from the old entry, files from the old
+  `files` (paths relative to the new `<slug>/<version>/`) and `stable` pointing to it (first run: `2026-09-26`
+  for all, the date of the archived state; then curated, see below);
 - `dataslug`/`namespace_slugs` → `namespaces`; `script` → `links`; `supportdata` (a catalogue URL, which entries
   must not name, 0014) → `inputs` of the main dataset, as it is generated from its support data;
   `referencedataset` dropped (the inverse, derived by the tooling); the old
@@ -191,8 +201,17 @@ Script-based, one commit, then curated by hand:
 - bookmarklets are dropped (djh's maps an outdated site layout; rujen's is a copy of djh's);
 - dropped: `productionurl`, `loaded`, `graph` at top level, `generator.gitweb` (→ `generator`/`commit`),
   `creators` (→ version `author`), `authorlink` (names only, no links to persons), empty fields (`concepts = ""`, `bookmarklet = ""`, …);
-- `kind`, `method`, `author` (current maintainer) by hand; `cmtest` gets `withdrawn`;
-- the archive is restructured to `<slug>/2026-09-26/<path>`; the `-meta` files of `lokal/dumps-additions/`
+- `kind`, `method` by hand; `author` (current maintainer, the contact) is Kai Eckert for all; `cmtest` gets
+  `withdrawn`;
+- curation of the versions (2026-10-09): the archived state is the starting point, older states are not
+  reconstructed. The version id and `issued` are the date of the newest file of the version: the time in the
+  gzip header (the file's modification time when it was compressed), for tar archives named `.gz` the time of
+  the member, else a date in the data, else the commit of judaicalink-site that first listed the file (file
+  times in the archive are copy dates). The version `author` is who made the files;
+- the history is reconstructed from judaicalink-site, judaicalink-generators, judaicalink-labs and
+  judaicalink-ontology as changelog entries (earlier states, generator changes, description changes of
+  persons not otherwise credited); the migration itself is not a change of the dataset and gets no entry;
+- the archive is restructured to `<slug>/<version>/<path>`; the `-meta` files of `lokal/dumps-additions/`
   are added to these versions and regenerated without download URLs (0014);
 - then entries for our new datasets.
 

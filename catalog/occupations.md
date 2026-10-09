@@ -13,9 +13,9 @@ uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-12-18"
+author = "Benjamin Schnabel"
+text = "Entry and generator added (judaicalink-generators); no dump of this dataset is in the archive."
 +++
 
 The **Occupations** dataset provides a normalized and reusable collection of occupation concepts

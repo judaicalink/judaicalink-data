@@ -15,8 +15,8 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 "es_index_test.json.gz" = "Test sample from Compact Memory, ready for indexing in SOLR"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2020-04-04"
+version = "2020-04-16"
+issued = "2020-04-16"
 author = "Marco Rovera"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
@@ -26,8 +26,8 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "bc2945bbb122144f45ae3177075b1212efcd2fde3a994d7a4821c43e629dfd22"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-07-09"
+author = "Benjamin Schnabel"
+text = "Description revised."
 +++
 

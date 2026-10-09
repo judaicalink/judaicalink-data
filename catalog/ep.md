@@ -6,7 +6,7 @@ date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]
 inputs = ["ep-supp"]
-stable = "2026-09-26"
+stable = "2021-05-28"
 
 [license]
 name = "CC0"
@@ -26,8 +26,8 @@ label = "Generator script"
 "subcategorization.ttl.gz" = "Subcategorization dataset for local Judaicalink resources."
 
 [[versions]]
-version = "2026-09-26"
-issued = "2021-01-22"
+version = "2021-05-28"
+issued = "2021-05-28"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/ep"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -63,9 +63,29 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "8b1d205a7d5a27ee2605afb8fc0e2d8cbf334ee702b55f48915838b02ec4935c"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
+
+[[changelog]]
+date = "2021-03-11"
+author = "Marco Rovera"
+text = "Birth and death dates and locations added (ep_birth_death_date_loc.ttl)."
+
+[[changelog]]
+date = "2021-02-19"
+author = "Marco Rovera"
+text = "Person and location classification added (ep_persons.ttl, ep_locations.ttl)."
+
+[[changelog]]
+date = "2021-02-15"
+author = "Marco Rovera"
+text = "Preferred and alternative labels added (ep_labels.ttl.gz)."
+
+[[changelog]]
+date = "2021-01-22"
+author = "Marco Rovera"
+text = "First version (entity_pages.ttl.gz)."
 +++
 
 Entity Page data for Judaicalink. For further details see the documentation page https://github.com/wisslab/judaicalink-generators/blob/master/entity-pages/readme.md

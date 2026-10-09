@@ -8,7 +8,7 @@ example = "http://data.judaicalink.org/data/rujen/ben-gurion"
 picture = "/img/rujen_logo.png"
 namespaces = ["rujen"]
 aliases = ["/encyclopediae/encyclopediae-of-russion-jewry/", "/datasets/encyclopediae-of-russion-jewry/"]
-stable = "2026-09-26"
+stable = "2020-09-28"
 
 [license]
 name = "CC0"
@@ -20,7 +20,7 @@ repo = "https://github.com/wisslab/judaicalink-labs"
 path = "labs/data/management/commands/generate_rujen.py"
 
 [[versions]]
-version = "2026-09-26"
+version = "2020-09-28"
 issued = "2020-09-28"
 author = "Kai Eckert"
 commit = "1ac14f193f827f13a657a7f49dca0c0cf2bd7c25"
@@ -37,9 +37,19 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "66b4fed0d221d93c85ee58934365310bc8fd230a4b15729362d3be2f7e8f7c82"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Encyclopedia converters rewritten in Python (judaicalink-generators); the archived version was not regenerated."
+
+[[changelog]]
+date = "2018-10-22"
+author = "Maral Dadvar"
+text = "Revised version in Turtle (rujen.ttl.gz)."
+
+[[changelog]]
+date = "2016-09-12"
+author = "Kai Eckert"
+text = "First version (rujen.n3.gz; date of the first catalogue listing)."
 +++
 
 Rujen.ru provides an Internet version of the Encyclopedia of Russian Jewry, which is published in Moscow since 1994, giving a comprehensive, objective picture of the life and activity of the Jews of Russia, the Soviet Union and the CIS.

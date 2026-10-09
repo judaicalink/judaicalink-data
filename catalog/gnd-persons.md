@@ -5,7 +5,7 @@ author = "Kai Eckert"
 date = "2018-07-25"
 example = "http://data.judaicalink.org/data/gnd/102182094"
 namespaces = ["gnd"]
-stable = "2026-09-26"
+stable = "2018-11-29"
 
 [license]
 name = "CC0"
@@ -21,8 +21,8 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 "jl-zbw.ttl.gz" = "This dataset contains common links between JudaicaLink datasets and Pressemappe 20. Jahrhundert. The 20th century press kit offers thematically compiled dossiers with newspaper articles, company publications and other topics from a wide range of economically, politically or socially relevant topics. In their press archives in Kiel and Hamburg, the predecessor institutions of the ZBW - Leibniz Information Center for Economics have collected and prepared material on persons, companies / institutions, goods and subjects from more than 1500 publications for almost one hundred years. They are gradually being developed with appropriate metadata and made publicly available through the Press Kit 20th Century Application (PM20).http://webopac0.hwwa.de/PresseMappe20/index.cfm"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2018-07-25"
+version = "2018-11-29"
+issued = "2018-11-29"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/gnd-persons"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -68,9 +68,24 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "58dc19daf6495f84e78110c0c3472692736f4b2ff911caa4b3b82eba2c73b1d9"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2018-11-01"
+author = "Maral Dadvar"
+text = "EntityFacts links added."
+
+[[changelog]]
+date = "2018-07-25"
+author = "Maral Dadvar"
+text = "Authors of the University Library Frankfurt added (ub-authors.ttl.gz)."
+
+[[changelog]]
+date = "2018-02-13"
+author = "Maral Dadvar"
+text = "Enriched persons and the Freimann collection added."
+
+[[changelog]]
+date = "2017-04-21"
+author = "Maral Dadvar"
+text = "First version (generated_persons_GND.ttl.gz)."
 +++
 
 Persons from the Common Authority File (Gemeinsame Normdatei, GND) of the German National Library.

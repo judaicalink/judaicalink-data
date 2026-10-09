@@ -21,7 +21,8 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of
   the grown setup of the VM; where the platform code lives; whether a pubby-like frontend is needed.
 - **Catalogue tools and finder** ([0014](decisions/0014-locations-dataindex-finder.md)): `catalog.py
-  index|sync`, the finder page and template changes in `judaicalink-site`, restructuring the archive
+  index|sync`, the finder page and template changes in `judaicalink-site` (also: show the changelog and the
+  derived contributors on the dataset pages, 0013), restructuring the archive
   to `<slug>/<version>/<path>`, finder page `/dataindex/`.
 - **To discuss with Frankfurt:** stable access URLs on data.judaicalink.org instead of web.judaicalink.org
   (0014); their loader expects `<slug>.meta.ttl` in one shared metadata graph (0006); their catalogue pages
@@ -44,6 +45,11 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   `data/geo-coor`; rujen contains one junk subject `mailto%3Amail%40rujen.ru`.
 
 ## Data
+
+- **Ontology dump outdated:** the archived `judaicalink-ontology.ttl.gz` (catalogue version 2025-03-20) is a tar
+  archive and contains the ontology as of 2020-09-29 (judaicalink-ontology `c8ebf38`), not any later revision
+  (2023, 2024, 2025). A new version from the current ontology is needed. Three more archived `.gz` dumps are
+  tar archives (epidat, haskala, ep-supp's `ep_GND_ids.json.gz`); new versions should be plain gzip.
 
 - **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
   article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):

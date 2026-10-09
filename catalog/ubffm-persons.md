@@ -5,7 +5,7 @@ author = "Kai Eckert"
 date = "2019-01-25"
 example = "http://data.judaicalink.org/data/ubffm/Aaron_Emmerich_Gumpertz"
 namespaces = ["ubffm"]
-stable = "2026-09-26"
+stable = "2019-01-24"
 
 [license]
 name = "CC0"
@@ -17,8 +17,8 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 "ubffm-authors-02.ttl.gz" = "Persons extracted from Judaica collection of University Library of Frankfurt. Names are only in transciption"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2019-01-25"
+version = "2019-01-24"
+issued = "2019-01-24"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/ubffm"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -32,11 +32,6 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "ubffm-authors-02.ttl.gz"
   bytes = 408010
   sha256 = "a6ab1fe57f453fe962fdc0066cca216207a55e0f45d35d7ad0eb526b3cce50e2"
-
-[[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
 +++
 
 This first dataset contains authors names from Judaica collection of University Library of Frankfurt.

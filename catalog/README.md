@@ -28,7 +28,9 @@ changelog); locations are not part of the entries ([0014](../docs/decisions/0014
 The entries were converted to the format of 0013 by [`migrate_0013.py`](migrate_0013.py), as described in
 0013 (section Migration), from the old entries in the commit before it; sizes and checksums were measured on
 the local copy of the archive. The script is kept as the record of the conversion; it only reads the old
-format and cannot be run again on the migrated entries. Hand curation follows in separate commits.
+format and cannot be run again on the migrated entries. Hand curation follows in separate commits; the
+first one gave every version the date of its newest file as id and reconstructed the changelogs (0013,
+section Migration).
 
 ## Former format (until 2026-10-09)
 

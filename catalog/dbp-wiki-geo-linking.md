@@ -3,7 +3,7 @@ slug = "dbp-wiki-geo-linking"
 title = "DBpedia and Wikipedia Geographical External Links"
 author = "Kai Eckert"
 date = "2021-01-13"
-stable = "2026-09-26"
+stable = "2021-01-13"
 
 [license]
 name = "CC0"
@@ -15,7 +15,7 @@ url = "https://github.com/wisslab/judaicalink-generators/blob/master/dbp-wiki-ge
 label = "Generator script"
 
 [[versions]]
-version = "2026-09-26"
+version = "2021-01-13"
 issued = "2021-01-13"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/dbp-wiki-geo-links"
@@ -27,9 +27,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "25a8e0ea9d3a2eb06f5ffcfad3929328322c252454707398f28a7e5ecefd5236"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
 +++
 
 Links between JudaicaLink Locations and DBpedia/Wikipedia via Geonames

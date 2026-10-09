@@ -5,7 +5,7 @@ author = "Kai Eckert"
 date = "2021-01-19"
 namespaces = ["cm-tagme"]
 inputs = ["cm-tagme-supp"]
-stable = "2026-09-26"
+stable = "2021-01-18"
 
 [license]
 name = "CC0"
@@ -21,8 +21,8 @@ label = "Generator script"
 "cm_tagme_references.ttl.gz" = "Description of each single mention (start, end, text, page, confidence scores, 5.246.122 triples)."
 
 [[versions]]
-version = "2026-09-26"
-issued = "2021-01-19"
+version = "2021-01-18"
+issued = "2021-01-18"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/cm-tagme"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -38,9 +38,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "bbf4bb9aab99408eb4e229ac776b4519910411c2e480a0b6ab44694ea7bf4d2e"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
 +++
 
 References of Judaicalink resources (entities, mainly persons and places) in Compact Memory.

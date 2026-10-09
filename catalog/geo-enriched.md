@@ -5,7 +5,7 @@ author = "Kai Eckert"
 date = "2019-12-18"
 example = "http://data.judaicalink.org/data/djh/banco-alma-henriette-del"
 namespaces = ["geo-enriched"]
-stable = "2026-09-26"
+stable = "2019-12-18"
 
 [license]
 name = "CC0"
@@ -16,7 +16,7 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 "geo_interlinks.ttl" = "Mappings Geonames - JudaicaLink"
 
 [[versions]]
-version = "2026-09-26"
+version = "2019-12-18"
 issued = "2019-12-18"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/geo-enriched"
@@ -56,11 +56,6 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "geo_interlinks.ttl"
   bytes = 676542
   sha256 = "e6352d602c21aabf682932734f8c292b91b73cff02e32c3ac3c731571ef26621"
-
-[[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
 +++
 
 Dataset geographic enrichment through GeoNames. 

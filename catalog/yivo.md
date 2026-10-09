@@ -8,7 +8,7 @@ example = "http://data.judaicalink.org/data/yivo/Moscow"
 picture = "/img/yivo_logo_black-on-white-135x68.jpg"
 namespaces = ["yivo"]
 aliases = ["/encyclopediae/yivo-encyclopedia/", "/datasets/yivo-encyclopedia/"]
-stable = "2026-09-26"
+stable = "2020-09-30"
 
 [license]
 name = "CC0"
@@ -20,7 +20,7 @@ repo = "https://github.com/wisslab/judaicalink-labs"
 path = "labs/data/management/commands/generate_yivo.py"
 
 [[versions]]
-version = "2026-09-26"
+version = "2020-09-30"
 issued = "2020-09-30"
 author = "Kai Eckert"
 commit = "0a47e9521c85e423c937b5d314d7c544248c856c"
@@ -37,9 +37,14 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Encyclopedia converters rewritten in Python (judaicalink-generators); the archived version was not regenerated."
+
+[[changelog]]
+date = "2016-09-12"
+author = "Kai Eckert"
+text = "First version (date of the first catalogue listing)."
 +++
 
 The YIVO Encyclopedia of Jews in Eastern Europe, courtesy of the YIVO Institute of Jewish Research, NY.

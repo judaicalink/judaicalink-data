@@ -4,7 +4,7 @@ title = "Enrichment of Birth- and Deathdates"
 author = "Kai Eckert"
 date = "2020-07-31"
 example = "http://data.judaicalink.org/data/bhr/Aach_Löb"
-stable = "2026-09-26"
+stable = "2020-07-31"
 
 [license]
 name = "CC0"
@@ -15,7 +15,7 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 "date-enriched.ttl.gz" = "Parsed Dates, using Labs Command date_enrichment"
 
 [[versions]]
-version = "2026-09-26"
+version = "2020-07-31"
 issued = "2020-07-31"
 author = "Kai Eckert"
 graph = "http://data.judaicalink.org/data/date-enriched"
@@ -27,9 +27,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "5d697577d5b4fcf35bdb3b5e504475f46de9c7c45c208a09915620230ad2d9ec"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2020-08-03"
+author = "Sara Fischer"
+text = "Date parsing of the generator (judaicalink-labs, date_enrichment) extended; the archived version was not regenerated."
 +++
 
 This is work in progress. The idea is to parse all available dates and create

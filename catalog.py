@@ -127,18 +127,18 @@ def check_table(r, where, value, fields, required=()):
 TEXT = (is_str, "a non-empty string")
 URL = (is_url, "an http(s) URL")
 DATE = (is_date, "a date (YYYY-MM-DD...)")
-AUTHOR = (lambda v: is_str(v) or (is_str_list(v) and len(v) > 0), "a name or a list of names")
 SLUGS = (lambda v: isinstance(v, list) and all(isinstance(x, str) and SLUG.match(x) for x in v),
          "a list of slugs")
 COUNT = (lambda v: isinstance(v, int) and not isinstance(v, bool) and v >= 0, "a non-negative integer")
 
+AUTHOR = (lambda v: is_str(v) or (is_str_list(v) and len(v) > 0), "a name or a list of names")
 LICENSE = {"name": TEXT, "uri": URL, "image": URL}
 LINK = {"url": URL, "label": TEXT}
 GENERATOR = {"repo": URL, "path": TEXT}
 FILE = {"path": TEXT, "description": TEXT, "bytes": COUNT,
         "sha256": (lambda v: isinstance(v, str) and re.match(r"^[0-9a-f]{64}$", v), "64 hex digits"),
         "triples": COUNT}
-CHANGE = {"date": DATE, "text": TEXT, "version": TEXT,
+CHANGE = {"date": DATE, "text": TEXT, "version": TEXT, "author": AUTHOR,
           "refs": (lambda v: isinstance(v, list) and all(isinstance(x, str) and re.match(r"^\d{4}$", x)
                                                           for x in v), "a list of decision numbers")}
 

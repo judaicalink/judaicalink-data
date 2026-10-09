@@ -6,7 +6,7 @@ date = "2019-07-01"
 website = "https://www.haskala-library.net/"
 example = "http://data.judaicalink.org/data/haskala/Ascher_Saul"
 namespaces = ["haskala"]
-stable = "2026-09-26"
+stable = "2025-03-24"
 
 [license]
 name = "CC0"
@@ -14,9 +14,9 @@ uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2019-07-01"
-author = "Maral Dadvar"
+version = "2025-03-24"
+issued = "2025-03-24"
+author = "Benjamin Schnabel"
 graph = "http://data.judaicalink.org/data/haskala"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
@@ -26,9 +26,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "7e0f5d922acc1a963998ade4e90838612853a131f8740bf6d0f0e78b386763b1"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2019-07-01"
+author = "Maral Dadvar"
+text = "First version, with generator."
 +++
 
 The Library of Haskala contains 525 books in German and Hebrew identified by leading scholars as Haskala literature. 

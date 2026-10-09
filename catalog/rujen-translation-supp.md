@@ -7,7 +7,7 @@ website = "http://www.rujen.ru"
 picture = "/img/rujen_logo.png"
 kind = "support"
 aliases = ["/encyclopediae/encyclopediae-of-russion-jewry/", "/datasets/encyclopediae-of-russion-jewry/"]
-stable = "2026-09-26"
+stable = "2020-09-28"
 
 [license]
 name = "CC0"
@@ -19,7 +19,7 @@ repo = "https://github.com/wisslab/judaicalink-labs"
 path = "labs/data/management/commands/generate_rujen_translation.py"
 
 [[versions]]
-version = "2026-09-26"
+version = "2020-09-28"
 issued = "2020-09-28"
 author = "Kai Eckert"
 commit = "39f04c243cacadc2d12e602a8b1b0929d115413a"
@@ -44,11 +44,6 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "de_label_cache.csv"
   bytes = 1155852
   sha256 = "4e95011df304864805b357de454084aa5e2544395e0182065adb364d577a8c2d"
-
-[[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
 +++
 
 Support data for rujen translation.

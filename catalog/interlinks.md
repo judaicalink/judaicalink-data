@@ -4,7 +4,7 @@ title = "Encyclopedia Interlinks"
 author = "Kai Eckert"
 date = "2018-02-15"
 namespaces = ["interlinks"]
-stable = "2026-09-26"
+stable = "2018-07-18"
 
 [license]
 name = "CC0"
@@ -15,8 +15,8 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 "interlinks-04-enriched-09.ttl.gz" = "Links between JudaicaLink persons."
 
 [[versions]]
-version = "2026-09-26"
-issued = "2018-02-15"
+version = "2018-07-18"
+issued = "2018-07-18"
 author = ["Kai Eckert", "Maral Dadvar"]
 graph = "http://data.judaicalink.org/data/interlinks"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -32,9 +32,19 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "06363cc99920fb6eb2aed740b209a5514ab80867ec053774499c09bc91839bad"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
+
+[[changelog]]
+date = "2018-02-13"
+author = "Maral Dadvar"
+text = "Interlinks between persons added (interlink-persons-enriched.ttl.gz)."
+
+[[changelog]]
+date = "2017-02-15"
+author = "Kai Eckert"
+text = "First version (interlinks.n3.gz)."
 +++
 
 Links between JudaicaLink entities and persons. 

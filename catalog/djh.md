@@ -8,7 +8,7 @@ example = "http://data.judaicalink.org/data/html/djh/ehre-ida"
 picture = "/img/igdj_logo_0.jpg"
 namespaces = ["djh"]
 aliases = ["/encyclopediae/das-juedische-hamburg/", "/datasets/das-juedische-hamburg/"]
-stable = "2026-09-26"
+stable = "2018-10-22"
 
 [license]
 name = "unknown"
@@ -17,9 +17,9 @@ name = "unknown"
 "djh.ttl.gz" = "Extraction from the encyclopedia 'Das Jüdische Hamburg'."
 
 [[versions]]
-version = "2026-09-26"
-issued = "2016-07-12"
-author = ["Kai Eckert", "Maral Dadvar"]
+version = "2018-10-22"
+issued = "2018-10-22"
+author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/djh"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
@@ -29,9 +29,14 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "b77f295c62f8687a18a4a14783add3a952248a4182d13573a3e6a8e5419e7019"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Encyclopedia converters rewritten in Python (judaicalink-generators); the archived version was not regenerated."
+
+[[changelog]]
+date = "2016-07-12"
+author = "Kai Eckert"
+text = "First version (djh.n3.gz)."
 +++
 
 Das Jüdische Hamburg contains articles in German by notable scholars about persons, locations and events of the history of Jewish communities in Hamburg.

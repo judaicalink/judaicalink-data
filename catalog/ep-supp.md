@@ -4,7 +4,7 @@ title = "Entity Pages - Judaicalink"
 author = "Kai Eckert"
 date = "2021-01-22"
 kind = "support"
-stable = "2026-09-26"
+stable = "2021-03-22"
 
 [license]
 name = "CC0"
@@ -21,8 +21,8 @@ label = "Generator script"
 "ep_GND_ids.json.gz" = "GND identifiers for Entity Pages."
 
 [[versions]]
-version = "2026-09-26"
-issued = "2021-01-22"
+version = "2021-03-22"
+issued = "2021-03-22"
 author = "Marco Rovera"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
@@ -42,9 +42,19 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "eb4ef014eeda12cfc5cbd8c88a3fc71262e9d8a697695c9304402678a72b1675"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-05"
+author = "Benjamin Schnabel"
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
+
+[[changelog]]
+date = "2021-03-15"
+author = "Marco Rovera"
+text = "GND identifiers of the entity pages added (ep_GND_ids.json)."
+
+[[changelog]]
+date = "2021-01-22"
+author = "Marco Rovera"
+text = "First version (entity page index and inverted index)."
 +++
 
 Support data for Entity Pages. For further details see the documentation page https://github.com/wisslab/judaicalink-generators/blob/master/entity-pages/readme.md

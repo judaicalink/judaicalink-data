@@ -4,7 +4,7 @@ title = "Links to external sources"
 author = "Kai Eckert"
 date = "2014-11-15"
 namespaces = ["2014links"]
-stable = "2026-09-26"
+stable = "2017-02-15"
 
 [license]
 name = "CC0"
@@ -26,8 +26,8 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 "yivo/yivoGeonames.nt.gz" = "YIVO to Geonames"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2014-11-15"
+version = "2017-02-15"
+issued = "2017-02-15"
 author = "Dominique Ritze"
 graph = "http://data.judaicalink.org/data/2014links"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -91,11 +91,6 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "yivo/yivoGeonames.nt.gz"
   bytes = 1449
   sha256 = "094621c68cbe5064768383e11d9daa295a3936bb05e454f922e9f00db384a378"
-
-[[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
 +++
 
 Links from JudaicaLink entities to external data sources.

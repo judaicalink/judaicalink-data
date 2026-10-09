@@ -6,7 +6,7 @@ date = "2017-09-14"
 website = "http://www.steinheim-institut.de/wiki/index.php/Biographisches_Handbuch_der_Rabbiner_%28BHR%29"
 example = "http://data.judaicalink.org/data/bhr/Abarbanell_Hirsch"
 namespaces = ["bhr"]
-stable = "2026-09-26"
+stable = "2018-05-03"
 
 [license]
 name = "CC4.0"
@@ -14,8 +14,8 @@ uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2017-09-14"
+version = "2018-05-03"
+issued = "2018-05-03"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/bhr"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
@@ -26,9 +26,19 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "a64d950ecc572e9fb8bceb9d289647857fcc68bad0363b60ecc6f0625f5c959f"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2025-06-24"
+author = "Benjamin Schnabel"
+text = "Bug fix in the generator (judaicalink-generators); the archived version was not regenerated."
+
+[[changelog]]
+date = "2017-10-02"
+author = "Maral Dadvar"
+text = "Links to JudaicaLink added (EncycBHR-ID-GND-JL.ttl.gz)."
+
+[[changelog]]
+date = "2017-09-14"
+author = "Maral Dadvar"
+text = "First version (EncycBHR-ID-GND.ttl.gz)."
 +++
 
 The Biographisches Handbuch der Rabbiner is an online 

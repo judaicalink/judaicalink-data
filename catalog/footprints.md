@@ -6,7 +6,7 @@ date = "2024-03-12"
 website = "https://footprints.ctl.columbia.edu/"
 example = "http://data.judaicalink.org/data/footprints/0039ddb3-52b5-5644-bd42-a7ab92611d03"
 namespaces = ["footprints"]
-stable = "2026-09-26"
+stable = "2025-03-21"
 
 [license]
 name = "CC BY-SA 4.0"
@@ -14,9 +14,9 @@ uri = "https://creativecommons.org/licenses/by-sa/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2024-03-12"
-author = "Christian Deuschle"
+version = "2025-03-21"
+issued = "2025-03-21"
+author = "Benjamin Schnabel"
 graph = "http://data.judaicalink.org/data/footprints"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
@@ -26,9 +26,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "01973c29750d5dcb8b9557d75b861639d82d25246140c0c5f696b85b07c3dbe3"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2024-03-12"
+author = "Christian Deuschle"
+text = "First version, with generator."
 +++
 Footprints traces the history and movement of Jewish books since the inception of print. <!--more--> 
 

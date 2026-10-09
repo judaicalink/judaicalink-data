@@ -6,7 +6,7 @@ date = "2023-11-22"
 website = "https://schluesseldokumente.net/"
 example = "https://data.judaicalink.org/data/hhkeydocs/Albert_Rosengarten"
 namespaces = ["hhkeydocs"]
-stable = "2026-09-26"
+stable = "2025-03-21"
 
 [license]
 name = "CC BY-NC-ND 4.0"
@@ -14,9 +14,9 @@ uri = "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-nd.png"
 
 [[versions]]
-version = "2026-09-26"
-issued = "2023-11-22"
-author = "Christian Deuschle"
+version = "2025-03-21"
+issued = "2025-03-21"
+author = "Benjamin Schnabel"
 graph = "http://data.judaicalink.org/data/hhkeydocs"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
@@ -26,9 +26,9 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   sha256 = "2d912a077e7c53ff363d16f4b37882714373205efcc13abdb2f428ea400ce445"
 
 [[changelog]]
-date = "2026-10-09"
-text = "Migrated to the entry format of decision 0013: one version 2026-09-26 with the files of the archived catalogue state (judaicalink-site 81b42a5)."
-refs = ["0013"]
+date = "2024-01-23"
+author = "Christian Deuschle"
+text = "First version, with generator."
 +++
 
 Hamburger Schlüsseldokumente zur deutsch-jüdischen Geschichte is an online source edition realized by the Institute for the History of German Jews. <!--more-->
