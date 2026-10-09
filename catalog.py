@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Catalogue tooling for judaicalink-data (decisions 0013, 0014).
 
-    python3 catalog.py check [--catalog DIR] [--dumps DIR ...]
+    python3 catalog.py check [--catalog DIR] [--dumps DIR ...] [--complete]
     python3 catalog.py collect --from DIR [--from DIR ...] --to DIR [--dry-run]
 
 check   parses every entry in catalog/, checks the entry format of 0013 and reports errors and
         warnings; with --dumps, compares sizes and checksums with local copies of the files at
-        DIR/<slug>/<version>/<path>. Exit status 1 if there are errors.
+        DIR/<slug>/<version>/<path>; with --complete, each DIR must hold exactly the catalogued files.
+        Exit status 1 if there are errors.
 collect builds a dumps tree <slug>/<version>/<path> with the files of all catalogued versions: each file
         is looked up by size and sha256 in the --from directories (any layout) and hard-linked (copied
         if that fails) into --to. Files already in place are checked; files in --to that the catalogue
@@ -272,8 +273,9 @@ def sha256(path):
     return h.hexdigest()
 
 
-def check_local_files(r, e, dumps):
-    """Compare bytes and sha256 of each version file with local copies under the dump directories."""
+def check_local_files(r, e, dumps, complete=False):
+    """Compare bytes and sha256 of each version file with local copies under the dump directories;
+    with complete, a file missing from a dump directory is an error."""
     for v in e.versions():
         vid = v.get("version")
         files = v.get("files", [])
@@ -285,9 +287,11 @@ def check_local_files(r, e, dumps):
             rel = f"{e.name}/{vid}/{f['path']}"
             for root in dumps:
                 local = root / rel
-                if not local.is_file():
-                    continue
                 where = f"{e.path.name} {rel}"
+                if not local.is_file():
+                    if complete:
+                        r.error(where, f"missing in {root}")
+                    continue
                 size = local.stat().st_size
                 if isinstance(f.get("bytes"), int) and f["bytes"] != size:
                     r.error(where, f"{f['bytes']} bytes in the entry, {size} in {root}")
@@ -308,7 +312,14 @@ def cmd_check(args):
     for e in entries:
         check_entry(r, e, slugs, decisions)
         if args.dumps:
-            check_local_files(r, e, args.dumps)
+            check_local_files(r, e, args.dumps, args.complete)
+    if args.dumps and args.complete:
+        named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in entries for v in e.versions()
+                 for f in v.get("files", []) if isinstance(f, dict)}
+        for root in args.dumps:
+            for p in sorted(root.rglob("*")):
+                if p.is_file() and p.relative_to(root).as_posix() not in named:
+                    r.error(str(root), f"{p.relative_to(root).as_posix()} is not in the catalogue")
     print(f"{len(entries)} entries, {r.errors} errors, {r.warnings} warnings", file=sys.stderr)
     return 1 if r.errors else 0
 
@@ -383,6 +394,8 @@ def main():
                    help="catalogue directory (default: catalog/ of this repository)")
     p.add_argument("--dumps", metavar="DIR", type=Path, action="append", default=[],
                    help="local dump directory with <slug>/<version>/<path>; repeatable")
+    p.add_argument("--complete", action="store_true",
+                   help="each --dumps directory must hold exactly the catalogued files (no file missing, none extra)")
     p.set_defaults(func=cmd_check)
     p = sub.add_parser("collect", help="build a dumps tree <slug>/<version>/<path> from local files")
     p.add_argument("--catalog", metavar="DIR", type=Path, default=CATALOG,
