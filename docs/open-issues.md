@@ -33,7 +33,9 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is `lokal/dumps-new` (79 files,
   189 MB, `catalog.py collect`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
   from the old paths?), then keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
-  delete the rest there.
+  delete the rest there. Nothing else on the VM is deleted before the backup in
+  `../BACKUP-PLAN-2026-10-10.md` exists (`/data/archive`, `/data/cm` and more hold the only copies of sources,
+  intermediates and working folders).
 
 ## URI space and catalogue consistency
 

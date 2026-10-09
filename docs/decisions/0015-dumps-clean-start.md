@@ -42,7 +42,9 @@ crawls behind rujen, yivo and stolpersteine.
 - The tree is built by `catalog.py collect` from local copies, finding each file by its checksum; locally it
   is `lokal/dumps-new`. It replaces dumps-clean on archive.judaicalink.org when it is published (on request).
 - `labs:/data/dumps` stays until the new tree is published and checked. Then only the backups of 2025-02-06
-  (git history) and 2025-12-19 (last state) are kept, offline and unpublished; everything else there is deleted.
+  (git history) and 2025-12-19 (last state) are kept, offline and unpublished; everything else in `/data/dumps` is
+  deleted. The rest of the VM is not touched by this decision; what to keep from it goes into a separate, private
+  backup (not part of the dumps).
 
 ## Consequences
 
