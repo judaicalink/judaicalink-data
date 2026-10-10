@@ -4,7 +4,7 @@ title = "Soundscape Synagogue"
 author = "Kai Eckert"
 date = "2022-07-06"
 website = "https://www.soundscape-synagoge.de"
-example = "https://data.judaicalink.org/data/html/sosy/Adler_Abraham"
+example = "http://data.judaicalink.org/data/sosy/Adler_Abraham"
 namespaces = ["sosy"]
 stable = "2022-07-07"
 

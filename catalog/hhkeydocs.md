@@ -4,7 +4,7 @@ title = "Hamburger Schlüsseldokumente zur deutsch-jüdischen Geschichte"
 author = "Kai Eckert"
 date = "2023-11-22"
 website = "https://schluesseldokumente.net/"
-example = "https://data.judaicalink.org/data/hhkeydocs/Albert_Rosengarten"
+example = "http://data.judaicalink.org/data/hhkeydocs/Albert_Rosengarten"
 namespaces = ["hhkeydocs"]
 stable = "2025-03-21"
 

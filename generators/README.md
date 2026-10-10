@@ -57,7 +57,7 @@ history of the repositories and re-ran the original code where its inputs are on
 | rujen | exact | yes (from the crawl) |
 | rujen-translation | exact | from the caches (private backup) |
 | sosy | probable | no |
-| stolperstein | 2020 exact, 2018 probable | 2020 yes |
+| stolpersteine | 2020 exact, 2018 probable | 2020 yes |
 | ubffm-persons | unknown (no generator found) | no |
 | yivo | exact | yes (from the crawl) |
 

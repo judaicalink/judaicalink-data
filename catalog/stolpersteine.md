@@ -1,10 +1,11 @@
 +++
-slug = "stolperstein"
+slug = "stolpersteine"
 title = "Stolpersteine in Mainz"
 author = "Kai Eckert"
 date = "2018-11-26"
 example = "http://data.judaicalink.org/data/stolpersteine/Goldschmitt_Leopold"
 namespaces = ["stolpersteine"]
+aliases = ["/datasets/stolperstein/"]
 stable = "2020-10-06"
 
 [license]
@@ -14,7 +15,7 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
-path = "generators/stolperstein"
+path = "generators/stolpersteine"
 
 [files]
 "stolpersteine.ttl.gz" = "Dataset created from the wikipedia page of the list of Stolpersteine (stumbling blocks) in Mainz"
@@ -53,6 +54,12 @@ description = "180 persons, with 49 scope notes that the version of 2020 lacks."
   path = "stolpersteine.ttl.gz"
   bytes = 13048
   sha256 = "d266cff15a2a60f627e97c14c9c33303eb955a6969db777aae71a2d712d4d4ec"
+
+[[changelog]]
+date = "2026-10-10"
+author = "Kai Eckert"
+text = "Slug stolperstein renamed to stolpersteine, the name of the dataset in its 2020 self-description and of its namespace; the former page /datasets/stolperstein/ redirects."
+refs = ["0017"]
 
 [[changelog]]
 date = "2020-09-26"

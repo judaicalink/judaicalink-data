@@ -30,7 +30,11 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **To discuss with Frankfurt:** they can drop `cmtest`, `ep-supp`, `cm-tagme-supp`, `rujen-translation-supp` and
   `beacon-persons` from their catalogue ([0015](decisions/0015-dumps-clean-start.md)); stable access URLs on data.judaicalink.org instead of web.judaicalink.org
   (0014); their loader expects `<slug>.meta.ttl` in one shared metadata graph (0006); their catalogue pages
-  could link to our finder; they adopt `<slug>/<version>/<path>` when they next take over files.
+  could link to our finder; they adopt `<slug>/<version>/<path>` when they next take over files. Also: their
+  catalogue has the `https` examples fixed in ours (hhkeydocs, sosy, ontology) and the entry `stolperstein.md`
+  (now `stolpersteine`, [0017](decisions/0017-slug-stolpersteine.md)); their pubby takes the graph from
+  `dataslug` (sometimes a namespace, e.g. `epi`); the BEACON `#TARGET` is `https://data.judaicalink.org/data/gnd/{ID}`
+  (`generate_beacon.py` default), so DNB EntityFacts spreads our URIs in the `https` form: ask for `http://`.
 - **Process details:** versioning and archiving rules for dumps.
 
 - **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is `lokal/dumps-new` (79 files,
@@ -41,6 +45,23 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   intermediates and working folders).
 
 ## URI space and catalogue consistency
+
+- **URI check of 2026-10-10** (all files of `dumps-new` and `dumps-additions`): URIs are consistently `http://`,
+  datasets are identified only as `http://data.judaicalink.org/datasets/<slug>`. To fix:
+  - 953 `owl:sameAs` to `https://data.judaicalink.org/data/gnd/…` in `gnd-persons-entityfacts` and `ep-2026-10-06`,
+    taken from the EntityFacts `sameAs` (from the BEACON target, see Frankfurt): normalise to `http` when regenerating
+    (they become self-links and are dropped).
+  - The `-meta` files in `dumps-additions` use patterns that the generator framework replaces: access URLs in the old
+    archive layout, `datasets/agent/…` with names in the IRIs (→ `datasets/agents/persons/<id>`, `datasets/agents/software/<name>`;
+    names only in an agents dataset, so a name can be removed without new IRIs; slug `agents` reserved), `datasets/<slug>/generation/<date>`,
+    `datasets/<slug>-meta/creator/…`, `…/original-generation`, `https` examples copied from the catalogue (fixed in the
+    catalogue 2026-10-10). Regenerate all with the framework.
+  - The legacy ep of 2021 has three entity pages `owl:sameAs` a dataset IRI (yivo, rujen, rujen-translation); not
+    carried over into ep-2026-10-06 (checked).
+  - Still on the slug `stolperstein` (0017), because they read Frankfurt's catalogue: the graph in
+    `../qlever/queries/07-stolpersteine-persons.rq`, the precedence list in `../kg-complements/ep_generator.py`, the
+    dataset list in `../ep-demonstrator/app.py`, and the old `-meta` `dumps-additions/stolpersteine/current/stolperstein-meta.ttl.gz`.
+    Change them when `make_inputs.py` and the generators switch to this catalogue (then rebuild the index).
 
 - **geo-coordinates** coins URIs without a namespace (`data/Aachen`, 2,701 places); no decision for this is
   known. Its places are typed only `skos:Concept`. `dbp-wiki-geo-linking` uses the same URIs. No other
@@ -63,7 +84,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **Findings of the generator inventory** (`generators/*/README.md`): yivo 2020 lower-cased its IRIs, so the yivo
   links of 2014links and `interlinks.n3` (2014 IRIs) do not resolve; epidat has names clipped by a hand repair of
   2023 (`Jakob` → `Jako`); rujen-translation contains 293 broken literals `"Translated(src=…)"`; sosy uses HTML-view
-  URLs as `jl:occupation` values; the legacy entity pages made about 1.1 million cm-tagme references and
+  URLs as `jl:occupation` values (204, `https://data.judaicalink.org/data/html/occupation/…`); the legacy entity pages made about 1.1 million cm-tagme references and
   compact-memory pages into singleton pages (check that ep-2026-10-06 retires them); djh 2018 has non-ASCII
   characters in IRIs; geo-enriched has an empty haskala file.
 - **Ontology:** the catalogue now names version 2025-11-27 (judaicalink-ontology `b26c961`, identical to

@@ -1,4 +1,4 @@
-# stolperstein: generator history
+# stolpersteine: generator history
 
 Stolpersteine in Mainz (from the Wikipedia list), by Maral Dadvar (2018) and Kai Eckert / Patricia Kaluza (2020).
 

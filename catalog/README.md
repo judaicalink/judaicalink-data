@@ -107,7 +107,7 @@ different TOML parsers (Go; Python `toml` package): entries must stay valid for 
 
 - `dataslug`, `graph`, dump directory and URI namespace do not match in several entries: epidat
   (`dataslug`/`graph` `epi`, URIs `data/epidat/`), dump directories `dbpedia-person`, `stolpersteine`,
-  `ubffm`, `nli`, `judaicalink-ontology` for the entries `dbpedia-persons`, `stolperstein`, `ubffm-persons`,
+  `ubffm`, `nli`, `judaicalink-ontology` for the entries `dbpedia-persons`, `stolperstein` (renamed `stolpersteine`, 0017), `ubffm-persons`,
   `nli-persons`, `ontology`; no `dataslug` for yivo, rujen, rujen-translation, date-enriched,
   dbp-wiki-geo-linking; `graph` of geo-coordinates is `data/geo-coor`.
 - `graph` names a namespace, not the graph of the dataset ([0006](../docs/decisions/0006-graphs-and-meta.md)).

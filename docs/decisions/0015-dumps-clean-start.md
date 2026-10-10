@@ -25,7 +25,7 @@ crawls behind rujen, yivo and stolpersteine.
   - footprints: stable 2024-03-18 (from the backup; titles, owners, places, …), newer 2025-03-21 (only names);
   - haskala: stable 2019-07-01 (enriched), newer 2025-03-24 (most dates and places missing; with
     `Haskala_net.ttl`, the second file of that run, which dumps-clean lacked);
-  - stolperstein: stable 2020-10-06 (judaicalink-labs, 223 persons), older 2018-11-26 (180 persons, with
+  - stolpersteine (slug `stolperstein` until [0017](0017-slug-stolpersteine.md)): stable 2020-10-06 (judaicalink-labs, 223 persons), older 2018-11-26 (180 persons, with
     scope notes).
 - The ontology has one version, 2025-11-27, the current ontology (the archived file held the ontology of
   2020 by mistake).

@@ -640,7 +640,7 @@
   "local": "interlinks/original/judaicalink-loader@277524a/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-04.py"
  },
  {
-  "slug": "stolperstein",
+  "slug": "stolpersteine",
   "repo": "judaicalink-generators",
   "url": "https://github.com/judaicalink/judaicalink-generators",
   "commit": "22d71f829fbe497b802845aaffa80f0484b8311b",
@@ -653,10 +653,10 @@
    "Maral Dadvar"
   ],
   "bytes": 5550,
-  "local": "stolperstein/original/judaicalink-generators@22d71f8/stolpersteine/scripts/Stein-wiki-01.py"
+  "local": "stolpersteine/original/judaicalink-generators@22d71f8/stolpersteine/scripts/Stein-wiki-01.py"
  },
  {
-  "slug": "stolperstein",
+  "slug": "stolpersteine",
   "repo": "judaicalink-labs",
   "url": "https://github.com/judaicalink/judaicalink-labs",
   "commit": "4a9e253b35590b5623c2c9212cfcedda8a7e150b",
@@ -669,10 +669,10 @@
    "Kai Eckert"
   ],
   "bytes": 9980,
-  "local": "stolperstein/original/judaicalink-labs@4a9e253/labs/data/management/commands/generate_stolpersteine.py"
+  "local": "stolpersteine/original/judaicalink-labs@4a9e253/labs/data/management/commands/generate_stolpersteine.py"
  },
  {
-  "slug": "stolperstein",
+  "slug": "stolpersteine",
   "repo": "judaicalink-labs",
   "url": "https://github.com/judaicalink/judaicalink-labs",
   "commit": "4a9e253b35590b5623c2c9212cfcedda8a7e150b",
@@ -685,7 +685,7 @@
    "Kai Eckert"
   ],
   "bytes": 14948,
-  "local": "stolperstein/original/judaicalink-labs@4a9e253/labs/data/management/commands/_dataset_command.py"
+  "local": "stolpersteine/original/judaicalink-labs@4a9e253/labs/data/management/commands/_dataset_command.py"
  },
  {
   "slug": "yivo",
