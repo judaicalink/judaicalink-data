@@ -25,7 +25,7 @@ version = "2018-10-24"
 issued = "2018-10-24"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/bhr"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5. The EntityFacts links were on the dumps server but not in the catalogue."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded). The EntityFacts links were on the dumps server but not in the catalogue."
 
   [[versions.files]]
   path = "bhr-final-05.ttl.gz"
@@ -40,7 +40,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2025-06-24"
 author = "Benjamin Schnabel"
-text = "A script of the generator reformatted for Python 3 (judaicalink-generators); the archived version was not regenerated."
+text = "A script of the generator reformatted for Python 3 (judaicalink-generators); the published version was not regenerated."
 
 [[changelog]]
 date = "2017-10-02"

@@ -23,7 +23,7 @@ version = "2018-07-18"
 issued = "2018-07-18"
 author = ["Kai Eckert", "Maral Dadvar"]
 graph = "http://data.judaicalink.org/data/interlinks"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "interlinks.n3.gz"
@@ -38,7 +38,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2025-06-05"
 author = "Benjamin Schnabel"
-text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the published version was not regenerated."
 
 [[changelog]]
 date = "2018-02-13"

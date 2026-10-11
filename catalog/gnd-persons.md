@@ -29,7 +29,7 @@ version = "2018-11-29"
 issued = "2018-11-29"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/gnd-persons"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "generated_persons_GND.ttl.gz"

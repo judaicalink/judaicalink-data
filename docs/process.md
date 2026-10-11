@@ -1,7 +1,7 @@
-# Process: from development to the catalogue, mannheim.judaicalink.org, Frankfurt and the archive
+# Process: from development to the catalogue, the dumps locations and Frankfurt
 
 Draft of 2026-10-07, updated 2026-10-08 for [0013](decisions/0013-catalogue-format.md) and
-[0014](decisions/0014-locations-dataindex-finder.md). It describes how data moves; it will be refined as we
+[0014](decisions/0014-locations-dataindex-finder.md), 2026-10-11 for [0019](decisions/0019-dumps-locations-equal.md). It describes how data moves; it will be refined as we
 use it. Decisions referred to are in `decisions/`.
 
 ## States of a dataset version
@@ -10,13 +10,16 @@ use it. Decisions referred to are in `decisions/`.
 |---|---|---|
 | **in development** | local (`lokal/dumps-additions/`), local QLever | not listed (experimental runs are never catalogued) |
 | **catalogued** | local or already on a dumps location | version added explicitly to the entry, with changelog entry; a preview until `stable` points to it |
-| **published** | `mannheim.judaicalink.org/dumps/<slug>/<version>/<path>`, loaded in the Mannheim SPARQL endpoint | found by the index, appears in `dataindex.json` and the finder |
+| **published** | at one or more dumps locations, `<location>/<slug>/<version>/<path>` (archive.judaicalink.org, mannheim.judaicalink.org; loaded in the Mannheim SPARQL endpoint where useful) | found by the index, appears in `dataindex.json` and the finder |
 | **in Frankfurt** | in their catalogue / dumps | found by the index (their catalogue page; their files once they use the same structure); we keep no marker |
-| **archived** | `archive.judaicalink.org/dumps/<slug>/<version>/<path>` (files never changed afterwards) | found by the index; nothing changes in the entry |
-| **superseded** | dumps stay | the successor's entry has `replaces`; `replaced_by` is derived |
+| **superseded** | dumps stay unchanged, may be pruned later | the successor's entry has `replaces`; `replaced_by` is derived |
+| **pruned** | no longer at any public location; we still keep a copy unless decided otherwise | changelog entry |
 
-The archive currently holds the versions identical to Frankfurt (catalogue state `judaicalink-site`
-`81b42a5`; to be restructured to `<slug>/2026-09-26/<path>`). Everything we produced since 2026-10-05 is
+The dumps locations are equal and none promises completeness or permanence; the files of a version are never
+changed wherever they are (except `-meta`), and the git history of this repository is the permanent record
+([0019](decisions/0019-dumps-locations-equal.md)). archive.judaicalink.org is the location web.judaicalink.org
+links to; it currently holds the catalogue state `judaicalink-site` `81b42a5` (identical to what Frankfurt
+loaded), in the old layout until `lokal/dumps-new` replaces it. Everything we produced since 2026-10-05 is
 *in development*.
 
 ## 1. Developing a dataset
@@ -45,11 +48,13 @@ Entity pages are rebuilt after changes to the records ([0009](decisions/0009-ent
    leads to an active page, the run report (merges, splits, refused merges) is plausible.
 4. Write the README of the set (counts, changes, obsolete dumps), update dashboard and demonstrators.
 
-## 3. Publishing on mannheim.judaicalink.org
+## 3. Publishing at a dumps location
 
-1. Copy the files to `mannheim.judaicalink.org/dumps/<slug>/<version>/<path>` (the same structure on every
-   location, so they can move to the archive unchanged: [0014](decisions/0014-locations-dataindex-finder.md)).
-2. Load them into the Mannheim SPARQL endpoint; update the demonstrators.
+1. Copy the files to `<location>/<slug>/<version>/<path>`: mannheim.judaicalink.org for versions shown on the
+   Mannheim platform (previews included), archive.judaicalink.org for versions web.judaicalink.org should offer.
+   The structure is the same everywhere, so files can be copied between locations unchanged
+   ([0014](decisions/0014-locations-dataindex-finder.md)).
+2. Where useful, load them into the Mannheim SPARQL endpoint; update the demonstrators.
 3. Catalogue: add the changelog entry; run `catalog.py index` (records where the files are found) and
    `catalog.py sync` for the sites whose catalogue has the entry. A new dataset appears on a site only when
    its entry file is copied there (0014).
@@ -65,12 +70,13 @@ Entity pages are rebuilt after changes to the records ([0009](decisions/0009-ent
 New data from Frankfurt is taken over the same way in the opposite direction: by hand, with a catalogue entry
 and changelog. There is no automated synchronisation.
 
-## 5. Archiving
+## 5. Keeping and pruning
 
-A published version is archived on archive.judaicalink.org when it is adopted by Frankfurt or when it is to be
-preserved for other reasons: its files are copied to `<slug>/<version>/<path>` there, the next index run
-finds them, and a changelog entry records it. Archived files are never changed. The archive does not hold
-every version. When to archive is still to be decided.
+Every file of a catalogued version is kept by us in at least one place (a dumps location or a backup). Which
+versions a location offers can change: a location may drop versions, and historical versions, above all
+superseded ones, may be pruned from all public locations at some point. Pruning gets a changelog entry; before
+a version is pruned, check that nothing depends on what only it contains ([0019](decisions/0019-dumps-locations-equal.md)).
+When to prune is not decided yet.
 
 ## Checklist for every change
 

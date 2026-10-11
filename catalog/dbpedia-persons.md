@@ -25,7 +25,7 @@ version = "2018-10-24"
 issued = "2018-10-24"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/dbpedia-persons"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "generated_persons_DBPedia_enriched_02.ttl.gz"

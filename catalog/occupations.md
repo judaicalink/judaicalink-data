@@ -19,7 +19,7 @@ path = "generators/occupations"
 [[changelog]]
 date = "2025-12-18"
 author = "Benjamin Schnabel"
-text = "Entry and generator added (judaicalink-generators); no dump of this dataset is in the archive."
+text = "Entry and generator added (judaicalink-generators); no dump of this dataset was found."
 +++
 
 The **Occupations** dataset provides a normalized and reusable collection of occupation concepts

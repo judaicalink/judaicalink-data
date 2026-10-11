@@ -1,6 +1,6 @@
 # 0005 Dumps: archive.judaicalink.org for preservation, mannheim.judaicalink.org/dumps for newer versions
 
-Status: accepted, partly superseded by [0014](0014-locations-dataindex-finder.md) (catalogue references to locations) and [0015](0015-dumps-clean-start.md) (clean start of the archive) · Date: 2026-10-07
+Status: superseded by [0019](0019-dumps-locations-equal.md) (2026-10-11); before that partly superseded by [0014](0014-locations-dataindex-finder.md) (catalogue references to locations) and [0015](0015-dumps-clean-start.md) (clean start of the archive) · Date: 2026-10-07
 
 ## Context
 

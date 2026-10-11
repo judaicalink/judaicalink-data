@@ -25,7 +25,7 @@ version = "2018-10-22"
 issued = "2018-10-22"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/djh"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "djh.ttl.gz"
@@ -35,7 +35,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2025-06-05"
 author = "Benjamin Schnabel"
-text = "Encyclopedia converters rewritten in Python (judaicalink-generators); the archived version was not regenerated."
+text = "Encyclopedia converters rewritten in Python (judaicalink-generators); the published version was not regenerated."
 
 [[changelog]]
 date = "2016-07-12"

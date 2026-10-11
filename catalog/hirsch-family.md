@@ -24,7 +24,7 @@ version = "2018-10-30"
 issued = "2018-10-30"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/hirsch"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "HirschFamily.ttl.gz"

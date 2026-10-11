@@ -34,7 +34,7 @@ version = "2017-02-15"
 issued = "2017-02-15"
 author = "Dominique Ritze"
 graph = "http://data.judaicalink.org/data/2014links"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "rujen/rujenDBpediaPlace.nt.gz"

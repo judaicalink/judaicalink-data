@@ -20,7 +20,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   against the data, `occupations`, file descriptions), restructuring the archive, entries for our
   new datasets, then adapting judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue
   and its documentation to Frankfurt.
-- **Catalogue, open questions** (0013): redirects from the old archive paths; DOIs for archived versions.
+- **Catalogue, open questions** (0013): redirects from the old archive paths; DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
 - **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of
   the grown setup of the VM; where the platform code lives; whether a pubby-like frontend is needed.
 - **Catalogue tools and finder** ([0014](decisions/0014-locations-dataindex-finder.md)): `catalog.py
@@ -35,7 +35,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   (now `stolpersteine`, [0017](decisions/0017-slug-stolpersteine.md)); their pubby takes the graph from
   `dataslug` (sometimes a namespace, e.g. `epi`); the BEACON `#TARGET` is `https://data.judaicalink.org/data/gnd/{ID}`
   (`generate_beacon.py` default), so DNB EntityFacts spreads our URIs in the `https` form: ask for `http://`.
-- **Process details:** versioning and archiving rules for dumps.
+- **Process details:** which versions each dumps location offers; when to prune historical versions (0019).
 
 - **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is `lokal/dumps-new` (79 files,
   189 MB, `catalog.py collect`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects

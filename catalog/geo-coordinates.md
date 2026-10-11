@@ -24,7 +24,7 @@ version = "2018-08-08"
 issued = "2018-08-08"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/geo-coor"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "city-geocoor-05.ttl.gz"

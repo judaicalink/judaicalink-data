@@ -22,7 +22,7 @@ path = "generators/compact-memory-supp"
 version = "2021-01-19"
 issued = "2021-01-19"
 author = "Marco Rovera"
-description = "The original page metadata of the Visual Library (input of cm-structure and cm-journals); the pickle file of the archived state duplicated compact-memory and is not kept."
+description = "The original page metadata of the Visual Library (input of cm-structure and cm-journals); the pickle file of that catalogue state duplicated compact-memory and is not kept."
 
   [[versions.files]]
   path = "CM_Seiten_Metadaten.csv.gz"

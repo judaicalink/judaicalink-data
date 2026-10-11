@@ -29,7 +29,7 @@ version = "2021-05-28"
 issued = "2021-05-28"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/ep"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "entity_pages.ttl.gz"
@@ -64,7 +64,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2025-06-05"
 author = "Benjamin Schnabel"
-text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the published version was not regenerated."
 
 [[changelog]]
 date = "2021-03-11"

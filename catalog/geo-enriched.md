@@ -24,7 +24,7 @@ version = "2019-12-18"
 issued = "2019-12-18"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/geo-enriched"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "bhr-final-05.ttl"

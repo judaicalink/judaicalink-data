@@ -42,7 +42,7 @@ byte-reproducible (gzip header time, run time in the `-meta`).
 - The `-meta` file stays a file of its version, with size and checksum in the catalogue. When the metadata is
   rendered again, the file is replaced and the checksum in the entry updated; the change of the checksum in the
   git history documents the regeneration. Old `-meta` files are not kept; a checksum tells whether a copy was
-  once an official file. This is the one exception to "archived files are never changed" ([0015](0015-dumps-clean-start.md)).
+  once an official file. This is the one exception to "the files of a version are never changed" ([0019](0019-dumps-locations-equal.md)).
 - It is only rewritten when its content has changed, ignoring the provenance of the metadata itself; so a
   changed checksum always means a real change.
 - The provenance of the metadata (framework commit, time of creation, what it was made from) is part of the `-meta`.

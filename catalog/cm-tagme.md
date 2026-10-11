@@ -24,7 +24,7 @@ version = "2021-01-18"
 issued = "2021-01-18"
 author = "Marco Rovera"
 graph = "http://data.judaicalink.org/data/cm-tagme"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "cm_tagme_resources.ttl.gz"
@@ -39,7 +39,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2025-06-05"
 author = "Benjamin Schnabel"
-text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the archived version was not regenerated."
+text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the published version was not regenerated."
 +++
 
 References of Judaicalink resources (entities, mainly persons and places) in Compact Memory.

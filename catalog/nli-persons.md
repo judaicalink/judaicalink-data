@@ -24,7 +24,7 @@ version = "2019-01-25"
 issued = "2019-01-25"
 author = "Maral Dadvar"
 graph = "http://data.judaicalink.org/data/nli"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "nli-persons.ttl.gz"
@@ -34,7 +34,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2024-01-12"
 author = "Benjamin Schnabel"
-text = "A notebook (2024) and a script stub (2025) added to the generator folder (judaicalink-generators); the generator itself and the archived version were not changed."
+text = "A notebook (2024) and a script stub (2025) added to the generator folder (judaicalink-generators); the generator itself and the published version were not changed."
 +++
 
 This dataset contains the authors extracted from the authority file of National LIbrary of Israel.

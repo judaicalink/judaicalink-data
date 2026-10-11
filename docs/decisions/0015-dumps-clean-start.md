@@ -1,7 +1,7 @@
 # 0015 Clean start of the dumps: the published version, plus richer earlier ones
 
 Status: accepted · Date: 2026-10-09 · Supersedes in part [0005](0005-dumps-archive-and-mannheim.md) (files on
-the archive are not changed: one exception, this restructuring)
+the archive are not changed: one exception, this restructuring) · Amended by [0019](0019-dumps-locations-equal.md) (no location is permanent) and [0018](0018-generator-framework.md) (labs self-descriptions)
 
 ## Context
 
@@ -50,7 +50,8 @@ crawls behind rujen, yivo and stolpersteine.
 
 - Frankfurt's catalogue still lists the five removed datasets; they should drop them.
 - Links to the old paths on archive.judaicalink.org break unless redirects are set up (open question of 0013).
-- After the clean start, files on the archive are again never changed; versions are added. Removing versions
+- *Replaced by [0019](0019-dumps-locations-equal.md): the files of a version never change, at any location; locations may add
+  and drop versions; historical versions may be pruned.* After the clean start, files on the archive are again never changed; versions are added. Removing versions
   later needs a new decision.
 - The `-meta` files written by earlier generators (rujen, yivo, stolpersteine, rujen-translation) are kept as
   files of their versions (amended by [0018](0018-generator-framework.md): removed 2026-10-11, replaced by the regenerated `-meta`); the regenerated `-meta` files ([0014](0014-locations-dataindex-finder.md)) are added

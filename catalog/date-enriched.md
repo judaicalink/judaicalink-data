@@ -23,7 +23,7 @@ version = "2020-07-31"
 issued = "2020-07-31"
 author = "Kai Eckert"
 graph = "http://data.judaicalink.org/data/date-enriched"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "date-enriched.ttl.gz"
@@ -33,7 +33,7 @@ description = "Archived state, identical to the catalogue state judaicalink-site
 [[changelog]]
 date = "2020-08-03"
 author = "Sara Fischer"
-text = "Date parsing of the generator (judaicalink-labs, date_enrichment) extended; the archived version was not regenerated."
+text = "Date parsing of the generator (judaicalink-labs, date_enrichment) extended; the published version was not regenerated."
 +++
 
 This is work in progress. The idea is to parse all available dates and create

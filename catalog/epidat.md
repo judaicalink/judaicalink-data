@@ -22,7 +22,7 @@ version = "2023-07-14"
 issued = "2023-07-14"
 author = "Benjamin Schnabel"
 graph = "http://data.judaicalink.org/data/epi"
-description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
+description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]
   path = "epidat-final-01.ttl.gz"
