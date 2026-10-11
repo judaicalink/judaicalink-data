@@ -551,6 +551,14 @@ def cmd_import_files(args, cfg):
     return 0
 
 
+def cmd_clean_runs(args, cfg):
+    gone = runs.clean(cfg.require("build"), args.slug, dry_run=args.dry_run)
+    for d in gone:
+        print(f"{'would delete' if args.dry_run else 'deleted'} {d.parent.name}/{d.name}")
+    print(f"{len(gone)} run(s) {'to delete' if args.dry_run else 'deleted'}; runs of versions kept", file=sys.stderr)
+    return 0
+
+
 def cmd_render_meta(args, cfg):
     if args.all:
         if args.id or args.out:
@@ -662,6 +670,9 @@ def parser():
         (("--dry-run",), {"action": "store_true", "help": "only say whether it would change"}),
         (("--out",), {"metavar": "FILE", "type": Path, "help": "write the -meta to FILE; nothing else changes"}),
         json_out=False)
+    add("clean-runs", cmd_clean_runs, "delete the runs in the build area that did not become a version",
+        (("slug",), {"nargs": "*", "help": "only these datasets (default: all)"}),
+        (("--dry-run",), {"action": "store_true", "help": "only list them"}), json_out=False)
     add("list-agents", cmd_list_agents, "list the agents (registry) and the names used in the catalogue")
     add("check-catalog", cmd_check_catalog, "check the catalogue entries (0013, 0018) and local copies of the files",
         (("--store",), {"action": "store_true", "help": "also compare with the store (local.toml)"}),

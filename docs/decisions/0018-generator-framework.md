@@ -143,6 +143,12 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   edit is checked by parsing the result and comparing it with the expected data, otherwise nothing is written.
   `--dry-run` writes the version into the build area (`<run-id>-as-<version>/`, with the entry as it would be)
   and changes nothing else.
+- **While working on a dataset, no versions** (decided 2026-10-12): runs only, as many as needed; when the work is
+  finished, one run becomes the one new version. Runs are not kept: `jl clean-runs [<slug>…]` deletes every run in
+  the build area that did not become a version (and the `--dry-run` previews of `add-version`); the run of a
+  version keeps its directory with record and log, and its record is in the repository. A version made too early
+  and never published is removed again (catalogue, store, run record) rather than followed by more versions; this
+  was done for the two working versions of `judaicalink-vocabulary` of 2026-10-11.
 - The triples of a data file contain no version id and no file URIs; only the `-meta` does. So any run can become
   any version, and experimental runs use up no version ids. (Dates such as the run date in entity-page events are
   data, not version ids.)

@@ -36,7 +36,7 @@ loaded), in the old layout until the store (`lokal/store`) replaces it. Everythi
    metadata.
 4. **Run, compare, check**: `jl generate <slug>` (a run in the build area), `jl compare` with the kept version,
    `jl show-canonical`; load into the local endpoint where useful (counts, examples, effect on the entity pages,
-   dashboard). Fix and rerun until the numbers are understood.
+   dashboard). Fix and rerun until the numbers are understood. No versions while working: runs only.
 5. **Document**: catalogue entry (draft), README of the generator folder, decision record if a convention is set
    or an exception made.
 6. **Make it a version, on request**: commit the code, run again, then `jl add-version <slug>/<run-id>` (try
@@ -44,6 +44,7 @@ loaded), in the old layout until the store (`lokal/store`) replaces it. Everythi
    the measured statistics), the run record `generators/<slug>/runs/<version>.json`, the version and a changelog
    entry in the catalogue, the files in the store. Review and commit; move `stable` by hand when it is the
    recommended version. `jl render-meta <slug>/<version>` renders the `-meta` again after the entry changed.
+   One version per piece of work; then `jl clean-runs` deletes the runs that did not become it.
 
 ## 2. Entity-page runs
 

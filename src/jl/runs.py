@@ -7,6 +7,7 @@ generators/<slug>/runs/<version>.json in this repository.
 
 import json
 import re
+import shutil
 
 from .config import GENERATORS
 
@@ -67,3 +68,24 @@ def log_tail(run, lines=10):
     if not p.is_file():
         return []
     return p.read_text(encoding="utf-8", errors="replace").splitlines()[-lines:]
+
+
+def clean(build, slugs=None, dry_run=False):
+    """Delete the runs (and add-version dry-run previews) in the build area that did not become a version; the run
+    of a version keeps its directory (record and log). Returns the deleted directories."""
+    if build is None or not build.is_dir():
+        return []
+    gone = []
+    for d in sorted(build.iterdir()):
+        if not d.is_dir() or d.name.startswith(".") or (slugs and d.name not in slugs):
+            continue
+        for r in sorted(d.iterdir()):
+            run_id = r.name.split("-as-")[0]
+            if not r.is_dir() or not is_run_id(run_id):
+                continue
+            if "-as-" not in r.name and version_of_run(d.name, run_id):
+                continue
+            gone.append(r)
+            if not dry_run:
+                shutil.rmtree(r)
+    return gone
