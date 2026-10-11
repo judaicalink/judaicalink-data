@@ -5,6 +5,8 @@ author = "Kai Eckert"
 date = "2018-02-15"
 namespaces = ["interlinks"]
 stable = "2018-07-18"
+kind = "linkset"
+method = ["deterministic", "rule-based"]
 
 [license]
 name = "CC0"

@@ -4,6 +4,8 @@ title = "DBpedia and Wikipedia Geographical External Links"
 author = "Kai Eckert"
 date = "2021-01-13"
 stable = "2021-01-13"
+kind = "linkset"
+method = ["lookup"]
 
 [license]
 name = "CC0"

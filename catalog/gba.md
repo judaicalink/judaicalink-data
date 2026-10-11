@@ -7,6 +7,8 @@ website = "http://www.steinheim-institut.de/gba"
 example = "http://data.judaicalink.org/data/gba/Moses_Mendelssohn"
 namespaces = ["gba"]
 stable = "2025-03-21"
+kind = "records"
+method = ["converted", "curated"]
 
 [license]
 name = "CC4.0"

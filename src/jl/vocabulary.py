@@ -10,6 +10,7 @@ from .config import CATALOG
 
 FIELDS = ("kind", "method")
 BASE = "http://data.judaicalink.org/datasets/vocabulary/"
+AUTOMATED = "automated"   # method/automated: derived, never a value in the catalogue
 
 
 def scheme_iri(field):
@@ -34,7 +35,17 @@ def load(path=None):
         for v, d in t["values"].items():
             if not isinstance(d, dict) or not d.get("label") or not d.get("definition"):
                 raise ValueError(f"vocabulary.toml: {f}.values.{v} needs a label and a definition")
+    m = data["method"]
+    if AUTOMATED in m["values"]:
+        raise ValueError(f"vocabulary.toml: '{AUTOMATED}' is derived, not a value of method")
+    if not isinstance(m.get(AUTOMATED), dict) or not m[AUTOMATED].get("label") or not m[AUTOMATED].get("definition"):
+        raise ValueError(f"vocabulary.toml: [method.{AUTOMATED}] needs a label and a definition")
     return data
+
+
+def automated(path=None):
+    """The methods marked automated = true (their broader concept method/automated is derived, never stored)."""
+    return {v for v, d in load(path)["method"]["values"].items() if d.get("automated")}
 
 
 def values(field):

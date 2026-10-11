@@ -6,6 +6,8 @@ date = "2025-12-18"
 website = "https://www.judaicalink.org/"
 example = "http://data.judaicalink.org/data/occupation/rabbiner"
 namespaces = ["occupation"]
+kind = "vocabulary"
+method = ["rule-based"]
 
 [license]
 name = "CC BY 4.0"

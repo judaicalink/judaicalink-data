@@ -4,6 +4,10 @@
 # scheme http://data.judaicalink.org/datasets/vocabulary/<field>; the -meta files state them as dcterms:type of the
 # dataset. Published in the dataset judaicalink-vocabulary, generated from this file. `jl check-catalog` accepts
 # exactly these values. A value is never renamed or reused; one that should no longer be used gets `withdrawn`.
+#
+# Methods with `automated = true` make statements that can be wrong individually and that were not checked one by
+# one (at most samples). They have the broader concept [method.automated], which is never used in the catalogue: the
+# framework derives it and states it in the -meta of every dataset that uses one of these methods.
 
 [kind]
 label = "Kinds of JudaicaLink datasets"
@@ -41,6 +45,10 @@ definition = "Data that other datasets are made from or that describes them (cac
 label = "Methods by which JudaicaLink datasets are made"
 definition = "How the statements of a dataset were made; a dataset may name several methods."
 
+[method.automated]
+label = "Automated"
+definition = "Made automatically by a method whose statements can be wrong individually, and not checked statement by statement by people (at most samples were checked)."
+
 [method.values.curated]
 label = "Curated"
 definition = "Made or checked statement by statement by people."
@@ -59,16 +67,24 @@ definition = "Derived by a program from other data with exact rules: the same in
 
 [method.values.rule-based]
 label = "Rule-based"
-definition = "Derived with heuristic rules (patterns, string matching, normalisation); a statement can be wrong in an individual case."
+definition = "Derived with heuristic rules: patterns, normalisation, and matching by names, labels or similarity (also when looking up a name in an external service); a statement can be wrong in an individual case."
+automated = true
 
 [method.values.lookup]
 label = "Lookup"
-definition = "Looked up by identifier or exact name in an external service or a dictionary (e.g. Wikidata, DNB EntityFacts)."
+definition = "Looked up by identifier in an external service (e.g. a GND number in DNB EntityFacts, a Wikidata item); taken as correct. Matching by names is rule-based."
 
 [method.values.statistical]
 label = "Statistical"
 definition = "Made by statistical methods or machine learning (scores, estimates, automatic entity linking); statements are probable, not certain."
+automated = true
+
+[method.values.machine-translation]
+label = "Machine translation"
+definition = "Translated automatically by a machine translation service (e.g. Google Translate); translations may be wrong."
+automated = true
 
 [method.values.ai-generated]
 label = "AI-generated"
 definition = "Made by generative AI (large language models); statements may be wrong and were not checked one by one."
+automated = true

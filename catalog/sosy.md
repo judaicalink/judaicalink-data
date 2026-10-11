@@ -7,6 +7,8 @@ website = "https://www.soundscape-synagoge.de"
 example = "http://data.judaicalink.org/data/sosy/Adler_Abraham"
 namespaces = ["sosy"]
 stable = "2022-07-07"
+kind = "records"
+method = ["converted"]
 
 [license]
 name = "CC4.0"

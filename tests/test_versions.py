@@ -33,7 +33,7 @@ title = "A test"
 author = "Ann Example"
 namespaces = ["test"]
 kind = "complement"
-method = ["deterministic", "lookup"]
+method = ["deterministic", "rule-based"]
 
 # a comment that must stay
 
@@ -158,7 +158,8 @@ class Versions(unittest.TestCase):
         self.assertFalse(any("Ann Example" in str(o) for _, _, o in m))
         D, DCT = "http://data.judaicalink.org/datasets/test", "http://purl.org/dc/terms/"
         self.assertIn((D, DCT + "type", "http://data.judaicalink.org/datasets/vocabulary/kind/complement"), m)
-        self.assertIn((D, DCT + "type", "http://data.judaicalink.org/datasets/vocabulary/method/lookup"), m)
+        self.assertIn((D, DCT + "type", "http://data.judaicalink.org/datasets/vocabulary/method/rule-based"), m)
+        self.assertIn((D, DCT + "type", "http://data.judaicalink.org/datasets/vocabulary/method/automated"), m)
         self.assertIn((D, DCT + "abstract", rdf.Literal("The test dataset.")), m)
         self.assertIn((D, DCT + "description", rdf.Literal("The test dataset.\n\nMore.")), m)
         self.assertFalse(any("data.txt" in s for s, _, _ in m))   # store-only file is no distribution

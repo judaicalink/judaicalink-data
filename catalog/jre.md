@@ -6,6 +6,7 @@ date = "2019-07-01"
 example = "http://data.judaicalink.org/data/jre/Hause_Benedict"
 namespaces = ["jre"]
 stable = "2019-11-29"
+kind = "records"
 
 [license]
 name = "CC0"

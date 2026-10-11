@@ -133,6 +133,8 @@ def render(entry, version, files, record, stats, registry):
         v = d.get(field)
         for x in [v] if isinstance(v, str) else v if isinstance(v, list) else []:
             t.append((D, DCTERMS.type, IRI(vocabulary.value_iri(field, x))))
+    if set(d.get("method") or []) & vocabulary.automated():   # derived flag (0018)
+        t.append((D, DCTERMS.type, IRI(vocabulary.value_iri("method", vocabulary.AUTOMATED))))
     lic = d.get("license") or {}
     if is_url(lic.get("uri")):
         t.append((D, DCTERMS.license, IRI(lic["uri"])))

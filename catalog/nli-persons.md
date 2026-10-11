@@ -6,6 +6,8 @@ date = "2019-01-25"
 example = "http://data.judaicalink.org/data/nli/Abner_"
 namespaces = ["nli"]
 stable = "2019-01-25"
+kind = "records"
+method = ["converted"]
 
 [license]
 name = "CC0"

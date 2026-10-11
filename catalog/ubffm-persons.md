@@ -6,6 +6,7 @@ date = "2019-01-25"
 example = "http://data.judaicalink.org/data/ubffm/Aaron_Emmerich_Gumpertz"
 namespaces = ["ubffm"]
 stable = "2019-01-24"
+kind = "records"
 
 [license]
 name = "CC0"

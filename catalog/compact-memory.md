@@ -6,6 +6,8 @@ date = "2021-01-19"
 namespaces = ["compact-memory"]
 inputs = ["compact-memory-supp"]
 stable = "2021-01-18"
+kind = "support"
+method = ["converted"]
 
 [license]
 name = "CC0"

@@ -7,6 +7,8 @@ example = "http://data.judaicalink.org/data/stolpersteine/Goldschmitt_Leopold"
 namespaces = ["stolpersteine"]
 aliases = ["/datasets/stolperstein/"]
 stable = "2020-10-06"
+kind = "records"
+method = ["scraped"]
 
 [license]
 name = "CC0"

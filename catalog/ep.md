@@ -6,6 +6,8 @@ date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]
 stable = "2021-05-28"
+kind = "entity-pages"
+method = ["rule-based"]
 
 [license]
 name = "CC0"

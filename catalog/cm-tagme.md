@@ -5,6 +5,8 @@ author = "Kai Eckert"
 date = "2021-01-19"
 namespaces = ["cm-tagme"]
 stable = "2021-01-18"
+kind = "complement"
+method = ["statistical"]
 
 [license]
 name = "CC0"

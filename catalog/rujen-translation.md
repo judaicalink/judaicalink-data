@@ -9,6 +9,8 @@ picture = "/img/rujen_logo.png"
 namespaces = ["rujen"]
 aliases = ["/encyclopediae/encyclopediae-of-russion-jewry/", "/datasets/encyclopediae-of-russion-jewry/"]
 stable = "2020-09-28"
+kind = "complement"
+method = ["machine-translation"]
 
 [license]
 name = "CC0"

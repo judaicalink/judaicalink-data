@@ -5,9 +5,10 @@ author = "Kai Eckert"
 date = "2025-07-09"
 website = "http://ontology.judaicalink.org"
 example = "http://data.judaicalink.org/ontology/describedAt"
-kind = "support"
 namespaces = ["ontology"]
 stable = "2025-11-27"
+kind = "ontology"
+method = ["curated"]
 
 [license]
 name = "CC4.0"

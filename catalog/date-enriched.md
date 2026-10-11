@@ -5,6 +5,8 @@ author = "Kai Eckert"
 date = "2020-07-31"
 example = "http://data.judaicalink.org/data/bhr/Aach_Löb"
 stable = "2020-07-31"
+kind = "complement"
+method = ["deterministic"]
 
 [license]
 name = "CC0"

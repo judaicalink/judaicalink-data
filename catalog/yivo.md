@@ -9,6 +9,8 @@ picture = "/img/yivo_logo_black-on-white-135x68.jpg"
 namespaces = ["yivo"]
 aliases = ["/encyclopediae/yivo-encyclopedia/", "/datasets/yivo-encyclopedia/"]
 stable = "2020-09-30"
+kind = "records"
+method = ["scraped"]
 
 [license]
 name = "CC0"

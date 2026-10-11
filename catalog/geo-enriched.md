@@ -6,6 +6,8 @@ date = "2019-12-18"
 example = "http://data.judaicalink.org/data/djh/banco-alma-henriette-del"
 namespaces = ["geo-enriched"]
 stable = "2019-12-18"
+kind = "complement"
+method = ["rule-based"]
 
 [license]
 name = "CC0"

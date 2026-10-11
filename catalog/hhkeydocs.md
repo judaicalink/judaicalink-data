@@ -7,6 +7,8 @@ website = "https://schluesseldokumente.net/"
 example = "http://data.judaicalink.org/data/hhkeydocs/Albert_Rosengarten"
 namespaces = ["hhkeydocs"]
 stable = "2025-03-21"
+kind = "records"
+method = ["scraped", "lookup"]
 
 [license]
 name = "CC BY-NC-ND 4.0"

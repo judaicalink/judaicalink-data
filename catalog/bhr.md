@@ -7,6 +7,8 @@ website = "http://www.steinheim-institut.de/wiki/index.php/Biographisches_Handbu
 example = "http://data.judaicalink.org/data/bhr/Abarbanell_Hirsch"
 namespaces = ["bhr"]
 stable = "2018-10-24"
+kind = "records"
+method = ["scraped", "rule-based", "lookup"]
 
 [license]
 name = "CC4.0"

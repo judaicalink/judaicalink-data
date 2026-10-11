@@ -5,6 +5,8 @@ author = "Kai Eckert"
 date = "2014-11-15"
 namespaces = ["2014links"]
 stable = "2017-02-15"
+kind = "linkset"
+method = ["rule-based"]
 
 [license]
 name = "CC0"

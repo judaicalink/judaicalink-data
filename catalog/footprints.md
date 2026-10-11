@@ -7,6 +7,8 @@ website = "https://footprints.ctl.columbia.edu/"
 example = "http://data.judaicalink.org/data/footprints/0039ddb3-52b5-5644-bd42-a7ab92611d03"
 namespaces = ["footprints"]
 stable = "2024-03-18"
+kind = "records"
+method = ["converted", "rule-based", "machine-translation"]
 
 [license]
 name = "CC BY-SA 4.0"

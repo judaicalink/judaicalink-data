@@ -9,6 +9,8 @@ picture = "/img/igdj_logo_0.jpg"
 namespaces = ["djh"]
 aliases = ["/encyclopediae/das-juedische-hamburg/", "/datasets/das-juedische-hamburg/"]
 stable = "2018-10-22"
+kind = "records"
+method = ["scraped", "rule-based"]
 
 [license]
 name = "unknown"

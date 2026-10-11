@@ -7,6 +7,8 @@ website = "http://www.steinheim-institut.de/wiki/index.php/Epidat"
 example = "http://data.judaicalink.org/data/epi/AbrahamGottschalk"
 namespaces = ["epi"]
 stable = "2023-07-14"
+kind = "records"
+method = ["converted", "rule-based"]
 
 [license]
 name = "CC4.0"

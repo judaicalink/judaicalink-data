@@ -3,8 +3,9 @@ slug = "compact-memory-supp"
 title = "Compact Memory page metadata"
 author = "Kai Eckert"
 date = "2021-01-19"
-kind = "support"
 stable = "2021-01-19"
+kind = "support"
+method = ["converted"]
 
 [license]
 name = "CC0"

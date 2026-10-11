@@ -7,6 +7,8 @@ website = "http://www.steinheim-institut.de/ebib-djg-nrw/"
 example = "http://data.judaicalink.org/data/nrwbibdjg/112504981"
 namespaces = ["nrwbibdjg"]
 stable = "2024-05-24"
+kind = "records"
+method = ["converted", "lookup"]
 
 [license]
 name = "CC4.0"

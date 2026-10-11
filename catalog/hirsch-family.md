@@ -6,6 +6,8 @@ date = "2018-11-01"
 example = "http://data.judaicalink.org/data/hirsch/1964"
 namespaces = ["hirsch"]
 stable = "2018-10-30"
+kind = "records"
+method = ["converted"]
 
 [license]
 name = "CC0"

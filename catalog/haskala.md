@@ -7,6 +7,8 @@ website = "https://www.haskala-library.net/"
 example = "http://data.judaicalink.org/data/haskala/Ascher_Saul"
 namespaces = ["haskala"]
 stable = "2019-07-01"
+kind = "records"
+method = ["scraped", "converted", "lookup", "curated"]
 
 [license]
 name = "CC0"

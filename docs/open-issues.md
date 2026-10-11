@@ -72,8 +72,8 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
     dataset list in `../ep-demonstrator/app.py`, and the old `-meta` `dumps-additions/stolpersteine/current/stolperstein-meta.ttl.gz`.
     Change them when `make_inputs.py` and the generators switch to this catalogue (then rebuild the index).
 
-- **geo-coordinates** coins URIs without a namespace (`data/Aachen`, 2,701 places); no decision for this is
-  known. Its places are typed only `skos:Concept`. `dbp-wiki-geo-linking` uses the same URIs. No other
+- **geo-coordinates** coins URIs without a namespace (`data/Aachen`, 2,701 places), which no dataset may do (no
+  top-level `data/` URIs); to fix when we work on the graph data (it is a complement, 2026-10-12). Its places are typed only `skos:Concept`. `dbp-wiki-geo-linking` uses the same URIs. No other
   archived dataset links to them. Proposal: a successor with URIs in a proper namespace, typed `jl:Place`,
   linked to the old URIs.
 - **Authority namespaces:** `data/gnd/`, `data/dbpedia/`, `data/geonames/` are not dataset namespaces but

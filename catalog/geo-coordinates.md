@@ -6,6 +6,8 @@ date = "2018-10-04"
 example = "http://data.judaicalink.org/data/Aachen"
 namespaces = ["geo-coordinates"]
 stable = "2018-08-08"
+kind = "complement"
+method = ["rule-based"]
 
 [license]
 name = "CC0"

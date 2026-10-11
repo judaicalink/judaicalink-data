@@ -362,6 +362,18 @@ Four points, decided and built the same day:
   included, without the `<!--more-->` marker). The `-meta` travels with the dump, and the body holds what users of
   the files need (sources, how the data was obtained, known problems). No language tag (titles and quotations are
   mixed). HTML left in older bodies is cleaned up in the entries (catalogue curation).
+- **Values of the entries and the automated flag** (decided 2026-10-12, after suggestions for every dataset):
+  `machine-translation` is a method of its own. `lookup` means by identifier only and is taken as correct;
+  matching by names, labels or similarity (also a name looked up in an external service) is `rule-based`. Datasets
+  that are automated, i.e. not checked statement by statement (at most samples), are flagged, derived and not
+  stored: the methods `rule-based`, `statistical`, `machine-translation` and `ai-generated` are marked
+  `automated = true` in `vocabulary.toml` and have the broader concept `datasets/vocabulary/method/automated`; the
+  `-meta` of every dataset using one of them also states `dcterms:type …/method/automated`, so a plain query finds
+  them. `scraped`, `converted`, `deterministic` and `lookup` are not flagged: they give what the source says, and
+  errors there are bugs or errors of the source. How to record automated output that was later checked statement
+  by statement is decided when it happens (no such dataset now). All entries have `kind` and `method` (jre and
+  ubffm-persons no `method`: their generators are unknown); 12 datasets are automated. `compact-memory` is
+  `support` (used only to link into Compact Memory), `ontology` is `ontology`.
 - **Checksums** stay in the DCAT 3 form, `spdx:checksum` to an `spdx:Checksum` with algorithm and value (understood by
   DCAT-AP tools), with the IRI `<file IRI>#sha256` instead of the usual blank node; not a plain property such as
   the pending `schema:sha256`.
