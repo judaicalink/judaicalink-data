@@ -13,8 +13,7 @@ The YIVO Encyclopedia of Jews in Eastern Europe, crawled by Kai Eckert.
 
 ## Kept version 2020-09-30
 
-**Exact** `79440ed` (the catalogue named `0a47e95`, a merge commit an hour earlier): the metadata records the
-commit, and the RDF step on the kept crawl (`yivo.jsonl.gz`) gives an isomorphic graph (36,019 triples).
+**Exact** `79440ed` (the catalogue named `0a47e95`, a merge commit an hour earlier): the generator's self-description (`yivo-metadata.ttl.gz`, written 2020-09-30T09:49:57Z; removed from the version 2026-10-11, 0018) recorded the commit, and the RDF step on the kept crawl (`yivo.jsonl.gz`) gives an isomorphic graph (36,019 triples).
 
 ## Inputs
 

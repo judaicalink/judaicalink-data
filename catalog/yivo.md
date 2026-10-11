@@ -29,11 +29,6 @@ author = "Kai Eckert"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
   [[versions.files]]
-  path = "yivo-metadata.ttl.gz"
-  bytes = 590
-  sha256 = "d4140495f8d283d5acf1255a4d429df4a392925bb4fd4a7e967ad04c1316cc08"
-
-  [[versions.files]]
   path = "yivo.ttl.gz"
   bytes = 695155
   sha256 = "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842"
@@ -42,6 +37,13 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "yivo.jsonl.gz"
   bytes = 913257
   sha256 = "d86ff6504e24f869ae1e286e533b175c289b033ed735107add218f31269be6c1"
+
+[[changelog]]
+date = "2026-10-11"
+version = "2020-09-30"
+author = "Kai Eckert"
+text = "Self-description written by the labs generator (yivo-metadata.ttl.gz) removed from the version; the generated -meta file takes its place. Its generation time and commit are documented in the generator folder."
+refs = ["0018"]
 
 [[changelog]]
 date = "2025-06-05"

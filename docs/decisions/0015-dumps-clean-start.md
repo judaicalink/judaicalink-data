@@ -53,5 +53,5 @@ crawls behind rujen, yivo and stolpersteine.
 - After the clean start, files on the archive are again never changed; versions are added. Removing versions
   later needs a new decision.
 - The `-meta` files written by earlier generators (rujen, yivo, stolpersteine, rujen-translation) are kept as
-  files of their versions; the regenerated `-meta` files ([0014](0014-locations-dataindex-finder.md)) are added
+  files of their versions (amended by [0018](0018-generator-framework.md): removed 2026-10-11, replaced by the regenerated `-meta`); the regenerated `-meta` files ([0014](0014-locations-dataindex-finder.md)) are added
   to the versions.

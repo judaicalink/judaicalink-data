@@ -14,7 +14,7 @@ Encyclopedia of Russian Jewry (rujen.ru), crawled by Kai Eckert.
 
 ## Kept version 2020-09-28
 
-**Exact** `1ac14f1`: the generator's metadata records the commit, and running its RDF step on the kept crawl
+**Exact** `1ac14f1`: the generator's self-description (`rujen-metadata.ttl.gz`, written 2020-09-28T06:36:31Z; removed from the version 2026-10-11, 0018) recorded the commit, and running its RDF step on the kept crawl
 (`rujen.jsonl.gz`) gives an isomorphic graph (140,472 triples).
 
 ## Inputs

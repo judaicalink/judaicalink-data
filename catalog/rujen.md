@@ -29,11 +29,6 @@ author = "Kai Eckert"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
   [[versions.files]]
-  path = "rujen-metadata.ttl.gz"
-  bytes = 603
-  sha256 = "5a2ca1ebe6db58a564551b379af6a257599c07a680d72680a9fd251ecb0bed9d"
-
-  [[versions.files]]
   path = "rujen.ttl.gz"
   bytes = 6783508
   sha256 = "66b4fed0d221d93c85ee58934365310bc8fd230a4b15729362d3be2f7e8f7c82"
@@ -42,6 +37,13 @@ description = "Archived state, identical to the catalogue state judaicalink-site
   path = "rujen.jsonl.gz"
   bytes = 7829862
   sha256 = "2ded560739a06d39eee86c0506aa093d961a144491a246efc09755f1d49b3d6e"
+
+[[changelog]]
+date = "2026-10-11"
+version = "2020-09-28"
+author = "Kai Eckert"
+text = "Self-description written by the labs generator (rujen-metadata.ttl.gz) removed from the version; the generated -meta file takes its place. Its generation time and commit are documented in the generator folder."
+refs = ["0018"]
 
 [[changelog]]
 date = "2025-06-05"

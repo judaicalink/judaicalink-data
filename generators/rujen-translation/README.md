@@ -9,7 +9,7 @@ English and German translations of the rujen labels and abstracts (Google Transl
 
 ## Kept version 2020-09-28
 
-**Exact** `39f04c2`: the metadata records the commit; rebuilding from the caches on the kept rujen gives all 15,733
+**Exact** `39f04c2`: the generator's self-description (`rujen-translation-metadata.ttl`, written 2020-09-28T15:59:16Z; removed from the version 2026-10-11, 0018) recorded the commit; rebuilding from the caches on the kept rujen gives all 15,733
 labels and 15,583 abstracts per language. The only differences are 293 broken literals
 `"Translated(src=…, text=…)"` (147 en, 146 de) in the kept file, the bug fixed in `af59323`.
 

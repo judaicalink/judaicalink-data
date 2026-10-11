@@ -12,7 +12,7 @@ Stolpersteine in Mainz (from the Wikipedia list), by Maral Dadvar (2018) and Kai
 
 ## Kept versions
 
-- **2020-10-06** (stable): **exact** `4a9e253`: the metadata records the commit, and the RDF step on the kept crawl
+- **2020-10-06** (stable): **exact** `4a9e253`: the generator's self-description (`stolpersteine-metadata.ttl.gz`, written 2020-10-06T21:24:00Z; removed from the version 2026-10-11, 0018) recorded the commit, and the RDF step on the kept crawl
   (`stolpersteine.jsonl.gz`) gives an isomorphic graph (1,119 triples). 223 persons.
 - **2018-11-26**: **probable** `22d71f8` (the only version of the script). 180 persons with 49 scope notes.
 
