@@ -282,6 +282,22 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   generator and the framework that had uncommitted changes, Python version, parameters, input overrides, the
   inputs (reference, file name, checksum, size), status (and the error of a failed run), start and end, notes,
   and the files written (path, size, checksum, triples). Failed runs keep their directory and record.
+- **Imports** (built 2026-10-11, `jl import-files`): `import-files <slug> <files…> --origin … --description …`
+  takes files made elsewhere in as a run (mode `import`, the framework's commit; files kept byte for byte, no
+  header comments; RDF files with blank nodes refused), which `add-version` makes a version (`--issued` for the
+  date the data was made). `import-files <slug>/<version> --description … [--origin …] [--source URL]… [--note …]`
+  attaches a run record (mode `import`) to a catalogued version made outside the framework; no file of the
+  version changes. The record holds what is known: description, origin, sources (code and documentation at
+  their commits), notes, and the files with size, checksum and triples. In the `-meta`, the generation of such a
+  version is described by these texts and links (`rdfs:comment`, `rdfs:seeAlso`), not by `prov:used`, as the
+  evidence varies (exact, probable, unknown) and is given in the generator README.
+- Run records under `generators/<slug>/runs/` are not code: they do not make a generator count as uncommitted.
+- Done 2026-10-11 for all 33 legacy versions (commit `bc4a2ff`): each has an import record with the generator
+  README and the original files of that version (`generators/originals.json`; for the datasets with two versions
+  chosen by commit) as sources, the evidence and reproducibility of `generators/README.md` as a note, and for
+  stolpersteine 2020-10-06, rujen 2020-09-28 and hirsch-family 2018-10-30 a note that the framework generator
+  reproduces it. `render-meta --all` then gave every version its `-meta` (in the store and the catalogue, not yet at
+  any dumps location; 7 s with the canonical cache); a second run left all 34 unchanged.
 - Tested 2026-10-11 on three generators, each a faithful port of the original code with no change to its logic:
   stolpersteine (crawl of 2020-10-06), rujen (crawl of 2020-09-28) and hirsch-family (CSV of `40f7c98`, by
   checksum and origin) give exactly the triples of their kept versions (1,119, 140,472, 506).
@@ -331,8 +347,8 @@ change of the entry). No version was added to the real catalogue.
 ## Open questions
 
 - None of the original list. The first generators (stolpersteine 2020, rujen, hirsch-family) confirmed the
-  design (see The CLI and the generators); `add-version` and `render-meta` are built, imports follow
-  (`import-files`, `render-meta --all`).
+  design (see The CLI and the generators); `add-version`, `render-meta` and `import-files` are built, and every
+  version has a `-meta` (2026-10-11).
 - To review in the `-meta` content: `kind` and `method` of the entry (`ai-generated` matters to users) have no
   property yet; the legacy `graph` of a version is not stated; the full description (body) is not included, only
   the summary; checksums as `<file>#sha256` IRIs.

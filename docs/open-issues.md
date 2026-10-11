@@ -60,7 +60,9 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
     archive layout, `datasets/agent/…` with names in the IRIs (→ `datasets/agents/persons/<id>`, `datasets/agents/software/<name>`;
     names only in an agents dataset, so a name can be removed without new IRIs; slug `agents` reserved), `datasets/<slug>/generation/<date>`,
     `datasets/<slug>-meta/creator/…`, `…/original-generation`, `https` examples copied from the catalogue (fixed in the
-    catalogue 2026-10-10). Regenerate all with the framework.
+    catalogue 2026-10-10). Regenerate all with the framework. Done 2026-10-11 for the catalogue versions (`jl
+    render-meta --all`, in the store); still to do for the datasets of `dumps-additions` when they come into the
+    framework, and the new `-meta` files are not at any dumps location yet.
   - Graph of the `-meta` files: `datasets/<slug>-meta` → `datasets/<slug>/meta` (0018) in `../qlever/make_inputs.py`
     (graph from the file name) and in the kg-complements `-meta` writer.
   - The legacy ep of 2021 has three entity pages `owl:sameAs` a dataset IRI (yivo, rujen, rujen-translation); not
