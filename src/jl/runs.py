@@ -88,4 +88,6 @@ def clean(build, slugs=None, dry_run=False):
             gone.append(r)
             if not dry_run:
                 shutil.rmtree(r)
+        if not dry_run and not any(d.iterdir()):
+            d.rmdir()
     return gone
