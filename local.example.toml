@@ -1,0 +1,10 @@
+# Local settings of jl. Copy to local.toml (not committed) and adjust.
+# Paths are relative to the repository root.
+
+store = "../lokal/store"              # the store: every version, <slug>/<version>/<path> (decision 0019)
+build = "../lokal/build"              # build area: <slug>/<run-id>/ (decision 0018)
+legacy_dumps = ["../lokal/dumps"]     # older dump trees in any layout, searched by checksum (collect-store)
+
+[qlever]                              # index service (decision 0018)
+command = "qlever"                    # the qlever command; its version is recorded in each run
+ports = [7101, 7199]                  # ports for the indexes of runs

@@ -55,8 +55,8 @@ Entity pages are rebuilt after changes to the records ([0009](decisions/0009-ent
    The structure is the same everywhere, so files can be copied between locations unchanged
    ([0014](decisions/0014-locations-dataindex-finder.md)).
 2. Where useful, load them into the Mannheim SPARQL endpoint; update the demonstrators.
-3. Catalogue: add the changelog entry; run `catalog.py index` (records where the files are found) and
-   `catalog.py sync` for the sites whose catalogue has the entry. A new dataset appears on a site only when
+3. Catalogue: add the changelog entry; run `jl update-dataindex` (records where the files are found) and
+   `jl sync-site` for the sites whose catalogue has the entry. A new dataset appears on a site only when
    its entry file is copied there (0014).
 4. Announce on web.judaicalink.org (news) where it matters to others.
 
@@ -86,7 +86,7 @@ When to prune is not decided yet.
 - [ ] Generator in the repository, deterministic, `-meta` written
 - [ ] Loaded and checked locally; numbers in the `-meta` description
 - [ ] Catalogue entry: version added explicitly (on request), changelog, `stable` moved if it is the
-      recommended version; `catalog.py check`, `index`, `sync`
+      recommended version; `jl check-catalog`, `update-dataindex`, `sync-site`
 - [ ] Entity pages rebuilt if records changed
 - [ ] Dashboard / demonstrators updated
 - [ ] Published on mannheim.judaicalink.org (when agreed); offered to Frankfurt (when ready)

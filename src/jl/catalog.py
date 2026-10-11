@@ -1,34 +1,19 @@
-#!/usr/bin/env python3
-"""Catalogue tooling for judaicalink-data (decisions 0013, 0014).
+"""The catalogue: reading the entries, derived values, the check, and collecting the store (decisions 0013,
+0014, 0015, 0018, 0019).
 
-    python3 catalog.py check [--catalog DIR] [--dumps DIR ...] [--complete]
-    python3 catalog.py collect --from DIR [--from DIR ...] --to DIR [--dry-run]
-
-check   parses every entry in catalog/, checks the entry format of 0013 and reports errors and
-        warnings; with --dumps, compares sizes and checksums with local copies of the files at
-        DIR/<slug>/<version>/<path>; with --complete, each DIR must hold exactly the catalogued files.
-        Exit status 1 if there are errors.
-collect builds a dumps tree <slug>/<version>/<path> with the files of all catalogued versions: each file
-        is looked up by size and sha256 in the --from directories (any layout) and hard-linked (copied
-        if that fails) into --to. Files already in place are checked; files in --to that the catalogue
-        does not name are reported, never deleted. Exit status 1 if a file is missing or differs.
-
-Standard library only.
+An entry is catalog/<slug>.md, TOML front matter between +++ lines and a Markdown body. Values that the
+tooling derives (replaced_by, used_by, contributors, the status of a version) are never stored in entries.
 """
 
-import argparse
 import datetime
 import hashlib
 import os
 import re
 import shutil
-import sys
 import tomllib
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-CATALOG = ROOT / "catalog"
-DECISIONS = ROOT / "docs" / "decisions"
+from .config import CATALOG, DECISIONS, GENERATORS
 
 SLUG = re.compile(r"^[a-z0-9][a-z0-9.-]*$")
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
@@ -37,9 +22,18 @@ FRONT_MATTER = re.compile(r"^﻿?\+\+\+[ \t]*\r?\n(.*?)\r?\n\+\+\+[ \t]*(?:\r?\n
 KINDS = {"records", "complement", "linkset", "entity-pages", "ontology", "vocabulary", "support"}
 METHODS = {"curated", "scraped", "converted", "deterministic", "rule-based", "lookup", "statistical",
            "ai-generated"}
+RESERVED_SLUGS = {"agents"}                # datasets/agents/… holds the agents (0018)
+RESERVED_VERSIONS = {"meta", "current"}    # datasets/<slug>/meta, <slug>/current (0018)
 
 
 # --- reading -------------------------------------------------------------------------------------
+
+def as_list(v):
+    """A name or a list of names as a list."""
+    if isinstance(v, str):
+        return [v]
+    return [x for x in v if isinstance(x, str)] if isinstance(v, list) else []
+
 
 class Entry:
     def __init__(self, path, data, body):
@@ -51,9 +45,63 @@ class Entry:
     def name(self):
         return self.path.stem
 
+    @property
+    def title(self):
+        return self.data.get("title", "")
+
+    @property
+    def stable(self):
+        s = self.data.get("stable")
+        return s if isinstance(s, str) else None
+
     def versions(self):
         v = self.data.get("versions", [])
         return [x for x in v if isinstance(x, dict)] if isinstance(v, list) else []
+
+    def version(self, vid):
+        return next((v for v in self.versions() if v.get("version") == vid), None)
+
+    def changelog(self):
+        c = self.data.get("changelog", [])
+        return [x for x in c if isinstance(x, dict)] if isinstance(c, list) else []
+
+    def status(self, vid):
+        """stable, preview (listed above stable, or no stable at all), older (below stable), withdrawn."""
+        v = self.version(vid)
+        if v is None:
+            return None
+        if "withdrawn" in v:
+            return "withdrawn"
+        if self.stable is None:
+            return "preview"
+        if vid == self.stable:
+            return "stable"
+        ids = [x.get("version") for x in self.versions()]
+        return "preview" if self.stable in ids and ids.index(vid) < ids.index(self.stable) else "older"
+
+    def summary(self):
+        """The part of the body before <!--more--> as plain text."""
+        text = self.body.split("<!--more-->")[0]
+        text = re.sub(r"<[^>]+>", " ", text)
+        text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+        return re.sub(r"\s+", " ", text).strip()
+
+    def contributors(self):
+        """Everyone named as author of a version or a changelog entry (0013), sorted by name."""
+        names = set()
+        for v in self.versions():
+            names.update(as_list(v.get("author")))
+        for c in self.changelog():
+            names.update(as_list(c.get("author")))
+        return sorted(names)
+
+    def file_description(self, path, version=None):
+        if version is not None:
+            for f in version.get("files", []):
+                if isinstance(f, dict) and f.get("path") == path and isinstance(f.get("description"), str):
+                    return f["description"]
+        files = self.data.get("files")
+        return files.get(path) if isinstance(files, dict) else None
 
 
 def entry_files(catalog=CATALOG):
@@ -74,20 +122,61 @@ def read_entry(path):
     return Entry(path, data, text[m.end():])
 
 
+class Catalog:
+    """All entries, with the values derived across entries."""
+
+    def __init__(self, catalog=CATALOG):
+        self.dir = catalog
+        self.entries = {}
+        self.errors = {}   # file name -> reason it could not be read
+        for path in entry_files(catalog):
+            try:
+                e = read_entry(path)
+                self.entries[e.name] = e
+            except ValueError as err:
+                self.errors[path.name] = str(err)
+
+    def get(self, slug):
+        return self.entries.get(slug)
+
+    def replaced_by(self, slug):
+        return sorted(s for s, e in self.entries.items() if slug in as_list(e.data.get("replaces")))
+
+    def used_by(self, slug):
+        return sorted(s for s, e in self.entries.items() if slug in as_list(e.data.get("inputs")))
+
+    def names(self):
+        """Every person named in the catalogue -> the slugs that name them (author, versions, changelog)."""
+        out = {}
+        for s, e in self.entries.items():
+            for n in as_list(e.data.get("author")) + e.contributors():
+                out.setdefault(n, set()).add(s)
+        return {n: sorted(v) for n, v in sorted(out.items())}
+
+
+def generator_folder(slug):
+    """What the generator folder holds: README, original/, generate.py, run records."""
+    d = GENERATORS / slug
+    return {"folder": d.is_dir(), "readme": (d / "README.md").is_file(), "original": (d / "original").is_dir(),
+            "generate": (d / "generate.py").is_file(),
+            "run_records": sorted(p.stem for p in (d / "runs").glob("*.json")) if (d / "runs").is_dir() else []}
+
+
 # --- check ---------------------------------------------------------------------------------------
 
 class Report:
-    def __init__(self):
+    def __init__(self, out=print):
         self.errors = 0
         self.warnings = 0
+        self.out = out
 
     def error(self, where, msg):
         self.errors += 1
-        print(f"{where}: error: {msg}")
+        self.out(f"{where}: error: {msg}")
 
     def warn(self, where, msg):
         self.warnings += 1
-        print(f"{where}: warning: {msg}")
+        self.out(f"{where}: warning: {msg}")
 
 
 def is_str(v):
@@ -191,6 +280,8 @@ def check_entry(r, e, slugs, decisions):
     check_table(r, where, d, DATASET, REQUIRED)
     if isinstance(d.get("slug"), str) and d["slug"] != e.name:
         r.error(where, f"slug '{d['slug']}' differs from the file name '{e.name}'")
+    if e.name in RESERVED_SLUGS:
+        r.error(where, f"'{e.name}' is a reserved slug (0018)")
 
     if "license" in d:
         check_table(r, f"{where} license", d["license"], LICENSE, ("name",))
@@ -215,6 +306,8 @@ def check_entry(r, e, slugs, decisions):
             if isinstance(vid, str):
                 if vid in ids:
                     r.error(vwhere, "version id is not unique")
+                if vid in RESERVED_VERSIONS:
+                    r.error(vwhere, f"'{vid}' is a reserved version id (0018)")
                 ids.append(vid)
             issued = as_date(v.get("issued"))
             if issued and previous and issued > previous:
@@ -237,10 +330,8 @@ def check_entry(r, e, slugs, decisions):
     if isinstance(stable, str):
         if stable not in ids:
             r.error(where, f"stable version '{stable}' is not among the versions")
-        else:
-            v = next(v for v in e.versions() if v.get("version") == stable)
-            if "withdrawn" in v:
-                r.warn(where, f"stable version '{stable}' is withdrawn")
+        elif "withdrawn" in e.version(stable):
+            r.warn(where, f"stable version '{stable}' is withdrawn")
 
     # [files] descriptions
     if "files" in d:
@@ -299,41 +390,44 @@ def check_local_files(r, e, dumps, complete=False):
                     r.error(where, f"sha256 differs from the copy in {root}")
 
 
-def cmd_check(args):
-    r = Report()
-    entries = []
-    for path in entry_files(args.catalog):
-        try:
-            entries.append(read_entry(path))
-        except ValueError as e:
-            r.error(path.name, str(e))
-    slugs = {e.name for e in entries}
+def check(catalog=CATALOG, dumps=(), complete=False, out=print):
+    """Check all entries (format of 0013, reserved names of 0018); with dumps, the local copies.
+    Returns (entries, errors, warnings)."""
+    r = Report(out)
+    cat = Catalog(catalog)
+    for name, err in cat.errors.items():
+        r.error(name, err)
     decisions = {p.name[:4] for p in DECISIONS.glob("[0-9][0-9][0-9][0-9]-*.md")}
-    for e in entries:
-        check_entry(r, e, slugs, decisions)
-        if args.dumps:
-            check_local_files(r, e, args.dumps, args.complete)
-    if args.dumps and args.complete:
-        named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in entries for v in e.versions()
+    for e in cat.entries.values():
+        check_entry(r, e, set(cat.entries), decisions)
+        if dumps:
+            check_local_files(r, e, dumps, complete)
+    if dumps and complete:
+        named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
                  for f in v.get("files", []) if isinstance(f, dict)}
-        for root in args.dumps:
+        for root in dumps:
             for p in sorted(root.rglob("*")):
                 if p.is_file() and p.relative_to(root).as_posix() not in named:
                     r.error(str(root), f"{p.relative_to(root).as_posix()} is not in the catalogue")
-    print(f"{len(entries)} entries, {r.errors} errors, {r.warnings} warnings", file=sys.stderr)
-    return 1 if r.errors else 0
+    return len(cat.entries), r.errors, r.warnings
 
 
-def cmd_collect(args):
-    entries = [read_entry(p) for p in entry_files(args.catalog)]
+# --- collect -------------------------------------------------------------------------------------
+
+def collect(sources, to, catalog=CATALOG, dry_run=False, out=print):
+    """Build a tree <slug>/<version>/<path> with the files of all catalogued versions: each file is looked
+    up by size and sha256 in the source directories (any layout) and hard-linked (copied if that fails).
+    Files already in place are checked; files in the tree that the catalogue does not name are reported,
+    never deleted. Returns (wanted, present, linked, missing)."""
+    cat = Catalog(catalog)
     wanted = {}  # relative path in the tree -> (bytes, sha256)
-    for e in entries:
+    for e in cat.entries.values():
         for v in e.versions():
             for f in v.get("files", []):
                 wanted[f"{e.name}/{v['version']}/{f['path']}"] = (f.get("bytes"), f.get("sha256"))
     sizes = {b for b, _ in wanted.values()}
     by_size = {}  # bytes -> files in the source directories with that size
-    for root in args.sources:
+    for root in sources:
         for dirpath, _, names in os.walk(root):
             for n in names:
                 p = Path(dirpath) / n
@@ -348,66 +442,36 @@ def cmd_collect(args):
 
     missing = linked = present = 0
     for rel, (size, sha) in sorted(wanted.items()):
-        target = args.to / rel
+        target = to / rel
         if not sha:
-            print(f"{rel}: no sha256 in the catalogue, skipped")
+            out(f"{rel}: no sha256 in the catalogue, skipped")
             missing += 1
             continue
         if target.exists():
             if target.stat().st_size == size and digest(target) == sha:
                 present += 1
             else:
-                print(f"{rel}: differs from the catalogue")
+                out(f"{rel}: differs from the catalogue")
                 missing += 1
             continue
         source = next((p for p in by_size.get(size, []) if digest(p) == sha), None)
         if source is None:
-            print(f"{rel}: not found in the source directories")
+            out(f"{rel}: not found in the source directories")
             missing += 1
             continue
         linked += 1
-        if args.dry_run:
-            print(f"{rel} <- {source}")
+        if dry_run:
+            out(f"{rel} <- {source}")
             continue
         target.parent.mkdir(parents=True, exist_ok=True)
         try:
             os.link(source, target)
         except OSError:
             shutil.copy2(source, target)
-    if args.to.exists():
-        for dirpath, _, names in os.walk(args.to):
+    if to.exists():
+        for dirpath, _, names in os.walk(to):
             for n in names:
-                rel = (Path(dirpath) / n).relative_to(args.to).as_posix()
+                rel = (Path(dirpath) / n).relative_to(to).as_posix()
                 if rel not in wanted:
-                    print(f"{rel}: in the tree but not in the catalogue")
-    verb = "to link" if args.dry_run else "linked"
-    print(f"{len(wanted)} files: {present} in place, {linked} {verb}, {missing} missing or different",
-          file=sys.stderr)
-    return 1 if missing else 0
-
-
-def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    sub = ap.add_subparsers(dest="command", required=True)
-    p = sub.add_parser("check", help="check the catalogue entries (format of decision 0013)")
-    p.add_argument("--catalog", metavar="DIR", type=Path, default=CATALOG,
-                   help="catalogue directory (default: catalog/ of this repository)")
-    p.add_argument("--dumps", metavar="DIR", type=Path, action="append", default=[],
-                   help="local dump directory with <slug>/<version>/<path>; repeatable")
-    p.add_argument("--complete", action="store_true",
-                   help="each --dumps directory must hold exactly the catalogued files (no file missing, none extra)")
-    p.set_defaults(func=cmd_check)
-    p = sub.add_parser("collect", help="build a dumps tree <slug>/<version>/<path> from local files")
-    p.add_argument("--catalog", metavar="DIR", type=Path, default=CATALOG,
-                   help="catalogue directory (default: catalog/ of this repository)")
-    p.add_argument("--from", dest="sources", metavar="DIR", type=Path, action="append", required=True,
-                   help="directory to take files from (any layout, found by size and sha256); repeatable")
-    p.add_argument("--to", metavar="DIR", type=Path, required=True, help="the tree to build")
-    p.add_argument("--dry-run", action="store_true", help="only report what would be linked")
-    p.set_defaults(func=cmd_collect)
-    args = ap.parse_args()
-    sys.exit(args.func(args))
-
-
-if __name__ == "__main__":
-    main()
+                    out(f"{rel}: in the tree but not in the catalogue")
+    return len(wanted), present, linked, missing

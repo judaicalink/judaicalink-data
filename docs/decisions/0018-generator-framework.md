@@ -79,7 +79,7 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 - Names are only in the dataset `judaicalink-agents`, generated from the registry; the `-meta` files refer to the
   agent IRIs only. Who wants to credit a person by name can look it up there.
 - The catalogue keeps names (`author`, version `author`, changelog): its pages can change at any time, while the
-  `-meta` sets should not be regenerated only to remove a name. `catalog.py check` checks that every name is in the
+  `-meta` sets should not be regenerated only to remove a name. `jl check-catalog` checks that every name is in the
   registry. If a person objects to being named, the name is removed from the registry, the agents dataset and the
   catalogue; the IRIs stay. (The git history keeps it.)
 
@@ -205,8 +205,8 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ### The CLI and the generators
 
-- One tool, `jl` (`./jl <command>`, standard library, no installation), replaces `catalog.py` once it has its
-  commands. The framework is the package `jl/` (catalogue, configuration, runs, Turtle writer and canonical form,
+- One tool, `jl` (`./jl <command>`, standard library, no installation); it replaced `catalog.py` on 2026-10-11.
+  The framework is the package `src/jl/` (catalogue, configuration, runs, Turtle writer and canonical form,
   `-meta` rendering, index service, store). Local settings in `local.toml` (not committed; template
   `local.example.toml`): store, build area, legacy dumps, QLever command or image, port range.
 - Commands are verb-noun, so that none is ambiguous:

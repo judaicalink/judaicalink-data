@@ -1,0 +1,65 @@
+"""Runs in the build area and the run records of versions (decision 0018).
+
+A run is <build>/<slug>/<run-id>/ with the output files, run.json (the run record) and log.txt; the run id
+is "run-" and a UTC timestamp. When a run becomes a version, its run record is copied to
+generators/<slug>/runs/<version>.json in this repository.
+"""
+
+import json
+import re
+
+from .config import GENERATORS
+
+RUN_ID = re.compile(r"^run-\d{8}T\d{6}Z$")
+
+
+def is_run_id(s):
+    return bool(RUN_ID.match(s or ""))
+
+
+def read_json(path):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return {"_error": f"{path.name}: {e}"}
+
+
+def list_runs(build, slug):
+    """The runs of a dataset in the build area, oldest first: [{id, dir, record}]."""
+    d = build / slug if build else None
+    if d is None or not d.is_dir():
+        return []
+    runs = []
+    for p in sorted(d.iterdir()):
+        if p.is_dir() and is_run_id(p.name):
+            rec = p / "run.json"
+            runs.append({"id": p.name, "dir": p, "record": read_json(rec) if rec.is_file() else None})
+    return runs
+
+
+def get_run(build, slug, run_id):
+    return next((r for r in list_runs(build, slug) if r["id"] == run_id), None)
+
+
+def version_record(slug, version):
+    """The run record of a version, or None."""
+    p = GENERATORS / slug / "runs" / f"{version}.json"
+    return read_json(p) if p.is_file() else None
+
+
+def version_of_run(slug, run_id):
+    """The version a run became, if any (the run record of that version names the run)."""
+    d = GENERATORS / slug / "runs"
+    if not d.is_dir():
+        return None
+    for p in sorted(d.glob("*.json")):
+        if read_json(p).get("run") == run_id:
+            return p.stem
+    return None
+
+
+def log_tail(run, lines=10):
+    p = run["dir"] / "log.txt"
+    if not p.is_file():
+        return []
+    return p.read_text(encoding="utf-8", errors="replace").splitlines()[-lines:]

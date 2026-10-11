@@ -21,7 +21,7 @@ Mannheim catalogue; whether and how the site presents this catalogue later is st
 
 The entry format is defined in [0013](../docs/decisions/0013-catalogue-format.md) (fields, versions,
 changelog); locations are not part of the entries ([0014](../docs/decisions/0014-locations-dataindex-finder.md)).
-`python3 catalog.py check` (repository root) checks all entries.
+`./jl check-catalog` (repository root) checks all entries (until 2026-10-11: `catalog.py check`).
 
 ## Migration (2026-10-09)
 

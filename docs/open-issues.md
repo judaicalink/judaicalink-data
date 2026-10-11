@@ -15,7 +15,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   links in the `-meta` files (placeholder `judaicalink-generators/…/kg-complements/`) to `judaicalink-data`,
   create the GitHub repository.
 - **Catalogue:** the entries in `catalog/` (31 since 0015) are migrated to the format of
-  [0013](decisions/0013-catalogue-format.md) (2026-10-09, `catalog/migrate_0013.py`; `catalog.py check`
+  [0013](decisions/0013-catalogue-format.md) (2026-10-09, `catalog/migrate_0013.py`; `jl check-catalog`
   passes). Next: the hand curation (`kind`, `method`, `namespaces` checked
   against the data, `occupations`, file descriptions), restructuring the archive, entries for our
   new datasets, then adapting judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue
@@ -24,8 +24,8 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
 - **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of
   the grown setup of the VM; where the platform code lives; whether a pubby-like frontend is needed.
-- **Catalogue tools and finder** ([0014](decisions/0014-locations-dataindex-finder.md)): `catalog.py
-  index|sync`, the finder page and template changes in `judaicalink-site` (also: show the changelog and the
+- **Catalogue tools and finder** ([0014](decisions/0014-locations-dataindex-finder.md)): `jl
+  update-dataindex|sync-site`, the finder page and template changes in `judaicalink-site` (also: show the changelog and the
   derived contributors on the dataset pages, 0013), restructuring the archive
   to `<slug>/<version>/<path>`, finder page `/dataindex/`.
 - **To discuss with Frankfurt:** they can drop `cmtest`, `ep-supp`, `cm-tagme-supp`, `rujen-translation-supp` and
@@ -41,7 +41,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   moving into it what is kept today in `lokal/work`, `lokal/export` and the labs VM backup (`../BACKUP-PLAN-2026-10-10.md`).
 
 - **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is the store `lokal/store` (formerly `dumps-new`; 79 files,
-  189 MB, `catalog.py collect`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
+  189 MB, `jl collect-store`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
   from the old paths?), then keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
   delete the rest there. Nothing else on the VM is deleted before the backup in
   `../BACKUP-PLAN-2026-10-10.md` exists (`/data/archive`, `/data/cm` and more hold the only copies of sources,
