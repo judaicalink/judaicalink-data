@@ -95,6 +95,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   path = "yivo/yivoGeonames.nt.gz"
   bytes = 1449
   sha256 = "094621c68cbe5064768383e11d9daa295a3936bb05e454f922e9f00db384a378"
+
+  [[versions.files]]
+  path = "2014links-meta.ttl.gz"
+  bytes = 2561
+  sha256 = "20d61996040a460fccb9c868145935eea5b27b43b0d349e4e4b2f0ea009a8c01"
+  triples = 192
 +++
 
 Links from JudaicaLink entities to external data sources.

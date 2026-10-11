@@ -29,6 +29,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 371256
   sha256 = "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466"
 
+  [[versions.files]]
+  path = "nrwbibdjg-meta.ttl.gz"
+  bytes = 1634
+  sha256 = "e539f65051d4434263f217202f319faa44b17824be53a0cc9d03387220bee111"
+  triples = 54
+
 [[changelog]]
 date = "2024-12-03"
 author = "Benjamin Schnabel"

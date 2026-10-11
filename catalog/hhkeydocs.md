@@ -29,6 +29,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 156824
   sha256 = "2d912a077e7c53ff363d16f4b37882714373205efcc13abdb2f428ea400ce445"
 
+  [[versions.files]]
+  path = "hhkeydocs-meta.ttl.gz"
+  bytes = 1578
+  sha256 = "ea45b53f9f3005af7742368d246965f40bf92ffdfbdfd514d442e9abfa3040ce"
+  triples = 54
+
 [[changelog]]
 date = "2024-01-23"
 author = "Christian Deuschle"

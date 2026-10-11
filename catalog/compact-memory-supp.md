@@ -29,6 +29,12 @@ description = "The original page metadata of the Visual Library (input of cm-str
   bytes = 13111336
   sha256 = "7affff32c1da8451ffc536db0cb526d39b09848dfcb59fa70b820493616fcd08"
 
+  [[versions.files]]
+  path = "compact-memory-supp-meta.ttl.gz"
+  bytes = 1518
+  sha256 = "ac944101174f1fe4e99fa2f3816997624c8cf09840f0f785b5a55b5e1c58ba47"
+  triples = 47
+
 [[changelog]]
 date = "2025-12-31"
 author = "Benjamin Schnabel"

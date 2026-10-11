@@ -30,6 +30,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   path = "HirschFamily.ttl.gz"
   bytes = 4656
   sha256 = "3e0d15737004352dd8aa63d3a82ec40b4ff4de2de329734ffa10adc94210919e"
+
+  [[versions.files]]
+  path = "hirsch-family-meta.ttl.gz"
+  bytes = 1667
+  sha256 = "67032dbdbed012f858243987d3a74f0fa9d4cb59a7be099dbd757f314d975d57"
+  triples = 55
 +++
 
 The information regarding Hirsch family is gathered by Jüdische Leben in Unterfranken - Biographische Datenbank e.V. (Jewish Life in Lower Franconia - Biographical Database e.V. ).

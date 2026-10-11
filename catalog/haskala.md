@@ -34,6 +34,12 @@ description = "Regenerated; the persons are split into Haskala.ttl and Haskala_n
   bytes = 2824
   sha256 = "79a450e29adb2cfc747f9ba5b8bde98901f657c05c74af7f3af15ce3d3b538b1"
 
+  [[versions.files]]
+  path = "haskala-meta.ttl.gz"
+  bytes = 1752
+  sha256 = "895ba39ac7cfe761fba2d9cd5feb033e3f1727eef23e66ff3d03f3942c6e5c5b"
+  triples = 67
+
 [[versions]]
 version = "2019-07-01"
 issued = "2019-07-01"
@@ -45,6 +51,12 @@ description = "The enriched version of 2019, with birth and death dates and plac
   path = "Haskala_enriched.ttl.gz"
   bytes = 34911
   sha256 = "b024ce78236af00ba1480dd63eff33a5f42e0c22c8c0251b0e760fb7e7d7049b"
+
+  [[versions.files]]
+  path = "haskala-meta.ttl.gz"
+  bytes = 1588
+  sha256 = "a975764113f9c968248a0b724c1fa309aa72ad84b9b3341ebdfe6dc7bd171c22"
+  triples = 56
 +++
 
 The Library of Haskala contains 525 books in German and Hebrew identified by leading scholars as Haskala literature. 

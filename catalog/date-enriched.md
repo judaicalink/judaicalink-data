@@ -30,6 +30,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 803216
   sha256 = "5d697577d5b4fcf35bdb3b5e504475f46de9c7c45c208a09915620230ad2d9ec"
 
+  [[versions.files]]
+  path = "date-enriched-meta.ttl.gz"
+  bytes = 1682
+  sha256 = "4552e601f96c430bf46b023cf60d6981a908d778d2e3a8297766e541c1c372b7"
+  triples = 53
+
 [[changelog]]
 date = "2020-08-03"
 author = "Sara Fischer"

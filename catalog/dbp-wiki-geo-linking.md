@@ -26,6 +26,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 515033
   sha256 = "25a8e0ea9d3a2eb06f5ffcfad3929328322c252454707398f28a7e5ecefd5236"
 
+  [[versions.files]]
+  path = "dbp-wiki-geo-linking-meta.ttl.gz"
+  bytes = 1490
+  sha256 = "bd102bc5a8caa1e4f307a486510b4594ded41330dbfe4a2d27fc6610b1ab846b"
+  triples = 51
+
 [[changelog]]
 date = "2025-06-05"
 author = "Benjamin Schnabel"

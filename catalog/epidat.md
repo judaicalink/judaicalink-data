@@ -29,6 +29,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 1533441
   sha256 = "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a"
 
+  [[versions.files]]
+  path = "epidat-meta.ttl.gz"
+  bytes = 1710
+  sha256 = "119c2d20af754bdb71fcc5ac40f7581c850598ff641c4c42bdfacf5d7d1e03d7"
+  triples = 55
+
 [[changelog]]
 date = "2022-06-29"
 author = "Benjamin Schnabel"

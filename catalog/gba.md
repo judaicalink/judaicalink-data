@@ -29,6 +29,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 2937
   sha256 = "33fe2d67b4c621c75a7386429c3acd1b15435b2e41b3dfdf9dd2ba74a938192d"
 
+  [[versions.files]]
+  path = "gba-meta.ttl.gz"
+  bytes = 1533
+  sha256 = "c7f2817c522507e7b6dad8d8df5573c423ab2cfb73f77263789d31a4ff35bc05"
+  triples = 54
+
 [[changelog]]
 date = "2022-07-08"
 author = "Benjamin Schnabel"

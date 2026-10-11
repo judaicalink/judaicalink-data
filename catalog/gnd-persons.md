@@ -71,6 +71,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 5731
   sha256 = "58dc19daf6495f84e78110c0c3472692736f4b2ff911caa4b3b82eba2c73b1d9"
 
+  [[versions.files]]
+  path = "gnd-persons-meta.ttl.gz"
+  bytes = 2963
+  sha256 = "8d113d54f96a8719d327f620be7fa2863de7126d10d0d5ed390f18f5caef0f06"
+  triples = 142
+
 [[changelog]]
 date = "2018-11-01"
 author = "Maral Dadvar"

@@ -42,6 +42,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 135800
   sha256 = "c1ff0f22f44f0c244aec4f609822cccc5710b706ca1b4b21e8c68ab750844105"
 
+  [[versions.files]]
+  path = "dbpedia-persons-meta.ttl.gz"
+  bytes = 1880
+  sha256 = "0e6ce7ce56346cd7890407fc35cbdc4ad8a5b95c46c8334ee5af9bc6c2a99d2d"
+  triples = 83
+
 [[changelog]]
 date = "2018-04-03"
 author = "Maral Dadvar"

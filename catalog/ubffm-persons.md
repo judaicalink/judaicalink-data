@@ -36,6 +36,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   path = "ubffm-authors-02.ttl.gz"
   bytes = 408010
   sha256 = "a6ab1fe57f453fe962fdc0066cca216207a55e0f45d35d7ad0eb526b3cce50e2"
+
+  [[versions.files]]
+  path = "ubffm-persons-meta.ttl.gz"
+  bytes = 1630
+  sha256 = "52c73ac1ef44d884a4e98e9d654f8f4cc560fa85ec44a4c9d964d277cc700d88"
+  triples = 65
 +++
 
 This first dataset contains authors names from Judaica collection of University Library of Frankfurt.

@@ -38,6 +38,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 913257
   sha256 = "d86ff6504e24f869ae1e286e533b175c289b033ed735107add218f31269be6c1"
 
+  [[versions.files]]
+  path = "yivo-meta.ttl.gz"
+  bytes = 1676
+  sha256 = "a9020cd876e1692477bcf76297cb7901bffc12db5ad67825c46bd7eabf76ba6a"
+  triples = 65
+
 [[changelog]]
 date = "2026-10-11"
 version = "2020-09-30"
