@@ -1,6 +1,6 @@
 # 0018 Generator framework
 
-Status: **draft** (under discussion since 2026-10-10; points are added as they are agreed) · Date: 2026-10-10
+Status: accepted 2026-10-12 (drafted from 2026-10-10, points added as they were agreed and built; later changes get decisions of their own) · Date: 2026-10-10
 
 ## Context
 
@@ -17,7 +17,7 @@ URLs; `git rev-parse HEAD` of whatever directory, no check for uncommitted chang
 recorded; a token in public code). kg-complements repeated the metadata-in-code pattern, and its files are not
 byte-reproducible (gzip header time, run time in the `-meta`).
 
-## Decision (agreed so far)
+## Decision
 
 ### Three ways in, one way out
 
@@ -389,7 +389,7 @@ Tested 2026-10-11: `add-version --dry-run` on the clean hirsch-family run (data 
 stolpersteine; unit tests on a temporary catalogue and store (add, refuse, render unchanged, render after a
 change of the entry). No version was added to the real catalogue.
 
-## Consequences (so far)
+## Consequences
 
 - [0006](0006-graphs-and-meta.md) is amended: all RDF files of a version form the dataset graph; the metadata graph
   is `datasets/<slug>/meta`.

@@ -1,25 +1,20 @@
 # Open issues
 
-State 2026-10-07. Remove an item when it is solved (with a reference to the decision or commit).
+State 2026-10-12. Remove an item when it is solved (with a reference to the decision or commit).
 
 ## Setting up
 
-- **Generator tooling** (when the generators move here): generators coin version ids (default
-  `YYYY-MM-DD[-n]`, other schemes per dataset possible); the tooling can add the version entry (files,
-  sizes, checksums, commit) to the dataset's catalogue entry, **only on request**, so experimental runs are
-  not catalogued.
-- **Generators:** `generators/<slug>/` documents the history and holds the original files of every dataset (step 1,
-  2026-10-10). Next: the generator framework, migrated generators (with a test against the kept version where the
-  inputs are on file), then the new datasets.
-- **Move the generators** (`../kg-complements/`) into this repository, change the provenance
-  links in the `-meta` files (placeholder `judaicalink-generators/…/kg-complements/`) to `judaicalink-data`,
-  create the GitHub repository.
-- **Catalogue:** the entries in `catalog/` (31 since 0015) are migrated to the format of
-  [0013](decisions/0013-catalogue-format.md) (2026-10-09, `catalog/migrate_0013.py`; `jl check-catalog`
-  passes). Next: the hand curation (`kind`, `method`, `namespaces` checked
-  against the data, `occupations`, file descriptions), restructuring the archive, entries for our
-  new datasets, then adapting judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue
-  and its documentation to Frankfurt.
+- **Generator framework** ([0018](decisions/0018-generator-framework.md), accepted 2026-10-12): built (`jl`, steps
+  1–5 of 2026-10-11): generators, runs, versions, `-meta`, imports, agents and vocabulary; every catalogue version
+  has an import record and a `-meta`. Not built yet: checking `requirements.txt` of acquisition steps.
+- **Move the generators** (`../kg-complements/`) into this repository as framework generators, one version each
+  (`ep_generator.py` last, after the entity-page question below); then `../qlever/make_inputs.py` and the
+  kg-complements `-meta` writer are no longer needed for these datasets. Create the GitHub repository.
+- **Catalogue:** 33 entries in the format of [0013](decisions/0013-catalogue-format.md) (migrated 2026-10-09;
+  `kind` and `method` for all, 2026-10-12). Next: the remaining hand curation (`namespaces` checked against the
+  data, `occupations`, file descriptions, HTML left in older bodies), entries for our new datasets, then adapting
+  judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue and its documentation to
+  Frankfurt.
 - **Catalogue, open questions** (0013): redirects from the old archive paths (a `current` symlink per dataset
   makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
 - **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of

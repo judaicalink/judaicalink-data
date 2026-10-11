@@ -23,5 +23,5 @@ consequences. Short is better than complete; link to the documentation that has 
 | [0015](0015-dumps-clean-start.md) | Clean start of the dumps: dumps-clean versions plus richer earlier ones (stable), single files, built by checksum | 2026-10-09 |
 | [0016](0016-data-access-outside.md) | SPARQL endpoint, demonstrators and data access are not part of judaicalink-data | 2026-10-10 |
 | [0017](0017-slug-stolpersteine.md) | Slugs name the dataset (namespace chosen separately); `stolperstein` renamed to `stolpersteine` | 2026-10-10 |
-| [0018](0018-generator-framework.md) | Generator framework (**draft**) | 2026-10-10 |
+| [0018](0018-generator-framework.md) | Generator framework (accepted 2026-10-12) | 2026-10-10 |
 | [0019](0019-dumps-locations-equal.md) | Dumps locations are equal, none permanent; files of a version never change; the git history is the permanent record; pruning possible; public dumps lean, the rest in the store | 2026-10-11 |
