@@ -56,7 +56,8 @@ def git(*args):
 def code_state(slug, files=()):
     """(commit, uncommitted paths) of this repository for the generator, the framework and the given files."""
     commit = git("rev-parse", "HEAD")
-    status = git("status", "--porcelain", "--", f"generators/{slug}", "src/jl", "jl", *files) or ""
+    status = git("status", "--porcelain", "--", f"generators/{slug}", f":(exclude)generators/{slug}/runs",
+                 "src/jl", "jl", *files) or ""
     return commit, [line[3:] for line in status.splitlines()]
 
 
