@@ -6,6 +6,7 @@ date = "2026-10-11"
 example = "http://data.judaicalink.org/datasets/agents/persons/1"
 kind = "support"
 method = ["curated"]
+stable = "2026-10-11"
 
 [license]
 name = "CC0"
@@ -15,6 +16,30 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/judaicalink-agents"
+
+[[versions]]
+version = "2026-10-11"
+issued = "2026-10-11"
+author = "Kai Eckert"
+commit = "d1518a95d15bed4ab1be6602b50a3ee9443c2527"
+
+  [[versions.files]]
+  path = "judaicalink-agents.ttl.gz"
+  bytes = 415
+  sha256 = "d5c7c890aae44ad056fc896db04d3a36fe969e85f05844e31354d33e17c2da16"
+  triples = 27
+
+  [[versions.files]]
+  path = "judaicalink-agents-meta.ttl.gz"
+  bytes = 1182
+  sha256 = "af385a7a083ce209cd4f02924ccc4ccdb27f644ba3fe77d25d6651ed1a35680d"
+  triples = 52
+
+[[changelog]]
+date = "2026-10-11"
+version = "2026-10-11"
+author = "Kai Eckert"
+text = "First version: the agents registry of 2026-10-11 (8 persons, 1 software agent)."
 +++
 
 The persons and software agents named in the metadata of the JudaicaLink datasets.

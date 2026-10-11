@@ -282,7 +282,7 @@ def cmd_show_version(args, cfg):
         if o["run_record"]:
             r = o["run_record"]
             yield f"  run record: generators/{o['slug']}/runs/{o['version']}.json" + (
-                f" (run {r.get('run')}, {r.get('mode', '')})" if r.get("run") else "")
+                f" (run {r.get('run')}, commit {str(r.get('commit'))[:7]})" if r.get("run") else "")
         else:
             yield "  run record: none yet"
         for c in o["changelog"]:

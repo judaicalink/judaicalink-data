@@ -1,0 +1,33 @@
+{
+ "slug": "judaicalink-agents",
+ "run": "run-20261011T212527Z",
+ "generator": "generators/judaicalink-agents/generate.py",
+ "commit": "d1518a95d15bed4ab1be6602b50a3ee9443c2527",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-11T21:25:27Z",
+ "inputs": [
+  {
+   "name": "registry",
+   "ref": "repo:catalog/agents.toml",
+   "file": "agents.toml",
+   "sha256": "c534c37381c034f3beb548a37661918257c1b6d38aaec0fb301fcae55e587167",
+   "bytes": 1319
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-11T21:25:27Z",
+ "seconds": 0.0,
+ "notes": [],
+ "files": [
+  {
+   "path": "judaicalink-agents.ttl.gz",
+   "bytes": 415,
+   "sha256": "d5c7c890aae44ad056fc896db04d3a36fe969e85f05844e31354d33e17c2da16",
+   "triples": 27
+  }
+ ],
+ "version": "2026-10-11"
+}
