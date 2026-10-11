@@ -24,6 +24,8 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
 - **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of
   the grown setup of the VM; where the platform code lives; whether a pubby-like frontend is needed.
+  Which SPARQL engine: QLever changes literal values (0018), so engines are compared in `../endpoints/`
+  (prepared 2026-10-11, QLever 0.6.0 measured; Oxigraph, Jena Fuseki, Virtuoso to be installed and run).
 - **Catalogue tools and finder** ([0014](decisions/0014-locations-dataindex-finder.md)): `jl
   update-dataindex|sync-site`, the finder page and template changes in `judaicalink-site` (also: show the changelog and the
   derived contributors on the dataset pages, 0013), restructuring the archive

@@ -143,23 +143,29 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   the `-meta` or the run records, which always name the real version. Side effect (checked 2026-10-11): 34 of the
   82 old paths on archive.judaicalink.org (`<slug>/current/<file>`) resolve again.
 
-### Inputs and the index service
+### Inputs and the index
 
 - Inputs are always declared as specific files or complete dataset versions. A declaration such as "all record
   datasets, stable versions" is resolved into explicit versions and files before the run and recorded so.
 - Nothing besides the declared inputs is used. A SPARQL endpoint that is already running is never an input: it
   would have to be checked, and it leads to side effects (a rebuild of `places-linked` once counted its own
   earlier output, [0011](0011-reproducible-generation.md)).
-- Where a generator wants SPARQL, the framework indexes exactly the declared input files and makes them available
-  for the run (index service). The index is a means to an end: it speeds up or simplifies a generation. A full
-  index of the graph (19.6 M triples, 123 files) took 24 s with QLever 0.6.0, so per-run indexes are affordable;
-  an index can be reused while the input checksums are identical; each run uses its own port.
-- The index service has a narrow interface (index these files, query, stop). One implementation uses QLever;
-  which QLever (command or image) is local configuration. The run record names the service, its version and the
-  index settings. Generators sort their results themselves (0011).
-- QLever is fed the canonical form of each input (one named graph per file, given with the file), so it sees
-  exactly the triples the reader sees. Because QLever normalises literal values, query results serve to select
-  and join; literals that go into the output are taken from the files (the reader), not from query results.
+- **Generators read their RDF inputs with the framework's own reader and index** (decided 2026-10-11), not
+  with a triple store: an implementation of our own, standard library only, that stays stable for years and
+  gives the triples exactly as they are in the files. The index holds the declared input files in memory and
+  answers triple patterns (objects of a subject and predicate, subjects of a predicate and object, any pattern
+  with wildcards); joins are written in Python. Results come in file order, so they are deterministic for the
+  same inputs; generators still sort what they write (0011). Our inputs are small enough for this (13.5 M
+  distinct triples in all versions together, far fewer per generator; measured: cm-tagme, 6.0 M triples, loads in
+  33 s and takes 2.7 GB).
+- No SPARQL during generation. The first plan was an index service that builds a QLever index per run (a full
+  index of the graph took 24 s with QLever 0.6.0). It was built and tested (commit `80d09ec`) and then dropped:
+  QLever normalises literal values (see Dump format), so a generator would have had to take every literal from
+  the files and only select and join with SPARQL, a rule that is easy to break without noticing; it would also
+  have tied generation to an external program and its version. None of our generators uses SPARQL (the
+  kg-complements generators read the dump files). If a generator ever needs SPARQL, that is a new decision.
+  SPARQL endpoints stay outside the framework ([0016](0016-data-access-outside.md)); which engine serves
+  mannheim.judaicalink.org is compared separately (`../endpoints/`).
 - Inputs that are not RDF (crawls, exports, caches) are read as files and declared with checksum like any input.
 
 ### Dump format: Turtle
@@ -174,7 +180,7 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   of `LC_ALL=C sort`), deduplicated N-Triples, normalised only where RDF 1.1 term equality allows (no
   `xsd:string`, lower-case language tags). On it: a comparison API (identical, only in a, only in b) and commands
   to compare and to print the canonical form (grep, counting). Canonical forms are cached by file checksum.
-- **The framework reads RDF itself** (N-Triples and Turtle, standard library), not via the index service as first
+- **The framework reads RDF itself** (N-Triples and Turtle, standard library), not via QLever as first
   planned: QLever normalises literal values when it indexes (measured 2026-10-11 with QLever 0.6.0:
   `xsd:integer` becomes `xsd:int`, `xsd:float` becomes a rounded `xsd:decimal`, dateTime is cut to milliseconds,
   WKT points are reformatted, an ill-typed literal aborts the whole index). That affects real data
@@ -220,8 +226,8 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 - One tool, `jl` (`./jl <command>`, standard library, no installation); it replaced `catalog.py` on 2026-10-11.
   The framework is the package `src/jl/` (catalogue, configuration, runs, RDF reader, Turtle writer and
-  canonical form, `-meta` rendering, index service, store). Local settings in `local.toml` (not committed;
-  template `local.example.toml`): store, build area, cache, legacy dumps, QLever commands, port range.
+  canonical form, index, `-meta` rendering, store). Local settings in `local.toml` (not committed;
+  template `local.example.toml`): store, build area, cache, legacy dumps.
 - Commands are verb-noun, so that none is ambiguous:
 
 | Group | Commands |
@@ -250,8 +256,8 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 - [0006](0006-graphs-and-meta.md) is amended: all RDF files of a version form the dataset graph; the metadata graph
   is `datasets/<slug>/meta`.
-- [0016](0016-data-access-outside.md) is amended: an index may be built temporarily for a generation run (part of the
-  framework); SPARQL endpoints for data access stay outside.
+- [0016](0016-data-access-outside.md) stays as it is: generation uses no SPARQL endpoint (the amendment drafted
+  earlier, a temporary QLever index per run, was dropped on 2026-10-11); the framework's index is its own, in memory.
 
 ## Open questions
 

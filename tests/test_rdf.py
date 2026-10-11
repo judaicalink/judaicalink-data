@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from jl import canonical, rdf, turtle  # noqa: E402
+from jl import canonical, graph, rdf, turtle  # noqa: E402
 from jl.rdf import IRI, BNode, Literal, XSD  # noqa: E402
 
 EX = "http://example.org/"
@@ -144,6 +144,26 @@ class Canonical(unittest.TestCase):
         finally:
             canonical.CHUNK_LINES = old
         self.assertEqual(out, ["a", "b", "c", "d", "e"])
+
+
+class Index(unittest.TestCase):
+    def test_patterns(self):
+        g = graph.Graph()
+        s, t, p, q = (IRI(EX + x) for x in ("s", "t", "p", "q"))
+        for tr in [(s, p, Literal("b")), (s, p, Literal("a")), (t, p, Literal("a")), (s, q, t), (s, p, Literal("b"))]:
+            g.add(*tr)
+        self.assertEqual(len(g), 4)
+        self.assertEqual(g.objects(s, p), [Literal("b"), Literal("a")])      # file order
+        self.assertEqual(g.subjects(p, Literal("a")), [s, t])
+        self.assertEqual(g.value(s, q), t)
+        self.assertIsNone(g.value(t, q))
+        with self.assertRaises(ValueError):
+            g.value(s, p)
+        self.assertEqual(len(list(g.triples(None, p, None))), 3)
+        self.assertEqual(list(g.triples(None, None, t)), [(s, q, t)])
+        self.assertIn((t, p, Literal("a")), g)
+        g.add(t, q, s)
+        self.assertEqual(g.subjects(q, s), [t])                              # index kept up to date
 
 
 if __name__ == "__main__":
