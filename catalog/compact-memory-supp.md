@@ -31,9 +31,9 @@ description = "The original page metadata of the Visual Library (input of cm-str
 
   [[versions.files]]
   path = "compact-memory-supp-meta.ttl.gz"
-  bytes = 1518
-  sha256 = "ac944101174f1fe4e99fa2f3816997624c8cf09840f0f785b5a55b5e1c58ba47"
-  triples = 47
+  bytes = 1551
+  sha256 = "cc1f733552c48b77006908152920f3f9c1f5367804d0c2fced7ccbe2bd852aaa"
+  triples = 49
 
 [[changelog]]
 date = "2025-12-31"

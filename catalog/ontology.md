@@ -31,9 +31,9 @@ description = "The ontology as of judaicalink-ontology b26c961, as served on ont
 
   [[versions.files]]
   path = "ontology-meta.ttl.gz"
-  bytes = 1468
-  sha256 = "b03f8a2f5468931ec34793f45d1e81202ad74e8a8f431b00c875483dd0bb19d6"
-  triples = 54
+  bytes = 1699
+  sha256 = "3f7f792de6839b1e9854c80bd9d453eaea85293788ed8aa09d7aae6bcbbf34fa"
+  triples = 56
 
 [[changelog]]
 date = "2020-09-29"

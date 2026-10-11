@@ -30,9 +30,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "epidat-meta.ttl.gz"
-  bytes = 1710
-  sha256 = "119c2d20af754bdb71fcc5ac40f7581c850598ff641c4c42bdfacf5d7d1e03d7"
-  triples = 55
+  bytes = 2129
+  sha256 = "a2f136e5bdd7af7d5859d31c107a41e2b3b049681dcb69274e51b5c06ef4b22e"
+  triples = 56
 
 [[changelog]]
 date = "2022-06-29"

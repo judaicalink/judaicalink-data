@@ -31,9 +31,9 @@ commit = "d1518a95d15bed4ab1be6602b50a3ee9443c2527"
 
   [[versions.files]]
   path = "judaicalink-agents-meta.ttl.gz"
-  bytes = 1182
-  sha256 = "af385a7a083ce209cd4f02924ccc4ccdb27f644ba3fe77d25d6651ed1a35680d"
-  triples = 52
+  bytes = 1449
+  sha256 = "edf442ae4e127d1efb462c040da4a92171b52ba2e5f1019d3eacc7496934129c"
+  triples = 55
 
 [[changelog]]
 date = "2026-10-11"

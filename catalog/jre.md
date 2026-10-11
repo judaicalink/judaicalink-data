@@ -32,9 +32,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "jre-meta.ttl.gz"
-  bytes = 1719
-  sha256 = "7b51e5bc88cb4823f0010681c042e9d07eef1939aa2d8be69f13ee452a30b90d"
-  triples = 53
+  bytes = 2430
+  sha256 = "b738a266f8dc79e1c9e7d8ff7ba63da7d010b7d698c517bd985168083682c94b"
+  triples = 54
 
 [[changelog]]
 date = "2021-08-25"

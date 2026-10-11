@@ -30,9 +30,9 @@ description = "Regenerated with a rewritten generator that keeps only the person
 
   [[versions.files]]
   path = "footprints-meta.ttl.gz"
-  bytes = 1667
-  sha256 = "59c82199c9c13e0107e85d35810adfe83b83d6c37c4cec9c005fed511433ea7f"
-  triples = 54
+  bytes = 2314
+  sha256 = "7f1f245936a904f3188a685e50a7b70295278414775b37effa8bc05a87b6242f"
+  triples = 55
 
 [[versions]]
 version = "2024-03-18"
@@ -47,9 +47,9 @@ description = "The richer version: books with titles, owners, former owners, pla
 
   [[versions.files]]
   path = "footprints-meta.ttl.gz"
-  bytes = 1596
-  sha256 = "4623d6ac84d346a44941d65a58eb86fb8fa2409828bba4fdca183fd6a6fb9239"
-  triples = 54
+  bytes = 2244
+  sha256 = "a286069ce6f32147f78b766188f3aafc14240c3762c110e27ff6785c146d842e"
+  triples = 55
 
 [[changelog]]
 date = "2024-03-12"

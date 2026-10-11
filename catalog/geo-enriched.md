@@ -62,9 +62,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "geo-enriched-meta.ttl.gz"
-  bytes = 2157
-  sha256 = "ffde4fb5c95998b1625319efed8da0d54d9e6874f69394f116fe2554868328d8"
-  triples = 113
+  bytes = 2176
+  sha256 = "d8a11a2c7fb7856d986f7259753deec6cf55db3b87981c7ff845e5bcc9b5dee2"
+  triples = 114
 +++
 
 Dataset geographic enrichment through GeoNames. 

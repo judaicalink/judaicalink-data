@@ -30,9 +30,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "sosy-meta.ttl.gz"
-  bytes = 1518
-  sha256 = "15a61d8a9272ae4787f6085f4a7ad1ce3f49fc4c9c002caed5f8226eb716a1f0"
-  triples = 54
+  bytes = 1831
+  sha256 = "6872af306b9a965dc7d9f57010fe5e3cb0cc36c293f4f5da7418146c341f6f59"
+  triples = 55
 +++
 [Soundscape Synagogue](https://www.soundscape-synagoge.de) provides information on the musical heritage of Jewish communities in Europe. <!--more-->
 Here you will find knowledge on Jewish cantors of the past and present, as well as information on various traditions of Jewish-liturgical music, including texts, images, sound recordings and films. 

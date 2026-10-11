@@ -32,9 +32,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "geo-coordinates-meta.ttl.gz"
-  bytes = 1625
-  sha256 = "d7384a36624d6a4f5f74e1e5f94c671729d84b44deacab5ea588d7668d1baf27"
-  triples = 55
+  bytes = 1639
+  sha256 = "be6ffe788181f6023c796e1a93ef37baa065580cf6e2f283bc8114d6cf382de8"
+  triples = 56
 +++
 
  This dataset contains all the geo-coordinates of all the cities which are stated in the JudaicaLink datasets either as birth location or death location. All these coordinates as well as their GND-ids are extracted from GND entries of the corresponding cities when available. 

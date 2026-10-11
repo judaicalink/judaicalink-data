@@ -72,9 +72,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "gnd-persons-meta.ttl.gz"
-  bytes = 2963
-  sha256 = "8d113d54f96a8719d327f620be7fa2863de7126d10d0d5ed390f18f5caef0f06"
-  triples = 142
+  bytes = 3029
+  sha256 = "607e1fc35ba718ea3dacba9d5d1c6917afbb5ebea762ef3797d7c96b0bc0f5bd"
+  triples = 143
 
 [[changelog]]
 date = "2018-11-01"

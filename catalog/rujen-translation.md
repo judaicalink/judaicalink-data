@@ -47,9 +47,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "rujen-translation-meta.ttl.gz"
-  bytes = 1861
-  sha256 = "5b036ff76da57a5f0d76f23b281865beb267c495d95966e82a5ce856761007ba"
-  triples = 84
+  bytes = 1871
+  sha256 = "6601e71f49ddc9aad973a872fcdacaa283d424cbbe5d74b6b111e426e1409997"
+  triples = 85
 
 [[changelog]]
 date = "2026-10-11"
