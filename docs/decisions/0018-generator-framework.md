@@ -111,11 +111,12 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ### From a run to a version
 
-1. **Run:** `run <slug>` writes into the build area, `<build>/<slug>/<run-id>/`: output files, run record, log. The run
-   id is a UTC timestamp (`20261011T143000Z`); no run overwrites another. Experimental runs may use uncommitted
+1. **Run:** `generate <slug>` writes into the build area, `<build>/<slug>/<run-id>/`: output files, run record, log.
+   The run id is `run-` and a UTC timestamp (`run-20261011T143000Z`), so it is always recognisable as a run;
+   no run overwrites another. Experimental runs may use uncommitted
    code; the run record notes the commit and whether there were uncommitted changes.
 2. **Check:** compare with a kept version, load, count; all on the run directory.
-3. **Version, only on request:** `add-version <slug> <run-id>` refuses runs from uncommitted code; gives the version
+3. **Version, only on request:** `add-version <slug>/<run-id>` refuses runs from uncommitted code; gives the version
    id (default the run date `YYYY-MM-DD`, `-n` if taken); writes the header comments and renders the `-meta` for
    that version; copies the run record to `generators/<slug>/runs/<version>.json`; adds the version to the catalogue
    entry (published files with size, checksum, triples; `issued`; author; commit) with a changelog entry; moves the
@@ -202,11 +203,35 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 - The web caches of the lookup datasets (Wikidata, DNB EntityFacts) are kept in the store and referenced by
   checksum (2026-10-11: 372 MB, of which 97 Wikidata answers with complete entities make 365 MB).
 
+### The CLI and the generators
+
+- One tool, `jl` (`./jl <command>`, standard library, no installation), replaces `catalog.py` once it has its
+  commands. The framework is the package `jl/` (catalogue, configuration, runs, Turtle writer and canonical form,
+  `-meta` rendering, index service, store). Local settings in `local.toml` (not committed; template
+  `local.example.toml`): store, build area, legacy dumps, QLever command or image, port range.
+- Commands are verb-noun, so that none is ambiguous:
+
+| Group | Commands |
+|---|---|
+| Read access | `list-datasets`, `show-dataset <slug>`, `list-versions <slug>`, `show-version <slug>/<version>`, `list-runs <slug>`, `show-run <slug>/<run-id>`, `list-agents` |
+| Generating | `generate <slug> [--param k=v]`, `import-files <slug> <files…>` (files made elsewhere become a run), `compare <a> <b>` (runs or versions), `show-canonical <file>` |
+| Versions and metadata | `add-version <slug>/<run-id>`, `render-meta <slug>[/<version>]` or `--all` |
+| Catalogue and store | `check-catalog`, `collect-store` (migration), `update-dataindex` ([0014](0014-locations-dataindex-finder.md)), `sync-site`, `publish-version <slug>/<version> --to <location>`, `status` |
+
+- The read commands show what the framework parsed and derived: `show-dataset` the entry fields plus contributors,
+  `replaced_by`, the stable version and its triple count; `show-version` the files with size, checksum, triple count
+  (per file and for the version), public or store only, where found, and a summary of the run record; `show-run`
+  the run record, output files, the end of the log and whether it became a version. `--json` gives the parsed
+  structure (for checking and automation).
+- Identifiers: `<slug>` (dataset), `<slug>/<version>`, `<slug>/<run-id>`; a version is a run that was made a version.
+- A generator is `generators/<slug>/generate.py`: a Python entry point (it may call other programs) whose
+  declarations (inputs as specific versions or files, default parameters) are module constants, versioned with the
+  code; the run record holds the values actually used. To be tested on the first generators.
+
 ## Proposed, not yet discussed
 
 - The `-meta` of a version describes the version and its dataset, including `replaces`, but not catalogue state
   that moves (`stable`, `replaced_by`); it states two dates: the version (fixed) and the metadata (changes).
-- A version is only made from a clean working tree (or is marked).
 
 ## Consequences (so far)
 
@@ -217,4 +242,5 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ## Open questions
 
-8. The CLI: `catalog.py` extended, or a separate tool.
+- None of the original list; the first generators (rujen from its crawl, stolpersteine 2020, hirsch-family) test
+  the design.
