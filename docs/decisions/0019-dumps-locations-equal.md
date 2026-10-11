@@ -24,9 +24,25 @@ go on, also of old datasets. Data access is distributed over several locations
 - **The permanent record is the git history of `judaicalink-data`:** which versions existed, their files with
   sizes and checksums, how each was made (generators, run records) and what changed (changelog).
 - **We do not lose data:** every file of a catalogued version is kept by us in at least one place (a dumps
-  location or a backup). Historical versions, above all those superseded by later data, may be pruned at some
+  location or the store, below). Historical versions, above all those superseded by later data, may be pruned at some
   point; pruning is recorded in the changelog. Before a version is pruned, check that nothing depends on what
   only it contains (e.g. the old URIs of the legacy entity pages and `nli-persons`, [0010](0010-nli-exception.md)).
+
+### Public dumps stay lean; everything else is in the store
+
+- The public dumps hold what is needed to use the data and to understand it, at a reasonable size. Size matters
+  even for uncritical data: a file goes into the public dumps only when it is worth it there.
+- Whether a file (above all an input or an acquisition output) is published or only kept in the store is decided
+  per file. The decision can be reversed at any time: it only decides where the file is. A file in the store is
+  referenced by its checksum, like any other; publishing it later means copying it to a dumps location and adding
+  it to its version in the catalogue (changelog entry), which changes no file.
+- What we keep but do not publish (full acquisition outputs, private inputs, pruned versions, backups of
+  locations) is in **the store**: a documented structure, backed up, not public, so that we can find any data
+  of any catalogued version, also on request from outside. It has the same layout as the dumps,
+  `<slug>/<version>/<path>`, so a version is complete in one place; the run records name what is in it by
+  checksum ([0018](0018-generator-framework.md)).
+- Where the store lives and how it is backed up is documented with the backup (open issue); it is not named in
+  entries or `-meta` files.
 
 ## Consequences
 

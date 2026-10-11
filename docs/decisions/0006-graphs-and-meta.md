@@ -1,6 +1,6 @@
 # 0006 One file = one named graph = dataset IRI; -meta files with provenance
 
-Status: accepted · Date: 2026-10-05
+Status: accepted, amended by [0018](0018-generator-framework.md) (graph names) · Date: 2026-10-05
 
 ## Context
 
@@ -9,6 +9,8 @@ resources, not graphs. Provenance of the datasets was incomplete and inconsisten
 
 ## Decision
 
+- *Amended by 0018: all RDF files of a version form one graph, the dataset IRI; the metadata graph is
+  `datasets/<slug>/meta`, not `datasets/<slug>-meta`.*
 - Every data file is one named graph. Graph IRI = dataset IRI = `http://data.judaicalink.org/datasets/<slug>`,
   `<slug>` = the catalogue entry's file name. `http://data.judaicalink.org/data/<x>/` is a namespace for
   resources, not a graph; several graphs may describe resources of the same namespace.

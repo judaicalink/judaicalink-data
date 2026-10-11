@@ -72,7 +72,9 @@ and changelog. There is no automated synchronisation.
 
 ## 5. Keeping and pruning
 
-Every file of a catalogued version is kept by us in at least one place (a dumps location or a backup). Which
+Every file of a catalogued version is kept by us in at least one place (a dumps location or the store, the
+backed-up, non-public structure of [0019](decisions/0019-dumps-locations-equal.md), which also holds full acquisition
+outputs and private inputs). Which
 versions a location offers can change: a location may drop versions, and historical versions, above all
 superseded ones, may be pruned from all public locations at some point. Pruning gets a changelog entry; before
 a version is pruned, check that nothing depends on what only it contains ([0019](decisions/0019-dumps-locations-equal.md)).

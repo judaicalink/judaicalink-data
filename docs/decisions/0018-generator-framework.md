@@ -61,7 +61,7 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 | dataset (= graph) | `datasets/<slug>` |
 | version | `datasets/<slug>/<version>` |
 | file | `dumps/<slug>/<version>/<path>` |
-| `-meta` graph | `datasets/<slug>-meta` |
+| metadata graph (the `-meta` file of the loaded version) | `datasets/<slug>/meta` |
 | person | `datasets/agents/persons/<n>` |
 | software agent | `datasets/agents/software/<name>` |
 
@@ -85,10 +85,29 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ### Slugs and namespaces
 
-- Reserved slugs: `agents`, and no slug may end in `-meta` (checked).
+- Reserved: the slug `agents`, and the version id `meta` (checked).
+- Everything about a dataset is below its IRI: versions `datasets/<slug>/<version>`, metadata graph
+  `datasets/<slug>/meta`. This replaces the graph `datasets/<slug>-meta` of [0006](0006-graphs-and-meta.md)
+  (used only in unpublished files and the local index).
 - `namespaces` in the catalogue lists only namespaces under `data/` (the knowledge graph). Everything under
   `datasets/` follows the fixed rules above and is not listed; the namespace check against the data looks only at
   `data/` URIs.
+
+### Runs, graphs and files
+
+- **Default and recommended: one generator, well-defined inputs, one run, one version of one dataset.** The run
+  record belongs to that version. Datasets that belong together share code, not runs (nli-records and
+  ls-nli-legacy share the module and the NLI export as input); a dataset that needs another one's output declares
+  that version as an input. Running several generators in a row (in `inputs` order) is a convenience of the CLI.
+- Other ways are possible where there is a reason, documented in the run records: an input made outside or by a
+  separate script and then turned into RDF by the generator; an intermediate RDF made in a first run and worked on
+  in a second; files made entirely outside (import). Each step's output is an input of the next, named by checksum.
+- **Graphs:** all RDF files of a version form the graph `datasets/<slug>`; its `-meta` file goes into
+  `datasets/<slug>/meta`. One metadata graph per dataset (not per version): only one version of a dataset is
+  loaded in an endpoint, and replacing the metadata is replacing one graph. Not a shared or default graph.
+- **Files:** our generators write one data file `<slug>.ttl.gz` by default, plus `<slug>-meta.ttl.gz` and any
+  published inputs; several RDF files only where splitting helps users (e.g. a large part that is often not
+  needed). Legacy versions keep their files.
 
 ### Inputs and the index service
 
@@ -128,6 +147,28 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   can only add statements about IRIs, never about a blank node in another file. State of 2026-10-11: no blank nodes
   in any file of the catalogue versions (the only ones were in the four labs self-descriptions, removed, see above).
 
+### Third-party packages: acquisition and transformation
+
+- **Transformation** (declared inputs → the files of a version) uses only the standard library and the framework.
+  It is what is re-run and compared, and it has to keep working for years (the legacy generators broke on
+  Python 2's `urllib2`, rdflib and scrapy versions). rdflib is not needed: writing is done by the framework's
+  Turtle writer, reading by the index service.
+- **Acquisition** (crawling, web APIs, translation, NLP) may use third-party packages, pinned with exact versions in
+  `generators/<slug>/requirements.txt`; the framework checks the installed versions and records them in the run
+  record (setting up the environment is left to whoever runs it). Its output is always a file with a checksum,
+  which becomes an input of the transformation. Re-running an acquisition gives a new input, so a new version.
+- This is the lesson of rujen, yivo and stolpersteine: they can be reproduced because the crawl was kept.
+
+- An acquisition output belongs to the version it was made for, or to a support dataset (`kind = "support"`, own
+  versions, named in `inputs`) when several datasets use it (e.g. `compact-memory-supp`). The run record names it
+  by checksum in every case.
+- Whether it is published in the dumps or only kept in the store is decided per file and can be reversed
+  ([0019](0019-dumps-locations-equal.md)): published where it is worth it (e.g. the crawls of rujen, yivo,
+  stolpersteine, files of their versions), the store where it is large, private or of little use to others
+  (e.g. the CM export bundle).
+- The web caches of the lookup datasets (Wikidata, DNB EntityFacts) are kept in the store and referenced by
+  checksum (2026-10-11: 372 MB, of which 97 Wikidata answers with complete entities make 365 MB).
+
 ## Proposed, not yet discussed
 
 - The `-meta` of a version describes the version and its dataset, including `replaces`, but not catalogue state
@@ -136,12 +177,12 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ## Consequences (so far)
 
+- [0006](0006-graphs-and-meta.md) is amended: all RDF files of a version form the dataset graph; the metadata graph
+  is `datasets/<slug>/meta`.
 - [0016](0016-data-access-outside.md) is amended: an index may be built temporarily for a generation run (part of the
   framework); SPARQL endpoints for data access stay outside.
 
 ## Open questions
 
-5. Whether "standard library only" holds for migrated legacy generators (rdflib, scrapy).
-6. One generator run for several datasets (nli-records + ls-nli-legacy, rujen + rujen-translation).
 7. Build area and how a run becomes a version (`add-version` on request, `collect`).
 8. The CLI: `catalog.py` extended, or a separate tool.

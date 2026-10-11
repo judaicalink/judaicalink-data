@@ -36,6 +36,8 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
   `dataslug` (sometimes a namespace, e.g. `epi`); the BEACON `#TARGET` is `https://data.judaicalink.org/data/gnd/{ID}`
   (`generate_beacon.py` default), so DNB EntityFacts spreads our URIs in the `https` form: ask for `http://`.
 - **Process details:** which versions each dumps location offers; when to prune historical versions (0019).
+- **The store** (0019): where it lives (now `lokal/` on Kai's machine; later the platform VM?), its backup, and
+  moving into it what is kept today in `lokal/work`, `lokal/export` and the labs VM backup (`../BACKUP-PLAN-2026-10-10.md`).
 
 - **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is `lokal/dumps-new` (79 files,
   189 MB, `catalog.py collect`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
@@ -56,6 +58,8 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
     names only in an agents dataset, so a name can be removed without new IRIs; slug `agents` reserved), `datasets/<slug>/generation/<date>`,
     `datasets/<slug>-meta/creator/…`, `…/original-generation`, `https` examples copied from the catalogue (fixed in the
     catalogue 2026-10-10). Regenerate all with the framework.
+  - Graph of the `-meta` files: `datasets/<slug>-meta` → `datasets/<slug>/meta` (0018) in `../qlever/make_inputs.py`
+    (graph from the file name) and in the kg-complements `-meta` writer.
   - The legacy ep of 2021 has three entity pages `owl:sameAs` a dataset IRI (yivo, rujen, rujen-translation); not
     carried over into ep-2026-10-06 (checked).
   - Still on the slug `stolperstein` (0017), because they read Frankfurt's catalogue: the graph in
