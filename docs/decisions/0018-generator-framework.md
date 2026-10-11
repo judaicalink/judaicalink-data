@@ -85,7 +85,7 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ### Slugs and namespaces
 
-- Reserved: the slug `agents`, and the version id `meta` (checked).
+- Reserved: the slug `agents`, and the version ids `meta` and `current` (checked).
 - Everything about a dataset is below its IRI: versions `datasets/<slug>/<version>`, metadata graph
   `datasets/<slug>/meta`. This replaces the graph `datasets/<slug>-meta` of [0006](0006-graphs-and-meta.md)
   (used only in unpublished files and the local index).
@@ -108,6 +108,39 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 - **Files:** our generators write one data file `<slug>.ttl.gz` by default, plus `<slug>-meta.ttl.gz` and any
   published inputs; several RDF files only where splitting helps users (e.g. a large part that is often not
   needed). Legacy versions keep their files.
+
+### From a run to a version
+
+1. **Run:** `run <slug>` writes into the build area, `<build>/<slug>/<run-id>/`: output files, run record, log. The run
+   id is a UTC timestamp (`20261011T143000Z`); no run overwrites another. Experimental runs may use uncommitted
+   code; the run record notes the commit and whether there were uncommitted changes.
+2. **Check:** compare with a kept version, load, count; all on the run directory.
+3. **Version, only on request:** `add-version <slug> <run-id>` refuses runs from uncommitted code; gives the version
+   id (default the run date `YYYY-MM-DD`, `-n` if taken); writes the header comments and renders the `-meta` for
+   that version; copies the run record to `generators/<slug>/runs/<version>.json`; adds the version to the catalogue
+   entry (published files with size, checksum, triples; `issued`; author; commit) with a changelog entry; moves the
+   files into the store `<slug>/<version>/<path>` ([0019](0019-dumps-locations-equal.md)). It does not move `stable`.
+4. **Publish, on request:** copy the files chosen for publication from the store to a dumps location; the index
+   records it.
+
+- The triples of a data file contain no version id and no file URIs; only the `-meta` does. So any run can become
+  any version, and experimental runs use up no version ids. (Dates such as the run date in entity-page events are
+  data, not version ids.)
+- The store is the local master tree of all versions (`lokal/store`, formerly `dumps-new`, [0015](0015-dumps-clean-start.md)).
+
+### File names and `current`
+
+- File names carry no version; the path does: `<slug>/<version>/<slug>.ttl.gz`. The names stay the same across
+  versions, so `[files]` descriptions in the catalogue apply to every version, and legacy versions follow the same
+  convention.
+- Our Turtle files identify themselves by a header comment, written by `add-version`:
+  `# JudaicaLink dataset <slug>, version <version>` and the version IRI. Comments are not triples, so the graph
+  holds no version id; a downloaded file still says what it is. Files without comment syntax (JSONL) are
+  identified by path and checksum.
+- A dumps location may offer `<slug>/current` as a symlink to the stable version of the catalogue, maintained by
+  the publish step; `current` is a reserved version id. It is a convenience only: never named in the catalogue,
+  the `-meta` or the run records, which always name the real version. Side effect (checked 2026-10-11): 34 of the
+  82 old paths on archive.judaicalink.org (`<slug>/current/<file>`) resolve again.
 
 ### Inputs and the index service
 
@@ -184,5 +217,4 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ## Open questions
 
-7. Build area and how a run becomes a version (`add-version` on request, `collect`).
 8. The CLI: `catalog.py` extended, or a separate tool.

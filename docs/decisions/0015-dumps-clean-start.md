@@ -40,7 +40,7 @@ crawls behind rujen, yivo and stolpersteine.
 - Every file is a single file; the tar archives named `.gz` (epidat, `ep_GND_ids.json.gz`, haskala, ontology),
   each holding one file, are replaced by plain gzip files with the same content.
 - The tree is built by `catalog.py collect` from local copies, finding each file by its checksum; locally it
-  is `lokal/dumps-new`. It replaces dumps-clean on archive.judaicalink.org when it is published (on request).
+  is `lokal/dumps-new` (since 2026-10-11 `lokal/store`, the store of [0019](0019-dumps-locations-equal.md)). It replaces dumps-clean on archive.judaicalink.org when it is published (on request).
 - `labs:/data/dumps` stays until the new tree is published and checked. Then only the backups of 2025-02-06
   (git history) and 2025-12-19 (last state) are kept, offline and unpublished; everything else in `/data/dumps` is
   deleted. The rest of the VM is not touched by this decision; what to keep from it goes into a separate, private
