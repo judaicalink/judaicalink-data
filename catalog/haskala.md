@@ -21,7 +21,6 @@ path = "generators/haskala"
 version = "2025-03-24"
 issued = "2025-03-24"
 author = "Benjamin Schnabel"
-graph = "http://data.judaicalink.org/data/haskala"
 description = "Regenerated; the persons are split into Haskala.ttl and Haskala_net.ttl (only the first was in the catalogue before). Most birth and death dates and places of the version of 2019 are missing, so 2019-07-01 stays the stable version."
 
   [[versions.files]]
@@ -44,7 +43,6 @@ description = "Regenerated; the persons are split into Haskala.ttl and Haskala_n
 version = "2019-07-01"
 issued = "2019-07-01"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/haskala"
 description = "The enriched version of 2019, with birth and death dates and places."
 
   [[versions.files]]

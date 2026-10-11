@@ -349,6 +349,19 @@ change of the entry). No version was added to the real catalogue.
 - None of the original list. The first generators (stolpersteine 2020, rujen, hirsch-family) confirmed the
   design (see The CLI and the generators); `add-version`, `render-meta` and `import-files` are built, and every
   version has a `-meta` (2026-10-11).
-- To review in the `-meta` content: `kind` and `method` of the entry (`ai-generated` matters to users) have no
-  property yet; the legacy `graph` of a version is not stated; the full description (body) is not included, only
-  the summary; checksums as `<file>#sha256` IRIs.
+- To review in the `-meta` content: the full description (body) is not included, only the summary; checksums as
+  `<file>#sha256` IRIs.
+- Decided 2026-10-11: the version field `graph` of the catalogue (the name of the graph a legacy version was loaded
+  under, e.g. `data/gnd-persons`, `data/geo-coor`; 27 versions) is removed, amending [0013](0013-catalogue-format.md).
+  It was redundant and confusing: every version is loaded into the graph of its dataset IRI (0006), also the legacy
+  versions, so the named graphs change without a transition. These graph IRIs are very unlikely to be referenced
+  outside; whoever loads a new catalogue state loads the data again anyway. Nothing read the field (the local
+  index already uses the dataset IRIs), and no `-meta` contained it. The former names stay in the git history and
+  in the old catalogues.
+- Decided 2026-10-11, not built yet: `kind` and `method` of the entry go into the `-meta` as `dcterms:type` of the
+  dataset, with IRIs `datasets/vocabulary/kind/<kind>` and `datasets/vocabulary/method/<method>` (`skos:Concept`
+  in two concept schemes, one per field; values and definitions as in 0013). Under `datasets/`, not in the
+  ontology: they describe datasets and belong to the framework, and new values need no ontology release. Their
+  labels and definitions are published in a dataset of their own, `judaicalink-vocabulary`, generated from a file
+  in this repository (not together with the agents: they change for different reasons). Dataset level only, as in
+  the catalogue; how a single version was made is in its generation activity.

@@ -24,7 +24,6 @@ path = "generators/djh"
 version = "2018-10-22"
 issued = "2018-10-22"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/djh"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

@@ -23,7 +23,6 @@ path = "generators/jre"
 version = "2019-11-29"
 issued = "2019-11-29"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/jre"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

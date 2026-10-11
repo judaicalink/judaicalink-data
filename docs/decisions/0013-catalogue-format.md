@@ -1,6 +1,6 @@
 # 0013 Catalogue entry format: datasets, versions, changelog
 
-Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`, changelog authors, dated legacy versions, generator folders)
+Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`, changelog authors, dated legacy versions, generator folders; 2026-10-11: version field `graph` removed, see 0018)
 
 ## Context
 
@@ -65,7 +65,7 @@ enters the catalogue only when it is added explicitly; experimental runs are not
 | `issued` | date the version was made |
 | `author` | who made this version: name, or list of names (history; the dataset's `author` is the current maintainer) |
 | `commit` | commit of judaicalink-data whose generator made this version; not set for versions made before (their generators, repositories and commits are documented in `generators/<slug>/README.md`) |
-| `graph` | only for legacy versions: the graph name used when it was loaded, if not the dataset IRI |
+| ~~`graph`~~ | *removed 2026-10-11 ([0018](0018-generator-framework.md)): every version is loaded into the graph of its dataset IRI; the former graph names of the legacy versions are not kept* |
 | `description` | short remark on this version |
 | `withdrawn` | reason, if this version should not be used (known error) |
 | `[[versions.files]]` | the files of this version: `path` (**required**, relative to `<slug>/<version>/`), optional `description` (overrides `[files]`), `bytes`, `sha256`, `triples` |
@@ -117,7 +117,6 @@ uri = "https://creativecommons.org/publicdomain/zero/1.0/"
 version = "2019-01-25"
 issued = "2019-01-25"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/nli"
 description = "Archived state, identical to the catalogue state judaicalink-site 81b42a5."
 
   [[versions.files]]

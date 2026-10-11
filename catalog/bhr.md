@@ -24,7 +24,6 @@ path = "generators/bhr"
 version = "2018-10-24"
 issued = "2018-10-24"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/bhr"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded). The EntityFacts links were on the dumps server but not in the catalogue."
 
   [[versions.files]]

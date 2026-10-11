@@ -21,7 +21,6 @@ path = "generators/footprints"
 version = "2025-03-21"
 issued = "2025-03-21"
 author = "Benjamin Schnabel"
-graph = "http://data.judaicalink.org/data/footprints"
 description = "Regenerated with a rewritten generator that keeps only the person loop (the book and place sections and the GND, VIAF and translation lookups were dropped, apparently because the old generator no longer ran); contains only the types and names of the resources. 2024-03-18 stays the stable version."
 
   [[versions.files]]
@@ -39,7 +38,6 @@ description = "Regenerated with a rewritten generator that keeps only the person
 version = "2024-03-18"
 issued = "2024-03-18"
 author = "Christian Deuschle"
-graph = "http://data.judaicalink.org/data/footprints"
 description = "The richer version: books with titles, owners, former owners, places, dates of publication, authors and languages; from the backup of the dumps of 2025-02-06."
 
   [[versions.files]]

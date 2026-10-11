@@ -22,7 +22,6 @@ path = "generators/date-enriched"
 version = "2020-07-31"
 issued = "2020-07-31"
 author = "Kai Eckert"
-graph = "http://data.judaicalink.org/data/date-enriched"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

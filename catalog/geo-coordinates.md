@@ -23,7 +23,6 @@ path = "generators/geo-coordinates"
 version = "2018-08-08"
 issued = "2018-08-08"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/geo-coor"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

@@ -251,7 +251,7 @@ def cmd_show_version(args, cfg):
     def text(o):
         f = o["fields"]
         yield f"{o['slug']}/{o['version']} ({o['status']})  {o['iri']}"
-        for k in ("issued", "author", "commit", "graph", "description", "withdrawn"):
+        for k in ("issued", "author", "commit", "description", "withdrawn"):
             if k in f:
                 val = f[k]
                 yield f"  {k:<12} {', '.join(val) if isinstance(val, list) else val}"

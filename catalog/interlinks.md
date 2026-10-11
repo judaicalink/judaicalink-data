@@ -22,7 +22,6 @@ path = "generators/interlinks"
 version = "2018-07-18"
 issued = "2018-07-18"
 author = ["Kai Eckert", "Maral Dadvar"]
-graph = "http://data.judaicalink.org/data/interlinks"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

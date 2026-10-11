@@ -18,7 +18,6 @@ path = "generators/dbp-wiki-geo-linking"
 version = "2021-01-13"
 issued = "2021-01-13"
 author = "Marco Rovera"
-graph = "http://data.judaicalink.org/data/dbp-wiki-geo-links"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

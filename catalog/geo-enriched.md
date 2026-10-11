@@ -23,7 +23,6 @@ path = "generators/geo-enriched"
 version = "2019-12-18"
 issued = "2019-12-18"
 author = "Marco Rovera"
-graph = "http://data.judaicalink.org/data/geo-enriched"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

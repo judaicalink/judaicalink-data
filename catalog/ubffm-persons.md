@@ -24,7 +24,6 @@ path = "generators/ubffm-persons"
 version = "2019-01-24"
 issued = "2019-01-24"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/ubffm"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

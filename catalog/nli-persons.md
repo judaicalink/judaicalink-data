@@ -23,7 +23,6 @@ path = "generators/nli-persons"
 version = "2019-01-25"
 issued = "2019-01-25"
 author = "Maral Dadvar"
-graph = "http://data.judaicalink.org/data/nli"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

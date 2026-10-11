@@ -21,7 +21,6 @@ path = "generators/gba"
 version = "2025-03-21"
 issued = "2025-03-21"
 author = "Benjamin Schnabel"
-graph = "http://data.judaicalink.org/data/gba"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

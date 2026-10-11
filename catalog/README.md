@@ -56,7 +56,6 @@ authorlink = "http://…"
 date = "2021-01-22T10:37:07+02:00"
 category = "judaicalink"
 dataslug = "ep"
-graph = "http://data.judaicalink.org/data/ep"
 example = "http://data.judaicalink.org/data/ep/1000037"
 loaded = true
 productionurl = "https://www.jewishstudies.de/en/judaicalink/datasets/dataset/ep/"

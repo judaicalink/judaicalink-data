@@ -21,7 +21,6 @@ path = "generators/nrwbibdjg"
 version = "2024-05-24"
 issued = "2024-05-24"
 author = "Christian Deuschle"
-graph = "http://data.judaicalink.org/data/nrwbibdjg"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

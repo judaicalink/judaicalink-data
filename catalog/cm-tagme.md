@@ -23,7 +23,6 @@ path = "generators/cm-tagme"
 version = "2021-01-18"
 issued = "2021-01-18"
 author = "Marco Rovera"
-graph = "http://data.judaicalink.org/data/cm-tagme"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

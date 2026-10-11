@@ -246,7 +246,7 @@ VERSION = {"version": (lambda v: isinstance(v, str) and SLUG.match(v),
                        "a slug (lower-case letters, digits, '-', '.')"),
            "issued": DATE, "author": AUTHOR,
            "commit": (lambda v: isinstance(v, str) and re.match(r"^[0-9a-f]{7,40}$", v), "a commit hash"),
-           "graph": URL, "description": TEXT, "withdrawn": TEXT, "files": (lambda v: True, "")}
+           "description": TEXT, "withdrawn": TEXT, "files": (lambda v: True, "")}
 
 # Dataset fields; tables and lists of tables are checked separately.
 DATASET = {

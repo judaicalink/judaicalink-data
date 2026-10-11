@@ -33,7 +33,7 @@ State 2026-10-07. Remove an item when it is solved (with a reference to the deci
 - **To discuss with Frankfurt:** they can drop `cmtest`, `ep-supp`, `cm-tagme-supp`, `rujen-translation-supp` and
   `beacon-persons` from their catalogue ([0015](decisions/0015-dumps-clean-start.md)); stable access URLs on data.judaicalink.org instead of web.judaicalink.org
   (0014); their loader expects `<slug>.meta.ttl` in one shared metadata graph (0006); their catalogue pages
-  could link to our finder; they adopt `<slug>/<version>/<path>` when they next take over files. Also: their
+  could link to our finder; they adopt `<slug>/<version>/<path>` when they next take over files; their named graphs `data/<x>` become the dataset IRIs `datasets/<slug>` when they load our catalogue state (the catalogue no longer names the old graphs, 0018). Also: their
   catalogue has the `https` examples fixed in ours (hhkeydocs, sosy, ontology) and the entry `stolperstein.md`
   (now `stolpersteine`, [0017](decisions/0017-slug-stolpersteine.md)); their pubby takes the graph from
   `dataslug` (sometimes a namespace, e.g. `epi`); the BEACON `#TARGET` is `https://data.judaicalink.org/data/gnd/{ID}`

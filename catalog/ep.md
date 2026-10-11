@@ -28,7 +28,6 @@ path = "generators/ep"
 version = "2021-05-28"
 issued = "2021-05-28"
 author = "Marco Rovera"
-graph = "http://data.judaicalink.org/data/ep"
 description = "Data files of the catalogue state judaicalink-site 81b42a5 (the state Frankfurt loaded)."
 
   [[versions.files]]

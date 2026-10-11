@@ -73,8 +73,8 @@ def files_block(f, indent="  "):
 
 def version_block(v):
     lines = ["[[versions]]"]
-    lines += [f"{k} = {toml_value(v[k])}" for k in ("version", "issued", "author", "commit", "graph",
-                                                   "description", "withdrawn") if v.get(k) is not None]
+    lines += [f"{k} = {toml_value(v[k])}" for k in ("version", "issued", "author", "commit", "description",
+                                                   "withdrawn") if v.get(k) is not None]
     for f in v.get("files", []):
         lines += [""] + files_block(f)
     return lines
