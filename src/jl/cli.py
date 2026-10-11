@@ -510,7 +510,7 @@ def cmd_add_version(args, cfg):
         return fail("give <slug>/<run-id>")
     vid, d, v, warnings = versions.add_version(cfg, slug, run_id, version=args.version, author=args.author,
                                                store_only=args.store_only, description=args.description,
-                                               text=args.text, dry_run=args.dry_run)
+                                               text=args.text, issued=args.issued, dry_run=args.dry_run)
     print(f"{slug}/{vid}" + (" (dry run, nothing changed)" if args.dry_run else "") + f": {d}")
     for f in v["files"]:
         t = f" {f['triples']:>10,} triples" if f.get("triples") is not None else ""
@@ -526,7 +526,40 @@ def cmd_add_version(args, cfg):
     return 0
 
 
+def cmd_import_files(args, cfg):
+    slug, vid = split_id(args.id)
+    if vid:
+        if args.files:
+            return fail("give files only with <slug> (a new run), not with <slug>/<version>")
+        rec = versions.import_version(cfg, slug, vid, args.description, origin=args.origin, sources=args.source,
+                                      notes=args.note, dry_run=args.dry_run)
+        print(f"{slug}/{vid}: run record (import)" + (" (dry run, not written)" if args.dry_run else
+                                                      f": generators/{slug}/runs/{vid}.json"))
+        for f in rec["files"]:
+            t = f" {f['triples']:>10,} triples" if f.get("triples") is not None else ""
+            print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
+        print(f"  then: ./jl render-meta {slug}/{vid}")
+        return 0
+    if not args.files:
+        return fail("give the files to import (or <slug>/<version> to attach a record to a version)")
+    d, rec = versions.import_files(cfg, slug, args.files, args.origin, args.description, sources=args.source,
+                                   notes=args.note)
+    print(f"{slug}/{rec['run']}: imported {len(rec['files'])} file(s): {d}")
+    if rec["uncommitted"]:
+        print(f"  uncommitted framework code: {', '.join(rec['uncommitted'])} (cannot become a version)")
+    print(f"  then: ./jl add-version {slug}/{rec['run']} [--issued YYYY-MM-DD]")
+    return 0
+
+
 def cmd_render_meta(args, cfg):
+    if args.all:
+        if args.id or args.out:
+            return fail("--all renders every version; give no <slug>/<version> and no --out")
+        counts = versions.render_meta_all(cfg, dry_run=args.dry_run)
+        print(", ".join(f"{n} {k}" for k, n in sorted(counts.items())), file=sys.stderr)
+        return 0
+    if not args.id:
+        return fail("give <slug>/<version> or --all")
     slug, vid = split_id(args.id)
     if not vid:
         return fail("give <slug>/<version>")
@@ -606,13 +639,26 @@ def parser():
         (("--author",), {"help": "who makes the version (default: git config user.name); must be registered"}),
         (("--description",), {"help": "a short remark on the version (catalogue)"}),
         (("--text",), {"help": "the changelog text"}),
+        (("--issued",), {"metavar": "YYYY-MM-DD", "help": "the date the data was made (default: the run date)"}),
         (("--store-only",), {"metavar": "PATH", "action": "append", "default": [],
                              "help": "a file of the run kept in the store but not published; repeatable"}),
         (("--dry-run",), {"action": "store_true",
                           "help": "write the version into the build area only; catalogue, store, run unchanged"}),
         json_out=False)
+    add("import-files", cmd_import_files,
+        "take files made elsewhere in as a run (<slug> files…), or attach a run record to a version (<slug>/<version>)",
+        (("id",), {"metavar": "<slug>[/<version>]"}),
+        (("files",), {"nargs": "*", "type": Path, "metavar": "FILE"}),
+        (("--origin",), {"help": "where the files come from (a URL where there is one, else text)"}),
+        (("--description",), {"help": "what the files are and how they were made"}),
+        (("--source",), {"metavar": "URL", "action": "append", "default": [],
+                         "help": "code or documentation that made the files (e.g. at a commit); repeatable"}),
+        (("--note",), {"action": "append", "default": [], "help": "a remark for the run record; repeatable"}),
+        (("--dry-run",), {"action": "store_true", "help": "<slug>/<version>: show the record, do not write it"}),
+        json_out=False)
     add("render-meta", cmd_render_meta, "render the -meta of a version again (replaced only if its content changed)",
-        (("id",), {"metavar": "<slug>/<version>"}),
+        (("id",), {"metavar": "<slug>/<version>", "nargs": "?"}),
+        (("--all",), {"action": "store_true", "help": "every version of the catalogue"}),
         (("--dry-run",), {"action": "store_true", "help": "only say whether it would change"}),
         (("--out",), {"metavar": "FILE", "type": Path, "help": "write the -meta to FILE; nothing else changes"}),
         json_out=False)

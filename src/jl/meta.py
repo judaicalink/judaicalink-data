@@ -181,7 +181,22 @@ def render(entry, version, files, record, stats, registry):
             t.append((F, VOID.triples, integer(f["triples"])))
 
     # how the version was made (the run record)
-    if record and record.get("commit"):
+    if record and record.get("mode") == "import":
+        # made outside the framework: what is known, as text and links (the evidence is in the generator README)
+        G = IRI(f"{V}/generation")
+        t += [(V, PROV.wasGeneratedBy, G), (G, A, PROV.Activity),
+              (G, RDFS.comment, Literal(record["description"])),
+              (G, RDFS.seeAlso, IRI(f"{REPO}/blob/main/generators/{slug}/runs/{vid}.json"))]
+        for name in [version["author"]] if isinstance(version.get("author"), str) else version.get("author", []):
+            t.append((G, PROV.wasAssociatedWith, IRI(registry.person(name))))
+        if record.get("origin"):
+            t.append((G, RDFS.comment, Literal("Origin: " + record["origin"])))
+        for note in record.get("notes", []):
+            t.append((G, RDFS.comment, Literal(note)))
+        for u in record.get("sources", []):
+            if is_url(u):
+                t.append((G, RDFS.seeAlso, IRI(u)))
+    elif record and record.get("commit"):
         G = IRI(f"{V}/generation")
         commit = record["commit"]
         t += [(V, PROV.wasGeneratedBy, G), (G, A, PROV.Activity),

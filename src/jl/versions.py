@@ -222,7 +222,7 @@ def default_version(cat_entry, store_dir, slug, run):
 
 
 def add_version(cfg, slug, run_id, version=None, author=None, store_only=(), description=None, text=None,
-                dry_run=False, log=print):
+                issued=None, dry_run=False, log=print):
     """Make a run a version. Returns (version id, directory, the version table, warnings)."""
     cat = catalog.Catalog()
     e = cat.get(slug)
@@ -295,18 +295,22 @@ def add_version(cfg, slug, run_id, version=None, author=None, store_only=(), des
             dst = stage / f["path"]
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(run["dir"] / f["path"], dst)
-            if "triples" in f and rdf.rdf_format(f["path"]) == "turtle":   # written by the generator
+            if rec.get("mode") != "import" and "triples" in f and rdf.rdf_format(f["path"]) == "turtle":
+                # written by the generator (imported files and copied inputs keep their bytes)
                 f.update(turtle.add_header(dst, meta.header(slug, vid)))
         stats = measure(cfg, files, stage)
         public = [{k: f.get(k) for k in ("path", "bytes", "sha256", "triples")} for f in files
                   if f["path"] not in store_only]
-        vtable = {"version": vid, "issued": rec["started"][:10], "author": author, "commit": rec["commit"]}
+        if issued and not catalog.is_date(issued):
+            raise VersionError(f"--issued {issued}: not a date")
+        vtable = {"version": vid, "issued": issued or rec["started"][:10], "author": author, "commit": rec["commit"]}
         if description:
             vtable["description"] = description
         m = write_meta(stage / meta.meta_path(slug), e, vtable, public, rec, stats, registry, commit)
         vtable["files"] = [{k: v for k, v in f.items() if v is not None} for f in public] + [m]
         change = {"date": datetime.date.today().isoformat(), "version": vid, "author": author,
-                  "text": text or f"New version, made by the generator in judaicalink-data ({run_id})."}
+                  "text": text or (f"New version, imported ({run_id})." if rec.get("mode") == "import" else
+                                   f"New version, made by the generator in judaicalink-data ({run_id}).")}
         entry_text = add_version_text(e.path.read_text(encoding="utf-8"), e.data, vtable, change)
         record = dict(rec)
         record["version"] = vid
@@ -369,3 +373,103 @@ def render_meta(cfg, slug, vid, dry_run=False, out=None):
     os.replace(tmp, existing)
     e.path.write_text(entry_text, encoding="utf-8")
     return "written", info
+
+
+def render_meta_all(cfg, dry_run=False, log=print):
+    """render-meta for every version of the catalogue that has files. Returns {status: count}."""
+    counts = {}
+    for slug, e in sorted(catalog.Catalog().entries.items()):
+        for v in e.versions():
+            if not any(isinstance(f, dict) and f.get("path") != meta.meta_path(slug) for f in v.get("files", [])):
+                continue
+            status, info = render_meta(cfg, slug, v["version"], dry_run=dry_run)
+            counts[status] = counts.get(status, 0) + 1
+            log(f"{slug}/{v['version']}: {status}" + (f" ({info['triples']} triples)" if info else ""))
+    return counts
+
+
+# --- import-files ----------------------------------------------------------------------------------
+
+def import_version(cfg, slug, vid, description, origin=None, sources=(), notes=(), dry_run=False):
+    """Attach a run record (mode "import") to a catalogued version made outside the framework. No file of the
+    version changes; the record says what is known about how it was made. Returns the record."""
+    e = catalog.Catalog().get(slug)
+    v = e.version(vid) if e else None
+    if v is None:
+        raise VersionError(f"no version {slug}/{vid} in the catalogue")
+    if runs.record_path(slug, vid).exists():
+        raise VersionError(f"{slug}/{vid} has a run record already")
+    if not description:
+        raise VersionError("--description is required")
+    commit, dirty = generator.code_state(slug)
+    if dirty and not dry_run:
+        raise VersionError(f"uncommitted changes ({', '.join(dirty)}); the record names the commit")
+    base = cfg.require("store") / slug / vid
+    files = []
+    for f in v.get("files", []):
+        if not isinstance(f, dict) or f.get("path") == meta.meta_path(slug):
+            continue
+        local = base / f["path"]
+        if not local.is_file():
+            raise VersionError(f"{slug}/{vid}/{f['path']} is not in the store")
+        sha = catalog.sha256(local)
+        if f.get("sha256") and sha != f["sha256"]:
+            raise VersionError(f"{slug}/{vid}/{f['path']}: checksum differs from the catalogue")
+        files.append({"path": f["path"], "bytes": local.stat().st_size, "sha256": sha})
+    measure(cfg, files, base)
+    record = {"slug": slug, "version": vid, "mode": "import", "imported": now_utc(), "commit": commit,
+              "description": description}
+    if origin:
+        record["origin"] = origin
+    record["sources"] = list(sources)
+    record["notes"] = list(notes)
+    record["files"] = files
+    if not dry_run:
+        p = runs.record_path(slug, vid)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return record
+
+
+def import_files(cfg, slug, paths, origin, description, sources=(), notes=()):
+    """Take files made elsewhere in as a run (mode "import"); add-version makes it a version. The files are
+    kept byte for byte (no header comments). Files with blank nodes are refused (0018). Returns (dir, record)."""
+    if catalog.Catalog().get(slug) is None:
+        raise VersionError(f"no dataset '{slug}' in the catalogue")
+    if not origin or not description:
+        raise VersionError("--origin and --description are required: where the files come from and what they are")
+    srcs = []
+    for p in paths:
+        p = p.expanduser().resolve()
+        if not p.is_file():
+            raise VersionError(f"{p}: not a file")
+        srcs.append(p)
+    names = [p.name for p in srcs]
+    if len(set(names)) != len(names):
+        raise VersionError("two files with the same name")
+    if meta.meta_path(slug) in names:
+        raise VersionError(f"{meta.meta_path(slug)} is rendered by the framework, not imported")
+    for p in srcs:
+        if rdf.rdf_format(p.name):
+            info = canonical.canonical(p, cfg)
+            if info["blank_node_triples"]:
+                raise VersionError(f"{p.name}: {info['blank_node_triples']:,} triples with blank nodes; blank nodes "
+                                   "are not taken in (0018)")
+    commit, dirty = framework_state()
+    started = datetime.datetime.now(datetime.timezone.utc)
+    run_id = "run-" + started.strftime("%Y%m%dT%H%M%SZ")
+    d = cfg.require("build") / slug / run_id
+    if d.exists():
+        raise VersionError(f"{d} exists; try again in a second")
+    d.mkdir(parents=True)
+    files = []
+    for p in srcs:
+        shutil.copyfile(p, d / p.name)
+        files.append({"path": p.name, "bytes": p.stat().st_size, "sha256": catalog.sha256(d / p.name)})
+    record = {"slug": slug, "run": run_id, "mode": "import", "commit": commit, "uncommitted": dirty,
+              "started": started.strftime("%Y-%m-%dT%H:%M:%SZ"), "status": "ok", "origin": origin,
+              "description": description, "sources": list(sources), "notes": list(notes), "inputs": [],
+              "files": files}
+    (d / "run.json").write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    (d / "log.txt").write_text(f"{slug}/{run_id}: imported {len(files)} file(s)\n", encoding="utf-8")
+    return d, record

@@ -200,6 +200,38 @@ class Versions(unittest.TestCase):
         self.assertFalse((self.t / "store" / "test").exists())
         self.assertTrue((target / "catalog-entry.md").is_file())
 
+    def test_import(self):
+        # files made elsewhere: a run, kept byte for byte, then a version with its own issued date
+        f = self.t / "sent.ttl"
+        f.write_text('<http://data.judaicalink.org/data/test/x> <http://www.w3.org/2000/01/rdf-schema#label> "x" .\n')
+        with self.assertRaises(versions.VersionError):
+            versions.import_files(self.cfg, "test", [f], None, "no origin")
+        d, rec = versions.import_files(self.cfg, "test", [f], "sent by mail, 2026-10-01", "one label")
+        self.assertEqual(rec["mode"], "import")
+        vid, target, v, warnings = versions.add_version(self.cfg, "test", rec["run"], issued="2026-09-30")
+        self.assertEqual(v["issued"], "2026-09-30")
+        self.assertEqual((target / "sent.ttl").read_bytes(), f.read_bytes())    # no header
+        self.assertEqual(v["files"][0]["triples"], 1)
+        b = self.t / "blank.ttl"
+        b.write_text('_:b <http://www.w3.org/2000/01/rdf-schema#label> "x" .\n')
+        with self.assertRaisesRegex(versions.VersionError, "blank nodes"):
+            versions.import_files(self.cfg, "test", [b], "o", "d")
+        # a record attached to a catalogued version made outside the framework; nothing of it changes
+        before = catalog.sha256(self.t / "store" / "src" / "2020-01-01" / "data.txt")
+        rec = versions.import_version(self.cfg, "src", "2020-01-01", "Made by hand.",
+                                      sources=["https://example.org/code.py"], notes=["checked"])
+        self.assertEqual(json.loads(runs.record_path("src", "2020-01-01").read_text())["files"][0]["sha256"], before)
+        with self.assertRaises(versions.VersionError):
+            versions.import_version(self.cfg, "src", "2020-01-01", "again")
+        status, _ = versions.render_meta(self.cfg, "src", "2020-01-01")
+        self.assertEqual(status, "written")
+        m = list(rdf.read_triples(self.t / "store" / "src" / "2020-01-01" / "src-meta.ttl.gz"))
+        objs = {o for _, _, o in m}
+        self.assertIn(rdf.Literal("Made by hand."), objs)
+        self.assertIn("https://example.org/code.py", objs)
+        e = catalog.read_entry(self.t / "catalog" / "src.md")
+        self.assertEqual([x["path"] for x in e.version("2020-01-01")["files"]], ["data.txt", "src-meta.ttl.gz"])
+
     def test_set_file_text(self):
         text = SRC
         data = tomllib.loads(versions.split_entry(text)[1])
