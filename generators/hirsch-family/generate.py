@@ -11,14 +11,7 @@ import csv
 from jl.rdf import IRI, RDF_TYPE, Literal
 from jl.turtle import PREFIXES, Namespace
 
-INPUTS = {"csv": {
-    "sha256": "d7e37b236019a48a422d860c69eea0b391ee8b458a17dbadcd036dd880ff968b", "bytes": 97122,
-    "origin": "https://github.com/judaicalink/judaicalink-generators/blob/"
-              "40f7c98aa2157f9a533c160f80d678643c1509fd/HirschFamily/input/hirsch_fam_davinci.csv",
-    "description": "The Hirsch family of Aschaffenburg from the database \"Jüdisches Leben in Unterfranken\": "
-                   "CSV (semicolons, Latin-1, one German header row), one row per person and source (IdNr, name, "
-                   "birth and death, biography link, source, source link); the input of CSV-to-RDF.py, "
-                   "committed with it by Maral Dadvar (2019-08-05)."}}
+INPUTS = {"csv": "inputs:hirsch-family/csv-2018-10-30/hirsch_fam_davinci.csv"}
 PARAMS = {}
 
 JL = Namespace(PREFIXES["jl"])

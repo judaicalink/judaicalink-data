@@ -221,8 +221,8 @@ def default_version(cat_entry, store_dir, slug, run):
     return vid
 
 
-def add_version(cfg, slug, run_id, version=None, author=None, store_only=(), description=None, text=None,
-                issued=None, dry_run=False, log=print):
+def add_version(cfg, slug, run_id, version=None, author=None, description=None, text=None, issued=None,
+                dry_run=False, log=print):
     """Make a run a version. Returns (version id, directory, the version table, warnings)."""
     cat = catalog.Catalog()
     e = cat.get(slug)
@@ -263,17 +263,13 @@ def add_version(cfg, slug, run_id, version=None, author=None, store_only=(), des
 
     warnings = []
     for i in rec.get("inputs", []):
-        ref = i.get("ref")
-        if isinstance(ref, dict) and not meta.is_url(ref.get("origin")):
-            warnings.append(f"input {i.get('name')} ({i.get('file')}, sha256 {i.get('sha256', '')[:12]}…) has no URL "
-                            f"as origin ({ref.get('origin')!r}): decide whether to keep it with this version (0018, 0019)")
+        if not isinstance(i.get("ref"), str):
+            warnings.append(f"input {i.get('name')} ({i.get('file')}) is named by checksum only, not in the inputs "
+                            "area (decision 0021)")
 
     # the files of the run, checked against the run record
     files = [dict(f) for f in rec.get("files", [])]
     names = {f["path"] for f in files}
-    for p in store_only:
-        if p not in names:
-            raise VersionError(f"--store-only {p}: not a file of the run")
     if meta.meta_path(slug) in names:
         raise VersionError(f"the run wrote {meta.meta_path(slug)}; the -meta is rendered by the framework")
     for f in files:
@@ -299,8 +295,7 @@ def add_version(cfg, slug, run_id, version=None, author=None, store_only=(), des
                 # written by the generator (imported files and copied inputs keep their bytes)
                 f.update(turtle.add_header(dst, meta.header(slug, vid)))
         stats = measure(cfg, files, stage)
-        public = [{k: f.get(k) for k in ("path", "bytes", "sha256", "triples")} for f in files
-                  if f["path"] not in store_only]
+        public = [{k: f.get(k) for k in ("path", "bytes", "sha256", "triples")} for f in files]
         if issued and not catalog.is_date(issued):
             raise VersionError(f"--issued {issued}: not a date")
         vtable = {"version": vid, "issued": issued or rec["started"][:10], "author": author, "commit": rec["commit"]}

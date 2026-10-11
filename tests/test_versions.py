@@ -121,7 +121,7 @@ class Versions(unittest.TestCase):
 
     def test_add_version(self):
         d, rec = self.run_generator()
-        vid, target, v, warnings = versions.add_version(self.cfg, "test", rec["run"], store_only=["data.txt"])
+        vid, target, v, warnings = versions.add_version(self.cfg, "test", rec["run"])
         self.assertEqual(vid, rec["started"][:10])
         self.assertEqual(target, self.t / "store" / "test" / vid)
         # header comments; the triples are those of the run
@@ -129,13 +129,13 @@ class Versions(unittest.TestCase):
         self.assertTrue(text.startswith(f"# JudaicaLink dataset test, version {vid}\n"
                                         f"# http://data.judaicalink.org/datasets/test/{vid}\n\n"))
         self.assertEqual(len(list(rdf.read_triples(target / "test.ttl.gz"))), 2)
-        # catalogue: version (newest first), changelog, comment kept; data.txt kept only in the store
+        # catalogue: version (newest first), changelog, comment kept
         entry_text = (self.t / "catalog" / "test.md").read_text()
         self.assertIn("# a comment that must stay", entry_text)
         e = catalog.read_entry(self.t / "catalog" / "test.md")
         self.assertEqual([x["version"] for x in e.versions()], [vid])
         files = {f["path"]: f for f in e.version(vid)["files"]}
-        self.assertEqual(set(files), {"test.ttl.gz", "test-meta.ttl.gz"})
+        self.assertEqual(set(files), {"test.ttl.gz", "data.txt", "test-meta.ttl.gz"})
         self.assertEqual(files["test.ttl.gz"]["sha256"], catalog.sha256(target / "test.ttl.gz"))
         self.assertEqual(files["test.ttl.gz"]["triples"], 2)
         self.assertEqual(e.changelog()[0]["version"], vid)
@@ -162,8 +162,7 @@ class Versions(unittest.TestCase):
         self.assertIn((D, DCT + "type", "http://data.judaicalink.org/datasets/vocabulary/method/automated"), m)
         self.assertIn((D, DCT + "abstract", rdf.Literal("The test dataset.")), m)
         self.assertIn((D, DCT + "description", rdf.Literal("The test dataset.\n\nMore.")), m)
-        self.assertFalse(any("data.txt" in s for s, _, _ in m))   # store-only file is no distribution
-        # the check accepts the store-only file
+        # the store holds exactly the catalogued files
         out = []
         n, errors, _ = catalog.check(catalog=self.t / "catalog", dumps=[self.t / "store"], complete=True,
                                      out=out.append, registry=agents.Registry())

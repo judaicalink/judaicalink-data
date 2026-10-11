@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import canonical, catalog, config, generator, rdf, runs, versions
+from . import canonical, catalog, config, generator, inputs, rdf, runs, versions
 from .agents import AgentError, Registry, person_iri, software_iri
 
 def emit(args, obj, text):
@@ -71,15 +71,6 @@ def version_files(cfg, e, v, verify=False):
         else:
             info["store"] = "not configured"
         out.append(info)
-    # files of the version that are only in the store (named by the run record, not published)
-    listed = {i["path"] for i in out}
-    for f in rec.get("files", []):
-        if isinstance(f, dict) and f.get("path") not in listed:
-            local = cfg.store / e.name / v["version"] / f.get("path", "") if cfg.store else None
-            out.append({"path": f.get("path"), "bytes": f.get("bytes"), "sha256": f.get("sha256"),
-                        "triples": f.get("triples"), "public": False, "description": f.get("description"),
-                        "local": str(local) if local and local.is_file() else None,
-                        "store": "present" if local and local.is_file() else "missing"})
     return out
 
 
@@ -509,14 +500,12 @@ def cmd_add_version(args, cfg):
     if not run_id or not runs.is_run_id(run_id):
         return fail("give <slug>/<run-id>")
     vid, d, v, warnings = versions.add_version(cfg, slug, run_id, version=args.version, author=args.author,
-                                               store_only=args.store_only, description=args.description,
+                                               description=args.description,
                                                text=args.text, issued=args.issued, dry_run=args.dry_run)
     print(f"{slug}/{vid}" + (" (dry run, nothing changed)" if args.dry_run else "") + f": {d}")
     for f in v["files"]:
         t = f" {f['triples']:>10,} triples" if f.get("triples") is not None else ""
         print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
-    for p in args.store_only:
-        print(f"  {p:<32} store only")
     for w in warnings:
         print(f"  warning: {w}")
     if args.dry_run:
@@ -549,6 +538,29 @@ def cmd_import_files(args, cfg):
         print(f"  uncommitted framework code: {', '.join(rec['uncommitted'])} (cannot become a version)")
     print(f"  then: ./jl add-version {slug}/{rec['run']} [--issued YYYY-MM-DD]")
     return 0
+
+
+def cmd_add_input(args, cfg):
+    root = cfg.require("inputs")
+    texts = {"title": args.title, "origin": args.origin, "description": args.description, "date": args.date,
+             "note": args.note}
+    added = inputs.add(root, args.name, args.files, texts, move=args.move)
+    print(f"inputs:{args.name}: {'moved' if args.move else 'copied'} {', '.join(added) or 'nothing'}; "
+          f"described in {root / args.name / inputs.DESCRIPTION}")
+    return 0
+
+
+def cmd_check_inputs(args, cfg):
+    root = cfg.require("inputs")
+    res = inputs.check(root, verify=not args.quick)
+    bad = 0
+    for name, n, problems in res:
+        print(f"inputs:{name}: {n} file{'s' if n != 1 else ''}" + (f", {len(problems)} problem(s)" if problems else ""))
+        for pr in problems:
+            print(f"  {pr}")
+        bad += bool(problems)
+    print(f"{len(res)} inputs, {bad} with problems", file=sys.stderr)
+    return 1 if bad else 0
 
 
 def cmd_clean_runs(args, cfg):
@@ -648,8 +660,6 @@ def parser():
         (("--description",), {"help": "a short remark on the version (catalogue)"}),
         (("--text",), {"help": "the changelog text"}),
         (("--issued",), {"metavar": "YYYY-MM-DD", "help": "the date the data was made (default: the run date)"}),
-        (("--store-only",), {"metavar": "PATH", "action": "append", "default": [],
-                             "help": "a file of the run kept in the store but not published; repeatable"}),
         (("--dry-run",), {"action": "store_true",
                           "help": "write the version into the build area only; catalogue, store, run unchanged"}),
         json_out=False)
@@ -670,6 +680,15 @@ def parser():
         (("--dry-run",), {"action": "store_true", "help": "only say whether it would change"}),
         (("--out",), {"metavar": "FILE", "type": Path, "help": "write the -meta to FILE; nothing else changes"}),
         json_out=False)
+    add("add-input", cmd_add_input, "put files into the inputs area and describe them (input.toml, decision 0021)",
+        (("name",), {"metavar": "<source>/<name>"}),
+        (("files",), {"nargs": "+", "type": Path, "metavar": "FILE_OR_DIR"}),
+        (("--title",), {}), (("--origin",), {"help": "a URL where there is one, else text"}),
+        (("--description",), {}), (("--date",), {"help": "when it was made or received (default: today)"}),
+        (("--note",), {"help": "e.g. why it is not published"}),
+        (("--move",), {"action": "store_true", "help": "move instead of copy"}), json_out=False)
+    add("check-inputs", cmd_check_inputs, "check the inputs area: every file described, sizes and checksums",
+        (("--quick",), {"action": "store_true", "help": "sizes only, no checksums"}), json_out=False)
     add("clean-runs", cmd_clean_runs, "delete the runs in the build area that did not become a version",
         (("slug",), {"nargs": "*", "help": "only these datasets (default: all)"}),
         (("--dry-run",), {"action": "store_true", "help": "only list them"}), json_out=False)
@@ -695,7 +714,7 @@ def main(argv=None):
     try:
         cfg = config.load()
         return args.func(args, cfg)
-    except (LookupError, config.ConfigError, generator.GeneratorError, ValueError) as e:
+    except (LookupError, config.ConfigError, generator.GeneratorError, ValueError, OSError) as e:
         return fail(str(e))
     except BrokenPipeError:
         return 0

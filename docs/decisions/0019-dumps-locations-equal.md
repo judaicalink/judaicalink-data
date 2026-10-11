@@ -1,7 +1,7 @@
 # 0019 Dumps locations are equal; the git history is the permanent record
 
 Status: accepted · Date: 2026-10-11 · Supersedes [0005](0005-dumps-archive-and-mannheim.md); amends
-[0015](0015-dumps-clean-start.md)
+[0015](0015-dumps-clean-start.md) · Amended by [0021](0021-store-and-inputs-area.md) (the store is the dumps; inputs in an inputs area)
 
 ## Context
 
@@ -32,6 +32,8 @@ go on, also of old datasets. Data access is distributed over several locations
 
 - The public dumps hold what is needed to use the data and to understand it, at a reasonable size. Size matters
   even for uncritical data: a file goes into the public dumps only when it is worth it there.
+- *Amended by [0021](0021-store-and-inputs-area.md): the store holds exactly the files of the catalogued versions,
+  all published; what is not published is an input in the inputs area. The two points below are kept as history.*
 - Whether a file (above all an input or an acquisition output) is published or only kept in the store is decided
   per file. The decision can be reversed at any time: it only decides where the file is. A file in the store is
   referenced by its checksum, like any other; publishing it later means copying it to a dumps location and adding

@@ -12,12 +12,9 @@ Input references:
     "<slug>/<run-id>[/<path>]"  output of a run, for development only (add-version refuses it)
     "repo:<path>"               a file of this repository (e.g. catalog/agents.toml), fixed by the commit like
                                 the code: uncommitted changes to it are noted, and add-version refuses the run
-    {"sha256": ..., "bytes": ..., "origin": ..., "description": ...}
-                                a file made outside, found by checksum in the store and the `sources` of
-                                local.toml; origin: where we got it (a URL where there is one, else text, e.g.
-                                who sent it when); description: what the file is (content, format, who made it
-                                and how); the run record names it by checksum, origin and description, never by
-                                local path
+    "inputs:<source>/<name>[/<path>]"
+                                an input that is not published, in the inputs area (decision 0021): all its files, or
+                                one; described by its input.toml (origin, description), whose texts the run record copies
 
 The run object gives the generator its inputs, parameters, a log, the RDF reader and index, and the writers;
 everything it writes goes into the run directory. The run record (run.json) names the generator, the commit
@@ -36,7 +33,7 @@ import time
 import traceback
 from pathlib import Path
 
-from . import catalog, rdf, runs, turtle
+from . import catalog, inputs, rdf, runs, turtle
 from .config import GENERATORS, ROOT
 from .graph import Graph
 
@@ -83,36 +80,26 @@ def is_meta(name):
     return Path(name).name.split(".")[0].endswith("-meta")
 
 
-def find_by_checksum(sha, size, dirs):
-    for d in dirs:
-        if not d.is_dir():
-            continue
-        for p in d.rglob("*"):
-            if p.is_file() and not p.is_symlink() and (size is None or p.stat().st_size == size):
-                if catalog.sha256(p) == sha:
-                    return p
-    return None
-
-
 def resolve(cfg, cat, ref):
-    """An input reference as a list of {ref, file, sha256, bytes, path (local, not recorded)}."""
+    """An input reference as a list of {ref, file, sha256, bytes, path (local, not recorded)[, input (texts of an
+    input of the inputs area)]}."""
     if isinstance(ref, str) and ref.startswith("repo:"):
         rel = ref[5:]
         p = (ROOT / rel).resolve()
         if ROOT not in p.parents or not p.is_file():
             raise GeneratorError(f"input {ref!r}: no such file in this repository")
         return [{"ref": ref, "file": p.name, "sha256": catalog.sha256(p), "bytes": p.stat().st_size, "path": p}]
-    if isinstance(ref, dict):
-        sha, size = ref.get("sha256"), ref.get("bytes")
-        if not sha or not ref.get("origin") or not ref.get("description"):
-            raise GeneratorError(f"an outside input needs sha256, origin and description: {ref}")
-        dirs = [d for d in [cfg.store] if d] + cfg.paths("sources")
-        p = find_by_checksum(sha, size, dirs)
-        if p is None:
-            raise GeneratorError(f"input {sha[:12]}… ({ref['origin']}) not found in the store or the sources "
-                                 "of local.toml")
-        return [{"ref": {"origin": ref["origin"], "description": ref["description"]}, "file": p.name, "sha256": sha, "bytes": p.stat().st_size,
-                 "path": p}]
+    if isinstance(ref, str) and ref.startswith("inputs:"):
+        try:
+            texts, files = inputs.resolve(cfg.path("inputs"), ref)
+        except inputs.InputError as e:
+            raise GeneratorError(str(e)) from None
+        for f in files:
+            f["input"] = texts
+        return files
+    if not isinstance(ref, str):
+        raise GeneratorError(f"input {ref!r}: give a reference string (decision 0021: files made outside are in the "
+                             "inputs area, 'inputs:<source>/<name>')")
     slug, _, rest = ref.partition("/")
     head, _, path = rest.partition("/")
     if not head:
@@ -129,9 +116,6 @@ def resolve(cfg, cat, ref):
         if v is None:
             raise GeneratorError(f"input {ref!r}: no such version in the catalogue")
         files = {f["path"]: f.get("sha256") for f in v.get("files", []) if isinstance(f, dict)}
-        rec = runs.version_record(slug, head) or {}
-        for f in rec.get("files", []):   # files of the version kept only in the store
-            files.setdefault(f.get("path"), f.get("sha256"))
         base = cfg.require("store") / slug / head
     if path:
         if path not in files:
@@ -270,10 +254,14 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
     run = None
     with open(d / "log.txt", "w", encoding="utf-8") as logf:
         try:
-            inputs = {name: resolve(cfg, cat, ref) for name, ref in declared.items()}
-            record["inputs"] = [{"name": n, **{k: v for k, v in i.items() if k != "path"}}
-                                for n, files in inputs.items() for i in files]
-            run = Run(slug, run_id, d, params, inputs, logf)
+            resolved = {name: resolve(cfg, cat, ref) for name, ref in declared.items()}
+            record["inputs"] = [{"name": n, **{k: v for k, v in i.items() if k not in ("path", "input")}}
+                                for n, files in resolved.items() for i in files]
+            described = {i["input"]["input"]: {k: v for k, v in i["input"].items() if k != "input"}
+                         for files in resolved.values() for i in files if "input" in i}
+            if described:
+                record["input_descriptions"] = described
+            run = Run(slug, run_id, d, params, resolved, logf)
             run.log(f"{slug}/{run_id}: commit {commit}" + (f" (uncommitted: {', '.join(dirty)})" if dirty else ""))
             module.generate(run)
             record["status"] = "ok"

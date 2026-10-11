@@ -421,14 +421,6 @@ def check_agents(r, cat, registry):
             r.error(registry.path.name, f"'{name}' (named in {', '.join(slugs)}) is not registered")
 
 
-def version_record(slug, version):
-    p = GENERATORS / slug / "runs" / f"{version}.json"
-    try:
-        return json.loads(p.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
-
-
 def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
     """Check all entries (format of 0013, reserved names of 0018), the agents registry; with dumps, the local
     copies. Returns (entries, errors, warnings)."""
@@ -448,9 +440,6 @@ def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
     if dumps and complete:
         named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
                  for f in v.get("files", []) if isinstance(f, dict)}
-        # files kept only in the store: named by the run record of their version (0018, 0019)
-        named |= {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
-                  for f in (version_record(e.name, v.get("version")) or {}).get("files", []) if isinstance(f, dict)}
         for root in dumps:
             for p in sorted(root.rglob("*")):
                 if p.is_file() and p.relative_to(root).as_posix() not in named:

@@ -1,8 +1,8 @@
 # Local settings of jl. Copy to local.toml (not committed) and adjust.
 # Paths are relative to the repository root.
 
-store = "../lokal/store"              # the store: every version, <slug>/<version>/<path> (decision 0019)
+store = "../lokal/store"              # the store: the files of every version, <slug>/<version>/<path> (0019, 0021)
 build = "../lokal/build"              # build area: <slug>/<run-id>/ (decision 0018)
 # cache = "../lokal/build/.cache"     # canonical forms, by file checksum (default: <build>/.cache)
 legacy_dumps = ["../lokal/dumps"]     # older dump trees in any layout, searched by checksum (collect-store)
-sources = ["../lokal/work/generator-history"]   # where inputs made outside are found by checksum (generate)
+inputs = "../lokal/inputs"            # the inputs area: <source>/<name>/ with input.toml (decision 0021)

@@ -226,18 +226,23 @@ def render(entry, version, files, record, stats, registry):
             ref = i.get("ref")
             if isinstance(ref, str) and ref.startswith("repo:"):
                 t.append((G, PROV.used, commit_url(commit, ref[5:])))
-            elif isinstance(ref, str):
+            elif isinstance(ref, str) and not ref.startswith("inputs:"):
                 s, v, p = ref.split("/", 2)
                 t += [(G, PROV.used, file_iri(s, v, p)), (V, PROV.wasDerivedFrom, version_iri(s, v))]
-            elif isinstance(ref, dict):
+            elif isinstance(ref, str) and ref.startswith("inputs:"):
+                pass   # described once per input below
+            elif isinstance(ref, dict):   # the form of 0018, before the inputs area (0021)
                 if is_url(ref.get("origin")):
                     t.append((G, PROV.used, IRI(ref["origin"])))
-                parts = [f"Input {i.get('name')}: {i.get('file')} ({i.get('bytes')} bytes, sha256 {i.get('sha256')}), "
-                         "a file in no JudaicaLink version."]
-                if (ref.get("description") or "").strip():
-                    parts.append(ref["description"].strip())
-                parts.append(f"Origin: {(ref.get('origin') or '').strip()}")
-                t.append((G, RDFS.comment, Literal(" ".join(parts))))
+        for name, d in sorted((record.get("input_descriptions") or {}).items()):
+            files = [i for i in record.get("inputs", []) if str(i.get("ref", "")).startswith(name + "/")]
+            size = sum(i.get("bytes") or 0 for i in files)
+            if is_url(d.get("origin")):
+                t.append((G, PROV.used, IRI(d["origin"])))
+            t.append((G, RDFS.comment, Literal(
+                f"Input not published ({name}, {len(files)} file{'s' if len(files) != 1 else ''}, {size:,} bytes; "
+                f"named by checksum in the run record): {d.get('title', '').strip()}. {d.get('description', '').strip()} "
+                f"Origin: {d.get('origin', '').strip()}")))
     return t
 
 

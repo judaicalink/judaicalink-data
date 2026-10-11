@@ -35,8 +35,10 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   `dataslug` (sometimes a namespace, e.g. `epi`); the BEACON `#TARGET` is `https://data.judaicalink.org/data/gnd/{ID}`
   (`generate_beacon.py` default), so DNB EntityFacts spreads our URIs in the `https` form: ask for `http://`.
 - **Process details:** which versions each dumps location offers; when to prune historical versions (0019).
-- **The store** (0019): where it lives (now `lokal/` on Kai's machine; later the platform VM?), its backup, and
-  moving into it what is kept today in `lokal/work`, `lokal/export` and the labs VM backup (`../BACKUP-PLAN-2026-10-10.md`).
+- **The store and the inputs area** (0019, [0021](decisions/0021-store-and-inputs-area.md)): where they live (now
+  `lokal/` on Kai's machine; later the platform VM?) and their backup. Inputs still outside the inputs area: the web
+  caches (`lokal/work/api-cache`), the NLI export, the other inputs of kg-complements (moved when their datasets are
+  ported, 0020), and what the labs VM backup holds (`../BACKUP-PLAN-2026-10-10.md`).
 
 - **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is the store `lokal/store` (formerly `dumps-new`; 79 files,
   189 MB, `jl collect-store`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects

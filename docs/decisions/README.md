@@ -24,5 +24,6 @@ consequences. Short is better than complete; link to the documentation that has 
 | [0016](0016-data-access-outside.md) | SPARQL endpoint, demonstrators and data access are not part of judaicalink-data | 2026-10-10 |
 | [0017](0017-slug-stolpersteine.md) | Slugs name the dataset (namespace chosen separately); `stolperstein` renamed to `stolpersteine` | 2026-10-10 |
 | [0018](0018-generator-framework.md) | Generator framework (accepted 2026-10-12) | 2026-10-10 |
-| [0019](0019-dumps-locations-equal.md) | Dumps locations are equal, none permanent; files of a version never change; the git history is the permanent record; pruning possible; public dumps lean, the rest in the store | 2026-10-11 |
+| [0019](0019-dumps-locations-equal.md) | Dumps locations are equal, none permanent; files of a version never change; the git history is the permanent record; pruning possible; public dumps lean, the rest in the store (amended by 0021) | 2026-10-11 |
 | [0020](0020-kg-complements-into-the-framework.md) | The kg-complements datasets in the framework: groupings (15 → 7 datasets and a new compact-memory version), ontology terms as pull requests to judaicalink-ontology, `jl:occupationURI`, order | 2026-10-12 |
+| [0021](0021-store-and-inputs-area.md) | The store is the dumps (only published files); inputs that are not published live in an inputs area `<source>/<name>/` with `input.toml` | 2026-10-12 |

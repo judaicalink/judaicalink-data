@@ -1,6 +1,6 @@
 # 0018 Generator framework
 
-Status: accepted 2026-10-12 (drafted from 2026-10-10, points added as they were agreed and built; later changes get decisions of their own) · Date: 2026-10-10
+Status: accepted 2026-10-12 (drafted from 2026-10-10, points added as they were agreed and built; later changes get decisions of their own) · Date: 2026-10-10 · Amended by [0021](0021-store-and-inputs-area.md) (no files kept only in the store; inputs made outside are in the inputs area)
 
 ## Context
 
@@ -135,7 +135,7 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 - Built 2026-10-11 (`jl add-version`, `src/jl/versions.py`): it also refuses failed runs, runs with a run as
   input, a version id that is reserved or taken, and an author not in the agents registry (default author:
   `git config user.name`); `issued` is the run date. Header comments go only into the Turtle files the generator
-  wrote (copied inputs keep their bytes and checksum). `--store-only <path>` keeps a file of the run in the
+  wrote (copied inputs keep their bytes and checksum). *(Removed by 0021:)* `--store-only <path>` kept a file of the run in the
   store without listing it in the catalogue (the version's run record names it, and `check-catalog --complete`
   accepts it). It warns when an input made outside has no URL as origin. The version's run record is the run
   record plus `version` and the files as they are in the version (size and checksum after the header); the run
@@ -240,11 +240,12 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 - An acquisition output belongs to the version it was made for, or to a support dataset (`kind = "support"`, own
   versions, named in `inputs`) when several datasets use it (e.g. `compact-memory-supp`). The run record names it
   by checksum in every case.
+- *Amended by 0021: an acquisition output that is not published is an input in the inputs area, not a store file.*
 - Whether it is published in the dumps or only kept in the store is decided per file and can be reversed
   ([0019](0019-dumps-locations-equal.md)): published where it is worth it (e.g. the crawls of rujen, yivo,
   stolpersteine, files of their versions), the store where it is large, private or of little use to others
   (e.g. the CM export bundle).
-- The web caches of the lookup datasets (Wikidata, DNB EntityFacts) are kept in the store and referenced by
+- The web caches of the lookup datasets (Wikidata, DNB EntityFacts) are kept in the store *(0021: in the inputs area)* and referenced by
   checksum (2026-10-11: 372 MB, of which 97 Wikidata answers with complete entities make 365 MB).
 
 ### The CLI and the generators
@@ -278,7 +279,8 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   without the `-meta`), `<slug>/<run-id>[/<path>]` (development only; `add-version` refuses it), `repo:<path>` (a
   file of this repository, e.g. `catalog/agents.toml`: fixed by the commit like the code, so uncommitted changes
   to it count as uncommitted code), and for a file
-  made outside that is in no version yet `{sha256, bytes, origin, description}`: found by checksum in the store
+  made outside that is in no version yet `{sha256, bytes, origin, description}` *(replaced by 0021: `inputs:<source>/<name>/`,
+  described by its `input.toml` in the inputs area)*: found by checksum in the store
   and in the `sources` directories of `local.toml`. Both texts are required and go into the run record: `origin`
   says where we got the file (a URL where there is one, e.g. the file in a git repository at a commit; otherwise
   text, e.g. who sent it when), `description` what it is (content, format, who made it and how). `add-version`
