@@ -1,0 +1,23 @@
+{
+ "slug": "gba",
+ "version": "2025-03-21",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/gba/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/gba/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/6fce1cdac61d62f1cbdd710dde5ae2a401a5a05f/gidal/scripts/generator.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): probable, confirmed by content. Reproducible from files on hand: yes."
+ ],
+ "files": [
+  {
+   "path": "gba-final-01.ttl.gz",
+   "bytes": 2937,
+   "sha256": "33fe2d67b4c621c75a7386429c3acd1b15435b2e41b3dfdf9dd2ba74a938192d",
+   "triples": 206
+  }
+ ]
+}

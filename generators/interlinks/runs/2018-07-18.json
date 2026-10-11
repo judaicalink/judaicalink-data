@@ -1,0 +1,32 @@
+{
+ "slug": "interlinks",
+ "version": "2018-07-18",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/interlinks/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/interlinks/README.md",
+  "https://github.com/judaicalink/judaicalink-loader/blob/277524ace7c873842f3c827ec0212fc61a459c5d/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-01.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/277524ace7c873842f3c827ec0212fc61a459c5d/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-02.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/277524ace7c873842f3c827ec0212fc61a459c5d/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-03.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/277524ace7c873842f3c827ec0212fc61a459c5d/generators/Datasets/Interlinks/scripts/JudaicaLink-interlink-04.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): n3 reconstructed, -09 not exact. Reproducible from files on hand: n3 only."
+ ],
+ "files": [
+  {
+   "path": "interlinks.n3.gz",
+   "bytes": 1903,
+   "sha256": "c9935e962444296c896ee094226ff4641532c8fc72d0c54bb8e9da7e797cc466",
+   "triples": 160
+  },
+  {
+   "path": "interlinks-04-enriched-09.ttl.gz",
+   "bytes": 35667,
+   "sha256": "06363cc99920fb6eb2aed740b209a5514ab80867ec053774499c09bc91839bad",
+   "triples": 5032
+  }
+ ]
+}

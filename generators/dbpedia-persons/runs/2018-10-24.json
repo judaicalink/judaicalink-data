@@ -1,0 +1,41 @@
+{
+ "slug": "dbpedia-persons",
+ "version": "2018-10-24",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:33Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/dbpedia-persons/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/dbpedia-persons/README.md",
+  "https://github.com/judaicalink/judaicalink-loader/blob/8668321129189c664e6e44ee0b745d99a000643a/generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/8668321129189c664e6e44ee0b745d99a000643a/generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia_modify.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/8668321129189c664e6e44ee0b745d99a000643a/generators/Datasets/Persons_DBPedia/scripts/person_generator_DBPedia_modify_gnd.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/8668321129189c664e6e44ee0b745d99a000643a/generators/Datasets/Persons_DBPedia/scripts/generated_persons_DBPedia_enrich.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/8668321129189c664e6e44ee0b745d99a000643a/generators/Datasets/Persons_DBPedia/scripts/gndid_generator.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/e1add334e0e47767a4e61bd98fa67429f7f00ae7/generators/gndid-generator.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/abe8e67e1114cb00b8ada5b964fbdf828014f2e2/dbpedia-persons/scripts/Entityfacts-01.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 2 files exact, 1 probable. Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "generated_persons_DBPedia_enriched_02.ttl.gz",
+   "bytes": 710023,
+   "sha256": "34e353fd9b7bf20e8c53a673503eeeb400e4bef4c14a6f532041fde3191c96b3",
+   "triples": 102148
+  },
+  {
+   "path": "persons-gndid.ttl.gz",
+   "bytes": 30570,
+   "sha256": "e8d8cdab643f0b98840c5181299b7c6a00ea0274331ffd3420b2fe9ff68392f8",
+   "triples": 3630
+  },
+  {
+   "path": "Entityfacts-dbpedia-sameas.ttl.gz",
+   "bytes": 135800,
+   "sha256": "c1ff0f22f44f0c244aec4f609822cccc5710b706ca1b4b21e8c68ab750844105",
+   "triples": 18205
+  }
+ ]
+}

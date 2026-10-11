@@ -1,0 +1,29 @@
+{
+ "slug": "yivo",
+ "version": "2020-09-30",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/yivo/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/yivo/README.md",
+  "https://github.com/judaicalink/judaicalink-labs/blob/79440eddce7afc06ca7075f40ebe79b5bc696025/labs/data/management/commands/generate_yivo.py",
+  "https://github.com/judaicalink/judaicalink-labs/blob/79440eddce7afc06ca7075f40ebe79b5bc696025/labs/data/management/commands/_dataset_command.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact. Reproducible from files on hand: yes (from the crawl)."
+ ],
+ "files": [
+  {
+   "path": "yivo.ttl.gz",
+   "bytes": 695155,
+   "sha256": "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842",
+   "triples": 36019
+  },
+  {
+   "path": "yivo.jsonl.gz",
+   "bytes": 913257,
+   "sha256": "d86ff6504e24f869ae1e286e533b175c289b033ed735107add218f31269be6c1"
+  }
+ ]
+}

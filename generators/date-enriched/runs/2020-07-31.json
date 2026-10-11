@@ -1,0 +1,23 @@
+{
+ "slug": "date-enriched",
+ "version": "2020-07-31",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:33Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/date-enriched/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/date-enriched/README.md",
+  "https://github.com/judaicalink/judaicalink-labs/blob/e21387302da9355f2c5f472fae90b0da1cf31dd1/labs/enrichment/management/commands/date_enrichment.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact (by content). Reproducible from files on hand: yes."
+ ],
+ "files": [
+  {
+   "path": "date-enriched.ttl.gz",
+   "bytes": 803216,
+   "sha256": "5d697577d5b4fcf35bdb3b5e504475f46de9c7c45c208a09915620230ad2d9ec",
+   "triples": 88707
+  }
+ ]
+}

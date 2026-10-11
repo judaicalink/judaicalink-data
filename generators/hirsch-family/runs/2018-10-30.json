@@ -1,0 +1,24 @@
+{
+ "slug": "hirsch-family",
+ "version": "2018-10-30",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/hirsch-family/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/hirsch-family/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/40f7c98aa2157f9a533c160f80d678643c1509fd/HirschFamily/scripts/CSV-to-RDF.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact (re-run). Reproducible from files on hand: yes.",
+  "Reproduced on 2026-10-11 by the framework generator generators/hirsch-family/generate.py (commit 877621d): the same triples (jl compare)."
+ ],
+ "files": [
+  {
+   "path": "HirschFamily.ttl.gz",
+   "bytes": 4656,
+   "sha256": "3e0d15737004352dd8aa63d3a82ec40b4ff4de2de329734ffa10adc94210919e",
+   "triples": 506
+  }
+ ]
+}

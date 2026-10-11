@@ -1,0 +1,22 @@
+{
+ "slug": "compact-memory-supp",
+ "version": "2021-01-19",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:33Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/compact-memory-supp/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/compact-memory-supp/README.md",
+  "https://github.com/judaicalink/workflow/blob/eee36e7baaa00c9016c5a135cdf6c578966a9b40/metadata/excel_to_csv_metadata_frankfurt.ipynb"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): same content as the workflow copy. Reproducible from files on hand: probably."
+ ],
+ "files": [
+  {
+   "path": "CM_Seiten_Metadaten.csv.gz",
+   "bytes": 13111336,
+   "sha256": "7affff32c1da8451ffc536db0cb526d39b09848dfcb59fa70b820493616fcd08"
+  }
+ ]
+}

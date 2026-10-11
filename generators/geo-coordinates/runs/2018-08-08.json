@@ -1,0 +1,24 @@
+{
+ "slug": "geo-coordinates",
+ "version": "2018-08-08",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/geo-coordinates/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/geo-coordinates/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/b21f1dd963759f20ac0ed7bb5c56e457cf3f19b8/geocoordinates/scripts/Location-coor-02-02.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/b21f1dd963759f20ac0ed7bb5c56e457cf3f19b8/geocoordinates/scripts/Locaion-coor-03.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): probable. Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "city-geocoor-05.ttl.gz",
+   "bytes": 142001,
+   "sha256": "c4fdf74620e2023a938bbab11103b1af87c5cef0daf5f8ae40b0c74d1ab18004",
+   "triples": 18674
+  }
+ ]
+}

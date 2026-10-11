@@ -1,0 +1,33 @@
+{
+ "slug": "cm-tagme",
+ "version": "2021-01-18",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:33Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/cm-tagme/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/cm-tagme/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12/compact-memory-linking/cm_tagme_resource_reference_data.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12/compact-memory-linking/cm_tagme_resource_reference_rdf.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12/compact-memory-linking/README.md",
+  "https://github.com/judaicalink/workflow/blob/2c13f6a1fab1131dc909aefcdcb268c6cec59be0/legacy/scripts/cm/scripts/entity_extraction/tagme_linker.ipynb",
+  "https://github.com/judaicalink/workflow/blob/2c13f6a1fab1131dc909aefcdcb268c6cec59be0/legacy/scripts/cm/scripts/jl_linking/tagme2pickle.ipynb"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact. Reproducible from files on hand: from intermediates (private backup)."
+ ],
+ "files": [
+  {
+   "path": "cm_tagme_resources.ttl.gz",
+   "bytes": 3034326,
+   "sha256": "ae42fdcf74c9b33452dad9110fe6f94aee67cda8a50852812cb448412da56379",
+   "triples": 749446
+  },
+  {
+   "path": "cm_tagme_references.ttl.gz",
+   "bytes": 29040075,
+   "sha256": "bbf4bb9aab99408eb4e229ac776b4519910411c2e480a0b6ab44694ea7bf4d2e",
+   "triples": 5246122
+  }
+ ]
+}

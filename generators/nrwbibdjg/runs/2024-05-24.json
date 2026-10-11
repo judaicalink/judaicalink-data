@@ -1,0 +1,23 @@
+{
+ "slug": "nrwbibdjg",
+ "version": "2024-05-24",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/nrwbibdjg/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/nrwbibdjg/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/68c96929b12d1e2e22a07a9b81cf03ff90a1dd9e/nrwbibdjg/generator.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact. Reproducible from files on hand: no (source down)."
+ ],
+ "files": [
+  {
+   "path": "nrwbibdjg.ttl.gz",
+   "bytes": 371256,
+   "sha256": "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466",
+   "triples": 33211
+  }
+ ]
+}

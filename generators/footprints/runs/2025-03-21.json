@@ -1,0 +1,23 @@
+{
+ "slug": "footprints",
+ "version": "2025-03-21",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/footprints/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/footprints/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/6dd187ea72f25e48a633f00772fc05b3c104e9cf/footprints/generator.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 2024 exact, 2025 probable. Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "footprints.ttl.gz",
+   "bytes": 445278,
+   "sha256": "01973c29750d5dcb8b9557d75b861639d82d25246140c0c5f696b85b07c3dbe3",
+   "triples": 29922
+  }
+ ]
+}

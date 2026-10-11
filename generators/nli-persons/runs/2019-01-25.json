@@ -1,0 +1,23 @@
+{
+ "slug": "nli-persons",
+ "version": "2019-01-25",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/nli-persons/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/nli-persons/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/724c8eeff9b1d53b54060e3a2738c7898ca885bd/nli-persons/scripts/NLI-persons-03.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact (re-run). Reproducible from files on hand: yes."
+ ],
+ "files": [
+  {
+   "path": "nli-persons.ttl.gz",
+   "bytes": 4145903,
+   "sha256": "4483d52aeabd8e2c52a58442db4cfbf6458f0579831653379dd31a7553b0b599",
+   "triples": 660752
+  }
+ ]
+}

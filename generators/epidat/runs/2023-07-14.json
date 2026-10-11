@@ -1,0 +1,24 @@
+{
+ "slug": "epidat",
+ "version": "2023-07-14",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/epidat/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/epidat/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/bf6f5e398535d39e18c2c4753349b40eab2cb634/epidat/scripts/generator.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/bf6f5e398535d39e18c2c4753349b40eab2cb634/epidat/README.md"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): probable, plus an unknown hand repair. Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "epidat-final-01.ttl.gz",
+   "bytes": 1533441,
+   "sha256": "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a",
+   "triples": 258337
+  }
+ ]
+}

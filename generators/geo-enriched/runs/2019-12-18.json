@@ -1,0 +1,59 @@
+{
+ "slug": "geo-enriched",
+ "version": "2019-12-18",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/geo-enriched/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/geo-enriched/README.md",
+  "https://github.com/judaicalink/judaicalink-labs/blob/f4276a54a4bf89e1eebd1a47f0d1d40d5b3d825b/labs/enrichment/management/commands/geo_enrichment.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): unknown (original not found). Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "bhr-final-05.ttl",
+   "bytes": 68032,
+   "sha256": "c41abb0ec2f45696f990ae09318d4b8f12d09b327e5fe1963407c172f3ec5ad7",
+   "triples": 616
+  },
+  {
+   "path": "djh.ttl",
+   "bytes": 30333,
+   "sha256": "0eea649ea56a43abcd44aaa39999e9fc4b1949ed2bcab26fdb6084711d70eb69",
+   "triples": 277
+  },
+  {
+   "path": "generated_persons_GND_enriched.ttl",
+   "bytes": 78222,
+   "sha256": "502517c89ff6e122c7a5cc44614ff9b9cbbde352ad860f24b4e83ba27041c798",
+   "triples": 709
+  },
+  {
+   "path": "Haskala_enriched.ttl",
+   "bytes": 390,
+   "sha256": "61e0ab29fb2f6c76e5016a81cd1a4e4959152c9e746fb1591f1c60629773d12d",
+   "triples": 0
+  },
+  {
+   "path": "HirschFamily.ttl",
+   "bytes": 6226,
+   "sha256": "ff5bca2dbbabaccfa0cb3f8ead851ed497973b82e680b96cb8582890d2a74f19",
+   "triples": 54
+  },
+  {
+   "path": "ubffm-authors.ttl",
+   "bytes": 121351,
+   "sha256": "129bc5e805971128c7b123d113da5934295ad15e0b185e0c37bcf412e1f7f810",
+   "triples": 976
+  },
+  {
+   "path": "geo_interlinks.ttl",
+   "bytes": 676542,
+   "sha256": "e6352d602c21aabf682932734f8c292b91b73cff02e32c3ac3c731571ef26621",
+   "triples": 22647
+  }
+ ]
+}

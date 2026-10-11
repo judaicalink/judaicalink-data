@@ -1,0 +1,23 @@
+{
+ "slug": "ontology",
+ "version": "2025-11-27",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/ontology/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/ontology/README.md",
+  "https://github.com/judaicalink/judaicalink-ontology/blob/b26c961b3f5ff018985793134148714f2722c8b4/generate.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact. Reproducible from files on hand: yes."
+ ],
+ "files": [
+  {
+   "path": "judaicalink-ontology.ttl.gz",
+   "bytes": 2802,
+   "sha256": "272c3c59db7b705a452793f8c152e7e739e79d17383f56a1fdb68af9315af09a",
+   "triples": 264
+  }
+ ]
+}

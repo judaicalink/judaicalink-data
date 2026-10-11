@@ -1,0 +1,23 @@
+{
+ "slug": "hhkeydocs",
+ "version": "2025-03-21",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/hhkeydocs/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/hhkeydocs/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/033bd4a63656c847756c8f6e39035a288c411a91/hhkeydocs/generator.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): probable. Reproducible from files on hand: partly (live source)."
+ ],
+ "files": [
+  {
+   "path": "hhkeydocs-final-01.ttl.gz",
+   "bytes": 156824,
+   "sha256": "2d912a077e7c53ff363d16f4b37882714373205efcc13abdb2f428ea400ce445",
+   "triples": 16286
+  }
+ ]
+}

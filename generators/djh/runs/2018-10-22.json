@@ -1,0 +1,27 @@
+{
+ "slug": "djh",
+ "version": "2018-10-22",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:33Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/djh/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/djh/README.md",
+  "https://github.com/kaiec/judaicalink-crawler/blob/47b14cae871d779645390c729d697163b5db7d5c/djh-to-json.coffee",
+  "https://github.com/kaiec/judaicalink-crawler/blob/47b14cae871d779645390c729d697163b5db7d5c/djh-json-to-rdf.coffee",
+  "https://github.com/kaiec/judaicalink-crawler/blob/47b14cae871d779645390c729d697163b5db7d5c/crawler.coffee",
+  "https://github.com/kaiec/judaicalink-crawler/blob/47b14cae871d779645390c729d697163b5db7d5c/package.json",
+  "https://github.com/kaiec/judaicalink-crawler/blob/47b14cae871d779645390c729d697163b5db7d5c/README.md"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 2016 step probable, 2018 step unknown. Reproducible from files on hand: partly."
+ ],
+ "files": [
+  {
+   "path": "djh.ttl.gz",
+   "bytes": 104832,
+   "sha256": "b77f295c62f8687a18a4a14783add3a952248a4182d13573a3e6a8e5419e7019",
+   "triples": 3322
+  }
+ ]
+}

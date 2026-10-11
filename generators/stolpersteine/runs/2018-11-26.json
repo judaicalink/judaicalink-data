@@ -1,0 +1,23 @@
+{
+ "slug": "stolpersteine",
+ "version": "2018-11-26",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/stolpersteine/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/stolpersteine/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/22d71f829fbe497b802845aaffa80f0484b8311b/stolpersteine/scripts/Stein-wiki-01.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 2020 exact, 2018 probable. Reproducible from files on hand: 2020 yes."
+ ],
+ "files": [
+  {
+   "path": "stolpersteine.ttl.gz",
+   "bytes": 13048,
+   "sha256": "d266cff15a2a60f627e97c14c9c33303eb955a6969db777aae71a2d712d4d4ec",
+   "triples": 949
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "slug": "dbp-wiki-geo-linking",
+ "version": "2021-01-13",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:33Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/dbp-wiki-geo-linking/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/dbp-wiki-geo-linking/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/de8480d8da80d423d9dbbb25d14318af70706da7/dbp-wiki-geo-linking/dbp-wiki-geo-linking.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/de8480d8da80d423d9dbbb25d14318af70706da7/dbp-wiki-geo-linking/readme.md"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): probable. Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "dbp-wiki-geo-links.ttl",
+   "bytes": 515033,
+   "sha256": "25a8e0ea9d3a2eb06f5ffcfad3929328322c252454707398f28a7e5ecefd5236",
+   "triples": 7023
+  }
+ ]
+}

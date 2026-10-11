@@ -1,0 +1,62 @@
+{
+ "slug": "ep",
+ "version": "2021-05-28",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/ep/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/ep/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/e6686ff1b20ef86a3c64ad217b4cf3f47dbff742/entity-pages/ep_generator.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/e6686ff1b20ef86a3c64ad217b4cf3f47dbff742/entity-pages/ep_manager.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/286651fe676261e4536d8a5a4416069d98bb2f27/entity-pages/label_selector.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/b3df5f7c3996aee9f929bb5c1bd16b99a4c08f5f/entity-pages/person_selector.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/b3df5f7c3996aee9f929bb5c1bd16b99a4c08f5f/entity-pages/location_selector.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/747e73c2591e9d79203869f52ca6cc9789256441/entity-pages/birth_death_date_loc_selector.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/4865ffdd910bc2b03074fdcdf279b30da87fdec5/entity-pages/subcategorization.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/4865ffdd910bc2b03074fdcdf279b30da87fdec5/entity-pages/readme.md",
+  "https://github.com/judaicalink/workflow/blob/2c13f6a1fab1131dc909aefcdcb268c6cec59be0/legacy/scripts/jl/scripts/entity_pages/ep/ep_generator.md",
+  "https://github.com/judaicalink/workflow/blob/2c13f6a1fab1131dc909aefcdcb268c6cec59be0/legacy/scripts/jl/scripts/entity_pages/ep/ep_manager.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 2 files exact, 4 probable. Reproducible from files on hand: 2 files from intermediates."
+ ],
+ "files": [
+  {
+   "path": "entity_pages.ttl.gz",
+   "bytes": 25813822,
+   "sha256": "06e4fc3e870e565b4c97db5f4d38ae97cba3c9fc5b15ba81264fda86a42420ea",
+   "triples": 2098149
+  },
+  {
+   "path": "ep_labels.ttl.gz",
+   "bytes": 6962357,
+   "sha256": "44e5dec550100dbd5356033a128e2698488e43bb8cb99cef90be040f97590210",
+   "triples": 643098
+  },
+  {
+   "path": "ep_locations.ttl",
+   "bytes": 183635,
+   "sha256": "b035b3b2198b7ab304c5ebbf8c8eecda951b263563b295e02116516fa7ade718",
+   "triples": 3006
+  },
+  {
+   "path": "ep_persons.ttl",
+   "bytes": 14948404,
+   "sha256": "c5c8053f54ab758531eb1be05d0c7da7a7926da9e405bff98550c39c76cf3519",
+   "triples": 237272
+  },
+  {
+   "path": "ep_birth_death_date_loc.ttl",
+   "bytes": 7708440,
+   "sha256": "e2364f9703a864a9a9c2e80e3550d43ccd93c33aed1f48d0b9e1b2b0af5785e2",
+   "triples": 144444
+  },
+  {
+   "path": "subcategorization.ttl.gz",
+   "bytes": 19243049,
+   "sha256": "8b1d205a7d5a27ee2605afb8fc0e2d8cbf334ee702b55f48915838b02ec4935c",
+   "triples": 1386624
+  }
+ ]
+}

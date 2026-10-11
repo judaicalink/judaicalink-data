@@ -1,0 +1,71 @@
+{
+ "slug": "gnd-persons",
+ "version": "2018-11-29",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/gnd-persons/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/gnd-persons/README.md",
+  "https://github.com/judaicalink/judaicalink-loader/blob/a93751a6d1ad19ea8c3258ea3701c9114bfab6e0/generators/Datasets/Persons_GND/scripts/person_generator_GND_01.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/a93751a6d1ad19ea8c3258ea3701c9114bfab6e0/generators/Datasets/Persons_GND/scripts/person_generator_GND_02.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/a93751a6d1ad19ea8c3258ea3701c9114bfab6e0/generators/Datasets/Persons_GND/scripts/person_generator_GND_Occontology_01.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/a93751a6d1ad19ea8c3258ea3701c9114bfab6e0/generators/Datasets/Persons_GND/scripts/person_generator_GND_Occontology_02.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/85f2bc5c2bfcf84395c57d24da5f1da6c4d5dd15/generators/Datasets/Persons_GND/scripts/Freimann-GND-enrich.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/6d2a287f5a4aee460e2677c46c7fff0f4b40d769/gnd-persons/scripts/UB-gnd.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/abe8e67e1114cb00b8ada5b964fbdf828014f2e2/gnd-persons/scripts/Entityfacts-01.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 4 of 8 files exact. Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "generated_persons_GND.ttl.gz",
+   "bytes": 288346,
+   "sha256": "ab4565b96130b30f1a73ec7ce18f1d2a0ba63e51d9e0d24577147a20bf5ea55c",
+   "triples": 39622
+  },
+  {
+   "path": "generated_persons_GND_enriched.ttl.gz",
+   "bytes": 339726,
+   "sha256": "a0e44d4858926dede65493f4b4da23df8137d4fca6ac03a382920323ffc3672e",
+   "triples": 49330
+  },
+  {
+   "path": "Freimann-GND-enriched-05.ttl.gz",
+   "bytes": 35454,
+   "sha256": "c47cba2d316625202e97e2328266e0e1d6289af70ae1303292da2a9c83c1dcb2",
+   "triples": 5477
+  },
+  {
+   "path": "ub-authors.ttl.gz",
+   "bytes": 2407331,
+   "sha256": "1399b7c2b1695b151917f398f63e78fa7207e475d0ef256bc8173112597046e3",
+   "triples": 338809
+  },
+  {
+   "path": "Entityfacts-ubgnd-sameas.ttl.gz",
+   "bytes": 1907589,
+   "sha256": "3f41408595864abfd4b1d01baebc3f08fb61799f4ba73642a4140bcd9e6f8fcd",
+   "triples": 273532
+  },
+  {
+   "path": "Entityfacts-gnd-sameas.ttl.gz",
+   "bytes": 213523,
+   "sha256": "b13b59fa8113da1d0f6105f34efebba0a9b5e7c8fa7981e98c29c2c24b2ca6f5",
+   "triples": 29920
+  },
+  {
+   "path": "Entityfacts-freimann-sameas.ttl.gz",
+   "bytes": 35142,
+   "sha256": "4c5f08614b7689d04b0aae34e1828d69c5c1a3b62f724943bf29e2729e7459bf",
+   "triples": 4842
+  },
+  {
+   "path": "jl-zbw.ttl.gz",
+   "bytes": 5731,
+   "sha256": "58dc19daf6495f84e78110c0c3472692736f4b2ff911caa4b3b82eba2c73b1d9",
+   "triples": 718
+  }
+ ]
+}

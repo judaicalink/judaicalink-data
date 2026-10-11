@@ -1,0 +1,22 @@
+{
+ "slug": "jre",
+ "version": "2019-11-29",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/jre/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/jre/README.md"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): unknown (no generator found). Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "jre.ttl.gz",
+   "bytes": 12926,
+   "sha256": "938de30400eef55d65f129553a8c1e0156ac57aa2e1b81fb373f883bc464c932",
+   "triples": 1678
+  }
+ ]
+}

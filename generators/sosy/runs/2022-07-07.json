@@ -1,0 +1,23 @@
+{
+ "slug": "sosy",
+ "version": "2022-07-07",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/sosy/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/sosy/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/add17c080d559b584a0a2b47e08aeca159df8485/soundscape-synagoge/scripts/generator.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): probable. Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "sosy-final-01.ttl.gz",
+   "bytes": 12497,
+   "sha256": "89890dd8b42bb09afd30809e8b8f963abf0e07a5ba402ecdf13e36fb295297d8",
+   "triples": 1312
+  }
+ ]
+}

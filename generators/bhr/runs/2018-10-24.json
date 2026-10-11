@@ -1,0 +1,40 @@
+{
+ "slug": "bhr",
+ "version": "2018-10-24",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:30Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/bhr/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/bhr/README.md",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round1/scripts/Scrapping_Persons_01.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round1/scripts/ContentExtraction.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round1/scripts/Encyc-to-RDF.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round1/scripts/Encyc-to-RDF-ID.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round1/scripts/BHR-GND.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round1/scripts/BHR-vs-GND-01.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round1/scripts/BHR-vs-JudaicaLink-01.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round2/scripts/Scrapping_Persons_03.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-02.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-03.py",
+  "https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-04.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/abe8e67e1114cb00b8ada5b964fbdf828014f2e2/bhr/Round2/scripts/Entityfacts-01.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): final step exact, EntityFacts probable. Reproducible from files on hand: final step only."
+ ],
+ "files": [
+  {
+   "path": "bhr-final-05.ttl.gz",
+   "bytes": 1516250,
+   "sha256": "a64d950ecc572e9fb8bceb9d289647857fcc68bad0363b60ecc6f0625f5c959f",
+   "triples": 31034
+  },
+  {
+   "path": "Entityfacts-bhr-sameas.ttl.gz",
+   "bytes": 32483,
+   "sha256": "2f1706d67e03b34d204a6c578b0e2f421104a55b144a0afe2f99bfc1039602f4",
+   "triples": 4358
+  }
+ ]
+}

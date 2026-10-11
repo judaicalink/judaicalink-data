@@ -1,0 +1,30 @@
+{
+ "slug": "stolpersteine",
+ "version": "2020-10-06",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/stolpersteine/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/stolpersteine/README.md",
+  "https://github.com/judaicalink/judaicalink-labs/blob/4a9e253b35590b5623c2c9212cfcedda8a7e150b/labs/data/management/commands/generate_stolpersteine.py",
+  "https://github.com/judaicalink/judaicalink-labs/blob/4a9e253b35590b5623c2c9212cfcedda8a7e150b/labs/data/management/commands/_dataset_command.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 2020 exact, 2018 probable. Reproducible from files on hand: 2020 yes.",
+  "Reproduced on 2026-10-11 by the framework generator generators/stolpersteine/generate.py (commit 877621d): the same triples (jl compare)."
+ ],
+ "files": [
+  {
+   "path": "stolpersteine.ttl.gz",
+   "bytes": 9314,
+   "sha256": "f00d52fdf756ab50694750a31d960ee0c5aace0a42e889169a4182d5efe63266",
+   "triples": 1119
+  },
+  {
+   "path": "stolpersteine.jsonl.gz",
+   "bytes": 13665,
+   "sha256": "40add27011df4c3ae69f71a0d538e560dacb1cf2ac3613a5fcef8510f4e59a26"
+  }
+ ]
+}

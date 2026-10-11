@@ -1,0 +1,28 @@
+{
+ "slug": "ubffm-persons",
+ "version": "2019-01-24",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:37Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/ubffm-persons/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/ubffm-persons/README.md"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): unknown (no generator found). Reproducible from files on hand: no."
+ ],
+ "files": [
+  {
+   "path": "ubffm-authors.ttl.gz",
+   "bytes": 505187,
+   "sha256": "6cc3ae3df6bb6972230cb77c87a269cc9cffd0d63047f62164a77ba3771f0364",
+   "triples": 67218
+  },
+  {
+   "path": "ubffm-authors-02.ttl.gz",
+   "bytes": 408010,
+   "sha256": "a6ab1fe57f453fe962fdc0066cca216207a55e0f45d35d7ad0eb526b3cce50e2",
+   "triples": 52256
+  }
+ ]
+}

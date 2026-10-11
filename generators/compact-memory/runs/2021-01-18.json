@@ -1,0 +1,25 @@
+{
+ "slug": "compact-memory",
+ "version": "2021-01-18",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:33Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/compact-memory/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/compact-memory/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12/compact-memory-linking/cm_pages_data.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12/compact-memory-linking/cm_pages_rdf.ipynb",
+  "https://github.com/judaicalink/judaicalink-generators/blob/aefa2e59b8b8743bdcde44b9b612cfa3ff2bdf12/compact-memory-linking/README.md"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): exact. Reproducible from files on hand: from intermediates (private backup)."
+ ],
+ "files": [
+  {
+   "path": "cm_tagme_pages.ttl.gz",
+   "bytes": 3908853,
+   "sha256": "6c6bbedb82547dd4b06d8969760b312a03b0b7233b6b6620e334a8d69adb0874",
+   "triples": 624682
+  }
+ ]
+}

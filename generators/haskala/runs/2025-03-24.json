@@ -1,0 +1,31 @@
+{
+ "slug": "haskala",
+ "version": "2025-03-24",
+ "mode": "import",
+ "imported": "2026-10-11T21:34:36Z",
+ "commit": "27cd594ca86a381af5d16ad24515ea7e8d06147a",
+ "description": "Made before the generator framework of judaicalink-data. The generator folder (generators/haskala/) documents how it was made: the code and its history, the evidence that this code made this version, the inputs, and whether the version can be reproduced.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-data/blob/27cd594ca86a381af5d16ad24515ea7e8d06147a/generators/haskala/README.md",
+  "https://github.com/judaicalink/judaicalink-generators/blob/f9b8215519166a50438e3269b3e016a773b5367b/haskala/scripts/CSV-to-RDF-Haskala.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/f9b8215519166a50438e3269b3e016a773b5367b/haskala/scripts/CSV-to-RDF-Haskalanet.py",
+  "https://github.com/judaicalink/judaicalink-generators/blob/f9b8215519166a50438e3269b3e016a773b5367b/haskala/scripts/GND-enrich-02.py"
+ ],
+ "notes": [
+  "Evidence for the generator code (generators/README.md): 2019 output exact, 2025 exact. Reproducible from files on hand: 2025 `Haskala_net` only."
+ ],
+ "files": [
+  {
+   "path": "Haskala.ttl.gz",
+   "bytes": 19519,
+   "sha256": "c167c1ef7719d90963c0b5d2ffb01cb4c62ce9c7f95670e38e2a46d2fa7dff85",
+   "triples": 1677
+  },
+  {
+   "path": "Haskala_net.ttl.gz",
+   "bytes": 2824,
+   "sha256": "79a450e29adb2cfc747f9ba5b8bde98901f657c05c74af7f3af15ce3d3b538b1",
+   "triples": 320
+  }
+ ]
+}
