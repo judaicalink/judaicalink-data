@@ -32,6 +32,8 @@ slug = "test"
 title = "A test"
 author = "Ann Example"
 namespaces = ["test"]
+kind = "complement"
+method = ["deterministic", "lookup"]
 
 # a comment that must stay
 
@@ -154,6 +156,11 @@ class Versions(unittest.TestCase):
                        "http://data.judaicalink.org/datasets/src/2020-01-01"), m)
         self.assertIn((V, "http://rdfs.org/ns/void#triples", rdf.Literal("2", rdf.XSD + "integer")), m)
         self.assertFalse(any("Ann Example" in str(o) for _, _, o in m))
+        D, DCT = "http://data.judaicalink.org/datasets/test", "http://purl.org/dc/terms/"
+        self.assertIn((D, DCT + "type", "http://data.judaicalink.org/datasets/vocabulary/kind/complement"), m)
+        self.assertIn((D, DCT + "type", "http://data.judaicalink.org/datasets/vocabulary/method/lookup"), m)
+        self.assertIn((D, DCT + "abstract", rdf.Literal("The test dataset.")), m)
+        self.assertIn((D, DCT + "description", rdf.Literal("The test dataset.\n\nMore.")), m)
         self.assertFalse(any("data.txt" in s for s, _, _ in m))   # store-only file is no distribution
         # the check accepts the store-only file
         out = []

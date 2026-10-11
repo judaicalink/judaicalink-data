@@ -1,0 +1,74 @@
+# The values of the catalogue fields `kind` and `method` (decision 0013) with their definitions (decision 0018).
+#
+# Each value is a SKOS concept, http://data.judaicalink.org/datasets/vocabulary/<field>/<value>, in the concept
+# scheme http://data.judaicalink.org/datasets/vocabulary/<field>; the -meta files state them as dcterms:type of the
+# dataset. Published in the dataset judaicalink-vocabulary, generated from this file. `jl check-catalog` accepts
+# exactly these values. A value is never renamed or reused; one that should no longer be used gets `withdrawn`.
+
+[kind]
+label = "Kinds of JudaicaLink datasets"
+definition = "What a dataset is: its role in the JudaicaLink knowledge graph."
+
+[kind.values.records]
+label = "Records"
+definition = "Records from one source about persons, places, works or other entities, one resource per record."
+
+[kind.values.complement]
+label = "Complement"
+definition = "Statements about the resources of other datasets that only add to them (normalised values, enrichments, links), without changing them."
+
+[kind.values.linkset]
+label = "Linkset"
+definition = "Links between resources of different datasets, or from them to resources outside JudaicaLink, and nothing else."
+
+[kind.values.entity-pages]
+label = "Entity pages"
+definition = "The entity pages of JudaicaLink: one resource per entity, bringing together the records about it."
+
+[kind.values.ontology]
+label = "Ontology"
+definition = "Classes and properties used to describe the data."
+
+[kind.values.vocabulary]
+label = "Vocabulary"
+definition = "A controlled vocabulary: concepts used as values in the data or in its description."
+
+[kind.values.support]
+label = "Support data"
+definition = "Data that other datasets are made from or that describes them (caches, label lists, page metadata, agents), rather than data about the entities themselves."
+
+[method]
+label = "Methods by which JudaicaLink datasets are made"
+definition = "How the statements of a dataset were made; a dataset may name several methods."
+
+[method.values.curated]
+label = "Curated"
+definition = "Made or checked statement by statement by people."
+
+[method.values.scraped]
+label = "Scraped"
+definition = "Extracted from web pages written for human readers."
+
+[method.values.converted]
+label = "Converted"
+definition = "Converted by a program from structured data of the source (an export, a dump, an API), keeping its content."
+
+[method.values.deterministic]
+label = "Deterministic"
+definition = "Derived by a program from other data with exact rules: the same input always gives the same statements, and every statement follows from the input."
+
+[method.values.rule-based]
+label = "Rule-based"
+definition = "Derived with heuristic rules (patterns, string matching, normalisation); a statement can be wrong in an individual case."
+
+[method.values.lookup]
+label = "Lookup"
+definition = "Looked up by identifier or exact name in an external service or a dictionary (e.g. Wikidata, DNB EntityFacts)."
+
+[method.values.statistical]
+label = "Statistical"
+definition = "Made by statistical methods or machine learning (scores, estimates, automatic entity linking); statements are probable, not certain."
+
+[method.values.ai-generated]
+label = "AI-generated"
+definition = "Made by generative AI (large language models); statements may be wrong and were not checked one by one."

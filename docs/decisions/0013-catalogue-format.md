@@ -1,6 +1,6 @@
 # 0013 Catalogue entry format: datasets, versions, changelog
 
-Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`, changelog authors, dated legacy versions, generator folders; 2026-10-11: version field `graph` removed, see 0018)
+Status: accepted · Date: 2026-10-08 (proposed 2026-10-07; amended 2026-10-09: `aliases`, `inputs`, support data, no `authorlink`, changelog authors, dated legacy versions, generator folders; 2026-10-11: version field `graph` removed, values of `kind` and `method` defined in `catalog/vocabulary.toml`, see 0018)
 
 ## Context
 
@@ -40,7 +40,7 @@ is ready; Frankfurt gets the catalogue and its documentation and adapts their sy
 | `links` | list of related links without predefined purpose: `[[links]]` with `url`, `label` (e.g. the online source, a generator, a paper, related support data) |
 | `example` | an example entity URI |
 | `picture` | logo of the source |
-| `kind` | `records`, `complement`, `linkset`, `entity-pages`, `ontology`, `vocabulary`, `support` |
+| `kind` | `records`, `complement`, `linkset`, `entity-pages`, `ontology`, `vocabulary`, `support` (definitions: `catalog/vocabulary.toml`, 0018) |
 | `method` | how the data was made, list: `curated`, `scraped`, `converted`, `deterministic`, `rule-based`, `lookup`, `statistical`, `ai-generated` |
 | `namespaces` | URI namespaces the dataset coins, list, relative to `http://data.judaicalink.org/data/` (sub-paths allowed: `nli/record`) |
 | `replaces` | slugs of the datasets this one supersedes, list ([0007](0007-complementary-and-superseding-datasets.md)); the inverse (`replaced_by`) is derived by the tooling |

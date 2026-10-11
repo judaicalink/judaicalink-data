@@ -20,9 +20,6 @@ SLUG = re.compile(r"^[a-z0-9][a-z0-9.-]*$")
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
 FRONT_MATTER = re.compile(r"^﻿?\+\+\+[ \t]*\r?\n(.*?)\r?\n\+\+\+[ \t]*(?:\r?\n|$)", re.S)
 
-KINDS = {"records", "complement", "linkset", "entity-pages", "ontology", "vocabulary", "support"}
-METHODS = {"curated", "scraped", "converted", "deterministic", "rule-based", "lookup", "statistical",
-           "ai-generated"}
 RESERVED_SLUGS = {"agents"}                # datasets/agents/… holds the agents (0018)
 RESERVED_VERSIONS = {"meta", "current"}    # datasets/<slug>/meta, <slug>/current (0018)
 
@@ -86,6 +83,11 @@ class Entry:
         text = re.sub(r"<[^>]+>", " ", text)
         text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
         return re.sub(r"\s+", " ", text).strip()
+
+    def description(self):
+        """The full body as written (Markdown), without the <!--more--> marker."""
+        text = "\n".join(line.rstrip() for line in self.body.replace("\r\n", "\n").split("\n"))
+        return "\n\n".join(p.strip() for p in text.split("<!--more-->") if p.strip())
 
     def contributors(self):
         """Everyone named as author of a version or a changelog entry (0013), sorted by name."""
@@ -253,9 +255,9 @@ DATASET = {
     "slug": (lambda v: isinstance(v, str) and SLUG.match(v), "a slug (lower-case letters, digits, '-', '.')"),
     "title": TEXT, "author": AUTHOR, "license": (lambda v: True, ""),
     "date": DATE, "website": URL, "links": (lambda v: True, ""), "example": URL, "picture": TEXT,
-    "kind": (lambda v: v in KINDS, "one of " + ", ".join(sorted(KINDS))),
-    "method": (lambda v: isinstance(v, list) and v and all(x in METHODS for x in v),
-               "a non-empty list of " + ", ".join(sorted(METHODS))),
+    "kind": (lambda v: isinstance(v, str), "a value of catalog/vocabulary.toml"),   # values: check_vocabulary
+    "method": (lambda v: isinstance(v, list) and v and all(isinstance(x, str) for x in v),
+               "a non-empty list of values of catalog/vocabulary.toml"),
     "namespaces": (lambda v: is_str_list(v) and all(not x.startswith("/") and not x.startswith("http")
                                                     for x in v),
                    "a list of namespaces relative to http://data.judaicalink.org/data/"),
@@ -392,6 +394,22 @@ def check_local_files(r, e, dumps, complete=False):
                     r.error(where, f"sha256 differs from the copy in {root}")
 
 
+def check_vocabulary(r, cat):
+    """kind and method use the values of catalog/vocabulary.toml (0013, 0018)."""
+    from . import vocabulary
+    try:
+        allowed = {f: vocabulary.values(f) for f in vocabulary.FIELDS}
+    except ValueError as e:
+        r.error("vocabulary.toml", str(e))
+        return
+    for e in cat.entries.values():
+        for f in vocabulary.FIELDS:
+            v = e.data.get(f)
+            for x in ([v] if isinstance(v, str) else v if isinstance(v, list) else []):
+                if isinstance(x, str) and x not in allowed[f]:
+                    r.error(e.path.name, f"{f} '{x}' is not one of {', '.join(sorted(allowed[f]))}")
+
+
 def check_agents(r, cat, registry):
     """Every name in the catalogue is in the agents registry (0018)."""
     for err in registry.errors:
@@ -426,6 +444,7 @@ def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
         if dumps:
             check_local_files(r, e, dumps, complete)
     check_agents(r, cat, registry)
+    check_vocabulary(r, cat)
     if dumps and complete:
         named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
                  for f in v.get("files", []) if isinstance(f, dict)}

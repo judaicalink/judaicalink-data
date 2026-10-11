@@ -12,7 +12,7 @@ time, framework commit). A -meta file is only rewritten when its content changed
 import gzip
 import re
 
-from . import canonical
+from . import canonical, vocabulary
 from .agents import software_iri
 from .rdf import RDF_TYPE, XSD, IRI, Literal, nt_line, read_triples
 from .turtle import PREFIXES, Namespace
@@ -126,7 +126,13 @@ def render(entry, version, files, record, stats, registry):
           (D, DCAT.landingPage, IRI(LANDING_PAGE)),
           (D, DCAT.hasVersion, V)]
     if entry.summary():
-        t.append((D, DCTERMS.description, Literal(entry.summary())))
+        t.append((D, DCTERMS.abstract, Literal(entry.summary())))
+    if entry.description():
+        t.append((D, DCTERMS.description, Literal(entry.description())))
+    for field in vocabulary.FIELDS:
+        v = d.get(field)
+        for x in [v] if isinstance(v, str) else v if isinstance(v, list) else []:
+            t.append((D, DCTERMS.type, IRI(vocabulary.value_iri(field, x))))
     lic = d.get("license") or {}
     if is_url(lic.get("uri")):
         t.append((D, DCTERMS.license, IRI(lic["uri"])))

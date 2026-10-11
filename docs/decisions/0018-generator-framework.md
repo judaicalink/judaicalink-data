@@ -64,6 +64,8 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 | metadata graph (the `-meta` file of the loaded version) | `datasets/<slug>/meta` |
 | person | `datasets/agents/persons/<n>` |
 | software agent | `datasets/agents/software/<name>` |
+| value of `kind` / `method` (SKOS concept; its scheme) | `datasets/vocabulary/kind/<kind>`, `datasets/vocabulary/method/<method>` (`datasets/vocabulary/kind`, `…/method`) |
+| checksum of a file (`spdx:Checksum`) | `dumps/<slug>/<version>/<path>#sha256` |
 
 - URIs identify; they need not resolve. Locations stay out of the descriptions ([0014](0014-locations-dataindex-finder.md)):
   the file URI is the identifier of the distribution, `dcat:accessURL` is the finder, no `dcat:downloadURL`.
@@ -302,7 +304,7 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   stolpersteine (crawl of 2020-10-06), rujen (crawl of 2020-09-28) and hirsch-family (CSV of `40f7c98`, by
   checksum and origin) give exactly the triples of their kept versions (1,119, 140,472, 506).
 
-### The `-meta` content (built 2026-10-11, to be reviewed)
+### The `-meta` content (built and reviewed 2026-10-11)
 
 Rendered by `jl add-version` and `jl render-meta` (`src/jl/meta.py`) from the catalogue entry, the run record of
 the version and statistics measured on its files; gzipped Turtle with header comments, graph `datasets/<slug>/meta`.
@@ -310,9 +312,11 @@ It describes the version and its dataset, but no catalogue state that moves (`st
 maintainer, the contributors), so moving `stable` rewrites no `-meta` (the proposal of 2026-10-11). Two dates:
 the version's `dcterms:issued` (fixed) and the end of the metadata rendering (changes).
 
-- **Dataset** `datasets/<slug>`: `dcat:Dataset`, `void:Dataset`; identifier, title, description (the summary of
-  the entry), licence, `dcterms:source` (website), `void:exampleResource`, `void:uriSpace` per namespace,
-  `dcterms:replaces`, `dcat:landingPage` (0014), `dcat:hasVersion`.
+- **Dataset** `datasets/<slug>`: `dcat:Dataset`, `void:Dataset`; identifier, title, `dcterms:abstract` (the
+  summary of the entry, plain text), `dcterms:description` (the full body as written, Markdown, without the
+  `<!--more-->` marker), `dcterms:type` (the values of `kind` and `method` as vocabulary IRIs), licence,
+  `dcterms:source` (website), `void:exampleResource`, `void:uriSpace` per namespace, `dcterms:replaces`,
+  `dcat:landingPage` (0014), `dcat:hasVersion`.
 - **Version** `datasets/<slug>/<version>`: also `prov:Entity`; `dcat:isVersionOf`, `dcat:version`, issued,
   description, `dcterms:creator` (the version's authors, by IRI), `owl:deprecated` if withdrawn; measured on the
   union of its RDF data files: `void:triples`, `void:distinctSubjects`, `void:properties`, `void:classes`;
@@ -332,6 +336,36 @@ the version's `dcterms:issued` (fixed) and the end of the metadata rendering (ch
   size and checksum in the entry, only when the content changed. Both commands refuse uncommitted framework
   code (except `--dry-run`, `render-meta --out`).
 
+#### Review of the `-meta` content (2026-10-11)
+
+Four points, decided and built the same day:
+
+- **`kind` and `method`** go into the `-meta` as `dcterms:type` of the dataset, with IRIs
+  `datasets/vocabulary/kind/<kind>` and `datasets/vocabulary/method/<method>` (`skos:Concept` in two concept
+  schemes, one per field). Under `datasets/`, not in the ontology: they describe datasets and belong to the
+  framework, and new values need no ontology release. Their labels and definitions are published in a dataset of
+  their own, `judaicalink-vocabulary` (not together with the agents: they change for different reasons). Dataset
+  level only, as in the catalogue; how a single version was made is in its generation activity. Built:
+  `catalog/vocabulary.toml` (labels and definitions, drafted 2026-10-11 from 0013 and the kg-complements table) is
+  also the list of values `jl check-catalog` accepts; `generators/judaicalink-vocabulary` (input
+  `repo:catalog/vocabulary.toml`) gives each value as a `skos:Concept` with `skos:notation`, English label and
+  definition, a withdrawn value with `owl:deprecated`.
+- **The legacy `graph`** of a version is not stated, and the version field `graph` of the catalogue (the name of the
+  graph a legacy version was loaded under, e.g. `data/gnd-persons`, `data/geo-coor`; 27 versions) is removed,
+  amending [0013](0013-catalogue-format.md). It was redundant and confusing: every version is loaded into the graph
+  of its dataset IRI (0006), also the legacy versions, so the named graphs change without a transition. These
+  graph IRIs are very unlikely to be referenced outside; whoever loads a new catalogue state loads the data again
+  anyway. Nothing read the field (the local index already uses the dataset IRIs), and no `-meta` contained it. The
+  former names stay in the git history and in the old catalogues.
+- **Summary and full description:** the dataset gets `dcterms:abstract` (the summary, plain text, as
+  `dcterms:description` had so far) and `dcterms:description` (the full body of the entry as written, Markdown
+  included, without the `<!--more-->` marker). The `-meta` travels with the dump, and the body holds what users of
+  the files need (sources, how the data was obtained, known problems). No language tag (titles and quotations are
+  mixed). HTML left in older bodies is cleaned up in the entries (catalogue curation).
+- **Checksums** stay in the DCAT 3 form, `spdx:checksum` to an `spdx:Checksum` with algorithm and value (understood by
+  DCAT-AP tools), with the IRI `<file IRI>#sha256` instead of the usual blank node; not a plain property such as
+  the pending `schema:sha256`.
+
 Tested 2026-10-11: `add-version --dry-run` on the clean hirsch-family run (data file identical to the version
 2018-10-30 except for the header; `-meta` 54 triples), `render-meta --out` on the legacy versions of rujen and
 stolpersteine; unit tests on a temporary catalogue and store (add, refuse, render unchanged, render after a
@@ -349,19 +383,3 @@ change of the entry). No version was added to the real catalogue.
 - None of the original list. The first generators (stolpersteine 2020, rujen, hirsch-family) confirmed the
   design (see The CLI and the generators); `add-version`, `render-meta` and `import-files` are built, and every
   version has a `-meta` (2026-10-11).
-- To review in the `-meta` content: the full description (body) is not included, only the summary; checksums as
-  `<file>#sha256` IRIs.
-- Decided 2026-10-11: the version field `graph` of the catalogue (the name of the graph a legacy version was loaded
-  under, e.g. `data/gnd-persons`, `data/geo-coor`; 27 versions) is removed, amending [0013](0013-catalogue-format.md).
-  It was redundant and confusing: every version is loaded into the graph of its dataset IRI (0006), also the legacy
-  versions, so the named graphs change without a transition. These graph IRIs are very unlikely to be referenced
-  outside; whoever loads a new catalogue state loads the data again anyway. Nothing read the field (the local
-  index already uses the dataset IRIs), and no `-meta` contained it. The former names stay in the git history and
-  in the old catalogues.
-- Decided 2026-10-11, not built yet: `kind` and `method` of the entry go into the `-meta` as `dcterms:type` of the
-  dataset, with IRIs `datasets/vocabulary/kind/<kind>` and `datasets/vocabulary/method/<method>` (`skos:Concept`
-  in two concept schemes, one per field; values and definitions as in 0013). Under `datasets/`, not in the
-  ontology: they describe datasets and belong to the framework, and new values need no ontology release. Their
-  labels and definitions are published in a dataset of their own, `judaicalink-vocabulary`, generated from a file
-  in this repository (not together with the agents: they change for different reasons). Dataset level only, as in
-  the catalogue; how a single version was made is in its generation activity.

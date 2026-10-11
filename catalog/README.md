@@ -31,6 +31,13 @@ entry (`author`, version `author`, changelog `author`) must be registered (`./jl
 list-agents` shows the registry with the datasets that name each person. The names are published as data only
 in the dataset `judaicalink-agents`, generated from the registry.
 
+## Kinds and methods
+
+[`vocabulary.toml`](vocabulary.toml) defines the values of `kind` and `method` (label and definition of each);
+`./jl check-catalog` accepts exactly these values. The `-meta` files state them as `dcterms:type` with the IRIs
+`http://data.judaicalink.org/datasets/vocabulary/<field>/<value>`, defined as data in the dataset
+`judaicalink-vocabulary`, generated from this file ([0018](../docs/decisions/0018-generator-framework.md)).
+
 ## Migration (2026-10-09)
 
 The entries were converted to the format of 0013 by [`migrate_0013.py`](migrate_0013.py), as described in
