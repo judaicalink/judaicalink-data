@@ -5,7 +5,8 @@ import json
 import sys
 from pathlib import Path
 
-from . import canonical, catalog, config, generator, rdf, runs
+from . import canonical, catalog, config, generator, rdf, runs, versions
+from .agents import AgentError, Registry, person_iri, software_iri
 
 def emit(args, obj, text):
     """Print obj as JSON with --json, else the lines of text(obj)."""
@@ -342,17 +343,28 @@ def cmd_show_run(args, cfg):
 
 def cmd_list_agents(args, cfg):
     cat = catalog.Catalog()
-    registry = config.CATALOG / "agents.toml"
+    reg = Registry()
     names = cat.names()
-    obj = {"registry": registry.is_file(), "names": names}
+    persons = []
+    for n, t in sorted(reg.persons.items()):
+        persons.append({"number": n, "iri": person_iri(n), "name": t.get("name"), "withdrawn": t.get("withdrawn"),
+                        "links": t.get("links", []), "datasets": names.get(t.get("name"), [])})
+    software = [{"name": k, "iri": software_iri(k), **t} for k, t in sorted(reg.software.items())]
+    registered = {p["name"] for p in persons}
+    obj = {"persons": persons, "software": software, "errors": reg.errors,
+           "unregistered": {n: s for n, s in names.items() if n not in registered}}
 
     def text(o):
-        if not o["registry"]:
-            yield "no registry yet (catalog/agents.toml, decision 0018); names in the catalogue:"
-        yield from table([[n, len(slugs), ", ".join(slugs)] for n, slugs in o["names"].items()],
-                         ["name", "datasets", "slugs"])
+        yield from table([[p["number"], p["name"] or f"(withdrawn: {p['withdrawn']})", len(p["datasets"]),
+                           ", ".join(p["datasets"])] for p in o["persons"]], ["n", "person", "datasets", "slugs"])
+        yield ""
+        yield from table([[s["name"], s.get("label", "")] for s in o["software"]], ["software", "label"])
+        for err in o["errors"]:
+            yield f"error: {err}"
+        for n, slugs in o["unregistered"].items():
+            yield f"not registered: {n} ({', '.join(slugs)})"
     emit(args, obj, text)
-    return 0
+    return 1 if obj["errors"] or obj["unregistered"] else 0
 
 
 # --- generating: compare, show-canonical ---------------------------------------------------------
@@ -490,6 +502,39 @@ def cmd_show_canonical(args, cfg):
     return 0
 
 
+# --- versions and metadata ------------------------------------------------------------------------
+
+def cmd_add_version(args, cfg):
+    slug, run_id = split_id(args.id)
+    if not run_id or not runs.is_run_id(run_id):
+        return fail("give <slug>/<run-id>")
+    vid, d, v, warnings = versions.add_version(cfg, slug, run_id, version=args.version, author=args.author,
+                                               store_only=args.store_only, description=args.description,
+                                               text=args.text, dry_run=args.dry_run)
+    print(f"{slug}/{vid}" + (" (dry run, nothing changed)" if args.dry_run else "") + f": {d}")
+    for f in v["files"]:
+        t = f" {f['triples']:>10,} triples" if f.get("triples") is not None else ""
+        print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
+    for p in args.store_only:
+        print(f"  {p:<32} store only")
+    for w in warnings:
+        print(f"  warning: {w}")
+    if args.dry_run:
+        print(f"  entry as it would be: {d / 'catalog-entry.md'}; run record: {d / 'run.json'}")
+    else:
+        print(f"  catalogue entry, generators/{slug}/runs/{vid}.json: review and commit; stable is unchanged")
+    return 0
+
+
+def cmd_render_meta(args, cfg):
+    slug, vid = split_id(args.id)
+    if not vid:
+        return fail("give <slug>/<version>")
+    status, info = versions.render_meta(cfg, slug, vid, dry_run=args.dry_run, out=args.out)
+    print(f"{slug}/{vid}: {status}" + (f" ({info['triples']} triples, {info['bytes']:,} bytes)" if info else ""))
+    return 0
+
+
 # --- catalogue and store -------------------------------------------------------------------------
 
 def cmd_check_catalog(args, cfg):
@@ -555,6 +600,22 @@ def parser():
         (("--meta",), {"action": "store_true", "help": "the -meta files instead of the data files"}),
         (("--all",), {"action": "store_true", "help": "data and -meta files together"}),
         (("--count",), {"action": "store_true", "help": "only count the triples"}), json_out=False)
+    add("add-version", cmd_add_version, "make a run a version: header comments, -meta, run record, catalogue, store",
+        (("id",), {"metavar": "<slug>/<run-id>"}),
+        (("--version",), {"help": "the version id (default: the run date, -2, -3 … if taken)"}),
+        (("--author",), {"help": "who makes the version (default: git config user.name); must be registered"}),
+        (("--description",), {"help": "a short remark on the version (catalogue)"}),
+        (("--text",), {"help": "the changelog text"}),
+        (("--store-only",), {"metavar": "PATH", "action": "append", "default": [],
+                             "help": "a file of the run kept in the store but not published; repeatable"}),
+        (("--dry-run",), {"action": "store_true",
+                          "help": "write the version into the build area only; catalogue, store, run unchanged"}),
+        json_out=False)
+    add("render-meta", cmd_render_meta, "render the -meta of a version again (replaced only if its content changed)",
+        (("id",), {"metavar": "<slug>/<version>"}),
+        (("--dry-run",), {"action": "store_true", "help": "only say whether it would change"}),
+        (("--out",), {"metavar": "FILE", "type": Path, "help": "write the -meta to FILE; nothing else changes"}),
+        json_out=False)
     add("list-agents", cmd_list_agents, "list the agents (registry) and the names used in the catalogue")
     add("check-catalog", cmd_check_catalog, "check the catalogue entries (0013, 0018) and local copies of the files",
         (("--store",), {"action": "store_true", "help": "also compare with the store (local.toml)"}),
@@ -577,7 +638,7 @@ def main(argv=None):
     try:
         cfg = config.load()
         return args.func(args, cfg)
-    except (LookupError, config.ConfigError, generator.GeneratorError) as e:
+    except (LookupError, config.ConfigError, generator.GeneratorError, ValueError) as e:
         return fail(str(e))
     except BrokenPipeError:
         return 0

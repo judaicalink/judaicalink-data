@@ -82,6 +82,12 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   `-meta` sets should not be regenerated only to remove a name. `jl check-catalog` checks that every name is in the
   registry. If a person objects to being named, the name is removed from the registry, the agents dataset and the
   catalogue; the IRIs stay. (The git history keeps it.)
+- Built 2026-10-11: `catalog/agents.toml` with the eight persons named in the catalogue, numbered in the order of
+  their first contribution recorded there, and the software agent `judaicalink-data`; `jl check-catalog` checks
+  the registry and that every name is in it, `jl list-agents` shows it. The dataset `judaicalink-agents`
+  (`kind = "support"`, no version yet) is generated from it (`generators/judaicalink-agents`): persons with
+  `foaf:name` and optional `rdfs:seeAlso` links, a withdrawn person with the IRI only; software agents with
+  label and homepage.
 
 ### Slugs and namespaces
 
@@ -124,6 +130,17 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 4. **Publish, on request:** copy the files chosen for publication from the store to a dumps location; the index
    records it.
 
+- Built 2026-10-11 (`jl add-version`, `src/jl/versions.py`): it also refuses failed runs, runs with a run as
+  input, a version id that is reserved or taken, and an author not in the agents registry (default author:
+  `git config user.name`); `issued` is the run date. Header comments go only into the Turtle files the generator
+  wrote (copied inputs keep their bytes and checksum). `--store-only <path>` keeps a file of the run in the
+  store without listing it in the catalogue (the version's run record names it, and `check-catalog --complete`
+  accepts it). It warns when an input made outside has no URL as origin. The version's run record is the run
+  record plus `version` and the files as they are in the version (size and checksum after the header); the run
+  directory keeps its record and log. The catalogue entry is edited as text (comments and layout stay); each
+  edit is checked by parsing the result and comparing it with the expected data, otherwise nothing is written.
+  `--dry-run` writes the version into the build area (`<run-id>-as-<version>/`, with the entry as it would be)
+  and changes nothing else.
 - The triples of a data file contain no version id and no file URIs; only the `-meta` does. So any run can become
   any version, and experimental runs use up no version ids. (Dates such as the run date in entity-page events are
   data, not version ids.)
@@ -250,7 +267,9 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   the run record, and the writers (`run.write_turtle`, `run.copy_input`, `run.path` for other files); everything
   goes into the run directory. `jl generate <slug> [--param k=v] [--input name=ref]`; overrides are recorded.
 - Input references: `<slug>/<version>/<path>` (one file of a version), `<slug>/<version>` (its RDF data files
-  without the `-meta`), `<slug>/<run-id>[/<path>]` (development only; `add-version` refuses it), and for a file
+  without the `-meta`), `<slug>/<run-id>[/<path>]` (development only; `add-version` refuses it), `repo:<path>` (a
+  file of this repository, e.g. `catalog/agents.toml`: fixed by the commit like the code, so uncommitted changes
+  to it count as uncommitted code), and for a file
   made outside that is in no version yet `{sha256, bytes, origin, description}`: found by checksum in the store
   and in the `sources` directories of `local.toml`. Both texts are required and go into the run record: `origin`
   says where we got the file (a URL where there is one, e.g. the file in a git repository at a commit; otherwise
@@ -267,10 +286,40 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   stolpersteine (crawl of 2020-10-06), rujen (crawl of 2020-09-28) and hirsch-family (CSV of `40f7c98`, by
   checksum and origin) give exactly the triples of their kept versions (1,119, 140,472, 506).
 
-## Proposed, not yet discussed
+### The `-meta` content (built 2026-10-11, to be reviewed)
 
-- The `-meta` of a version describes the version and its dataset, including `replaces`, but not catalogue state
-  that moves (`stable`, `replaced_by`); it states two dates: the version (fixed) and the metadata (changes).
+Rendered by `jl add-version` and `jl render-meta` (`src/jl/meta.py`) from the catalogue entry, the run record of
+the version and statistics measured on its files; gzipped Turtle with header comments, graph `datasets/<slug>/meta`.
+It describes the version and its dataset, but no catalogue state that moves (`stable`, `replaced_by`, the
+maintainer, the contributors), so moving `stable` rewrites no `-meta` (the proposal of 2026-10-11). Two dates:
+the version's `dcterms:issued` (fixed) and the end of the metadata rendering (changes).
+
+- **Dataset** `datasets/<slug>`: `dcat:Dataset`, `void:Dataset`; identifier, title, description (the summary of
+  the entry), licence, `dcterms:source` (website), `void:exampleResource`, `void:uriSpace` per namespace,
+  `dcterms:replaces`, `dcat:landingPage` (0014), `dcat:hasVersion`.
+- **Version** `datasets/<slug>/<version>`: also `prov:Entity`; `dcat:isVersionOf`, `dcat:version`, issued,
+  description, `dcterms:creator` (the version's authors, by IRI), `owl:deprecated` if withdrawn; measured on the
+  union of its RDF data files: `void:triples`, `void:distinctSubjects`, `void:properties`, `void:classes`;
+  `dcat:distribution` for each published file and the `-meta` itself; `prov:wasDerivedFrom` the input versions.
+- **Files** `dumps/<slug>/<version>/<path>`: `dcat:Distribution` with description, `dcat:accessURL` (the finder,
+  0014), media type and compression (IANA IRIs, where registered), `dcat:byteSize`, `void:triples`, and the
+  checksum as `spdx:checksum` `<file IRI>#sha256` (an IRI, as there are no blank nodes). The `-meta` file has no
+  size or checksum of its own. Files kept only in the store are not described.
+- **Generation** `datasets/<slug>/<version>/generation` (versions with a run record): `prov:Activity` with start
+  and end, associated with the software agent `judaicalink-data` and the version's authors; `prov:used` the
+  generator at its commit (GitHub URL), the input files (file IRIs; `repo:` files at the commit; outside inputs by
+  their origin URL), a comment for each outside input (file, size, checksum, description, origin), the
+  parameters and notes as comments, `rdfs:seeAlso` the run record in the repository.
+- **Provenance of the metadata** `datasets/<slug>/<version>/metadata`: `prov:Activity` with end time, the software
+  agent, `prov:used` the framework at its commit; the `-meta` file `prov:wasGeneratedBy` it. `render-meta`
+  compares the content without these triples (about or linking to this activity) and rewrites the file, and its
+  size and checksum in the entry, only when the content changed. Both commands refuse uncommitted framework
+  code (except `--dry-run`, `render-meta --out`).
+
+Tested 2026-10-11: `add-version --dry-run` on the clean hirsch-family run (data file identical to the version
+2018-10-30 except for the header; `-meta` 54 triples), `render-meta --out` on the legacy versions of rujen and
+stolpersteine; unit tests on a temporary catalogue and store (add, refuse, render unchanged, render after a
+change of the entry). No version was added to the real catalogue.
 
 ## Consequences (so far)
 
@@ -282,5 +331,8 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 ## Open questions
 
 - None of the original list. The first generators (stolpersteine 2020, rujen, hirsch-family) confirmed the
-  design (see The CLI and the generators); versions, `-meta` and imports follow (`add-version`, `render-meta`,
-  `import-files`).
+  design (see The CLI and the generators); `add-version` and `render-meta` are built, imports follow
+  (`import-files`, `render-meta --all`).
+- To review in the `-meta` content: `kind` and `method` of the entry (`ai-generated` matters to users) have no
+  property yet; the legacy `graph` of a version is not stated; the full description (body) is not included, only
+  the summary; checksums as `<file>#sha256` IRIs.

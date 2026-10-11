@@ -37,6 +37,7 @@ PREFIXES = {
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "schema": "http://schema.org/",
     "skos": "http://www.w3.org/2004/02/skos/core#",
+    "spdx": "http://spdx.org/rdf/terms#",
     "void": "http://rdfs.org/ns/void#",
     "wd": "http://www.wikidata.org/entity/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -151,3 +152,24 @@ def write(path, triples, header=(), prefixes=None):
     os.replace(tmp, path)
     blob = path.read_bytes()
     return {"path": path.name, "triples": n, "bytes": len(blob), "sha256": hashlib.sha256(blob).hexdigest()}
+
+
+def add_header(path, header):
+    """Put header comments in front of a Turtle file written by write() (gzip or plain), deterministically.
+    Returns {bytes, sha256}."""
+    path = Path(path)
+    gz = path.name.endswith(".gz")
+    data = gzip.decompress(path.read_bytes()) if gz else path.read_bytes()
+    if data.startswith(b"#"):
+        raise ValueError(f"{path.name} already has a header")
+    data = ("".join(f"# {h}\n" for h in header) + "\n").encode("utf-8") + data
+    tmp = path.with_name(path.name + ".tmp")
+    with open(tmp, "wb") as raw:
+        if gz:
+            with gzip.GzipFile(filename="", mode="wb", fileobj=raw, compresslevel=9, mtime=0) as f:
+                f.write(data)
+        else:
+            raw.write(data)
+    os.replace(tmp, path)
+    blob = path.read_bytes()
+    return {"bytes": len(blob), "sha256": hashlib.sha256(blob).hexdigest()}

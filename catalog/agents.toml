@@ -1,0 +1,40 @@
+# The agents of JudaicaLink (decision 0018).
+#
+# Persons: [persons.<n>], numbered in sequence, never reused; IRI http://data.judaicalink.org/datasets/agents/persons/<n>.
+#   name       the name as used in the catalogue (author, version author, changelog author)
+#   links      optional list of URLs about the person (ORCID, website)
+#   withdrawn  instead of name and links, if the person objected to being named: date and reason; the IRI stays
+# Software: [software.<name>]; IRI http://data.judaicalink.org/datasets/agents/software/<name>.
+#   label, url
+#
+# The names are published only in the dataset judaicalink-agents, which is generated from this file; the -meta
+# files name agents by IRI. `jl check-catalog` checks that every name in the catalogue is here.
+# Numbers 1-8 were given on 2026-10-11 in the order of the first contribution recorded in the catalogue.
+
+[persons.1]
+name = "Kai Eckert"
+
+[persons.2]
+name = "Dominique Ritze"
+
+[persons.3]
+name = "Maral Dadvar"
+
+[persons.4]
+name = "Marco Rovera"
+
+[persons.5]
+name = "Sara Fischer"
+
+[persons.6]
+name = "Patricia Kaluza"
+
+[persons.7]
+name = "Benjamin Schnabel"
+
+[persons.8]
+name = "Christian Deuschle"
+
+[software.judaicalink-data]
+label = "judaicalink-data: the JudaicaLink data generator framework"
+url = "https://github.com/judaicalink/judaicalink-data"

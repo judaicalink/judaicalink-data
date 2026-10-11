@@ -30,13 +30,20 @@ loaded), in the old layout until the store (`lokal/store`) replaces it. Everythi
 2. **Choose slug and namespace.** Slug = file name of the catalogue entry = graph name. New resources get
    URIs in `http://data.judaicalink.org/data/<namespace>/…` ([0002](decisions/0002-uris.md)); facts go
    about records and the entity they concern ([0008](decisions/0008-facts-about-records.md)).
-3. **Write the generator** in `judaicalink-data` (standard library Python, deterministic, ignoring its own
-   earlier output, web answers cached: [0011](decisions/0011-reproducible-generation.md)). It writes
-   `<slug>.ttl.gz` and `<slug>-meta.ttl.gz` (VoID/DCAT/PROV, [0006](decisions/0006-graphs-and-meta.md)).
-4. **Build, load, check** in the local QLever endpoint: counts, examples, effect on the entity pages,
-   dashboard. Fix and rebuild until the numbers are understood.
-5. **Document**: catalogue entry (draft), README of the dataset where it is complex, decision record if a
-   convention is set or an exception made.
+3. **Write the generator** `generators/<slug>/generate.py` in `judaicalink-data` (standard library Python,
+   deterministic, ignoring its own earlier output, web answers cached: [0011](decisions/0011-reproducible-generation.md);
+   interface: [0018](decisions/0018-generator-framework.md)). It writes the data files (`<slug>.ttl.gz`), never
+   metadata.
+4. **Run, compare, check**: `jl generate <slug>` (a run in the build area), `jl compare` with the kept version,
+   `jl show-canonical`; load into the local endpoint where useful (counts, examples, effect on the entity pages,
+   dashboard). Fix and rerun until the numbers are understood.
+5. **Document**: catalogue entry (draft), README of the generator folder, decision record if a convention is set
+   or an exception made.
+6. **Make it a version, on request**: commit the code, run again, then `jl add-version <slug>/<run-id>` (try
+   `--dry-run` first): header comments, the `-meta` (VoID/DCAT/PROV, rendered from the entry, the run record and
+   the measured statistics), the run record `generators/<slug>/runs/<version>.json`, the version and a changelog
+   entry in the catalogue, the files in the store. Review and commit; move `stable` by hand when it is the
+   recommended version. `jl render-meta <slug>/<version>` renders the `-meta` again after the entry changed.
 
 ## 2. Entity-page runs
 
@@ -83,10 +90,9 @@ When to prune is not decided yet.
 ## Checklist for every change
 
 - [ ] Slug, namespace, kind of change decided; decision record written if a convention is set
-- [ ] Generator in the repository, deterministic, `-meta` written
-- [ ] Loaded and checked locally; numbers in the `-meta` description
-- [ ] Catalogue entry: version added explicitly (on request), changelog, `stable` moved if it is the
-      recommended version; `jl check-catalog`, `update-dataindex`, `sync-site`
+- [ ] Generator in the repository, deterministic, committed; run compared and checked
+- [ ] Version added explicitly (on request) with `jl add-version` (`-meta`, run record, catalogue version and
+      changelog); `stable` moved if it is the recommended version; `jl check-catalog`, `update-dataindex`, `sync-site`
 - [ ] Entity pages rebuilt if records changed
 - [ ] Dashboard / demonstrators updated
 - [ ] Published on mannheim.judaicalink.org (when agreed); offered to Frankfurt (when ready)

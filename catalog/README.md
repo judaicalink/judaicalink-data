@@ -23,6 +23,14 @@ The entry format is defined in [0013](../docs/decisions/0013-catalogue-format.md
 changelog); locations are not part of the entries ([0014](../docs/decisions/0014-locations-dataindex-finder.md)).
 `./jl check-catalog` (repository root) checks all entries (until 2026-10-11: `catalog.py check`).
 
+## Agents
+
+[`agents.toml`](agents.toml) is the registry of the persons (numbered, never reused) and software agents that
+the `-meta` files name by IRI ([0018](../docs/decisions/0018-generator-framework.md)). Every name used in an
+entry (`author`, version `author`, changelog `author`) must be registered (`./jl check-catalog`); `./jl
+list-agents` shows the registry with the datasets that name each person. The names are published as data only
+in the dataset `judaicalink-agents`, generated from the registry.
+
 ## Migration (2026-10-09)
 
 The entries were converted to the format of 0013 by [`migrate_0013.py`](migrate_0013.py), as described in

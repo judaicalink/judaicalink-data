@@ -10,6 +10,8 @@ Input references:
     "<slug>/<version>/<path>"   one file of a version (from the store, checked against its checksum)
     "<slug>/<version>"          all RDF data files of a version (without the -meta)
     "<slug>/<run-id>[/<path>]"  output of a run, for development only (add-version refuses it)
+    "repo:<path>"               a file of this repository (e.g. catalog/agents.toml), fixed by the commit like
+                                the code: uncommitted changes to it are noted, and add-version refuses the run
     {"sha256": ..., "bytes": ..., "origin": ..., "description": ...}
                                 a file made outside, found by checksum in the store and the `sources` of
                                 local.toml; origin: where we got it (a URL where there is one, else text, e.g.
@@ -51,10 +53,10 @@ def git(*args):
     return out.stdout.rstrip("\n") if out.returncode == 0 else None
 
 
-def code_state(slug):
-    """(commit, uncommitted paths) of this repository for the generator and the framework."""
+def code_state(slug, files=()):
+    """(commit, uncommitted paths) of this repository for the generator, the framework and the given files."""
     commit = git("rev-parse", "HEAD")
-    status = git("status", "--porcelain", "--", f"generators/{slug}", "src/jl", "jl") or ""
+    status = git("status", "--porcelain", "--", f"generators/{slug}", "src/jl", "jl", *files) or ""
     return commit, [line[3:] for line in status.splitlines()]
 
 
@@ -93,6 +95,12 @@ def find_by_checksum(sha, size, dirs):
 
 def resolve(cfg, cat, ref):
     """An input reference as a list of {ref, file, sha256, bytes, path (local, not recorded)}."""
+    if isinstance(ref, str) and ref.startswith("repo:"):
+        rel = ref[5:]
+        p = (ROOT / rel).resolve()
+        if ROOT not in p.parents or not p.is_file():
+            raise GeneratorError(f"input {ref!r}: no such file in this repository")
+        return [{"ref": ref, "file": p.name, "sha256": catalog.sha256(p), "bytes": p.stat().st_size, "path": p}]
     if isinstance(ref, dict):
         sha, size = ref.get("sha256"), ref.get("bytes")
         if not sha or not ref.get("origin") or not ref.get("description"):
@@ -245,7 +253,7 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
             raise GeneratorError(f"unknown input {k!r} (INPUTS: {', '.join(declared) or 'none'})")
         declared[k] = v
     params = parse_params(getattr(module, "PARAMS", {}), given_params)
-    commit, dirty = code_state(slug)
+    commit, dirty = code_state(slug, [r[5:] for r in declared.values() if isinstance(r, str) and r.startswith("repo:")])
     started = time.time()
     run_id = "run-" + datetime.datetime.fromtimestamp(started, datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     d = cfg.require("build") / slug / run_id

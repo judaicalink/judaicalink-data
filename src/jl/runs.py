@@ -43,8 +43,12 @@ def get_run(build, slug, run_id):
 
 def version_record(slug, version):
     """The run record of a version, or None."""
-    p = GENERATORS / slug / "runs" / f"{version}.json"
+    p = record_path(slug, version)
     return read_json(p) if p.is_file() else None
+
+
+def record_path(slug, version):
+    return GENERATORS / slug / "runs" / f"{version}.json"
 
 
 def version_of_run(slug, run_id):

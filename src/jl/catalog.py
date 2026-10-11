@@ -7,6 +7,7 @@ tooling derives (replaced_by, used_by, contributors, the status of a version) ar
 
 import datetime
 import hashlib
+import json
 import os
 import re
 import shutil
@@ -125,7 +126,8 @@ def read_entry(path):
 class Catalog:
     """All entries, with the values derived across entries."""
 
-    def __init__(self, catalog=CATALOG):
+    def __init__(self, catalog=None):
+        catalog = catalog or CATALOG
         self.dir = catalog
         self.entries = {}
         self.errors = {}   # file name -> reason it could not be read
@@ -390,9 +392,30 @@ def check_local_files(r, e, dumps, complete=False):
                     r.error(where, f"sha256 differs from the copy in {root}")
 
 
-def check(catalog=CATALOG, dumps=(), complete=False, out=print):
-    """Check all entries (format of 0013, reserved names of 0018); with dumps, the local copies.
-    Returns (entries, errors, warnings)."""
+def check_agents(r, cat, registry):
+    """Every name in the catalogue is in the agents registry (0018)."""
+    for err in registry.errors:
+        r.error(registry.path.name, err)
+    for name, slugs in cat.names().items():
+        try:
+            registry.number(name)
+        except LookupError:
+            r.error(registry.path.name, f"'{name}' (named in {', '.join(slugs)}) is not registered")
+
+
+def version_record(slug, version):
+    p = GENERATORS / slug / "runs" / f"{version}.json"
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
+    """Check all entries (format of 0013, reserved names of 0018), the agents registry; with dumps, the local
+    copies. Returns (entries, errors, warnings)."""
+    from .agents import Registry
+    registry = registry or Registry()
     r = Report(out)
     cat = Catalog(catalog)
     for name, err in cat.errors.items():
@@ -402,9 +425,13 @@ def check(catalog=CATALOG, dumps=(), complete=False, out=print):
         check_entry(r, e, set(cat.entries), decisions)
         if dumps:
             check_local_files(r, e, dumps, complete)
+    check_agents(r, cat, registry)
     if dumps and complete:
         named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
                  for f in v.get("files", []) if isinstance(f, dict)}
+        # files kept only in the store: named by the run record of their version (0018, 0019)
+        named |= {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
+                  for f in (version_record(e.name, v.get("version")) or {}).get("files", []) if isinstance(f, dict)}
         for root in dumps:
             for p in sorted(root.rglob("*")):
                 if p.is_file() and p.relative_to(root).as_posix() not in named:
