@@ -7,9 +7,10 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
 - **Generator framework** ([0018](decisions/0018-generator-framework.md), accepted 2026-10-12): built (`jl`, steps
   1–5 of 2026-10-11): generators, runs, versions, `-meta`, imports, agents and vocabulary; every catalogue version
   has an import record and a `-meta`. Not built yet: checking `requirements.txt` of acquisition steps.
-- **Move the generators** (`../kg-complements/`) into this repository as framework generators, one version each
-  (`ep_generator.py` last, after the entity-page question below); then `../qlever/make_inputs.py` and the
-  kg-complements `-meta` writer are no longer needed for these datasets. Create the GitHub repository.
+- **Move the generators** (`../kg-complements/`) into this repository as framework generators: groupings, ontology
+  pull requests and order in [0020](decisions/0020-kg-complements-into-the-framework.md) (entity pages last, after
+  the entity-page question below). Rename `jl:occupationConcept` to `jl:occupationURI` in `ep_generator.py`,
+  `../ep-demonstrator`, `../dashboard` when they are rebuilt. Create the GitHub repository.
 - **Catalogue:** 33 entries in the format of [0013](decisions/0013-catalogue-format.md) (migrated 2026-10-09;
   `kind` and `method` for all, 2026-10-12). Next: the remaining hand curation (`namespaces` checked against the
   data, `occupations`, file descriptions, HTML left in older bodies), entries for our new datasets, then adapting
