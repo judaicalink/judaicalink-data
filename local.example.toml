@@ -3,8 +3,11 @@
 
 store = "../lokal/store"              # the store: every version, <slug>/<version>/<path> (decision 0019)
 build = "../lokal/build"              # build area: <slug>/<run-id>/ (decision 0018)
+# cache = "../lokal/build/.cache"     # canonical forms and indexes, by checksum (default: <build>/.cache)
 legacy_dumps = ["../lokal/dumps"]     # older dump trees in any layout, searched by checksum (collect-store)
 
-[qlever]                              # index service (decision 0018)
-command = "qlever"                    # the qlever command; its version is recorded in each run
+[qlever]                              # index service (decision 0018); its version is recorded in each run
+index = "qlever-index"                # the QLever binaries
+server = "qlever-server"
+memory = "4G"                         # memory limit of a server
 ports = [7101, 7199]                  # ports for the indexes of runs

@@ -157,18 +157,31 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 - The index service has a narrow interface (index these files, query, stop). One implementation uses QLever;
   which QLever (command or image) is local configuration. The run record names the service, its version and the
   index settings. Generators sort their results themselves (0011).
+- QLever is fed the canonical form of each input (one named graph per file, given with the file), so it sees
+  exactly the triples the reader sees. Because QLever normalises literal values, query results serve to select
+  and join; literals that go into the output are taken from the files (the reader), not from query results.
 - Inputs that are not RDF (crawls, exports, caches) are read as files and declared with checksum like any input.
 
 ### Dump format: Turtle
 
 - Data files are gzipped Turtle: smaller and more readable than N-Triples (measured 2026-10-11 on our datasets:
   uncompressed 34–72 % of the N-Triples size, gzipped 63–95 %).
-- The framework writes Turtle deterministically: one fixed prefix set declared only at the top; subjects sorted,
-  predicates sorted with `a` first, objects sorted; an empty line between subjects; gzip with a fixed header.
-  Same triples, same bytes.
-- For comparisons and line-based work the framework produces a canonical form: sorted, deduplicated N-Triples with
-  normalised literals, made via the index service (so any Turtle can be read without a parser of our own). On it:
-  a comparison API (identical, only added, removed) and a command to print the canonical form (grep, counting).
+- The framework writes Turtle deterministically: one fixed prefix table (a file declares the prefixes it uses,
+  sorted, only at the top); subjects sorted, predicates sorted with `a` first, objects sorted (in the order of
+  their canonical N-Triples form); an empty line between subjects; literals always quoted with their datatype as
+  given (no number shortcuts, so the lexical form is visible); gzip with a fixed header. Same triples, same bytes.
+- For comparisons and line-based work the framework produces a canonical form: sorted (by code point, the order
+  of `LC_ALL=C sort`), deduplicated N-Triples, normalised only where RDF 1.1 term equality allows (no
+  `xsd:string`, lower-case language tags). On it: a comparison API (identical, only in a, only in b) and commands
+  to compare and to print the canonical form (grep, counting). Canonical forms are cached by file checksum.
+- **The framework reads RDF itself** (N-Triples and Turtle, standard library), not via the index service as first
+  planned: QLever normalises literal values when it indexes (measured 2026-10-11 with QLever 0.6.0:
+  `xsd:integer` becomes `xsd:int`, `xsd:float` becomes a rounded `xsd:decimal`, dateTime is cut to milliseconds,
+  WKT points are reformatted, an ill-typed literal aborts the whole index). That affects real data
+  (cm-tagme, date-enriched, gba, epidat, hhkeydocs, sosy). The reader handles every RDF file of the catalogue
+  versions (74 files, 13.7 M statements, about 1 minute; tar archives named `.ttl.gz`; the one RDF-star
+  statement in epidat is left out and counted); on all graphs it gives the same triples as QLever except
+  exactly these normalisations.
 
 ### No blank nodes
 
@@ -186,7 +199,7 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 - **Transformation** (declared inputs → the files of a version) uses only the standard library and the framework.
   It is what is re-run and compared, and it has to keep working for years (the legacy generators broke on
   Python 2's `urllib2`, rdflib and scrapy versions). rdflib is not needed: writing is done by the framework's
-  Turtle writer, reading by the index service.
+  Turtle writer, reading by its reader (see Dump format).
 - **Acquisition** (crawling, web APIs, translation, NLP) may use third-party packages, pinned with exact versions in
   `generators/<slug>/requirements.txt`; the framework checks the installed versions and records them in the run
   record (setting up the environment is left to whoever runs it). Its output is always a file with a checksum,
@@ -206,9 +219,9 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 ### The CLI and the generators
 
 - One tool, `jl` (`./jl <command>`, standard library, no installation); it replaced `catalog.py` on 2026-10-11.
-  The framework is the package `src/jl/` (catalogue, configuration, runs, Turtle writer and canonical form,
-  `-meta` rendering, index service, store). Local settings in `local.toml` (not committed; template
-  `local.example.toml`): store, build area, legacy dumps, QLever command or image, port range.
+  The framework is the package `src/jl/` (catalogue, configuration, runs, RDF reader, Turtle writer and
+  canonical form, `-meta` rendering, index service, store). Local settings in `local.toml` (not committed;
+  template `local.example.toml`): store, build area, cache, legacy dumps, QLever commands, port range.
 - Commands are verb-noun, so that none is ambiguous:
 
 | Group | Commands |

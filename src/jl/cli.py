@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import catalog, config, runs
+from . import canonical, catalog, config, rdf, runs
 
 def emit(args, obj, text):
     """Print obj as JSON with --json, else the lines of text(obj)."""
@@ -58,6 +58,7 @@ def version_files(cfg, e, v, verify=False):
                 "description": e.file_description(p, v)}
         if cfg.store:
             local = cfg.store / e.name / v["version"] / p
+            info["local"] = str(local) if local.is_file() else None
             if not local.is_file():
                 info["store"] = "missing"
             elif isinstance(f.get("bytes"), int) and local.stat().st_size != f["bytes"]:
@@ -73,24 +74,57 @@ def version_files(cfg, e, v, verify=False):
     listed = {i["path"] for i in out}
     for f in rec.get("files", []):
         if isinstance(f, dict) and f.get("path") not in listed:
+            local = cfg.store / e.name / v["version"] / f.get("path", "") if cfg.store else None
             out.append({"path": f.get("path"), "bytes": f.get("bytes"), "sha256": f.get("sha256"),
                         "triples": f.get("triples"), "public": False, "description": f.get("description"),
-                        "store": "named by the run record"})
+                        "local": str(local) if local and local.is_file() else None,
+                        "store": "present" if local and local.is_file() else "missing"})
     return out
 
 
-RDF_SUFFIXES = (".ttl", ".ttl.gz", ".nt", ".nt.gz", ".n3", ".n3.gz", ".rdf", ".rdf.gz", ".owl", ".owl.gz")
-
-
 def is_rdf(path):
-    return isinstance(path, str) and path.endswith(RDF_SUFFIXES)
+    return isinstance(path, str) and rdf.rdf_format(path) is not None
 
 
-def total_triples(files):
-    counts = [f["triples"] for f in files if f["public"] and is_rdf(f["path"])]
-    if not counts:
+def is_meta(path):
+    return Path(path).name.split(".")[0].endswith("-meta")
+
+
+def add_counts(cfg, files, count=False):
+    """Fill in triple counts of RDF files from the canonical cache; count=True makes missing ones from the
+    files in the store. Catalogue values are kept; a differing measurement is reported as 'measured'."""
+    if not (cfg.path("cache") or cfg.build):
+        return files
+    for f in files:
+        if not is_rdf(f["path"]) or not f.get("sha256"):
+            continue
+        info = canonical.cached_info(f["sha256"], cfg)
+        if info is None and count and f.get("local"):
+            info = canonical.canonical(f["local"], cfg)
+            if info["sha256"] != f["sha256"]:
+                f["store"] = "checksum differs"
+                continue
+        if info is None:
+            continue
+        f["canonical"] = info
+        if f.get("triples") is None:
+            f["triples"] = info["triples"]
+        elif f["triples"] != info["triples"]:
+            f["measured"] = info["triples"]
+    return files
+
+
+def total_triples(files, cfg=None, count=False):
+    """Distinct triples of the graph of the version (all public RDF files without the -meta): the size of the
+    union of their canonical forms, cached; None if not counted yet."""
+    rdf_files = [f for f in files if f["public"] and is_rdf(f["path"]) and not is_meta(f["path"])]
+    if not rdf_files:
         return None
-    return sum(counts) if all(isinstance(c, int) for c in counts) else None
+    if len(rdf_files) == 1:
+        return rdf_files[0].get("triples")
+    if cfg is None or not all(f.get("canonical") for f in rdf_files):
+        return None
+    return canonical.union_count([f["canonical"] for f in rdf_files], cfg, make=count)
 
 
 # --- read commands -------------------------------------------------------------------------------
@@ -120,7 +154,8 @@ def cmd_show_dataset(args, cfg):
     stable = e.version(e.stable) if e.stable else None
     obj = {"slug": e.name, "fields": e.data, "summary": e.summary(),
            "derived": {"stable": e.stable,
-                       "stable_triples": total_triples(version_files(cfg, e, stable)) if stable else None,
+                       "stable_triples": total_triples(add_counts(cfg, version_files(cfg, e, stable)), cfg)
+                       if stable else None,
                        "versions": [(v.get("version"), e.status(v.get("version"))) for v in e.versions()],
                        "contributors": e.contributors(), "replaced_by": cat.replaced_by(e.name),
                        "used_by": cat.used_by(e.name), "generator": catalog.generator_folder(e.name),
@@ -177,10 +212,10 @@ def cmd_list_versions(args, cfg):
     e = load_entry(cat, args.slug)
     rows = []
     for v in e.versions():
-        files = version_files(cfg, e, v)
+        files = add_counts(cfg, version_files(cfg, e, v))
         rows.append({"version": v.get("version"), "status": e.status(v.get("version")), "issued": v.get("issued"),
                      "author": catalog.as_list(v.get("author")), "files": len(files),
-                     "bytes": sum(f["bytes"] or 0 for f in files if f["public"]), "triples": total_triples(files),
+                     "bytes": sum(f["bytes"] or 0 for f in files if f["public"]), "triples": total_triples(files, cfg),
                      "store": sorted({f["store"] for f in files}), "description": v.get("description")})
 
     def text(o):
@@ -204,12 +239,12 @@ def cmd_show_version(args, cfg):
     v = e.version(vid)
     if v is None:
         raise LookupError(f"{slug} has no version '{vid}' (versions: {', '.join(x.get('version') for x in e.versions())})")
-    files = version_files(cfg, e, v, verify=args.verify)
+    files = add_counts(cfg, version_files(cfg, e, v, verify=args.verify), count=args.count)
     rec = runs.version_record(slug, vid)
     obj = {"slug": slug, "version": vid, "status": e.status(vid),
            "iri": f"http://data.judaicalink.org/datasets/{slug}/{vid}",
            "fields": {k: val for k, val in v.items() if k != "files"}, "files": files,
-           "triples": total_triples(files), "run_record": rec,
+           "triples": total_triples(files, cfg, count=args.count), "run_record": rec,
            "changelog": [c for c in e.changelog() if c.get("version") == vid]}
 
     def text(o):
@@ -222,13 +257,23 @@ def cmd_show_version(args, cfg):
         yield ""
         yield from ("  " + line for line in table(
             [[x["path"], f"{x['bytes']:,}" if isinstance(x["bytes"], int) else "–",
-              f"{x['triples']:,}" if isinstance(x["triples"], int) else ("–" if is_rdf(x["path"]) else ""),
+              (f"{x['triples']:,}" if isinstance(x["triples"], int) else ("–" if is_rdf(x["path"]) else ""))
+              + (f" (measured {x['measured']:,})" if x.get("measured") is not None else ""),
               "public" if x["public"] else "store only", x["store"],
               (x["sha256"] or "–")[:12]] for x in o["files"]],
             ["file", "bytes", "triples", "", "in store", "sha256"]))
         t = o["triples"]
-        yield f"  {len(o['files'])} files; triples: " + (f"{t:,}" if t is not None else
-                                                         "not counted yet (needs the index service)")
+        yield f"  {len(o['files'])} files; triples in the graph (without -meta): " + (
+            f"{t:,}" if t is not None else "not counted yet (show-version --count)")
+        for x in o["files"]:
+            c = x.get("canonical") or {}
+            notes = [f"{c['statements'] - c['triples']:,} duplicate statements" if c.get("statements", 0) > c.get("triples", 0) else "",
+                     f"{c['rdf_star']} RDF-star statement(s) left out" if c.get("rdf_star") else "",
+                     f"{c['blank_node_triples']:,} triples with blank nodes" if c.get("blank_node_triples") else "",
+                     f"tar archive ({', '.join(c['members'])})" if len(c.get("members", [])) > 1
+                     or (c.get("members") and c["members"][0] != c.get("name")) else ""]
+            if any(notes):
+                yield f"  {x['path']}: " + "; ".join(n for n in notes if n)
         for x in o["files"]:
             if x["description"]:
                 yield f"  {x['path']}: {x['description']}"
@@ -307,6 +352,120 @@ def cmd_list_agents(args, cfg):
     return 0
 
 
+# --- generating: compare, show-canonical ---------------------------------------------------------
+
+def resolve_files(cfg, ident):
+    """The RDF files that an identifier names: [(name, path)], and a label.
+
+    <slug>/<version> (the store), <slug>/<run-id> (the build area), <slug>/<version>/<path> (one file of a
+    version), or a local file or directory."""
+    p = Path(ident).expanduser()
+    if p.exists():
+        if p.is_file():
+            return [(p.name, p)], str(p)
+        return sorted((x.relative_to(p).as_posix(), x) for x in p.rglob("*") if x.is_file() and is_rdf(x.name)), str(p)
+    slug, rest = split_id(ident)
+    if not rest:
+        raise LookupError(f"{ident}: not a file, and not <slug>/<version> or <slug>/<run-id>")
+    head, _, path = rest.partition("/")
+    if runs.is_run_id(head):
+        r = runs.get_run(cfg.require("build"), slug, head)
+        if r is None:
+            raise LookupError(f"no run {slug}/{head} in {cfg.build}")
+        files = sorted((x.relative_to(r["dir"]).as_posix(), x) for x in r["dir"].rglob("*")
+                       if x.is_file() and is_rdf(x.name))
+    else:
+        e = load_entry(catalog.Catalog(), slug)
+        v = e.version(head)
+        if v is None:
+            raise LookupError(f"{slug} has no version '{head}'")
+        files = []
+        for f in version_files(cfg, e, v):
+            if not is_rdf(f["path"]):
+                continue
+            if not f.get("local"):
+                raise LookupError(f"{slug}/{head}/{f['path']} is not in the store ({cfg.store})")
+            files.append((f["path"], Path(f["local"])))
+    if path:
+        files = [(n, x) for n, x in files if n == path]
+        if not files:
+            raise LookupError(f"{ident}: no such RDF file")
+    return files, ident
+
+
+def select_part(files, meta):
+    return [(n, p) for n, p in files if is_meta(n) == meta]
+
+
+def cmd_compare(args, cfg):
+    fa, la = resolve_files(cfg, args.a)
+    fb, lb = resolve_files(cfg, args.b)
+    if not (len(fa) == len(fb) == 1 and Path(args.a).exists() and Path(args.b).exists()):
+        fa, fb = select_part(fa, args.meta), select_part(fb, args.meta)
+    part = "-meta file" if args.meta else "data file"
+    ia = [canonical.canonical(p, cfg) for _, p in fa]
+    ib = [canonical.canonical(p, cfg) for _, p in fb]
+    write = None
+    if args.write:
+        args.write.mkdir(parents=True, exist_ok=True)
+        write = (open(args.write / "only-a.nt", "w", encoding="utf-8"), open(args.write / "only-b.nt", "w", encoding="utf-8"))
+    try:
+        res = canonical.compare(canonical.union(ia), canonical.union(ib), examples=args.examples, write=write)
+    finally:
+        for f in write or ():
+            f.close()
+    per_file = []
+    if args.per_file:
+        common = sorted(set(n for n, _ in fa) & set(n for n, _ in fb))
+        da, db = dict(zip((n for n, _ in fa), ia)), dict(zip((n for n, _ in fb), ib))
+        for n in common:
+            r = canonical.compare(canonical.lines(da[n]), canonical.lines(db[n]), examples=0)
+            per_file.append({"file": n, **{k: r[k] for k in ("a", "b", "common", "only_a", "only_b", "identical")}})
+    obj = {"a": {"label": la, "files": [n for n, _ in fa], "triples": res.pop("a")},
+           "b": {"label": lb, "files": [n for n, _ in fb], "triples": res.pop("b")},
+           "part": part, **res, "per_file": per_file}
+
+    def text(o):
+        for side in ("a", "b"):
+            n = len(o[side]["files"])
+            yield f"{side}: {o[side]['label']}: {n} {part}{'s' if n != 1 else ''}, {o[side]['triples']:,} triples"
+        if o["identical"]:
+            yield f"identical: the same {o['common']:,} triples"
+        else:
+            yield f"different: {o['common']:,} in both, {o['only_a']:,} only in a, {o['only_b']:,} only in b"
+            for side in ("a", "b"):
+                if o["examples_only_" + side]:
+                    yield f"  only in {side}:"
+                    yield from ("    " + x for x in o["examples_only_" + side])
+        if o["per_file"]:
+            yield ""
+            yield from ("  " + line for line in table(
+                [[r["file"], f"{r['a']:,}", f"{r['b']:,}", f"{r['only_a']:,}", f"{r['only_b']:,}",
+                  "identical" if r["identical"] else ""] for r in o["per_file"]],
+                ["file (in both)", "a", "b", "only a", "only b", ""]))
+        if args.write:
+            yield f"written: {args.write / 'only-a.nt'}, {args.write / 'only-b.nt'}"
+    emit(args, obj, text)
+    return 0 if obj["identical"] else 1
+
+
+def cmd_show_canonical(args, cfg):
+    files, label = resolve_files(cfg, args.id)
+    if len(files) > 1 and not args.all:
+        files = select_part(files, args.meta)
+    infos = [canonical.canonical(p, cfg) for _, p in files]
+    if args.count:
+        n = canonical.union_count(infos, cfg, make=True) if len(infos) > 1 else infos[0]["triples"] if infos else 0
+        print(f"{n:,} triples in {len(infos)} file(s) of {label}")
+        for (name, _), i in zip(files, infos):
+            print(f"  {i['triples']:>12,}  {name}" + (f"  ({i['statements'] - i['triples']:,} duplicates)"
+                                                       if i["statements"] > i["triples"] else ""))
+        return 0
+    for line in canonical.union(infos):
+        sys.stdout.write(line + "\n")
+    return 0
+
+
 # --- catalogue and store -------------------------------------------------------------------------
 
 def cmd_check_catalog(args, cfg):
@@ -350,9 +509,22 @@ def parser():
     add("list-versions", cmd_list_versions, "list the versions of a dataset", slug)
     add("show-version", cmd_show_version, "show a version: files, sizes, checksums, triples, store, run record",
         (("id",), {"metavar": "<slug>/<version>"}),
-        (("--verify",), {"action": "store_true", "help": "compare the checksums of the files in the store"}))
+        (("--verify",), {"action": "store_true", "help": "compare the checksums of the files in the store"}),
+        (("--count",), {"action": "store_true", "help": "count the triples of files not counted yet (reads them)"}))
     add("list-runs", cmd_list_runs, "list the runs of a dataset in the build area", slug)
     add("show-run", cmd_show_run, "show a run: run record, outputs, log", (("id",), {"metavar": "<slug>/<run-id>"}))
+    target = "<slug>/<version>, <slug>/<run-id>, <slug>/<version>/<path>, or a local file or directory"
+    add("compare", cmd_compare, "compare the triples of two versions, runs or files (exit 1 if they differ)",
+        (("a",), {"metavar": "<a>", "help": target}), (("b",), {"metavar": "<b>"}),
+        (("--meta",), {"action": "store_true", "help": "compare the -meta files instead of the data files"}),
+        (("--per-file",), {"action": "store_true", "help": "also compare files with the same path"}),
+        (("--examples",), {"type": int, "default": 5, "help": "lines shown of each side (default 5)"}),
+        (("--write",), {"metavar": "DIR", "type": Path, "help": "write only-a.nt and only-b.nt to DIR"}))
+    add("show-canonical", cmd_show_canonical, "print the canonical form (sorted, deduplicated N-Triples)",
+        (("id",), {"metavar": "<what>", "help": target}),
+        (("--meta",), {"action": "store_true", "help": "the -meta files instead of the data files"}),
+        (("--all",), {"action": "store_true", "help": "data and -meta files together"}),
+        (("--count",), {"action": "store_true", "help": "only count the triples"}), json_out=False)
     add("list-agents", cmd_list_agents, "list the agents (registry) and the names used in the catalogue")
     add("check-catalog", cmd_check_catalog, "check the catalogue entries (0013, 0018) and local copies of the files",
         (("--store",), {"action": "store_true", "help": "also compare with the store (local.toml)"}),
