@@ -244,8 +244,24 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   structure (for checking and automation).
 - Identifiers: `<slug>` (dataset), `<slug>/<version>`, `<slug>/<run-id>`; a version is a run that was made a version.
 - A generator is `generators/<slug>/generate.py`: a Python entry point (it may call other programs) whose
-  declarations (inputs as specific versions or files, default parameters) are module constants, versioned with the
-  code; the run record holds the values actually used. To be tested on the first generators.
+  declarations are module constants, versioned with the code: `INPUTS` (name → reference) and `PARAMS` (name →
+  default); and a function `generate(run)`. The run object gives the inputs (`run.input`, `run.inputs`, checked
+  against their checksums), the reader and index (`run.triples`, `run.graph`), the parameters, a log and notes for
+  the run record, and the writers (`run.write_turtle`, `run.copy_input`, `run.path` for other files); everything
+  goes into the run directory. `jl generate <slug> [--param k=v] [--input name=ref]`; overrides are recorded.
+- Input references: `<slug>/<version>/<path>` (one file of a version), `<slug>/<version>` (its RDF data files
+  without the `-meta`), `<slug>/<run-id>[/<path>]` (development only; `add-version` refuses it), and for a file
+  made outside that is in no version yet `{sha256, bytes, origin}`: found by checksum in the store and in the
+  `sources` directories of `local.toml`, recorded by checksum and its public origin (e.g. the file in a git
+  repository at a commit). When such a run becomes a version, `add-version` keeps the file in the store with the
+  version (store only unless decided otherwise, 0019), so the store holds every input.
+- The run record (`run.json`): slug, run id, generator path, commit of this repository and the files of the
+  generator and the framework that had uncommitted changes, Python version, parameters, input overrides, the
+  inputs (reference, file name, checksum, size), status (and the error of a failed run), start and end, notes,
+  and the files written (path, size, checksum, triples). Failed runs keep their directory and record.
+- Tested 2026-10-11 on three generators, each a faithful port of the original code with no change to its logic:
+  stolpersteine (crawl of 2020-10-06), rujen (crawl of 2020-09-28) and hirsch-family (CSV of `40f7c98`, by
+  checksum and origin) give exactly the triples of their kept versions (1,119, 140,472, 506).
 
 ## Proposed, not yet discussed
 
@@ -261,5 +277,6 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
 
 ## Open questions
 
-- None of the original list; the first generators (rujen from its crawl, stolpersteine 2020, hirsch-family) test
-  the design.
+- None of the original list. The first generators (stolpersteine 2020, rujen, hirsch-family) confirmed the
+  design (see The CLI and the generators); versions, `-meta` and imports follow (`add-version`, `render-meta`,
+  `import-files`).

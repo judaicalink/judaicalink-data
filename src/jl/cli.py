@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import canonical, catalog, config, rdf, runs
+from . import canonical, catalog, config, generator, rdf, runs
 
 def emit(args, obj, text):
     """Print obj as JSON with --json, else the lines of text(obj)."""
@@ -294,7 +294,9 @@ def cmd_list_runs(args, cfg):
     cat = catalog.Catalog()
     e = load_entry(cat, args.slug)
     found = runs.list_runs(cfg.build, e.name)
-    rows = [{"run": r["id"], "version": runs.version_of_run(e.name, r["id"]),
+    rows = [{"run": r["id"], "status": (r["record"] or {}).get("status", "?"),
+             "version": runs.version_of_run(e.name, r["id"]),
+             "uncommitted": bool((r["record"] or {}).get("uncommitted")),
              "files": len((r["record"] or {}).get("files", [])), "dir": str(r["dir"])} for r in found]
 
     def text(o):
@@ -305,7 +307,8 @@ def cmd_list_runs(args, cfg):
         if not rows:
             yield f"no runs of {e.name} in {cfg.build / e.name}"
             return
-        yield from table([[r["run"], r["version"] or "–", r["files"]] for r in rows], ["run", "version", "files"])
+        yield from table([[r["run"], r["status"] + (" (uncommitted code)" if r["uncommitted"] else ""),
+                           r["version"] or "–", r["files"]] for r in rows], ["run", "status", "version", "files"])
     emit(args, {"slug": e.name, "runs": rows}, text)
     return 0
 
@@ -395,6 +398,27 @@ def resolve_files(cfg, ident):
 
 def select_part(files, meta):
     return [(n, p) for n, p in files if is_meta(n) == meta]
+
+
+def cmd_generate(args, cfg):
+    d, rec = generator.generate(cfg, args.slug, args.param, args.input)
+    print(f"{args.slug}/{rec['run']}: {rec['status']}" + (f" ({rec['error']})" if rec.get("error") else "")
+          + f", {rec['seconds']} s")
+    print(f"  {d}")
+    if rec["uncommitted"]:
+        print(f"  uncommitted code: {', '.join(rec['uncommitted'])} (cannot become a version)")
+    for f in rec["files"]:
+        t = f" {f['triples']:>10,} triples" if "triples" in f else ""
+        print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
+    for n in rec.get("notes", []):
+        print(f"  note: {n}")
+    if rec["status"] != "ok":
+        print(f"  log: {d / 'log.txt'}")
+        return 1
+    e = catalog.Catalog().get(args.slug)
+    if e and e.stable:
+        print(f"  compare: ./jl compare {args.slug}/{e.stable} {args.slug}/{rec['run']}")
+    return 0
 
 
 def cmd_compare(args, cfg):
@@ -514,6 +538,12 @@ def parser():
     add("list-runs", cmd_list_runs, "list the runs of a dataset in the build area", slug)
     add("show-run", cmd_show_run, "show a run: run record, outputs, log", (("id",), {"metavar": "<slug>/<run-id>"}))
     target = "<slug>/<version>, <slug>/<run-id>, <slug>/<version>/<path>, or a local file or directory"
+    add("generate", cmd_generate, "run the generator of a dataset into the build area (a run, not a version)",
+        slug,
+        (("--param",), {"metavar": "K=V", "action": "append", "default": [], "help": "set a parameter; repeatable"}),
+        (("--input",), {"metavar": "NAME=REF", "action": "append", "default": [],
+                        "help": "use another input for a declared name (recorded); repeatable"}),
+        json_out=False)
     add("compare", cmd_compare, "compare the triples of two versions, runs or files (exit 1 if they differ)",
         (("a",), {"metavar": "<a>", "help": target}), (("b",), {"metavar": "<b>"}),
         (("--meta",), {"action": "store_true", "help": "compare the -meta files instead of the data files"}),
@@ -547,7 +577,7 @@ def main(argv=None):
     try:
         cfg = config.load()
         return args.func(args, cfg)
-    except (LookupError, config.ConfigError) as e:
+    except (LookupError, config.ConfigError, generator.GeneratorError) as e:
         return fail(str(e))
     except BrokenPipeError:
         return 0

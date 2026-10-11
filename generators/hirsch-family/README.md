@@ -22,6 +22,10 @@ On file: `HirschFamily/input/hirsch_fam_davinci.csv` in judaicalink-generators (
 
 **Reproducible** (the header row must be skipped).
 
+## Framework generator
+
+`generate.py` (2026-10-11): `CSV-to-RDF.py` of `40f7c98` ported to the framework (stdlib, no change to its logic; reads the CSV as Latin-1 and skips the header row). The CSV is not in any version: the generator names it by checksum and its origin (the file in judaicalink-generators at `40f7c98`). A test run gave exactly the 506 triples of the version 2018-10-30 (`jl compare`). Not a version; the new data file name would be `hirsch-family.ttl.gz` (0018).
+
 ## Original files
 
 `original/` holds copies of the files below, unchanged unless noted, under `<repository>@<commit>/<path>`. They are the record of what was used; they are not run from here.

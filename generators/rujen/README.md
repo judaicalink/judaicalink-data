@@ -25,6 +25,10 @@ On file: `rujen.jsonl.gz` (the crawl) in the kept version. A new crawl of rujen.
 
 **Reproducible** from the crawl (RDF step; needs the Django/Scrapy setup or a stand-alone port).
 
+## Framework generator
+
+`generate.py` (2026-10-11): the RDF step of `1ac14f1` ported to the framework (stdlib, no change to its logic, including the doubled `/index.php//index.php/` in `jl:describedAt`), input the kept crawl `rujen/2020-09-28/rujen.jsonl.gz`, which it copies into the run. A test run gave exactly the 140,472 triples of the version 2020-09-28 (`jl compare`). The crawl step (Scrapy) is not ported. Not a version.
+
 ## Original files
 
 `original/` holds copies of the files below, unchanged unless noted, under `<repository>@<commit>/<path>`. They are the record of what was used; they are not run from here.

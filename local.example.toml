@@ -5,3 +5,4 @@ store = "../lokal/store"              # the store: every version, <slug>/<versio
 build = "../lokal/build"              # build area: <slug>/<run-id>/ (decision 0018)
 # cache = "../lokal/build/.cache"     # canonical forms, by file checksum (default: <build>/.cache)
 legacy_dumps = ["../lokal/dumps"]     # older dump trees in any layout, searched by checksum (collect-store)
+sources = ["../lokal/work/generator-history"]   # where inputs made outside are found by checksum (generate)

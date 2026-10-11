@@ -25,6 +25,10 @@ possibly recoverable from the Wikipedia history, untested).
 
 2020: **reproducible** from the crawl. 2018: **not reproducible**.
 
+## Framework generator
+
+`generate.py` (2026-10-11): the RDF step of `4a9e253` ported to the framework (stdlib, no change to its logic), input the kept crawl `stolpersteine/2020-10-06/stolpersteine.jsonl.gz`, which it copies into the run. A test run gave exactly the 1,119 triples of the version 2020-10-06 (`jl compare`). Not a version.
+
 ## Original files
 
 `original/` holds copies of the files below, unchanged unless noted, under `<repository>@<commit>/<path>`. They are the record of what was used; they are not run from here.
