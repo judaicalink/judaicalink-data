@@ -10,9 +10,12 @@ Input references:
     "<slug>/<version>/<path>"   one file of a version (from the store, checked against its checksum)
     "<slug>/<version>"          all RDF data files of a version (without the -meta)
     "<slug>/<run-id>[/<path>]"  output of a run, for development only (add-version refuses it)
-    {"sha256": ..., "bytes": ..., "origin": "<public URL>"}
+    {"sha256": ..., "bytes": ..., "origin": ..., "description": ...}
                                 a file made outside, found by checksum in the store and the `sources` of
-                                local.toml; the run record names it by checksum and origin, never by local path
+                                local.toml; origin: where we got it (a URL where there is one, else text, e.g.
+                                who sent it when); description: what the file is (content, format, who made it
+                                and how); the run record names it by checksum, origin and description, never by
+                                local path
 
 The run object gives the generator its inputs, parameters, a log, the RDF reader and index, and the writers;
 everything it writes goes into the run directory. The run record (run.json) names the generator, the commit
@@ -92,14 +95,14 @@ def resolve(cfg, cat, ref):
     """An input reference as a list of {ref, file, sha256, bytes, path (local, not recorded)}."""
     if isinstance(ref, dict):
         sha, size = ref.get("sha256"), ref.get("bytes")
-        if not sha or not ref.get("origin"):
-            raise GeneratorError(f"an outside input needs sha256 and origin: {ref}")
+        if not sha or not ref.get("origin") or not ref.get("description"):
+            raise GeneratorError(f"an outside input needs sha256, origin and description: {ref}")
         dirs = [d for d in [cfg.store] if d] + cfg.paths("sources")
         p = find_by_checksum(sha, size, dirs)
         if p is None:
             raise GeneratorError(f"input {sha[:12]}… ({ref['origin']}) not found in the store or the sources "
                                  "of local.toml")
-        return [{"ref": {"origin": ref["origin"]}, "file": p.name, "sha256": sha, "bytes": p.stat().st_size,
+        return [{"ref": {"origin": ref["origin"], "description": ref["description"]}, "file": p.name, "sha256": sha, "bytes": p.stat().st_size,
                  "path": p}]
     slug, _, rest = ref.partition("/")
     head, _, path = rest.partition("/")

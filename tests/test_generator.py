@@ -14,7 +14,8 @@ from jl import config, generator, rdf  # noqa: E402
 
 GENERATE = '''
 from jl.rdf import IRI, Literal
-INPUTS = {"data": {"sha256": "%(sha)s", "bytes": %(size)d, "origin": "https://example.org/data.txt"}}
+INPUTS = {"data": {"sha256": "%(sha)s", "bytes": %(size)d, "origin": "https://example.org/data.txt",
+                   "description": "a test file"}}
 PARAMS = {"times": 1, "label": "x"}
 
 def generate(run):
@@ -62,7 +63,8 @@ class Generate(unittest.TestCase):
         self.assertEqual(rec["status"], "ok", rec.get("error"))
         self.assertTrue(d.name.startswith("run-"))
         self.assertEqual(rec["params"], {"times": 3, "label": "x"})
-        self.assertEqual(rec["inputs"][0]["ref"], {"origin": "https://example.org/data.txt"})
+        self.assertEqual(rec["inputs"][0]["ref"], {"origin": "https://example.org/data.txt",
+                                                         "description": "a test file"})
         self.assertNotIn("path", rec["inputs"][0])                      # no local paths in the record
         self.assertNotIn(self.tmp.name, json.dumps(rec))
         self.assertEqual(rec["notes"], ["a note"])

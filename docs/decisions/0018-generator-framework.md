@@ -251,10 +251,14 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   goes into the run directory. `jl generate <slug> [--param k=v] [--input name=ref]`; overrides are recorded.
 - Input references: `<slug>/<version>/<path>` (one file of a version), `<slug>/<version>` (its RDF data files
   without the `-meta`), `<slug>/<run-id>[/<path>]` (development only; `add-version` refuses it), and for a file
-  made outside that is in no version yet `{sha256, bytes, origin}`: found by checksum in the store and in the
-  `sources` directories of `local.toml`, recorded by checksum and its public origin (e.g. the file in a git
-  repository at a commit). When such a run becomes a version, `add-version` keeps the file in the store with the
-  version (store only unless decided otherwise, 0019), so the store holds every input.
+  made outside that is in no version yet `{sha256, bytes, origin, description}`: found by checksum in the store
+  and in the `sources` directories of `local.toml`. Both texts are required and go into the run record: `origin`
+  says where we got the file (a URL where there is one, e.g. the file in a git repository at a commit; otherwise
+  text, e.g. who sent it when), `description` what it is (content, format, who made it and how). `add-version`
+  does not copy such a file anywhere: whether an input is kept with a version (published or in the store) is
+  decided per file (0019). It warns when an origin is not a URL, so that this decision is made for a file that
+  is found nowhere else (decided 2026-10-11: the more the origin is not durable, the more the description
+  matters).
 - The run record (`run.json`): slug, run id, generator path, commit of this repository and the files of the
   generator and the framework that had uncommitted changes, Python version, parameters, input overrides, the
   inputs (reference, file name, checksum, size), status (and the error of a failed run), start and end, notes,
