@@ -34,9 +34,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "compact-memory-meta.ttl.gz"
-  bytes = 1677
-  sha256 = "d49754c9ea0700f99cf2c40cb1d3dcc33ef5cabad62ab89bd162a09d9f33e3fd"
-  triples = 56
+  bytes = 1719
+  sha256 = "e7fa6e8d66f2ff6f263035dc5c4123f7f96b073c7f967aef47e63369d7945dec"
+  triples = 58
 
 [[changelog]]
 date = "2025-06-05"

@@ -45,9 +45,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "dbpedia-persons-meta.ttl.gz"
-  bytes = 2077
-  sha256 = "bf7ccaf021fec7193bc30177be93493efe2a30554e79e5a84196c8b176e4604c"
-  triples = 84
+  bytes = 2124
+  sha256 = "1c3afc910668cb8b4e602b71c395995aef55eb1eaedd5b3b607c067108166b63"
+  triples = 87
 
 [[changelog]]
 date = "2018-04-03"

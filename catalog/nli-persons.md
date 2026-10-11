@@ -34,9 +34,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "nli-persons-meta.ttl.gz"
-  bytes = 1591
-  sha256 = "3cab3c4b315218c85230c10e1549428eab346fb256e3421c67e25cf537e5f33f"
-  triples = 55
+  bytes = 1630
+  sha256 = "6c1f747ba9e04cff971aaab3e2eb7819710343b247efe5310a262fb9f9628029"
+  triples = 57
 
 [[changelog]]
 date = "2024-01-12"

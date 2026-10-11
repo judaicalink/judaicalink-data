@@ -29,9 +29,9 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "dbp-wiki-geo-linking-meta.ttl.gz"
-  bytes = 1534
-  sha256 = "b9b8a02c40f9f6c48472e30158f2c1dc45be1f308af45c719cf343534316d8d6"
-  triples = 52
+  bytes = 1569
+  sha256 = "b58695a02cc045ff31f7eae26a8ececfe587980fdf64fa582000699bb2a4bfcf"
+  triples = 54
 
 [[changelog]]
 date = "2025-06-05"
