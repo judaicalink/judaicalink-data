@@ -75,10 +75,9 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
     dataset list in `../ep-demonstrator/app.py`, and the old `-meta` `dumps-additions/stolpersteine/current/stolperstein-meta.ttl.gz`.
     Change them when `make_inputs.py` and the generators switch to this catalogue (then rebuild the index).
 
-- **geo-coordinates** coins URIs without a namespace (`data/Aachen`, 2,701 places), which no dataset may do (no
-  top-level `data/` URIs); to fix when we work on the graph data (it is a complement, 2026-10-12). Its places are typed only `skos:Concept`. `dbp-wiki-geo-linking` uses the same URIs. No other
-  archived dataset links to them. Proposal: a successor with URIs in a proper namespace, typed `jl:Place`,
-  linked to the old URIs.
+- **geo-coordinates** coined URIs without a namespace (`data/Aachen`, 2,701 places), typed only `skos:Concept`.
+  Fixed by geo-coordinates 2026-10-12: `data/geo-coordinates/<name>`, `jl:Place`, the old URIs `dcterms:isReplacedBy`
+  the new ones (`dbp-wiki-geo-linking` still links the old URIs, valid through the replacement).
 - **Authority namespaces:** `data/gnd/`, `data/dbpedia/`, `data/geonames/` are not dataset namespaces but
   JudaicaLink URIs for entities of an authority, shared by several datasets (`data/dbpedia/` by
   `dbpedia-persons` and the Compact Memory entities of `cm-tagme`; `data/geonames/` by `geo-enriched` and
@@ -132,7 +131,6 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   life dates at the start of the abstract → person (1,077), place links → place, else subject; subsections
   are not subjects; records keep their place on continued pages even without a type.
 - **GeoNames nodes** (803) and a few haskala/djh records without type: check what they are before typing.
-- **Typing for geo-coordinates** (`jl:Place`), see above.
 - Further items of the data improvement plan: `../PLAN-2026-10-05-data-improvements.md`.
 
 ## Other threads
