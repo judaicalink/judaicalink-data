@@ -1,0 +1,84 @@
+{
+ "slug": "rujen-translation",
+ "run": "run-20261012T161439Z",
+ "generator": "generators/rujen-translation/generate.py",
+ "commit": "2a08eec30199d8d95bdd2593e69e760c33a8d0dd",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "drop_untranslated": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-12T16:14:39Z",
+ "inputs": [
+  {
+   "name": "previous",
+   "ref": "rujen-translation/2020-09-28/rujen-en-abstract-translations.ttl",
+   "file": "rujen-en-abstract-translations.ttl",
+   "sha256": "856b871da06ebc338095f945ac79e9011db52475db6ae541fc4deb8adf7ba5ec",
+   "bytes": 17238866
+  },
+  {
+   "name": "previous",
+   "ref": "rujen-translation/2020-09-28/rujen-en-label-translations.ttl",
+   "file": "rujen-en-label-translations.ttl",
+   "sha256": "01d0e12173a9d03759da2c016ec887e3f88f48d9766140acdfd1f9edd847aa93",
+   "bytes": 1531668
+  },
+  {
+   "name": "previous",
+   "ref": "rujen-translation/2020-09-28/rujen-de-abstract-translations.ttl",
+   "file": "rujen-de-abstract-translations.ttl",
+   "sha256": "f507eb37509345598ee09089256c459ab89ad3899196ffd1aff2320a09c95a55",
+   "bytes": 17807166
+  },
+  {
+   "name": "previous",
+   "ref": "rujen-translation/2020-09-28/rujen-de-label-translations.ttl",
+   "file": "rujen-de-label-translations.ttl",
+   "sha256": "e3e70a8bbe6c1a572122cba5eb34a9402d90e829ba281d288a74845daab06465",
+   "bytes": 1534116
+  }
+ ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T16:14:41Z",
+ "seconds": 1.6,
+ "notes": [
+  "rujen-en-abstract-translations.ttl: 147 untranslated abstracts dropped, 15,583 triples kept.",
+  "rujen-de-abstract-translations.ttl: 146 untranslated abstracts dropped, 15,583 triples kept."
+ ],
+ "files": [
+  {
+   "path": "rujen-de-abstract-translations.ttl",
+   "bytes": 14104749,
+   "sha256": "7f0cb7250ec9e4990d1ec7c7ac776bc978188b136e25ba36a8300fdb7b6669c5",
+   "triples": 15583
+  },
+  {
+   "path": "rujen-de-label-translations.ttl",
+   "bytes": 1534116,
+   "sha256": "e3e70a8bbe6c1a572122cba5eb34a9402d90e829ba281d288a74845daab06465",
+   "triples": 15733
+  },
+  {
+   "path": "rujen-en-abstract-translations.ttl",
+   "bytes": 13384228,
+   "sha256": "6387e7a974fbfd095707de0374e2aa2616e405020233569beb0a2c4649b7f042",
+   "triples": 15583
+  },
+  {
+   "path": "rujen-en-label-translations.ttl",
+   "bytes": 1531668,
+   "sha256": "01d0e12173a9d03759da2c016ec887e3f88f48d9766140acdfd1f9edd847aa93",
+   "triples": 15733
+  }
+ ],
+ "version": "2026-10-12"
+}
