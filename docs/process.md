@@ -48,13 +48,17 @@ loaded), in the old layout until the store (`lokal/store`) replaces it. Everythi
 
 ## 2. Entity-page runs
 
-Entity pages are rebuilt after changes to the records ([0009](decisions/0009-entity-pages.md)):
+Entity pages are made again after changes to the records ([0009](decisions/0009-entity-pages.md),
+[0022](decisions/0022-entity-pages-in-the-framework.md)): a new version of `ep`.
 
-1. Build and load all record and complementary datasets (order: `kg-complements/README.md`).
-2. Set `PREVIOUS_SETS`/`REPLACES` to the current set, run `EP_SLUG=ep-<date> python3 build.py entity-pages`.
-3. Check: every URI of the previous set is still present (unless a decided exception applies), every pointer
-   leads to an active page, the run report (merges, splits, refused merges) is plausible.
-4. Write the README of the set (counts, changes, obsolete dumps), update dashboard and demonstrators.
+1. Make the datasets that changed as versions; set the inputs of `generators/ep/generate.py` (`STABLE`, the previous
+   version of `ep`) to the stable versions.
+2. `./jl generate ep`. The generator checks that every IRI of the previous version is a page or in the history, and
+   that records known to be different are not joined again.
+3. Read the run log: groups with several Wikidata items or incompatible classes, keys shared by many records of one
+   dataset, the splits and merges. Wrong links are fixed in the data (0024: a new version of the dataset or a
+   correction in a correction dataset), then the run is repeated.
+4. `./jl add-version ep/<run>`; update the counts in `generators/ep/README.md`, the dashboard and the demonstrators.
 
 ## 3. Publishing at a dumps location
 

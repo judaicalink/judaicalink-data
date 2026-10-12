@@ -8,9 +8,11 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   1–5 of 2026-10-11): generators, runs, versions, `-meta`, imports, agents and vocabulary; every catalogue version
   has an import record and a `-meta`. Not built yet: checking `requirements.txt` of acquisition steps.
 - **Move the generators** (`../kg-complements/`) into this repository as framework generators: groupings, ontology
-  pull requests and order in [0020](decisions/0020-kg-complements-into-the-framework.md) (entity pages last, after
-  the entity-page question below). Rename `jl:occupationConcept` to `jl:occupationURI` in `ep_generator.py`,
-  `../ep-demonstrator`, `../dashboard` when they are rebuilt; the demonstrator reads the presence figures as
+  pull requests and order in [0020](decisions/0020-kg-complements-into-the-framework.md); all done 2026-10-12, the
+  entity pages as `ep` 2026-10-12 ([0022](decisions/0022-entity-pages-in-the-framework.md)); the entity-page pull
+  request is prepared (branch `entity-page-terms`). `../ep-demonstrator` and `../dashboard` still read
+  `ep-2026-10-06` (now in `lokal/work/superseded/`) and `jl:occupationConcept`: to switch to `ep` 2026-10-12 and
+  `jl:occupationURI`; `jl:curationStatus` and `jl:supportedBy` are no longer stated (derived); the demonstrator reads the presence figures as
   `jl:cmMentionCount` etc. on the entity from the graph `cm-entities-presence`: now `jl:CorpusPresence` nodes in
   `cm-entities` (0020). Create the GitHub repository.
 - **Catalogue:** 33 entries in the format of [0013](decisions/0013-catalogue-format.md) (migrated 2026-10-09;
@@ -56,7 +58,7 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   - 953 `owl:sameAs` to `https://data.judaicalink.org/data/gnd/…` in `gnd-persons-entityfacts` and `ep-2026-10-06`,
     taken from the EntityFacts `sameAs` (from the BEACON target, see Frankfurt): normalise to `http` when regenerating
     (they become self-links and are dropped). Done for `gnd-persons-entityfacts` 2026-10-12 (950 dropped, 3 kept as
-    `http`); still in `ep-2026-10-06` until the entity pages are regenerated.
+    `http`); `ep` 2026-10-12 has none.
   - The `-meta` files in `dumps-additions` use patterns that the generator framework replaces: access URLs in the old
     archive layout, `datasets/agent/…` with names in the IRIs (→ `datasets/agents/persons/<id>`, `datasets/agents/software/<name>`;
     names only in an agents dataset, so a name can be removed without new IRIs; slug `agents` reserved), `datasets/<slug>/generation/<date>`,
@@ -100,7 +102,7 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   links of 2014links and `interlinks.n3` (2014 IRIs) do not resolve; epidat has names clipped by a hand repair of
   2023 (`Jakob` → `Jako`); rujen-translation contains 293 broken literals `"Translated(src=…)"`; sosy uses HTML-view
   URLs as `jl:occupation` values (204, `https://data.judaicalink.org/data/html/occupation/…`); the legacy entity pages made about 1.1 million cm-tagme references and
-  compact-memory pages into singleton pages (check that ep-2026-10-06 retires them); djh 2018 has non-ASCII
+  compact-memory pages into singleton pages (`ep` 2026-10-12 retires them); djh 2018 has non-ASCII
   characters in IRIs; geo-enriched has an empty haskala file.
 - **Ontology:** the catalogue now names version 2025-11-27 (judaicalink-ontology `b26c961`, identical to
   ontology.judaicalink.org), in `lokal/dumps-additions/ontology/2025-11-27/`, not yet published. To do: rebuild
@@ -127,7 +129,5 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
 ## Other threads
 
 - Compact Memory full-text index for the portal (handover to Frankfurt): `../NOTES-2026-10-05-cm-fulltext-portal.md`.
-- **Entity pages and the catalogue:** how entity-page sets fit the catalogue model (one dataset per run as
-  now, or versions of one dataset); own documentation and discussion.
 - Entity-page demonstrator: deployment files exist (`../ep-demonstrator/deploy/`), to be adapted to
   mannheim.judaicalink.org instead of `judaicalink.ki.hs-mannheim.de`.
