@@ -24,6 +24,31 @@ path = "generators/compact-memory"
 "compact-memory-pages.ttl.gz" = "Volumes, issues and pages: for every page its issue, sequence, label and image in the Visual Library; for every volume and issue its parent, journal, label and date."
 
 [[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "f34385ab4df6146a8e2c3e5416e04a6a689a8a4b"
+description = "The whole corpus of the full-text index: 336 journals from the MODS records, 88,691 volumes, issues and articles (classes from schema.org where the page table gives the kind), 846,499 pages (jl:Page) with their images. Compared with 2021-01-18, 4,710 triples are no longer stated (second IRIs of 2,060 pages, 3 pages not in the index, journal titles as jl:title and journal-level images, 16 nodes assigned to a second record of their journal; see the generator README)."
+
+  [[versions.files]]
+  path = "compact-memory-journals.ttl.gz"
+  bytes = 29084
+  sha256 = "daf0e11224f463a0fe7b304a188261cb78145d439c584d3aedfa1de2475a102b"
+  triples = 3707
+
+  [[versions.files]]
+  path = "compact-memory-pages.ttl.gz"
+  bytes = 11842228
+  sha256 = "f6a8f335d9fc4e7b03c9ac9b29eabc3f81307f1fe382682701caaef251fef04c"
+  triples = 4549427
+
+  [[versions.files]]
+  path = "compact-memory-meta.ttl.gz"
+  bytes = 3146
+  sha256 = "d1c056e70fdd40e3696bf2f609ff84dd0c14d6d168ba52ef8ff79e7539659e2b"
+  triples = 76
+
+[[versions]]
 version = "2021-01-18"
 issued = "2021-01-18"
 author = "Marco Rovera"
@@ -39,6 +64,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 1719
   sha256 = "e7fa6e8d66f2ff6f263035dc5c4123f7f96b073c7f967aef47e63369d7945dec"
   triples = 58
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "New version from the framework generator: the whole Compact Memory corpus (journals, volumes, issues, all pages of the full-text index), with classes; the version 2021-01-18 covered only pages with entity mentions."
 
 [[changelog]]
 date = "2025-06-05"
