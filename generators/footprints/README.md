@@ -21,6 +21,28 @@ Benjamin Schnabel.
 - **2025-03-21**: **probable** `6dd187e` (its output shape fits only this commit): only `foaf:Person`, `foaf:name`,
   `skos:prefLabel` for 9,974 resources, organisations included.
 
+## Framework generator (2026-10-12)
+
+`generate.py` makes a new version from 2024-03-18 with its systematic errors fixed (decision 0024); every fix is a
+parameter, default on, and with all of them off the output has the same triples as 2024-03-18. Found in the 2024
+file and its generator (`830ad95`):
+
+- `owl:sameAs` as text, never as IRIs (2,971; 673 of them "None", where the VIAF record had no GND number): the
+  entity pages ignored them, so Footprints persons were not joined with the GND, VIAF and NLI records;
+- the relations of the books (author, publisher, printer, editor, …) as text holding footprints IRIs (6,029), and
+  `gndo:ditor` for `gndo:editor` (86);
+- the book loop wrote the dates of its persons as the text of a Python dictionary, the birth date as
+  `jl:deathDate`; 220 of the 222 repeat a value of the person loop, the other two (one person) become EDTF values;
+- the resource of the empty name (the hash of `""`): the authors and publishers without a name, 74 links;
+- `dcterms:created`, the time of the 2024 run for each resource (11,571);
+- empty abstracts (706), "None" as `jl:describedAt` (260) and `gndo:associatedPlace` (1), two addresses with a
+  doubled prefix;
+- `geosparql:asWKT` with a stray leading quote and "+-" for negative numbers (99).
+
+Not changed: the GND numbers of places (`gndo:gndIdentifier`, 139) are the first hit of a name search in lobid and
+may be wrong; `jl:describedAt` keeps the VIAF and GND pages of the book loop, which repeat `owl:sameAs`.
+The 2025 persons (1,296 names not in 2024, no Footprints ids) are not taken over.
+
 ## Inputs
 
 Live only: `footprints.ctl.columbia.edu/api/` (now behind a bot challenge), lobid GND, VIAF, Google Translate
