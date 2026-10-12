@@ -538,6 +538,9 @@ def remove_version(cfg, slug, vid):
     e = catalog.Catalog().get(slug)
     if e is None or e.version(vid) is None:
         raise VersionError(f"no version {slug}/{vid} in the catalogue")
+    if (runs.version_record(slug, vid) or {}).get("mode") == "import":
+        raise VersionError(f"{slug}/{vid} was imported from the published dumps (its run record has mode 'import'); "
+                           "published versions are never removed")
     made_from = dependents(slug, vid)
     if made_from:
         raise VersionError(f"{', '.join(made_from)} made from {slug}/{vid} (input or applied correction); a version "
