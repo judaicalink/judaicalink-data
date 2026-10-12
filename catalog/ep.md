@@ -64,8 +64,8 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "ep-meta.ttl.gz"
-  bytes = 2449
-  sha256 = "264576971cb8fe7412296d01a4e455a2a16a15791e896ad8a39e0c2b908b6e51"
+  bytes = 2447
+  sha256 = "8cab0f3ce80b0a504c4c85b8e04cda1c6240f1e0dca3486c1916683e9cf83994"
   triples = 124
 
 [[changelog]]
