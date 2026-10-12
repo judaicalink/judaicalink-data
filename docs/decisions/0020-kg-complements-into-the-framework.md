@@ -82,10 +82,13 @@ Each dataset becomes one version when it is finished (runs only until then, 0018
 
 1. `compact-memory` (new version), with the Compact Memory pull request;
 2. `cm-ocr-quality`, `cm-entities`;
-3. `records-normalized`, with the person-data pull request;
-4. `gnd-persons-entityfacts`, `quality-annotations`;
-5. `nli-records`, `ls-nli-legacy`;
-6. the entity-page set, with the entity-page pull request.
+3. (order changed 2026-10-12: `records-normalized` reads `nli-records` and `gnd-persons-entityfacts`, which must be
+   versions first) 3a `gnd-persons-entityfacts`; 3b `nli-records`, `ls-nli-legacy`; 3c `records-normalized`, with
+   the person-data pull request; it complements the stable versions of the record datasets (in 2026-10-06 the
+   endpoint held footprints 2025-03-21 and haskala 2025-03-24 instead; the port is first checked against the old
+   output with those versions, then the stable ones are declared, decided 2026-10-12);
+4. `quality-annotations`;
+5. the entity-page set, with the entity-page pull request.
 
 ## Consequences
 
