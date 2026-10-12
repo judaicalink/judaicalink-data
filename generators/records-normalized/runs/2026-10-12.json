@@ -1,15 +1,15 @@
 {
  "slug": "records-normalized",
- "run": "run-20261012T222734Z",
+ "run": "run-20261012T231909Z",
  "generator": "generators/records-normalized/generate.py",
- "commit": "250a2465e64abd0487a1086a7bc3be913b9c3074",
+ "commit": "75c5921ff58df3ecdb3602144958f703b40e4cff",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
   "legacy_terms": false
  },
  "input_overrides": [],
- "started": "2026-10-12T22:27:34Z",
+ "started": "2026-10-12T23:19:09Z",
  "inputs": [
   {
    "name": "bhr",
@@ -197,8 +197,8 @@
    "name": "haskala",
    "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
    "file": "haskala-vocabulary.ttl.gz",
-   "sha256": "93db5319dfaac0467134197a7b29c2c06ddcdf0c4a5e7d0df63bd043392e8430",
-   "bytes": 11694
+   "sha256": "2bc6a01ce4bb316b4efd715533899be52bfdd273b78619f8499268b79f179440",
+   "bytes": 13093
   },
   {
    "name": "haskala",
@@ -278,30 +278,15 @@
    "bytes": 273155
   }
  ],
- "corrections": [
-  {
-   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
-   "deletions": 76
-  }
- ],
  "status": "ok",
- "finished": "2026-10-12T22:27:53Z",
- "seconds": 19.3,
+ "finished": "2026-10-12T23:19:26Z",
+ "seconds": 17.0,
  "notes": [
   "Dates: {'death before birth': 58, 'empty': 23, 'normalised': 189027, 'not parsed': 610, 'uncertain': 173}. Examples of values left out: ca. 1600/1606, 28.2.(10.3.)1894, Dezember 5, 1848, January 28, 2185, 10.9. oder 4.10.1817, 25.02.1752 oder 1753, 10.10.1871 Zabrze (von 1915 bis 1945:, [1957; bis 1945 in Ungarn, dann bis zum Tod in Amerika].",
   "Places: {'already linked': 43410, 'not linked': 28612, 'via cm-entities-wikidata places': 3992, 'via pairs in the data': 18487, 'via rujen and geo-coordinates places': 5532}.",
   "Occupations: 6,775 text occupations matched to one of 484 occupation IRIs, 23,282 not matched.",
   "Occupation IRIs stated with jl:occupation or jl:occpation: 12,236, as jl:occupationURI (12,236 new)."
  ],
- "deleted_by_corrections": {
-  "cm_entities": 1,
-  "dbpedia_persons": 24,
-  "gnd_persons": 7,
-  "hhkeydocs": 4,
-  "nli_records": 11,
-  "ubffm_persons": 1
- },
  "files": [
   {
    "path": "records-normalized-dates.ttl.gz",

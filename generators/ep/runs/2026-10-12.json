@@ -1,13 +1,13 @@
 {
  "slug": "ep",
- "run": "run-20261012T222841Z",
+ "run": "run-20261012T232228Z",
  "generator": "generators/ep/generate.py",
- "commit": "250a2465e64abd0487a1086a7bc3be913b9c3074",
+ "commit": "75c5921ff58df3ecdb3602144958f703b40e4cff",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T22:28:41Z",
+ "started": "2026-10-12T23:22:28Z",
  "inputs": [
   {
    "name": "previous",
@@ -160,8 +160,8 @@
    "name": "haskala",
    "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
    "file": "haskala-vocabulary.ttl.gz",
-   "sha256": "93db5319dfaac0467134197a7b29c2c06ddcdf0c4a5e7d0df63bd043392e8430",
-   "bytes": 11694
+   "sha256": "2bc6a01ce4bb316b4efd715533899be52bfdd273b78619f8499268b79f179440",
+   "bytes": 13093
   },
   {
    "name": "haskala",
@@ -537,22 +537,24 @@
  ],
  "corrections": [
   {
-   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
-   "deletions": 76
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T22:30:39Z",
- "seconds": 117.7,
+ "finished": "2026-10-12T23:24:28Z",
+ "seconds": 119.2,
  "notes": [
-  "{'previous IRIs': 1717191, 'previous pages': 1717191, 'records': 332875, 'groups': 310205, 'kept IRI': 246291, 'new IRI': 63914, 'merged': 14917, 'split': 1492, 'retired': 1454491, 'highest number': 2781104}; classes {'Person': 290466, 'Place': 11442, 'Work': 7303, 'Subject': 830, 'Organization': 164}; conflicts {'several Wikidata items': 45, 'incompatible classes': 10}."
+  "{'previous IRIs': 1717191, 'previous pages': 1717191, 'records': 332875, 'groups': 310214, 'kept IRI': 246291, 'new IRI': 63923, 'merged': 14917, 'split': 1492, 'retired': 1454491, 'highest number': 2781113}; classes {'Person': 290466, 'Place': 11442, 'Work': 7312, 'Subject': 830, 'Organization': 164}; conflicts {'several Wikidata items': 45, 'incompatible classes': 1}."
  ],
  "deleted_by_corrections": {
   "cm_entities": 1,
   "dbp_wiki_geo_linking": 5,
   "dbpedia_persons": 24,
+  "footprints": 7,
   "gnd_persons": 7,
+  "haskala": 2,
   "hhkeydocs": 4,
   "interlinks": 20,
   "ls_nli_legacy": 6,
@@ -562,15 +564,15 @@
  "files": [
   {
    "path": "ep-history.ttl.gz",
-   "bytes": 4335422,
-   "sha256": "ceb43a4684e584b714196278237145568689716830fed3bd22527b77c0b13c42",
+   "bytes": 4335406,
+   "sha256": "663d5746212a69b3ec89cdb524f42e3b9ca0766fb32e0c18b6a11cda50d2903c",
    "triples": 1489277
   },
   {
    "path": "ep.ttl.gz",
-   "bytes": 42328654,
-   "sha256": "a3b89444c186a4564da3a26363e7947cfd75ba8b4aafce9a05c874d53d686b46",
-   "triples": 3295414
+   "bytes": 42328178,
+   "sha256": "e362789591cac1ed098bb04b0ad788cbaa37deaf129a12d50e787225cb9da79c",
+   "triples": 3295425
   }
  ],
  "version": "2026-10-12"

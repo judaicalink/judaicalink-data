@@ -1,13 +1,13 @@
 {
  "slug": "haskala",
- "run": "run-20261012T222616Z",
+ "run": "run-20261012T231907Z",
  "generator": "generators/haskala/generate.py",
- "commit": "4617329de6dedf1425693b95ab83a76a7ba9f66d",
+ "commit": "75c5921ff58df3ecdb3602144958f703b40e4cff",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T22:26:16Z",
+ "started": "2026-10-12T23:19:07Z",
  "shared_code": [
   "generators/haskala/drupal_sql.py"
  ],
@@ -32,6 +32,3688 @@
    "file": "Haskala_net.ttl.gz",
    "sha256": "79a450e29adb2cfc747f9ba5b8bde98901f657c05c74af7f3af15ce3d3b538b1",
    "bytes": 2824
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1952.html",
+   "file": "book-1952.html",
+   "sha256": "ec7ed8f1216c02de07ae5ce59fa355084238476d6a5ca42352d78ce92ce14c1e",
+   "bytes": 23824
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1953.html",
+   "file": "book-1953.html",
+   "sha256": "ed7664d72fa8edeb5cf77451b03751f38442359576cdcac854be98fa9ed888f6",
+   "bytes": 25660
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1954.html",
+   "file": "book-1954.html",
+   "sha256": "2c7b4cfb247a839defd0c734dd70243a623bd914fcae8eb95e3deb3882349bc3",
+   "bytes": 35119
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1955.html",
+   "file": "book-1955.html",
+   "sha256": "666361faf33db4c0f6d1ed5bd9e6297f9402897644d072c66997169e0f4cb3d3",
+   "bytes": 10447
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1956.html",
+   "file": "book-1956.html",
+   "sha256": "9daa7cf0359810dcf39166ef410b962518c7379f98d372e5c4517b7d2f1301eb",
+   "bytes": 26485
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1958.html",
+   "file": "book-1958.html",
+   "sha256": "6e656d1ff4d7630f8b927af9ef74670ceea9d8b67f9cb102fd18add2686eb3ae",
+   "bytes": 33144
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1959.html",
+   "file": "book-1959.html",
+   "sha256": "20311d946c84e0241e51a00a12dd580f4a321f5aade3561ab7bd07aeb7fe301e",
+   "bytes": 26445
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1960.html",
+   "file": "book-1960.html",
+   "sha256": "ac70028a4a9506ca2fd8cd724c4d608f621583255d33e0da4072bef84b79317f",
+   "bytes": 36157
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1961.html",
+   "file": "book-1961.html",
+   "sha256": "83803e2e3b0776d6a366c64f6e60c1421688eeaaef91870f478bf798ce0434ae",
+   "bytes": 25168
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1962.html",
+   "file": "book-1962.html",
+   "sha256": "3e188e785f108f4cf65bb89e830fee5e2220295c1214700aa831542598f1af89",
+   "bytes": 30058
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1963.html",
+   "file": "book-1963.html",
+   "sha256": "e9bd2535f96dc3a0994001f157a1c56d8086fe39464dacece25a927e03ba8bec",
+   "bytes": 34533
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1964.html",
+   "file": "book-1964.html",
+   "sha256": "edf3537be11b96397139ff9c1a9c4a95625e6891bf0ce259d22a183b4077bf04",
+   "bytes": 31760
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1965.html",
+   "file": "book-1965.html",
+   "sha256": "fb5fcc1622bc1fd97895f7725d20161f8390dc6cefb2c0414b539cab804b332f",
+   "bytes": 13007
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1966.html",
+   "file": "book-1966.html",
+   "sha256": "5cb815fa6fba15bac0577b5362c94c7143da3de1d8d6e3659805bb234b7a20bf",
+   "bytes": 27745
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1967.html",
+   "file": "book-1967.html",
+   "sha256": "b13dcb55d89ea05a384760f05535c78149d8a27b27d52475eaface572b8738e2",
+   "bytes": 12496
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1968.html",
+   "file": "book-1968.html",
+   "sha256": "aefa5630e560331903327e69844a5d4187fc80e4d57a62d9f5eb374475d9256e",
+   "bytes": 12085
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1969.html",
+   "file": "book-1969.html",
+   "sha256": "261c1f611610291814f3ac63b36d135a9d27ccd3edfdd825815bc45030fede79",
+   "bytes": 27336
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1970.html",
+   "file": "book-1970.html",
+   "sha256": "bb5cbf198f2f2f8ee7cba09b10632a4ddf2232b77c4d9b0b330c36bec989452e",
+   "bytes": 28857
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1971.html",
+   "file": "book-1971.html",
+   "sha256": "1e46ddb82e0bc9a926ad5263b18717571ec36df130c291639c13e62af9b80f88",
+   "bytes": 28534
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1972.html",
+   "file": "book-1972.html",
+   "sha256": "b6b2336d8b57c2ac2c3bee6a35679c88668426f1391cfe0d2a8a7cd0c0b02edd",
+   "bytes": 12701
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1973.html",
+   "file": "book-1973.html",
+   "sha256": "fef8fe6bd2d81ca308d6ed7baf40f65e78a7239a458bb0fbaa8dbdd124de3484",
+   "bytes": 11872
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1974.html",
+   "file": "book-1974.html",
+   "sha256": "1fbde5621271e6739b4d2d5fe1eaf6528e76af679f0aa12a907ddbbe976e5100",
+   "bytes": 29523
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1975.html",
+   "file": "book-1975.html",
+   "sha256": "253366d814c7afe2f47dc48cbbea008583f00258755714ad514cbe80f12bd94a",
+   "bytes": 26944
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1976.html",
+   "file": "book-1976.html",
+   "sha256": "b4b4e5d68e1f974df6ceb4c321a1f2837fcca00f259413c96ffaf82798e4fab7",
+   "bytes": 30303
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1977.html",
+   "file": "book-1977.html",
+   "sha256": "5a4f48b75a2f26fd819528ca8683626a7dbba945fad94bd9790e3f0b8ee0603d",
+   "bytes": 24133
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1978.html",
+   "file": "book-1978.html",
+   "sha256": "624d62993a6db5e8d26a214033216f3c57844475f79b69624b0fde228ff15486",
+   "bytes": 24579
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1979.html",
+   "file": "book-1979.html",
+   "sha256": "ffb3805e823a611b5a5618822bbd453fceccf9e322e1fa07c5b046ae883fe359",
+   "bytes": 29088
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1980.html",
+   "file": "book-1980.html",
+   "sha256": "8285942f14857e87804cad97160cdc53f1ad6cf813f50c2eda0261e9bf4b5d61",
+   "bytes": 22980
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1981.html",
+   "file": "book-1981.html",
+   "sha256": "60291709093ff5a97941851b8f86c4ee2f3f39f64678957650a25bbf9d805045",
+   "bytes": 41005
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1982.html",
+   "file": "book-1982.html",
+   "sha256": "3503b7805161d0e10fbff7814cd8a7df648ce1c13026b3aa2c4a767c8fb03a63",
+   "bytes": 28957
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1983.html",
+   "file": "book-1983.html",
+   "sha256": "dbbecdb094582a309182ad73176359a4fb14e5deba164d7373b0b3d7d19dc2fb",
+   "bytes": 13177
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1984.html",
+   "file": "book-1984.html",
+   "sha256": "c74b4cad68251928e81614b7405e453515eeb8bc6460fec8258db6d812631d8e",
+   "bytes": 12234
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1985.html",
+   "file": "book-1985.html",
+   "sha256": "d138fd1f2324072f86f62af439c674fefd275df9bc64c40e6aa12479989f365f",
+   "bytes": 11756
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1986.html",
+   "file": "book-1986.html",
+   "sha256": "c88b0e79d65badaed2a456e5d8ef49a53645226a812a045b8bb5c2dd329bd328",
+   "bytes": 12137
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1987.html",
+   "file": "book-1987.html",
+   "sha256": "bc26f795d38250c626c5eddd284a9e98cf81cc489f932e71fcdd350b5b2b0db5",
+   "bytes": 26412
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1988.html",
+   "file": "book-1988.html",
+   "sha256": "8cb7970fd658913cff7690d9e034517b10a4fdad26c1a0fbcf5359b461d0b759",
+   "bytes": 29097
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1989.html",
+   "file": "book-1989.html",
+   "sha256": "a19eea85daca6e5f950127169bb24559564d0554298de6808cfdc72ff474adb3",
+   "bytes": 16072
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1990.html",
+   "file": "book-1990.html",
+   "sha256": "251f281b5126fd00ee0c2f21b33ce7840b9b1c1762c24e13ddae5e4fb2fa4841",
+   "bytes": 25594
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1991.html",
+   "file": "book-1991.html",
+   "sha256": "5d50a540db87bcc121242bf58b633fb4f123fa2339de51c52d02681c8c31a710",
+   "bytes": 26031
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1992.html",
+   "file": "book-1992.html",
+   "sha256": "51e33cba09b619956ffb88591dd42486a449fd330c98e960fb0a1de748b364fd",
+   "bytes": 26321
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1993.html",
+   "file": "book-1993.html",
+   "sha256": "d34684d6e6a06cd7adfd0435abab47b13b52a3cd0424a6dfb8171f581ac80a46",
+   "bytes": 26302
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1994.html",
+   "file": "book-1994.html",
+   "sha256": "ab6cb9c370b6f8b80a2094bc6128f3605c8760e7b4eae69d563b0251727c7cde",
+   "bytes": 34310
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1995.html",
+   "file": "book-1995.html",
+   "sha256": "c53854d33356f7d52e06df4a90d08537bda94353a14a4559bdfcda023526a35b",
+   "bytes": 26622
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1996.html",
+   "file": "book-1996.html",
+   "sha256": "f923690c03d5ecd1ed9e6748e68444e7da8fac9d79dcdb1c59033162ce9c5f81",
+   "bytes": 27018
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1997.html",
+   "file": "book-1997.html",
+   "sha256": "d45deb862dccc317341ca99a98b9cbbcf8d508e82ae3c1cfff0e5ba04dba7ec2",
+   "bytes": 236643
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1998.html",
+   "file": "book-1998.html",
+   "sha256": "727f105e8ac3e75f054f903c82659272acdb21526566d5e4d0cf78f5082cd23b",
+   "bytes": 29696
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-1999.html",
+   "file": "book-1999.html",
+   "sha256": "8b2ace3b9bcfe7aee4a272f304f92cc4580e84ebcaa7aa5af6c5f670db77d0a6",
+   "bytes": 32796
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2000.html",
+   "file": "book-2000.html",
+   "sha256": "0dbd554477baed5e052e54c623ac4c49d2f0a77b45df7b836f9ab5fa467eb700",
+   "bytes": 28640
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2001.html",
+   "file": "book-2001.html",
+   "sha256": "04411730607e59209621ed10de3da45f428b2daea3b904eabf4b70b9f9e9b961",
+   "bytes": 30350
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2002.html",
+   "file": "book-2002.html",
+   "sha256": "6a6fce89c6b3cae5c2fc183a929ca97640a084e3dacaf183de8b2df5c1c32a07",
+   "bytes": 36924
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2003.html",
+   "file": "book-2003.html",
+   "sha256": "d60f655394d242a844f259bf450666986fa25dabeb494b8f358b59bb1dd256b1",
+   "bytes": 23949
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2004.html",
+   "file": "book-2004.html",
+   "sha256": "379e67f9bf6bd1d6f5940553570d47d51e20cbdc1e35c07314084f5f9dcaa905",
+   "bytes": 43073
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2005.html",
+   "file": "book-2005.html",
+   "sha256": "85650f9828862f32b87f301dd0ebd60939526f3c0229f2f972bee45e078637f3",
+   "bytes": 10887
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2006.html",
+   "file": "book-2006.html",
+   "sha256": "85d3ba58cd58ae078bf5b8fe9717f07d8373616f3dfc5a0a4ecf80bf16fc0436",
+   "bytes": 114995
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2007.html",
+   "file": "book-2007.html",
+   "sha256": "3e9445cc3928953616b3e1e740ff97d13c1359fce01cdc63f1421770f7e3a84c",
+   "bytes": 29824
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2008.html",
+   "file": "book-2008.html",
+   "sha256": "06880bbee4635dc1639f72ade7464f0eedc1de8dd1e254ede37d6494921595cd",
+   "bytes": 27571
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2009.html",
+   "file": "book-2009.html",
+   "sha256": "2b4bd473fcd9f7c4f212053d90d4786b42f0614d7b4a603a6c6b8c23ceec4432",
+   "bytes": 25564
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2010.html",
+   "file": "book-2010.html",
+   "sha256": "fca835a448902eb4c3bded71e7dfe1a6ab197c11c7a9147f4b277d4476b4c8bb",
+   "bytes": 31457
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2011.html",
+   "file": "book-2011.html",
+   "sha256": "707ec03cbbf58f1863ed07d6fad4285c3ea99907df8305d171a32207ff1aa901",
+   "bytes": 19547
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2012.html",
+   "file": "book-2012.html",
+   "sha256": "96fd0a1a2e387c4700ca8be4cbef85c5dbef6908bb9a39c0b1b62077ecbc6087",
+   "bytes": 24780
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2013.html",
+   "file": "book-2013.html",
+   "sha256": "1cf38902d1466ef122a21a8e1b093739b71c9706d2f2e62e7b6a2073252f83a8",
+   "bytes": 29719
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2014.html",
+   "file": "book-2014.html",
+   "sha256": "2b6cac103ddfbe11ca973baa0a478009be341def70a8dd872deb75bbed98637a",
+   "bytes": 11580
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2015.html",
+   "file": "book-2015.html",
+   "sha256": "59ec0d32965d6db3c0898d5115986e53383c0dd622a2e2930d7aba4976a3f70d",
+   "bytes": 23388
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2016.html",
+   "file": "book-2016.html",
+   "sha256": "f28b61f443dee39c35b859d1e673f3f69977ace46b400c3d1a621a01ff995301",
+   "bytes": 13386
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2017.html",
+   "file": "book-2017.html",
+   "sha256": "0acaf142706587caf19694dab934a558765fe186a019a43d3340ebb2c6d676c8",
+   "bytes": 31950
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2018.html",
+   "file": "book-2018.html",
+   "sha256": "8e29c28a7003b6ea1c88204ab99d66d9dcca526dbc1524d4d057c20d698673d9",
+   "bytes": 32868
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2019.html",
+   "file": "book-2019.html",
+   "sha256": "ded6ae44e6d97550f6e59b40b72b7db4c302e96263b4ad2f420359ed326a8045",
+   "bytes": 10919
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2020.html",
+   "file": "book-2020.html",
+   "sha256": "11dc3e3a8a6d1deb63fdd9a09e107ecdb55786286ca58fb82db3f660878d12c3",
+   "bytes": 12232
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2021.html",
+   "file": "book-2021.html",
+   "sha256": "52d6fe25e995710c2850854cf7af01e45d9c805aa3332a23a5c978f46c3f3fe2",
+   "bytes": 11600
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2022.html",
+   "file": "book-2022.html",
+   "sha256": "c4b2f8cda0e4995114038ddd33809a32a85a571eb44d00ec091fde368f70906e",
+   "bytes": 33994
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2023.html",
+   "file": "book-2023.html",
+   "sha256": "2c135e61051f07cbf686d617fe63b310397ace50c7e9ceb65fe5238399cca122",
+   "bytes": 26658
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2024.html",
+   "file": "book-2024.html",
+   "sha256": "e2ace5e0552990c2e60fdab7510da69387caef442cf81777664243a73de2eb20",
+   "bytes": 12209
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2025.html",
+   "file": "book-2025.html",
+   "sha256": "c8426cbaf474cb3c43c577bb86966717bc889949baf788aa0e99c0a9359fbd1f",
+   "bytes": 28153
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2026.html",
+   "file": "book-2026.html",
+   "sha256": "98b5f3f88a41ec2ea717ff9fce140ef292e101b5feab68d68569069c95047a4d",
+   "bytes": 30087
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2027.html",
+   "file": "book-2027.html",
+   "sha256": "651e79221b0a2e26bcfbdc4089379d1877e39b22a60cac363548f78fd0d7800b",
+   "bytes": 23367
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2028.html",
+   "file": "book-2028.html",
+   "sha256": "fef17bf5c1b97f0cd1d318a7d548244141b361846197d022d6897afacf7532d1",
+   "bytes": 32133
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2029.html",
+   "file": "book-2029.html",
+   "sha256": "a5036a1559795d2e54cdb85b0f724a322bd8ca361448ba4a0cb2621b27a38c99",
+   "bytes": 23316
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2030.html",
+   "file": "book-2030.html",
+   "sha256": "9832f7cb030e2d62d571fcb07a9e92cbdf706c43a91726f846dacc591d59fd3e",
+   "bytes": 22160
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2031.html",
+   "file": "book-2031.html",
+   "sha256": "71ff0f997ec3558d204b6fbc872129da97a5a66193a4e8fde7982880048dc25b",
+   "bytes": 30157
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2032.html",
+   "file": "book-2032.html",
+   "sha256": "6717487ea2e0a4673700d81e00abc95067ec584cb4e269f4ebebd268ceb87bc4",
+   "bytes": 29881
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2033.html",
+   "file": "book-2033.html",
+   "sha256": "d9607ca4feb827ff9b3121364fe71cce9d5f9822577872658c76636bb10ad2d1",
+   "bytes": 13509
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2034.html",
+   "file": "book-2034.html",
+   "sha256": "11b2db642cf620763acbe38bad6f9dfc0b1bd64a9a970be814deb62c53506915",
+   "bytes": 13023
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2035.html",
+   "file": "book-2035.html",
+   "sha256": "f76f311d3ef258b7ab405c0839f993117ffb57532e386bb1ae77f61f74452e70",
+   "bytes": 12193
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2036.html",
+   "file": "book-2036.html",
+   "sha256": "85658921653aad34984aaf4549849e12f5a5bcce70c6f5a8dd1492fda39398fb",
+   "bytes": 12285
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2037.html",
+   "file": "book-2037.html",
+   "sha256": "bf54faef6114971eee01455e1159eb10527fe45b684f8cff591affaf81829b51",
+   "bytes": 11724
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2038.html",
+   "file": "book-2038.html",
+   "sha256": "1a30ac3093942f5df8ef893c495cb63f302b37a781296cba3e90b549cd1ca202",
+   "bytes": 10780
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2039.html",
+   "file": "book-2039.html",
+   "sha256": "3cc62da4b6b4cb79c1cf7d4570e4b4cca84ee9af126f3cca8890c3015364376c",
+   "bytes": 24561
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2040.html",
+   "file": "book-2040.html",
+   "sha256": "fcd9697306593b926b47ae181f07b68bf26b58dfb8d70d851702b4b5bae6317b",
+   "bytes": 23472
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2041.html",
+   "file": "book-2041.html",
+   "sha256": "752c1a26a87045dd1c38ba98f45960b54e2ca4aa4e08ed6a2873794fc814c161",
+   "bytes": 26086
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2042.html",
+   "file": "book-2042.html",
+   "sha256": "2dd256db01c7fc26c9fa6cbff8170892aa720037a79235a2e40475636898b160",
+   "bytes": 29215
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2043.html",
+   "file": "book-2043.html",
+   "sha256": "d66385aacfd69d44935c2029d2095a4c208a9ba31df72243824fd8a6913ae338",
+   "bytes": 18088
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2044.html",
+   "file": "book-2044.html",
+   "sha256": "4f24321e70c534f296c206d3c432c1f9a15c7e289472380cf8aa57ea5f098039",
+   "bytes": 26320
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2045.html",
+   "file": "book-2045.html",
+   "sha256": "b82a4f0ad9c6b12f2d00988e3d59f9507b8ebfade1f6a910a7c4273a41773210",
+   "bytes": 11868
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2046.html",
+   "file": "book-2046.html",
+   "sha256": "ba0211867382512eb955669d0af7b73df1ffdff8976f0b6a20901f9f64eb168a",
+   "bytes": 28840
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2047.html",
+   "file": "book-2047.html",
+   "sha256": "3170f628e6dc9f1a205d17fccc148bb9027aca1885a056ac004f105048a87204",
+   "bytes": 31736
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2048.html",
+   "file": "book-2048.html",
+   "sha256": "234239b383e084df291dd13ba2cc24133494b73e2c67cb6bb5c37e68fff2136b",
+   "bytes": 31324
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2049.html",
+   "file": "book-2049.html",
+   "sha256": "c141623cdd7e97b497c8a6ef31a723ac04ae110a81b745814f580e6db9e64160",
+   "bytes": 32880
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2050.html",
+   "file": "book-2050.html",
+   "sha256": "5f1638ba539203ed504addca5351d3d37c68909c08c7701ce46d9cf8bb2d32dc",
+   "bytes": 20198
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2051.html",
+   "file": "book-2051.html",
+   "sha256": "cc1458e8ce2d32f80beab5ddbd945f838d7867b9cd568fb01e5089407d4ff1f9",
+   "bytes": 11597
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2052.html",
+   "file": "book-2052.html",
+   "sha256": "640aeb8be29b0eb49d3b629ac7d603c6ffab8aaefd5ff6232d8c975309b7225b",
+   "bytes": 26922
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2053.html",
+   "file": "book-2053.html",
+   "sha256": "ee87275856199c368f3cb0fbc4e60afd7181fdbaa51aa5d074d79dcd3572bc71",
+   "bytes": 29172
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2054.html",
+   "file": "book-2054.html",
+   "sha256": "3e412714b8d0fc430ae273e3dc8bf0825347c0a2555c428d223f563707be001a",
+   "bytes": 25329
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2055.html",
+   "file": "book-2055.html",
+   "sha256": "211f51d31e61da35b00a2201260c1309cc9636e416dc3df009e710cffb558fe5",
+   "bytes": 26711
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2056.html",
+   "file": "book-2056.html",
+   "sha256": "8a79ddaf629d5888b72bb8d10e69b366c3b15bad88a4895e41186bcbf89301cc",
+   "bytes": 35111
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2057.html",
+   "file": "book-2057.html",
+   "sha256": "61878b0f0f57ff8753f1fc1fd23284f6c71de4775bac95f70f1a6223ff8deb18",
+   "bytes": 24972
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2058.html",
+   "file": "book-2058.html",
+   "sha256": "af38494cec0c49d299faea7929516c29824f9a481f89203e93b2e8ccd60fbe6e",
+   "bytes": 25446
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2059.html",
+   "file": "book-2059.html",
+   "sha256": "f7ad8a02883a4e623a29e738558bfbf5a626203e1ac961cbe63b7b4cf7400780",
+   "bytes": 28395
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2060.html",
+   "file": "book-2060.html",
+   "sha256": "d29edf4381a9f3cc24d854756802b71616945a7037aa54b999d70e0941ae4917",
+   "bytes": 25028
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2061.html",
+   "file": "book-2061.html",
+   "sha256": "1e9fd4400c5e6a9ba3f6a2a33057895122930da030bdd59c8a43d5c9de461b57",
+   "bytes": 31296
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2062.html",
+   "file": "book-2062.html",
+   "sha256": "16ccd810b6fd03e91ec29d7be21f2ef6aeb6b2c2e83be5fd305cabd8ad3b22e4",
+   "bytes": 25881
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2063.html",
+   "file": "book-2063.html",
+   "sha256": "20f41f30c354db0aed81d36ee0c2171081e3519b6f4086ccb3c1075f11997055",
+   "bytes": 25822
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2064.html",
+   "file": "book-2064.html",
+   "sha256": "07858ddabc4bddb35fec94af6c16e4977c733469eb7f1a8a9ee43c2fb7980234",
+   "bytes": 25494
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2065.html",
+   "file": "book-2065.html",
+   "sha256": "78f465d0238d620369171389d60134381eeb0307c9c6854e4baa493ffc83b507",
+   "bytes": 11936
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2066.html",
+   "file": "book-2066.html",
+   "sha256": "12e2d3983e6dce1fdce58bf2c24ac755dd2a6b3486546ece7447b98fa4aca918",
+   "bytes": 24675
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2067.html",
+   "file": "book-2067.html",
+   "sha256": "a2c84b36a57b420350473269f11674b46cfd1e85834a1ec6014d342c118d50d1",
+   "bytes": 25035
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2068.html",
+   "file": "book-2068.html",
+   "sha256": "91d77266ca3d24b031973418937ad18f68acffe21866db8ed3e8ec87f323708f",
+   "bytes": 26106
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2069.html",
+   "file": "book-2069.html",
+   "sha256": "f1b719145f4697bd18d32cdb97901edcf506f499d55ecdbab01dfc396b62eab5",
+   "bytes": 25327
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2070.html",
+   "file": "book-2070.html",
+   "sha256": "6c890e423ef76233622a72f5b1c5a7f707f8def08e6bca5fb92698d0b838a033",
+   "bytes": 25634
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2071.html",
+   "file": "book-2071.html",
+   "sha256": "6c7e8ae3fea558f7c5ed0755524f084c0ecfff7c5538d7ee400c4702a9b32a68",
+   "bytes": 30364
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2072.html",
+   "file": "book-2072.html",
+   "sha256": "62089c536a8ee77b6408f4f44bc246d7d4c5a701ada7c74131e2e2ead62453c0",
+   "bytes": 28582
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2073.html",
+   "file": "book-2073.html",
+   "sha256": "0ba08ab0a54fc585b3f1885549c9a71bdf7475c9c8c13d8c716319f3c6232422",
+   "bytes": 24042
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2074.html",
+   "file": "book-2074.html",
+   "sha256": "102b153cd696c88e1af60c03d9cbd60b2ab873958a5135464e286d3d7f2fe5ff",
+   "bytes": 39159
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2075.html",
+   "file": "book-2075.html",
+   "sha256": "2b47c7e6b1c540e7f90ca2ac85dfa7bcffac93bf8e7e50c4d7f0c49210a3729e",
+   "bytes": 30151
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2076.html",
+   "file": "book-2076.html",
+   "sha256": "c9e2514fd2b730b888cb7c0df66705621fea290dcaee9a4d2caebf200e3b4f0e",
+   "bytes": 42043
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2077.html",
+   "file": "book-2077.html",
+   "sha256": "a7e30be4cfa8d6ad1b5df363c1c9a0cc155c07a417a47b718de11dcd0a038333",
+   "bytes": 39356
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2078.html",
+   "file": "book-2078.html",
+   "sha256": "f392e352f8dde318a1c109c7bc17f42086bf41b68e26b2e3afc5dafff3c82f3b",
+   "bytes": 27680
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2079.html",
+   "file": "book-2079.html",
+   "sha256": "80eb3189be46b29314053276c06430dc44bc0ac56c0257c1aebf829c99d71dae",
+   "bytes": 53941
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2080.html",
+   "file": "book-2080.html",
+   "sha256": "151d39dbce38922e80371c74c9305df36770e1313d7f4cdec46084ab76473c35",
+   "bytes": 32889
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2081.html",
+   "file": "book-2081.html",
+   "sha256": "233a09bb96c561db6b2f319e15d2da27656122c151c0d005010e00b861c557c2",
+   "bytes": 37520
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2082.html",
+   "file": "book-2082.html",
+   "sha256": "0e6da401314f4df05445fa602107e39ee8782379212439ef161f8b4be831d2fc",
+   "bytes": 31560
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2083.html",
+   "file": "book-2083.html",
+   "sha256": "e80629047ae7f984c395fe2d068dcf2c9569fde55d10d3dd6dc16fac0617af4e",
+   "bytes": 41668
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2084.html",
+   "file": "book-2084.html",
+   "sha256": "a676eb8003cd3626d7126c60844533777c78eb895ca832014df33cde3befef10",
+   "bytes": 33050
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2085.html",
+   "file": "book-2085.html",
+   "sha256": "68af659c3df781fd3fe908d1965377d1957b7230881565e753520536cd422b1d",
+   "bytes": 35642
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2086.html",
+   "file": "book-2086.html",
+   "sha256": "ec1fee4ae2b7eb7dec5d6af5cdb1fe2131c8a4496ea3d8421f708bc82b96e8c6",
+   "bytes": 44707
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2087.html",
+   "file": "book-2087.html",
+   "sha256": "5dad82e4f1c7c89bddb1af4a609895a93921ae61e8474b8bcbcdf4a1c92fd43e",
+   "bytes": 10772
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2088.html",
+   "file": "book-2088.html",
+   "sha256": "b2e4b0a22f520a8a07d633b5acf625b94c2c31ae4827ca84573216e31479d282",
+   "bytes": 12486
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2089.html",
+   "file": "book-2089.html",
+   "sha256": "e22944b6272b6c23e4068e24f89266abd3aeae0ac08e062cf560f2c981222214",
+   "bytes": 24594
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2090.html",
+   "file": "book-2090.html",
+   "sha256": "1c029e330d88267d0e36ddc7e69e6be1e452220b55cfe5cd6b3c023403dfe797",
+   "bytes": 13097
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2091.html",
+   "file": "book-2091.html",
+   "sha256": "f1a75a9cc27adbd517fec3505447a57213b4f8bb2ef58d1d7503924d8227609f",
+   "bytes": 30649
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2092.html",
+   "file": "book-2092.html",
+   "sha256": "9e2b5e50af1129a8c84f3df836875094561c73036a295d616bab833dd5767bc7",
+   "bytes": 11728
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2093.html",
+   "file": "book-2093.html",
+   "sha256": "de121660e1ce62fcc2b05b70e16b21baec9d2669812a20268a7b1d7cbbd2ebcf",
+   "bytes": 12283
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2094.html",
+   "file": "book-2094.html",
+   "sha256": "e2f6b0be20adc533a3a3a73b3694250c49a405b51940972160057360e5d5bcc0",
+   "bytes": 26299
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2095.html",
+   "file": "book-2095.html",
+   "sha256": "54d50a9995352cc37d3b91020ee0a09d2d163e958b38c6ef6f067c53a824224c",
+   "bytes": 11894
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2096.html",
+   "file": "book-2096.html",
+   "sha256": "fdbb3d24aa5d6af22e8c0ebee7f0fbeda1749cab75b7818ef10051397af28d30",
+   "bytes": 12196
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2097.html",
+   "file": "book-2097.html",
+   "sha256": "0aa6c7fba4d23c2a78e86171fbf82f38dfb1c9b69f8bf28005ace95302e05dc9",
+   "bytes": 28288
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2098.html",
+   "file": "book-2098.html",
+   "sha256": "f8a35818dc090f2428e854b5025bac85af9568ae2ed7b681a7b98c6871561eeb",
+   "bytes": 28283
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2099.html",
+   "file": "book-2099.html",
+   "sha256": "2eb1fb8e927c992e084f5966bbab6de9bd64909b0a527a8ab88e77591d125141",
+   "bytes": 26882
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2100.html",
+   "file": "book-2100.html",
+   "sha256": "5b72566fcb1ef190c7961e6a27f8cb5c8691f73f66531961f78ade4b77beba27",
+   "bytes": 849745
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2101.html",
+   "file": "book-2101.html",
+   "sha256": "71507107f3714e417eaa7c8b1b4c364dd00d7e3314d77f2227e78bfaf33d0fb8",
+   "bytes": 20254
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2102.html",
+   "file": "book-2102.html",
+   "sha256": "037c337f3e4581086c3b4992e23bcac43c859bd231024e7b864533c9392bf979",
+   "bytes": 11974
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2103.html",
+   "file": "book-2103.html",
+   "sha256": "992789abd0d7447f294c39041f2714813778998652a5ab8d06b3545cd34397a5",
+   "bytes": 12320
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2104.html",
+   "file": "book-2104.html",
+   "sha256": "bb3ec3f7404c74f5170cd83b43fdde10211487e1be15782a614b14d4cac81393",
+   "bytes": 12096
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2105.html",
+   "file": "book-2105.html",
+   "sha256": "39941d6125600f7f6511e973a5e7c851d13e2527c3515c754f34016f8e22364a",
+   "bytes": 36668
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2106.html",
+   "file": "book-2106.html",
+   "sha256": "88d714cd3435c7e88645d8986161b94969b6927be37cc23f5191e26aec46a3a0",
+   "bytes": 27586
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2107.html",
+   "file": "book-2107.html",
+   "sha256": "f89d17c4d59c2945d9883bcb8a7f6bfa512288322232d18cddbc3bb4a836c337",
+   "bytes": 75489
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2108.html",
+   "file": "book-2108.html",
+   "sha256": "f5451a2b1762a209fd21f4a1bf384a51ee8b60771b6f00ecf20975fe34b6c370",
+   "bytes": 52318
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2109.html",
+   "file": "book-2109.html",
+   "sha256": "ed391707c65b1895dfb21520f0a61df73328ef359598cb361019d4d9c4d07cce",
+   "bytes": 31566
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2110.html",
+   "file": "book-2110.html",
+   "sha256": "8e6606fb7f466357f6557b46e11d63e6640d34e2f4473276d3803ebb71b1f94d",
+   "bytes": 32801
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2111.html",
+   "file": "book-2111.html",
+   "sha256": "7fb7a86a689840d76b363afc89d74380461b4f2d5d5d4c9af6c47c8458aaca49",
+   "bytes": 11342
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2112.html",
+   "file": "book-2112.html",
+   "sha256": "ca7c977af651ac4a2cb128f6952752a55ed740a15358bfd56898ebadaf10b1f8",
+   "bytes": 31770
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2113.html",
+   "file": "book-2113.html",
+   "sha256": "8f7c76a2a77db4383550b0a32c5a44e446da6d1a511359a7e5d9502637cd75ea",
+   "bytes": 26803
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2114.html",
+   "file": "book-2114.html",
+   "sha256": "ff12731f8dc4d3aed1c08b1c1b09e54c194ad8d6832b954df5f49eafed841789",
+   "bytes": 28343
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2115.html",
+   "file": "book-2115.html",
+   "sha256": "39dafd2cfbfdfe91f2600ef191653ec6af75785546eb9bc481fd92ab3a5037e5",
+   "bytes": 29672
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2116.html",
+   "file": "book-2116.html",
+   "sha256": "0f56cd8c0f31eba60d07fe6dbbbcf3323ee6467fdeb56c89ff6caf8819164445",
+   "bytes": 69388
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2117.html",
+   "file": "book-2117.html",
+   "sha256": "d2fb26e7604351ceb9a79d4a1f3f5d444e75d6d2d1219fb6c5d9ed9ed252b685",
+   "bytes": 27010
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2118.html",
+   "file": "book-2118.html",
+   "sha256": "5da5a66275477ac1ce94577731c933a2f835d40da5eb40832cc32c3dddcd7e6f",
+   "bytes": 40628
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2119.html",
+   "file": "book-2119.html",
+   "sha256": "8157432c2ca1da205bcf23271c6a6cde7ac2f37c60d31dc32bae2c4ab6b9d7a6",
+   "bytes": 40864
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2120.html",
+   "file": "book-2120.html",
+   "sha256": "ca2f9c36870a5f40f41660c957641cb4fc563d9ea9932b48cf6d79b15552914a",
+   "bytes": 33478
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2121.html",
+   "file": "book-2121.html",
+   "sha256": "dbc75b6c6433e94b2ff6b2a8b61f0d50c706683a22156912b5c9841384674194",
+   "bytes": 30371
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2122.html",
+   "file": "book-2122.html",
+   "sha256": "69f84b70a2c1523b822d95f6d7bb21c8a6888995d6e05bb06da4b006aea9dfc0",
+   "bytes": 22265
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2123.html",
+   "file": "book-2123.html",
+   "sha256": "7b81acea256b3a8231876c7843850557fa4fb22f0189c1fe79a158bd93a0a7f0",
+   "bytes": 40312
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2124.html",
+   "file": "book-2124.html",
+   "sha256": "136bd49dc10e531c2081370cbc772398426562991da03a63cc9dbc7b9e18037b",
+   "bytes": 36761
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2125.html",
+   "file": "book-2125.html",
+   "sha256": "6ca7c8a3546dda6aea1b7b631dad4ee6b2d17745d5ffb027a592a6572be37e38",
+   "bytes": 45888
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2126.html",
+   "file": "book-2126.html",
+   "sha256": "246d08d22f19d69d57fbe30acf55d4c7b58fb631d2bfd881d565f50ce403f69e",
+   "bytes": 40069
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2127.html",
+   "file": "book-2127.html",
+   "sha256": "a7997f591d74e6de611860e49accaba31113366780b00205dee5563dc2a01017",
+   "bytes": 29224
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2128.html",
+   "file": "book-2128.html",
+   "sha256": "c08f1251c93dedaa6c2584566cfc44a5eaeca6e8094bb70ff9eb01ec09111ce3",
+   "bytes": 31741
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2129.html",
+   "file": "book-2129.html",
+   "sha256": "536e4aee60752330ad7e2943cf65745258988d32e33128f8a18e8e804e74c0d3",
+   "bytes": 30014
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2130.html",
+   "file": "book-2130.html",
+   "sha256": "913a8cd3531d15c1309823e3b7778599108e7b27abe99fe9bac4a3559baa726a",
+   "bytes": 33919
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2131.html",
+   "file": "book-2131.html",
+   "sha256": "69103d95dcb402eeb5e59b4ca4db2a209d2ab802d9e8c31a080fa14f14e2f633",
+   "bytes": 45276
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2133.html",
+   "file": "book-2133.html",
+   "sha256": "fee5e6aeb53d1eaafe025c058525e284666f5bcb49a030d3ba296b95627fdf8a",
+   "bytes": 34093
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2134.html",
+   "file": "book-2134.html",
+   "sha256": "96de60b76e39d021ce4744278667688b640f2d2a86e770870f7ca38c792ddbb3",
+   "bytes": 28624
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2135.html",
+   "file": "book-2135.html",
+   "sha256": "862c401fd72c5678b0640575dfe6bb489ddc19c26aadb623715f4a748f73b354",
+   "bytes": 31302
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2136.html",
+   "file": "book-2136.html",
+   "sha256": "e6508a437633e30941ae6547604369f2ddea77d93c0d3bcb9911f8d2e70aa5ad",
+   "bytes": 29691
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2137.html",
+   "file": "book-2137.html",
+   "sha256": "a2b052940d90749d0b07b7df82f8a25aabe7ea2ecb6932fa470139d5eaef7e7f",
+   "bytes": 39053
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2138.html",
+   "file": "book-2138.html",
+   "sha256": "bca4bc8ad6832e474c6f1a768405777d97e9cd9c472e7783418791eac4e0520f",
+   "bytes": 25450
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2139.html",
+   "file": "book-2139.html",
+   "sha256": "b40f459a776d86a9c2255ae5eb5aeed2f3fc6b85d427d430dd48dc8008530460",
+   "bytes": 34170
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2140.html",
+   "file": "book-2140.html",
+   "sha256": "3b7b20c2b0f781b897090a6d481f1e03484a9c3b7eeb8af99877798e1a0b122b",
+   "bytes": 25527
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2141.html",
+   "file": "book-2141.html",
+   "sha256": "5f3dfb869d06778d5905c098c77017c8bcffd906e5c36ddd80f734316634fd6b",
+   "bytes": 27539
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2142.html",
+   "file": "book-2142.html",
+   "sha256": "ffae771c76de282b3ccc74cd667303a51c49ada759667cc140b33f1bf8efee0e",
+   "bytes": 35447
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2143.html",
+   "file": "book-2143.html",
+   "sha256": "fdb13c07ce3c5005bdeead0be412310ae57cdacdc64d0e3adae815b20f0c5e89",
+   "bytes": 36453
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2144.html",
+   "file": "book-2144.html",
+   "sha256": "0f5a940d5788efaafa4b5007cb13533058231c5b9ff5e13367bbe1f2e0d9aa9e",
+   "bytes": 34876
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2145.html",
+   "file": "book-2145.html",
+   "sha256": "e73141a668067001fe1d2eecec6ca66400548a24f527bcdd9a0aea66a1f5c676",
+   "bytes": 43852
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2146.html",
+   "file": "book-2146.html",
+   "sha256": "ba2d806712ebd414bfaf1d74e4fa54e836a4c88c6f5b6c491c086b509b7c1122",
+   "bytes": 33280
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2147.html",
+   "file": "book-2147.html",
+   "sha256": "a2bce7454fc23b3dde30afccdeaded072282771922c0880c0cd6f6da701cabed",
+   "bytes": 44330
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2148.html",
+   "file": "book-2148.html",
+   "sha256": "307c0b36876ec47dd24469ed5c6fd8e9c0493fa10fe735a926fbcd92dd252559",
+   "bytes": 43706
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2149.html",
+   "file": "book-2149.html",
+   "sha256": "94d92bc3933a6798e2cbdffe8a0a696368e6ce580390ce029507db92e29f5c10",
+   "bytes": 30649
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2150.html",
+   "file": "book-2150.html",
+   "sha256": "41d7c2a904eacf52806ef6b6f723e5e5aa56ac8e0c930028a2b28e2f1d111547",
+   "bytes": 35823
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2151.html",
+   "file": "book-2151.html",
+   "sha256": "861174663854e12a14a30220218a8671d0476a98861465c7545bcd9a294fd6de",
+   "bytes": 26079
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2152.html",
+   "file": "book-2152.html",
+   "sha256": "33cae7fbf5bed9174dd4843db07db8abb4a9c443ceb2fd1c967fc589073c0e43",
+   "bytes": 30738
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2153.html",
+   "file": "book-2153.html",
+   "sha256": "758d84befbd9b3dc66413362898575a944b4b9b90aee684112c9c1c83a0b17d6",
+   "bytes": 29638
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2154.html",
+   "file": "book-2154.html",
+   "sha256": "d7ccec1d315c19ec72f2cd4b3c3a546f508fcc4130d54c7bf9828aa0e6259ad4",
+   "bytes": 36312
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2155.html",
+   "file": "book-2155.html",
+   "sha256": "6abb98be28f2433f2a77b0558b79b89159b95a49a95bfd44b7e259c87b18f49f",
+   "bytes": 33313
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2156.html",
+   "file": "book-2156.html",
+   "sha256": "09e6c0e7520a1751e426a5514d60d6a0e67a5fc2ac456c20237a015a84a0ff35",
+   "bytes": 41063
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2157.html",
+   "file": "book-2157.html",
+   "sha256": "964ab548e8bd4311fe0717d1a9ac879e959193c9211e5096a5760c9c49c72c37",
+   "bytes": 34053
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2158.html",
+   "file": "book-2158.html",
+   "sha256": "5bbdc0528a3e848485d5780e2e9f5b8d67c15d19d628856eca02b679d8a4d7f0",
+   "bytes": 35725
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2159.html",
+   "file": "book-2159.html",
+   "sha256": "fcd112ea846fbf4fd9c276f1aeca8196bc7e9980b0a4da6d621c4e635f907962",
+   "bytes": 33171
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2161.html",
+   "file": "book-2161.html",
+   "sha256": "c63c5148dcf5e88718a8ffb83eab9441ca661631186f51e3324857fb4ed5d74c",
+   "bytes": 30695
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2162.html",
+   "file": "book-2162.html",
+   "sha256": "e0b67db3521492e7f42940d033bce7a57958b1709e915256fcda38952720603d",
+   "bytes": 28759
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2164.html",
+   "file": "book-2164.html",
+   "sha256": "c23c4f13f4e082f456b30ba0591b13396647f30bafc8d7fc19cbfd94905cc987",
+   "bytes": 29120
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2165.html",
+   "file": "book-2165.html",
+   "sha256": "c0abe47cab8d193f802accad6831e2a923f8b7e29b311529a9a0b26b02884109",
+   "bytes": 43341
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2166.html",
+   "file": "book-2166.html",
+   "sha256": "9665bfad24a6ba071432d3331dfff5f7166bd961c03fa207680cea9d93c13c0d",
+   "bytes": 46193
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2167.html",
+   "file": "book-2167.html",
+   "sha256": "a67f73c3e0091fb0fa5058a28f862d51824e47e5d18450320abd891b53e01ccb",
+   "bytes": 26532
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2168.html",
+   "file": "book-2168.html",
+   "sha256": "1454bcd2c1dbe8faba6f5a65bd63d222bef07bdca2187d1449a06a8de99d35c2",
+   "bytes": 29145
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2169.html",
+   "file": "book-2169.html",
+   "sha256": "d46047f9f2ae4e857a8eb6ff112944a9ea749bd06cc9ceb2d56478fae2f3fee7",
+   "bytes": 40914
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2170.html",
+   "file": "book-2170.html",
+   "sha256": "6bf6ab755d3da495959e50dbcd07d389c497305ffe80f1f5017b9f21ab01852e",
+   "bytes": 31640
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2171.html",
+   "file": "book-2171.html",
+   "sha256": "32fdad975bb48df71d7ac74ee7fec560cfd0a131344437bdc983908deedfd2d3",
+   "bytes": 38377
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2172.html",
+   "file": "book-2172.html",
+   "sha256": "6f2ebda3f023bb9f9d62ba677a1c0707be16eed01d3c544334340ff4db32e62e",
+   "bytes": 35007
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2173.html",
+   "file": "book-2173.html",
+   "sha256": "3232ed23246359f4600b399650cba8d438b3c7f8393e99b88db3e777d9e3b34b",
+   "bytes": 36986
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2174.html",
+   "file": "book-2174.html",
+   "sha256": "3761c87259b34620473e077fd2857d67751c306275880e8e1451b6dbab3904e2",
+   "bytes": 35821
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2175.html",
+   "file": "book-2175.html",
+   "sha256": "786f8944bbc633a9a30432a2c5f8d9f544633be6c2aea96ab5f9af5239a3f78c",
+   "bytes": 37533
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2176.html",
+   "file": "book-2176.html",
+   "sha256": "4220747a0163419ac8d649c4f74e2432ab4d9f420f87d426686a7666df0ea4cb",
+   "bytes": 21630
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2177.html",
+   "file": "book-2177.html",
+   "sha256": "e2f5fec0ffadbd14f4c5dac041d58460e05817a860f21ea3e3418f0a8a1313ae",
+   "bytes": 32057
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2178.html",
+   "file": "book-2178.html",
+   "sha256": "b5ad82896f7dedc66135f64af1783412419f643f8c2868d1235931f3ed968db0",
+   "bytes": 31616
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2179.html",
+   "file": "book-2179.html",
+   "sha256": "31b73a74803a6d4189571c2f2c7ed7b41a71ba78a827da1b349f1f3dfe460eac",
+   "bytes": 41290
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2180.html",
+   "file": "book-2180.html",
+   "sha256": "436be98f9c2b145fb27a5b9e8b7f3623702b171fd38e8955a852c0cffdab9702",
+   "bytes": 24077
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2181.html",
+   "file": "book-2181.html",
+   "sha256": "092dabb6a5714509a1ad01f44b2b177faa683bbb14b6a359a1113b48144272c8",
+   "bytes": 30441
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2182.html",
+   "file": "book-2182.html",
+   "sha256": "730bd5201d2a21846d7f14690e67f09a62cde6712c91b86b001aefddeebfd759",
+   "bytes": 29456
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2183.html",
+   "file": "book-2183.html",
+   "sha256": "03a8b2244c15b39104765ddb1a68b7ff492cfb0321298e3ad9d32aebe66d82e6",
+   "bytes": 29393
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2184.html",
+   "file": "book-2184.html",
+   "sha256": "8242d24fb400027c8b797d699cec824906df8a599cc8011beb98cf0fceeb4da6",
+   "bytes": 36341
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2185.html",
+   "file": "book-2185.html",
+   "sha256": "0c9b5c117778b8a79ecac3b5cbd3d793c78987f4b1937d13e8eda1a260788c31",
+   "bytes": 36141
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2186.html",
+   "file": "book-2186.html",
+   "sha256": "a8b3fe99a89314bf95243397d53d3f3a054711a7a00d5b1a5f85bd70a3a46032",
+   "bytes": 24462
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2187.html",
+   "file": "book-2187.html",
+   "sha256": "b96add05374d20e51a14333dda9982e6cd8fa52c3fbde8028c7035d8468310b5",
+   "bytes": 27178
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2188.html",
+   "file": "book-2188.html",
+   "sha256": "ed61d354ef2b543b4e0ccec152865c864e3789500cef35255ef1ea5bf6bb01fd",
+   "bytes": 24498
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2189.html",
+   "file": "book-2189.html",
+   "sha256": "3f835d13b34a78f4f6c52ee78d288cd1862667ace526dcfdf61295383d49bac9",
+   "bytes": 28096
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2190.html",
+   "file": "book-2190.html",
+   "sha256": "4ffcd0f83d033b177c04f70e6b705b5618978990ffaaaa013d606fe4be8d0fb2",
+   "bytes": 31285
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2191.html",
+   "file": "book-2191.html",
+   "sha256": "f2d41cd708e4f7389abd0e5ce0b16854208e6baa9e453bf2605856d36fab754f",
+   "bytes": 39296
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2192.html",
+   "file": "book-2192.html",
+   "sha256": "acc9d72ad95c94db58a9fa49d49d20527fe5a28afad7fbf3e43a9a6f91489732",
+   "bytes": 29515
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2193.html",
+   "file": "book-2193.html",
+   "sha256": "fd9126fb9c2107a7d20b41d4a67cb79108df22a2d2f07d7379067b29a2afcde4",
+   "bytes": 30327
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2194.html",
+   "file": "book-2194.html",
+   "sha256": "fa58e229f7f549a75e025de0d7e480fd47d7675f569aa397c5f0707043dfb4e2",
+   "bytes": 45128
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2195.html",
+   "file": "book-2195.html",
+   "sha256": "0f5debf780b7c1865f8ee37b506863f0808d431f6a8143993884235f7b3399e8",
+   "bytes": 32992
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2196.html",
+   "file": "book-2196.html",
+   "sha256": "e93f299d5b67194951a434eaa21d069169d9152a5f5351eec462e1ed73f33505",
+   "bytes": 34510
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2198.html",
+   "file": "book-2198.html",
+   "sha256": "a1c3ced2183a48ae86151fb6238063ca4e3a354923f7724d86d03e5a5cd3c85f",
+   "bytes": 33559
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2199.html",
+   "file": "book-2199.html",
+   "sha256": "1f2b344ea6f193b101b219d6845de9d5c7cf778bb9ab34d65b30469b73580ad1",
+   "bytes": 27252
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2200.html",
+   "file": "book-2200.html",
+   "sha256": "d091e98ccdc0ec0b405df3cfe08a61d3d41d1457bea21431c0fb274dae084d43",
+   "bytes": 26944
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2201.html",
+   "file": "book-2201.html",
+   "sha256": "1035453ae63df6636f4e12493a60c2546babec6cafa3bc64caacafbbac32d27b",
+   "bytes": 33941
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2202.html",
+   "file": "book-2202.html",
+   "sha256": "7b9eaba976054f2834770d787fea8d4d3a7a4682331345c69bdb72a0b7ba7b05",
+   "bytes": 87474
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2203.html",
+   "file": "book-2203.html",
+   "sha256": "dfc8e80394cac2462f5228becf5ac8c82b57a15efdeefd920310b0921d4885f1",
+   "bytes": 37107
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2204.html",
+   "file": "book-2204.html",
+   "sha256": "76b5454d896c9385c0d46658991dfb0b0544201a9a12d312786a7cd85904b0ca",
+   "bytes": 35185
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2205.html",
+   "file": "book-2205.html",
+   "sha256": "ed5622aef0fc76b9d921687547ce8920c156ba68c16782b77b7bb7219e540894",
+   "bytes": 39830
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2206.html",
+   "file": "book-2206.html",
+   "sha256": "a0d2409c06b50de8fc08bfc26e37f5737297f11b5cf25f7a0a9b6b634fa1b376",
+   "bytes": 29117
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2207.html",
+   "file": "book-2207.html",
+   "sha256": "b022f57c1058f5dded8fd0b6a5c06670ce49a8eeda58cf75479e98dec4a97c37",
+   "bytes": 35508
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2208.html",
+   "file": "book-2208.html",
+   "sha256": "8d282a8c233a5a13fa52a9692957cce6cfeef26d287868203891295e0ea4f4a8",
+   "bytes": 25529
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2209.html",
+   "file": "book-2209.html",
+   "sha256": "532c096b6107fb8634166e2da350865032d79bb61d087f5898e2a3ec596a116e",
+   "bytes": 46623
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2210.html",
+   "file": "book-2210.html",
+   "sha256": "267d29e467ea5df641abefd2a0b3749089401d183a1ddef05368eaf439236d6c",
+   "bytes": 37140
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2211.html",
+   "file": "book-2211.html",
+   "sha256": "baef957b19d42e7e7b741bf8bf97d8ea23b6fd5c08579eba7070bd7adf688565",
+   "bytes": 42633
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2212.html",
+   "file": "book-2212.html",
+   "sha256": "24a2ee5a347064410fcb3d4b6d52a4bdb18df88e5e5d605b3819f56422b25039",
+   "bytes": 26521
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2213.html",
+   "file": "book-2213.html",
+   "sha256": "0f761accb972ab60f553155cbaa5dba29c4837eefcd9f473d3d0a357f55b551d",
+   "bytes": 35648
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2214.html",
+   "file": "book-2214.html",
+   "sha256": "09312e59c49761a7d05c8e305e221a3a349f7d6b8fcf082b2bb3499f463addbc",
+   "bytes": 35095
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2215.html",
+   "file": "book-2215.html",
+   "sha256": "fdc1daf6c30faeb6f08db8e7d8ad892ce60093ec3b995377372096c0ce4149d2",
+   "bytes": 33622
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2216.html",
+   "file": "book-2216.html",
+   "sha256": "62e80220470cded64c9fde92d2e7a4a46aeb4fd7228444cfd261ca01e0efe697",
+   "bytes": 23788
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2217.html",
+   "file": "book-2217.html",
+   "sha256": "cfb1465964a5d9ea87874e8c64dd4ff4d8d66044e251980ab80b154d03ff4348",
+   "bytes": 23581
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2218.html",
+   "file": "book-2218.html",
+   "sha256": "8256cbe395681a6d2a6c55dcb9f795692e4ecdcb6dfd466e47ef826aa59d666c",
+   "bytes": 32610
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2219.html",
+   "file": "book-2219.html",
+   "sha256": "9f09db6ef2f071978c45ac75c9e67a5998dd36742d396dd96ba0292ca86573b6",
+   "bytes": 34570
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2220.html",
+   "file": "book-2220.html",
+   "sha256": "aa0c67f4d1a689071d0b08746e81255bf17758315c114a4330617411b2986e0a",
+   "bytes": 29646
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2221.html",
+   "file": "book-2221.html",
+   "sha256": "4ffba046cceb1dc2c67c273dfcd5a0f04b0765bd1b523c6d654c60cd5c852d07",
+   "bytes": 25734
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2222.html",
+   "file": "book-2222.html",
+   "sha256": "b9b08af9ccfd239454a1cc18fe96c8ee244ae90b388d63c338ba83be7d7591c4",
+   "bytes": 38282
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2223.html",
+   "file": "book-2223.html",
+   "sha256": "8c0404f6011654f5bb0ef6ff41cab1eaaa7bc9a5475b621aeeb20a8d413fa3e5",
+   "bytes": 36402
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2224.html",
+   "file": "book-2224.html",
+   "sha256": "37bc09cf476fa3e256a4c00ccdc589331080133ae5810053ee95f138406596ea",
+   "bytes": 43521
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2225.html",
+   "file": "book-2225.html",
+   "sha256": "e60d7d49424483c4b1fb4fb43ecedbdd1d3bf71d894d9bf9c9db5cb058be2643",
+   "bytes": 34576
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2226.html",
+   "file": "book-2226.html",
+   "sha256": "39f1aea9803a3bccec07e40e922c89abd9b64a76069668032fccafc7cab736b7",
+   "bytes": 34348
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2227.html",
+   "file": "book-2227.html",
+   "sha256": "413d68c5f0a0b3f8237aa1cfe1ffd08ef895dc9f4b2b401ef5d1df26f04416fc",
+   "bytes": 32115
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2228.html",
+   "file": "book-2228.html",
+   "sha256": "2bf16ade0fbae4da9d46355871251366a0155d50833e8af8b1ad839549edb80e",
+   "bytes": 37787
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2229.html",
+   "file": "book-2229.html",
+   "sha256": "ffc37b3bbd5dc0f463967a815fe337abae18d8839d96de23dc40cbd4dc50610d",
+   "bytes": 37497
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2230.html",
+   "file": "book-2230.html",
+   "sha256": "9597d7049a1105c63ef5dadd31218556cf649c8d7c7e0d32bc2984a57b757bfe",
+   "bytes": 42260
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2231.html",
+   "file": "book-2231.html",
+   "sha256": "299758ee17e9cbd9c848a0b60360c137fd6312c4bcf956678617ab145c8beaae",
+   "bytes": 32368
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2232.html",
+   "file": "book-2232.html",
+   "sha256": "bac01557618cf851627c95431fccb2c2435d16f90ba6c55ca35a9e86b9c93c19",
+   "bytes": 24432
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2233.html",
+   "file": "book-2233.html",
+   "sha256": "b07e8aa22f26d4ab70e9ad4ea1e4b84b1031f403c06df2d9ac53b4ec25fe2923",
+   "bytes": 25238
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2234.html",
+   "file": "book-2234.html",
+   "sha256": "266dfd30fbe987d7a4b8ede8a734da5f552ae55183dad98247bf16f2ad7649c5",
+   "bytes": 60333
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2235.html",
+   "file": "book-2235.html",
+   "sha256": "b217c68eb1f0404da3a13a82ec86f873c4d6ed00badc3bab351d9d8aae6b468b",
+   "bytes": 33475
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2236.html",
+   "file": "book-2236.html",
+   "sha256": "6f18e67bf93349b7ad46ae11cf930f73fd2f284647a285cad67d4968bf7aacd4",
+   "bytes": 22795
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2237.html",
+   "file": "book-2237.html",
+   "sha256": "364156378c7458d1c70d75bef3345ce1778a96931c56796c80d53891f357a39c",
+   "bytes": 31168
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2238.html",
+   "file": "book-2238.html",
+   "sha256": "f037948d8a6e02e2a43404d652e46b98faa78692375aedcc69019ad823c56afc",
+   "bytes": 24337
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2239.html",
+   "file": "book-2239.html",
+   "sha256": "c9069e0ed1e2659c9a32e40014373e72a850c848cc641a4990c48fa48849a0ac",
+   "bytes": 38644
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2240.html",
+   "file": "book-2240.html",
+   "sha256": "ae93f50ade409c85fa3930f8711cceb2e4691e1e2fe5c3a9052139721b02929d",
+   "bytes": 25115
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2241.html",
+   "file": "book-2241.html",
+   "sha256": "3a6a60bb37be19282e50db34f56551319848f34a804eaad792fbca0ced9ede76",
+   "bytes": 45176
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2242.html",
+   "file": "book-2242.html",
+   "sha256": "5d2e69223636c6803c73bbf0db9a15f79caab2e07afd775669e557b3c0e96939",
+   "bytes": 50283
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2243.html",
+   "file": "book-2243.html",
+   "sha256": "4d5318a01ff86fa7072089e035b40938667ae2a6adc93a66b6e33d76325d9dca",
+   "bytes": 37176
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2245.html",
+   "file": "book-2245.html",
+   "sha256": "57447e40ca384b9359f74d22a638de260430284b353f1527f7efefc9158540d4",
+   "bytes": 378258
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2246.html",
+   "file": "book-2246.html",
+   "sha256": "ad8f53d9740077f0aa0cd05c1912fe880300d941fadb7d861997ed902c596c60",
+   "bytes": 30447
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2247.html",
+   "file": "book-2247.html",
+   "sha256": "8381b30f1aa0f96783ec520c21fa199ce03e9c2e35a5c859d6677320ba8312e3",
+   "bytes": 30119
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2248.html",
+   "file": "book-2248.html",
+   "sha256": "2d62c734e5dfdb2572f2a20ddc9aa1f39ab127732af0f0947cc4246e52081d40",
+   "bytes": 37661
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2249.html",
+   "file": "book-2249.html",
+   "sha256": "d3994ba08ff1785d99864658fede6d426830ca75c5d6ecab335ececdaf4cff2e",
+   "bytes": 31321
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2250.html",
+   "file": "book-2250.html",
+   "sha256": "fd74f0c355a9e526e08a81be258b93228712f5f7abffd8d0f339eecb1bb18ca2",
+   "bytes": 71107
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2251.html",
+   "file": "book-2251.html",
+   "sha256": "bdbe41a8770db73f9d7672b16071045bbf61cfe928443a0a4c7ffbd7c9c2d613",
+   "bytes": 24065
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2252.html",
+   "file": "book-2252.html",
+   "sha256": "f9be69af666cf0f6e1b582f9b0341a1e8185b01df9b06f875e0ccbc9be8d41fd",
+   "bytes": 20659
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2253.html",
+   "file": "book-2253.html",
+   "sha256": "fbd7128222be22951a282b26cdab39e3ecf6d74cc82d7082503155b6c40ceedf",
+   "bytes": 34143
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2254.html",
+   "file": "book-2254.html",
+   "sha256": "f55191796123ab549611ae5a417a57450b8828b3c9324d04fb144b915bd70577",
+   "bytes": 40348
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2255.html",
+   "file": "book-2255.html",
+   "sha256": "29310a69f683c88301983ddc4ae33db17895ebddbb9c5dc0dd429ab0d426e587",
+   "bytes": 31872
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2256.html",
+   "file": "book-2256.html",
+   "sha256": "7a9e3392041f1017535afe7d26f9fe0f9fc815a47c5bb6fa61d0558978c0a097",
+   "bytes": 30255
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2258.html",
+   "file": "book-2258.html",
+   "sha256": "1bcd9a374858ff934db9a35d8429a9133d87763235a5d1c2b707daec6a3acc1a",
+   "bytes": 35478
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2259.html",
+   "file": "book-2259.html",
+   "sha256": "a5586383172fcc6d668b7c5ba1e15a378ddbed4dc070fcea84a074660a294d91",
+   "bytes": 30403
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2260.html",
+   "file": "book-2260.html",
+   "sha256": "98c90c28fc905a2269927aea8b55adf80b84e2381fa8865b26340619d516b8d8",
+   "bytes": 44934
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2261.html",
+   "file": "book-2261.html",
+   "sha256": "023ae47cc2561b5a1f9931f71a07b13f95150d3c7aa69bd7624af9620dd0c6f1",
+   "bytes": 21621
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2262.html",
+   "file": "book-2262.html",
+   "sha256": "26790817f127755de6917c205cc2aba7c87a0c027708f9e1841ae965d3985326",
+   "bytes": 33548
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2263.html",
+   "file": "book-2263.html",
+   "sha256": "037d298f77feaecd6baf7547b1888a7784ac8af0812fbfe7bbe5a8a3a68aeb82",
+   "bytes": 56809
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2264.html",
+   "file": "book-2264.html",
+   "sha256": "f3dd3cc6a4df0a4eb054a0afef63731e1f247f0ee502e705687073d6a5cf187a",
+   "bytes": 28422
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2265.html",
+   "file": "book-2265.html",
+   "sha256": "484cfc061f7cee98a4c081064caa45f49d7fbda5103de5c93abc97a21b82630d",
+   "bytes": 29609
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2266.html",
+   "file": "book-2266.html",
+   "sha256": "dc92897319012ae1011becd6faefab9f74f1700d8b24e61c79eb5f398379f10b",
+   "bytes": 26051
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2267.html",
+   "file": "book-2267.html",
+   "sha256": "7992350004cb5a7dd07a1f835e693475fecc3e4fc5c25bdb66b59973807e4bf1",
+   "bytes": 35238
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2268.html",
+   "file": "book-2268.html",
+   "sha256": "7a5c65a52e3973c5840a9accb3ea93eee934c1a97a0a3c994d41907c5b0c1908",
+   "bytes": 26118
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2269.html",
+   "file": "book-2269.html",
+   "sha256": "26c78162e5965dc048254d278d57b1439088059421ca3d2a235d441ec5c5652c",
+   "bytes": 25754
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2270.html",
+   "file": "book-2270.html",
+   "sha256": "a229eeeb9e11a42a1fd6276f8d12e6a38038759c06721a62964a4e699a0ad253",
+   "bytes": 36091
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2271.html",
+   "file": "book-2271.html",
+   "sha256": "866d924be1b6c9f762df2fe67c2e094598873ce624d979f8601a65d969dec30b",
+   "bytes": 33737
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2272.html",
+   "file": "book-2272.html",
+   "sha256": "eacfb47c84d35f904bbb431c36461922ada57e5eaeb39c4bdb337b492d1d0c6f",
+   "bytes": 30014
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2273.html",
+   "file": "book-2273.html",
+   "sha256": "1bef551da4c5991e082ca4b07606fccd2e03776ef769ed13c38c3dc451f70a0b",
+   "bytes": 32076
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2274.html",
+   "file": "book-2274.html",
+   "sha256": "fa3025fd41fef12f32c033f32fc3461f5006504fdb10d407457ecaf354bcdaa7",
+   "bytes": 30951
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2275.html",
+   "file": "book-2275.html",
+   "sha256": "a4105fbb35d1f8e0122b2985812673fe4dd83bff3d99b05f48f366521d10f744",
+   "bytes": 26856
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2276.html",
+   "file": "book-2276.html",
+   "sha256": "2ef2be3aead56f78f736e6d39cd7c9b7a27ccaf067e0611a6c1397b1f7a5ba48",
+   "bytes": 49122
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2277.html",
+   "file": "book-2277.html",
+   "sha256": "b3c5012c1aac86390be8d72c449d6da741312a052d89a76a829ee48e707634f5",
+   "bytes": 153868
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2278.html",
+   "file": "book-2278.html",
+   "sha256": "6569ac4de489ebd00f668d6f82a950bb8e7f36ede329de9270916ce369e211e6",
+   "bytes": 31012
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2279.html",
+   "file": "book-2279.html",
+   "sha256": "9ab65c0661b1558d694ac4b5fdf56321224c5c3c9092e09bf799213af07bc568",
+   "bytes": 29485
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2280.html",
+   "file": "book-2280.html",
+   "sha256": "bfa2d875deedf8bf4652a8249fed8a555168c88f4c82b101bf8bb878ebdf621a",
+   "bytes": 36149
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2281.html",
+   "file": "book-2281.html",
+   "sha256": "80563dfce466c2f1e642f7621cf9205fde5b167026b16bfc1a947637a09efe5c",
+   "bytes": 19055
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2282.html",
+   "file": "book-2282.html",
+   "sha256": "07b25138aca0715d74d305355e32126c4e9c2d86379f1a47cea70107d03af81d",
+   "bytes": 35948
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2283.html",
+   "file": "book-2283.html",
+   "sha256": "dc543f0b016f37b83c4beaa195cdf02041706a6f920a2d64c39fca5b250945b7",
+   "bytes": 33725
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2284.html",
+   "file": "book-2284.html",
+   "sha256": "15221243a54334593d0126c4287c2d37fcc1ac6f186508ed7e1ef3e6278f4a55",
+   "bytes": 26174
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2285.html",
+   "file": "book-2285.html",
+   "sha256": "9176d84980f6603a1a240fd6e84bf963649fe2fef9b29f3335de2a4eaf44b3d7",
+   "bytes": 48822
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2286.html",
+   "file": "book-2286.html",
+   "sha256": "79737ac96c856343f39aac13ce4a41eadd350d543deef8fe6c53a071b32d837d",
+   "bytes": 45946
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2287.html",
+   "file": "book-2287.html",
+   "sha256": "e53fe77fe3d4bf965d80c178e2a78562752fc900414ad1bb1e68c2b45a44fcc1",
+   "bytes": 52006
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2288.html",
+   "file": "book-2288.html",
+   "sha256": "9c3d3e54b82dd9478be74871a0442d717073dde495c00c1d1c489bc6efb4b61f",
+   "bytes": 29942
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2289.html",
+   "file": "book-2289.html",
+   "sha256": "6da438e6bfb57d41fb9117f5fb78c37ef62008478db080043ca695de3cd9b33b",
+   "bytes": 41505
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2290.html",
+   "file": "book-2290.html",
+   "sha256": "29739ab6c804abc20190858d74ebc5fcc0a60a7f473d82e10a19ffdfe1bf1924",
+   "bytes": 34921
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2291.html",
+   "file": "book-2291.html",
+   "sha256": "91d86f599a8e02825600edbaf8390ce979d18fc31f370e93a06e612d0844a160",
+   "bytes": 30560
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2292.html",
+   "file": "book-2292.html",
+   "sha256": "c05ccd502efc9d7124f72db55e4705cf5595bd055faa4a015b7cf03a3161b210",
+   "bytes": 62838
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2293.html",
+   "file": "book-2293.html",
+   "sha256": "17a8b47cbc279c7fbd53bf7fca800f1fa0cc73f0656578a91588ef82b601b69f",
+   "bytes": 40611
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2294.html",
+   "file": "book-2294.html",
+   "sha256": "80e3fb17325ac4fbd1eb829cedcb3f2b6b0ebc70ac6d9bf6dacf10acf243269d",
+   "bytes": 30754
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2295.html",
+   "file": "book-2295.html",
+   "sha256": "2ac43523bfae3148ad1f5900907c100ef912fc7e6a3bffa5dc4ccb4893844e8b",
+   "bytes": 52380
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2296.html",
+   "file": "book-2296.html",
+   "sha256": "a5c13fddfaf1bbe0b75b21a782308dcebec2622d6b639d9a63e8248be49c9025",
+   "bytes": 53494
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2297.html",
+   "file": "book-2297.html",
+   "sha256": "6e7014c0d9d396879de1c251308064762c1e9b501dffdd5091ffd585b70a6258",
+   "bytes": 37477
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2298.html",
+   "file": "book-2298.html",
+   "sha256": "9142b92a5e9f83e65de4744acad56e4564645475d3b326d70ee7bc36343c58d5",
+   "bytes": 36858
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2299.html",
+   "file": "book-2299.html",
+   "sha256": "be96477a1db0f8fbaaaf89746912ec3bea99d383993d0c4c681351ad63cc1846",
+   "bytes": 34030
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2300.html",
+   "file": "book-2300.html",
+   "sha256": "6468eb5e1a2e718996c8aedb509fa172dd6840bf08596f0c092330d01ae71310",
+   "bytes": 33151
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2301.html",
+   "file": "book-2301.html",
+   "sha256": "61f7366b6a6456dc2fc2c0ba9f948bfa76434d2fbb08919f0a89d468b72ddc82",
+   "bytes": 15090
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2302.html",
+   "file": "book-2302.html",
+   "sha256": "e80dc05f406a13e79f68454b8af54e37aa3e1e9c613d2c56954b242562c3a30d",
+   "bytes": 44491
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2303.html",
+   "file": "book-2303.html",
+   "sha256": "3bc424b8a772f6116a3f81161e21e47b30706d5ae30ae3e5036d96b9075e8d23",
+   "bytes": 49163
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2304.html",
+   "file": "book-2304.html",
+   "sha256": "6fc636270ce5fb4a84865f37d37e0126996df3c81abcd11392dc7143de54fd1b",
+   "bytes": 35171
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2305.html",
+   "file": "book-2305.html",
+   "sha256": "3daae4fdb23ef2591a07fc21aaf3a773ba073f6d8e16aa4709d02228782d284d",
+   "bytes": 27866
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2306.html",
+   "file": "book-2306.html",
+   "sha256": "be85e86805ff3590ba63ac4a8dbb9d1061bf187fd807cd566412d9dce1782ebc",
+   "bytes": 14681
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2307.html",
+   "file": "book-2307.html",
+   "sha256": "426628ae150c9b335ec41d5548766191e9470e9e5522c12404dd34fb547926cd",
+   "bytes": 30349
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2309.html",
+   "file": "book-2309.html",
+   "sha256": "7d570a50c076dae888b451df56202fe9ffd0202cb473b6bef21f57ef2ac4c97c",
+   "bytes": 38762
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2311.html",
+   "file": "book-2311.html",
+   "sha256": "8624a9065e90d9272856ac4daa2b3d0e310fdd6c9f4907be7210184045427abe",
+   "bytes": 163113
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2312.html",
+   "file": "book-2312.html",
+   "sha256": "1edaeaf1f2628e6b1cb5b0cf91e0653390f37536328ad9eaff1b6cb4073f72cc",
+   "bytes": 136623
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2313.html",
+   "file": "book-2313.html",
+   "sha256": "aaba983924b1e0f4c77d62918eb5fba8b00946562e98a960d3ca3223a2e0a42d",
+   "bytes": 34155
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2314.html",
+   "file": "book-2314.html",
+   "sha256": "c09d80cf33d99807a902c5964819bb54ddf3f519acc913687be4e4273978e760",
+   "bytes": 36408
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2316.html",
+   "file": "book-2316.html",
+   "sha256": "c10f72a85d1ace75d446b1bbb095e35e54d4f082b07b488b042928cf216154cb",
+   "bytes": 29207
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2317.html",
+   "file": "book-2317.html",
+   "sha256": "2ec4a6764ff40472b56aa6fe1a62eae92d457ea507fddcfa57861fb2d9732046",
+   "bytes": 31283
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2318.html",
+   "file": "book-2318.html",
+   "sha256": "dc23f7ec56206f6e51832fae4e0e9b67905ada4820ea0b5235b556b80799bce9",
+   "bytes": 33552
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2319.html",
+   "file": "book-2319.html",
+   "sha256": "5a9f5a0c05d68798d5bdd370ace6ca074ffde522a6141ed2c8f47ec2cdbf2023",
+   "bytes": 46952
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2320.html",
+   "file": "book-2320.html",
+   "sha256": "650aaed72fa8c8ad318b48accf2f8592c90c6aeeaa9fda426df63e0e1a4f812b",
+   "bytes": 31106
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2321.html",
+   "file": "book-2321.html",
+   "sha256": "3beda49b9ceffd7a2284513d51f5830cb56fefb9562fae14b6b493613b6ad62b",
+   "bytes": 33143
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2322.html",
+   "file": "book-2322.html",
+   "sha256": "bbedff1a6a2b877276e64ab8befe598e4f1c228d66de6b6db35b6896d44e257d",
+   "bytes": 43440
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2323.html",
+   "file": "book-2323.html",
+   "sha256": "97a09c65c25e595794f396d0cc5dbe975d0b899305e50fc3fad808c9b510e46d",
+   "bytes": 29178
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2324.html",
+   "file": "book-2324.html",
+   "sha256": "206f00ca1141797079e4b13ea46e678cff7042421b94c2f13de758971b1fdd9a",
+   "bytes": 42948
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2325.html",
+   "file": "book-2325.html",
+   "sha256": "5d27154775311f0e1ccc75163740972db4802d4bcd0474109fb7c9f7c9b05aa0",
+   "bytes": 38143
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2326.html",
+   "file": "book-2326.html",
+   "sha256": "616cb577f958ed17d519c8ea63f3b9f187f0eceee15a5e611f8d6d5cbfef5546",
+   "bytes": 38137
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2327.html",
+   "file": "book-2327.html",
+   "sha256": "a8e81e40d65e61f1137de466e20d7146accdbdc2fe34d20e431e85424bc0a46b",
+   "bytes": 30154
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2328.html",
+   "file": "book-2328.html",
+   "sha256": "c7a8b39d26dd8d6aa7d5373a8b3d3a5710cf52d230f1e23acf7d481faa1b5802",
+   "bytes": 53847
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2329.html",
+   "file": "book-2329.html",
+   "sha256": "f9aa280ae1be7dba2e2b434243fd81202945b7794f2cab1f8f076cc8e33d5a1b",
+   "bytes": 32019
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2330.html",
+   "file": "book-2330.html",
+   "sha256": "e517582b08ec5e7c953d96284c3b4461254fe09f4f4df3c55d3a93368137bee9",
+   "bytes": 32493
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2331.html",
+   "file": "book-2331.html",
+   "sha256": "c26cce1a83200c795b88b521a551eef34d1059217ec1c8eb7618fb98f9ab0398",
+   "bytes": 27947
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2332.html",
+   "file": "book-2332.html",
+   "sha256": "a40df7cf4aac42e7f85bed6657503f77d26aadafe22506e937963d746dabd04e",
+   "bytes": 27712
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2333.html",
+   "file": "book-2333.html",
+   "sha256": "2a3fc0bdcb1cd2a992fff3147873aad1cb851b39dc52bd9dde9006602e9179ef",
+   "bytes": 39483
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2334.html",
+   "file": "book-2334.html",
+   "sha256": "9ed46ea4d516ae45464c2fd1977a37c895534c4d6a84a43b51ae20825bf49dbc",
+   "bytes": 29403
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2335.html",
+   "file": "book-2335.html",
+   "sha256": "c232e706f9e03acafd39204e07114f29aa5626f55c398824823a85b89fd6cad2",
+   "bytes": 28560
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2336.html",
+   "file": "book-2336.html",
+   "sha256": "1277351eebb26023af74887fbcdc64879783ff42e8ac89969605fdcf5789106d",
+   "bytes": 59089
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2337.html",
+   "file": "book-2337.html",
+   "sha256": "e2c17c7447bc320e3a93327ae98a28814a92cfa370cd56181faa8ca2531e68e8",
+   "bytes": 76597
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2338.html",
+   "file": "book-2338.html",
+   "sha256": "b5d139f5b0b5c122b2a5e4fbedb0b5b6e4c087ffe6a22ee0edf0da38e26e46fb",
+   "bytes": 31818
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2339.html",
+   "file": "book-2339.html",
+   "sha256": "84ce8b92ee218355c0896b33815888a227fbf0566efbe98efa8c0ba9278bfc3c",
+   "bytes": 30014
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2340.html",
+   "file": "book-2340.html",
+   "sha256": "627dcfb468b9f2d2708825aa6e1dac2ee97a37c5d58e324d524eff1eab507580",
+   "bytes": 32038
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2341.html",
+   "file": "book-2341.html",
+   "sha256": "cc629be02649a35220f8919ee990541d9df93d389dc31c26829b5391ce8451ba",
+   "bytes": 31791
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2342.html",
+   "file": "book-2342.html",
+   "sha256": "ac8db0d4f698e29aa4cf7d299f285d9a4cf6dfb9a5823dbf582df97dc266f361",
+   "bytes": 28977
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2343.html",
+   "file": "book-2343.html",
+   "sha256": "657f95d77dc9279004c7715c97782f10cb5c65bfdbc9bf9bb519c896288b5090",
+   "bytes": 46479
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2344.html",
+   "file": "book-2344.html",
+   "sha256": "54121ce1421ad103ce27770e08fa30d1f1a29b286ce624b1b0448a45ca08dff7",
+   "bytes": 34595
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2345.html",
+   "file": "book-2345.html",
+   "sha256": "112b28fb0b7d0e68af0c18928bf2a4d7189fa196b0c7868bf10def68d81bc2d1",
+   "bytes": 41289
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2346.html",
+   "file": "book-2346.html",
+   "sha256": "d169a7587ff03d8c50d302f668fda7c621b957d59e95def25eac3a3113217ab4",
+   "bytes": 28909
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2347.html",
+   "file": "book-2347.html",
+   "sha256": "2b7cc5bcc5bb1af8bc07207ab77817bddbcdce42fd0328bc5848d34b8f2e475d",
+   "bytes": 59153
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2348.html",
+   "file": "book-2348.html",
+   "sha256": "994ba9dc8be14072a49e2a96dd6b2058a05399f341b5b406a94d279ed95b8552",
+   "bytes": 33662
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2349.html",
+   "file": "book-2349.html",
+   "sha256": "83461c1aa54954b10868496862f8889c6f317aa7e0d0a96735cb5293a7df941c",
+   "bytes": 30014
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2350.html",
+   "file": "book-2350.html",
+   "sha256": "2465851e9b1e5c02d30088d1bdfc5b1f40add9bfce334753cd3d293892015dbb",
+   "bytes": 28371
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2351.html",
+   "file": "book-2351.html",
+   "sha256": "ab42cc5a68c59a084e2dfeccbd291952aa03354b89dafc4b9468be7f7f236eb1",
+   "bytes": 28044
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2352.html",
+   "file": "book-2352.html",
+   "sha256": "bf2928e8ee53db59f45cc887788083409cde144198a0d6c3d311f07b5715786f",
+   "bytes": 36073
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2353.html",
+   "file": "book-2353.html",
+   "sha256": "89259d02b4bedd856c9b51aef7a8861dd94d1d0e02844f3d8b2adcb4b3d95184",
+   "bytes": 30615
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2354.html",
+   "file": "book-2354.html",
+   "sha256": "14196dd2616cee14b0d50523a2732794d214ab8c5ac855daebb528f0ea34d7d6",
+   "bytes": 37417
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2355.html",
+   "file": "book-2355.html",
+   "sha256": "f0c7a843436d406a9f834a7cf378a34519a65eb8731d32b4f035bf8706474586",
+   "bytes": 55394
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2356.html",
+   "file": "book-2356.html",
+   "sha256": "f904444372ce6fac0efca81d2784f9b8d20ad116e03a80d38c0d2a0a9b1397c3",
+   "bytes": 33217
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2357.html",
+   "file": "book-2357.html",
+   "sha256": "e76dfca3d163f750940ee099f688056c4b2f090a63ae5948852d6952a1701fc4",
+   "bytes": 38026
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2358.html",
+   "file": "book-2358.html",
+   "sha256": "13178c4b10ca604cf572d7ffc1c27f2f3e8ae71d83bdbc86d3871dc97eb2ad82",
+   "bytes": 31377
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2359.html",
+   "file": "book-2359.html",
+   "sha256": "ffd19a6d7d7282c93f02a9c3b0dfc6763302700790ae9701948b5388622b7292",
+   "bytes": 32092
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2360.html",
+   "file": "book-2360.html",
+   "sha256": "e889e42c2525c008d0391860115964c8e336b7dc077a4c534752da4a5249576c",
+   "bytes": 31927
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2361.html",
+   "file": "book-2361.html",
+   "sha256": "1dcc6ea4ff519571586e0a98f8c29a86ae552d107c53c2e0d3e41841bff1a344",
+   "bytes": 42663
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2362.html",
+   "file": "book-2362.html",
+   "sha256": "30e3f1318f67772fe63689971f0b00ca799a6a8d85905ab64c3ff2a00530fc8b",
+   "bytes": 33320
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2363.html",
+   "file": "book-2363.html",
+   "sha256": "bd8495825d7f9509115130258c979f7accfd13765b9008b6f652b5a94b0f4d8a",
+   "bytes": 41454
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2364.html",
+   "file": "book-2364.html",
+   "sha256": "be98629721184ff043b7483200ad0c10e07acddea662a81b2a8370fe5ea5e305",
+   "bytes": 39951
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2365.html",
+   "file": "book-2365.html",
+   "sha256": "41d03586b140442911295f711cc3bde10c945dba81bd23284accb000f4cb9976",
+   "bytes": 56391
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2366.html",
+   "file": "book-2366.html",
+   "sha256": "d5b8a3b9ede9fe2c256064283385eb09dfe7ff0958d7ec0e05beb9ed66cf159e",
+   "bytes": 50391
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2367.html",
+   "file": "book-2367.html",
+   "sha256": "d01fc5c6d3f31d9cc513255e370c9b7ddf35c81106c0ecee49b8b032635999e6",
+   "bytes": 31520
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2368.html",
+   "file": "book-2368.html",
+   "sha256": "d4224861b9df837d286afd14b2114250dbd2f0675bf668b6a27ac519da3ee269",
+   "bytes": 31807
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2369.html",
+   "file": "book-2369.html",
+   "sha256": "3e195637d5fa822c265383a859f4f0f0ff54fbde1b4c4ba271575c6156f11385",
+   "bytes": 30567
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2370.html",
+   "file": "book-2370.html",
+   "sha256": "5ca468ed40960a865310576bb51b9c3a4779a08281e34e6cb3378e055aa7e565",
+   "bytes": 35921
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2371.html",
+   "file": "book-2371.html",
+   "sha256": "98d9f5a42b9bbb41ade2c3c03324f47eeebf299e943f7778609d4029b1b036db",
+   "bytes": 34159
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2372.html",
+   "file": "book-2372.html",
+   "sha256": "33ada2eb0e9addc606ffc9aa2dcce400134254d3a7d426204860ff6bde9ddce5",
+   "bytes": 56564
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2373.html",
+   "file": "book-2373.html",
+   "sha256": "b288c7c0454b889368fd7812375a2b978c17b9fab6b12b8ec872a558086c0939",
+   "bytes": 148425
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2374.html",
+   "file": "book-2374.html",
+   "sha256": "ec50c0b87ae239ce5f24ad3733d2ca2b2e7f3e04af76440bbcb92ddf4fa4a53a",
+   "bytes": 36660
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2375.html",
+   "file": "book-2375.html",
+   "sha256": "e8b3298e504732df5d62a4eee5f1345ff36d3b8d5525710303f7e3c97bffbe27",
+   "bytes": 34264
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2376.html",
+   "file": "book-2376.html",
+   "sha256": "b1d3711d43d849366a62a00d22e7e27d6232aceaba805d30141757e41b5abaea",
+   "bytes": 42519
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2377.html",
+   "file": "book-2377.html",
+   "sha256": "6f40eb33aa075a35af80b97f057405f49053f83300106f50e09acfc96eb3583a",
+   "bytes": 7733
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2378.html",
+   "file": "book-2378.html",
+   "sha256": "26c5dc7afd4cec322bf74c3467b4c8e715b661b762e14b1cd2335426d38a57e7",
+   "bytes": 44795
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2379.html",
+   "file": "book-2379.html",
+   "sha256": "de0d750dd87a3042f185e06637ab4ddca2821f459a565da71f2e08de54966495",
+   "bytes": 31704
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2380.html",
+   "file": "book-2380.html",
+   "sha256": "1984fac6829364a3837a1537ab6d11dc541399f4d81c97b187603e7b09ae8cfb",
+   "bytes": 29041
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2381.html",
+   "file": "book-2381.html",
+   "sha256": "856fdd6a5fc740dc7fca307fb91e780ad5f8231e1c27cbb7183e7dd4354dbe76",
+   "bytes": 30208
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2382.html",
+   "file": "book-2382.html",
+   "sha256": "8838ed36be750022dacaea55a2227247cfc3e1d18a199e0f7cd3481c38619470",
+   "bytes": 31423
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2383.html",
+   "file": "book-2383.html",
+   "sha256": "b42c5a2aebf3e573a581ae356ab89feea12e1639aa623c565caef76bbb520caa",
+   "bytes": 40955
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2384.html",
+   "file": "book-2384.html",
+   "sha256": "0ddd5a3a31560dfd47b83de640a8c722b09b569d2174ce74b8d7e6e5de2d17a5",
+   "bytes": 36055
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2385.html",
+   "file": "book-2385.html",
+   "sha256": "e2809939a50b1b9947dd5192b211c60eb3744452d01e26a7b4fd547f03879af8",
+   "bytes": 36956
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2386.html",
+   "file": "book-2386.html",
+   "sha256": "7ac012b20f77937330eb6a6d0d2dca3212386fb2c8e8f4bda43fc320abd2e413",
+   "bytes": 28023
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2387.html",
+   "file": "book-2387.html",
+   "sha256": "ac3067d10973cdfb1bebc84162cf103735867275e8ec3d2b9cf19d2ab220f1c3",
+   "bytes": 39642
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2388.html",
+   "file": "book-2388.html",
+   "sha256": "90858592f8f9279d13d09a14ffa65defad7413bb8aeb00dc71515a0bff7d329d",
+   "bytes": 35179
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2389.html",
+   "file": "book-2389.html",
+   "sha256": "bb6493c1c09770bb928807cec479615bca4d2e24e3cc541f7d523e1009cc25c0",
+   "bytes": 34357
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2390.html",
+   "file": "book-2390.html",
+   "sha256": "4f023d296aaa8bfdcb557aba0705c5709feeb3770c9cd99b476f5e4d8fb720e8",
+   "bytes": 33339
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2391.html",
+   "file": "book-2391.html",
+   "sha256": "69498a0e32347c4d3c0443fa71eda7cd7af2ab20956236282429bdb65c0e65b5",
+   "bytes": 28450
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2393.html",
+   "file": "book-2393.html",
+   "sha256": "ea0bd92d0fd97b60d514a766c1b09b4081c4f82dd35c98536cf4fd185542c97a",
+   "bytes": 36817
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2394.html",
+   "file": "book-2394.html",
+   "sha256": "32c569875b53c8b967b5ac2f1344600828a11f7096761681ebb7f426a5cdc9c0",
+   "bytes": 28250
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2395.html",
+   "file": "book-2395.html",
+   "sha256": "8e19dce06cf3fdfbf5f802d13d1e64567f545c5a7408394f332fd1540df48900",
+   "bytes": 42250
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2396.html",
+   "file": "book-2396.html",
+   "sha256": "fbd3108a28a6ec916f0a9dc6c1ec85360a35f38173278612ea9dfd4c8ce97eb8",
+   "bytes": 30600
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2397.html",
+   "file": "book-2397.html",
+   "sha256": "e4c3c5e5b7f318e92ed29f71e20ffcbf8ef21e20d8bffc3a112d93f2bd312f91",
+   "bytes": 28675
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2398.html",
+   "file": "book-2398.html",
+   "sha256": "aff76ff29490758d6c77d8ace2d3f6445e79209059ba6a5101ec24cee331336a",
+   "bytes": 23880
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2399.html",
+   "file": "book-2399.html",
+   "sha256": "e6e2687c2c9580d994a47f659b52a165decdfa2584d614729b3522ee2744d1ed",
+   "bytes": 37147
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2400.html",
+   "file": "book-2400.html",
+   "sha256": "70a84ee040ba0aa2581c551884bab4969d11f71f751a5a90cafbc5edf7e8d3bd",
+   "bytes": 42249
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2401.html",
+   "file": "book-2401.html",
+   "sha256": "1d721e78a3ef30c7ce8ff16418fe173dd8da828a8d5e81c8eda578dddcad5aaa",
+   "bytes": 27303
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2402.html",
+   "file": "book-2402.html",
+   "sha256": "c1675e97df208c5a17f866967437596bfa382853e25de98d65b443c7296f596b",
+   "bytes": 30009
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2403.html",
+   "file": "book-2403.html",
+   "sha256": "76b58231eb5b47ab5bd4ee0a0e1bd2b8464d18db12ea36826e150488b03ba1e1",
+   "bytes": 30755
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2404.html",
+   "file": "book-2404.html",
+   "sha256": "b4bfaa61a3b3f6986e969c60544c8c013246319f668747e42ae07d8b4dc07bad",
+   "bytes": 40353
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2405.html",
+   "file": "book-2405.html",
+   "sha256": "1f4aa4822793b3df44373893c155bec9a1d24f26e3f251b501c6134e2d285dd0",
+   "bytes": 25933
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2406.html",
+   "file": "book-2406.html",
+   "sha256": "0433788ac1e347d9dcbfe4aef1139b72967e4d73fe607ca1f9d747f8b263bb0a",
+   "bytes": 26789
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2407.html",
+   "file": "book-2407.html",
+   "sha256": "0ce6bbd607453f49005a2f421a02c59265c8ff87be5de4a76e7050e3d6f8df34",
+   "bytes": 27681
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2408.html",
+   "file": "book-2408.html",
+   "sha256": "6f99429fc60a945c2f57b0470f667508502da65ab7ccf8edf435f75a7732538d",
+   "bytes": 30953
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2409.html",
+   "file": "book-2409.html",
+   "sha256": "e545d038ffe42afaa4418b129a4c76c127cc57648812a133be1fd1d24272c099",
+   "bytes": 28449
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2410.html",
+   "file": "book-2410.html",
+   "sha256": "fef4c3b069b4df2252d579ec2cc3aa1d8949921e91a92829f992c538602d1cd6",
+   "bytes": 30468
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2411.html",
+   "file": "book-2411.html",
+   "sha256": "9f4679bd818195673176bfc3a11f2d94866bdf00e6498d82f90f797db7cc9a25",
+   "bytes": 34548
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2412.html",
+   "file": "book-2412.html",
+   "sha256": "876387aa1da69809df159243680923b4947155661b793bcfb6f7235f7643e1af",
+   "bytes": 25176
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2413.html",
+   "file": "book-2413.html",
+   "sha256": "da9a330ff3f682afbf190d138429b401409c7c0ec7e6b76ad7540c396dc5ae92",
+   "bytes": 29679
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2414.html",
+   "file": "book-2414.html",
+   "sha256": "3eb49fdb6053d8d3123b845c07513e20aafb6979d717500d1ae01c4eebf81927",
+   "bytes": 39422
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2415.html",
+   "file": "book-2415.html",
+   "sha256": "b0a73feae60a8ee4417c605693c7ea11929a1668a4c0fec246d3c80226495414",
+   "bytes": 30657
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2416.html",
+   "file": "book-2416.html",
+   "sha256": "aab106b00022ecdccbb4f25419da729a8d23667dd11e3c98372da4348fb212f8",
+   "bytes": 35002
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2417.html",
+   "file": "book-2417.html",
+   "sha256": "8930d1ca9db23d4851e43037de19d1cb85bf3d6bf6355db4fc94e16e958a2390",
+   "bytes": 34643
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2418.html",
+   "file": "book-2418.html",
+   "sha256": "e128929adaa3f9a1baad99d48ffd991002e6bfb7543f3f19e4b6bc1ef3bb1bb3",
+   "bytes": 30055
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2419.html",
+   "file": "book-2419.html",
+   "sha256": "e5196153946b4137e057340d75329341c57ed3432671c5e830b40b55c655602b",
+   "bytes": 72545
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2420.html",
+   "file": "book-2420.html",
+   "sha256": "9a9eedc2ba468f9cdf6a77d9b2c8116c6b8a541c94aa2dafcd411436fd02bce8",
+   "bytes": 32333
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2421.html",
+   "file": "book-2421.html",
+   "sha256": "9897cf59e7396ceb7d7676d232461ed466a70ddbd69445cd9dae205be8f6b80c",
+   "bytes": 50940
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2422.html",
+   "file": "book-2422.html",
+   "sha256": "5aab538fdca0dd2c9e7aea76a15e435e4e978a2ff0b3ad4f6bc023f7d09ac702",
+   "bytes": 44534
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2423.html",
+   "file": "book-2423.html",
+   "sha256": "c1b1a9018e099226ee5a9bfe2535c63aa67a7524f3eb1fd8a3f132251d45479c",
+   "bytes": 26261
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2424.html",
+   "file": "book-2424.html",
+   "sha256": "42132869d52dc3cee9a1d8a10accad59980de1160fddd0753514b513c1c5d34f",
+   "bytes": 27935
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2425.html",
+   "file": "book-2425.html",
+   "sha256": "7cc26aab80a9d3494b9681e934d48f7eb5f2222cef979d4b5b1d90b7fe0504aa",
+   "bytes": 31987
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2426.html",
+   "file": "book-2426.html",
+   "sha256": "5ef2d37490263e1bec957e9b92d9f822924e8dc24fdaac39325a76cb79b9a706",
+   "bytes": 22185
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2427.html",
+   "file": "book-2427.html",
+   "sha256": "3946ef590e4c948fb14ca6d9940b8834c7a822b0c890dbcd4300cbf477cf391f",
+   "bytes": 29926
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2428.html",
+   "file": "book-2428.html",
+   "sha256": "56d06a84a948ef4a8c9e569c363b72f55633f08292b0d3360d7cf1cae04ae928",
+   "bytes": 41157
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2429.html",
+   "file": "book-2429.html",
+   "sha256": "4570c453e1c0ea2f94a0c1e78972b31e3d78ed1074c6859f4fa73c56f0d00763",
+   "bytes": 24743
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2430.html",
+   "file": "book-2430.html",
+   "sha256": "de6bb8f7c8155b5c23e78fda0747e5eda2a30ae5bfbaaddbb487b67b8d998a0d",
+   "bytes": 26132
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2431.html",
+   "file": "book-2431.html",
+   "sha256": "d9686f585321ba9af0eb5baca26943e2e818d88a38721f6bab3473865401404a",
+   "bytes": 29860
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2432.html",
+   "file": "book-2432.html",
+   "sha256": "fe49f29459c498cde14e04b56d7c6c57dcccef77536323be3fbdcc3731a81e3f",
+   "bytes": 35813
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2433.html",
+   "file": "book-2433.html",
+   "sha256": "84a5bb36fb2aef264895923b9ce9e70dea34742de8fb699d8d9fc7d4b57fba31",
+   "bytes": 27823
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2434.html",
+   "file": "book-2434.html",
+   "sha256": "e95a4afda8d9ba76c51aae6c8df36b2f3f77d2c8f66ca1babd5649b49f236348",
+   "bytes": 23249
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2435.html",
+   "file": "book-2435.html",
+   "sha256": "5c2a242ea4e030fbbef962608a8a4ab2c47f7ab60b18ebf7ab928fc3c3a71c9d",
+   "bytes": 23284
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2436.html",
+   "file": "book-2436.html",
+   "sha256": "6a5186a7da1fb215fec511d333dd24d3311f3936d252848a154d8a50dd5a81ce",
+   "bytes": 28075
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2437.html",
+   "file": "book-2437.html",
+   "sha256": "70746b49c94a9ebc8f31bdf69cb00a8bd2cefdac2fd815a6bd6c3a281dab6d2f",
+   "bytes": 25621
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2438.html",
+   "file": "book-2438.html",
+   "sha256": "9ab082a7af3b905b405c7bc9cbb6451b19287c80c0fd776af0343bcf7f88b4f7",
+   "bytes": 26717
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2439.html",
+   "file": "book-2439.html",
+   "sha256": "8178dc3e0e2a9da4745d302d8fe632fd70f1e5b5d421c4c2c4a4a7ee77539eab",
+   "bytes": 25495
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2440.html",
+   "file": "book-2440.html",
+   "sha256": "235b9094f3761b4369e4a9672ae6560311be4e1c2838655bc16eb22d3bae300a",
+   "bytes": 29745
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2441.html",
+   "file": "book-2441.html",
+   "sha256": "3663a659f8c3d07f89c994cd984db5b314125daa786be19173b779679b6e4d0b",
+   "bytes": 30418
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2442.html",
+   "file": "book-2442.html",
+   "sha256": "a5448883467f9a90c912c27cbabddd54a0a9b90cdd3d94adf067dcb28fc1d229",
+   "bytes": 25714
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2443.html",
+   "file": "book-2443.html",
+   "sha256": "790498993f841ab373aef92ef13d44fd39f8f374dd8c97e9a26441acc31f4570",
+   "bytes": 25173
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2444.html",
+   "file": "book-2444.html",
+   "sha256": "0fad887a73cc54498cfe82c1fe60003e8b4fa614f9089ab828ffedc5cece2b46",
+   "bytes": 29749
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2445.html",
+   "file": "book-2445.html",
+   "sha256": "d259cb4dbe4f4138f181e2388d89de0941d5cd3e671cb3f8ece630f59bc3e4c9",
+   "bytes": 27065
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2446.html",
+   "file": "book-2446.html",
+   "sha256": "89f7eeacb455e17873c8a24ccf088252d189215746b11a4bcb6ba872406aaf52",
+   "bytes": 26905
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2447.html",
+   "file": "book-2447.html",
+   "sha256": "d74d04c35ed470d147332b88b6362560bb790a3216055afaf5c5d0590277884c",
+   "bytes": 26186
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2448.html",
+   "file": "book-2448.html",
+   "sha256": "28d0832a13540b87a6fb153dae60df15f433d13b2a813ff215a22111b71de82d",
+   "bytes": 28271
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2449.html",
+   "file": "book-2449.html",
+   "sha256": "a2e0ebff38632e0c8e5271788a9fd51e1c1c93ad71fa467673cabc55f526180f",
+   "bytes": 25636
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2450.html",
+   "file": "book-2450.html",
+   "sha256": "30bc74dfe4311cbfdafb674dc347bf22ef234e23eb079e4b77e94ff45ca07501",
+   "bytes": 27744
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2451.html",
+   "file": "book-2451.html",
+   "sha256": "8fa74a92ae7e4131f87f03884ed85f0b2293cd0b905d4180d0881012d469d59b",
+   "bytes": 28610
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2452.html",
+   "file": "book-2452.html",
+   "sha256": "550ef73c3a11ca6867b4bdbbaec20b0eaa5553080ad90684d60dab57930aa873",
+   "bytes": 27914
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2453.html",
+   "file": "book-2453.html",
+   "sha256": "80f4beb2dcfb62e09c90dfccb71ad40bf91139179a852fd3af58babfeae393f9",
+   "bytes": 56617
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2454.html",
+   "file": "book-2454.html",
+   "sha256": "d227fefbba21bc07902f2d56c43a576cb17c247201615eaa05381f9ed5674e33",
+   "bytes": 42687
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2455.html",
+   "file": "book-2455.html",
+   "sha256": "6b47ac821d6622afc83b6d7487bf1dbb8e1aee6e86d58c040140b85eceefb77a",
+   "bytes": 41182
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2456.html",
+   "file": "book-2456.html",
+   "sha256": "a4d6ce29e2551ab17ab93d67ce80815ef71d10b2c41abb8507ecabfd853b4396",
+   "bytes": 55115
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2457.html",
+   "file": "book-2457.html",
+   "sha256": "1cdcfc35990b2d494069b7800fa920412bc6f989da58ddf0e4af97218a5d98cd",
+   "bytes": 48455
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2458.html",
+   "file": "book-2458.html",
+   "sha256": "4dcc08222da8bfcf55d7f0fcf2bfdb3ea013e5d5556d840e86ea91d5c8697a9e",
+   "bytes": 30014
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2459.html",
+   "file": "book-2459.html",
+   "sha256": "40a70343141816994623df2fb0b80d7fab6065b7a949ebc6a0db175575f03022",
+   "bytes": 30703
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2460.html",
+   "file": "book-2460.html",
+   "sha256": "9d00a2990a9dcd6503107817001b1c34632df03cd1bd177d3fe521a8980f9fd7",
+   "bytes": 24809
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2461.html",
+   "file": "book-2461.html",
+   "sha256": "9e2612c5871d841f4acaa03e5711eb4789818df4a68170effbd87cf6f49e8e31",
+   "bytes": 29683
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2462.html",
+   "file": "book-2462.html",
+   "sha256": "c33b530d2add041aebc805d6ce4fc3867304ce50bc744c95cc539a90179bec86",
+   "bytes": 41358
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2463.html",
+   "file": "book-2463.html",
+   "sha256": "f73bee3843e9ceb471fef7659b2ba8a840afb27ab9f392fc576e87cb5c7cc5a9",
+   "bytes": 29401
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2464.html",
+   "file": "book-2464.html",
+   "sha256": "1a03f1e2328d86a5f691e6dd057e23eb8aafb6a6c1f07662795355a0e2b57f3a",
+   "bytes": 31568
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2465.html",
+   "file": "book-2465.html",
+   "sha256": "c3458fcf5109cb28351e3675c05446c1cb4c47ffbf4161f9ac702f718cda0e7c",
+   "bytes": 31920
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2466.html",
+   "file": "book-2466.html",
+   "sha256": "51e2861a91daf7151ee249eb87b030cd28073be60f9ddbe0b7b4d59796e7ffb3",
+   "bytes": 30621
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2467.html",
+   "file": "book-2467.html",
+   "sha256": "791d4a4f0cc8aba9b2945e9539d3e92426870a53001375de2d9cbd2b7044012e",
+   "bytes": 26258
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2468.html",
+   "file": "book-2468.html",
+   "sha256": "5813c578e645dc072e2fdd70a33cd04b4e1877a99dc0781e2dce6983fa64e86a",
+   "bytes": 27768
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2469.html",
+   "file": "book-2469.html",
+   "sha256": "3973006c2b5b78d5474e5d7b6639887d53aba3bed67b04a0e896f709eeb94c91",
+   "bytes": 29611
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2470.html",
+   "file": "book-2470.html",
+   "sha256": "0e144015d446c626b8826007a6b901337b3e52d9495dcd596e686e929feb791d",
+   "bytes": 32786
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2471.html",
+   "file": "book-2471.html",
+   "sha256": "e6db9591eff3388dfff64154f8f80e96ebf2795a7e9c93ea56d97e675339b223",
+   "bytes": 32610
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2472.html",
+   "file": "book-2472.html",
+   "sha256": "98d8391b31c7e4ebb709d7689e5a071a63f0371ee0c1309c5a4823b89810c841",
+   "bytes": 34636
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2473.html",
+   "file": "book-2473.html",
+   "sha256": "621a068cf551bdf05929f77ff8a34edd08a8c2e0e7e76ea29b820d8e81573292",
+   "bytes": 33289
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2474.html",
+   "file": "book-2474.html",
+   "sha256": "4fd76bfad3a6ab0010375198e0b7dc1fb4c91dce07130066c38707f78bb3a5d1",
+   "bytes": 60252
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2475.html",
+   "file": "book-2475.html",
+   "sha256": "0adee1d0d23ce8d94f5b813832fc4fd067005f8ce21bc8ed042c181262803cb9",
+   "bytes": 61200
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2476.html",
+   "file": "book-2476.html",
+   "sha256": "c2f73f686bd8558560e09a67850d9d8b28d49006a6c6939224f02de64dfd712d",
+   "bytes": 58944
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2477.html",
+   "file": "book-2477.html",
+   "sha256": "31175bf0891e6dac00a9ccb334402a37da9930c7288637a175e0cc372cff48f4",
+   "bytes": 19913
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2478.html",
+   "file": "book-2478.html",
+   "sha256": "146f13802a6fff5f52770ffc31c231c7d8d1a6561fdd1ef91d1cc31c4c4452d1",
+   "bytes": 63241
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2479.html",
+   "file": "book-2479.html",
+   "sha256": "120ffc06aa1af490e78e1cbf6f8b801e503d25f3935ef43d75644005fcec2170",
+   "bytes": 26207
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2480.html",
+   "file": "book-2480.html",
+   "sha256": "8d45fc09a6fdaf43abf6d4783171dea9418b69244f86da90832b2ed79c0ebb40",
+   "bytes": 22796
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2481.html",
+   "file": "book-2481.html",
+   "sha256": "f1d23538e96b194381bf8c1fc06af2321898cebeb60fae876abd2b32723c0c7e",
+   "bytes": 26034
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2482.html",
+   "file": "book-2482.html",
+   "sha256": "8426efec790d9907e3b85f3063ea23708b3bee12eaaf20b119b5c371ca9a9487",
+   "bytes": 23686
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2483.html",
+   "file": "book-2483.html",
+   "sha256": "59585a8c63357f2334b371c0d16b8c34dff568d8b5f183f636f0fa38b2f1c663",
+   "bytes": 26250
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2484.html",
+   "file": "book-2484.html",
+   "sha256": "7132d4b51075512c18975a8bb71fb1d4e235d38737562054d819102e0c82d399",
+   "bytes": 25228
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2485.html",
+   "file": "book-2485.html",
+   "sha256": "a5c542a7a8d325830012a4295e97d60707961840d4646acc80ede497c0df1109",
+   "bytes": 28466
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2486.html",
+   "file": "book-2486.html",
+   "sha256": "5691802da9c9c80d5993e08736eff5c82fd6fa57720b8320cc40a92e3bc2e0eb",
+   "bytes": 24907
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/book-2487.html",
+   "file": "book-2487.html",
+   "sha256": "a652b7cb2281275b745124cb74aaa4b5aaf3d000a0db184b0bc84ec7e47fa427",
+   "bytes": 40564
+  },
+  {
+   "name": "pages",
+   "ref": "inputs:haskala/wayback-books-2026-10-13/manifest.tsv",
+   "file": "manifest.tsv",
+   "sha256": "7e13f8c10e660b1ab69cf98b42b5315ec539bd980d65480bfbaa3ea545db5a68",
+   "bytes": 150039
   }
  ],
  "input_descriptions": {
@@ -41,18 +3723,18 @@
    "description": "haskala-drupal-2015-04-20.sql.gz: the tables of the allow-list of generators/haskala/make_input.py (234 of 538: nodes, field data, taxonomies, page addresses, node types, field definitions, text formats, migration maps with the record ids of the research database, search configuration), copied section by section from research/haskala.sql of github.com/judaicalink/haskala at commit 1bdc786e90f8b95b2470741c9fc06c4a41ad0573 (the mysqldump of the Drupal 7 database of haskala-library.net at Pantheon, completed 2015-04-20; 18,460,605 bytes, sha256 71886f0fe4daf9be96503aaed415b141bd4b3b577d0f9021af67f46b61414630; the same file is in research/Haskala-DB.zip of 2022-10-11). Left out: user accounts, roles, sessions, logs, caches, site settings and the search server (personal data and credentials), the revision tables and indexes that repeat the content, and the tables that only run the site. url_alias keeps the three addresses of the editor accounts (users/<name>), which the generator does not read. The content (nodes, field data, taxonomies) is identical to Database/haskala_edit_2024-07-12.sql of the same repository, a reduced copy of this database; all nodes were migrated into Drupal on 2015-04-08/09 and not changed after. about.txt is research/content.txt at that commit, the text of the site's about page (hosting by the Judaica Division of the Frankfurt University Library; the German-Israeli research project 2004-2010).",
    "date": "2015-04-20",
    "note": "Not published: a selection of a public database dump, kept to make the dataset haskala reproducibly; the full dump is not kept because it holds user accounts and logs."
+  },
+  "inputs:haskala/wayback-books-2026-10-13": {
+   "title": "Library of Haskala: archived book pages of haskala-library.net (Internet Archive)",
+   "origin": "https://web.archive.org/web/*/haskala-library.net/books/*",
+   "description": "The page of every one of the 525 books of the Library of Haskala as archived by the Wayback Machine of the Internet Archive (captures of 2016-2025, the earliest capture with status 200 of each book's address), as archived (id_ form, without the archive's frame): book-<node id>.html; manifest.tsv lists node id, address, capture time, archived URL and sha256. Fetched on 2026-10-13 by generators/haskala/fetch_wayback.py (CDX API, one request per second). They show how the site grouped the fields of a book page into sections, which the database does not store.",
+   "date": "2026-10-13",
+   "note": "Not published: copies of archived web pages, kept to make the dataset haskala reproducibly."
   }
  },
- "corrections": [
-  {
-   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
-   "deletions": 76
-  }
- ],
  "status": "ok",
- "finished": "2026-10-12T22:26:17Z",
- "seconds": 1.1,
+ "finished": "2026-10-12T23:19:08Z",
+ "seconds": 1.2,
  "notes": [
   "5,657 nodes, 809 terms, 39,225 field values, 218 field instances; 583 VIAF links. 2019: 194 persons replaced, 125 GND links carried over, 32 haskala.net persons kept (75 occupations)."
  ],
@@ -71,9 +3753,9 @@
   },
   {
    "path": "haskala-vocabulary.ttl.gz",
-   "bytes": 11694,
-   "sha256": "93db5319dfaac0467134197a7b29c2c06ddcdf0c4a5e7d0df63bd043392e8430",
-   "triples": 2779
+   "bytes": 13093,
+   "sha256": "2bc6a01ce4bb316b4efd715533899be52bfdd273b78619f8499268b79f179440",
+   "triples": 3026
   },
   {
    "path": "haskala.ttl.gz",

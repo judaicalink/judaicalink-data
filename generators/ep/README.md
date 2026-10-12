@@ -72,17 +72,17 @@ into another page (among them the legacy NLI pages of the same person, now linke
 split (1,481 legacy NLI URIs that stood for several people, followed through `prov:wasDerivedFrom` of `ls-nli-legacy`;
 11 conflations of 2021, among them the two Abrahams, Hai and Sherira Gaon, Marseille and the composer Paul Marselle),
 1,454,491 are retired (mentions, pages and images of Compact Memory and other IRIs that are no person, place,
-organisation, work or subject); 63,914 new pages, numbers from 2,717,191 on (highest 2,781,104). 310,205 pages:
-290,466 persons, 11,442 places, 7,303 works, 830 subjects, 164 organisations. The version was made again on
+organisation, work or subject); 63,923 new pages, numbers from 2,717,191 on (highest 2,781,113). 310,214 pages:
+290,466 persons, 11,442 places, 7,312 works, 830 subjects, 164 organisations. The version was made again on
 2026-10-12 (unpublished) with epidat 2026-10-12 (one record per Epidat person: 41,378 pages, 37 joined with other
 records through Epidat's GND links), the YIVO articles (typed by record-classes, joined with other records through
 ls-yivo-wikidata: 534 of 2,147 pages with YIVO records, decision 0025), geo-coordinates 2026-10-12 (`jl:Place`,
 `data/geo-coordinates/`; the old IRIs are closure nodes), sosy and rujen-translation 2026-10-12, and again with footprints 2026-10-12 (its identifier links now IRIs:
-715 of 11,532 pages with Footprints records joined with other records) and haskala 2026-10-12 (the whole database:
-252 of 2,723 pages joined); classes stated by record-classes count for the dataset of the record (`CLASS_DATASETS`).
-Nine new class conflicts are source errors: Footprints and Haskala persons linked to the VIAF cluster of a work
-("Jerusalem Talmud" as a person, a Haskala person with the VIAF of Hegel's Phenomenology); candidates for
-corrections-links.
+708 of 11,532 pages with Footprints records joined with other records) and haskala 2026-10-12 (the whole database:
+250 of 2,723 pages joined); classes stated by record-classes count for the dataset of the record (`CLASS_DATASETS`).
+Nine class conflicts were source errors (Footprints and Haskala persons linked to the VIAF cluster of a work:
+"Jerusalem Talmud" as a person, a Haskala person with the VIAF of Hegel's Phenomenology); corrected in
+corrections-links 2026-10-12-2.
 
 Found while porting (2026-10-12), fixed in the data, not here: bhr's links to the EntityFacts service page and its
 empty GND numbers (new version of bhr), 2014links' links of rujen persons to places (new version of 2014links),

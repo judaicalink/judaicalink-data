@@ -1,13 +1,13 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T222757Z",
+ "run": "run-20261012T231928Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "250a2465e64abd0487a1086a7bc3be913b9c3074",
+ "commit": "75c5921ff58df3ecdb3602144958f703b40e4cff",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T22:27:57Z",
+ "started": "2026-10-12T23:19:28Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
@@ -198,8 +198,8 @@
    "name": "haskala",
    "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
    "file": "haskala-vocabulary.ttl.gz",
-   "sha256": "93db5319dfaac0467134197a7b29c2c06ddcdf0c4a5e7d0df63bd043392e8430",
-   "bytes": 11694
+   "sha256": "2bc6a01ce4bb316b4efd715533899be52bfdd273b78619f8499268b79f179440",
+   "bytes": 13093
   },
   {
    "name": "haskala",
@@ -286,28 +286,14 @@
    "bytes": 371256
   }
  ],
- "corrections": [
-  {
-   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
-   "deletions": 76
-  }
- ],
  "status": "ok",
- "finished": "2026-10-12T22:28:40Z",
- "seconds": 43.5,
+ "finished": "2026-10-12T23:20:06Z",
+ "seconds": 38.7,
  "notes": [
   "Dates left out by records-normalized: {'a bound': 4, 'a negative year': 139, 'a range': 336, 'death before birth': 29, 'no recognised form': 123, 'the year is outside 1–2030': 8}.",
   "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
   "Annotations by kind: {'data error': 1, 'datatype': 1, 'date': 655, 'vocabulary': 2}."
  ],
- "deleted_by_corrections": {
-  "dbpedia_persons": 24,
-  "gnd_persons": 7,
-  "hhkeydocs": 4,
-  "nli_records": 11,
-  "ubffm_persons": 1
- },
  "files": [
   {
    "path": "quality-annotations.ttl.gz",
