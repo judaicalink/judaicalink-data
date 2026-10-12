@@ -11,9 +11,10 @@ kind = "records"
 method = ["scraped", "converted", "lookup", "curated"]
 
 [license]
-name = "CC0"
-uri = "https://creativecommons.org/publicdomain/zero/1.0/"
-image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png"
+name = "CC BY 4.0"
+uri = "https://creativecommons.org/licenses/by/4.0/"
+image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
+attribution = "The Library of Haskala, research project of Shmuel Feiner, Zohar Shavit and Christoph Schulte, 2004-2010 (https://web.judaicalink.org/datasets/haskala/); FID Jewish Studies; JudaicaLink"
 
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
@@ -52,9 +53,9 @@ description = "Made from the Drupal database of the Library of Haskala (dump of 
 
   [[versions.files]]
   path = "haskala-meta.ttl.gz"
-  bytes = 4239
-  sha256 = "93b9252f531be26dc0a9b90d667597c8b6601d016571758153043059b1013aaa"
-  triples = 101
+  bytes = 4288
+  sha256 = "df26bfb4f2d510795db1f9bfb14d82a8700d74ab2ba4d5c6c721843a06d016f8"
+  triples = 102
 
 [[versions]]
 version = "2025-03-24"
@@ -74,9 +75,9 @@ description = "Regenerated; the persons are split into Haskala.ttl and Haskala_n
 
   [[versions.files]]
   path = "haskala-meta.ttl.gz"
-  bytes = 1959
-  sha256 = "5b36ba3558ff0b66421ba12563d242c3d0df4fdaa4dce3612dbd2328e76dbe26"
-  triples = 73
+  bytes = 3450
+  sha256 = "78124c6b505cc0ae4bf2523c7633e6115ff6a39b78a99df990e1d4665d3c47f1"
+  triples = 74
 
 [[versions]]
 version = "2019-07-01"
@@ -91,9 +92,14 @@ description = "The enriched version of 2019, with birth and death dates and plac
 
   [[versions.files]]
   path = "haskala-meta.ttl.gz"
-  bytes = 1793
-  sha256 = "e15825ccd240cc7557b5aef1c5a0488228971fa530a60bec5614e503d36d1303"
-  triples = 62
+  bytes = 3288
+  sha256 = "71c92875da22f61234cd799ccc3558a715a8b663142c3e9773802b47c8f1e3ed"
+  triples = 63
+
+[[changelog]]
+date = "2026-10-13"
+author = "Kai Eckert"
+text = "Licence CC BY 4.0 (was CC0), crediting the authors of the Library of Haskala, the FID Jewish Studies and JudaicaLink; from version 2026-10-12 on, the first with the data of the whole database. Versions 2019-07-01 and 2025-03-24 were published under CC0 and stay available under it."
 
 [[changelog]]
 date = "2026-10-12"

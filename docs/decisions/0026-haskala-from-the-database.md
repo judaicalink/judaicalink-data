@@ -32,6 +32,10 @@ own RDF export is generated from the portal's Django models, with IRIs and terms
 - **The 2019 IRIs:** the library persons are `dcterms:isReplacedBy` their nodes (matched by their page address); the
   GND links of 2019, which the database does not have, are carried over to the nodes in a file of their own. The
   haskala.net persons, a different source, keep their IRIs and 2019 data in a file of their own.
+- **Licence CC BY 4.0** (decided 2026-10-13; it was CC0): crediting the authors of the Library of Haskala (with a
+  link to the dataset description), the FID Jewish Studies and JudaicaLink (`attribution` of the licence, 0013).
+  A change to CC0 stays possible later, the other way round not. The versions 2019-07-01 and 2025-03-24 were published
+  under CC0 and stay available under it.
 - **Not added:** direct person-book links (e.g. author) derived from the productions; the data keeps the model of the
   database. They can come in a complement later.
 
