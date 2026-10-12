@@ -107,6 +107,13 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   `ontology-complements`, which redefines six terms of the current ontology (`belongsToIssue`,
   `belongsToJournal`, `birthLocationURI`, `deathLocationURI`, `gitCommit`, `gitWeb`), and load it in an endpoint (with the platform, 0016).
 
+- **Identity links, found with the entity-page closure (2026-10-12, decisions 0022–0024):** 72 wrong links corrected
+  in `corrections-links`; template links fixed in gnd-persons-entityfacts. Still open: hhkeydocs had two persons linked
+  to the GND number of a namesake (Otto Warburg, Kurt Singer), so its GND links may have been made by name; check them
+  against the life dates. cm-entities takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula).
+  The closure check only sees conflations that meet a second Wikidata item or class; others need other checks (life
+  dates of the records of a group). Havilah (dbpedia-persons, a person, and cm-entities, a place, with one Wikidata item
+  for both) is left as it is.
 - **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
   article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):
   life dates at the start of the abstract → person (1,077), place links → place, else subject; subsections

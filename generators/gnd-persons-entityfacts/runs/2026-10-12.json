@@ -1,15 +1,16 @@
 {
  "slug": "gnd-persons-entityfacts",
- "run": "run-20261012T081504Z",
+ "run": "run-20261012T150924Z",
  "generator": "generators/gnd-persons-entityfacts/generate.py",
- "commit": "61ec4427341856190ac3f2b3eae3aa7993bfb41f",
+ "commit": "31d1970e78896363a98c25161305a67d0d8a8fd2",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
-  "fix_self_links": true
+  "fix_self_links": true,
+  "drop_template_links": true
  },
  "input_overrides": [],
- "started": "2026-10-12T08:15:04Z",
+ "started": "2026-10-12T15:09:24Z",
  "inputs": [
   {
    "name": "gnd_persons",
@@ -10346,18 +10347,29 @@
    "note": "Not published: answers of third-party services, needed only to make datasets again without network access."
   }
  },
- "status": "ok",
- "finished": "2026-10-12T08:15:07Z",
- "seconds": 3.0,
- "notes": [
-  "GND numbers of hhkeydocs, nrwbibdjg and gba not in gnd-persons: 1,269; {'https links normalised': 3, 'no entityfacts person record': 309, 'persons': 960, 'self links dropped': 950}."
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "57684d0b89194cc295a00eaafc789b4b2c9427657975c31b1758c01508e2c703",
+   "deletions": 72
+  }
  ],
+ "status": "ok",
+ "finished": "2026-10-12T15:09:28Z",
+ "seconds": 3.6,
+ "notes": [
+  "GND numbers of hhkeydocs, nrwbibdjg and gba not in gnd-persons: 1,267; {'https links normalised': 3, 'no entityfacts person record': 309, 'persons': 958, 'self links dropped': 948, 'template links dropped': 3}."
+ ],
+ "deleted_by_corrections": {
+  "gnd_persons": 7,
+  "hhkeydocs": 4
+ },
  "files": [
   {
    "path": "gnd-persons-entityfacts.ttl.gz",
-   "bytes": 178370,
-   "sha256": "2d0123d5bdf2533af5d4ac2634a3ad69724392fe2b0d854329785602c27a83c6",
-   "triples": 19053
+   "bytes": 177847,
+   "sha256": "bb81e6c05aab03e7fdff23e745becc6495d070562724d1e2231576272ab06a11",
+   "triples": 19007
   }
  ],
  "version": "2026-10-12"

@@ -1,13 +1,13 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T143248Z",
+ "run": "run-20261012T151008Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "0f6bb49c8b0fa7c01d10c26a941e7737c1ef22e2",
+ "commit": "31d1970e78896363a98c25161305a67d0d8a8fd2",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T14:32:48Z",
+ "started": "2026-10-12T15:10:08Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
@@ -177,8 +177,8 @@
    "name": "gnd_persons_entityfacts",
    "ref": "gnd-persons-entityfacts/2026-10-12/gnd-persons-entityfacts.ttl.gz",
    "file": "gnd-persons-entityfacts.ttl.gz",
-   "sha256": "2d0123d5bdf2533af5d4ac2634a3ad69724392fe2b0d854329785602c27a83c6",
-   "bytes": 178370
+   "sha256": "bb81e6c05aab03e7fdff23e745becc6495d070562724d1e2231576272ab06a11",
+   "bytes": 177847
   },
   {
    "name": "haskala",
@@ -265,14 +265,28 @@
    "bytes": 371256
   }
  ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "57684d0b89194cc295a00eaafc789b4b2c9427657975c31b1758c01508e2c703",
+   "deletions": 72
+  }
+ ],
  "status": "ok",
- "finished": "2026-10-12T14:33:26Z",
- "seconds": 38.7,
+ "finished": "2026-10-12T15:10:50Z",
+ "seconds": 41.8,
  "notes": [
   "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 302, 'death before birth': 51, 'no recognised form': 112, 'the year is outside 1–2030': 8}.",
   "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
   "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 652, 'syntax': 1, 'vocabulary': 3}."
  ],
+ "deleted_by_corrections": {
+  "dbpedia_persons": 20,
+  "gnd_persons": 7,
+  "hhkeydocs": 4,
+  "nli_records": 10,
+  "ubffm_persons": 1
+ },
  "files": [
   {
    "path": "quality-annotations.ttl.gz",

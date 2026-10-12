@@ -1,15 +1,15 @@
 {
  "slug": "records-normalized",
- "run": "run-20261012T143231Z",
+ "run": "run-20261012T150937Z",
  "generator": "generators/records-normalized/generate.py",
- "commit": "0f6bb49c8b0fa7c01d10c26a941e7737c1ef22e2",
+ "commit": "31d1970e78896363a98c25161305a67d0d8a8fd2",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
   "legacy_terms": false
  },
  "input_overrides": [],
- "started": "2026-10-12T14:32:31Z",
+ "started": "2026-10-12T15:09:37Z",
  "inputs": [
   {
    "name": "bhr",
@@ -176,8 +176,8 @@
    "name": "gnd_persons_entityfacts",
    "ref": "gnd-persons-entityfacts/2026-10-12/gnd-persons-entityfacts.ttl.gz",
    "file": "gnd-persons-entityfacts.ttl.gz",
-   "sha256": "2d0123d5bdf2533af5d4ac2634a3ad69724392fe2b0d854329785602c27a83c6",
-   "bytes": 178370
+   "sha256": "bb81e6c05aab03e7fdff23e745becc6495d070562724d1e2231576272ab06a11",
+   "bytes": 177847
   },
   {
    "name": "haskala",
@@ -257,33 +257,49 @@
    "bytes": 273155
   }
  ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "57684d0b89194cc295a00eaafc789b4b2c9427657975c31b1758c01508e2c703",
+   "deletions": 72
+  }
+ ],
  "status": "ok",
- "finished": "2026-10-12T14:32:47Z",
- "seconds": 16.5,
+ "finished": "2026-10-12T15:09:55Z",
+ "seconds": 18.2,
  "notes": [
-  "Dates: {'death before birth': 102, 'empty': 28, 'normalised': 186581, 'not parsed': 585, 'uncertain': 145}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
-  "Places: {'already linked': 2646, 'not linked': 40946, 'via cm-entities-wikidata places': 8110, 'via pairs in the data': 34628, 'via rujen and geo-coordinates places': 7019}.",
-  "Occupations: 6,815 text occupations matched to one of 511 occupation IRIs, 29,877 not matched.",
+  "Dates: {'death before birth': 102, 'empty': 28, 'normalised': 186577, 'not parsed': 585, 'uncertain': 145}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
+  "Places: {'already linked': 2646, 'not linked': 40946, 'via cm-entities-wikidata places': 8110, 'via pairs in the data': 34625, 'via rujen and geo-coordinates places': 7018}.",
+  "Occupations: 6,809 text occupations matched to one of 511 occupation IRIs, 29,877 not matched.",
   "Occupation IRIs stated with jl:occupation or jl:occpation: 12,440, as jl:occupationURI (12,440 new)."
  ],
+ "deleted_by_corrections": {
+  "cm_entities": 1,
+  "dbpedia_persons": 20,
+  "gnd_persons": 7,
+  "hhkeydocs": 4,
+  "nli_records": 10,
+  "rujen": 3,
+  "ubffm_persons": 1
+ },
  "files": [
   {
    "path": "records-normalized-dates.ttl.gz",
-   "bytes": 1382061,
-   "sha256": "e94c396e746a6c2652692feea711cc3f38e6d1a38f05939c6c791c8c624c7746",
-   "triples": 186593
+   "bytes": 1382031,
+   "sha256": "8a879242abc51b739ed5af2969f360928f8be27c60e93b6f695d4380e0cb4bdf",
+   "triples": 186589
   },
   {
    "path": "records-normalized-occupations.ttl.gz",
-   "bytes": 147429,
-   "sha256": "02c59d6528ef5e448e51643f9fd771b6172ef7c8b5a93489950ff07afc93cff9",
-   "triples": 19255
+   "bytes": 147401,
+   "sha256": "6736f58a74c065e7fb3427977e6dd846df9523f8ae768062f42f739a79aedd54",
+   "triples": 19249
   },
   {
    "path": "records-normalized-places.ttl.gz",
-   "bytes": 416726,
-   "sha256": "b557645fad7ceef11f4fb106d3c1b5c08cdb7b797c6fc1d2d5aef3af405e5999",
-   "triples": 49754
+   "bytes": 416706,
+   "sha256": "3518c84d52efb2d7e91cb911cf417f8c705dda24b4e51265b524d3dcbceebac1",
+   "triples": 49750
   }
  ],
  "version": "2026-10-12"

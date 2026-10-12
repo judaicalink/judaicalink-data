@@ -5,11 +5,11 @@ author = "Kai Eckert"
 date = "2026-10-12"
 website = "https://hub.culturegraph.org/entityfacts/"
 example = "http://data.judaicalink.org/data/gnd/100180930"
+stable = "2026-10-12"
 kind = "records"
 method = ["lookup"]
 namespaces = ["gnd"]
 inputs = ["gnd-persons", "hhkeydocs", "nrwbibdjg", "gba"]
-stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -24,25 +24,25 @@ path = "generators/gnd-persons-entityfacts"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "61ec4427341856190ac3f2b3eae3aa7993bfb41f"
+commit = "31d1970e78896363a98c25161305a67d0d8a8fd2"
 
   [[versions.files]]
   path = "gnd-persons-entityfacts.ttl.gz"
-  bytes = 178370
-  sha256 = "2d0123d5bdf2533af5d4ac2634a3ad69724392fe2b0d854329785602c27a83c6"
-  triples = 19053
+  bytes = 177847
+  sha256 = "bb81e6c05aab03e7fdff23e745becc6495d070562724d1e2231576272ab06a11"
+  triples = 19007
 
   [[versions.files]]
   path = "gnd-persons-entityfacts-meta.ttl.gz"
-  bytes = 2230
-  sha256 = "f3ef8f9925931bddb255b7bcc64667a7f744803e8468af45d5347427021a6fc8"
+  bytes = 2247
+  sha256 = "be85dea9ec6a34f227f32889ed8c525f73d2eb48be397f04cac8547e61d04105"
   triples = 74
 
 [[changelog]]
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "First version: GND records from DNB EntityFacts for the persons of hhkeydocs, nrwbibdjg and gba that gnd-persons lacks (decision 0020); https links to JudaicaLink normalised, self-links dropped."
+text = "First version: GND records (DNB EntityFacts) for the persons of hhkeydocs, nrwbibdjg and gba that gnd-persons lacks (gnd-persons-entityfacts of kg-complements, decision 0020); https self-links dropped, template links dropped, the corrections of corrections-links applied."
 +++
 
 GND records for the persons of hhkeydocs, nrwbibdjg and gba that gnd-persons does not have, from the DNB EntityFacts
