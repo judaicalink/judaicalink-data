@@ -80,9 +80,10 @@ have the same kind and the same automated status, and belong together in content
      dates, year and month, years 1–999, the EDTF value of the footprints dictionaries, …; 186,581 dates instead of
      184,315); ranges, bounds and negative years stay out, and a record whose one death date is before its one birth
      date gets neither (51 records). Both versions were made again rather than followed by new ones (unpublished).*
-  3. **Entity pages** (14): `EntityPage`, `Work`, `Subject`, `curationStatus`, `CurationStatus`, `Curated`,
-     `AutomaticOnly`, `supportedBy`, `mergeDate`, `splitInto`, `splitDate`, `retiredDate`,
-     `highestEntityPageNumber`, `previousEntityPageSet`; after the entity-page question is settled.
+  3. **Entity pages** (PR 20, opened 2026-10-12; terms as decided in 0022 §6): `EntityPage`, `Place`, `Work`,
+     `Subject`, `represents` (comment corrected), `mergedInto`, `mergeDate`, `splitInto`, `splitDate`,
+     `retiredDate`; the derived `curationStatus` and `supportedBy` and the set terms `highestEntityPageNumber`,
+     `previousEntityPageSet` are dropped.
 - The old metadata terms of the ontology (`hasGraph`, `isLoaded`, `gitCommit`, …) could be marked deprecated in a
   later pull request.
 - **`jl:occupationURI`**, not `jl:occupationConcept`: the occupation as an IRI, next to `jl:occupation` (text),

@@ -83,7 +83,7 @@ a URI that stands for one person record keeps its IRI and represents that record
 from several people are split (1,474), the others retired. Every published IRI keeps a record of what happened to
 it; no exception is needed.
 
-### 6. Ontology terms (pull request, 0020)
+### 6. Ontology terms (pull request 20 of judaicalink-ontology, 0020)
 
 `jl:EntityPage`; `jl:Work`, `jl:Subject` (persons `foaf:Person`, places `jl:Place`); `jl:represents` (exists; its
 comment is corrected: the records a page brings together); `jl:mergedInto` + `jl:mergeDate`; `jl:splitInto` +
