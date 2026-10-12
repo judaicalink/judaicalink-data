@@ -414,6 +414,19 @@ def check_corrections(r, e, dumps):
                         r.error(where, f"not in the form of decision 0023: {err}")
 
 
+def check_version_inputs(r, cat):
+    """Every catalogued version that a version's run record names (input, applied correction) is in the catalogue: a
+    version that a later one was made from is not removed (0018)."""
+    from . import runs, versions
+    for e in cat.entries.values():
+        for v in e.versions():
+            rec = runs.version_record(e.name, v.get("version"))
+            for slug, vid in sorted(versions.version_refs(rec or {})):
+                other = cat.get(slug)
+                if other is None or other.version(vid) is None:
+                    r.error(f"{e.path.name} {e.name}/{v.get('version')}", f"made from {slug}/{vid}, which is not in the catalogue")
+
+
 def check_vocabulary(r, cat):
     """kind and method use the values of catalog/vocabulary.toml (0013, 0018)."""
     from . import vocabulary
@@ -458,6 +471,7 @@ def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
             check_local_files(r, e, dumps, complete)
     check_agents(r, cat, registry)
     check_vocabulary(r, cat)
+    check_version_inputs(r, cat)
     if dumps and complete:
         named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
                  for f in v.get("files", []) if isinstance(f, dict)}

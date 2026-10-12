@@ -509,18 +509,39 @@ def remove_version_text(text, data, vid):
     return checked(head + "\n".join(lines) + tail, expected)
 
 
+def version_refs(rec):
+    """The catalogued versions a run record names: its inputs and the corrections applied to them (decision 0023),
+    as {(slug, version)}; inputs of the inputs area, runs and repository files are not versions."""
+    out = set()
+    for i in rec.get("inputs", []) + rec.get("corrections", []):
+        ref = str(i.get("ref", ""))
+        if ref.startswith(("inputs:", "repo:")):
+            continue
+        slug, _, rest = ref.partition("/")
+        vid = rest.partition("/")[0]
+        if slug and vid and not runs.is_run_id(vid):
+            out.add((slug, vid))
+    return out
+
+
+def dependents(slug, vid, cat=None):
+    """The versions made from slug/vid (named in their run records as an input or applied correction)."""
+    cat = cat or catalog.Catalog()
+    return sorted(f"{other.name}/{v.get('version')}" for other in cat.entries.values() for v in other.versions()
+                  if (slug, vid) in version_refs(runs.version_record(other.name, v.get("version")) or {})
+                  and (other.name, v.get("version")) != (slug, vid))
+
+
 def remove_version(cfg, slug, vid):
     """Remove a version that was never published: from the catalogue (version, its changelog entries, stable),
     the store, its run record and its run directory (decision 0018: one version per piece of work)."""
     e = catalog.Catalog().get(slug)
     if e is None or e.version(vid) is None:
         raise VersionError(f"no version {slug}/{vid} in the catalogue")
-    for other in catalog.Catalog().entries.values():
-        for v in other.versions():
-            rec = runs.version_record(other.name, v.get("version")) or {}
-            for i in rec.get("inputs", []):
-                if str(i.get("ref", "")).startswith(f"{slug}/{vid}/"):
-                    raise VersionError(f"{other.name}/{v['version']} was made from {slug}/{vid}; remove it first")
+    made_from = dependents(slug, vid)
+    if made_from:
+        raise VersionError(f"{', '.join(made_from)} made from {slug}/{vid} (input or applied correction); a version "
+                           "that a later version was made from is not removed (remove those first)")
     entry_text = remove_version_text(e.path.read_text(encoding="utf-8"), e.data, vid)
     rec = runs.version_record(slug, vid) or {}
     e.path.write_text(entry_text, encoding="utf-8")
