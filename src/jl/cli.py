@@ -6,7 +6,7 @@ import os
 import sys
 from pathlib import Path
 
-from . import canonical, catalog, config, corrections, generator, inputs, rdf, runs, versions
+from . import canonical, catalog, config, corrections, dataindex, generator, inputs, rdf, runs, versions
 from .agents import AgentError, Registry, person_iri, software_iri
 
 def emit(args, obj, text):
@@ -628,6 +628,28 @@ def cmd_collect_store(args, cfg):
     return 1 if missing else 0
 
 
+def cmd_update_dataindex(args, cfg):
+    assume = {}
+    for a in args.assume:
+        name, _, where = a.partition("=")
+        if not name or not where:
+            raise ValueError("--assume NAME=DIR")
+        assume[name] = cfg.require("store") if where == "store" else Path(where)
+    if assume and not args.out:
+        return fail("--assume makes a test index: write it elsewhere with --out")
+    index = dataindex.update(assume=assume, out=lambda s: print(s, file=sys.stderr))
+    dataindex.write(index, args.out or dataindex.INDEX)
+    n = len(index["datasets"])
+    print(f"{n} datasets in the index ({args.out or dataindex.INDEX.relative_to(config.ROOT)})", file=sys.stderr)
+    return 0
+
+
+def cmd_sync_site(args, cfg):
+    dataindex.sync(args.site, index_path=args.index or dataindex.INDEX, add=args.add,
+                   out=lambda s: print(s, file=sys.stderr))
+    return 0
+
+
 # --- parser --------------------------------------------------------------------------------------
 
 def parser():
@@ -731,6 +753,18 @@ def parser():
                        "help": "directory to take files from (any layout); default: legacy_dumps of local.toml"}),
         (("--to",), {"metavar": "DIR", "type": Path, "help": "the tree to build (default: the store)"}),
         (("--dry-run",), {"action": "store_true", "help": "only report what would be linked"}),
+        json_out=False)
+    add("update-dataindex", cmd_update_dataindex,
+        "check the dumps locations and catalogues of catalog/locations.toml and write catalog/dataindex.json (0014)",
+        (("--assume",), {"metavar": "NAME=DIR", "action": "append", "default": [],
+                         "help": "take a local tree (or 'store') as the content of dumps location NAME (test)"}),
+        (("--out",), {"metavar": "FILE", "type": Path, "help": "write the index here (required with --assume)"}),
+        json_out=False)
+    add("sync-site", cmd_sync_site,
+        "copy the catalogue entries a Hugo site has, and the data index, into the site (0014)",
+        (("site",), {"type": Path, "help": "the site repository (content/datasets/, data/)"}),
+        (("--add",), {"metavar": "SLUG", "nargs": "+", "default": [], "help": "also add these entries"}),
+        (("--index",), {"metavar": "FILE", "type": Path, "help": "the index to copy (default: catalog/dataindex.json)"}),
         json_out=False)
     return ap
 

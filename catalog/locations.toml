@@ -1,0 +1,10 @@
+# Where the dumps and the catalogue pages are (decision 0014). Entries and -meta files never name these; a
+# location is a prefix: dumps + <slug>/<version>/<path>, catalogues + <slug>/. Read by `jl update-dataindex`.
+
+[dumps]
+archive = "https://archive.judaicalink.org/dumps/"   # Mannheim
+data = "https://data.judaicalink.org/dumps/"         # Frankfurt (forwards to www.jewishstudies.de/judaicalink/dumps/)
+
+[catalogues]
+web = "https://web.judaicalink.org/datasets/"
+portal = "https://www.jewishstudies.de/judaicalink/datasets/dataset/"   # the FID portal; forwards to /de/ or /en/ by language
