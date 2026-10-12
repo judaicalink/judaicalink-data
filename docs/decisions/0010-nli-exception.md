@@ -1,6 +1,6 @@
 # 0010 Exception: legacy NLI entity pages are not carried over
 
-Status: accepted · Date: 2026-10-06
+Status: superseded by [0022](0022-entity-pages-in-the-framework.md) (the legacy NLI pages are handled by the comparison through `ls-nli-legacy`) · Date: 2026-10-06
 
 ## Context
 

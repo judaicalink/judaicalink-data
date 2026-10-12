@@ -1,6 +1,6 @@
 # 0009 Entity pages: one set at a time, core classes, precedence, IRI lifecycle
 
-Status: accepted · Date: 2026-10-06
+Status: accepted, amended by [0022](0022-entity-pages-in-the-framework.md) (sets are versions of `ep`; fresh closure, merges and splits by comparison) · Date: 2026-10-06
 
 ## Context
 
