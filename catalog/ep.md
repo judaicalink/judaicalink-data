@@ -5,7 +5,7 @@ author = "Kai Eckert"
 date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]
-stable = "2021-05-28"
+stable = "2026-10-12"
 kind = "entity-pages"
 method = ["rule-based"]
 
@@ -27,6 +27,30 @@ path = "generators/ep"
 "subcategorization.ttl.gz" = "Subcategorization dataset for local Judaicalink resources."
 "ep.ttl.gz" = "The entity pages: class, names, life dates and places, occupations, descriptions, coordinates, the records they represent (jl:represents) and their external identifiers (owl:sameAs)."
 "ep-history.ttl.gz" = "IRIs that are no longer entity pages, one statement per event with its date: merged (jl:mergedInto), split (jl:splitInto), retired (jl:retiredDate); the history of earlier versions unchanged."
+
+[[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "0151ae9c41e4be21b6d5aa8da4df2a959c4b095b"
+
+  [[versions.files]]
+  path = "ep-history.ttl.gz"
+  bytes = 4336035
+  sha256 = "da3c6ed0c70f416f772b2f9f3c86506a70dbb5ce3f2af064dcd07aa3994668e8"
+  triples = 1489955
+
+  [[versions.files]]
+  path = "ep.ttl.gz"
+  bytes = 42079641
+  sha256 = "159a95dcd9b6bbd2c5ee9fedac920a0f3db57b66cc3de6d32836bd984cae50dc"
+  triples = 3139495
+
+  [[versions.files]]
+  path = "ep-meta.ttl.gz"
+  bytes = 3530
+  sha256 = "3ef10f066714625a85a4258ac46513f8e8fde9bda120e6490b4120bd61061462"
+  triples = 170
 
 [[versions]]
 version = "2021-05-28"
@@ -66,9 +90,15 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "ep-meta.ttl.gz"
-  bytes = 2447
-  sha256 = "8cab0f3ce80b0a504c4c85b8e04cda1c6240f1e0dca3486c1916683e9cf83994"
+  bytes = 3193
+  sha256 = "5536fb2339d73221953443aae454102fecba25b31c09bd09b4e626ce0008e5ef"
   triples = 124
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "New entity pages made from the legacy set 2021-05-28 and the records of all datasets (decision 0022): 295,384 pages; 245,053 IRIs kept, 14,357 merged, 1,492 split, 1,456,289 retired, 50,331 new. The legacy NLI pages are carried over (0010 superseded)."
 
 [[changelog]]
 date = "2025-06-05"
