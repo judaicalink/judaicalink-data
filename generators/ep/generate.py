@@ -39,8 +39,10 @@ PRECEDENCE = [
     "sosy", "gba", "footprints",
     "dbpedia-persons", "cm-entities", "geo-coordinates",
     "interlinks", "2014links", "date-enriched", "geo-enriched", "dbp-wiki-geo-linking", "records-normalized",
-    "ls-nli-legacy", "corrections-links",
+    "ls-nli-legacy",
 ]
+# The deletions of the correction datasets are applied to every input (0023); a correction version that also adds
+# triples (corrections-links 2026-10-12 adds none) is declared here as an input like any other dataset.
 STABLE = {
     "gnd-persons": "2018-11-29", "gnd-persons-entityfacts": "2026-10-12", "nli-records": "2026-10-12",
     "ubffm-persons": "2019-01-24", "nrwbibdjg": "2024-05-24", "haskala": "2019-07-01", "yivo": "2020-09-30",
@@ -50,7 +52,6 @@ STABLE = {
     "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2018-08-08",
     "interlinks": "2018-07-18", "2014links": "2026-10-12", "date-enriched": "2020-07-31", "geo-enriched": "2019-12-18",
     "dbp-wiki-geo-linking": "2021-01-13", "records-normalized": "2026-10-12", "ls-nli-legacy": "2026-10-12",
-    "corrections-links": "2026-10-12",
 }
 INPUTS = {"previous": "ep/2021-05-28", **{s.replace("-", "_"): f"{s}/{v}" for s, v in STABLE.items()}}
 PARAMS = {}
