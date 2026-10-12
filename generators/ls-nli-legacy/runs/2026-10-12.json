@@ -1,0 +1,56 @@
+{
+ "slug": "ls-nli-legacy",
+ "run": "run-20261012T082122Z",
+ "generator": "generators/ls-nli-legacy/generate.py",
+ "commit": "608798db100c9d0136eabf20fe13916d457230f6",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "data_annotation_iris": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-12T08:21:22Z",
+ "shared_code": [
+  "generators/nli-records/nli_export.py"
+ ],
+ "inputs": [
+  {
+   "name": "export",
+   "ref": "inputs:nli/authority-export-2019/auth.json.gz",
+   "file": "auth.json.gz",
+   "sha256": "25dbbf07990b603dcc19f4bc6f56b01e8ae54f2ad3b1ba4024e9bd1c2ac59734",
+   "bytes": 26451815
+  },
+  {
+   "name": "legacy",
+   "ref": "nli-persons/2019-01-25/nli-persons.ttl.gz",
+   "file": "nli-persons.ttl.gz",
+   "sha256": "4483d52aeabd8e2c52a58442db4cfbf6458f0579831653379dd31a7553b0b599",
+   "bytes": 4145903
+  }
+ ],
+ "input_descriptions": {
+  "inputs:nli/authority-export-2019": {
+   "title": "Authority export of the National Library of Israel (persons and works), as used for nli-persons",
+   "origin": "https://github.com/judaicalink/judaicalink-generators/blob/0a400686af681c79d712a7fb79bb876201594acc/nli-persons/input/auth.json.gz",
+   "description": "Gzipped JSON lines, one MARC authority record per line as a JSON object (field tag -> list of subfield objects, e.g. 100 heading with $9 script, 046 dates, 370 places, 374 occupations, 375 gender, 678 notes, 901 VIAF number, 010 Library of Congress number). The input of the legacy generator NLI-persons-03.py (nli-persons, 2019); provided to JudaicaLink in 2019 (according to the README of nli-persons, by Aaron), committed by Maral Dadvar on 2019-08-05.",
+   "date": "2019-08-05",
+   "note": "Also in judaicalink-generators (legacy/nli-persons/input/)."
+  }
+ },
+ "status": "ok",
+ "finished": "2026-10-12T08:21:35Z",
+ "seconds": 13.3,
+ "notes": [
+  "{'annotation: conflated records': 1474, 'annotation: generator errors': 1, 'annotation: subject heading as person': 540, 'annotation: works as person': 788, 'annotation: wrong dates': 895, 'annotation: wrong name': 669, 'identifiers on legacy URIs': 231895, 'legacy URIs': 182445, 'legacy URIs without person record': 1054, 'owl:sameAs (one person record)': 178821, 'owl:sameAs (person named by the works or subject headings)': 975}."
+ ],
+ "files": [
+  {
+   "path": "ls-nli-legacy.ttl.gz",
+   "bytes": 4821113,
+   "sha256": "5e0554fe573efd5006f1c9e154d49b01b25d7fb62f7dab5f24b069407a8f5888",
+   "triples": 623077
+  }
+ ],
+ "version": "2026-10-12"
+}

@@ -8,6 +8,7 @@ kind = "linkset"
 method = ["deterministic"]
 namespaces = ["ls-nli-legacy"]
 inputs = ["nli-persons"]
+stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -17,6 +18,30 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/ls-nli-legacy"
+
+[[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "608798db100c9d0136eabf20fe13916d457230f6"
+
+  [[versions.files]]
+  path = "ls-nli-legacy.ttl.gz"
+  bytes = 4821113
+  sha256 = "5e0554fe573efd5006f1c9e154d49b01b25d7fb62f7dab5f24b069407a8f5888"
+  triples = 623077
+
+  [[versions.files]]
+  path = "ls-nli-legacy-meta.ttl.gz"
+  bytes = 2288
+  sha256 = "ec08758b32bd52ea99d25941ed65cd0dfd690fc74c4ff1e33dc9073b847b71a9"
+  triples = 62
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "First version: every legacy nli-persons URI linked to the records of nli-records it was made from, with quality annotations for the faulty URIs (decisions 0010, 0020)."
 +++
 
 For everyone who holds a URI of the superseded nli-persons: every legacy URI linked to the NLI authority records of

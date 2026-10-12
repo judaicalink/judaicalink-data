@@ -39,6 +39,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   triples = 57
 
 [[changelog]]
+date = "2026-10-12"
+author = "Kai Eckert"
+text = "Superseded by nli-records (one resource per record of the same export, with VIAF and LC identifiers); every legacy URI is linked to its records in ls-nli-legacy."
+refs = ["0007", "0010"]
+
+[[changelog]]
 date = "2024-01-12"
 author = "Benjamin Schnabel"
 text = "A notebook (2024) and a script stub (2025) added to the generator folder (judaicalink-generators); the generator itself and the published version were not changed."

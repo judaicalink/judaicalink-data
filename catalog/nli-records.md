@@ -9,6 +9,7 @@ kind = "records"
 method = ["converted"]
 namespaces = ["nli/record"]
 replaces = ["nli-persons"]
+stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -18,6 +19,30 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/nli-records"
+
+[[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "608798db100c9d0136eabf20fe13916d457230f6"
+
+  [[versions.files]]
+  path = "nli-records.ttl.gz"
+  bytes = 10690626
+  sha256 = "bd276fe6239583d8e2e6f44108add9dacb282cf4ad24ab3e8e871b5ffed5f93e"
+  triples = 1523575
+
+  [[versions.files]]
+  path = "nli-records-meta.ttl.gz"
+  bytes = 2392
+  sha256 = "6d2c962c8f781527e92d8a846c5ef04c0a7b5a6bbb9059a4a5d5cb1f6e02ae16"
+  triples = 60
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "First version: the person and work records of the NLI export behind nli-persons, one resource per record with VIAF and LC identifiers; supersedes nli-persons (decisions 0010, 0020)."
 +++
 
 The person and work records of the authority export of the National Library of Israel that nli-persons was made

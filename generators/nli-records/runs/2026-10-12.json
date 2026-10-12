@@ -1,0 +1,44 @@
+{
+ "slug": "nli-records",
+ "run": "run-20261012T082106Z",
+ "generator": "generators/nli-records/generate.py",
+ "commit": "608798db100c9d0136eabf20fe13916d457230f6",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-12T08:21:06Z",
+ "inputs": [
+  {
+   "name": "export",
+   "ref": "inputs:nli/authority-export-2019/auth.json.gz",
+   "file": "auth.json.gz",
+   "sha256": "25dbbf07990b603dcc19f4bc6f56b01e8ae54f2ad3b1ba4024e9bd1c2ac59734",
+   "bytes": 26451815
+  }
+ ],
+ "input_descriptions": {
+  "inputs:nli/authority-export-2019": {
+   "title": "Authority export of the National Library of Israel (persons and works), as used for nli-persons",
+   "origin": "https://github.com/judaicalink/judaicalink-generators/blob/0a400686af681c79d712a7fb79bb876201594acc/nli-persons/input/auth.json.gz",
+   "description": "Gzipped JSON lines, one MARC authority record per line as a JSON object (field tag -> list of subfield objects, e.g. 100 heading with $9 script, 046 dates, 370 places, 374 occupations, 375 gender, 678 notes, 901 VIAF number, 010 Library of Congress number). The input of the legacy generator NLI-persons-03.py (nli-persons, 2019); provided to JudaicaLink in 2019 (according to the README of nli-persons, by Aaron), committed by Maral Dadvar on 2019-08-05.",
+   "date": "2019-08-05",
+   "note": "Also in judaicalink-generators (legacy/nli-persons/input/)."
+  }
+ },
+ "status": "ok",
+ "finished": "2026-10-12T08:21:22Z",
+ "seconds": 15.1,
+ "notes": [
+  "Records of the export: {'person': 183281, 'person with LC': 53925, 'person with VIAF': 180939, 'subject-heading': 37597, 'work': 1908, 'work with LC': 220, 'work with VIAF': 1614, 'work with creator': 1788}."
+ ],
+ "files": [
+  {
+   "path": "nli-records.ttl.gz",
+   "bytes": 10690626,
+   "sha256": "bd276fe6239583d8e2e6f44108add9dacb282cf4ad24ab3e8e871b5ffed5f93e",
+   "triples": 1523575
+  }
+ ],
+ "version": "2026-10-12"
+}
