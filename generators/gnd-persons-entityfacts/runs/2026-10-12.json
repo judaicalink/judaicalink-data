@@ -1,8 +1,8 @@
 {
  "slug": "gnd-persons-entityfacts",
- "run": "run-20261012T153940Z",
+ "run": "run-20261012T154749Z",
  "generator": "generators/gnd-persons-entityfacts/generate.py",
- "commit": "dc401a969c2fdafccdfd2e43afb782c220801a98",
+ "commit": "b3bbaa879db15c0feced64fadaa8ddab38a705e7",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
@@ -10,7 +10,7 @@
   "drop_template_links": true
  },
  "input_overrides": [],
- "started": "2026-10-12T15:39:40Z",
+ "started": "2026-10-12T15:47:49Z",
  "inputs": [
   {
    "name": "gnd_persons",
@@ -10350,13 +10350,13 @@
  "corrections": [
   {
    "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "a340acd302cd68d5926e402c05eac48cbf43cb6e724c6d8cf32632427d4909b0",
-   "deletions": 80
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:39:44Z",
- "seconds": 3.4,
+ "finished": "2026-10-12T15:47:52Z",
+ "seconds": 3.6,
  "notes": [
   "GND numbers of hhkeydocs, nrwbibdjg and gba not in gnd-persons: 1,267; {'https links normalised': 3, 'no entityfacts person record': 309, 'persons': 958, 'self links dropped': 948, 'template links dropped': 3}."
  ],

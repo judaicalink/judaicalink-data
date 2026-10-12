@@ -1,13 +1,13 @@
 {
  "slug": "corrections-links",
- "run": "run-20261012T153925Z",
+ "run": "run-20261012T154734Z",
  "generator": "generators/corrections-links/generate.py",
- "commit": "dc401a969c2fdafccdfd2e43afb782c220801a98",
+ "commit": "b3bbaa879db15c0feced64fadaa8ddab38a705e7",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T15:39:25Z",
+ "started": "2026-10-12T15:47:34Z",
  "inputs": [
   {
    "name": "interlinks",
@@ -22,90 +22,6 @@
    "file": "interlinks-04-enriched-09.ttl.gz",
    "sha256": "06363cc99920fb6eb2aed740b209a5514ab80867ec053774499c09bc91839bad",
    "bytes": 35667
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/rujen/rujenDBpediaPlace.nt.gz",
-   "file": "rujenDBpediaPlace.nt.gz",
-   "sha256": "5f87ec7a23815f9346f130bf708e6c3edf524bee26c8181897d004c006e478b7",
-   "bytes": 13296
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/rujen/rujenFreebase.nt.gz",
-   "file": "rujenFreebase.nt.gz",
-   "sha256": "f36270156a8c546fe5d4ceb682f3adac9cd6f8ac6d5d2c5a615f4a325269e3ed",
-   "bytes": 162
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/rujen/rujenDBpediaAgent.nt.gz",
-   "file": "rujenDBpediaAgent.nt.gz",
-   "sha256": "4dac87394421edf75d5b18153be1df0428826405ff516c7a5ade34c5765d819d",
-   "bytes": 2702
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/rujen/rujenDM2E.nt.gz",
-   "file": "rujenDM2E.nt.gz",
-   "sha256": "12c91e33c318241207f8711baf81ffa3937d41385f6191aa1dc576013dac26ef",
-   "bytes": 13996
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/rujen/rujenLGDOPlace.nt.gz",
-   "file": "rujenLGDOPlace.nt.gz",
-   "sha256": "a41271ec6ab405451bae60f6a587248152b60521de1ec103e5c7d64ba09d2c5d",
-   "bytes": 23403
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/yivo/yivoDM2E.nt.gz",
-   "file": "yivoDM2E.nt.gz",
-   "sha256": "c1b43258c3e65638c5f6771a8d02ebc52eea054719a90a3212d2bff29822bda4",
-   "bytes": 16298
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/yivo/YivoLGDOPlace.nt.gz",
-   "file": "YivoLGDOPlace.nt.gz",
-   "sha256": "53f7cdaeb7822512b995d637f0147f9c1310b6a5340ae8ac22e7a03d0d8d3830",
-   "bytes": 1924
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/yivo/yivoDBpediaAgent.nt.gz",
-   "file": "yivoDBpediaAgent.nt.gz",
-   "sha256": "15d54066aeba47fdb6b78d24f5d72e3dbedcfc245ec1d8ae4a1dc98e60901f70",
-   "bytes": 219
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/yivo/yivoFreebase.nt.gz",
-   "file": "yivoFreebase.nt.gz",
-   "sha256": "92253f54a2eff23c2d9c1e1c41b24bf156ef27dae39b534e13ccebc45492180a",
-   "bytes": 3120
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/yivo/yivoNYtimes.nt.gz",
-   "file": "yivoNYtimes.nt.gz",
-   "sha256": "0fe4baed200349ab17768732f527cf15f3eb0c69df525ce7ed4e2ea0145632b1",
-   "bytes": 1737
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/yivo/yivoDBpediaPlace.nt.gz",
-   "file": "yivoDBpediaPlace.nt.gz",
-   "sha256": "adc6d56266031dca7d39274ead2ffa53758dd31fddc7deba716a87044f41e5a4",
-   "bytes": 2587
-  },
-  {
-   "name": "links_2014",
-   "ref": "2014links/2017-02-15/yivo/yivoGeonames.nt.gz",
-   "file": "yivoGeonames.nt.gz",
-   "sha256": "094621c68cbe5064768383e11d9daa295a3936bb05e454f922e9f00db384a378",
-   "bytes": 1449
   },
   {
    "name": "dbpedia_persons",
@@ -227,13 +143,6 @@
    "bytes": 515033
   },
   {
-   "name": "rujen",
-   "ref": "rujen/2020-09-28/rujen.ttl.gz",
-   "file": "rujen.ttl.gz",
-   "sha256": "66b4fed0d221d93c85ee58934365310bc8fd230a4b15729362d3be2f7e8f7c82",
-   "bytes": 6783508
-  },
-  {
    "name": "cm_entities",
    "ref": "cm-entities/2026-10-12/cm-entities-wikidata.ttl.gz",
    "file": "cm-entities-wikidata.ttl.gz",
@@ -242,22 +151,16 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:39:40Z",
- "seconds": 14.8,
+ "finished": "2026-10-12T15:47:48Z",
+ "seconds": 13.8,
  "notes": [
-  "80 triples deleted in 11 datasets, 3 added."
+  "76 triples deleted in 9 datasets, 0 added."
  ],
  "files": [
   {
    "path": "corrections-links-deletions.ru.gz",
-   "bytes": 2723,
-   "sha256": "a340acd302cd68d5926e402c05eac48cbf43cb6e724c6d8cf32632427d4909b0"
-  },
-  {
-   "path": "corrections-links.ttl.gz",
-   "bytes": 177,
-   "sha256": "8f7313301125a7a582ccc03e222e881c627c3c4c64553a514032de32a48a481e",
-   "triples": 3
+   "bytes": 2548,
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce"
   }
  ],
  "version": "2026-10-12"

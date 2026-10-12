@@ -21,24 +21,18 @@ path = "generators/corrections-links"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "dc401a969c2fdafccdfd2e43afb782c220801a98"
+commit = "b3bbaa879db15c0feced64fadaa8ddab38a705e7"
 
   [[versions.files]]
   path = "corrections-links-deletions.ru.gz"
-  bytes = 2723
-  sha256 = "a340acd302cd68d5926e402c05eac48cbf43cb6e724c6d8cf32632427d4909b0"
-
-  [[versions.files]]
-  path = "corrections-links.ttl.gz"
-  bytes = 177
-  sha256 = "8f7313301125a7a582ccc03e222e881c627c3c4c64553a514032de32a48a481e"
-  triples = 3
+  bytes = 2548
+  sha256 = "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce"
 
   [[versions.files]]
   path = "corrections-links-meta.ttl.gz"
-  bytes = 2297
-  sha256 = "759a9e5084c4ce88c6da4a4c4df19f183ec84118a11ea76a9aee171b48df0634"
-  triples = 108
+  bytes = 2018
+  sha256 = "7f7312f39cd825b13420ca155649963d6e5710e1d2e1b8a76f2dcb78ea841c14"
+  triples = 78
 
 [[changelog]]
 date = "2026-10-12"

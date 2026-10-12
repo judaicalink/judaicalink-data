@@ -1,13 +1,13 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T154003Z",
+ "run": "run-20261012T154812Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "dc401a969c2fdafccdfd2e43afb782c220801a98",
+ "commit": "b3bbaa879db15c0feced64fadaa8ddab38a705e7",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T15:40:03Z",
+ "started": "2026-10-12T15:48:12Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
@@ -268,12 +268,12 @@
  "corrections": [
   {
    "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "a340acd302cd68d5926e402c05eac48cbf43cb6e724c6d8cf32632427d4909b0",
-   "deletions": 80
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:40:45Z",
+ "finished": "2026-10-12T15:48:54Z",
  "seconds": 42.0,
  "notes": [
   "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 302, 'death before birth': 51, 'no recognised form': 112, 'the year is outside 1–2030': 8}.",

@@ -1,15 +1,15 @@
 {
  "slug": "records-normalized",
- "run": "run-20261012T153944Z",
+ "run": "run-20261012T154753Z",
  "generator": "generators/records-normalized/generate.py",
- "commit": "dc401a969c2fdafccdfd2e43afb782c220801a98",
+ "commit": "b3bbaa879db15c0feced64fadaa8ddab38a705e7",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
   "legacy_terms": false
  },
  "input_overrides": [],
- "started": "2026-10-12T15:39:44Z",
+ "started": "2026-10-12T15:47:53Z",
  "inputs": [
   {
    "name": "bhr",
@@ -260,13 +260,13 @@
  "corrections": [
   {
    "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "a340acd302cd68d5926e402c05eac48cbf43cb6e724c6d8cf32632427d4909b0",
-   "deletions": 80
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:40:02Z",
- "seconds": 18.0,
+ "finished": "2026-10-12T15:48:11Z",
+ "seconds": 18.1,
  "notes": [
   "Dates: {'death before birth': 102, 'empty': 28, 'normalised': 186577, 'not parsed': 585, 'uncertain': 145}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
   "Places: {'already linked': 2646, 'not linked': 40946, 'via cm-entities-wikidata places': 8110, 'via pairs in the data': 34625, 'via rujen and geo-coordinates places': 7018}.",
@@ -279,7 +279,6 @@
   "gnd_persons": 7,
   "hhkeydocs": 4,
   "nli_records": 11,
-  "rujen": 3,
   "ubffm_persons": 1
  },
  "files": [
