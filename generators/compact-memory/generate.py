@@ -216,8 +216,11 @@ def structure(run, rows, mods, bundle, pages, aliases):
     run.log(f"structure: {len(nodes):,} nodes, {mixed:,} pages with a date of their own, "
             f"{missing_path:,} pages of the bundle without an OCR path")
     if missing_path:
-        run.note(f"{missing_path} pages of the full-text bundle have no OCR file path and are left out.")
-    run.note(f"{mixed} pages carry a date of their own, as the pages of their node have different dates.")
+        run.note(f"{missing_path} page{'s' if missing_path != 1 else ''} of the full-text bundle without an OCR file "
+                 "path left out.")
+    if mixed:
+        run.note(f"{mixed} page{'s' if mixed != 1 else ''} with a date of their own (the pages of their node have "
+                 "different dates).")
     return w.t
 
 
