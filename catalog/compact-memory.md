@@ -5,7 +5,7 @@ author = "Kai Eckert"
 date = "2021-01-19"
 namespaces = ["compact-memory"]
 inputs = ["compact-memory-supp"]
-stable = "2021-01-18"
+stable = "2026-10-12"
 kind = "support"
 method = ["converted"]
 
@@ -61,15 +61,15 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 
   [[versions.files]]
   path = "compact-memory-meta.ttl.gz"
-  bytes = 1719
-  sha256 = "e7fa6e8d66f2ff6f263035dc5c4123f7f96b073c7f967aef47e63369d7945dec"
+  bytes = 2027
+  sha256 = "6c8268a808e4dfd83b31119f1a8814bee9ea0e0e57f9518dfea967f16804c6a2"
   triples = 58
 
 [[changelog]]
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "New version from the framework generator: the whole Compact Memory corpus (journals, volumes, issues, all pages of the full-text index), with classes; the version 2021-01-18 covered only pages with entity mentions."
+text = "New version from the framework generator: the whole Compact Memory corpus (journals, volumes, issues, all pages of the full-text index), with classes; the version 2021-01-18 covered only pages with entity mentions. Stable version."
 
 [[changelog]]
 date = "2025-06-05"
