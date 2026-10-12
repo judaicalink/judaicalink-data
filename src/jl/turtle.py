@@ -25,12 +25,14 @@ PREFIXES = {
     "dc": "http://purl.org/dc/elements/1.1/",
     "dcat": "http://www.w3.org/ns/dcat#",
     "dcterms": "http://purl.org/dc/terms/",
+    "dqv": "http://www.w3.org/ns/dqv#",
     "edm": "http://www.europeana.eu/schemas/edm/",
     "foaf": "http://xmlns.com/foaf/0.1/",
     "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
     "geosparql": "http://www.opengis.net/ont/geosparql#",
     "gndo": "https://d-nb.info/standards/elementset/gnd#",
     "jl": "http://data.judaicalink.org/ontology/",
+    "oa": "http://www.w3.org/ns/oa#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "prov": "http://www.w3.org/ns/prov#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -46,6 +48,8 @@ PREFIXES = {
 # Local names are written as prefixed names where the reader's PN_LOCAL takes them as they are (no backslash
 # escapes; "%XX" stays as it is in Turtle); everything else is written as a full IRI.
 _LOCAL = re.compile(PN_LOCAL)
+# characters that RFC 3987 does not allow in an IRI; written as \u escapes they would still be these characters
+_BAD_IRI = re.compile(r'[\x00-\x20<>"{}|^`\\]')
 
 
 class Namespace(str):
@@ -72,6 +76,8 @@ class Writer:
     def iri(self, iri):
         r = self._cache.get(iri)
         if r is None:
+            if _BAD_IRI.search(iri):
+                raise ValueError(f"not a valid IRI (percent-encode characters from source text): {iri!r}")
             r = nt_iri(iri)
             for ns, p in self.by_ns:
                 if iri.startswith(ns):

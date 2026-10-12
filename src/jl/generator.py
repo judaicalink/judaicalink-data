@@ -58,8 +58,26 @@ def code_state(slug, files=()):
     return commit, [line[3:] for line in status.splitlines()]
 
 
+_shared = []   # files of other generator folders that the generator being loaded imports (load_shared)
+
+
+def load_shared(slug, name):
+    """A module of another generator's folder, for datasets that share code (0018: they share code, not runs),
+    e.g. load_shared("nli-records", "nli_export"). The file is checked for uncommitted changes like the generator's
+    own code and named in the run record."""
+    path = GENERATORS / slug / f"{name}.py"
+    if not path.is_file():
+        raise GeneratorError(f"no shared module generators/{slug}/{name}.py")
+    spec = importlib.util.spec_from_file_location(f"jl_shared_{slug.replace('-', '_')}_{name}", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    _shared.append(f"generators/{slug}/{name}.py")
+    return module
+
+
 def load_generator(slug):
     path = GENERATORS / slug / "generate.py"
+    _shared.clear()
     if not path.is_file():
         raise GeneratorError(f"no generator: generators/{slug}/generate.py")
     spec = importlib.util.spec_from_file_location(f"jl_generator_{slug.replace('-', '_')}", path)
@@ -71,6 +89,7 @@ def load_generator(slug):
         sys.path.remove(str(path.parent))
     if not callable(getattr(module, "generate", None)):
         raise GeneratorError(f"generators/{slug}/generate.py has no function generate(run)")
+    module._jl_shared = sorted(set(_shared))
     return module
 
 
@@ -238,7 +257,9 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
             raise GeneratorError(f"unknown input {k!r} (INPUTS: {', '.join(declared) or 'none'})")
         declared[k] = v
     params = parse_params(getattr(module, "PARAMS", {}), given_params)
-    commit, dirty = code_state(slug, [r[5:] for r in declared.values() if isinstance(r, str) and r.startswith("repo:")])
+    shared = getattr(module, "_jl_shared", [])
+    commit, dirty = code_state(slug, [r[5:] for r in declared.values() if isinstance(r, str) and r.startswith("repo:")]
+                               + shared)
     started = time.time()
     run_id = "run-" + datetime.datetime.fromtimestamp(started, datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     d = cfg.require("build") / slug / run_id
@@ -251,6 +272,8 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
     record = {"slug": slug, "run": run_id, "generator": f"generators/{slug}/generate.py", "commit": commit,
               "uncommitted": dirty, "python": platform.python_version(), "params": params,
               "input_overrides": list(input_overrides), "started": utc(started)}
+    if shared:
+        record["shared_code"] = shared
     run = None
     with open(d / "log.txt", "w", encoding="utf-8") as logf:
         try:

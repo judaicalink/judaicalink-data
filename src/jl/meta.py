@@ -210,6 +210,7 @@ def render(entry, version, files, record, stats, registry):
         t += [(V, PROV.wasGeneratedBy, G), (G, A, PROV.Activity),
               (G, PROV.wasAssociatedWith, IRI(software_iri(FRAMEWORK))),
               (G, PROV.used, commit_url(commit, record.get("generator", f"generators/{slug}/generate.py"))),
+              *[(G, PROV.used, commit_url(commit, path)) for path in record.get("shared_code", [])],
               (G, RDFS.seeAlso, IRI(f"{REPO}/blob/main/generators/{slug}/runs/{vid}.json"))]
         for name in [version["author"]] if isinstance(version.get("author"), str) else version.get("author", []):
             t.append((G, PROV.wasAssociatedWith, IRI(registry.person(name))))

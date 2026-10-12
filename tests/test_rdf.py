@@ -166,5 +166,14 @@ class Index(unittest.TestCase):
         self.assertEqual(g.subjects(q, s), [t])                              # index kept up to date
 
 
+class InvalidIRI(unittest.TestCase):
+    def test_writer_refuses(self):
+        from jl import turtle
+        from jl.rdf import IRI, Literal
+        with self.assertRaises(ValueError):
+            turtle.turtle_text([(IRI("http://a/x|y"), IRI("http://a/p"), Literal("v"))])
+        turtle.turtle_text([(IRI("http://a/x%7Cy"), IRI("http://a/p"), Literal("v"))])
+
+
 if __name__ == "__main__":
     unittest.main()

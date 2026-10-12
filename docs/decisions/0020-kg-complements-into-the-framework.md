@@ -92,6 +92,14 @@ Each dataset becomes one version when it is finished (runs only until then, 0018
 
 ## Consequences
 
+- Built for the ports (2026-10-12): shared code of datasets that belong together (`jl.generator.load_shared`, e.g.
+  ls-nli-legacy uses `generators/nli-records/nli_export.py`; checked for uncommitted changes and named in the run
+  record and the `-meta`); the Turtle writer refuses IRIs with characters not allowed in IRIs (generators
+  percent-encode IRIs built from source text). Fixes beyond a faithful port are parameters with the fix as default,
+  so that the faithful output can still be checked: `gnd-persons-entityfacts` (`fix_self_links`: https links to
+  JudaicaLink normalised, 950 self-links dropped) and `ls-nli-legacy` (`data_annotation_iris`: annotations in
+  `data/ls-nli-legacy/annotation/`, not below the dataset IRI).
+
 - `ontology-complements` and the kg-complements `-meta` writer are not carried over; `../qlever/make_inputs.py`
   reads the catalogue and the store once these datasets are versions.
 - Not published, so renamed freely: `jl:occupationConcept` (23,810 triples in `ep-2026-10-06`, used by
