@@ -26,7 +26,7 @@ from jl.turtle import PREFIXES
 
 rn = load_shared("records-normalized", "generate")
 
-INPUTS = {**rn.RECORDS, "compact_memory": "compact-memory/2026-10-12", "geo_coordinates": "geo-coordinates/2018-08-08",
+INPUTS = {**rn.RECORDS, "compact_memory": "compact-memory/2026-10-12", "geo_coordinates": "geo-coordinates/2026-10-12",
           "nrwbibdjg": "nrwbibdjg/2024-05-24"}
 PARAMS = {}
 

@@ -39,19 +39,20 @@ PRECEDENCE = [
     "sosy", "gba", "footprints",
     "dbpedia-persons", "cm-entities", "geo-coordinates",
     "interlinks", "2014links", "date-enriched", "geo-enriched", "dbp-wiki-geo-linking", "records-normalized",
-    "ls-nli-legacy",
+    "ls-nli-legacy", "ls-yivo-wikidata",
 ]
 # The deletions of the correction datasets are applied to every input (0023); a correction version that also adds
 # triples (corrections-links 2026-10-12 adds none) is declared here as an input like any other dataset.
 STABLE = {
     "gnd-persons": "2018-11-29", "gnd-persons-entityfacts": "2026-10-12", "nli-records": "2026-10-12",
     "ubffm-persons": "2019-01-24", "nrwbibdjg": "2024-05-24", "haskala": "2019-07-01", "yivo": "2020-09-30",
-    "rujen": "2020-09-28", "rujen-translation": "2020-09-28", "bhr": "2026-10-12", "djh": "2018-10-22",
-    "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2023-07-14", "stolpersteine": "2020-10-06",
-    "hirsch-family": "2018-10-30", "sosy": "2022-07-07", "gba": "2025-03-21", "footprints": "2024-03-18",
-    "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2018-08-08",
+    "rujen": "2020-09-28", "rujen-translation": "2026-10-12", "bhr": "2026-10-12", "djh": "2018-10-22",
+    "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2026-10-12", "stolpersteine": "2020-10-06",
+    "hirsch-family": "2018-10-30", "sosy": "2026-10-12", "gba": "2025-03-21", "footprints": "2024-03-18",
+    "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2026-10-12",
     "interlinks": "2018-07-18", "2014links": "2026-10-12", "date-enriched": "2020-07-31", "geo-enriched": "2019-12-18",
     "dbp-wiki-geo-linking": "2021-01-13", "records-normalized": "2026-10-12", "ls-nli-legacy": "2026-10-12",
+    "ls-yivo-wikidata": "2026-10-12", "record-classes": "2026-10-12",
 }
 INPUTS = {"previous": "ep/2021-05-28", **{s.replace("-", "_"): f"{s}/{v}" for s, v in STABLE.items()}}
 PARAMS = {}
@@ -73,8 +74,11 @@ HISTORY = {JLO + "mergedInto", JLO + "mergeDate", JLO + "splitInto", JLO + "spli
 
 CLASS_OF_TYPE = {FOAF + "Person": "Person", JLO + "Person": "Person", JLO + "Place": "Place", DBO + "Place": "Place",
                  GNDO + "PlaceOrGeographicName": "Place", FOAF + "Organization": "Organization",
-                 GNDO + "Work": "Work", JLO + "Work": "Work", SKOS + "Concept": "Subject"}
+                 GNDO + "Work": "Work", JLO + "Work": "Work", SKOS + "Concept": "Subject", JLO + "Subject": "Subject"}
 SUBJECT_DATASETS = {"yivo", "djh", "rujen"}   # their other skos:Concepts are subjects (0022)
+# datasets that state the classes of records of other datasets (0025): a class counts for the dataset whose namespace
+# the record is in
+CLASS_DATASETS = {"record-classes"}
 CLASS_ORDER = ["Person", "Place", "Organization", "Work", "Subject"]
 CLASS_IRI = {"Person": FOAF + "Person", "Place": JLO + "Place", "Organization": FOAF + "Organization",
              "Work": JLO + "Work", "Subject": JLO + "Subject"}
@@ -298,10 +302,15 @@ def generate(run):
             s = str(s)
             if p == RDF_TYPE:
                 c = CLASS_OF_TYPE.get(o)
-                if c == "Subject" and slug not in SUBJECT_DATASETS:
-                    c = "Place" if slug == "geo-coordinates" else None
-                if c and slug not in NOT_SOURCES:
-                    classes[s].setdefault(slug, set()).add(c)
+                owner = slug
+                if slug in CLASS_DATASETS:
+                    owner = s[len(JL):].split("/")[0]
+                    if owner not in STABLE:
+                        raise GeneratorError(f"{slug}: a class for {s}, which is in no dataset namespace")
+                if o == SKOS + "Concept" and owner not in SUBJECT_DATASETS:
+                    c = None
+                if c and owner not in NOT_SOURCES:
+                    classes[s].setdefault(owner, set()).add(c)
                 continue
             if p == JLO + "entity" and slug == "cm-entities":
                 entities_cm.add(str(o))

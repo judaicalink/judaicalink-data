@@ -34,13 +34,13 @@ from jl.turtle import PREFIXES
 
 RECORDS = {
     "bhr": "bhr/2026-10-12", "dbpedia_persons": "dbpedia-persons/2018-10-24", "djh": "djh/2018-10-22",
-    "epidat": "epidat/2023-07-14", "footprints": "footprints/2024-03-18", "geo_enriched": "geo-enriched/2019-12-18",
+    "epidat": "epidat/2026-10-12", "footprints": "footprints/2024-03-18", "geo_enriched": "geo-enriched/2019-12-18",
     "gnd_persons": "gnd-persons/2018-11-29", "gnd_persons_entityfacts": "gnd-persons-entityfacts/2026-10-12",
     "haskala": "haskala/2019-07-01", "hhkeydocs": "hhkeydocs/2025-03-21", "hirsch_family": "hirsch-family/2018-10-30",
-    "jre": "jre/2019-11-29", "nli_records": "nli-records/2026-10-12", "sosy": "sosy/2022-07-07",
+    "jre": "jre/2019-11-29", "nli_records": "nli-records/2026-10-12", "sosy": "sosy/2026-10-12",
     "ubffm_persons": "ubffm-persons/2019-01-24",
 }
-PLACES = {"rujen": "rujen/2020-09-28", "geo_coordinates": "geo-coordinates/2018-08-08",
+PLACES = {"rujen": "rujen/2020-09-28", "geo_coordinates": "geo-coordinates/2026-10-12",
           "cm_entities": "cm-entities/2026-10-12/cm-entities-wikidata.ttl.gz"}
 INPUTS = {**RECORDS, **PLACES}
 PARAMS = {"legacy_terms": False}
