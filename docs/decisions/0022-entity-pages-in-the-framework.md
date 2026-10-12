@@ -62,8 +62,14 @@ may be assigned again. Its output is only a check for the port; then it moves to
 - **Identity links:** `owl:sameAs`, `gndo:gndIdentifier` (IRI or literal) and replacements by one IRI. Every target is
   a key after normalisation (GND `…/gnd/N`, `…/N/about`, `https`, `data/gnd/N`; VIAF incl.
   `https://viaf.org/viaf/http://viaf.org/viaf/N/`; LC `authorities/names/nN` = `authorities/nN`; GeoNames `sws.`,
-  `www.`, trailing slash, `data/geonames/N`; DBpedia `dbpedia.org/resource/X` = `data/dbpedia/X`, language editions and
-  Wikipedia articles per language). **The same key joins; different keys never prevent a join**: no guards, so the
+  `www.`, trailing slash, `data/geonames/N`; ISNI without spaces and hyphens; DBpedia language editions and Wikipedia
+  articles per language). A JudaicaLink record in an authority namespace is the same key as the authority's IRI only
+  where the identifier is unambiguous (`data/gnd/N`, `data/geonames/N`), not for DBpedia: the TagMe entities of
+  Compact Memory (`data/dbpedia/<title>`) carry German Wikipedia titles, the English DBpedia resource of the same title
+  can be another entity (corrected 2026-10-12: it joined the British politician Herbert Morrison with the American
+  radio reporter, and Johannes Eck, Lord Randolph Churchill with their namesakes; dbpedia-persons states its DBpedia
+  links explicitly). An identifier without its syntax (an ISNI of other than 16 characters, an empty GND number) is no
+  key. **The same key joins; different keys never prevent a join**: no guards, so the
   result depends only on the links, not on their order.
 - Links to something that is not one entity (a web page, a disambiguation page, a broader concept) and wrong links
   are mistakes in the data: they are removed by correction datasets ([0023](0023-correction-datasets.md)), not by

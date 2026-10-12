@@ -4,7 +4,10 @@ gnd-persons lacks.
 Transformation only, a port of gnd_persons_entityfacts of kg-complements (datasets_algorithmic.py, 2026-10-06; decision
 0020) without changes to its logic, with one fix (parameter fix_self_links, default on): EntityFacts gives JudaicaLink
 IRIs in the https form (https://data.judaicalink.org/data/gnd/<n>, from our BEACON); they are normalised to http, and
-a link of a record to itself is dropped. The EntityFacts answers come from the cache of 2026-10-06; an answer missing
+a link of a record to itself is dropped. A second fix (drop_template_links, default on, 2026-10-12): EntityFacts gives
+three links with an unfilled template (https://steinheim-institut.de/cgi-bin/epidat?gnd=[ID]), the same IRI for
+different persons, which identifies nothing (it joined Berend Lehmann, Ezekiel Katzenellenbogen and Isaac Hirschland,
+decision 0022); they are dropped. The EntityFacts answers come from the cache of 2026-10-06; an answer missing
 there is an error, never a live request.
 """
 
@@ -24,7 +27,7 @@ INPUTS = {
     "gba": "gba/2025-03-21",
     "cache": "inputs:web-caches/api-cache-2026-10-06/",
 }
-PARAMS = {"fix_self_links": True}
+PARAMS = {"fix_self_links": True, "drop_template_links": True}
 
 JLO = PREFIXES["jl"]
 OWL = PREFIXES["owl"]
@@ -90,6 +93,9 @@ def generate(run):
                         stats["self links dropped"] += 1
                         continue
                     stats["https links normalised"] += 1
+                if run.params["drop_template_links"] and "[ID]" in sid:
+                    stats["template links dropped"] += 1
+                    continue
                 t.add((x, IRI(OWL + "sameAs"), IRI(sid)))
     run.note(f"GND numbers of hhkeydocs, nrwbibdjg and gba not in gnd-persons: {len(numbers):,}; "
              f"{dict(sorted(stats.items()))}.")
