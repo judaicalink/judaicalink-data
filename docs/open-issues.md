@@ -55,7 +55,8 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   datasets are identified only as `http://data.judaicalink.org/datasets/<slug>`. To fix:
   - 953 `owl:sameAs` to `https://data.judaicalink.org/data/gnd/…` in `gnd-persons-entityfacts` and `ep-2026-10-06`,
     taken from the EntityFacts `sameAs` (from the BEACON target, see Frankfurt): normalise to `http` when regenerating
-    (they become self-links and are dropped).
+    (they become self-links and are dropped). Done for `gnd-persons-entityfacts` 2026-10-12 (950 dropped, 3 kept as
+    `http`); still in `ep-2026-10-06` until the entity pages are regenerated.
   - The `-meta` files in `dumps-additions` use patterns that the generator framework replaces: access URLs in the old
     archive layout, `datasets/agent/…` with names in the IRIs (→ `datasets/agents/persons/<id>`, `datasets/agents/software/<name>`;
     names only in an agents dataset, so a name can be removed without new IRIs; slug `agents` reserved), `datasets/<slug>/generation/<date>`,
