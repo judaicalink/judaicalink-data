@@ -66,6 +66,10 @@ have the same kind and the same automated status, and belong together in content
      (fenced blocks are extracted into the Turtle);
   2. **Normalised person data** (5): `birthDateNormalized`, `deathDateNormalized`, `birthDateUncertain`,
      `deathDateUncertain`, `occupationURI`;
+     *For `records-normalized` (2026-10-12): every occupation IRI that a record states with `jl:occupation` or
+     `jl:occpation` is also stated as `jl:occupationURI` (15,340), so one property finds all occupation IRIs; the
+     typo fix (`jl:occpation` → `jl:occupation`) is part of that and has no file of its own (three files: dates,
+     places, occupations).*
   3. **Entity pages** (14): `EntityPage`, `Work`, `Subject`, `curationStatus`, `CurationStatus`, `Curated`,
      `AutomaticOnly`, `supportedBy`, `mergeDate`, `splitInto`, `splitDate`, `retiredDate`,
      `highestEntityPageNumber`, `previousEntityPageSet`; after the entity-page question is settled.

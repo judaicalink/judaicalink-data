@@ -88,6 +88,10 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
 
 ## Data
 
+- **footprints 2024-03-18 dates:** some `jl:birthDate`/`jl:deathDate` values are Python dictionaries written as text,
+  e.g. `{'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}`; records-normalized leaves them out (found
+  2026-10-12). The usable value is `edtf_format` (EDTF); a fix belongs to a new footprints version or a rule in
+  records-normalized.
 - **gba URIs changed** on 2025-03-21 (generator commit `6fce1cd`, `clean_url_string` replaces characters with `_`
   instead of removing them): the 24 URIs of the version before are gone (e.g. `data/gba/JecheskelEzechielLandau` →
   `Jecheskel__Ezechiel__Landau`). Check whether anything links to the old ones.
