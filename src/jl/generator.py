@@ -212,10 +212,12 @@ class Run:
         self.log(f"index: {len(g):,} triples from {n_files} file(s)")
         return g
 
-    def triples(self, name, report=None):
-        """The triples of the RDF files of one input, as read (no index), without the triples deleted by the stable
-        corrections. report: as for rdf.read_triples."""
+    def triples(self, name, report=None, file=None):
+        """The triples of the RDF files of one input (or of its file named file), as read (no index), without the
+        triples deleted by the stable corrections. report: as for rdf.read_triples."""
         for p in self.inputs(name):
+            if file is not None and p.name != file:
+                continue
             for t in rdf.read_triples(p, report):
                 if self.deleted and corrections.key(t) in self.deleted:
                     self.deleted_from[name] = self.deleted_from.get(name, 0) + 1

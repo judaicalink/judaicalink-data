@@ -52,3 +52,19 @@ website, changed EntityFacts answers.
 | [`generators/Datasets/BHR/Round2/scripts/Integrate-new-old-03.py`](https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-03.py) | judaicalink-loader | `5a51e8c` (2018-05-03, Maral Dadvar) |  |
 | [`generators/Datasets/BHR/Round2/scripts/Integrate-new-old-04.py`](https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-04.py) | judaicalink-loader | `5a51e8c` (2018-05-03, Maral Dadvar) |  |
 | [`bhr/Round2/scripts/Entityfacts-01.py`](https://github.com/judaicalink/judaicalink-generators/blob/abe8e67e1114cb00b8ada5b964fbdf828014f2e2/bhr/Round2/scripts/Entityfacts-01.py) | judaicalink-generators | `abe8e67` (2018-10-24, Maral Dadvar) |  |
+
+## Framework generator (2026-10-12)
+
+`generate.py` makes a new version from 2018-10-24 (decision 0024: a systematic error in one dataset is fixed by a new
+version of it; the chain above cannot be run again, so the previous version is transformed). The fixes are
+parameters, on by default; with all of them off the output has the same 32,884 triples as 2018-10-24 (checked):
+
+| Parameter | Fix | Triples |
+|---|---|---|
+| `drop_service_page` | `owl:sameAs` the DNB EntityFacts service page, stated for every person with a GND number | 783 removed |
+| `drop_empty` | links with an empty identifier (`d-nb.info/gnd//`, `hub.culturegraph.org/entityfacts//`, the Steinheim GND query `text1=/`), empty literals, the GND number placeholder `"NA"` | 9 + 2,141 + 1,692 removed |
+| `split_mixed` | Glückmann (BHR id 572) and Gunzenhausen (638) held the entries, abstracts and publications of themselves and Gutheim (640), grouped by their empty GND number in the integration of 2018; each keeps its own (the record's death date matches one abstract each, the BHR page order 372 < 398 < 399 is alphabetical, Gutheim's record holds only his own) | 15 removed |
+| `occupation_uri` | `jl:occpation` (typo) with occupation IRIs → `jl:occupationURI` | 2,900 changed |
+
+In 2021 the empty GND links joined the three persons into one legacy entity page (`ep/1012090`), and the service
+page would join the 783 persons into one group when every `owl:sameAs` target is a key (decision 0022).
