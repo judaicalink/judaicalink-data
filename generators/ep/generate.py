@@ -48,7 +48,7 @@ STABLE = {
     "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2023-07-14", "stolpersteine": "2020-10-06",
     "hirsch-family": "2018-10-30", "sosy": "2022-07-07", "gba": "2025-03-21", "footprints": "2024-03-18",
     "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2018-08-08",
-    "interlinks": "2018-07-18", "2014links": "2017-02-15", "date-enriched": "2020-07-31", "geo-enriched": "2019-12-18",
+    "interlinks": "2018-07-18", "2014links": "2026-10-12", "date-enriched": "2020-07-31", "geo-enriched": "2019-12-18",
     "dbp-wiki-geo-linking": "2021-01-13", "records-normalized": "2026-10-12", "ls-nli-legacy": "2026-10-12",
     "corrections-links": "2026-10-12",
 }
