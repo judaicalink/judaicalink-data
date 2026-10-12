@@ -2,7 +2,8 @@
 
 Transformation only, a port of cm_journals and cm_structure of kg-complements (datasets_deterministic.py,
 2026-10-05; decision 0020) without changes to their logic, plus the image link of every page, which the 2021 version
-stated and kg-complements had left to be derived. The sources: the page table (compact-memory-supp), the MODS records
+stated and kg-complements had left to be derived, and classes: schema.org for volumes, issues and articles (from the
+kind in the page table), jl:Page for pages. The sources: the page table (compact-memory-supp), the MODS records
 of the nodes, the list of the OCR files (for the page IRIs) and the full-text bundle (which pages are in the full-text
 index, with their date, label and journal). The pages of the version 2021-01-18 keep their IRIs.
 
@@ -36,6 +37,10 @@ RDFS = PREFIXES["rdfs"]
 SCHEMA = PREFIXES["schema"]
 CM = "http://data.judaicalink.org/data/compact-memory/"
 VL = "http://sammlungen.ub.uni-frankfurt.de/cm/periodical/"
+# classes for the kinds of nodes in the page table (Parent-Type); other kinds (chapter, correspondence, title page, …)
+# get no class and keep their kind as dcterms:type (decided 2026-10-12)
+KIND_CLASS = {"journal issue": SCHEMA + "PublicationIssue", "journal volume": SCHEMA + "PublicationVolume",
+              "article": SCHEMA + "Article", "struct article": SCHEMA + "Article"}
 
 _IRI_BAD = re.compile(r'[<>"{}|^`\\\s]')
 
@@ -162,6 +167,7 @@ def structure(run, rows, mods, bundle, pages, aliases):
     """Page -> issue/volume -> journal for every page of the full-text index."""
     w = Triples()
     nodes = {}
+    kinds = {}
     missing_path = 0
     issue_dates = defaultdict(set)    # issue node -> dates of its pages
     page_date = {}                    # page IRI -> (issue node, date)
@@ -172,6 +178,7 @@ def structure(run, rows, mods, bundle, pages, aliases):
             missing_path += 1
             continue
         path = [n for n in r["OT_PATH"].strip("|").split("||") if n]
+        w.add(p, RDF_TYPE, JLO + "Page")
         w.add(p, JLO + "belongsToIssue", CM + path[-2])
         w.add(p, JLO + "hasVisualRepresentation", VL + f"pageview/{vid}")
         for alias in aliases.get(vid, []):
@@ -188,6 +195,7 @@ def structure(run, rows, mods, bundle, pages, aliases):
         parent = r["VLID_Parent"].strip()
         if parent and r["Parent-Type"].strip():
             w.add(CM + parent, DCT + "type", lit(r["Parent-Type"].strip()))
+            kinds[parent] = r["Parent-Type"].strip()
     # the date belongs to the issue; it stays on the pages only where the pages of one node have different dates
     dated_nodes = set()
     for node, dates in issue_dates.items():
@@ -199,8 +207,15 @@ def structure(run, rows, mods, bundle, pages, aliases):
         if node not in dated_nodes:
             w.add(p, DCT + "date", lit(date, XSD + "date"))
             mixed += 1
+    classes = Counter()
     for node, (parent, journal) in nodes.items():
         n = CM + node
+        # the class from the kind; a node without a kind directly below the journal is a volume
+        cls = KIND_CLASS.get(kinds.get(node)) or (SCHEMA + "PublicationVolume"
+                                                  if node not in kinds and parent == journal else None)
+        if cls:
+            w.add(n, RDF_TYPE, cls)
+            classes[cls.rsplit("/", 1)[-1]] += 1
         w.add(n, DCT + "isPartOf", CM + parent)
         w.add(n, JLO + "belongsToJournal", CM + journal)
         w.add(n, FOAF + "page", VL + f"titleinfo/{node}")
@@ -213,6 +228,7 @@ def structure(run, rows, mods, bundle, pages, aliases):
                 for d in mods_values(re.search(r"<part>(.*?)</part>", x, re.S).group(1) if "<part>" in x else x,
                                      "date")[:1]:
                     w.add(n, DCT + "date", date_literal(d))
+    run.log("classes: " + ", ".join(f"{c} {n:,}" for c, n in sorted(classes.items())))
     run.log(f"structure: {len(nodes):,} nodes, {mixed:,} pages with a date of their own, "
             f"{missing_path:,} pages of the bundle without an OCR path")
     if missing_path:

@@ -32,8 +32,15 @@ page table `compact-memory-supp/2021-01-19/CM_Seiten_Metadaten.csv.gz`, and from
 `compact-memory/mods-2020-06-15` (MODS records), `compact-memory/ocr-paths-2026-10-05` (the OCR file list, for the page
 IRIs) and `compact-memory/fulltext-2026-10-05-v2` (the full-text bundle: which pages are in the index, with date, label
 and journal); the version 2021-01-18 for the existing page IRIs. Writes `compact-memory-journals.ttl.gz` (3,707
-triples, identical to cm-journals) and `compact-memory-pages.ttl.gz` (3,629,104 triples: cm-structure plus 846,499
-image links). About one minute.
+triples, identical to cm-journals) and `compact-memory-pages.ttl.gz` (4,549,427 triples: cm-structure plus 846,499
+image links and the classes). About one minute.
+
+Classes (decided 2026-10-12): journals `schema:Periodical` (as in cm-journals); from the kind in the page table
+(`Parent-Type`) `schema:PublicationIssue` (journal issue, 46,620), `schema:PublicationVolume` (journal volume, 593) and
+`schema:Article` (article, struct article; 24,463); a node without a kind directly below its journal is a volume
+(2,148); pages `jl:Page` (schema.org has no class for a page). Nodes of the other 24 kinds (chapter, correspondence,
+title page, …) and the 1,898 nodes without a kind deeper in the hierarchy get no class; the kind stays as
+`dcterms:type`. The ontology classes `jl:Journal` and `jl:Issue` are not used (no dataset uses them).
 
 Compared with the version 2021-01-18 (624,682 triples), 4,710 triples are no longer stated (decided 2026-10-12):
 the second IRI of 2,060 pages that had two (one per OCR file copy; they are `owl:sameAs` the page that carries the

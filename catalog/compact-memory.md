@@ -24,31 +24,6 @@ path = "generators/compact-memory"
 "compact-memory-pages.ttl.gz" = "Volumes, issues and pages: for every page its issue, sequence, label and image in the Visual Library; for every volume and issue its parent, journal, label and date."
 
 [[versions]]
-version = "2026-10-12"
-issued = "2026-10-12"
-author = "Kai Eckert"
-commit = "9c9030610bdced785f7d0258d4048f6111e8d0fc"
-description = "The whole corpus of the full-text index: 336 journals from the MODS records, 88,691 volumes and issues, 846,499 pages with their images. Compared with 2021-01-18, 4,710 triples are no longer stated (second IRIs of 2,060 pages, 3 pages not in the index, journal titles as jl:title and journal-level images, 16 nodes assigned to a second record of their journal; see the generator README)."
-
-  [[versions.files]]
-  path = "compact-memory-journals.ttl.gz"
-  bytes = 29084
-  sha256 = "daf0e11224f463a0fe7b304a188261cb78145d439c584d3aedfa1de2475a102b"
-  triples = 3707
-
-  [[versions.files]]
-  path = "compact-memory-pages.ttl.gz"
-  bytes = 11919853
-  sha256 = "5a5a4375c7aad9d02f7166efd2ee09b418ac74476c1b78b87cac64b49c0804c2"
-  triples = 3629104
-
-  [[versions.files]]
-  path = "compact-memory-meta.ttl.gz"
-  bytes = 3109
-  sha256 = "d8782de150a7dce68326a9e92be3206f2f7530d61336dd2cf3683c6aa7598718"
-  triples = 76
-
-[[versions]]
 version = "2021-01-18"
 issued = "2021-01-18"
 author = "Marco Rovera"
@@ -64,12 +39,6 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 1719
   sha256 = "e7fa6e8d66f2ff6f263035dc5c4123f7f96b073c7f967aef47e63369d7945dec"
   triples = 58
-
-[[changelog]]
-date = "2026-10-12"
-version = "2026-10-12"
-author = "Kai Eckert"
-text = "New version from the framework generator: the whole Compact Memory corpus (journals, volumes, issues, all pages of the full-text index); the version 2021-01-18 covered only pages with entity mentions."
 
 [[changelog]]
 date = "2025-06-05"
