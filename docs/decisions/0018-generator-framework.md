@@ -149,6 +149,12 @@ All `http://data.judaicalink.org/…` (the form used throughout the data, checke
   version keeps its directory with record and log, and its record is in the repository. A version made too early
   and never published is removed again (catalogue, store, run record) rather than followed by more versions; this
   was done for the two working versions of `judaicalink-vocabulary` of 2026-10-11.
+- **What is never removed** (decided 2026-10-12, enforced by `jl remove-version`): a published version (every
+  imported version comes from the published dumps), the stable version (to replace an unpublished stable version,
+  `stable` is first changed in the catalogue, deliberately), and a version that a later version was made from (an
+  input or an applied correction, as named in the run records; `check-catalog` reports run records whose inputs are
+  gone). The latest version is removed only with `--latest` and a warning (a development version that was never
+  used). For `ep` this means: a new set needs only the previous version, so earlier ones may later be pruned.
 - The triples of a data file contain no version id and no file URIs; only the `-meta` does. So any run can become
   any version, and experimental runs use up no version ids. (Dates such as the run date in entity-page events are
   data, not version ids.)

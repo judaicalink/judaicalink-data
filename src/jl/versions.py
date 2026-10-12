@@ -532,12 +532,27 @@ def dependents(slug, vid, cat=None):
                   and (other.name, v.get("version")) != (slug, vid))
 
 
-def remove_version(cfg, slug, vid):
+def latest_version(e):
+    """The newest version of an entry: the latest issued date, then the highest version id."""
+    vs = [v for v in e.versions() if isinstance(v.get("version"), str)]
+    return max(vs, key=lambda v: (str(v.get("issued", "")), v["version"]))["version"] if vs else None
+
+
+def remove_version(cfg, slug, vid, latest_ok=False, warn=print):
     """Remove a version that was never published: from the catalogue (version, its changelog entries, stable),
     the store, its run record and its run directory (decision 0018: one version per piece of work)."""
     e = catalog.Catalog().get(slug)
     if e is None or e.version(vid) is None:
         raise VersionError(f"no version {slug}/{vid} in the catalogue")
+    if e.stable == vid:
+        raise VersionError(f"{slug}/{vid} is the stable version, which is never removed (to replace an unpublished "
+                           "stable version, set stable to another version or remove the stable line in the catalogue "
+                           "first, deliberately)")
+    if latest_version(e) == vid:
+        warn(f"warning: {slug}/{vid} is the latest version of {slug}")
+        if not latest_ok:
+            raise VersionError(f"{slug}/{vid} is the latest version; remove it only if it is a development version "
+                               "that was never used, and confirm with --latest")
     if (runs.version_record(slug, vid) or {}).get("mode") == "import":
         raise VersionError(f"{slug}/{vid} was imported from the published dumps (its run record has mode 'import'); "
                            "published versions are never removed")
@@ -557,4 +572,3 @@ def remove_version(cfg, slug, vid):
     run_dir = cfg.require("build") / slug / rec["run"] if rec.get("run") else None
     if run_dir and run_dir.exists():
         shutil.rmtree(run_dir)
-    return e.stable == vid

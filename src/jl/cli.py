@@ -547,8 +547,8 @@ def cmd_remove_version(args, cfg):
         return fail("give <slug>/<version>")
     if not args.unpublished:
         return fail("only a version that was never published can be removed; confirm with --unpublished")
-    was_stable = versions.remove_version(cfg, slug, vid)
-    print(f"{slug}/{vid} removed (catalogue, store, run record, run)" + ("; it was stable, stable is unset" if was_stable else ""))
+    versions.remove_version(cfg, slug, vid, latest_ok=args.latest, warn=lambda m: print(m, file=sys.stderr))
+    print(f"{slug}/{vid} removed (catalogue, store, run record, run)")
     return 0
 
 
@@ -695,6 +695,8 @@ def parser():
     add("remove-version", cmd_remove_version, "remove a version that was never published (catalogue, store, run record)",
         (("id",), {"metavar": "<slug>/<version>"}),
         (("--unpublished",), {"action": "store_true", "help": "confirm that no copy of it was ever published"}),
+        (("--latest",), {"action": "store_true", "help": "confirm removing the latest version (a development version "
+                                                         "that was never used)"}),
         json_out=False)
     add("render-meta", cmd_render_meta, "render the -meta of a version again (replaced only if its content changed)",
         (("id",), {"metavar": "<slug>/<version>", "nargs": "?"}),

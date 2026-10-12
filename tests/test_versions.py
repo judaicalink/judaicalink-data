@@ -177,9 +177,10 @@ class Versions(unittest.TestCase):
         meta_file = next(f for f in e.version(vid)["files"] if f["path"] == "test-meta.ttl.gz")
         self.assertEqual(meta_file["sha256"], catalog.sha256(target / "test-meta.ttl.gz"))
         self.assertEqual(versions.render_meta(self.cfg, "test", vid)[0], "unchanged")
-        # an unpublished version can be removed again
-        e = catalog.read_entry(self.t / "catalog" / "test.md")
-        self.assertTrue(versions.remove_version(self.cfg, "test", vid) is False)
+        # an unpublished development version (latest, not stable) can be removed again, confirmed
+        with self.assertRaises(versions.VersionError):
+            versions.remove_version(self.cfg, "test", vid, warn=lambda m: None)
+        versions.remove_version(self.cfg, "test", vid, latest_ok=True, warn=lambda m: None)
         e = catalog.read_entry(self.t / "catalog" / "test.md")
         self.assertEqual(e.versions(), [])
         self.assertIn("# a comment that must stay", (self.t / "catalog" / "test.md").read_text())
@@ -270,3 +271,34 @@ class Versions(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RemoveGuards(unittest.TestCase):
+    """remove-version refuses stable versions, asks for --latest on the latest one, and never touches anything
+    when it refuses (decision 0018)."""
+
+    def entry(self, stable):
+        from jl import catalog
+        data = {"slug": "x", "stable": stable, "versions": [{"version": "2020-01-01", "issued": "2020-01-01"},
+                                                            {"version": "2026-01-01", "issued": "2026-01-01"}]}
+        return catalog.Entry(Path("x.md"), data, "")
+
+    def run_remove(self, stable, vid, latest_ok=False):
+        from unittest import mock
+        from jl import versions
+        fake = mock.Mock()
+        fake.get.return_value = self.entry(stable)
+        fake.entries = {}
+        with mock.patch.object(versions.catalog, "Catalog", return_value=fake), \
+                mock.patch.object(versions.runs, "version_record", return_value={}):
+            return versions.remove_version(None, "x", vid, latest_ok=latest_ok, warn=lambda m: None)
+
+    def test_stable_refused(self):
+        from jl.versions import VersionError
+        with self.assertRaisesRegex(VersionError, "stable version"):
+            self.run_remove("2020-01-01", "2020-01-01")
+
+    def test_latest_needs_confirmation(self):
+        from jl.versions import VersionError
+        with self.assertRaisesRegex(VersionError, "latest version"):
+            self.run_remove("2020-01-01", "2026-01-01")
