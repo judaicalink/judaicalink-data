@@ -37,6 +37,11 @@ def same(subject, *objects):
     return [(J + subject, SAME, o) for o in objects]
 
 
+def gnd_numbers(subject, number):
+    """gndo:gndIdentifier as a literal and as an IRI (dbpedia-persons states both)."""
+    return [(J + subject, GNDID, Literal(number)), (J + subject, GNDID, "http://d-nb.info/gnd/" + number)]
+
+
 # (input, comment lines, deleted triples, added triples)
 CORRECTIONS = [
     ("interlinks", [
@@ -48,7 +53,9 @@ CORRECTIONS = [
         "http://wikidata.dbpedia.org/resource/Q7411927", "http://www.wikidata.org/entity/Q7411927",
         "http://yago-knowledge.org/resource/Samuel_Kohn")]
         + same("bhr/Kohn_Samuel", J + "bhr/Kohn_Samuel-1") + same("bhr/Kohn_Samuel-1", J + "bhr/Kohn_Samuel")
-        + same("dbpedia/Samuel_Kohn", J + "bhr/Kohn_Samuel", J + "bhr/Kohn_Samuel-1"), []),
+        + same("dbpedia/Samuel_Kohn", J + "bhr/Kohn_Samuel", J + "bhr/Kohn_Samuel-1",
+               "http://steinheim-institut.de:50580/cgi-bin/bhr?id=957",
+               "http://steinheim-institut.de:50580/cgi-bin/bhr?id=958"), []),
     ("dbpedia_persons", [
         "dbpedia-persons: Menahem ben Moshe Bavli (Q6816418) carries the identifiers of Menahem Recanati (GND 122534107,",
         "of which 119759152 is a former number; VIAF 101087390, LC nr93011812, Q186452).",
@@ -58,7 +65,8 @@ CORRECTIONS = [
             "http://viaf.org/viaf/101087390", "http://www.isni.org/000000009418973X",
             "http://www.wikidata.org/entity/Q186452", "https://de.wikipedia.org/wiki/Menachem_ben_Benjamin_Recanati",
             "https://en.wikipedia.org/wiki/Menahem_Recanati",
-            "https://www.deutsche-digitale-bibliothek.de/entity/122534107"), []),
+            "https://www.deutsche-digitale-bibliothek.de/entity/122534107")
+        + gnd_numbers("dbpedia/Menahem_ben_Moshe_Bavli", "119759152"), []),
     ("dbpedia_persons", [
         "dbpedia-persons: Simeon ben Gamliel II (Q1400135) carries the identifiers of Simeon bar Yochai (GND 124813631,",
         "VIAF 10789306, LC n85120027: the NLI record of Simeon bar Yochai has both).",
@@ -66,7 +74,8 @@ CORRECTIONS = [
             "http://catalogue.bnf.fr/ark:/12148/cb12067142k", "http://d-nb.info/gnd/124813631/about",
             "http://hub.culturegraph.org/entityfacts/124813631", "http://id.loc.gov/authorities/n85120027",
             "http://viaf.org/viaf/10789306", "http://www.isni.org/0000000458756601",
-            "https://www.deutsche-digitale-bibliothek.de/entity/124813631"), []),
+            "https://www.deutsche-digitale-bibliothek.de/entity/124813631")
+        + gnd_numbers("dbpedia/Simeon_ben_Gamliel_II", "124813631"), []),
     ("gnd_persons", [
         "gnd-persons (EntityFacts): GND 124813631 is Simeon bar Yochai; the links to Simeon ben Gamliel II are wrong.",
     ], same("gnd/124813631", "http://www.wikidata.org/entity/Q1400135",
