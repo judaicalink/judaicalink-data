@@ -21,7 +21,7 @@ path = "generators/records-normalized"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "31d1970e78896363a98c25161305a67d0d8a8fd2"
+commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
 
   [[versions.files]]
   path = "records-normalized-dates.ttl.gz"
@@ -43,8 +43,8 @@ commit = "31d1970e78896363a98c25161305a67d0d8a8fd2"
 
   [[versions.files]]
   path = "records-normalized-meta.ttl.gz"
-  bytes = 3400
-  sha256 = "80b9321fa44187b6105b60f2abf7db5e6da820977bfd78fef4faaa5ddf70ede0"
+  bytes = 3399
+  sha256 = "6367f83456e61521ebe0cf09010442593e2647c83416ae30d0ace513373df67e"
   triples = 135
 
 [[changelog]]

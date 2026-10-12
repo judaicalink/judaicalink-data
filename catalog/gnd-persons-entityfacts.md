@@ -24,7 +24,7 @@ path = "generators/gnd-persons-entityfacts"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "31d1970e78896363a98c25161305a67d0d8a8fd2"
+commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
 
   [[versions.files]]
   path = "gnd-persons-entityfacts.ttl.gz"
@@ -34,8 +34,8 @@ commit = "31d1970e78896363a98c25161305a67d0d8a8fd2"
 
   [[versions.files]]
   path = "gnd-persons-entityfacts-meta.ttl.gz"
-  bytes = 2247
-  sha256 = "be85dea9ec6a34f227f32889ed8c525f73d2eb48be397f04cac8547e61d04105"
+  bytes = 2244
+  sha256 = "1c7abb54ab26c1717824c7b159777e3ebf36845fdf803e7a62a917e1b6bf2257"
   triples = 74
 
 [[changelog]]

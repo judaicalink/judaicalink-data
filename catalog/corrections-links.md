@@ -5,8 +5,8 @@ author = "Kai Eckert"
 date = "2026-10-12"
 kind = "correction"
 method = ["curated"]
-inputs = ["interlinks", "dbpedia-persons", "gnd-persons", "ubffm-persons", "hhkeydocs", "nli-records", "ls-nli-legacy", "dbp-wiki-geo-linking", "rujen", "cm-entities"]
 stable = "2026-10-12"
+inputs = ["interlinks", "dbpedia-persons", "gnd-persons", "ubffm-persons", "hhkeydocs", "nli-records", "ls-nli-legacy", "dbp-wiki-geo-linking", "rujen", "cm-entities"]
 
 [license]
 name = "CC0"
@@ -21,12 +21,12 @@ path = "generators/corrections-links"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "31d1970e78896363a98c25161305a67d0d8a8fd2"
+commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
 
   [[versions.files]]
   path = "corrections-links-deletions.ru.gz"
-  bytes = 2543
-  sha256 = "57684d0b89194cc295a00eaafc789b4b2c9427657975c31b1758c01508e2c703"
+  bytes = 2618
+  sha256 = "c9b40a32d876093c87af3a272c0a1eda2bb1e9de76a7544d2b699d6deff85b48"
 
   [[versions.files]]
   path = "corrections-links.ttl.gz"
@@ -36,15 +36,15 @@ commit = "31d1970e78896363a98c25161305a67d0d8a8fd2"
 
   [[versions.files]]
   path = "corrections-links-meta.ttl.gz"
-  bytes = 2195
-  sha256 = "af4a2c4a150df3c86408a939a41fac04bab131f86e13d7b5da0fa43716b5c310"
+  bytes = 2193
+  sha256 = "f5c5c76579c0efba3dfec7ef5033e7b806b13be78d94dac49b1a2f971cc7c520"
   triples = 95
 
 [[changelog]]
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "First version: 72 wrong identity links deleted in 10 datasets (persons and places joined with others), 3 places of rujen typed as places; found with the entity-page closure (decisions 0022, 0023)."
+text = "First version: 78 wrong identity links deleted in 10 datasets (persons and places joined with others), 3 places of rujen typed as places; found with the entity-page closure (decisions 0022, 0023)."
 +++
 
 Corrections of identity links (`owl:sameAs`, GND numbers, types) that join different persons or places: Sherira Gaon

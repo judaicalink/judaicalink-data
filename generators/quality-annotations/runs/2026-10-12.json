@@ -1,13 +1,13 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T151008Z",
+ "run": "run-20261012T153118Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "31d1970e78896363a98c25161305a67d0d8a8fd2",
+ "commit": "0413afaf730617f597a8de2c92865fed1e6e736d",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T15:10:08Z",
+ "started": "2026-10-12T15:31:18Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
@@ -268,20 +268,20 @@
  "corrections": [
   {
    "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
-   "sha256": "57684d0b89194cc295a00eaafc789b4b2c9427657975c31b1758c01508e2c703",
-   "deletions": 72
+   "sha256": "c9b40a32d876093c87af3a272c0a1eda2bb1e9de76a7544d2b699d6deff85b48",
+   "deletions": 78
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:10:50Z",
- "seconds": 41.8,
+ "finished": "2026-10-12T15:32:01Z",
+ "seconds": 42.6,
  "notes": [
   "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 302, 'death before birth': 51, 'no recognised form': 112, 'the year is outside 1–2030': 8}.",
   "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
   "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 652, 'syntax': 1, 'vocabulary': 3}."
  ],
  "deleted_by_corrections": {
-  "dbpedia_persons": 20,
+  "dbpedia_persons": 24,
   "gnd_persons": 7,
   "hhkeydocs": 4,
   "nli_records": 10,

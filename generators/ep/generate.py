@@ -1,0 +1,512 @@
+"""ep: the entity pages, made from the previous version of ep and the records of all datasets (decision 0022).
+
+1. Groups: the transitive closure of the identity links over the records (JudaicaLink resources of the core classes:
+   persons, places, organisations, works, subjects, and the entities linked in Compact Memory), computed fresh in
+   every run. Identity links: owl:sameAs, gndo:gndIdentifier (IRI or literal) and replacements by exactly one IRI
+   (dcterms:isReplacedBy); every target is a key after normalisation (key()); the same key joins, different keys
+   never prevent a join. Entity pages are never part of the closure. A JudaicaLink IRI that is no record (e.g. a legacy
+   NLI URI, linked to its record by ls-nli-legacy) is a node of the closure, never a member of a page.
+2. Comparison with the previous version (its pages and their records): a group that contains the records of exactly
+   one old page keeps its IRI; of several old pages the oldest IRI (lowest number) is kept, the others get
+   jl:mergedInto + jl:mergeDate; an old page whose records are now in several groups gets jl:splitInto (all parts) +
+   jl:splitDate; an old page with no record left gets jl:retiredDate; a group without an old page gets a new number
+   above the highest number of the previous version. An old member that is not in the closure stands for what it
+   was replaced by or derived from (dcterms:isReplacedBy, prov:wasDerivedFrom: the conflated legacy NLI URIs).
+3. Facts of a page: chosen from its records by the precedence of the datasets (PRECEDENCE) and languages (as in
+   ep-2026-10-06, kg-complements/ep_generator.py).
+
+Files: ep.ttl.gz (the pages), ep-history.ttl.gz (one statement per event for IRIs that are no longer pages; the
+history of the previous version is copied unchanged). Checks: every IRI of the previous version is a page or in the
+history; the previous history is contained in the new one; every dataset that contributes a record is in PRECEDENCE.
+The date of the events is the date of the run (data, not a version id; 0018).
+"""
+
+import re
+import unicodedata
+from collections import Counter, defaultdict
+from urllib.parse import unquote
+
+from jl.generator import GeneratorError
+from jl.rdf import IRI, RDF_TYPE, XSD, Literal
+from jl.turtle import PREFIXES
+
+# Datasets in order of precedence for choosing facts (decision 0009, 0022): 1 GND; 2 libraries and bibliographies;
+# 3 curated reference works and research databases; 4 general knowledge bases; 5 automatically derived or linked.
+PRECEDENCE = [
+    "gnd-persons", "gnd-persons-entityfacts",
+    "nli-records", "ubffm-persons", "nrwbibdjg", "haskala",
+    "yivo", "rujen", "rujen-translation", "bhr", "djh", "hhkeydocs", "jre", "epidat", "stolpersteine", "hirsch-family",
+    "sosy", "gba", "footprints",
+    "dbpedia-persons", "cm-entities", "geo-coordinates",
+    "interlinks", "2014links", "date-enriched", "geo-enriched", "dbp-wiki-geo-linking", "records-normalized",
+    "ls-nli-legacy", "corrections-links",
+]
+STABLE = {
+    "gnd-persons": "2018-11-29", "gnd-persons-entityfacts": "2026-10-12", "nli-records": "2026-10-12",
+    "ubffm-persons": "2019-01-24", "nrwbibdjg": "2024-05-24", "haskala": "2019-07-01", "yivo": "2020-09-30",
+    "rujen": "2020-09-28", "rujen-translation": "2020-09-28", "bhr": "2026-10-12", "djh": "2018-10-22",
+    "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2023-07-14", "stolpersteine": "2020-10-06",
+    "hirsch-family": "2018-10-30", "sosy": "2022-07-07", "gba": "2025-03-21", "footprints": "2024-03-18",
+    "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2018-08-08",
+    "interlinks": "2018-07-18", "2014links": "2017-02-15", "date-enriched": "2020-07-31", "geo-enriched": "2019-12-18",
+    "dbp-wiki-geo-linking": "2021-01-13", "records-normalized": "2026-10-12", "ls-nli-legacy": "2026-10-12",
+    "corrections-links": "2026-10-12",
+}
+INPUTS = {"previous": "ep/2021-05-28", **{s.replace("-", "_"): f"{s}/{v}" for s, v in STABLE.items()}}
+PARAMS = {}
+DATASET_OF = {s.replace("-", "_"): s for s in STABLE}
+RANK = {s: i for i, s in enumerate(PRECEDENCE)}
+# datasets whose typed resources are records (the others only add facts or links to records)
+NOT_SOURCES = {"records-normalized", "ls-nli-legacy", "rujen-translation"}
+LANGUAGES = ["en", "de", "he"]
+
+JL = "http://data.judaicalink.org/data/"
+EPNS = JL + "ep/"
+JLO, FOAF, SKOS, RDFS, OWL, DCT, GEO = (PREFIXES[p] for p in ("jl", "foaf", "skos", "rdfs", "owl", "dcterms", "geo"))
+PROV = "http://www.w3.org/ns/prov#"
+GNDO = "http://d-nb.info/standards/elementset/gnd#"
+DBO = "http://dbpedia.org/ontology/"
+SAME, GNDID, REPLACED, DERIVED = OWL + "sameAs", GNDO + "gndIdentifier", DCT + "isReplacedBy", PROV + "wasDerivedFrom"
+HISTORY = {JLO + "mergedInto", JLO + "mergeDate", JLO + "splitInto", JLO + "splitDate", JLO + "retiredDate",
+           DCT + "isReplacedBy"}   # dcterms:isReplacedBy: the merges of sets before 2026-10 (none in the legacy set)
+
+CLASS_OF_TYPE = {FOAF + "Person": "Person", JLO + "Person": "Person", JLO + "Place": "Place", DBO + "Place": "Place",
+                 GNDO + "PlaceOrGeographicName": "Place", FOAF + "Organization": "Organization",
+                 GNDO + "Work": "Work", JLO + "Work": "Work", SKOS + "Concept": "Subject"}
+SUBJECT_DATASETS = {"yivo", "djh", "rujen"}   # their other skos:Concepts are subjects (0022)
+CLASS_ORDER = ["Person", "Place", "Organization", "Work", "Subject"]
+CLASS_IRI = {"Person": FOAF + "Person", "Place": JLO + "Place", "Organization": FOAF + "Organization",
+             "Work": JLO + "Work", "Subject": JLO + "Subject"}
+
+FACT_PROPS = {
+    SKOS + "prefLabel": "label", FOAF + "name": "label", RDFS + "label": "label",
+    "http://purl.org/dc/elements/1.1/title": "label", DCT + "title": "label", SKOS + "altLabel": "alt",
+    JLO + "birthDate": "birth", JLO + "deathDate": "death",
+    JLO + "birthDateNormalized": "birthN", JLO + "deathDateNormalized": "deathN",
+    JLO + "birthLocation": "birthPlace", JLO + "deathLocation": "deathPlace",
+    JLO + "birthLocationURI": "birthPlaceURI", JLO + "deathLocationURI": "deathPlaceURI",
+    JLO + "occupation": "occupation", JLO + "occpation": "occupation", JLO + "occupationURI": "occupationURI",
+    JLO + "hasAbstract": "abstract", JLO + "describedAt": "describedAt", GEO + "asWKT": "wkt",
+    JLO + "lat": "lat", "http://www.w3.org/2003/01/geo/wgs84_pos#lat": "lat",
+    JLO + "lon": "lon", "http://www.w3.org/2003/01/geo/wgs84_pos#long": "lon",
+    SAME: "sameAs", GNDID: "gndId",
+}
+_IRI_BAD = re.compile(r'[<>"{}|^`\\\s]')
+
+
+def iri(value):
+    return IRI(_IRI_BAD.sub(lambda m: "%{:02X}".format(ord(m.group(0))), value))
+
+
+def lit(value, dt=None, lang=None):
+    return Literal(str(value), dt, lang)
+
+
+# --- keys (0022) ---------------------------------------------------------------------------------------
+
+def key(o):
+    """The key of an identity target; None if it is not one (an entity page, an identifier without its syntax)."""
+    o = o.strip()
+    if o.startswith(EPNS) or o.startswith("https://data.judaicalink.org/data/ep/"):
+        return None
+    if o.startswith("https://data.judaicalink.org/"):
+        o = "http://" + o[len("https://"):]
+    m = re.match(r"^https?://d-nb\.info/gnd/([0-9]+[0-9X-]*)(/about)?/?$", o, re.I) or re.match(re.escape(JL) + r"gnd/([0-9]+[0-9X-]*)$", o)
+    if m:
+        return "gnd:" + m.group(1).upper()
+    if re.match(r"^https?://d-nb\.info/gnd/", o):
+        return None   # an empty or malformed GND number
+    m = re.match(r"^https?://(?:www\.)?viaf\.org/viaf/(?:https?://viaf\.org/viaf/)?([0-9]+)/?$", o)
+    if m:
+        return "viaf:" + m.group(1)
+    m = re.match(r"^https?://(?:www\.)?isni\.org/(?:isni/)?([0-9X \-]+)/?$", o)
+    if m:
+        n = re.sub(r"[ \-]", "", m.group(1))
+        return "isni:" + n if len(n) == 16 else None
+    m = re.match(r"^https?://id\.loc\.gov/(?:authorities/(?:names/)?|rwo/agents/)(n[a-z]?[0-9]+)\W*$", o)
+    if m:
+        return "lc:" + m.group(1)
+    m = re.match(r"^https?://(?:www\.)?wikidata\.org/entity/(Q[0-9]+)$", o)
+    if m:
+        return "wd:" + m.group(1)
+    m = re.match(r"^https?://(?:sws\.|www\.)?geonames\.org/([0-9]+)/?$", o) or re.match(re.escape(JL) + r"geonames/([0-9]+)$", o)
+    if m:
+        return "geonames:" + m.group(1)
+    m = re.match(r"^https?://dbpedia\.org/resource/(.+)$", o)
+    if m:
+        return "dbpedia:" + m.group(1)   # English DBpedia; data/dbpedia/<title> is not the same key (0022)
+    m = re.match(r"^https?://([a-z]+)\.dbpedia\.org/resource/(.+)$", o)
+    if m:
+        return f"dbpedia-{m.group(1)}:" + m.group(2)
+    m = re.match(r"^https?://([a-z]+)\.wikipedia\.org/wiki/(.+)$", o)
+    if m:
+        return f"wp-{m.group(1)}:" + m.group(2)
+    if o.startswith(JL):
+        return o   # another JudaicaLink resource: the node itself
+    if re.match(r"^https?://[^/]+/.+", o):
+        return "iri:" + re.sub(r"^https://", "http://", o.rstrip("/"))
+    return None
+
+
+class Closure:
+    def __init__(self):
+        self.parent = {}
+
+    def find(self, x):
+        p = self.parent
+        p.setdefault(x, x)
+        r = x
+        while p[r] != r:
+            r = p[r]
+        while p[x] != r:
+            p[x], x = r, p[x]
+        return r
+
+    def union(self, a, b):
+        ra, rb = self.find(a), self.find(b)
+        if ra != rb:
+            if rb < ra:
+                ra, rb = rb, ra
+            self.parent[rb] = ra
+
+
+# --- choosing facts (from kg-complements/ep_generator.py) ------------------------------------------------
+
+def lang_rank(lang):
+    return LANGUAGES.index(lang) if lang in LANGUAGES else (len(LANGUAGES) if not lang else len(LANGUAGES) + 1)
+
+
+def src_rank(slug):
+    return RANK.get(slug, len(RANK))
+
+
+def norm_label(s):
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s).strip())
+
+
+def label_key(s):
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower().replace(",", " ").strip() or s.lower()
+
+
+def best(values):
+    """values: [(value, lang, dataset, type, subject)] -> the one with the best dataset precedence, then language."""
+    return sorted(values, key=lambda v: (src_rank(v[2]), lang_rank(v[1]), v[0]))[0] if values else None
+
+
+def choose_label(labels, gnd_labels):
+    """The GND form if there is one; otherwise the most common form across the records (each record counts once per
+    form), ties by language, then dataset precedence."""
+    if gnd_labels:
+        return sorted(gnd_labels, key=lambda v: (src_rank(v[2]), v[0]))[0][0]
+    if not labels:
+        return None
+    count = set()
+    spellings = defaultdict(Counter)
+    best_of = {}
+    for value, lang, ds, _t, rec in labels:
+        k = label_key(value)
+        if (k, value, rec) not in count:
+            count.add((k, value, rec))
+            spellings[k][value] += 1
+        r = (lang_rank(lang), src_rank(ds))
+        best_of[(k, value)] = min(best_of.get((k, value), r), r)
+    votes = {k: len({rec for (kk, _v, rec) in count if kk == k}) for k in spellings}
+
+    def spelling(k):
+        return sorted(spellings[k], key=lambda v: (-spellings[k][v], v.isupper(), best_of[(k, v)], v))[0]
+
+    def order(k):
+        v = spelling(k)
+        return (-votes[k], best_of[(k, v)], v)
+    return spelling(sorted(votes, key=order)[0])
+
+
+def wkt_of(facts):
+    """geo:asWKT by precedence; else jl:lat/jl:lon as given."""
+    if facts.get("wkt"):
+        return best(facts["wkt"])[0]
+    lats = {ds: v for v, _l, ds, _t, _s in facts.get("lat", [])}
+    lons = {ds: v for v, _l, ds, _t, _s in facts.get("lon", [])}
+    for ds in sorted(set(lats) & set(lons), key=src_rank):
+        try:
+            return f"POINT({float(lons[ds])} {float(lats[ds])})"
+        except ValueError:
+            continue
+    return None
+
+
+def number(e):
+    m = re.match(rf"^{re.escape(EPNS)}(\d+)$", e)
+    return int(m.group(1)) if m else None
+
+
+# --- the run -----------------------------------------------------------------------------------------------
+
+def read_previous(run):
+    """The previous version: its pages with their JudaicaLink members, its history statements, all its IRIs."""
+    members, history, iris = defaultdict(set), set(), set()
+    for s, p, o in run.triples("previous"):
+        s = str(s)
+        if not s.startswith(EPNS):
+            continue
+        iris.add(s)
+        if p in HISTORY:
+            history.add((IRI(s), IRI(p), o))
+        elif p in (SAME, JLO + "represents") and isinstance(o, str) and o.startswith(JL) and not o.startswith(EPNS):
+            members[s].add(str(o))
+    inactive = {str(s) for s, _p, _o in history}
+    pages = {e: members.get(e, set()) for e in iris if e not in inactive}   # pages without JudaicaLink members too
+    return pages, history, iris
+
+
+def generate(run):
+    day = re.match(r"run-(\d{4})(\d{2})(\d{2})", run.id)
+    day = f"{day.group(1)}-{day.group(2)}-{day.group(3)}"
+    stats = Counter()
+    prev_pages, prev_history, prev_iris = read_previous(run)
+    stats["previous IRIs"] = len(prev_iris)
+    stats["previous pages"] = len(prev_pages)
+
+    # 1. read the datasets: types, identity links, replacements, facts
+    classes = defaultdict(dict)        # record -> dataset -> {classes}
+    links = []                         # (subject, key, dataset)
+    replaced = defaultdict(set)        # IRI -> what it was replaced by (identity, if exactly one IRI)
+    derived = defaultdict(set)         # IRI -> what it was derived from (only for the comparison, never identity)
+    facts = defaultdict(lambda: defaultdict(list))
+    entities_cm = set()
+    for name, slug in DATASET_OF.items():
+        for s, p, o in run.triples(name):
+            if not s.startswith(JL) or s.startswith(EPNS):
+                continue
+            s = str(s)
+            if p == RDF_TYPE:
+                c = CLASS_OF_TYPE.get(o)
+                if c == "Subject" and slug not in SUBJECT_DATASETS:
+                    c = "Place" if slug == "geo-coordinates" else None
+                if c and slug not in NOT_SOURCES:
+                    classes[s].setdefault(slug, set()).add(c)
+                continue
+            if p == JLO + "entity" and slug == "cm-entities":
+                entities_cm.add(str(o))
+                continue
+            if p in (SAME, GNDID):
+                if isinstance(o, Literal):
+                    if p == GNDID and re.fullmatch(r"[0-9]+[0-9X-]*", o.value.strip()):
+                        links.append((s, "gnd:" + o.value.strip().upper(), slug))
+                else:
+                    k = key(o)
+                    if k:
+                        links.append((s, k, slug))
+            elif p in (REPLACED, DERIVED) and isinstance(o, str) and o.startswith(JL) and not o.startswith(EPNS):
+                (replaced if p == REPLACED else derived)[s].add(str(o))
+            field = FACT_PROPS.get(p)
+            if field:
+                if isinstance(o, Literal):
+                    facts[s][field].append((o.value, (o.lang or "").lower(), slug, "literal", s))
+                else:
+                    facts[s][field].append((str(o), "", slug, "uri", s))
+    for e in entities_cm:   # the entities linked in Compact Memory are records (of cm-entities)
+        classes[e].setdefault("cm-entities", set())
+    records = set(classes)
+    missing = sorted({d for r in records for d in classes[r]} - set(PRECEDENCE))
+    if missing:
+        raise GeneratorError(f"datasets with records but not in PRECEDENCE: {missing}")
+    stats["records"] = len(records)
+
+    # 2. the closure
+    cl = Closure()
+    for r in sorted(records):
+        cl.find(r)
+    for s, k, _ds in sorted(links):
+        cl.union(s, k)
+    for r in sorted(records):   # a record in an unambiguous authority namespace is that identifier (data/gnd/N)
+        k = key(r)
+        if k and not k.startswith(JL) and re.match(r"(gnd|geonames):", k):
+            cl.union(r, k)
+    for s, ts in sorted(replaced.items()):
+        if len(ts) == 1 and s not in records:
+            cl.union(s, next(iter(ts)))   # replaced by exactly one IRI: the same thing (a node, not a member)
+    groups = defaultdict(set)
+    for r in records:
+        groups[cl.find(r)].add(r)
+    stats["groups"] = len(groups)
+
+    # 3. comparison with the previous pages
+    def resolve(m, depth=0):
+        """The groups an old member stands for."""
+        if m in cl.parent and cl.find(m) in groups:
+            return {cl.find(m)}
+        if depth < 3 and (m in replaced or m in derived):
+            return set().union(*(resolve(x, depth + 1) for x in sorted(replaced.get(m, set()) | derived.get(m, set()))))
+        return set()
+    targets = {e: set().union(*(resolve(m) for m in sorted(ms))) for e, ms in prev_pages.items()}
+    split = {e for e, t in targets.items() if len(t) > 1}
+    retired = {e for e, t in targets.items() if not t}
+    candidates = defaultdict(list)
+    for e, t in targets.items():
+        if len(t) == 1:
+            candidates[next(iter(t))].append(e)
+    highest = max([number(e) or 0 for e in prev_iris])
+    next_id = highest + 1
+    iri_of, merged = {}, {}
+    for root in sorted(groups, key=lambda g: min(groups[g])):
+        olds = sorted(candidates.get(root, []), key=lambda e: (number(e) is None, number(e) or 0, e))
+        if olds:
+            iri_of[root] = olds[0]
+            for e in olds[1:]:
+                merged[e] = olds[0]
+            stats["kept IRI"] += 1
+        else:
+            iri_of[root] = f"{EPNS}{next_id}"
+            next_id += 1
+            stats["new IRI"] += 1
+    stats["merged"], stats["split"], stats["retired"] = len(merged), len(split), len(retired)
+    stats["highest number"] = next_id - 1
+
+    # 4. the history
+    history = set(prev_history)
+    d = lit(day, XSD + "date")
+    for e, target in sorted(merged.items()):
+        history |= {(IRI(e), IRI(JLO + "mergedInto"), IRI(target)), (IRI(e), IRI(JLO + "mergeDate"), d)}
+    split_report = []
+    for e in sorted(split):
+        parts = sorted(iri_of[g] for g in targets[e])
+        history |= {(IRI(e), IRI(JLO + "splitInto"), IRI(p)) for p in parts}
+        history.add((IRI(e), IRI(JLO + "splitDate"), d))
+        split_report.append((e, parts))
+    for e in sorted(retired):
+        history.add((IRI(e), IRI(JLO + "retiredDate"), d))
+    pages = set(iri_of.values())
+    in_history = {str(s) for s, _p, _o in history}
+    unaccounted = sorted(e for e in prev_iris if e not in pages and e not in in_history)
+    if unaccounted:
+        raise GeneratorError(f"{len(unaccounted)} IRIs of the previous version are neither pages nor in the history, "
+                             f"e.g. {unaccounted[:3]}")
+
+    # 5. the pages
+    out = set()
+    by_class = Counter()
+    for root in sorted(groups, key=lambda g: iri_of[g]):
+        page = IRI(iri_of[root])
+        members = sorted(groups[root])
+        merged_facts = defaultdict(list)
+        for m in members:
+            for field, vals in facts[m].items():
+                merged_facts[field].extend(vals)
+        datasets = {ds for m in members for ds in classes[m]}
+        cls = {c for m in members for cs in classes[m].values() for c in cs}
+        if not cls:
+            cls.add("Person" if merged_facts.get("birth") or merged_facts.get("death") else "Subject")
+        c = next(x for x in CLASS_ORDER if x in cls)
+        by_class[c] += 1
+        out |= {(page, IRI(RDF_TYPE), IRI(JLO + "EntityPage")), (page, IRI(RDF_TYPE), IRI(CLASS_IRI[c]))}
+        rank = {m: min(src_rank(ds) for ds in classes[m]) if classes[m] else len(RANK) for m in members}
+
+        # names
+        labels = [(norm_label(v), lang, ds, None, s) for v, lang, ds, t, s in merged_facts.get("label", []) if t == "literal"]
+        gnd = [x for x in labels if x[2] in ("gnd-persons", "gnd-persons-entityfacts")]
+        if not labels:
+            labels = [(unquote(m.rstrip("/").rsplit("/", 1)[-1]).replace("_", " "), "", "cm-entities", None, m)
+                      for m in members]
+        pref = choose_label(labels, gnd)
+        seen = set()
+        if pref:
+            out.add((page, IRI(SKOS + "prefLabel"), lit(pref)))
+            seen.add(label_key(pref))
+        for lang in LANGUAGES:
+            cands = [v for v in labels if v[1] == lang]
+            if cands:
+                v = sorted(cands, key=lambda x: (x[0].isupper(), src_rank(x[2]), x[0]))[0]
+                out.add((page, IRI(SKOS + "prefLabel"), lit(v[0], lang=lang)))
+                seen.add(label_key(v[0]))
+        alts = [(norm_label(v), lang, ds) for v, lang, ds, t, _s in merged_facts.get("alt", []) if t == "literal"]
+        for v, lang, ds in sorted(alts + [x[:3] for x in labels], key=lambda x: (src_rank(x[2]), lang_rank(x[1]), x[0])):
+            k = label_key(v)
+            if k and k not in seen:
+                seen.add(k)
+                out.add((page, IRI(SKOS + "altLabel"), lit(v, lang=lang or None)))
+
+        # life dates and places: of the record with the highest precedence; derived values follow their record
+        order = lambda v: (rank.get(v[4], len(RANK)), lang_rank(v[1]), v[0])
+        for kind in ("birth", "death"):
+            raws = sorted([v for v in merged_facts.get(kind, []) if v[3] == "literal" and v[0].strip()], key=order)
+            norms = sorted([v for v in merged_facts.get(kind + "N", []) if v[3] == "literal"], key=order)
+            if raws:
+                out.add((page, IRI(JLO + f"{kind}Date"), lit(raws[0][0].strip())))
+            norm = next((n for n in norms if raws and n[4] == raws[0][4]), norms[0] if norms else None)
+            if norm:
+                dt = {4: "gYear", 7: "gYearMonth", 10: "date"}.get(len(norm[0]), "gYear")
+                out.add((page, IRI(JLO + f"{kind}DateNormalized"), lit(norm[0], XSD + dt)))
+            places = sorted([v for v in merged_facts.get(kind + "Place", []) if v[3] == "literal" and v[0].strip()], key=order)
+            uris = sorted([v for v in merged_facts.get(kind + "PlaceURI", []) if v[3] == "uri"], key=order)
+            if places:
+                out.add((page, IRI(JLO + f"{kind}Location"), lit(places[0][0].strip())))
+            uri = next((u for u in uris if places and u[4] == places[0][4]), uris[0] if uris else None)
+            if uri:
+                out.add((page, IRI(JLO + f"{kind}LocationURI"), iri(uri[0])))
+
+        # occupations: text, and IRIs as jl:occupationURI
+        occ_seen = set()
+        for v, _l, ds, t, _s in sorted(merged_facts.get("occupation", []), key=lambda x: (src_rank(x[2]), x[0])):
+            if t == "uri":
+                out.add((page, IRI(JLO + "occupationURI"), iri(v)))
+            elif v.strip() and v.strip().lower() not in occ_seen:
+                occ_seen.add(v.strip().lower())
+                out.add((page, IRI(JLO + "occupation"), lit(v.strip())))
+        for v, _l, _ds, t, _s in merged_facts.get("occupationURI", []):
+            if t == "uri":
+                out.add((page, IRI(JLO + "occupationURI"), iri(v)))
+
+        # descriptions: the best per preferred language, and the best in another language (40 characters or more)
+        abstracts = [v for v in merged_facts.get("abstract", []) if v[3] == "literal" and len(v[0].strip()) >= 40]
+        for lang in LANGUAGES:
+            a = best([v for v in abstracts if v[1] == lang])
+            if a:
+                out.add((page, IRI(JLO + "hasAbstract"), lit(a[0].strip(), lang=lang)))
+        other = best([v for v in abstracts if v[1] not in LANGUAGES])
+        if other:
+            out.add((page, IRI(JLO + "hasAbstract"), lit(other[0].strip(), lang=other[1] or None)))
+
+        if c == "Place":
+            w = wkt_of(merged_facts)
+            if w:
+                out.add((page, IRI(GEO + "asWKT"), lit(w, GEO + "wktLiteral")))
+
+        # records, external identifiers, web pages
+        for m in members:
+            out.add((page, IRI(JLO + "represents"), iri(m)))
+        for v, _l, _ds, t, _s in merged_facts.get("sameAs", []):
+            if t == "uri" and not v.startswith(JL) and not v.startswith("https://data.judaicalink.org/"):
+                out.add((page, IRI(SAME), iri(v)))
+        for v, _l, _ds, t, _s in merged_facts.get("gndId", []):
+            if t == "literal" and re.fullmatch(r"[0-9]+[0-9X-]*", v.strip()):
+                out.add((page, IRI(SAME), IRI("http://d-nb.info/gnd/" + v.strip().upper())))
+        for v, _l, _ds, t, _s in merged_facts.get("describedAt", []):
+            if v.startswith("http"):
+                out.add((page, IRI(RDFS + "seeAlso"), iri(v)))
+
+    # 6. report: conflicts that point to mistakes in the data (0022)
+    conflicts = Counter()
+    keys_of = defaultdict(set)
+    for s, k, _ds in links:
+        keys_of[cl.find(s)].add(k)
+    for root, members in sorted(groups.items()):
+        wds = sorted(k for k in keys_of[root] if k.startswith("wd:"))
+        sets = [set().union(*classes[m].values()) & {"Person", "Place", "Organization", "Work"} for m in members]
+        sets = [x for x in sets if x]
+        incompatible = any(not (a & b) for i, a in enumerate(sets) for b in sets[i + 1:])
+        if len(wds) > 1 or incompatible:
+            conflicts["several Wikidata items" if len(wds) > 1 else "incompatible classes"] += 1
+            run.log(f"conflict {iri_of[root]}: {', '.join(wds)} {sorted(members)[:8]}")
+    shared = Counter((k, ds) for s, k, ds in set(links) if not k.startswith(JL))
+    for (k, ds), n in sorted(shared.items()):
+        if n >= 20 and not k.startswith(("gnd:", "viaf:", "wd:")):
+            run.log(f"key shared by {n} records of {ds}: {k}")
+    for e, parts in split_report:
+        run.log(f"split {e}: {parts} (records before: {sorted(prev_pages[e])[:6]})")
+    for e, target in sorted(merged.items()):
+        run.log(f"merged {e} into {target}")
+
+    run.note(f"{dict(stats)}; classes {dict(by_class)}; conflicts {dict(conflicts)}.")
+    run.write_turtle("ep.ttl.gz", out)
+    run.write_turtle("ep-history.ttl.gz", history)
