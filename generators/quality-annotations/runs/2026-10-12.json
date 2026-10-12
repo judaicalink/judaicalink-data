@@ -1,13 +1,13 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T183753Z",
+ "run": "run-20261012T222757Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "db9a7f5eac66dcc91f8728aadfe7a5639dc93996",
+ "commit": "250a2465e64abd0487a1086a7bc3be913b9c3074",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T18:37:53Z",
+ "started": "2026-10-12T22:27:57Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
@@ -63,10 +63,10 @@
   },
   {
    "name": "footprints",
-   "ref": "footprints/2024-03-18/footprints.ttl.gz",
+   "ref": "footprints/2026-10-12/footprints.ttl.gz",
    "file": "footprints.ttl.gz",
-   "sha256": "a5d06cb5f3c5aee2216f7cae92060a194d1598730ecd7f822f50f01ab4781deb",
-   "bytes": 1347325
+   "sha256": "31fc38e2552f719c8cd5bf65d3336bf722deb1311ef505c3ea304b6ba9581df3",
+   "bytes": 1257277
   },
   {
    "name": "geo_enriched",
@@ -182,10 +182,31 @@
   },
   {
    "name": "haskala",
-   "ref": "haskala/2019-07-01/Haskala_enriched.ttl.gz",
-   "file": "Haskala_enriched.ttl.gz",
-   "sha256": "b024ce78236af00ba1480dd63eff33a5f42e0c22c8c0251b0e760fb7e7d7049b",
-   "bytes": 34911
+   "ref": "haskala/2026-10-12/haskala-gnd-2019.ttl.gz",
+   "file": "haskala-gnd-2019.ttl.gz",
+   "sha256": "1d96ec95b4954865b0c2a912e5db1fc9ce352328b6eb4b07a9ef7c6afcd7f0f7",
+   "bytes": 1257
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-net.ttl.gz",
+   "file": "haskala-net.ttl.gz",
+   "sha256": "d2b6283f9ea5e15d426aeaa2ecbb983d4afd3389ca9d43762c471457e92c7cbc",
+   "bytes": 5941
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
+   "file": "haskala-vocabulary.ttl.gz",
+   "sha256": "93db5319dfaac0467134197a7b29c2c06ddcdf0c4a5e7d0df63bd043392e8430",
+   "bytes": 11694
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala.ttl.gz",
+   "file": "haskala.ttl.gz",
+   "sha256": "03c3c988a5abf8cd72c3fa9f963345cfa3798f77f8c5ce3482e900a874d26b2a",
+   "bytes": 871677
   },
   {
    "name": "hhkeydocs",
@@ -273,12 +294,12 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T18:38:37Z",
- "seconds": 43.2,
+ "finished": "2026-10-12T22:28:40Z",
+ "seconds": 43.5,
  "notes": [
-  "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 336, 'death before birth': 29, 'no recognised form': 118, 'the year is outside 1–2030': 8}.",
+  "Dates left out by records-normalized: {'a bound': 4, 'a negative year': 139, 'a range': 336, 'death before birth': 29, 'no recognised form': 123, 'the year is outside 1–2030': 8}.",
   "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
-  "Annotations by kind: {'data error': 1, 'datatype': 1, 'date': 670, 'vocabulary': 2}."
+  "Annotations by kind: {'data error': 1, 'datatype': 1, 'date': 655, 'vocabulary': 2}."
  ],
  "deleted_by_corrections": {
   "dbpedia_persons": 24,
@@ -290,9 +311,9 @@
  "files": [
   {
    "path": "quality-annotations.ttl.gz",
-   "bytes": 20956,
-   "sha256": "050c0b4eb92f64d0b14c22524558b5bd6232c3b2a9a26979ff4765d4c29d7a41",
-   "triples": 4044
+   "bytes": 19695,
+   "sha256": "9892e67e77e923f1ecf9a1bb6ebbe4057828d3f4e414df28b36c4228a3ce0747",
+   "triples": 3954
   }
  ],
  "version": "2026-10-12"

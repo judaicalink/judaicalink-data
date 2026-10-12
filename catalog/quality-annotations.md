@@ -22,22 +22,22 @@ path = "generators/quality-annotations"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "db9a7f5eac66dcc91f8728aadfe7a5639dc93996"
+commit = "250a2465e64abd0487a1086a7bc3be913b9c3074"
 
   [[versions.files]]
   path = "quality-annotations.ttl.gz"
-  bytes = 20956
-  sha256 = "050c0b4eb92f64d0b14c22524558b5bd6232c3b2a9a26979ff4765d4c29d7a41"
-  triples = 4044
+  bytes = 19695
+  sha256 = "9892e67e77e923f1ecf9a1bb6ebbe4057828d3f4e414df28b36c4228a3ce0747"
+  triples = 3954
 
   [[versions.files]]
   path = "quality-annotations-meta.ttl.gz"
-  bytes = 2631
-  sha256 = "203e10407fda1d08fdd541642861868197c7db88318268f27e2d57326258752b"
-  triples = 113
+  bytes = 2621
+  sha256 = "0026725dd8d50d3801ce2803a2ec94cb444e2f05751bed185b843580a5450cf7"
+  triples = 116
 
 [[changelog]]
-date = "2026-10-12"
+date = "2026-10-13"
 version = "2026-10-12"
 author = "Kai Eckert"
 text = "First version: quality annotations about the data (dates left out by records-normalized, with the reason; issues of Compact Memory in isolated years; problems of single versions), from quality-annotations of kg-complements (decision 0020)."

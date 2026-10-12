@@ -1,15 +1,15 @@
 {
  "slug": "records-normalized",
- "run": "run-20261012T183731Z",
+ "run": "run-20261012T222734Z",
  "generator": "generators/records-normalized/generate.py",
- "commit": "db9a7f5eac66dcc91f8728aadfe7a5639dc93996",
+ "commit": "250a2465e64abd0487a1086a7bc3be913b9c3074",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
   "legacy_terms": false
  },
  "input_overrides": [],
- "started": "2026-10-12T18:37:31Z",
+ "started": "2026-10-12T22:27:34Z",
  "inputs": [
   {
    "name": "bhr",
@@ -62,10 +62,10 @@
   },
   {
    "name": "footprints",
-   "ref": "footprints/2024-03-18/footprints.ttl.gz",
+   "ref": "footprints/2026-10-12/footprints.ttl.gz",
    "file": "footprints.ttl.gz",
-   "sha256": "a5d06cb5f3c5aee2216f7cae92060a194d1598730ecd7f822f50f01ab4781deb",
-   "bytes": 1347325
+   "sha256": "31fc38e2552f719c8cd5bf65d3336bf722deb1311ef505c3ea304b6ba9581df3",
+   "bytes": 1257277
   },
   {
    "name": "geo_enriched",
@@ -181,10 +181,31 @@
   },
   {
    "name": "haskala",
-   "ref": "haskala/2019-07-01/Haskala_enriched.ttl.gz",
-   "file": "Haskala_enriched.ttl.gz",
-   "sha256": "b024ce78236af00ba1480dd63eff33a5f42e0c22c8c0251b0e760fb7e7d7049b",
-   "bytes": 34911
+   "ref": "haskala/2026-10-12/haskala-gnd-2019.ttl.gz",
+   "file": "haskala-gnd-2019.ttl.gz",
+   "sha256": "1d96ec95b4954865b0c2a912e5db1fc9ce352328b6eb4b07a9ef7c6afcd7f0f7",
+   "bytes": 1257
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-net.ttl.gz",
+   "file": "haskala-net.ttl.gz",
+   "sha256": "d2b6283f9ea5e15d426aeaa2ecbb983d4afd3389ca9d43762c471457e92c7cbc",
+   "bytes": 5941
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
+   "file": "haskala-vocabulary.ttl.gz",
+   "sha256": "93db5319dfaac0467134197a7b29c2c06ddcdf0c4a5e7d0df63bd043392e8430",
+   "bytes": 11694
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala.ttl.gz",
+   "file": "haskala.ttl.gz",
+   "sha256": "03c3c988a5abf8cd72c3fa9f963345cfa3798f77f8c5ce3482e900a874d26b2a",
+   "bytes": 871677
   },
   {
    "name": "hhkeydocs",
@@ -265,12 +286,12 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T18:37:50Z",
- "seconds": 18.9,
+ "finished": "2026-10-12T22:27:53Z",
+ "seconds": 19.3,
  "notes": [
-  "Dates: {'death before birth': 58, 'empty': 28, 'normalised': 189410, 'not parsed': 625, 'uncertain': 190}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
-  "Places: {'already linked': 43403, 'not linked': 28501, 'via cm-entities-wikidata places': 3995, 'via pairs in the data': 18683, 'via rujen and geo-coordinates places': 5538}.",
-  "Occupations: 6,725 text occupations matched to one of 484 occupation IRIs, 23,258 not matched.",
+  "Dates: {'death before birth': 58, 'empty': 23, 'normalised': 189027, 'not parsed': 610, 'uncertain': 173}. Examples of values left out: ca. 1600/1606, 28.2.(10.3.)1894, Dezember 5, 1848, January 28, 2185, 10.9. oder 4.10.1817, 25.02.1752 oder 1753, 10.10.1871 Zabrze (von 1915 bis 1945:, [1957; bis 1945 in Ungarn, dann bis zum Tod in Amerika].",
+  "Places: {'already linked': 43410, 'not linked': 28612, 'via cm-entities-wikidata places': 3992, 'via pairs in the data': 18487, 'via rujen and geo-coordinates places': 5532}.",
+  "Occupations: 6,775 text occupations matched to one of 484 occupation IRIs, 23,282 not matched.",
   "Occupation IRIs stated with jl:occupation or jl:occpation: 12,236, as jl:occupationURI (12,236 new)."
  ],
  "deleted_by_corrections": {
@@ -284,21 +305,21 @@
  "files": [
   {
    "path": "records-normalized-dates.ttl.gz",
-   "bytes": 1269594,
-   "sha256": "1454aee91f1a76b72d874f71e0d380705a82dddc90fb309fa70117be7604acf4",
-   "triples": 189470
+   "bytes": 1267235,
+   "sha256": "5733c1c9a71acd00d20664059acb2b30c3b9443ae97131ae77b523c586cf8bd6",
+   "triples": 189186
   },
   {
    "path": "records-normalized-occupations.ttl.gz",
-   "bytes": 143092,
-   "sha256": "a67460dde18b64ff97694b0a26c61f89a192c72c874b239abab2841a7813f622",
-   "triples": 18961
+   "bytes": 143562,
+   "sha256": "15c49b9def03590c9431be3a61abd5e079d91d956c13c2c09e4554e027a2fa7a",
+   "triples": 19011
   },
   {
    "path": "records-normalized-places.ttl.gz",
-   "bytes": 236874,
-   "sha256": "afd745bce6ea8bc006a0b2977b208077226e74318bbcf53ada0e010f8aa46993",
-   "triples": 28213
+   "bytes": 234987,
+   "sha256": "d6c57ed715e8bffcd4d24e4b0c1e69721cf61852c7a11e83164bb4fdeac00654",
+   "triples": 28008
   }
  ],
  "version": "2026-10-12"

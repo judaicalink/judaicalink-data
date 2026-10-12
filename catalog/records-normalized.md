@@ -21,34 +21,34 @@ path = "generators/records-normalized"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "db9a7f5eac66dcc91f8728aadfe7a5639dc93996"
+commit = "250a2465e64abd0487a1086a7bc3be913b9c3074"
 
   [[versions.files]]
   path = "records-normalized-dates.ttl.gz"
-  bytes = 1269594
-  sha256 = "1454aee91f1a76b72d874f71e0d380705a82dddc90fb309fa70117be7604acf4"
-  triples = 189470
+  bytes = 1267235
+  sha256 = "5733c1c9a71acd00d20664059acb2b30c3b9443ae97131ae77b523c586cf8bd6"
+  triples = 189186
 
   [[versions.files]]
   path = "records-normalized-occupations.ttl.gz"
-  bytes = 143092
-  sha256 = "a67460dde18b64ff97694b0a26c61f89a192c72c874b239abab2841a7813f622"
-  triples = 18961
+  bytes = 143562
+  sha256 = "15c49b9def03590c9431be3a61abd5e079d91d956c13c2c09e4554e027a2fa7a"
+  triples = 19011
 
   [[versions.files]]
   path = "records-normalized-places.ttl.gz"
-  bytes = 236874
-  sha256 = "afd745bce6ea8bc006a0b2977b208077226e74318bbcf53ada0e010f8aa46993"
-  triples = 28213
+  bytes = 234987
+  sha256 = "d6c57ed715e8bffcd4d24e4b0c1e69721cf61852c7a11e83164bb4fdeac00654"
+  triples = 28008
 
   [[versions.files]]
   path = "records-normalized-meta.ttl.gz"
-  bytes = 3372
-  sha256 = "3fb25baeb21fdf62c77a921e2613c27d35021e73ee1a5d1923146348f2c739b4"
-  triples = 135
+  bytes = 3346
+  sha256 = "c14bc15341b0478b76ecd9d73ed3ce3bff1cf8b8ddd90e5e18b98102759d871a"
+  triples = 138
 
 [[changelog]]
-date = "2026-10-12"
+date = "2026-10-13"
 version = "2026-10-12"
 author = "Kai Eckert"
 text = "First version: normalised dates, places and occupations of the records (dates-normalized, places-linked, occupation-concepts and occupation-fix of kg-complements, decision 0020), for the stable versions; more date forms; all occupation IRIs stated with jl:occupation as jl:occupationURI."
