@@ -1,0 +1,86 @@
+{
+ "slug": "haskala",
+ "run": "run-20261012T222616Z",
+ "generator": "generators/haskala/generate.py",
+ "commit": "4617329de6dedf1425693b95ab83a76a7ba9f66d",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-12T22:26:16Z",
+ "shared_code": [
+  "generators/haskala/drupal_sql.py"
+ ],
+ "inputs": [
+  {
+   "name": "drupal",
+   "ref": "inputs:haskala/drupal-2015-04-20/haskala-drupal-2015-04-20.sql.gz",
+   "file": "haskala-drupal-2015-04-20.sql.gz",
+   "sha256": "623cc30149679a4fa5a5cfbf722b7c5b73a41599f1fabfa642cbddf809594ccf",
+   "bytes": 1038711
+  },
+  {
+   "name": "previous",
+   "ref": "haskala/2019-07-01/Haskala_enriched.ttl.gz",
+   "file": "Haskala_enriched.ttl.gz",
+   "sha256": "b024ce78236af00ba1480dd63eff33a5f42e0c22c8c0251b0e760fb7e7d7049b",
+   "bytes": 34911
+  },
+  {
+   "name": "net",
+   "ref": "haskala/2025-03-24/Haskala_net.ttl.gz",
+   "file": "Haskala_net.ttl.gz",
+   "sha256": "79a450e29adb2cfc747f9ba5b8bde98901f657c05c74af7f3af15ce3d3b538b1",
+   "bytes": 2824
+  }
+ ],
+ "input_descriptions": {
+  "inputs:haskala/drupal-2015-04-20": {
+   "title": "Library of Haskala: Drupal 7 database of haskala-library.net (2015-04-20), content tables",
+   "origin": "https://github.com/judaicalink/haskala/blob/1bdc786e90f8b95b2470741c9fc06c4a41ad0573/research/haskala.sql",
+   "description": "haskala-drupal-2015-04-20.sql.gz: the tables of the allow-list of generators/haskala/make_input.py (234 of 538: nodes, field data, taxonomies, page addresses, node types, field definitions, text formats, migration maps with the record ids of the research database, search configuration), copied section by section from research/haskala.sql of github.com/judaicalink/haskala at commit 1bdc786e90f8b95b2470741c9fc06c4a41ad0573 (the mysqldump of the Drupal 7 database of haskala-library.net at Pantheon, completed 2015-04-20; 18,460,605 bytes, sha256 71886f0fe4daf9be96503aaed415b141bd4b3b577d0f9021af67f46b61414630; the same file is in research/Haskala-DB.zip of 2022-10-11). Left out: user accounts, roles, sessions, logs, caches, site settings and the search server (personal data and credentials), the revision tables and indexes that repeat the content, and the tables that only run the site. url_alias keeps the three addresses of the editor accounts (users/<name>), which the generator does not read. The content (nodes, field data, taxonomies) is identical to Database/haskala_edit_2024-07-12.sql of the same repository, a reduced copy of this database; all nodes were migrated into Drupal on 2015-04-08/09 and not changed after. about.txt is research/content.txt at that commit, the text of the site's about page (hosting by the Judaica Division of the Frankfurt University Library; the German-Israeli research project 2004-2010).",
+   "date": "2015-04-20",
+   "note": "Not published: a selection of a public database dump, kept to make the dataset haskala reproducibly; the full dump is not kept because it holds user accounts and logs."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T22:26:17Z",
+ "seconds": 1.1,
+ "notes": [
+  "5,657 nodes, 809 terms, 39,225 field values, 218 field instances; 583 VIAF links. 2019: 194 persons replaced, 125 GND links carried over, 32 haskala.net persons kept (75 occupations)."
+ ],
+ "files": [
+  {
+   "path": "haskala-gnd-2019.ttl.gz",
+   "bytes": 1257,
+   "sha256": "1d96ec95b4954865b0c2a912e5db1fc9ce352328b6eb4b07a9ef7c6afcd7f0f7",
+   "triples": 125
+  },
+  {
+   "path": "haskala-net.ttl.gz",
+   "bytes": 5941,
+   "sha256": "d2b6283f9ea5e15d426aeaa2ecbb983d4afd3389ca9d43762c471457e92c7cbc",
+   "triples": 771
+  },
+  {
+   "path": "haskala-vocabulary.ttl.gz",
+   "bytes": 11694,
+   "sha256": "93db5319dfaac0467134197a7b29c2c06ddcdf0c4a5e7d0df63bd043392e8430",
+   "triples": 2779
+  },
+  {
+   "path": "haskala.ttl.gz",
+   "bytes": 871677,
+   "sha256": "03c3c988a5abf8cd72c3fa9f963345cfa3798f77f8c5ce3482e900a874d26b2a",
+   "triples": 73745
+  }
+ ],
+ "version": "2026-10-12"
+}
