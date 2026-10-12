@@ -20,6 +20,21 @@ by Benjamin Schnabel.
 - **2025-03-24**: **exact** (`7124d29` outputs, `f9b8215` scripts). `Haskala.ttl` has exactly the triples of the
   un-enriched `Haskala.ttl` of 2019, so this version is the 2019 state before enrichment, not new data.
 
+## Framework generator (2026-10-12)
+
+`generate.py` makes a new version from 2019-07-01 (decision 0024); with its parameters off, the output has the same
+triples. The 2025 run is not new data (above) and lacks the enrichment; its only addition is the occupations of the
+32 haskala.net persons, which the 2019 enrichment step dropped (the 32 of the 320 `Haskala_net` triples it did not
+keep; stated there with the misspelt `jl:Occupation`). They are taken from `Haskala_net.ttl` of 2025-03-24 as
+`jl:occupation`, one value per occupation (the source separates them with commas; the 2025 commit `ba26673` split
+them too): 75 values for 30 persons, 2 are empty. 12 empty dates and places of 2019 are dropped. Not taken over
+from 2025: its `Haskala_net` lost one character in the 2025 run ("Neu-Bydov"; 2019 has "Neu-Bydžov").
+
+Not changed: `owl:sameAs` also names the person pages of haskala-library.net (200) and of the Haskala project at the
+University of Potsdam (32), web pages rather than the person, as some other legacy datasets do; and the GND values of
+the enrichment stand next to the values of the source without a mark (e.g. two birth dates), which only a new
+enrichment could keep apart.
+
 ## Inputs
 
 On file: the source CSVs (`legacy/haskala/sources/`, `legacy/fid-judaica/haskala/sources/`). External: the
