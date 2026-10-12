@@ -1,0 +1,345 @@
+{
+ "slug": "cm-ocr-quality",
+ "run": "run-20261012T075518Z",
+ "generator": "generators/cm-ocr-quality/generate.py",
+ "commit": "b8e227c3dc120eeabdda242096eca3683fbc2683",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-12T07:55:18Z",
+ "inputs": [
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/README.md",
+   "file": "README.md",
+   "sha256": "8029059fc85f3255146fbcfe1b9858639d021726ef853475c8638a0ed939ea30",
+   "bytes": 4807
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/date_review.tsv",
+   "file": "date_review.tsv",
+   "sha256": "8416f5792aeec69e54598a8005cc3a3db4d1a707b3a6b26631290646e7c89153",
+   "bytes": 34363
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0000.jsonl.gz",
+   "file": "docs-0000.jsonl.gz",
+   "sha256": "8dd306c27de07809174dcd0e5b59b32b874786d9085bb686d5ecc16e9ff82cc2",
+   "bytes": 45456849
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0001.jsonl.gz",
+   "file": "docs-0001.jsonl.gz",
+   "sha256": "6c4f09eb9ad111a81a776da4d5a483ee97e19b0146f5352b53889efd0bea5d81",
+   "bytes": 48458216
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0002.jsonl.gz",
+   "file": "docs-0002.jsonl.gz",
+   "sha256": "b1ec635f498c651dd0add97eb05cc383329f44067c0709d64364d838579c8392",
+   "bytes": 28362526
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0003.jsonl.gz",
+   "file": "docs-0003.jsonl.gz",
+   "sha256": "d8af5ae2eddb1494f22a074b812d4cf4abaa6358faceeae873c39481ee7510ef",
+   "bytes": 78128966
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0004.jsonl.gz",
+   "file": "docs-0004.jsonl.gz",
+   "sha256": "9a5c602b34257e95c6d459537c79c4048aae245759a480643b6831aa12a1f375",
+   "bytes": 47375675
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0005.jsonl.gz",
+   "file": "docs-0005.jsonl.gz",
+   "sha256": "f93dd59bf6e8b469bebfe2097b43a5d737f54894b4a74daeba7c0ec40d264822",
+   "bytes": 61849860
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0006.jsonl.gz",
+   "file": "docs-0006.jsonl.gz",
+   "sha256": "a904a131b1a09f5cd5f6689a9290981e7fa5a59ecf33aed4a2ed7cc88061ad9c",
+   "bytes": 82671692
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0007.jsonl.gz",
+   "file": "docs-0007.jsonl.gz",
+   "sha256": "1a5dba42dffed1d429b1e0660001343b90e615a324e84c78e5588bde4c6ffddc",
+   "bytes": 42824881
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0008.jsonl.gz",
+   "file": "docs-0008.jsonl.gz",
+   "sha256": "951d3e453a2b6bdc964b18f3be6a100026a5051b77d983c5b15bc7b96b780e20",
+   "bytes": 41818485
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0009.jsonl.gz",
+   "file": "docs-0009.jsonl.gz",
+   "sha256": "485a21c00fe7de92c075dc19031397c96395e535d7322a89a8caac9ee794760d",
+   "bytes": 84310671
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0010.jsonl.gz",
+   "file": "docs-0010.jsonl.gz",
+   "sha256": "cef78f715fbebf2db5efa797587ac5bff806f9fbf9d6a0b1222363a4699662e3",
+   "bytes": 152283977
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0011.jsonl.gz",
+   "file": "docs-0011.jsonl.gz",
+   "sha256": "ce135136c1c51aa4237453c623a7684e6c1b0254d52d0bcd23fdd96c547040e8",
+   "bytes": 96960447
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0012.jsonl.gz",
+   "file": "docs-0012.jsonl.gz",
+   "sha256": "771e5e1bfb1687f6022d3d61e95c84ee33f49f8e989adcc30c7fe743c92c6f2f",
+   "bytes": 39040525
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0013.jsonl.gz",
+   "file": "docs-0013.jsonl.gz",
+   "sha256": "bf76ac1d8d6a7b313d7a316614296d976dcf736e74229f244715cb642a0d2681",
+   "bytes": 24805655
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0014.jsonl.gz",
+   "file": "docs-0014.jsonl.gz",
+   "sha256": "fd6544ba49fd310ee5cd7a3278d7d1b6e7e266e8eb3c1e5191b7fa9294f55727",
+   "bytes": 24137666
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0015.jsonl.gz",
+   "file": "docs-0015.jsonl.gz",
+   "sha256": "ed1575f8e160c5fcd5ad1e7e3b9d0e3fa49ec375012044d28b69f3155f3d1450",
+   "bytes": 30941215
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0016.jsonl.gz",
+   "file": "docs-0016.jsonl.gz",
+   "sha256": "6233aae17a57d144c7149ccc62a60066808d24b5c8330d3819aa3aab93b94fbc",
+   "bytes": 175815161
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0017.jsonl.gz",
+   "file": "docs-0017.jsonl.gz",
+   "sha256": "106b0caa0138405f50738375e01aa8ae1dbe76b4a4d0b932417f2cb2e9ca1eb7",
+   "bytes": 90778432
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0018.jsonl.gz",
+   "file": "docs-0018.jsonl.gz",
+   "sha256": "c5e7bdb7f45d40f624b8789ca6dac00b90a3d22bc949fad64645b2712cdebdb2",
+   "bytes": 87945944
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0019.jsonl.gz",
+   "file": "docs-0019.jsonl.gz",
+   "sha256": "0f73d7f11ee468885b2c60b22a3430697e191f44aceb8eb228b5057dc2e0ff72",
+   "bytes": 54804585
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0020.jsonl.gz",
+   "file": "docs-0020.jsonl.gz",
+   "sha256": "c3eeee04acc20e3b63d8a3a9753146dc94e4c1a5f3c13a6bc96231d70d0842e3",
+   "bytes": 25253918
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0021.jsonl.gz",
+   "file": "docs-0021.jsonl.gz",
+   "sha256": "89e45fcd191d9814ba65a135ad28665ff30c37c43140ee6eaeddc490e0a26f52",
+   "bytes": 44364813
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0022.jsonl.gz",
+   "file": "docs-0022.jsonl.gz",
+   "sha256": "f29bca595b1f372a4cd3aef217bcaabdc58e6d5b64dd3171efd0466541a9ed16",
+   "bytes": 67257027
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0023.jsonl.gz",
+   "file": "docs-0023.jsonl.gz",
+   "sha256": "9d428fda8ed6fe66f2df72016b787f28c9c2ff4f30132f2aa93e05d67f4f2aec",
+   "bytes": 63493099
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0024.jsonl.gz",
+   "file": "docs-0024.jsonl.gz",
+   "sha256": "45bbd57a8ae7f116bfcebbd4f913eb19303c551ff5d5a9bd2240234720f15463",
+   "bytes": 66922469
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0025.jsonl.gz",
+   "file": "docs-0025.jsonl.gz",
+   "sha256": "f599521cae84696695e30a4ae4891af6c861ae7457d02d958b5d9d93220bbceb",
+   "bytes": 36684655
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0026.jsonl.gz",
+   "file": "docs-0026.jsonl.gz",
+   "sha256": "2d8ee11b6d9b99e7ac44c62e109b780f0a673ff26319012f4ae532deadac7e2a",
+   "bytes": 39276347
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0027.jsonl.gz",
+   "file": "docs-0027.jsonl.gz",
+   "sha256": "49e6d8c61188b472a7418273de1c5d172e29142db226d7d92a365365731d73f0",
+   "bytes": 45791971
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0028.jsonl.gz",
+   "file": "docs-0028.jsonl.gz",
+   "sha256": "d40ca0b36ae4fb7f217ece59dffaba3126dfd89d445ab51966bbbfe660323ca5",
+   "bytes": 66977645
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0029.jsonl.gz",
+   "file": "docs-0029.jsonl.gz",
+   "sha256": "6ed7152a3d9e427a565afbc15103e875a052309fe1cf2d56dc332566d436731b",
+   "bytes": 61127828
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0030.jsonl.gz",
+   "file": "docs-0030.jsonl.gz",
+   "sha256": "39eeb08da59aa34362e62b68d8011bcc3f99a2679602160d08baa77ca9dbc58a",
+   "bytes": 62097398
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0031.jsonl.gz",
+   "file": "docs-0031.jsonl.gz",
+   "sha256": "67325d0600e777760e96e85ff4d30f6d3e90142a951c33109010e2c33b6663e7",
+   "bytes": 57894339
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0032.jsonl.gz",
+   "file": "docs-0032.jsonl.gz",
+   "sha256": "e24057aa2afaae53ba1c2368e89fe361e16bc68ba42866b17d23d64913a3e2b5",
+   "bytes": 49196324
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0033.jsonl.gz",
+   "file": "docs-0033.jsonl.gz",
+   "sha256": "5f7594dcf75d4aeecf1e091c8323adcaa886e225f5dc2e27c9e9a608a3504094",
+   "bytes": 54281803
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/docs-0034.jsonl.gz",
+   "file": "docs-0034.jsonl.gz",
+   "sha256": "19ec0d211d3c29ac3fc3a25f8ddb01e8f4fa2e8528525d208a3184390691aef5",
+   "bytes": 17731189
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/dropped.tsv.gz",
+   "file": "dropped.tsv.gz",
+   "sha256": "34c5163d829dbf4c6f72647793d2d15d31e1103af8d0e525ae9d647af6f76e37",
+   "bytes": 228760
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/extract_cm_fulltext.py",
+   "file": "extract_cm_fulltext.py",
+   "sha256": "5cbd154d6ef4abd872809d47411b35cc01f11b7e26d5b92f24159173ddd89f96",
+   "bytes": 17361
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/fix_bundle.log",
+   "file": "fix_bundle.log",
+   "sha256": "fe544398e7e930384e549c6e306118c104bec758fce4c2a159e77d77e0667e44",
+   "bytes": 2262
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/fix_bundle.py",
+   "file": "fix_bundle.py",
+   "sha256": "f2e345a9892c7f3c56c649f4643fd737ab06139bdb0d58b35b3bdd926d1d5daf",
+   "bytes": 7953
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/load_cm_fulltext.py",
+   "file": "load_cm_fulltext.py",
+   "sha256": "08f385cd16bf43a935ae993c6e75b8393bacc84e79528d5f1c40abfcd3534007",
+   "bytes": 11878
+  },
+  {
+   "name": "fulltext",
+   "ref": "inputs:compact-memory/fulltext-2026-10-05-v2/manifest.json",
+   "file": "manifest.json",
+   "sha256": "e7cff6d17e0f810e1f86f70fe72bd2454c869da7549a0c61f978ce71bb152739",
+   "bytes": 6708
+  },
+  {
+   "name": "pages",
+   "ref": "compact-memory/2026-10-12/compact-memory-pages.ttl.gz",
+   "file": "compact-memory-pages.ttl.gz",
+   "sha256": "f6a8f335d9fc4e7b03c9ac9b29eabc3f81307f1fe382682701caaef251fef04c",
+   "bytes": 11842228
+  }
+ ],
+ "input_descriptions": {
+  "inputs:compact-memory/fulltext-2026-10-05-v2": {
+   "title": "Compact Memory full text for the Solr core cm_meta (bundle v2)",
+   "origin": "Made on 2026-10-05 by extract_cm_fulltext.py (cm_indexer in the repository of the FID portal, handed over to Frankfurt) from the OCR XML files of Compact Memory on the JudaicaLink labs server in Mannheim, the page table (compact-memory-supp) and the MODS records (inputs:compact-memory/mods-2020-06-15); a copy is on that server.",
+   "description": "846,500 pages of Compact Memory as documents for the Solr core cm_meta, one JSON object per line in 35 gzipped parts (docs-NNNN.jsonl.gz): page VLID, journal, date of issue, page label, volume, OCR text. manifest.json lists the parts with their checksums, the pages left out (no OCR file, no metadata, no text) and the corrections (Hebrew calendar years converted to Gregorian, which can be one year off; '(null)' removed; volumes rebuilt from the MODS records). date_review.tsv lists 513 pages whose year is isolated from the rest of their journal (not changed). The bundle also holds its README.md, the scripts that made and corrected it (extract_cm_fulltext.py, fix_bundle.py with fix_bundle.log), the loader for Solr (load_cm_fulltext.py) and dropped.tsv.gz (the pages left out, with the reason).",
+   "date": "2026-10-05",
+   "note": "Not published: 2 GB of OCR full text, needed only to make datasets; the full-text search of the FID portal is built from it."
+  }
+ },
+ "status": "ok",
+ "finished": "2026-10-12T07:58:18Z",
+ "seconds": 180.0,
+ "notes": [
+  "Word list: 116,604 words occurring at least 10 times in every 20th page."
+ ],
+ "files": [
+  {
+   "path": "cm-ocr-quality.ttl.gz",
+   "bytes": 7353618,
+   "sha256": "50de7954aa34356a4e7795d7ada520065bfb3756969fb50e53bb6f4829207afb",
+   "triples": 846808
+  }
+ ],
+ "version": "2026-10-12"
+}

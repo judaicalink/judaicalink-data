@@ -8,6 +8,7 @@ method = ["deterministic", "lookup"]
 namespaces = ["cm-entities"]
 example = "http://data.judaicalink.org/data/cm-entities/presence/dbpedia/A._E._Housman"
 inputs = ["cm-tagme", "dbpedia-persons", "interlinks"]
+stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -22,6 +23,35 @@ path = "generators/cm-entities"
 "cm-entities-presence.ttl.gz" = "For every entity linked in Compact Memory, its presence in the corpus (jl:CorpusPresence): mentions, pages, first and last year, journals, the journal with the most mentions."
 "cm-entities-wikidata.ttl.gz" = "For the entities that no other dataset names: Wikidata item, labels (de, en, he), type, coordinates, GND, VIAF and GeoNames IDs."
 
+[[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "b8e227c3dc120eeabdda242096eca3683fbc2683"
+
+  [[versions.files]]
+  path = "cm-entities-presence.ttl.gz"
+  bytes = 151858
+  sha256 = "cd0544b62161b4ecc6a84a9e9918562328587106f60585db81472fde3a9d5967"
+  triples = 48997
+
+  [[versions.files]]
+  path = "cm-entities-wikidata.ttl.gz"
+  bytes = 273155
+  sha256 = "8e0d443a9eaa07fe89e68e51c6d35e642e0c034328058d930ada90a0fea20c5c"
+  triples = 40303
+
+  [[versions.files]]
+  path = "cm-entities-meta.ttl.gz"
+  bytes = 3240
+  sha256 = "54f61ea9b35c93e466a56cd3e2625297cb30ecc6da72246022e3f308cd4186da"
+  triples = 83
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "First version: the presence of the Compact Memory entities in the corpus (jl:CorpusPresence) and Wikidata data for those no dataset names (cm-entities-presence and cm-entities-wikidata of kg-complements, decision 0020)."
 +++
 
 What is known about the entities (mainly persons and places) that were linked in the Compact Memory full text by

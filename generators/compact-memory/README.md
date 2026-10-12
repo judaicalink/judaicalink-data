@@ -36,7 +36,7 @@ triples, identical to cm-journals) and `compact-memory-pages.ttl.gz` (4,549,427 
 image links and the classes). About one minute.
 
 The corpus as a whole is `data/compact-memory/corpus` (`schema:Collection`, title, description, `foaf:page`), and
-every journal is `dcterms:isPartOf` it (decided 2026-10-12, for `jl:CorpusPresence` in cm-entities): 1,012 more
+every journal is `dcterms:isPartOf` it (decided 2026-10-12, for `jl:CorpusPresence` in cm-entities): 340 more
 triples in the journals file.
 
 Classes (decided 2026-10-12): journals `schema:Periodical` (as in cm-journals); from the kind in the page table
