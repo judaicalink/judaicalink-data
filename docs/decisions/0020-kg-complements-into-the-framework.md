@@ -76,7 +76,10 @@ have the same kind and the same automated status, and belong together in content
      *For `records-normalized` (2026-10-12): every occupation IRI that a record states with `jl:occupation` or
      `jl:occpation` is also stated as `jl:occupationURI` (15,340), so one property finds all occupation IRIs; the
      typo fix (`jl:occpation` → `jl:occupation`) is part of that and has no file of its own (three files: dates,
-     places, occupations).*
+     places, occupations). The date rules were extended for the forms quality-annotations found left out (English
+     dates, year and month, years 1–999, the EDTF value of the footprints dictionaries, …; 186,581 dates instead of
+     184,315); ranges, bounds and negative years stay out, and a record whose one death date is before its one birth
+     date gets neither (51 records). Both versions were made again rather than followed by new ones (unpublished).*
   3. **Entity pages** (14): `EntityPage`, `Work`, `Subject`, `curationStatus`, `CurationStatus`, `Curated`,
      `AutomaticOnly`, `supportedBy`, `mergeDate`, `splitInto`, `splitDate`, `retiredDate`,
      `highestEntityPageNumber`, `previousEntityPageSet`; after the entity-page question is settled.
