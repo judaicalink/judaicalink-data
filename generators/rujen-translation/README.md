@@ -30,3 +30,11 @@ VM and in the private backup). Google Translate is external.
 |---|---|---|---|
 | [`labs/data/management/commands/generate_rujen_translation.py`](https://github.com/judaicalink/judaicalink-labs/blob/39f04c243cacadc2d12e602a8b1b0929d115413a/labs/data/management/commands/generate_rujen_translation.py) | judaicalink-labs | `39f04c2` (2020-09-28, Kai Eckert) |  |
 | [`labs/data/management/commands/_dataset_command.py`](https://github.com/judaicalink/judaicalink-labs/blob/39f04c243cacadc2d12e602a8b1b0929d115413a/labs/data/management/commands/_dataset_command.py) | judaicalink-labs | `39f04c2` (2020-09-28, Kai Eckert) | file last changed in `af44b31` (2020-09-28) |
+
+## Framework generator (2026-10-12)
+
+`generate.py` makes a new version from 2020-09-28 (decision 0024). Fix `drop_untranslated` (default on): the 293
+broken abstracts are the printed result object of the client, `"Translated(src=en, dest=de, text=<the Russian
+original>, …)"`, nothing was translated (wrong source language); they are dropped, 15,583 abstracts per language
+remain. The caches are not in the inputs area (labs VM, private backup), so the translations are not made again. The
+label files are copied unchanged; with the fix off, the version has the same 62,925 triples as 2020-09-28 (checked).
