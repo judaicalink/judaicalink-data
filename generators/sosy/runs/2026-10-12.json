@@ -1,0 +1,44 @@
+{
+ "slug": "sosy",
+ "run": "run-20261012T161355Z",
+ "generator": "generators/sosy/generate.py",
+ "commit": "0e9e6a8837f89b2042d674113dd4cfcb08640034",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "occupation_iris": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-12T16:13:55Z",
+ "inputs": [
+  {
+   "name": "previous",
+   "ref": "sosy/2022-07-07/sosy-final-01.ttl.gz",
+   "file": "sosy-final-01.ttl.gz",
+   "sha256": "89890dd8b42bb09afd30809e8b8f963abf0e07a5ba402ecdf13e36fb295297d8",
+   "bytes": 12497
+  }
+ ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T16:13:55Z",
+ "seconds": 0.0,
+ "notes": [
+  "204 addresses of HTML views as occupation IRIs (jl:occupationURI)."
+ ],
+ "files": [
+  {
+   "path": "sosy-final-01.ttl.gz",
+   "bytes": 12555,
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "triples": 1312
+  }
+ ],
+ "version": "2026-10-12"
+}
