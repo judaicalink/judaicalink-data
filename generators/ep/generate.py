@@ -45,10 +45,10 @@ PRECEDENCE = [
 # triples (corrections-links 2026-10-12 adds none) is declared here as an input like any other dataset.
 STABLE = {
     "gnd-persons": "2018-11-29", "gnd-persons-entityfacts": "2026-10-12", "nli-records": "2026-10-12",
-    "ubffm-persons": "2019-01-24", "nrwbibdjg": "2024-05-24", "haskala": "2019-07-01", "yivo": "2020-09-30",
+    "ubffm-persons": "2019-01-24", "nrwbibdjg": "2024-05-24", "haskala": "2026-10-12", "yivo": "2020-09-30",
     "rujen": "2020-09-28", "rujen-translation": "2026-10-12", "bhr": "2026-10-12", "djh": "2018-10-22",
     "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2026-10-12", "stolpersteine": "2020-10-06",
-    "hirsch-family": "2018-10-30", "sosy": "2026-10-12", "gba": "2025-03-21", "footprints": "2024-03-18",
+    "hirsch-family": "2018-10-30", "sosy": "2026-10-12", "gba": "2025-03-21", "footprints": "2026-10-12",
     "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2026-10-12",
     "interlinks": "2018-07-18", "2014links": "2026-10-12", "date-enriched": "2020-07-31", "geo-enriched": "2019-12-18",
     "dbp-wiki-geo-linking": "2021-01-13", "records-normalized": "2026-10-12", "ls-nli-legacy": "2026-10-12",
