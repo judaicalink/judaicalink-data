@@ -1,6 +1,6 @@
 # 0022 Entity pages in the framework: versions of `ep`, a fresh closure each run, merges and splits by comparison
 
-Status: accepted (the rules of 2026-10-06 to revisit still open) · Date: 2026-10-12 · Amends
+Status: accepted · Date: 2026-10-12 · Amends
 [0009](0009-entity-pages.md), supersedes [0010](0010-nli-exception.md)
 
 ## Context
@@ -85,6 +85,21 @@ comment is corrected: the records a page brings together); `jl:mergedInto` + `jl
 and `jl:previousEntityPageSet` (derived from the previous version), and `jl:supportedBy` and `jl:curationStatus`
 (`jl:Curated`, `jl:AutomaticOnly`), which are derived: the datasets from the graphs of the represented records, the
 status from whether all of them are automated (`-meta`, 0018).
+
+### 7. Rules of 2026-10-06, revisited
+
+- The precedence list (GND > libraries and bibliographies > curated reference works > general knowledge bases >
+  automatically derived data) names the datasets of the catalogue (`stolpersteine`, `cm-entities`,
+  `records-normalized` for the four normalising complements); every dataset that contributes a record must be in it
+  (checked). Its curated/automatic column is dropped with `jl:curationStatus`.
+- Core classes: persons, places (with the concepts of geo-coordinates), **organisations** (`foaf:Organization`, 68
+  records in hhkeydocs and gba; new), works, subjects (the other `skos:Concept`s of yivo, djh, rujen), and the entities
+  linked in Compact Memory (cm-entities). When records disagree: person > place > organisation > work > subject
+  (place before organisation: GND also describes cities as territorial corporate bodies).
+- The facts on a page stay as in 2026-10-06 (names, dates and places of the record with the highest precedence with
+  its normalised values, occupations as text and `jl:occupationURI`, abstracts, coordinates, external identifiers,
+  `rdfs:seeAlso`). The swap of geo-coordinates' `jl:lat`/`jl:lon` is dropped: its places have a correct `geo:asWKT`,
+  which comes first.
 
 ## Measured (2026-10-12, stable versions; `lokal/work/ep-measure/`)
 
