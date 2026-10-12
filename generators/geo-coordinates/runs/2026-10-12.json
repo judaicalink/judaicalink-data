@@ -1,0 +1,46 @@
+{
+ "slug": "geo-coordinates",
+ "run": "run-20261012T181738Z",
+ "generator": "generators/geo-coordinates/generate.py",
+ "commit": "43c2883213ce17ac9f2b66f4b48892acf3c93a8c",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "namespace_iris": true,
+  "place_type": true,
+  "drop_lat_lon": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-12T18:17:38Z",
+ "inputs": [
+  {
+   "name": "previous",
+   "ref": "geo-coordinates/2018-08-08/city-geocoor-05.ttl.gz",
+   "file": "city-geocoor-05.ttl.gz",
+   "sha256": "c4fdf74620e2023a938bbab11103b1af87c5cef0daf5f8ae40b0c74d1ab18004",
+   "bytes": 142001
+  }
+ ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T18:17:38Z",
+ "seconds": 0.2,
+ "notes": [
+  "2,701 places moved to http://data.judaicalink.org/data/geo-coordinates/ (old IRIs dcterms:isReplacedBy the new ones); 2,701 typed jl:Place; 6 jl:lat/jl:lon dropped."
+ ],
+ "files": [
+  {
+   "path": "geo-coordinates.ttl.gz",
+   "bytes": 155920,
+   "sha256": "b059aeb643db2567c8f9988cc4df0080d62494006fc55ede2a93fc2b4ab01ad2",
+   "triples": 21369
+  }
+ ],
+ "version": "2026-10-12"
+}
