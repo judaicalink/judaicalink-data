@@ -25,7 +25,7 @@ MEDIA = "http://www.iana.org/assignments/media-types/"
 SPDX = "http://spdx.org/rdf/terms#"
 FRAMEWORK = "judaicalink-data"
 
-DCAT, DCTERMS, PROV, RDFS, VOID = (Namespace(PREFIXES[p]) for p in ("dcat", "dcterms", "prov", "rdfs", "void"))
+CC, DCAT, DCTERMS, PROV, RDFS, VOID = (Namespace(PREFIXES[p]) for p in ("cc", "dcat", "dcterms", "prov", "rdfs", "void"))
 SPDXNS = Namespace(SPDX)
 A = IRI(RDF_TYPE)
 
@@ -138,6 +138,8 @@ def render(entry, version, files, record, stats, registry):
     lic = d.get("license") or {}
     if is_url(lic.get("uri")):
         t.append((D, DCTERMS.license, IRI(lic["uri"])))
+    if lic.get("attribution"):   # the credit the licence asks for (0013)
+        t.append((D, CC.attributionName, Literal(lic["attribution"])))
     if is_url(d.get("website")):
         t.append((D, DCTERMS.source, IRI(d["website"])))
     if is_url(d.get("example")):

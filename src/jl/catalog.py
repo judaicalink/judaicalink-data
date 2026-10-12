@@ -233,7 +233,7 @@ SLUGS = (lambda v: isinstance(v, list) and all(isinstance(x, str) and SLUG.match
 COUNT = (lambda v: isinstance(v, int) and not isinstance(v, bool) and v >= 0, "a non-negative integer")
 
 AUTHOR = (lambda v: is_str(v) or (is_str_list(v) and len(v) > 0), "a name or a list of names")
-LICENSE = {"name": TEXT, "uri": URL, "image": URL}
+LICENSE = {"name": TEXT, "uri": URL, "image": URL, "attribution": TEXT}
 LINK = {"url": URL, "label": TEXT}
 GENERATOR = {"repo": URL, "path": TEXT}
 FILE = {"path": TEXT, "description": TEXT, "bytes": COUNT,
