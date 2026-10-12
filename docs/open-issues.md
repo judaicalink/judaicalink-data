@@ -68,8 +68,8 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
     framework, and the new `-meta` files are not at any dumps location yet.
   - Graph of the `-meta` files: `datasets/<slug>-meta` → `datasets/<slug>/meta` (0018) in `../qlever/make_inputs.py`
     (graph from the file name) and in the kg-complements `-meta` writer.
-  - The legacy ep of 2021 has three entity pages `owl:sameAs` a dataset IRI (yivo, rujen, rujen-translation); not
-    carried over into ep-2026-10-06 (checked).
+  - The legacy ep of 2021 has three entity pages `owl:sameAs` a dataset IRI (yivo, rujen, rujen-translation); `ep`
+    2026-10-12 retires them (they have no record).
   - Still on the slug `stolperstein` (0017), because they read Frankfurt's catalogue: the graph in
     `../qlever/queries/07-stolpersteine-persons.rq`, the precedence list in `../kg-complements/ep_generator.py`, the
     dataset list in `../ep-demonstrator/app.py`, and the old `-meta` `dumps-additions/stolpersteine/current/stolperstein-meta.ttl.gz`.
@@ -109,15 +109,17 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   `ontology-complements`, which redefines six terms of the current ontology (`belongsToIssue`,
   `belongsToJournal`, `birthLocationURI`, `deathLocationURI`, `gitCommit`, `gitWeb`), and load it in an endpoint (with the platform, 0016).
 
-- **Identity links, found with the entity-page closure (2026-10-12, decisions 0022–0024):** 72 wrong links corrected
-  in `corrections-links`; template links fixed in gnd-persons-entityfacts. Still open: hhkeydocs had two persons linked
-  to the GND number of a namesake (Otto Warburg, Kurt Singer), so its GND links may have been made by name; check them
-  against the life dates. cm-entities takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula).
-  The closure check only sees conflations that meet a second Wikidata item or class; others need other checks (life
-  dates of the records of a group). 2014links links 30 rujen records typed as persons to places (rujenDBpediaPlace 9,
-  rujenLGDOPlace 21): either rujen typed a place as a person (Marseille, corrected) or the link joins a person by name
-  with a place (Lyubin and Lubin, corrected); the others are to be checked one by one. Havilah (dbpedia-persons, a person, and cm-entities, a place, with one Wikidata item
-  for both) is left as it is.
+- **Identity links, found with the entity-page closure (2026-10-12, decisions 0022–0024):** fixed by new versions of
+  bhr and 2014links (links of rujen persons to places), template links dropped in gnd-persons-entityfacts, 76 wrong
+  links in `corrections-links`. Still open: hhkeydocs had two persons linked to the GND number of a namesake (Otto
+  Warburg, Kurt Singer), so its GND links may have been made by name; check them against the life dates.
+  cm-entities takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula). The closure check only
+  sees conflations that meet a second Wikidata item or class; others need other checks (life dates of the records of
+  a group). Havilah (dbpedia-persons, a person, and cm-entities, a place, with one Wikidata item for both) is left as
+  it is.
+- **sosy occupations:** 204 `jl:occupation` values are addresses of HTML views
+  (`https://data.judaicalink.org/data/html/occupation/…`), which records-normalized restates as `jl:occupationURI`;
+  a new sosy version should give the occupation IRIs.
 - **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
   article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):
   life dates at the start of the abstract → person (1,077), place links → place, else subject; subsections
