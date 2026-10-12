@@ -44,7 +44,7 @@ commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "First version: 78 wrong identity links deleted in 10 datasets (persons and places joined with others), 3 places of rujen typed as places; found with the entity-page closure (decisions 0022, 0023)."
+text = "First version: 80 wrong identity links deleted in 11 datasets (persons and places joined with others), 3 places of rujen typed as places; found with the entity-page closure (decisions 0022, 0023)."
 +++
 
 Corrections of identity links (`owl:sameAs`, GND numbers, types) that join different persons or places: Sherira Gaon
