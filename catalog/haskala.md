@@ -52,8 +52,8 @@ description = "Made from the Drupal database of the Library of Haskala (dump of 
 
   [[versions.files]]
   path = "haskala-meta.ttl.gz"
-  bytes = 4206
-  sha256 = "34e0ab3e18960da514ac450c1cb14dbb576de69f3e579c14f422b75f6606b2dc"
+  bytes = 4239
+  sha256 = "93b9252f531be26dc0a9b90d667597c8b6601d016571758153043059b1013aaa"
   triples = 101
 
 [[versions]]
@@ -126,14 +126,16 @@ persons of the Haskala biographies of the University of Potsdam (haskala.net), w
 > This database contains 525 books in German and Hebrew identified by leading scholars as Haskala literature. The
 > database is hosted and run by the Judaica Division of the Frankfurt University Library.
 >
-> Contact: (E-Mail: digitalisierung@ub.uni-frankfurt.de / k.vonderkrone@ub.uni-frankfurt.de /
-> u.simeon@ub.uni-frankfurt.de ) Please share any further information.
+> Contact: […] Please share any further information.
 >
 > The detailed bio-bibliographical information, presented here for the first time, was collected as result of a
 > collaborative research, headed by Profs. Shmuel Feiner, Bar Ilan University; Zohar Shavit, Tel Aviv University and
 > Christoph Schulte, Universität Potsdam within a joint German-Israeli Research Project in 2004-2010.
 >
 > Please note: for every book title only those fields containing information are presented.
+
+Contact today: the [FID Jewish Studies](https://www.jewishstudies.de/en/fid-jewish-studies/kontakt/) (the contact
+addresses of the start page are left out here).
 
 ### How the site presented the data
 
