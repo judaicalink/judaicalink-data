@@ -1,0 +1,53 @@
+{
+ "slug": "haskala",
+ "run": "run-20261012T215222Z",
+ "generator": "generators/haskala/generate.py",
+ "commit": "b8b3dc528ae97874d36000a353cc20ea88c6c19e",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "occupations": true,
+  "split_occupations": true,
+  "empty_values": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-12T21:52:22Z",
+ "inputs": [
+  {
+   "name": "previous",
+   "ref": "haskala/2019-07-01/Haskala_enriched.ttl.gz",
+   "file": "Haskala_enriched.ttl.gz",
+   "sha256": "b024ce78236af00ba1480dd63eff33a5f42e0c22c8c0251b0e760fb7e7d7049b",
+   "bytes": 34911
+  },
+  {
+   "name": "net",
+   "ref": "haskala/2025-03-24/Haskala_net.ttl.gz",
+   "file": "Haskala_net.ttl.gz",
+   "sha256": "79a450e29adb2cfc747f9ba5b8bde98901f657c05c74af7f3af15ce3d3b538b1",
+   "bytes": 2824
+  }
+ ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T21:52:22Z",
+ "seconds": 0.0,
+ "notes": [
+  "75 occupations of 30 haskala.net persons added from 2025-03-24 (2 without); 12 empty values dropped."
+ ],
+ "files": [
+  {
+   "path": "haskala.ttl.gz",
+   "bytes": 36055,
+   "sha256": "53f95a1ea19b8b8d0ac1702f52a41b23ba8776b6d2737ed1f2ac42c299d54c5b",
+   "triples": 3899
+  }
+ ],
+ "version": "2026-10-12"
+}

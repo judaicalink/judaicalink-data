@@ -6,7 +6,7 @@ date = "2019-07-01"
 website = "https://www.haskala-library.net/"
 example = "http://data.judaicalink.org/data/haskala/Ascher_Saul"
 namespaces = ["haskala"]
-stable = "2019-07-01"
+stable = "2026-10-12"
 kind = "records"
 method = ["scraped", "converted", "lookup", "curated"]
 
@@ -18,6 +18,25 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/haskala"
+
+[[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "b8b3dc528ae97874d36000a353cc20ea88c6c19e"
+description = "Made from 2019-07-01 (the enriched version) with the occupations of the haskala.net persons, which the 2019 enrichment dropped, and without empty values."
+
+  [[versions.files]]
+  path = "haskala.ttl.gz"
+  bytes = 36055
+  sha256 = "53f95a1ea19b8b8d0ac1702f52a41b23ba8776b6d2737ed1f2ac42c299d54c5b"
+  triples = 3899
+
+  [[versions.files]]
+  path = "haskala-meta.ttl.gz"
+  bytes = 1668
+  sha256 = "b7511063cccea2535d60878cdb0de083b721ff2e4d86e4c5d127e099d093d089"
+  triples = 66
 
 [[versions]]
 version = "2025-03-24"
@@ -57,6 +76,17 @@ description = "The enriched version of 2019, with birth and death dates and plac
   bytes = 1793
   sha256 = "e15825ccd240cc7557b5aef1c5a0488228971fa530a60bec5614e503d36d1303"
   triples = 62
+
+[[changelog]]
+date = "2026-10-12"
+author = "Kai Eckert"
+text = "Version 2026-10-12 made the stable version (it keeps all data of 2019-07-01 and adds the haskala.net occupations)."
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "New version made from 2019-07-01 (decision 0024): the occupations of 30 haskala.net persons added from Haskala_net.ttl of 2025-03-24 as jl:occupation, one value per occupation (75); 12 empty dates and places dropped. Made by generators/haskala/generate.py."
 +++
 
 The Library of Haskala contains 525 books in German and Hebrew identified by leading scholars as Haskala literature. 
