@@ -20,7 +20,8 @@ Not a clean generator run: the output of the run of 2022-07-30 (generator **prob
 ## Inputs
 
 Live only: the Epidat harvesting interface of the Steinheim-Institut (answered 503 on 2026-10-09), lobid GND, the
-spaCy model `de_core_news_sm`. No snapshot.
+spaCy model `de_core_news_sm`. No snapshot. Since then Epidat's harvesting page names its research data repository
+(<https://gitlab.rlp.net/epidat/data>) as the source of all its data; the 2026 generator reads a snapshot of it.
 
 ## Reproduction
 
@@ -34,3 +35,30 @@ spaCy model `de_core_news_sm`. No snapshot.
 |---|---|---|---|
 | [`epidat/scripts/generator.py`](https://github.com/judaicalink/judaicalink-generators/blob/bf6f5e398535d39e18c2c4753349b40eab2cb634/epidat/scripts/generator.py) | judaicalink-generators | `bf6f5e3` (2022-07-27, bsesic) |  |
 | [`epidat/README.md`](https://github.com/judaicalink/judaicalink-generators/blob/bf6f5e398535d39e18c2c4753349b40eab2cb634/epidat/README.md) | judaicalink-generators | `bf6f5e3` (2022-07-27, bsesic) | file last changed in `afb6a06` (2022-06-27) |
+
+## Framework generator (2026-10-12)
+
+`generate.py` makes the dataset again from the source, not from 2023-07-14 (decision 0024: the systematic errors are
+in the IRIs). Input `inputs:epidat/data-2026-08-13`: the TEI/EpiDoc files of the repository at commit `61046f3`
+(one file per gravestone, the same files the 2022 generator read through the older interface) and the cemetery
+table (not used yet).
+
+- **IRIs from the Epidat person id** (`data/epidat/hha-2512-1`), one per person. The name IRIs of 2023-07-14
+  conflated persons of the same name (2,657 IRIs held 10,432 persons, up to 106) and 236 were clipped; each is stated
+  `dcterms:isReplacedBy` the persons named by its `jl:describedAt` links: 26,488 by one person (their entity pages
+  stay), 2,615 by several (their entity pages split, 0022), 315 by none (all their persons withdrawn, below).
+- **Per person:** the name before the spouse (⚭) and without the civil name in final parentheses as `skos:prefLabel`
+  and `foaf:name` (editorial brackets kept as given; 2023 cut names at brackets and `geb.`, giving labels like
+  `irsch`), the civil name as `skos:altLabel`; `foaf:gender`; `jl:deathDate` as given; the settlement of the cemetery
+  as `jl:deathLocation` with its TGN IRI (GeoNames for five Czech cemeteries) as `jl:deathLocationURI`; `owl:sameAs`
+  the GND (77 persons) and Epidat's own person URI `https://lod.academy/epidat/id/<id>` (303 to the Epidat page);
+  `jl:describedAt` the Epidat page, as 2023.
+- **Left out:** the family relations of the TEI (parent, grandparent, sibling, spouse: 14,264; no ontology terms
+  yet), occupations and birth years (2023 found them with spaCy in the commentaries; not standard library), the
+  `dcterms:created` time of the run and the RDF-star `jl:hasHebrewDate` of the repair.
+- **Source problems:** 63 of 48,041 files are not well-formed XML; 30 (a doubled quote in a link target) are
+  repaired, of 8 the person list is parsed alone, 25 have no person list (truncated). 451 persons of 2023 (cemeteries
+  `gre`, `kal`, `l10`, `mue`, `nie`, `ora`, `tol`) are not in the repository; Epidat's harvesting interface answers
+  "FILE not yet published" for them (except Toledo), so they are not taken over.
+
+Result: 41,378 persons in 268 cemeteries (2023: 37,193 entries in 29,418 IRIs, 222 cemeteries); 416,724 triples.

@@ -84,7 +84,8 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   `dbpedia-persons` and the Compact Memory entities of `cm-tagme`; `data/geonames/` by `geo-enriched` and
   `dbp-wiki-geo-linking`, without a dataset describing these places as records). Proposal: document this as
   a convention.
-- **Catalogue inconsistencies:** epidat has `dataslug`/`graph` `epi` but URIs `data/epidat/`; no `dataslug` for
+- **Catalogue inconsistencies:** epidat had `dataslug`/`graph` `epi` but URIs `data/epidat/` (namespace corrected
+  with epidat 2026-10-12); no `dataslug` for
   yivo, rujen, rujen-translation, date-enriched, dbp-wiki-geo-linking; geo-coordinates `graph` is
   `data/geo-coor`; rujen contains one junk subject `mailto%3Amail%40rujen.ru`.
 
@@ -99,8 +100,8 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   instead of removing them): the 24 URIs of the version before are gone (e.g. `data/gba/JecheskelEzechielLandau` →
   `Jecheskel__Ezechiel__Landau`). Check whether anything links to the old ones.
 - **Findings of the generator inventory** (`generators/*/README.md`): yivo 2020 lower-cased its IRIs, so the yivo
-  links of 2014links and `interlinks.n3` (2014 IRIs) do not resolve; epidat has names clipped by a hand repair of
-  2023 (`Jakob` → `Jako`); rujen-translation contains 293 broken literals `"Translated(src=…)"`; sosy uses HTML-view
+  links of 2014links and `interlinks.n3` (2014 IRIs) do not resolve; epidat had names clipped by a hand repair of
+  2023 (`Jakob` → `Jako`; epidat 2026-10-12 is made again from the source); rujen-translation contains 293 broken literals `"Translated(src=…)"`; sosy uses HTML-view
   URLs as `jl:occupation` values (204, `https://data.judaicalink.org/data/html/occupation/…`); the legacy entity pages made about 1.1 million cm-tagme references and
   compact-memory pages into singleton pages (`ep` 2026-10-12 retires them); djh 2018 has non-ASCII
   characters in IRIs; geo-enriched has an empty haskala file.
@@ -120,6 +121,12 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
 - **sosy occupations:** 204 `jl:occupation` values are addresses of HTML views
   (`https://data.judaicalink.org/data/html/occupation/…`), which records-normalized restates as `jl:occupationURI`;
   a new sosy version should give the occupation IRIs.
+- **epidat: place of burial as place of death.** Epidat gives the place of burial; epidat (2023 and 2026-10-12)
+  states it as `jl:deathLocation`/`jl:deathLocationURI`, which is not true for everyone (decided 2026-10-12 to keep
+  it). Proper terms (`jl:burialLocation`, `jl:burialLocationURI`) would need an ontology pull request and readers in
+  records-normalized and ep. Also open for epidat: the family relations of the TEI (14,264, no ontology terms), the
+  451 persons of 2023 that Epidat has withdrawn (seven cemeteries, "not yet published"; taken over again when Epidat
+  publishes them), the cemetery GND/coordinates.
 - **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
   article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):
   life dates at the start of the abstract → person (1,077), place links → place, else subject; subsections
