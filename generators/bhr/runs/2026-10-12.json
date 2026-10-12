@@ -1,0 +1,54 @@
+{
+ "slug": "bhr",
+ "run": "run-20261012T143052Z",
+ "generator": "generators/bhr/generate.py",
+ "commit": "95dca09e53d201cb60058b58a4b3a3f65541dec4",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "drop_service_page": true,
+  "drop_empty": true,
+  "split_mixed": true,
+  "occupation_uri": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-12T14:30:52Z",
+ "inputs": [
+  {
+   "name": "previous",
+   "ref": "bhr/2018-10-24/bhr-final-05.ttl.gz",
+   "file": "bhr-final-05.ttl.gz",
+   "sha256": "a64d950ecc572e9fb8bceb9d289647857fcc68bad0363b60ecc6f0625f5c959f",
+   "bytes": 1516250
+  },
+  {
+   "name": "previous",
+   "ref": "bhr/2018-10-24/Entityfacts-bhr-sameas.ttl.gz",
+   "file": "Entityfacts-bhr-sameas.ttl.gz",
+   "sha256": "2f1706d67e03b34d204a6c578b0e2f421104a55b144a0afe2f99bfc1039602f4",
+   "bytes": 32483
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T14:30:53Z",
+ "seconds": 0.4,
+ "notes": [
+  "bhr-final-05.ttl.gz: {'GND number NA (placeholder)': 1692, 'empty literal': 2141, 'jl:occpation as jl:occupationURI': 2900, 'sameAs the EntityFacts service page': 783, 'sameAs with an empty identifier': 9, 'value of another record (mixed records)': 15}",
+  "Entityfacts-bhr-sameas.ttl.gz: {}"
+ ],
+ "files": [
+  {
+   "path": "Entityfacts-bhr-sameas.ttl.gz",
+   "bytes": 29596,
+   "sha256": "9f62e0d592c89b796aa3873cec32dfb45fbd91ad8262568a08008c5461a33962",
+   "triples": 4358
+  },
+  {
+   "path": "bhr-final-05.ttl.gz",
+   "bytes": 1439067,
+   "sha256": "333b321a0641f753dc528a15d928243bf8aeeefcb5b6fae4a2ae54cb8c6a4519",
+   "triples": 26394
+  }
+ ],
+ "version": "2026-10-12"
+}

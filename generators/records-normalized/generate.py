@@ -17,7 +17,8 @@ Files:
 - records-normalized-places.ttl.gz: jl:birthLocationURI / jl:deathLocationURI for the text places, where a dictionary
   gives exactly one IRI (pairs already in the data, places of cm-entities, places of rujen and geo-coordinates);
 - records-normalized-occupations.ttl.gz: jl:occupationURI for text occupations equal to the name of an occupation IRI
-  used in the data, and for every occupation IRI that a record states with jl:occupation or the misspelt jl:occpation
+  used in the data (also those stated as jl:occupationURI), and for every occupation IRI that a record states with
+  jl:occupation or the misspelt jl:occpation
   (bhr), against the literal range of jl:occupation (decided 2026-10-12): one property for all occupation IRIs.
 
 With the parameter legacy_terms, the terms and files of kg-complements instead (jl:occupationConcept; the typo fix as
@@ -32,7 +33,7 @@ from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
 RECORDS = {
-    "bhr": "bhr/2018-10-24", "dbpedia_persons": "dbpedia-persons/2018-10-24", "djh": "djh/2018-10-22",
+    "bhr": "bhr/2026-10-12", "dbpedia_persons": "dbpedia-persons/2018-10-24", "djh": "djh/2018-10-22",
     "epidat": "epidat/2023-07-14", "footprints": "footprints/2024-03-18", "geo_enriched": "geo-enriched/2019-12-18",
     "gnd_persons": "gnd-persons/2018-11-29", "gnd_persons_entityfacts": "gnd-persons-entityfacts/2026-10-12",
     "haskala": "haskala/2019-07-01", "hhkeydocs": "hhkeydocs/2025-03-21", "hirsch_family": "hirsch-family/2018-10-30",
@@ -313,6 +314,8 @@ def generate(run):
                         v["occupation_iri_statements"].add((s, str(o)))
             if local == "occpation":
                 v["occpation"].add((s, o))
+            if local == "occupationURI" and not isinstance(o, Literal):
+                v["occupation_iris"].add(str(o))   # occupation IRIs stated as such (bhr since 2026-10-12)
     # dictionaries of the places
     pairs = defaultdict(set)
     uri_of = defaultdict(set)

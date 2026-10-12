@@ -73,7 +73,7 @@ occupations as IRIs. The original values stay as they are.
   "Place, Country" also the part before the comma); records that already have a place IRI are left as they are.
 - **Occupations** (`records-normalized-occupations.ttl.gz`): `jl:occupationURI` for text occupations that equal the
   name of an occupation IRI used in the data (case, spaces and underscores normalised), and for every occupation IRI
-  that a record states with `jl:occupation` (or the misspelt `jl:occpation` of bhr), whose range is text: one
+  that a record states with `jl:occupation`, whose range is text (bhr states its occupation IRIs as `jl:occupationURI` since its version 2026-10-12): one
   property for all occupation IRIs.
 
 The statements are about the records of the datasets named as inputs, never about entity pages.

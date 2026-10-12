@@ -6,7 +6,7 @@ date = "2017-09-14"
 website = "http://www.steinheim-institut.de/wiki/index.php/Biographisches_Handbuch_der_Rabbiner_%28BHR%29"
 example = "http://data.judaicalink.org/data/bhr/Abarbanell_Hirsch"
 namespaces = ["bhr"]
-stable = "2018-10-24"
+stable = "2026-10-12"
 kind = "records"
 method = ["scraped", "rule-based", "lookup"]
 
@@ -21,6 +21,30 @@ path = "generators/bhr"
 
 [files]
 "Entityfacts-bhr-sameas.ttl.gz" = "Links of the persons to the GND and to EntityFacts (owl:sameAs)."
+
+[[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "95dca09e53d201cb60058b58a4b3a3f65541dec4"
+
+  [[versions.files]]
+  path = "Entityfacts-bhr-sameas.ttl.gz"
+  bytes = 29596
+  sha256 = "9f62e0d592c89b796aa3873cec32dfb45fbd91ad8262568a08008c5461a33962"
+  triples = 4358
+
+  [[versions.files]]
+  path = "bhr-final-05.ttl.gz"
+  bytes = 1439067
+  sha256 = "333b321a0641f753dc528a15d928243bf8aeeefcb5b6fae4a2ae54cb8c6a4519"
+  triples = 26394
+
+  [[versions.files]]
+  path = "bhr-meta.ttl.gz"
+  bytes = 2404
+  sha256 = "03631e16f3b5089bdc3e88d732e50d05309fc761ca80db6fa004f1a318ae81a3"
+  triples = 77
 
 [[versions]]
 version = "2018-10-24"
@@ -43,6 +67,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 2646
   sha256 = "38843d50dc0f7f3e2281f466b21643d4990121fa64e9f9699fb042086e413090"
   triples = 83
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "Errors of the 2018 generator fixed (decision 0024): owl:sameAs to the DNB EntityFacts service page (783) and links with empty identifiers (9) removed, empty literals (2,141) and the GND placeholder \"NA\" (1,692) removed, the mixed records of Glückmann and Gunzenhausen separated (15 values of other records removed), jl:occpation stated as jl:occupationURI (2,900). Made from 2018-10-24 by generators/bhr/generate.py."
 
 [[changelog]]
 date = "2026-10-12"

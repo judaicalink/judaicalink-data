@@ -31,4 +31,7 @@ Differences of the dataset (decided 2026-10-12):
   where the death is before the birth get neither (51 records, 102 dates; 70 triples of the port dropped);
 - `jl:occupationURI` instead of `jl:occupationConcept`, and every occupation IRI stated with `jl:occupation` or
   `jl:occpation` (15,340, against the literal range of `jl:occupation`) is stated as `jl:occupationURI`; the typo fix
-  is part of that, so there is no separate file: 22,155 occupation triples.
+  is part of that, so there is no separate file: 22,155 occupation triples. Since bhr 2026-10-12 (decision 0024)
+  bhr states its 2,900 occupation IRIs as `jl:occupationURI` itself: they are no longer restated here (12,440 IRIs,
+  19,255 occupation triples), and the IRIs stated as `jl:occupationURI` count as occupation IRIs used in the data
+  (the text matches stay the same, 6,815).
