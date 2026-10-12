@@ -6,7 +6,7 @@ date = "2025-07-09"
 website = "http://ontology.judaicalink.org"
 example = "http://data.judaicalink.org/ontology/describedAt"
 namespaces = ["ontology"]
-stable = "2025-11-27"
+stable = "2026-10-12"
 kind = "ontology"
 method = ["curated"]
 
@@ -54,6 +54,11 @@ description = "The ontology as of judaicalink-ontology b26c961, as served on ont
   bytes = 1710
   sha256 = "21762f0fca59f12e4326358643be3cac98db973d49409ac306143e31138561c8"
   triples = 57
+
+[[changelog]]
+date = "2026-10-12"
+author = "Kai Eckert"
+text = "Version 2026-10-12 made the stable version (the data versions of 2026-10-12 use its terms)."
 
 [[changelog]]
 date = "2026-10-12"

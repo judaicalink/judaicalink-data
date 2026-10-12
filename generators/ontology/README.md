@@ -21,7 +21,7 @@ judaicalink-ontology repository.
 
 Imported (`jl import-files`): `judaicalink-ontology.ttl` at `4597e7f`, after pull requests 18, 19 and 20 were merged
 (the terms of decision 0020), gzipped; re-running `generate.py` on the Markdown at that commit gives the same bytes.
-Preview until it is made stable (0020).
+Made the stable version on 2026-10-12.
 
 ## Inputs
 
