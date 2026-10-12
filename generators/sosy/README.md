@@ -18,7 +18,7 @@ Live only: the Soundscape Synagoge API (answers 401 since; a rerun needs access 
 
 ## Reproduction
 
-**Not reproducible.** Data issue: `jl:occupation` points to HTML views (`https://data.judaicalink.org/data/html/occupation/Kantor`).
+**Not reproducible.** Data issue: `jl:occupation` points to HTML views (`https://data.judaicalink.org/data/html/occupation/Kantor`); fixed in 2026-10-12 (below).
 
 ## Original files
 
@@ -27,3 +27,10 @@ Live only: the Soundscape Synagoge API (answers 401 since; a rerun needs access 
 | File | Repository | Commit (date, author) | Note |
 |---|---|---|---|
 | [`soundscape-synagoge/scripts/generator.py`](https://github.com/judaicalink/judaicalink-generators/blob/add17c080d559b584a0a2b47e08aeca159df8485/soundscape-synagoge/scripts/generator.py) | judaicalink-generators | `add17c0` (2022-07-07, bsesic) |  |
+
+## Framework generator (2026-10-12)
+
+`generate.py` makes a new version from 2022-07-07 (decision 0024; the API cannot be read again). Fix `occupation_iris`
+(default on): the 204 addresses of HTML views in `jl:occupation` become the occupation IRIs
+`http://data.judaicalink.org/data/occupation/<name>` (all 27 are used by gnd-persons), stated with `jl:occupationURI`;
+the 59 occupations given as text stay. With the fix off, the output has the same 1,312 triples as 2022-07-07 (checked).
