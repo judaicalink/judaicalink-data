@@ -75,29 +75,28 @@ def generate(run):
         c = Counter()
         examples = {}
         lat, lon, wkt = {}, {}, defaultdict(set)
-        for p in run.inputs(name):
-            for s, pred, o in rdf.read_triples(p, report):
-                local = pred[len(JLO):] if pred.startswith(JLO) else None
-                if local in ("birthDate", "deathDate") and name in rn.RECORDS and isinstance(o, Literal) \
-                        and not s.startswith(rn.EP) and o.value.strip():
-                    dates.add((str(s), local, o.value))
-                elif local == "occpation":
-                    c["occpation"] += 1
-                elif local == "occupation" and not isinstance(o, Literal):
-                    c["occupation IRI"] += 1
-                    examples.setdefault("occupation IRI", o)
-                    if o.startswith(HTML_VIEW):
-                        c["occupation HTML view"] += 1
-                elif pred == DCT + "created" and isinstance(o, Literal) and o.datatype in (None, rdf.XSD_STRING) \
-                        and not o.lang:
-                    c["created"] += 1
-                    examples.setdefault("created", o.value)
-                elif local == "lat" and isinstance(o, Literal):
-                    lat[s] = o.value
-                elif local == "lon" and isinstance(o, Literal):
-                    lon[s] = o.value
-                elif pred == GEO_WKT and isinstance(o, Literal):
-                    wkt[s].add(o.value)
+        for s, pred, o in run.triples(name, report):
+            local = pred[len(JLO):] if pred.startswith(JLO) else None
+            if local in ("birthDate", "deathDate") and name in rn.RECORDS and isinstance(o, Literal) \
+                    and not s.startswith(rn.EP) and o.value.strip():
+                dates.add((str(s), local, o.value))
+            elif local == "occpation":
+                c["occpation"] += 1
+            elif local == "occupation" and not isinstance(o, Literal):
+                c["occupation IRI"] += 1
+                examples.setdefault("occupation IRI", o)
+                if o.startswith(HTML_VIEW):
+                    c["occupation HTML view"] += 1
+            elif pred == DCT + "created" and isinstance(o, Literal) and o.datatype in (None, rdf.XSD_STRING) \
+                    and not o.lang:
+                c["created"] += 1
+                examples.setdefault("created", o.value)
+            elif local == "lat" and isinstance(o, Literal):
+                lat[s] = o.value
+            elif local == "lon" and isinstance(o, Literal):
+                lon[s] = o.value
+            elif pred == GEO_WKT and isinstance(o, Literal):
+                wkt[s].add(o.value)
         target = version_iri(ref)
         if report.get("rdf_star"):
             n = report["rdf_star"]

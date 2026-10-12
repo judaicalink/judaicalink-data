@@ -37,6 +37,10 @@ definition = "Classes and properties used to describe the data."
 label = "Vocabulary"
 definition = "A controlled vocabulary: concepts used as values in the data or in its description."
 
+[kind.values.correction]
+label = "Correction"
+definition = "Corrections of the data of other datasets: triples it adds (its data) and triples it deletes from every graph that contains them (a SPARQL Update file); applied after all other datasets."
+
 [kind.values.support]
 label = "Support data"
 definition = "Data that other datasets are made from or that describes them (caches, label lists, page metadata, agents), rather than data about the entities themselves."

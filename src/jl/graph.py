@@ -12,6 +12,7 @@ the order in which the triples were read (file order), never in hash order, so t
 inputs. Joins are written in Python; generators sort what they write (0011).
 """
 
+from .corrections import key
 from .rdf import read_triples
 
 
@@ -24,10 +25,11 @@ class Graph:
         self.size = 0
 
     @classmethod
-    def load(cls, paths):
+    def load(cls, paths, skip=None):
+        """skip: a set of triple keys (corrections.key) to leave out, the deletions of the corrections (0023)."""
         g = cls()
         for p in paths:
-            g.add_file(p)
+            g.add_file(p, skip)
         return g
 
     def _term(self, t):
@@ -45,13 +47,16 @@ class Graph:
             self._pos.setdefault(p, {}).setdefault(o, {})[s] = None
         return True
 
-    def add_file(self, path):
-        report, n, new = {}, 0, 0
-        for s, p, o in read_triples(path, report):
+    def add_file(self, path, skip=None):
+        report, n, new, skipped = {}, 0, 0, 0
+        for t in read_triples(path, report):
             n += 1
-            new += self.add(s, p, o)
+            if skip and key(t) in skip:
+                skipped += 1
+                continue
+            new += self.add(*t)
         self.files.append({"path": str(path), "statements": n, "new_triples": new,
-                           "rdf_star": report.get("rdf_star", 0)})
+                           "rdf_star": report.get("rdf_star", 0), "deleted_by_corrections": skipped})
 
     def __len__(self):
         return self.size

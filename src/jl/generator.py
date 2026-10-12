@@ -33,7 +33,7 @@ import time
 import traceback
 from pathlib import Path
 
-from . import catalog, inputs, rdf, runs, turtle
+from . import catalog, corrections, inputs, rdf, runs, turtle
 from .config import GENERATORS, ROOT
 from .graph import Graph
 
@@ -164,16 +164,19 @@ def utc(t=None):
 
 
 class Run:
-    """What a generator gets: run.input(name), run.inputs(name), run.graph(*names), run.params, run.log(),
-    run.note(), run.write_turtle(path, triples), run.copy_input(name), run.path(path)."""
+    """What a generator gets: run.input(name), run.inputs(name), run.graph(*names), run.triples(name), run.params,
+    run.log(), run.note(), run.write_turtle(path, triples), run.write_deletions(path, blocks), run.copy_input(name),
+    run.path(path)."""
 
-    def __init__(self, slug, run_id, directory, params, inputs, logf):
+    def __init__(self, slug, run_id, directory, params, inputs, logf, deleted=frozenset()):
         self.slug, self.id, self.dir = slug, run_id, directory
         self.params = params
         self._inputs = inputs
         self._logf = logf
         self.notes = []
         self.written = {}   # path -> {triples}
+        self.deleted = deleted   # keys of the triples deleted by the stable corrections (decision 0023)
+        self.deleted_from = {}   # input name -> number of statements left out
 
     def log(self, *msg):
         line = " ".join(str(m) for m in msg)
@@ -198,15 +201,26 @@ class Run:
 
     def graph(self, *names):
         """The framework's index of the RDF files of the named inputs (all inputs if none are named)."""
-        paths = [p for n in (names or self._inputs) for p in self.inputs(n)]
-        g = Graph.load(paths)
-        self.log(f"index: {len(g):,} triples from {len(paths)} file(s)")
+        g = Graph()
+        n_files = 0
+        for n in (names or self._inputs):
+            for p in self.inputs(n):
+                g.add_file(p, self.deleted)
+                n_files += 1
+                if g.files[-1]["deleted_by_corrections"]:
+                    self.deleted_from[n] = self.deleted_from.get(n, 0) + g.files[-1]["deleted_by_corrections"]
+        self.log(f"index: {len(g):,} triples from {n_files} file(s)")
         return g
 
-    def triples(self, name):
-        """The triples of the RDF files of one input, as read (no index)."""
+    def triples(self, name, report=None):
+        """The triples of the RDF files of one input, as read (no index), without the triples deleted by the stable
+        corrections. report: as for rdf.read_triples."""
         for p in self.inputs(name):
-            yield from rdf.read_triples(p)
+            for t in rdf.read_triples(p, report):
+                if self.deleted and corrections.key(t) in self.deleted:
+                    self.deleted_from[name] = self.deleted_from.get(name, 0) + 1
+                    continue
+                yield t
 
     def path(self, rel):
         """A path in the run directory for a file the generator writes itself."""
@@ -220,6 +234,14 @@ class Run:
         info = turtle.write(self.path(rel), triples, prefixes=prefixes)
         self.written[rel] = {"triples": info["triples"]}
         self.log(f"wrote {rel}: {info['triples']:,} triples, {info['bytes']:,} bytes")
+        return info
+
+    def write_deletions(self, rel, blocks, prefixes=None):
+        """The deletions file of a correction dataset (decision 0023): blocks [(comment lines, triples)]."""
+        if not rel.endswith(corrections.SUFFIX):
+            raise GeneratorError(f"a deletions file is named <slug>{corrections.SUFFIX}: {rel}")
+        info = corrections.write(self.path(rel), blocks, prefixes)
+        self.log(f"wrote {rel}: {info['deletions']:,} deletions, {info['bytes']:,} bytes")
         return info
 
     def copy_input(self, name, rel=None):
@@ -284,7 +306,17 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
                          for files in resolved.values() for i in files if "input" in i}
             if described:
                 record["input_descriptions"] = described
-            run = Run(slug, run_id, d, params, resolved, logf)
+            deleted = set()
+            if getattr(module, "CORRECTIONS", True):
+                applied = []
+                for c_slug, c_version, c_path, _local in corrections.stable_deletions(cat, exclude=(slug,)):
+                    f = resolve(cfg, cat, f"{c_slug}/{c_version}/{c_path}")[0]
+                    rows = corrections.read(f["path"])
+                    deleted.update(corrections.key(t) for t in rows)
+                    applied.append({"ref": f["ref"], "sha256": f["sha256"], "deletions": len(rows)})
+                if applied:
+                    record["corrections"] = applied
+            run = Run(slug, run_id, d, params, resolved, logf, frozenset(deleted))
             run.log(f"{slug}/{run_id}: commit {commit}" + (f" (uncommitted: {', '.join(dirty)})" if dirty else ""))
             module.generate(run)
             record["status"] = "ok"
@@ -296,6 +328,8 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
         record["seconds"] = round(time.time() - started, 1)
         if run is not None:
             record["notes"] = run.notes
+            if run.deleted_from:
+                record["deleted_by_corrections"] = dict(sorted(run.deleted_from.items()))
         files = []
         for p in sorted(x for x in d.rglob("*") if x.is_file() and x.name not in ("run.json", "log.txt")):
             rel = p.relative_to(d).as_posix()

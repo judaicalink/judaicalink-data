@@ -26,11 +26,16 @@ def generate(run):
 
 
 class FakeEntry:
+    data = {"kind": "records"}
+    stable = None
+
     def version(self, vid):
         return None
 
 
 class FakeCatalog:
+    entries = {"test": FakeEntry()}
+
     def get(self, slug):
         return FakeEntry() if slug == "test" else None
 

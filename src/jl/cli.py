@@ -6,7 +6,7 @@ import os
 import sys
 from pathlib import Path
 
-from . import canonical, catalog, config, generator, inputs, rdf, runs, versions
+from . import canonical, catalog, config, corrections, generator, inputs, rdf, runs, versions
 from .agents import AgentError, Registry, person_iri, software_iri
 
 def emit(args, obj, text):
@@ -575,6 +575,12 @@ def cmd_check_inputs(args, cfg):
     return 1 if bad else 0
 
 
+def cmd_check_corrections(args, cfg):
+    n, stale, conflicts = corrections.check(catalog.Catalog(), cfg.require("store"))
+    print(f"{n} correction dataset(s), {stale} stale deletion(s), {conflicts} conflict(s)", file=sys.stderr)
+    return 1 if stale or conflicts else 0
+
+
 def cmd_clean_runs(args, cfg):
     gone = runs.clean(cfg.require("build"), args.slug, dry_run=args.dry_run)
     for d in gone:
@@ -705,6 +711,8 @@ def parser():
         (("--move",), {"action": "store_true", "help": "move instead of copy"}), json_out=False)
     add("check-inputs", cmd_check_inputs, "check the inputs area: every file described, sizes and checksums",
         (("--quick",), {"action": "store_true", "help": "sizes only, no checksums"}), json_out=False)
+    add("check-corrections", cmd_check_corrections, "check the stable corrections (0023) against the stable versions: "
+        "stale deletions, conflicts, which datasets they concern", json_out=False)
     add("clean-runs", cmd_clean_runs, "delete the runs in the build area that did not become a version",
         (("slug",), {"nargs": "*", "help": "only these datasets (default: all)"}),
         (("--dry-run",), {"action": "store_true", "help": "only list them"}), json_out=False)

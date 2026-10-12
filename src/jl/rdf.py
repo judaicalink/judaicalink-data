@@ -226,6 +226,7 @@ class TurtleParser:
     """A Turtle 1.1 reader that streams its input. RDF-star statements are left out and counted (they occur
     in legacy dumps and are not RDF 1.1); blank nodes keep their labels, anonymous ones are labelled anon<n>."""
 
+    TOKENS = _TOKENS
     CHUNK = 1 << 20
     MARGIN = 4096
 
@@ -256,7 +257,7 @@ class TurtleParser:
         while True:
             if not self.eof and len(self.buf) - self.pos < 16 * self.MARGIN:
                 self.fill()
-            m = _TOKENS.match(self.buf, self.pos)
+            m = self.TOKENS.match(self.buf, self.pos)
             # A token near the end of the buffer may be cut (e.g. "1." of "1.5"), and a long literal that does
             # not fit would be read as the empty string '""': read more and match again.
             if m is None or not self.eof and (m.end() > len(self.buf) - self.MARGIN or (

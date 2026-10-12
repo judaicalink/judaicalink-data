@@ -32,7 +32,7 @@ A = IRI(RDF_TYPE)
 MEDIA_TYPES = [(".ttl", "text/turtle"), (".nt", "application/n-triples"), (".n3", "text/n3"),
                (".rdf", "application/rdf+xml"), (".owl", "application/rdf+xml"),
                (".json", "application/json"), (".csv", "text/csv"), (".tsv", "text/tab-separated-values"),
-               (".xml", "application/xml"), (".txt", "text/plain")]
+               (".xml", "application/xml"), (".txt", "text/plain"), (".ru", "application/sparql-update")]
 
 
 def dataset_iri(slug):

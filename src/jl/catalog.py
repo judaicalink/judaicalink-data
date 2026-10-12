@@ -394,6 +394,26 @@ def check_local_files(r, e, dumps, complete=False):
                     r.error(where, f"sha256 differs from the copy in {root}")
 
 
+def check_corrections(r, e, dumps):
+    """Deletions files (decision 0023) only in correction datasets, in the fixed form (read from a local copy)."""
+    from . import corrections
+    for v in e.versions():
+        for f in v.get("files", []):
+            if not isinstance(f, dict) or not isinstance(f.get("path"), str) or not corrections.is_deletions(f["path"]):
+                continue
+            where = f"{e.path.name} {e.name}/{v.get('version')}/{f['path']}"
+            if e.data.get("kind") != corrections.KIND:
+                r.error(where, f"a deletions file in a dataset of kind {e.data.get('kind')!r} (only kind 'correction', 0023)")
+                continue
+            for root in dumps:
+                local = root / e.name / str(v.get("version")) / f["path"]
+                if local.is_file():
+                    try:
+                        corrections.read(local)
+                    except corrections.ParseError as err:
+                        r.error(where, f"not in the form of decision 0023: {err}")
+
+
 def check_vocabulary(r, cat):
     """kind and method use the values of catalog/vocabulary.toml (0013, 0018)."""
     from . import vocabulary
@@ -433,6 +453,7 @@ def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
     decisions = {p.name[:4] for p in DECISIONS.glob("[0-9][0-9][0-9][0-9]-*.md")}
     for e in cat.entries.values():
         check_entry(r, e, set(cat.entries), decisions)
+        check_corrections(r, e, dumps)
         if dumps:
             check_local_files(r, e, dumps, complete)
     check_agents(r, cat, registry)
