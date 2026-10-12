@@ -3,10 +3,10 @@ slug = "records-normalized"
 title = "Normalised dates, places and occupations of the records"
 author = "Kai Eckert"
 date = "2026-10-12"
+stable = "2026-10-12"
 kind = "complement"
 method = ["rule-based", "deterministic"]
 inputs = ["bhr", "dbpedia-persons", "djh", "epidat", "footprints", "geo-enriched", "gnd-persons", "gnd-persons-entityfacts", "haskala", "hhkeydocs", "hirsch-family", "jre", "nli-records", "sosy", "ubffm-persons", "rujen", "geo-coordinates", "cm-entities"]
-stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -21,7 +21,7 @@ path = "generators/records-normalized"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
+commit = "dc401a969c2fdafccdfd2e43afb782c220801a98"
 
   [[versions.files]]
   path = "records-normalized-dates.ttl.gz"
@@ -44,7 +44,7 @@ commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
   [[versions.files]]
   path = "records-normalized-meta.ttl.gz"
   bytes = 3399
-  sha256 = "6367f83456e61521ebe0cf09010442593e2647c83416ae30d0ace513373df67e"
+  sha256 = "cc6bb1c8b4ca123bd4834e7c12daf648d760de3a926622c21792fa31b6ca8795"
   triples = 135
 
 [[changelog]]

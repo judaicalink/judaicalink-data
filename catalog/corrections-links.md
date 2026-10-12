@@ -3,9 +3,9 @@ slug = "corrections-links"
 title = "Corrections of identity links"
 author = "Kai Eckert"
 date = "2026-10-12"
+stable = "2026-10-12"
 kind = "correction"
 method = ["curated"]
-stable = "2026-10-12"
 inputs = ["interlinks", "2014links", "dbpedia-persons", "gnd-persons", "ubffm-persons", "hhkeydocs", "nli-records", "ls-nli-legacy", "dbp-wiki-geo-linking", "rujen", "cm-entities"]
 
 [license]
@@ -21,12 +21,12 @@ path = "generators/corrections-links"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
+commit = "dc401a969c2fdafccdfd2e43afb782c220801a98"
 
   [[versions.files]]
   path = "corrections-links-deletions.ru.gz"
-  bytes = 2618
-  sha256 = "c9b40a32d876093c87af3a272c0a1eda2bb1e9de76a7544d2b699d6deff85b48"
+  bytes = 2723
+  sha256 = "a340acd302cd68d5926e402c05eac48cbf43cb6e724c6d8cf32632427d4909b0"
 
   [[versions.files]]
   path = "corrections-links.ttl.gz"
@@ -36,9 +36,9 @@ commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
 
   [[versions.files]]
   path = "corrections-links-meta.ttl.gz"
-  bytes = 2193
-  sha256 = "f5c5c76579c0efba3dfec7ef5033e7b806b13be78d94dac49b1a2f971cc7c520"
-  triples = 95
+  bytes = 2297
+  sha256 = "759a9e5084c4ce88c6da4a4c4df19f183ec84118a11ea76a9aee171b48df0634"
+  triples = 108
 
 [[changelog]]
 date = "2026-10-12"

@@ -3,11 +3,11 @@ slug = "quality-annotations"
 title = "Quality annotations for the JudaicaLink datasets"
 author = "Kai Eckert"
 date = "2026-10-12"
+stable = "2026-10-12"
 kind = "complement"
 method = ["rule-based"]
 namespaces = ["quality-annotations"]
 inputs = ["bhr", "dbpedia-persons", "djh", "epidat", "footprints", "geo-enriched", "gnd-persons", "gnd-persons-entityfacts", "haskala", "hhkeydocs", "hirsch-family", "jre", "nli-records", "sosy", "ubffm-persons", "compact-memory", "geo-coordinates", "nrwbibdjg"]
-stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -22,7 +22,7 @@ path = "generators/quality-annotations"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
+commit = "dc401a969c2fdafccdfd2e43afb782c220801a98"
 
   [[versions.files]]
   path = "quality-annotations.ttl.gz"
@@ -32,8 +32,8 @@ commit = "0413afaf730617f597a8de2c92865fed1e6e736d"
 
   [[versions.files]]
   path = "quality-annotations-meta.ttl.gz"
-  bytes = 2659
-  sha256 = "ae9ef5f051c2a5abee62766f9614d4c2d22d29b6567e34e9e29c365224b7caf5"
+  bytes = 2656
+  sha256 = "37742a09148c02abcb50206ddc2b142da961ff4026988afc27db66228e2ddfa3"
   triples = 113
 
 [[changelog]]
