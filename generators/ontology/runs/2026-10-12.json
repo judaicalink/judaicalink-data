@@ -1,0 +1,28 @@
+{
+ "slug": "ontology",
+ "run": "run-20261012T203954Z",
+ "mode": "import",
+ "commit": "cc6b596ee5b2945858e78cc31841de925d903604",
+ "uncommitted": [],
+ "started": "2026-10-12T20:39:54Z",
+ "status": "ok",
+ "origin": "https://github.com/judaicalink/judaicalink-ontology/blob/4597e7f24e57796b62175269560398c75db63250/judaicalink-ontology.ttl",
+ "description": "The ontology as of judaicalink-ontology 4597e7f (pull requests 18, 19, 20 merged): judaicalink-ontology.ttl, extracted by generate.py from judaicalink-ontology.md, gzipped.",
+ "sources": [
+  "https://github.com/judaicalink/judaicalink-ontology/blob/4597e7f24e57796b62175269560398c75db63250/generate.py",
+  "https://github.com/judaicalink/judaicalink-ontology/blob/4597e7f24e57796b62175269560398c75db63250/judaicalink-ontology.md"
+ ],
+ "notes": [
+  "generate.py run on judaicalink-ontology.md at 4597e7f gives the same bytes as the committed judaicalink-ontology.ttl."
+ ],
+ "inputs": [],
+ "files": [
+  {
+   "path": "judaicalink-ontology.ttl.gz",
+   "bytes": 4330,
+   "sha256": "5aec92e621be7c079be0e9e6391c0877b00ac0fa903320a2ac007e3e19f322a0",
+   "triples": 380
+  }
+ ],
+ "version": "2026-10-12"
+}

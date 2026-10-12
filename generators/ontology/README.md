@@ -17,6 +17,12 @@ judaicalink-ontology repository.
 **Exact**: the kept file is `judaicalink-ontology.ttl` at `b26c961` (the Action's commit after content commit
 `47f6287`); re-running `generate.py` gives the same bytes. It is the ontology served on ontology.judaicalink.org.
 
+## Version 2026-10-12
+
+Imported (`jl import-files`): `judaicalink-ontology.ttl` at `4597e7f`, after pull requests 18, 19 and 20 were merged
+(the terms of decision 0020), gzipped; re-running `generate.py` on the Markdown at that commit gives the same bytes.
+Preview until it is made stable (0020).
+
 ## Inputs
 
 `judaicalink-ontology.md` in the judaicalink-ontology repository.

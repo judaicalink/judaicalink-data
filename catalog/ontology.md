@@ -20,6 +20,25 @@ repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/ontology"
 
 [[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "cc6b596ee5b2945858e78cc31841de925d903604"
+description = "The ontology as of judaicalink-ontology 4597e7f, with the terms of pull requests 18 (Compact Memory, corpus presence), 19 (normalised person data) and 20 (entity pages)."
+
+  [[versions.files]]
+  path = "judaicalink-ontology.ttl.gz"
+  bytes = 4330
+  sha256 = "5aec92e621be7c079be0e9e6391c0877b00ac0fa903320a2ac007e3e19f322a0"
+  triples = 380
+
+  [[versions.files]]
+  path = "ontology-meta.ttl.gz"
+  bytes = 1666
+  sha256 = "9e8a7904650dc2fc5fde3914888635a8b8e1e990b767883347c2baac231cf2fb"
+  triples = 58
+
+[[versions]]
 version = "2025-11-27"
 issued = "2025-11-27"
 author = "Benjamin Schnabel"
@@ -35,6 +54,12 @@ description = "The ontology as of judaicalink-ontology b26c961, as served on ont
   bytes = 1710
   sha256 = "21762f0fca59f12e4326358643be3cac98db973d49409ac306143e31138561c8"
   triples = 57
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "New terms for Compact Memory and corpus presence, normalised person data and entity pages (decision 0020); comment of jl:represents corrected."
 
 [[changelog]]
 date = "2026-10-12"
