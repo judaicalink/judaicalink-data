@@ -1,15 +1,15 @@
 {
  "slug": "records-normalized",
- "run": "run-20261012T154753Z",
+ "run": "run-20261012T183731Z",
  "generator": "generators/records-normalized/generate.py",
- "commit": "b3bbaa879db15c0feced64fadaa8ddab38a705e7",
+ "commit": "db9a7f5eac66dcc91f8728aadfe7a5639dc93996",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
   "legacy_terms": false
  },
  "input_overrides": [],
- "started": "2026-10-12T15:47:53Z",
+ "started": "2026-10-12T18:37:31Z",
  "inputs": [
   {
    "name": "bhr",
@@ -55,10 +55,10 @@
   },
   {
    "name": "epidat",
-   "ref": "epidat/2023-07-14/epidat-final-01.ttl.gz",
-   "file": "epidat-final-01.ttl.gz",
-   "sha256": "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a",
-   "bytes": 1533441
+   "ref": "epidat/2026-10-12/epidat.ttl.gz",
+   "file": "epidat.ttl.gz",
+   "sha256": "825eae34c778cb84412e00877da8b1995a5bb062828a77ecee365d8cf094bee6",
+   "bytes": 1727646
   },
   {
    "name": "footprints",
@@ -216,10 +216,10 @@
   },
   {
    "name": "sosy",
-   "ref": "sosy/2022-07-07/sosy-final-01.ttl.gz",
+   "ref": "sosy/2026-10-12/sosy-final-01.ttl.gz",
    "file": "sosy-final-01.ttl.gz",
-   "sha256": "89890dd8b42bb09afd30809e8b8f963abf0e07a5ba402ecdf13e36fb295297d8",
-   "bytes": 12497
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "bytes": 12555
   },
   {
    "name": "ubffm_persons",
@@ -244,10 +244,10 @@
   },
   {
    "name": "geo_coordinates",
-   "ref": "geo-coordinates/2018-08-08/city-geocoor-05.ttl.gz",
-   "file": "city-geocoor-05.ttl.gz",
-   "sha256": "c4fdf74620e2023a938bbab11103b1af87c5cef0daf5f8ae40b0c74d1ab18004",
-   "bytes": 142001
+   "ref": "geo-coordinates/2026-10-12/geo-coordinates.ttl.gz",
+   "file": "geo-coordinates.ttl.gz",
+   "sha256": "b059aeb643db2567c8f9988cc4df0080d62494006fc55ede2a93fc2b4ab01ad2",
+   "bytes": 155920
   },
   {
    "name": "cm_entities",
@@ -265,13 +265,13 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:48:11Z",
- "seconds": 18.1,
+ "finished": "2026-10-12T18:37:50Z",
+ "seconds": 18.9,
  "notes": [
-  "Dates: {'death before birth': 102, 'empty': 28, 'normalised': 186577, 'not parsed': 585, 'uncertain': 145}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
-  "Places: {'already linked': 2646, 'not linked': 40946, 'via cm-entities-wikidata places': 8110, 'via pairs in the data': 34625, 'via rujen and geo-coordinates places': 7018}.",
-  "Occupations: 6,809 text occupations matched to one of 511 occupation IRIs, 29,877 not matched.",
-  "Occupation IRIs stated with jl:occupation or jl:occpation: 12,440, as jl:occupationURI (12,440 new)."
+  "Dates: {'death before birth': 58, 'empty': 28, 'normalised': 189410, 'not parsed': 625, 'uncertain': 190}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
+  "Places: {'already linked': 43403, 'not linked': 28501, 'via cm-entities-wikidata places': 3995, 'via pairs in the data': 18683, 'via rujen and geo-coordinates places': 5538}.",
+  "Occupations: 6,725 text occupations matched to one of 484 occupation IRIs, 23,258 not matched.",
+  "Occupation IRIs stated with jl:occupation or jl:occpation: 12,236, as jl:occupationURI (12,236 new)."
  ],
  "deleted_by_corrections": {
   "cm_entities": 1,
@@ -284,21 +284,21 @@
  "files": [
   {
    "path": "records-normalized-dates.ttl.gz",
-   "bytes": 1382031,
-   "sha256": "8a879242abc51b739ed5af2969f360928f8be27c60e93b6f695d4380e0cb4bdf",
-   "triples": 186589
+   "bytes": 1269594,
+   "sha256": "1454aee91f1a76b72d874f71e0d380705a82dddc90fb309fa70117be7604acf4",
+   "triples": 189470
   },
   {
    "path": "records-normalized-occupations.ttl.gz",
-   "bytes": 147401,
-   "sha256": "6736f58a74c065e7fb3427977e6dd846df9523f8ae768062f42f739a79aedd54",
-   "triples": 19249
+   "bytes": 143092,
+   "sha256": "a67460dde18b64ff97694b0a26c61f89a192c72c874b239abab2841a7813f622",
+   "triples": 18961
   },
   {
    "path": "records-normalized-places.ttl.gz",
-   "bytes": 416706,
-   "sha256": "3518c84d52efb2d7e91cb911cf417f8c705dda24b4e51265b524d3dcbceebac1",
-   "triples": 49750
+   "bytes": 236874,
+   "sha256": "afd745bce6ea8bc006a0b2977b208077226e74318bbcf53ada0e010f8aa46993",
+   "triples": 28213
   }
  ],
  "version": "2026-10-12"

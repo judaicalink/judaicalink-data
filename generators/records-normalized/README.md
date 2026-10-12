@@ -35,3 +35,8 @@ Differences of the dataset (decided 2026-10-12):
   bhr states its 2,900 occupation IRIs as `jl:occupationURI` itself: they are no longer restated here (12,440 IRIs,
   19,255 occupation triples), and the IRIs stated as `jl:occupationURI` count as occupation IRIs used in the data
   (the text matches stay the same, 6,815).
+
+Made again on 2026-10-12 (unpublished, with ep) for epidat, sosy and geo-coordinates 2026-10-12: 189,410 dates
+normalised (epidat now one record per person), 58 records with the death before the birth; the places of
+geo-coordinates are linked under their new IRIs (`data/geo-coordinates/<name>`); 28,213 place and 18,961 occupation
+triples (epidat states its places as IRIs itself).

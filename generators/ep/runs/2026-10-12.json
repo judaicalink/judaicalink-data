@@ -1,13 +1,13 @@
 {
  "slug": "ep",
- "run": "run-20261012T155409Z",
+ "run": "run-20261012T183837Z",
  "generator": "generators/ep/generate.py",
- "commit": "0151ae9c41e4be21b6d5aa8da4df2a959c4b095b",
+ "commit": "db9a7f5eac66dcc91f8728aadfe7a5639dc93996",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T15:54:09Z",
+ "started": "2026-10-12T18:38:37Z",
  "inputs": [
   {
    "name": "previous",
@@ -165,31 +165,31 @@
   },
   {
    "name": "rujen_translation",
-   "ref": "rujen-translation/2020-09-28/rujen-en-abstract-translations.ttl",
-   "file": "rujen-en-abstract-translations.ttl",
-   "sha256": "856b871da06ebc338095f945ac79e9011db52475db6ae541fc4deb8adf7ba5ec",
-   "bytes": 17238866
-  },
-  {
-   "name": "rujen_translation",
-   "ref": "rujen-translation/2020-09-28/rujen-en-label-translations.ttl",
-   "file": "rujen-en-label-translations.ttl",
-   "sha256": "01d0e12173a9d03759da2c016ec887e3f88f48d9766140acdfd1f9edd847aa93",
-   "bytes": 1531668
-  },
-  {
-   "name": "rujen_translation",
-   "ref": "rujen-translation/2020-09-28/rujen-de-abstract-translations.ttl",
+   "ref": "rujen-translation/2026-10-12/rujen-de-abstract-translations.ttl",
    "file": "rujen-de-abstract-translations.ttl",
-   "sha256": "f507eb37509345598ee09089256c459ab89ad3899196ffd1aff2320a09c95a55",
-   "bytes": 17807166
+   "sha256": "7f0cb7250ec9e4990d1ec7c7ac776bc978188b136e25ba36a8300fdb7b6669c5",
+   "bytes": 14104749
   },
   {
    "name": "rujen_translation",
-   "ref": "rujen-translation/2020-09-28/rujen-de-label-translations.ttl",
+   "ref": "rujen-translation/2026-10-12/rujen-de-label-translations.ttl",
    "file": "rujen-de-label-translations.ttl",
    "sha256": "e3e70a8bbe6c1a572122cba5eb34a9402d90e829ba281d288a74845daab06465",
    "bytes": 1534116
+  },
+  {
+   "name": "rujen_translation",
+   "ref": "rujen-translation/2026-10-12/rujen-en-abstract-translations.ttl",
+   "file": "rujen-en-abstract-translations.ttl",
+   "sha256": "6387e7a974fbfd095707de0374e2aa2616e405020233569beb0a2c4649b7f042",
+   "bytes": 13384228
+  },
+  {
+   "name": "rujen_translation",
+   "ref": "rujen-translation/2026-10-12/rujen-en-label-translations.ttl",
+   "file": "rujen-en-label-translations.ttl",
+   "sha256": "01d0e12173a9d03759da2c016ec887e3f88f48d9766140acdfd1f9edd847aa93",
+   "bytes": 1531668
   },
   {
    "name": "bhr",
@@ -228,10 +228,10 @@
   },
   {
    "name": "epidat",
-   "ref": "epidat/2023-07-14/epidat-final-01.ttl.gz",
-   "file": "epidat-final-01.ttl.gz",
-   "sha256": "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a",
-   "bytes": 1533441
+   "ref": "epidat/2026-10-12/epidat.ttl.gz",
+   "file": "epidat.ttl.gz",
+   "sha256": "825eae34c778cb84412e00877da8b1995a5bb062828a77ecee365d8cf094bee6",
+   "bytes": 1727646
   },
   {
    "name": "stolpersteine",
@@ -249,10 +249,10 @@
   },
   {
    "name": "sosy",
-   "ref": "sosy/2022-07-07/sosy-final-01.ttl.gz",
+   "ref": "sosy/2026-10-12/sosy-final-01.ttl.gz",
    "file": "sosy-final-01.ttl.gz",
-   "sha256": "89890dd8b42bb09afd30809e8b8f963abf0e07a5ba402ecdf13e36fb295297d8",
-   "bytes": 12497
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "bytes": 12555
   },
   {
    "name": "gba",
@@ -305,10 +305,10 @@
   },
   {
    "name": "geo_coordinates",
-   "ref": "geo-coordinates/2018-08-08/city-geocoor-05.ttl.gz",
-   "file": "city-geocoor-05.ttl.gz",
-   "sha256": "c4fdf74620e2023a938bbab11103b1af87c5cef0daf5f8ae40b0c74d1ab18004",
-   "bytes": 142001
+   "ref": "geo-coordinates/2026-10-12/geo-coordinates.ttl.gz",
+   "file": "geo-coordinates.ttl.gz",
+   "sha256": "b059aeb643db2567c8f9988cc4df0080d62494006fc55ede2a93fc2b4ab01ad2",
+   "bytes": 155920
   },
   {
    "name": "interlinks",
@@ -475,22 +475,22 @@
    "name": "records_normalized",
    "ref": "records-normalized/2026-10-12/records-normalized-dates.ttl.gz",
    "file": "records-normalized-dates.ttl.gz",
-   "sha256": "8a879242abc51b739ed5af2969f360928f8be27c60e93b6f695d4380e0cb4bdf",
-   "bytes": 1382031
+   "sha256": "1454aee91f1a76b72d874f71e0d380705a82dddc90fb309fa70117be7604acf4",
+   "bytes": 1269594
   },
   {
    "name": "records_normalized",
    "ref": "records-normalized/2026-10-12/records-normalized-occupations.ttl.gz",
    "file": "records-normalized-occupations.ttl.gz",
-   "sha256": "6736f58a74c065e7fb3427977e6dd846df9523f8ae768062f42f739a79aedd54",
-   "bytes": 147401
+   "sha256": "a67460dde18b64ff97694b0a26c61f89a192c72c874b239abab2841a7813f622",
+   "bytes": 143092
   },
   {
    "name": "records_normalized",
    "ref": "records-normalized/2026-10-12/records-normalized-places.ttl.gz",
    "file": "records-normalized-places.ttl.gz",
-   "sha256": "3518c84d52efb2d7e91cb911cf417f8c705dda24b4e51265b524d3dcbceebac1",
-   "bytes": 416706
+   "sha256": "afd745bce6ea8bc006a0b2977b208077226e74318bbcf53ada0e010f8aa46993",
+   "bytes": 236874
   },
   {
    "name": "ls_nli_legacy",
@@ -498,6 +498,20 @@
    "file": "ls-nli-legacy.ttl.gz",
    "sha256": "5e0554fe573efd5006f1c9e154d49b01b25d7fb62f7dab5f24b069407a8f5888",
    "bytes": 4821113
+  },
+  {
+   "name": "ls_yivo_wikidata",
+   "ref": "ls-yivo-wikidata/2026-10-12/ls-yivo-wikidata.ttl.gz",
+   "file": "ls-yivo-wikidata.ttl.gz",
+   "sha256": "0bc5a37278a875ecc95d36800ebe5b79dcc92ca9b8332fabebc18c0a36cf5c7d",
+   "bytes": 20313
+  },
+  {
+   "name": "record_classes",
+   "ref": "record-classes/2026-10-12/record-classes.ttl.gz",
+   "file": "record-classes.ttl.gz",
+   "sha256": "dceebb5945367771d4a535051f1916c9fc29bb0e4e0522d634cedbafbfa5e642",
+   "bytes": 16207
   }
  ],
  "corrections": [
@@ -508,10 +522,10 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:56:05Z",
- "seconds": 115.8,
+ "finished": "2026-10-12T18:40:37Z",
+ "seconds": 119.3,
  "notes": [
-  "{'previous IRIs': 1717191, 'previous pages': 1717191, 'records': 316495, 'groups': 295384, 'kept IRI': 245053, 'new IRI': 50331, 'merged': 14357, 'split': 1492, 'retired': 1456289, 'highest number': 2767521}; classes {'Person': 277100, 'Place': 11004, 'Subject': 479, 'Work': 6733, 'Organization': 68}; conflicts {'several Wikidata items': 45, 'incompatible classes': 1}."
+  "{'previous IRIs': 1717191, 'previous pages': 1717191, 'records': 330253, 'groups': 308574, 'kept IRI': 246321, 'new IRI': 62253, 'merged': 14887, 'split': 1492, 'retired': 1454491, 'highest number': 2779443}; classes {'Person': 289663, 'Place': 11130, 'Work': 6787, 'Subject': 830, 'Organization': 164}; conflicts {'several Wikidata items': 45, 'incompatible classes': 1}."
  ],
  "deleted_by_corrections": {
   "cm_entities": 1,
@@ -527,15 +541,15 @@
  "files": [
   {
    "path": "ep-history.ttl.gz",
-   "bytes": 4336035,
-   "sha256": "da3c6ed0c70f416f772b2f9f3c86506a70dbb5ce3f2af064dcd07aa3994668e8",
-   "triples": 1489955
+   "bytes": 4335038,
+   "sha256": "3e89b9da38c372433f005c4248ec039d68ac453458b2c2e67e2030366ce48f7b",
+   "triples": 1489217
   },
   {
    "path": "ep.ttl.gz",
-   "bytes": 42079641,
-   "sha256": "159a95dcd9b6bbd2c5ee9fedac920a0f3db57b66cc3de6d32836bd984cae50dc",
-   "triples": 3139495
+   "bytes": 42224509,
+   "sha256": "a19cb6f25823acfff84623ee5dcc4f3afc857830802385061bd804d018f44de7",
+   "triples": 3283048
   }
  ],
  "version": "2026-10-12"

@@ -21,30 +21,30 @@ path = "generators/records-normalized"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "b3bbaa879db15c0feced64fadaa8ddab38a705e7"
+commit = "db9a7f5eac66dcc91f8728aadfe7a5639dc93996"
 
   [[versions.files]]
   path = "records-normalized-dates.ttl.gz"
-  bytes = 1382031
-  sha256 = "8a879242abc51b739ed5af2969f360928f8be27c60e93b6f695d4380e0cb4bdf"
-  triples = 186589
+  bytes = 1269594
+  sha256 = "1454aee91f1a76b72d874f71e0d380705a82dddc90fb309fa70117be7604acf4"
+  triples = 189470
 
   [[versions.files]]
   path = "records-normalized-occupations.ttl.gz"
-  bytes = 147401
-  sha256 = "6736f58a74c065e7fb3427977e6dd846df9523f8ae768062f42f739a79aedd54"
-  triples = 19249
+  bytes = 143092
+  sha256 = "a67460dde18b64ff97694b0a26c61f89a192c72c874b239abab2841a7813f622"
+  triples = 18961
 
   [[versions.files]]
   path = "records-normalized-places.ttl.gz"
-  bytes = 416706
-  sha256 = "3518c84d52efb2d7e91cb911cf417f8c705dda24b4e51265b524d3dcbceebac1"
-  triples = 49750
+  bytes = 236874
+  sha256 = "afd745bce6ea8bc006a0b2977b208077226e74318bbcf53ada0e010f8aa46993"
+  triples = 28213
 
   [[versions.files]]
   path = "records-normalized-meta.ttl.gz"
-  bytes = 3398
-  sha256 = "6efb2c84a683b953050c95d930160b507e683b5302df2b8ad4adc23ab7bd898d"
+  bytes = 3372
+  sha256 = "3fb25baeb21fdf62c77a921e2613c27d35021e73ee1a5d1923146348f2c739b4"
   triples = 135
 
 [[changelog]]

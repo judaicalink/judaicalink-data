@@ -32,25 +32,25 @@ path = "generators/ep"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "0151ae9c41e4be21b6d5aa8da4df2a959c4b095b"
+commit = "db9a7f5eac66dcc91f8728aadfe7a5639dc93996"
 
   [[versions.files]]
   path = "ep-history.ttl.gz"
-  bytes = 4336035
-  sha256 = "da3c6ed0c70f416f772b2f9f3c86506a70dbb5ce3f2af064dcd07aa3994668e8"
-  triples = 1489955
+  bytes = 4335038
+  sha256 = "3e89b9da38c372433f005c4248ec039d68ac453458b2c2e67e2030366ce48f7b"
+  triples = 1489217
 
   [[versions.files]]
   path = "ep.ttl.gz"
-  bytes = 42079641
-  sha256 = "159a95dcd9b6bbd2c5ee9fedac920a0f3db57b66cc3de6d32836bd984cae50dc"
-  triples = 3139495
+  bytes = 42224509
+  sha256 = "a19cb6f25823acfff84623ee5dcc4f3afc857830802385061bd804d018f44de7"
+  triples = 3283048
 
   [[versions.files]]
   path = "ep-meta.ttl.gz"
-  bytes = 3530
-  sha256 = "3ef10f066714625a85a4258ac46513f8e8fde9bda120e6490b4120bd61061462"
-  triples = 170
+  bytes = 3518
+  sha256 = "96e9512cafe78c426bf9ba234abe553d443eb0e8b69704bb8882101a7cc07511"
+  triples = 174
 
 [[versions]]
 version = "2021-05-28"
@@ -98,7 +98,7 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "New entity pages made from the legacy set 2021-05-28 and the records of all datasets (decision 0022): 295,384 pages; 245,053 IRIs kept, 14,357 merged, 1,492 split, 1,456,289 retired, 50,331 new. The legacy NLI pages are carried over (0010 superseded)."
+text = "New entity pages made from the legacy set 2021-05-28 and the records of all datasets (decision 0022): 308,574 pages; 246,321 IRIs kept, 14,887 merged, 1,492 split, 1,454,491 retired, 62,253 new. The legacy NLI pages are carried over (0010 superseded). With epidat 2026-10-12 (one record per Epidat person), the YIVO articles (typed by record-classes, linked to Wikidata by ls-yivo-wikidata, decision 0025) and geo-coordinates 2026-10-12."
 
 [[changelog]]
 date = "2025-06-05"

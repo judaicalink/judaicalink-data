@@ -34,3 +34,6 @@ What was kept, changed and dropped (decided 2026-10-12):
   self-descriptions and script links (gone with 0018), the dump of `occupations`, catalogue dates (hhkeydocs fixed;
   gba's is the date of its first version), the licence name "CC4.0" (fixed in the catalogue, 2026-10-12), djh's
   licence "unknown" (true), and the tar archives named `.ttl.gz` (none left in the store, 0015).
+
+Made again on 2026-10-12 (unpublished, with records-normalized and ep) for epidat and geo-coordinates 2026-10-12:
+4,044 triples (674 annotations).

@@ -22,18 +22,18 @@ path = "generators/quality-annotations"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "b3bbaa879db15c0feced64fadaa8ddab38a705e7"
+commit = "db9a7f5eac66dcc91f8728aadfe7a5639dc93996"
 
   [[versions.files]]
   path = "quality-annotations.ttl.gz"
-  bytes = 22549
-  sha256 = "2bd5019d95cc16ea57cda6a92a5d179ba29e6934b1acb12845fcb8f8a207a2f5"
-  triples = 3954
+  bytes = 20956
+  sha256 = "050c0b4eb92f64d0b14c22524558b5bd6232c3b2a9a26979ff4765d4c29d7a41"
+  triples = 4044
 
   [[versions.files]]
   path = "quality-annotations-meta.ttl.gz"
-  bytes = 2655
-  sha256 = "7cccf3beec4565bbb507fde109dd5beb57f02429ebd6d7cf933abec81a8ed1d2"
+  bytes = 2631
+  sha256 = "203e10407fda1d08fdd541642861868197c7db88318268f27e2d57326258752b"
   triples = 113
 
 [[changelog]]

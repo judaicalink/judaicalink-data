@@ -1,13 +1,13 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T154812Z",
+ "run": "run-20261012T183753Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "b3bbaa879db15c0feced64fadaa8ddab38a705e7",
+ "commit": "db9a7f5eac66dcc91f8728aadfe7a5639dc93996",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T15:48:12Z",
+ "started": "2026-10-12T18:37:53Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
@@ -56,10 +56,10 @@
   },
   {
    "name": "epidat",
-   "ref": "epidat/2023-07-14/epidat-final-01.ttl.gz",
-   "file": "epidat-final-01.ttl.gz",
-   "sha256": "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a",
-   "bytes": 1533441
+   "ref": "epidat/2026-10-12/epidat.ttl.gz",
+   "file": "epidat.ttl.gz",
+   "sha256": "825eae34c778cb84412e00877da8b1995a5bb062828a77ecee365d8cf094bee6",
+   "bytes": 1727646
   },
   {
    "name": "footprints",
@@ -217,10 +217,10 @@
   },
   {
    "name": "sosy",
-   "ref": "sosy/2022-07-07/sosy-final-01.ttl.gz",
+   "ref": "sosy/2026-10-12/sosy-final-01.ttl.gz",
    "file": "sosy-final-01.ttl.gz",
-   "sha256": "89890dd8b42bb09afd30809e8b8f963abf0e07a5ba402ecdf13e36fb295297d8",
-   "bytes": 12497
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "bytes": 12555
   },
   {
    "name": "ubffm_persons",
@@ -252,10 +252,10 @@
   },
   {
    "name": "geo_coordinates",
-   "ref": "geo-coordinates/2018-08-08/city-geocoor-05.ttl.gz",
-   "file": "city-geocoor-05.ttl.gz",
-   "sha256": "c4fdf74620e2023a938bbab11103b1af87c5cef0daf5f8ae40b0c74d1ab18004",
-   "bytes": 142001
+   "ref": "geo-coordinates/2026-10-12/geo-coordinates.ttl.gz",
+   "file": "geo-coordinates.ttl.gz",
+   "sha256": "b059aeb643db2567c8f9988cc4df0080d62494006fc55ede2a93fc2b4ab01ad2",
+   "bytes": 155920
   },
   {
    "name": "nrwbibdjg",
@@ -273,12 +273,12 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T15:48:54Z",
- "seconds": 42.0,
+ "finished": "2026-10-12T18:38:37Z",
+ "seconds": 43.2,
  "notes": [
-  "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 302, 'death before birth': 51, 'no recognised form': 112, 'the year is outside 1–2030': 8}.",
+  "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 336, 'death before birth': 29, 'no recognised form': 118, 'the year is outside 1–2030': 8}.",
   "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
-  "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 652, 'syntax': 1, 'vocabulary': 3}."
+  "Annotations by kind: {'data error': 1, 'datatype': 1, 'date': 670, 'vocabulary': 2}."
  ],
  "deleted_by_corrections": {
   "dbpedia_persons": 24,
@@ -290,9 +290,9 @@
  "files": [
   {
    "path": "quality-annotations.ttl.gz",
-   "bytes": 22549,
-   "sha256": "2bd5019d95cc16ea57cda6a92a5d179ba29e6934b1acb12845fcb8f8a207a2f5",
-   "triples": 3954
+   "bytes": 20956,
+   "sha256": "050c0b4eb92f64d0b14c22524558b5bd6232c3b2a9a26979ff4765d4c29d7a41",
+   "triples": 4044
   }
  ],
  "version": "2026-10-12"
