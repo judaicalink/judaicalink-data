@@ -468,3 +468,69 @@ def import_files(cfg, slug, paths, origin, description, sources=(), notes=()):
     (d / "run.json").write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     (d / "log.txt").write_text(f"{slug}/{run_id}: imported {len(files)} file(s)\n", encoding="utf-8")
     return d, record
+
+
+# --- remove-version --------------------------------------------------------------------------------
+
+def remove_version_text(text, data, vid):
+    """The entry text without the version vid, its changelog entries and a stable pointer to it."""
+    head, fm, tail = split_entry(text)
+    lines = fm.split("\n")
+    headers = [i for i, line in enumerate(lines) if re.match(r"^\[\[?[^\]]+\]\]?\s*$", line.strip())]
+
+    def table_end(i):
+        nxt = [h for h in headers if h > i and not re.match(r"^\s*\[\[versions\.files\]\]", lines[h])]
+        return nxt[0] if nxt else len(lines)
+
+    def has(i, key):
+        j = i + 1
+        while j < len(lines) and j not in headers:
+            if re.match(rf"^\s*{key}\s*=\s*{re.escape(toml_value(vid))}\s*$", lines[j]):
+                return True
+            j += 1
+        return False
+
+    drop = set()
+    for h in headers:
+        if re.match(r"^\[\[versions\]\]", lines[h]) and has(h, "version"):
+            drop.update(range(h, table_end(h)))
+        elif re.match(r"^\[\[changelog\]\]", lines[h]) and has(h, "version"):
+            drop.update(range(h, table_end(h)))
+    lines = [line for i, line in enumerate(lines)
+             if i not in drop and not re.match(rf"^stable\s*=\s*{re.escape(toml_value(vid))}\s*$", line)]
+    expected = copy.deepcopy(data)
+    expected["versions"] = [v for v in data.get("versions", []) if v.get("version") != vid]
+    expected["changelog"] = [c for c in data.get("changelog", []) if c.get("version") != vid]
+    for k in ("versions", "changelog"):
+        if not expected[k]:
+            del expected[k]
+    if expected.get("stable") == vid:
+        del expected["stable"]
+    return checked(head + "\n".join(lines) + tail, expected)
+
+
+def remove_version(cfg, slug, vid):
+    """Remove a version that was never published: from the catalogue (version, its changelog entries, stable),
+    the store, its run record and its run directory (decision 0018: one version per piece of work)."""
+    e = catalog.Catalog().get(slug)
+    if e is None or e.version(vid) is None:
+        raise VersionError(f"no version {slug}/{vid} in the catalogue")
+    for other in catalog.Catalog().entries.values():
+        for v in other.versions():
+            rec = runs.version_record(other.name, v.get("version")) or {}
+            for i in rec.get("inputs", []):
+                if str(i.get("ref", "")).startswith(f"{slug}/{vid}/"):
+                    raise VersionError(f"{other.name}/{v['version']} was made from {slug}/{vid}; remove it first")
+    entry_text = remove_version_text(e.path.read_text(encoding="utf-8"), e.data, vid)
+    rec = runs.version_record(slug, vid) or {}
+    e.path.write_text(entry_text, encoding="utf-8")
+    store = cfg.require("store") / slug / vid
+    if store.exists():
+        shutil.rmtree(store)
+    rp = runs.record_path(slug, vid)
+    if rp.exists():
+        rp.unlink()
+    run_dir = cfg.require("build") / slug / rec["run"] if rec.get("run") else None
+    if run_dir and run_dir.exists():
+        shutil.rmtree(run_dir)
+    return e.stable == vid

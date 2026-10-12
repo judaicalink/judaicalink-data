@@ -55,9 +55,15 @@ have the same kind and the same automated status, and belong together in content
   9 were only for the kg-complements `-meta` files and are dropped (`catalogueGraphIRI`, `category`,
   `namespaceSlug`, `describes`, `generationMethod`, `complements`, `linksetTarget`, and `gitCommit`, `gitWeb`), the
   framework's `-meta` uses standard vocabularies; 32 new terms in three pull requests:
-  1. **Compact Memory** (13): `subtitle`, `placeOfPublication`, `publicationPeriod`, `indexedPages`,
-     `pageSequence`, `ocrKnownWordShare`, `meanOcrKnownWordShare`, `cmMentionCount`, `cmPageCount`,
-     `cmJournalCount`, `cmFirstYear`, `cmLastYear`, `cmMostFrequentJournal`;
+  1. **Compact Memory and corpus presence** (16; PR 18, opened 2026-10-12): `subtitle`, `placeOfPublication`,
+     `publicationPeriod`, `indexedPages`, `pageSequence`, `ocrKnownWordShare`, `meanOcrKnownWordShare`, and, instead
+     of the six `cm…` properties on the entity (decided 2026-10-12: no corpus in term names), the class
+     `jl:CorpusPresence` (one node per resource and corpus) with `jl:entity` (pointing to any JudaicaLink resource the
+     node is about, not specifically an entity page), `jl:corpus`, `jl:mentionCount`, `jl:pageCount`,
+     `jl:firstMentionYear`, `jl:lastMentionYear`, `jl:journalCount`, `jl:mostFrequentJournal`. The corpus is a
+     resource of `compact-memory`, `data/compact-memory/corpus`; the nodes are coined by `cm-entities` as
+     `data/cm-entities/presence/<entity IRI after data/>`. Examples go into the Markdown as indented code blocks
+     (fenced blocks are extracted into the Turtle);
   2. **Normalised person data** (5): `birthDateNormalized`, `deathDateNormalized`, `birthDateUncertain`,
      `deathDateUncertain`, `occupationURI`;
   3. **Entity pages** (14): `EntityPage`, `Work`, `Subject`, `curationStatus`, `CurationStatus`, `Curated`,

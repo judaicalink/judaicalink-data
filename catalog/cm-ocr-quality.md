@@ -6,7 +6,6 @@ date = "2026-10-12"
 kind = "complement"
 method = ["statistical"]
 inputs = ["compact-memory"]
-stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -17,29 +16,6 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/cm-ocr-quality"
 
-[[versions]]
-version = "2026-10-12"
-issued = "2026-10-12"
-author = "Kai Eckert"
-commit = "e6969f71110b36ef1d45e68887fae59b0f081038"
-
-  [[versions.files]]
-  path = "cm-ocr-quality.ttl.gz"
-  bytes = 7353618
-  sha256 = "50de7954aa34356a4e7795d7ada520065bfb3756969fb50e53bb6f4829207afb"
-  triples = 846808
-
-  [[versions.files]]
-  path = "cm-ocr-quality-meta.ttl.gz"
-  bytes = 2240
-  sha256 = "a5c5293dc1146e559d31288fc1ee12f7bda77454af33af027acb15c77c270948"
-  triples = 58
-
-[[changelog]]
-date = "2026-10-12"
-version = "2026-10-12"
-author = "Kai Eckert"
-text = "First version: the OCR quality estimate of the dashboard as a dataset (decision 0020)."
 +++
 
 An estimate of the OCR quality of every page of Compact Memory, and the mean per journal.

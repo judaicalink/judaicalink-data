@@ -17,5 +17,11 @@ cache `inputs:web-caches/api-cache-2026-10-06` (195 answers used; a missing answ
 and `dbpedia-persons/2018-10-24` and `interlinks/2018-07-18` for "entities that no dataset names". The builder of 2026
 checked that against every graph of the endpoint; on 2026-10-12 all stable versions of the catalogue were checked:
 only these two name any of the 5,445 entities (586 and 89), which gives the same 4,859 entities. Writes
-`cm-entities-presence.ttl.gz` (32,662 triples) and `cm-entities-wikidata.ttl.gz` (40,303 triples), both identical to
-the kg-complements outputs. About one minute.
+`cm-entities-presence.ttl.gz` and `cm-entities-wikidata.ttl.gz` (40,303 triples, identical to the kg-complements
+output). About one minute.
+
+The presence data is stated as `jl:CorpusPresence` nodes (decided 2026-10-12, judaicalink-ontology PR 18): instead of
+`jl:cmMentionCount` etc. on the entity, one node per entity, `data/cm-entities/presence/<entity IRI after data/>`, with
+`jl:entity`, `jl:corpus` (`data/compact-memory/corpus`) and `jl:mentionCount`, `jl:pageCount`, `jl:firstMentionYear`,
+`jl:lastMentionYear`, `jl:journalCount`, `jl:mostFrequentJournal`; the same numbers as the kg-complements output
+(32,662 triples there).

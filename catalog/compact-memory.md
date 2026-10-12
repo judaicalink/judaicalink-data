@@ -5,7 +5,6 @@ author = "Kai Eckert"
 date = "2021-01-19"
 namespaces = ["compact-memory"]
 inputs = ["compact-memory-supp"]
-stable = "2026-10-12"
 kind = "support"
 method = ["converted"]
 
@@ -20,33 +19,8 @@ path = "generators/compact-memory"
 
 [files]
 "cm_tagme_pages.ttl.gz" = "Page metadata in RDF for Compact Memory, for pages where entity references have been found (624682 triples)."
-"compact-memory-journals.ttl.gz" = "The journals: title, subtitle, place of publication, publisher, period, language, ZDB and URN, Visual Library page, number of pages in the full-text index."
+"compact-memory-journals.ttl.gz" = "The corpus (http://data.judaicalink.org/data/compact-memory/corpus) and its journals: title, subtitle, place of publication, publisher, period, language, ZDB and URN, Visual Library page, number of pages in the full-text index."
 "compact-memory-pages.ttl.gz" = "Volumes, issues and pages: for every page its issue, sequence, label and image in the Visual Library; for every volume and issue its parent, journal, label and date."
-
-[[versions]]
-version = "2026-10-12"
-issued = "2026-10-12"
-author = "Kai Eckert"
-commit = "f34385ab4df6146a8e2c3e5416e04a6a689a8a4b"
-description = "The whole corpus of the full-text index: 336 journals from the MODS records, 88,691 volumes, issues and articles (classes from schema.org where the page table gives the kind), 846,499 pages (jl:Page) with their images. Compared with 2021-01-18, 4,710 triples are no longer stated (second IRIs of 2,060 pages, 3 pages not in the index, journal titles as jl:title and journal-level images, 16 nodes assigned to a second record of their journal; see the generator README)."
-
-  [[versions.files]]
-  path = "compact-memory-journals.ttl.gz"
-  bytes = 29084
-  sha256 = "daf0e11224f463a0fe7b304a188261cb78145d439c584d3aedfa1de2475a102b"
-  triples = 3707
-
-  [[versions.files]]
-  path = "compact-memory-pages.ttl.gz"
-  bytes = 11842228
-  sha256 = "f6a8f335d9fc4e7b03c9ac9b29eabc3f81307f1fe382682701caaef251fef04c"
-  triples = 4549427
-
-  [[versions.files]]
-  path = "compact-memory-meta.ttl.gz"
-  bytes = 3146
-  sha256 = "d1c056e70fdd40e3696bf2f609ff84dd0c14d6d168ba52ef8ff79e7539659e2b"
-  triples = 76
 
 [[versions]]
 version = "2021-01-18"
@@ -64,12 +38,6 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 2027
   sha256 = "6c8268a808e4dfd83b31119f1a8814bee9ea0e0e57f9518dfea967f16804c6a2"
   triples = 58
-
-[[changelog]]
-date = "2026-10-12"
-version = "2026-10-12"
-author = "Kai Eckert"
-text = "New version from the framework generator: the whole Compact Memory corpus (journals, volumes, issues, all pages of the full-text index), with classes; the version 2021-01-18 covered only pages with entity mentions. Stable version."
 
 [[changelog]]
 date = "2025-06-05"

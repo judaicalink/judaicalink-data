@@ -540,6 +540,17 @@ def cmd_import_files(args, cfg):
     return 0
 
 
+def cmd_remove_version(args, cfg):
+    slug, vid = split_id(args.id)
+    if not vid:
+        return fail("give <slug>/<version>")
+    if not args.unpublished:
+        return fail("only a version that was never published can be removed; confirm with --unpublished")
+    was_stable = versions.remove_version(cfg, slug, vid)
+    print(f"{slug}/{vid} removed (catalogue, store, run record, run)" + ("; it was stable, stable is unset" if was_stable else ""))
+    return 0
+
+
 def cmd_add_input(args, cfg):
     root = cfg.require("inputs")
     texts = {"title": args.title, "origin": args.origin, "description": args.description, "date": args.date,
@@ -673,6 +684,10 @@ def parser():
                          "help": "code or documentation that made the files (e.g. at a commit); repeatable"}),
         (("--note",), {"action": "append", "default": [], "help": "a remark for the run record; repeatable"}),
         (("--dry-run",), {"action": "store_true", "help": "<slug>/<version>: show the record, do not write it"}),
+        json_out=False)
+    add("remove-version", cmd_remove_version, "remove a version that was never published (catalogue, store, run record)",
+        (("id",), {"metavar": "<slug>/<version>"}),
+        (("--unpublished",), {"action": "store_true", "help": "confirm that no copy of it was ever published"}),
         json_out=False)
     add("render-meta", cmd_render_meta, "render the -meta of a version again (replaced only if its content changed)",
         (("id",), {"metavar": "<slug>/<version>", "nargs": "?"}),

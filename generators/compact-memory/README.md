@@ -35,6 +35,10 @@ and journal); the version 2021-01-18 for the existing page IRIs. Writes `compact
 triples, identical to cm-journals) and `compact-memory-pages.ttl.gz` (4,549,427 triples: cm-structure plus 846,499
 image links and the classes). About one minute.
 
+The corpus as a whole is `data/compact-memory/corpus` (`schema:Collection`, title, description, `foaf:page`), and
+every journal is `dcterms:isPartOf` it (decided 2026-10-12, for `jl:CorpusPresence` in cm-entities): 1,012 more
+triples in the journals file.
+
 Classes (decided 2026-10-12): journals `schema:Periodical` (as in cm-journals); from the kind in the page table
 (`Parent-Type`) `schema:PublicationIssue` (journal issue, 46,620), `schema:PublicationVolume` (journal volume, 593) and
 `schema:Article` (article, struct article; 24,463); a node without a kind directly below its journal is a volume

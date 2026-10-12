@@ -10,7 +10,9 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
 - **Move the generators** (`../kg-complements/`) into this repository as framework generators: groupings, ontology
   pull requests and order in [0020](decisions/0020-kg-complements-into-the-framework.md) (entity pages last, after
   the entity-page question below). Rename `jl:occupationConcept` to `jl:occupationURI` in `ep_generator.py`,
-  `../ep-demonstrator`, `../dashboard` when they are rebuilt. Create the GitHub repository.
+  `../ep-demonstrator`, `../dashboard` when they are rebuilt; the demonstrator reads the presence figures as
+  `jl:cmMentionCount` etc. on the entity from the graph `cm-entities-presence`: now `jl:CorpusPresence` nodes in
+  `cm-entities` (0020). Create the GitHub repository.
 - **Catalogue:** 33 entries in the format of [0013](decisions/0013-catalogue-format.md) (migrated 2026-10-09;
   `kind` and `method` for all, 2026-10-12). Next: the remaining hand curation (`namespaces` checked against the
   data, `occupations`, file descriptions, HTML left in older bodies), entries for our new datasets, then adapting

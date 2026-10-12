@@ -3,8 +3,10 @@
 Transformation only, a port of cm_entities_presence (kg-complements datasets_deterministic.py) and
 cm_entities_wikidata (datasets_algorithmic.py), 2026-10-05/06, without changes to their logic (decision 0020):
 
-- cm-entities-presence.ttl.gz: for every entity, the number of mentions and pages, first and last year, number of
-  journals and the journal with the most mentions (years and journals from the full-text bundle, via the page VLID).
+- cm-entities-presence.ttl.gz: for every entity a jl:CorpusPresence in the corpus Compact Memory (decided 2026-10-12:
+  no corpus in the term names): the number of mentions and pages, first and last year, number of journals and the
+  journal with the most mentions (years and journals from the full-text bundle, via the page VLID). The node IRI is
+  data/cm-entities/presence/<the entity IRI after data/>.
 - cm-entities-wikidata.ttl.gz: for the entities that no dataset names, the Wikidata item (via the German Wikipedia
   title in the entity IRI, following redirects), labels in German, English and Hebrew, type (person, or place if the
   item has coordinates), coordinates, and GND, VIAF and GeoNames IDs.
@@ -41,6 +43,9 @@ SKOS = PREFIXES["skos"]
 RDFS = PREFIXES["rdfs"]
 GEO = PREFIXES["geosparql"]
 CM = "http://data.judaicalink.org/data/compact-memory/"
+CORPUS = CM + "corpus"
+DATA = "http://data.judaicalink.org/data/"
+PRESENCE = DATA + "cm-entities/presence/"
 WIKIPEDIA_API = "https://de.wikipedia.org/w/api.php"
 WIKIDATA_API = "https://www.wikidata.org/w/api.php"
 NAMES = {SKOS + "prefLabel", FOAF + "name", RDFS + "label"}
@@ -103,16 +108,20 @@ def presence(run, refs, ref_page, bundle):
             a["journals"][journal] += n
     t = []
     for x, a in agg.items():
-        s = IRI(x)
-        t += [(s, IRI(JLO + "cmMentionCount"), integer(a["mentions"])), (s, IRI(JLO + "cmPageCount"), integer(a["pages"]))]
+        if not x.startswith(DATA):
+            raise GeneratorError(f"entity outside data/: {x}")
+        s = IRI(PRESENCE + x[len(DATA):])
+        t += [(s, IRI(RDF_TYPE), IRI(JLO + "CorpusPresence")), (s, IRI(JLO + "entity"), IRI(x)),
+              (s, IRI(JLO + "corpus"), IRI(CORPUS)),
+              (s, IRI(JLO + "mentionCount"), integer(a["mentions"])), (s, IRI(JLO + "pageCount"), integer(a["pages"]))]
         if a["years"]:
-            t += [(s, IRI(JLO + "cmFirstYear"), Literal(str(min(a["years"])), XSD + "gYear")),
-                  (s, IRI(JLO + "cmLastYear"), Literal(str(max(a["years"])), XSD + "gYear"))]
+            t += [(s, IRI(JLO + "firstMentionYear"), Literal(str(min(a["years"])), XSD + "gYear")),
+                  (s, IRI(JLO + "lastMentionYear"), Literal(str(max(a["years"])), XSD + "gYear"))]
         if a["journals"]:
-            t.append((s, IRI(JLO + "cmJournalCount"), integer(len(a["journals"]))))
+            t.append((s, IRI(JLO + "journalCount"), integer(len(a["journals"]))))
             # most mentions; ties by journal id, so that the result is deterministic
             top = sorted(a["journals"].items(), key=lambda kv: (-kv[1], int(kv[0]) if kv[0].isdigit() else 0, kv[0]))[0][0]
-            t.append((s, IRI(JLO + "cmMostFrequentJournal"), IRI(CM + top)))
+            t.append((s, IRI(JLO + "mostFrequentJournal"), IRI(CM + top)))
     run.note(f"Presence: {len(agg):,} entities.")
     return t
 

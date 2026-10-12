@@ -177,9 +177,18 @@ class Versions(unittest.TestCase):
         meta_file = next(f for f in e.version(vid)["files"] if f["path"] == "test-meta.ttl.gz")
         self.assertEqual(meta_file["sha256"], catalog.sha256(target / "test-meta.ttl.gz"))
         self.assertEqual(versions.render_meta(self.cfg, "test", vid)[0], "unchanged")
+        # an unpublished version can be removed again
+        e = catalog.read_entry(self.t / "catalog" / "test.md")
+        self.assertTrue(versions.remove_version(self.cfg, "test", vid) is False)
+        e = catalog.read_entry(self.t / "catalog" / "test.md")
+        self.assertEqual(e.versions(), [])
+        self.assertIn("# a comment that must stay", (self.t / "catalog" / "test.md").read_text())
+        self.assertFalse(target.exists() or runs.record_path("test", vid).exists())
         # a second run of the same day gets -2
         _, rec2 = self.run_generator()
-        self.assertEqual(versions.add_version(self.cfg, "test", rec2["run"], dry_run=True)[0], vid + "-2")
+        vid2 = versions.add_version(self.cfg, "test", rec2["run"])[0]
+        _, rec3 = self.run_generator()
+        self.assertEqual(versions.add_version(self.cfg, "test", rec3["run"], dry_run=True)[0], vid2 + "-2")
 
     def test_refusals(self):
         _, rec = self.run_generator()

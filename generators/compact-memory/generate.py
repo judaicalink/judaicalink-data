@@ -7,7 +7,8 @@ kind in the page table), jl:Page for pages. The sources: the page table (compact
 of the nodes, the list of the OCR files (for the page IRIs) and the full-text bundle (which pages are in the full-text
 index, with their date, label and journal). The pages of the version 2021-01-18 keep their IRIs.
 
-Files: compact-memory-journals.ttl.gz (the 336 journals), compact-memory-pages.ttl.gz (pages, volumes, issues).
+Files: compact-memory-journals.ttl.gz (the corpus and its 336 journals), compact-memory-pages.ttl.gz (pages, volumes,
+issues).
 """
 
 import gzip
@@ -37,6 +38,7 @@ RDFS = PREFIXES["rdfs"]
 SCHEMA = PREFIXES["schema"]
 CM = "http://data.judaicalink.org/data/compact-memory/"
 VL = "http://sammlungen.ub.uni-frankfurt.de/cm/periodical/"
+CORPUS = CM + "corpus"   # the corpus as a whole, e.g. for jl:CorpusPresence (decided 2026-10-12)
 # classes for the kinds of nodes in the page table (Parent-Type); other kinds (chapter, correspondence, title page, …)
 # get no class and keep their kind as dcterms:type (decided 2026-10-12)
 KIND_CLASS = {"journal issue": SCHEMA + "PublicationIssue", "journal volume": SCHEMA + "PublicationVolume",
@@ -124,9 +126,15 @@ def journals(rows, mods, bundle):
     ids = sorted({r["VLID_Zs"].strip() for r in rows.values()}, key=int)
     indexed = Counter(j for (_d, _l, j) in bundle.values())
     w = Triples()
+    w.add(CORPUS, RDF_TYPE, SCHEMA + "Collection")
+    w.add(CORPUS, DCT + "title", lit("Compact Memory"))
+    w.add(CORPUS, DCT + "description", lit("Jewish periodicals of the German-speaking countries, digitised by the "
+                                           "University Library Frankfurt am Main (UB Frankfurt)."))
+    w.add(CORPUS, FOAF + "page", "https://sammlungen.ub.uni-frankfurt.de/cm/")
     for jid in ids:
         x, j = mods.get(jid, ""), CM + jid
         w.add(j, RDF_TYPE, SCHEMA + "Periodical")
+        w.add(j, DCT + "isPartOf", CORPUS)
         title_info = re.search(r"<titleInfo>(.*?)</titleInfo>", x, re.S)
         ti = title_info.group(1) if title_info else ""
         title = " ".join(v for v in (mods_values(ti, "nonSort") + mods_values(ti, "title")) if v)
