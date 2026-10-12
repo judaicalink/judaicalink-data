@@ -7,7 +7,8 @@ and per dataset its title, stable version, replaces/replaced_by, the catalogues 
 the index: a dataset if a catalogue lists it or a file of it was found, a version if a file of it was found.
 
 sync(): copies the entries that a site already has (content/datasets/<slug>.md) and the index (data/dataindex.json)
-into a Hugo site; it adds entries only when they are named explicitly and never removes any.
+into a Hugo site, with the labels of kinds and methods (data/catalogvocabulary.json); it adds entries only when
+they are named explicitly and never removes any.
 """
 
 import datetime
@@ -131,5 +132,7 @@ def sync(site, index_path=INDEX, add=(), out=print):
         out(f"not in the site (add with --add): {', '.join(missing)}")
     data = site / "data"
     data.mkdir(exist_ok=True)
+    vocab = tomllib.loads((CATALOG / "vocabulary.toml").read_text(encoding="utf-8"))
+    (data / "catalogvocabulary.json").write_text(json.dumps(vocab, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     (data / "dataindex.json").write_text(json.dumps(index, ensure_ascii=False) + "\n", encoding="utf-8")
     out(f"data/dataindex.json: checked {index['checked']}" + (" (TEST: assumed locations)" if index.get("assumed") else ""))

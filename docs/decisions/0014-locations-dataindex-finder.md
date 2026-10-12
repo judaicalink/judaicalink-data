@@ -123,5 +123,9 @@ finder, so every catalogue leads to the state of the dataset across all location
   the index first.
 - A real redirect (`downloadURL`) could later be generated from `dataindex.json` as a server redirect
   table; not planned now, as it needs a change of the server setup.
-- To do: `catalog.py index|sync`, the finder page and the template changes in `judaicalink-site`,
-  the regeneration of the `-meta` files with landing page and access URLs.
+- Built 2026-10-13: `jl update-dataindex` and `jl sync-site` (`src/jl/dataindex.py`; `sync-site --add` copies a new
+  entry deliberately), `catalog/locations.toml` with the two catalogues `web` and `portal` (the FID portal; its
+  catalogue URL forwards to `/de/` or `/en/` by language, the index follows redirects) and the two dumps locations
+  `archive` and `data` (Frankfurt); the finder page and the templates in `judaicalink-site` (branch
+  `catalogue-0014`, not published). The `-meta` files carry the landing page and the finder URLs. Until the
+  archive holds the store, the index finds no files; `--assume archive=store --out FILE` makes a test index.
