@@ -20,30 +20,58 @@ by Benjamin Schnabel.
 - **2025-03-24**: **exact** (`7124d29` outputs, `f9b8215` scripts). `Haskala.ttl` has exactly the triples of the
   un-enriched `Haskala.ttl` of 2019, so this version is the 2019 state before enrichment, not new data.
 
-## Framework generator (2026-10-12)
+## The database (found 2026-10-13)
 
-`generate.py` makes a new version from 2019-07-01 (decision 0024); with its parameters off, the output has the same
-triples. The 2025 run is not new data (above) and lacks the enrichment; its only addition is the occupations of the
-32 haskala.net persons, which the 2019 enrichment step dropped (the 32 of the 320 `Haskala_net` triples it did not
-keep; stated there with the misspelt `jl:Occupation`). They are taken from `Haskala_net.ttl` of 2025-03-24 as
-`jl:occupation`, one value per occupation (the source separates them with commas; the 2025 commit `ba26673` split
-them too): 75 values for 30 persons, 2 are empty. 12 empty dates and places of 2019 are dropped. Not taken over
-from 2025: its `Haskala_net` lost one character in the 2025 run ("Neu-Bydov"; 2019 has "Neu-Bydžov").
+The Library of Haskala was a Drupal 7 site (haskala-library.net, now offline) on a database of a German-Israeli
+research project (2004-2010, Shmuel Feiner, Bar-Ilan University; Zohar Shavit, Tel Aviv University; Christoph Schulte,
+University of Potsdam), migrated into Drupal on 2015-04-08/09 (record ids such as `person0001` kept in the migration
+maps) and hosted by the Judaica Division of the Frankfurt University Library. The repository
+[judaicalink/haskala](https://github.com/judaicalink/haskala) (the new portal by Benjamin Schnabel) holds three dumps
+of that database: `research/haskala.sql`, the complete database at its host Pantheon (538 tables, dump completed
+2015-04-20, also in `research/Haskala-DB.zip` of 2022); `research/haskala_14_12_2023.sql` (422 tables) and
+`Database/haskala_edit_2024-07-12.sql` (400 tables, with CSV and XML exports of each table), reduced copies with the
+same content (nodes, field data, taxonomies identical; the CSV exports split multi-line texts and are not usable).
+The content was not changed after the migration. The 2019 scrape read the person pages of this site; 2019 and 2025
+cover 194 of its 1,980 persons and none of its 525 books.
 
-Not changed: `owl:sameAs` also names the person pages of haskala-library.net (200) and of the Haskala project at the
-University of Potsdam (32), web pages rather than the person, as some other legacy datasets do; and the GND values of
-the enrichment stand next to the values of the source without a mark (e.g. two birth dates), which only a new
-enrichment could keep apart.
+## Framework generator (2026-10-13)
+
+`generate.py` makes the dataset from the database (decision 0024: made again from the source), true to the database
+so that it could be rebuilt from the data without a particular portal (decided 2026-10-13; details in the docstring):
+
+- Input `inputs:haskala/drupal-2015-04-20`: the allow-list of tables of the 2015 dump (`make_input.py`: content,
+  schema, migration maps, search configuration; without user accounts, sessions, logs, caches, settings).
+  `drupal_sql.py` reads the dump with the standard library.
+- All nodes of the seven content types (1,980 persons, 525 books, 327 editions, 1,867 mentions, 667 productions,
+  272 prefaces, 19 translations; not the one page of site text), all field values (39,225) and the 809 terms of the
+  19 taxonomies. IRIs `data/haskala/<content type>/<node id>`, `data/haskala/<vocabulary>/<term id>`.
+- The schema (`haskala-vocabulary.ttl.gz`): classes per content type and properties per field in
+  `data/haskala/vocab/`, with the Drupal machine names, types, cardinality, targets, allowed values, and per content
+  type the label, help text, order and visibility of each field. The sections of the book page (field groups) and the
+  browse and search pages (views) were defined in code, not in the database; they are not in any dump.
+- JudaicaLink terms in addition: persons `foaf:Person`, `skos:prefLabel` (German name; for 151 persons without one,
+  the part of the title before " - <Hebrew name>"), `skos:altLabel`, `owl:sameAs` VIAF (583), birth and death;
+  books `jl:Work`; terms `skos:Concept`, cities `jl:Place` with `geosparql:asWKT`.
+- The 2019 IRIs: 194 library persons `dcterms:isReplacedBy` the node of their page (5 of them by two nodes, duplicates
+  in the database that 2019 had joined: Alexander, Berlin, Heimann, Jeitteles, Satanow); their GND links (from the
+  2019 working list, not in the database) are carried over to the nodes (`haskala-gnd-2019.ttl.gz`). The 32 persons
+  of haskala.net (biographies of the University of Potsdam, a different source) keep their IRIs and 2019 triples,
+  with their occupations from `Haskala_net.ttl` of 2025-03-24, one value per occupation (`haskala-net.ttl.gz`).
+
+Not done: the duplicates of the database (several nodes for one person) stay as they are; the names, dates and places
+of the 2019 GND enrichment are not carried over (they come from the GND, which the entity pages join through
+gnd-persons).
 
 ## Inputs
 
-On file: the source CSVs (`legacy/haskala/sources/`, `legacy/fid-judaica/haskala/sources/`). External: the
-haskala-library.net website, the GND of 2019 in a local Fuseki.
+`inputs:haskala/drupal-2015-04-20` (the database), and the versions 2019-07-01 and 2025-03-24 (`Haskala_net.ttl`).
+Earlier: the source CSVs (`legacy/haskala/sources/`, `legacy/fid-judaica/haskala/sources/`), the website, the GND of
+2019 in a local Fuseki.
 
 ## Reproduction
 
-2019: **not reproducible** (manual updates, local GND), but the output is on file. 2025: `Haskala_net` is
-**reproducible** offline, `Haskala.ttl` needs the live website.
+From 2026-10-13: **reproducible** from the inputs area. 2019: **not reproducible** (manual updates, local GND), but the
+output is on file. 2025: `Haskala_net` is reproducible offline, `Haskala.ttl` needed the website.
 
 ## Original files
 
