@@ -1,33 +1,33 @@
 {
  "slug": "judaicalink-vocabulary",
- "run": "run-20261011T221658Z",
+ "run": "run-20261012T143353Z",
  "generator": "generators/judaicalink-vocabulary/generate.py",
- "commit": "156e60ef6a76d46b2e7f4197083bdeee2601428c",
+ "commit": "60eec2e747b7fe4cd05e84ad2a62c8fa694b3266",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-11T22:16:58Z",
+ "started": "2026-10-12T14:33:53Z",
  "inputs": [
   {
    "name": "vocabulary",
    "ref": "repo:catalog/vocabulary.toml",
    "file": "vocabulary.toml",
-   "sha256": "6351bb2e3921ecc63aaf038e72a10aa6831efa534c6f3b7433fcb79435cf1454",
-   "bytes": 4265
+   "sha256": "0a24a5e45660c7e471621422a2894d975e64ce58471a3446980307aed3acbfbc",
+   "bytes": 4514
   }
  ],
  "status": "ok",
- "finished": "2026-10-11T22:16:58Z",
+ "finished": "2026-10-12T14:33:53Z",
  "seconds": 0.0,
  "notes": [],
  "files": [
   {
    "path": "judaicalink-vocabulary.ttl.gz",
-   "bytes": 1756,
-   "sha256": "752f5645270c1649ccab61f836adba48955465a6e7254178aa9dd97c7c615c73",
-   "triples": 126
+   "bytes": 1866,
+   "sha256": "07e6b26a7c26afbca1c6694da50ff8eb37a357b86cd8054f549ea247a6d6ac6c",
+   "triples": 133
   }
  ],
- "version": "2026-10-11"
+ "version": "2026-10-12"
 }
