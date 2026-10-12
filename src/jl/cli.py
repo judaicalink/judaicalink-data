@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -729,7 +730,8 @@ def main(argv=None):
     try:
         cfg = config.load()
         return args.func(args, cfg)
+    except BrokenPipeError:   # the reader stopped early (e.g. grep -m, head): not an error
+        os.dup2(os.open(os.devnull, os.O_WRONLY), sys.stdout.fileno())
+        return 0
     except (LookupError, config.ConfigError, generator.GeneratorError, ValueError, OSError) as e:
         return fail(str(e))
-    except BrokenPipeError:
-        return 0
