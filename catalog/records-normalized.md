@@ -6,6 +6,7 @@ date = "2026-10-12"
 kind = "complement"
 method = ["rule-based", "deterministic"]
 inputs = ["bhr", "dbpedia-persons", "djh", "epidat", "footprints", "geo-enriched", "gnd-persons", "gnd-persons-entityfacts", "haskala", "hhkeydocs", "hirsch-family", "jre", "nli-records", "sosy", "ubffm-persons", "rujen", "geo-coordinates", "cm-entities"]
+stable = "2026-10-12"
 
 [license]
 name = "CC0"
@@ -15,6 +16,42 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/records-normalized"
+
+[[versions]]
+version = "2026-10-12"
+issued = "2026-10-12"
+author = "Kai Eckert"
+commit = "5194ec7c5788bf0a851f47d1516c44a5d739b7e7"
+
+  [[versions.files]]
+  path = "records-normalized-dates.ttl.gz"
+  bytes = 1362424
+  sha256 = "98781ddfb620791833a70f3ed6bf273dab99067b0bb592c895f81afcd67dcd72"
+  triples = 184388
+
+  [[versions.files]]
+  path = "records-normalized-occupations.ttl.gz"
+  bytes = 166703
+  sha256 = "91a5a4e6c050b979b6ff64435e2f8121f96e9c4203e73251084c7bb159e4c2bb"
+  triples = 22155
+
+  [[versions.files]]
+  path = "records-normalized-places.ttl.gz"
+  bytes = 416726
+  sha256 = "b557645fad7ceef11f4fb106d3c1b5c08cdb7b797c6fc1d2d5aef3af405e5999"
+  triples = 49754
+
+  [[versions.files]]
+  path = "records-normalized-meta.ttl.gz"
+  bytes = 3150
+  sha256 = "3ebd7e65e374ae22d2a6db64113becff2e1a5a3d55f31a24b8d67afae0d5cabc"
+  triples = 135
+
+[[changelog]]
+date = "2026-10-12"
+version = "2026-10-12"
+author = "Kai Eckert"
+text = "First version: normalised dates, places and occupations of the records (dates-normalized, places-linked, occupation-concepts and occupation-fix of kg-complements, decision 0020), for the stable versions; all occupation IRIs as jl:occupationURI."
 +++
 
 Normalised values next to the free-text values of the record datasets: typed birth and death dates, places and
