@@ -1,6 +1,6 @@
 # 0022 Entity pages in the framework: versions of `ep`, a fresh closure each run, merges and splits by comparison
 
-Status: accepted (points 1–4; ontology terms and the remaining rules still open) · Date: 2026-10-12 · Amends
+Status: accepted (the rules of 2026-10-06 to revisit still open) · Date: 2026-10-12 · Amends
 [0009](0009-entity-pages.md), supersedes [0010](0010-nli-exception.md)
 
 ## Context
@@ -77,6 +77,15 @@ a URI that stands for one person record keeps its IRI and represents that record
 from several people are split (1,474), the others retired. Every published IRI keeps a record of what happened to
 it; no exception is needed.
 
+### 6. Ontology terms (pull request, 0020)
+
+`jl:EntityPage`; `jl:Work`, `jl:Subject` (persons `foaf:Person`, places `jl:Place`); `jl:represents` (exists; its
+comment is corrected: the records a page brings together); `jl:mergedInto` + `jl:mergeDate`; `jl:splitInto` +
+`jl:splitDate` (not a sub-property of `dcterms:isReplacedBy`); `jl:retiredDate`. Dropped: `jl:highestEntityPageNumber`
+and `jl:previousEntityPageSet` (derived from the previous version), and `jl:supportedBy` and `jl:curationStatus`
+(`jl:Curated`, `jl:AutomaticOnly`), which are derived: the datasets from the graphs of the represented records, the
+status from whether all of them are automated (`-meta`, 0018).
+
 ## Measured (2026-10-12, stable versions; `lokal/work/ep-measure/`)
 
 - The legacy set has 1,717,191 pages: 749,446 TagMe mentions, 362,258 Compact Memory pages, 316,166 page images
@@ -97,8 +106,6 @@ it; no exception is needed.
 - `ep_generator.py` is ported with this algorithm (closure, comparison, history files and checks); the rules for
   facts (precedence, languages, labels) are kept, with `jl:occupationURI` (0020) and the dataset names of the
   catalogue.
-- The ontology pull request for entity pages (0020) gets `jl:mergedInto`; `jl:splitInto` without
-  `dcterms:isReplacedBy`.
 - The two non-identifiers become the first correction dataset (0023), before the first `ep` version.
-- Still to decide: the ontology pull request, and the rules of 2026-10-06 to revisit (precedence list with the
+- Still to decide: the rules of 2026-10-06 to revisit (precedence list with the
   catalogue's dataset names, organisations outside the core).
