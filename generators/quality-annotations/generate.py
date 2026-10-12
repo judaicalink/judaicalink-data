@@ -141,7 +141,7 @@ def generate(run):
             parsed[s][prop].append((value, result))
             continue
         why = rn.why_not(value)
-        reasons[re.sub(r"the year \d+", "the year", why.split(",")[0]) if why else "no recognised form"] += 1
+        reasons[re.sub(r"the year \d+", "the year", re.split(r",| \(|:", why)[0]) if why else "no recognised form"] += 1
         note(s, "date", f"jl:{prop} '{value}' could not be normalised (records-normalized): "
              + (why or "not a date in a recognised form") + ".")
     for s in sorted(parsed):

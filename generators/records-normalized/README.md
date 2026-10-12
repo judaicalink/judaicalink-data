@@ -23,7 +23,7 @@ graph the endpoint of 2026-10-06 did not hold.
 
 Differences of the dataset (decided 2026-10-12):
 - the stable versions footprints 2024-03-18 and haskala 2019-07-01 are complemented: 1,839 and 274 more dates, 116 more
-  places (haskala); 184,388 date and 49,754 place triples;
+  places (haskala); 184,388 date (186,593 with the date forms below) and 49,754 place triples;
 - more date forms (2026-10-12, found by quality-annotations, before the first version was published; the first
   version 2026-10-12 was made again): English dates (gnd-persons-entityfacts), year and month, years 1–999, `1942--`
   (epidat), dateTimes (sosy), the EDTF value of the footprints dictionaries, Hebrew-Gregorian pairs and more (see

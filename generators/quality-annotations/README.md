@@ -17,7 +17,7 @@ decision 0020).
 What was kept, changed and dropped (decided 2026-10-12):
 - **Kept, from the data:** the dates `records-normalized` cannot normalise (2,692 in 2026-10-06), with the reason
   (`why_not` of records-normalized). The first run found 2,953; with the rules added to records-normalized for them
-  (2026-10-12, before either was published) 601 are left, plus 51 records whose death date is before their birth
+  (2026-10-12, before either was published) 585 are left, plus 51 records whose death date is before their birth
   date (Aeschylus 0525–0456 in ubffm-persons), whose dates records-normalized now leaves out; the problems of single
   versions, now found by checks instead of written by hand and targeted at the version (`datasets/<slug>/<version>`), not the dataset: RDF-star in epidat, `jl:occpation` in bhr,
   `dcterms:created` as plain strings in nrwbibdjg, `jl:lat`/`jl:lon` swapped in geo-coordinates (all 3 places that
