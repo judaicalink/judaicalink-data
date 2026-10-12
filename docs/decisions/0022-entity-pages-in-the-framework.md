@@ -127,4 +127,9 @@ status from whether all of them are automated (`-meta`, 0018).
 - `ep_generator.py` is ported with this algorithm (closure, comparison, history files and checks); the rules for
   facts (precedence, languages, labels) are kept, with `jl:occupationURI` (0020) and the dataset names of the
   catalogue.
-- The two non-identifiers become the first correction dataset (0023), before the first `ep` version.
+- Done 2026-10-12: `generators/ep/generate.py`, version `ep` 2026-10-12 (counts in `generators/ep/README.md`). In the
+  comparison an old member that is not in the closure stands for what it was replaced by or derived from
+  (`prov:wasDerivedFrom` of `ls-nli-legacy`: the legacy NLI URIs made from several people are split); derivation is
+  never an identity link. The generator stops when two records known to be different (the conflations corrected on
+  2026-10-12) are in one group again: a test, not a rule. The errors found on the way were fixed in the datasets
+  (0024): bhr, 2014links, gnd-persons-entityfacts (new versions) and `corrections-links` (76 links).

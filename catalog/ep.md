@@ -25,6 +25,8 @@ path = "generators/ep"
 "ep_persons.ttl" = "Entity Pages type classification - persons."
 "ep_birth_death_date_loc.ttl" = "Birth/death dates and locations for Entity Pages."
 "subcategorization.ttl.gz" = "Subcategorization dataset for local Judaicalink resources."
+"ep.ttl.gz" = "The entity pages: class, names, life dates and places, occupations, descriptions, coordinates, the records they represent (jl:represents) and their external identifiers (owl:sameAs)."
+"ep-history.ttl.gz" = "IRIs that are no longer entity pages, one statement per event with its date: merged (jl:mergedInto), split (jl:splitInto), retired (jl:retiredDate); the history of earlier versions unchanged."
 
 [[versions]]
 version = "2021-05-28"
@@ -94,6 +96,24 @@ author = "Marco Rovera"
 text = "First version (entity_pages.ttl.gz)."
 +++
 
-Entity Page data for Judaicalink. For further details see the documentation page https://github.com/judaicalink/judaicalink-generators/blob/4865ffdd910bc2b03074fdcdf279b30da87fdec5/entity-pages/readme.md
+The entity pages of JudaicaLink: one page for each person, place, organisation, work or subject, bringing together
+the records that the datasets have about it. The page IRIs (`http://data.judaicalink.org/data/ep/<number>`) stay
+stable from version to version.
 
 <!--more-->
+
+From the version 2026-10-12 on (decision 0022), each version is made from the previous one and the records of all
+datasets: records are grouped by the transitive closure of their identity links (`owl:sameAs`, GND numbers; the same
+identifier joins), computed fresh in every version, and the groups are compared with the pages of the previous
+version. A page whose records stay together keeps its IRI; pages that turn out to be the same are merged, the oldest
+IRI is kept and the others point to it (`jl:mergedInto`, can be redirected); a page that turns out to stand for
+several entities is split (`jl:splitInto`, one statement per part); a page that no longer stands for a person, place,
+organisation, work or subject is retired (`jl:retiredDate`). IRIs are never used again. Mistakes in the identity links
+are corrected in the datasets (new versions, correction datasets), not in the entity pages.
+
+Facts on a page (names, dates, places, occupations, descriptions, coordinates) are chosen from its records by a fixed
+precedence of the datasets (GND, libraries and bibliographies, curated reference works, general knowledge bases,
+automatically derived data) and of the languages (English, German, Hebrew).
+
+The version 2021-05-28 is the legacy set by Marco Rovera (a page for every IRI of the knowledge graph of 2021,
+including the mentions and pages of Compact Memory); see the generator folder.
