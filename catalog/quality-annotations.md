@@ -22,25 +22,25 @@ path = "generators/quality-annotations"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "0652b9dc4c23b48fa362d290a90d965e75f86612"
+commit = "674510796e842173420828de6c247ef993366ee7"
 
   [[versions.files]]
   path = "quality-annotations.ttl.gz"
-  bytes = 89079
-  sha256 = "24fea8090fa82f33e6cb22d442d0c9c5df348334d3bccb967e4b82449eeb164e"
-  triples = 17862
+  bytes = 22625
+  sha256 = "1615f3cadd683cea7d6e143f2e44f73c8c6e5d48538d74f2c3c5f803a2845024"
+  triples = 3960
 
   [[versions.files]]
   path = "quality-annotations-meta.ttl.gz"
-  bytes = 2567
-  sha256 = "15f49b090e2ebd52d9d3c89500931a0943b886e3c6737784f4790ea54cad0498"
+  bytes = 2662
+  sha256 = "1d68a416ab0025bf37be05ba61df122af4180e3726dba227d84828f841381207"
   triples = 113
 
 [[changelog]]
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "First version: quality annotations about the data (dates left out by records-normalized, issues of Compact Memory in isolated years, problems of single versions), from quality-annotations of kg-complements (decision 0020)."
+text = "First version: quality annotations about the data (dates left out by records-normalized, with the reason; issues of Compact Memory in isolated years; problems of single versions), from quality-annotations of kg-complements (decision 0020)."
 +++
 
 Problems in the data that cannot be fixed by adding facts, as quality annotations (W3C Data Quality Vocabulary and

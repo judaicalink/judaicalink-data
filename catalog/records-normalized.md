@@ -21,13 +21,13 @@ path = "generators/records-normalized"
 version = "2026-10-12"
 issued = "2026-10-12"
 author = "Kai Eckert"
-commit = "5194ec7c5788bf0a851f47d1516c44a5d739b7e7"
+commit = "7fdfacb9021015ec98278a69885201fd758e546b"
 
   [[versions.files]]
   path = "records-normalized-dates.ttl.gz"
-  bytes = 1362424
-  sha256 = "98781ddfb620791833a70f3ed6bf273dab99067b0bb592c895f81afcd67dcd72"
-  triples = 184388
+  bytes = 1382061
+  sha256 = "e94c396e746a6c2652692feea711cc3f38e6d1a38f05939c6c791c8c624c7746"
+  triples = 186593
 
   [[versions.files]]
   path = "records-normalized-occupations.ttl.gz"
@@ -43,15 +43,15 @@ commit = "5194ec7c5788bf0a851f47d1516c44a5d739b7e7"
 
   [[versions.files]]
   path = "records-normalized-meta.ttl.gz"
-  bytes = 3150
-  sha256 = "3ebd7e65e374ae22d2a6db64113becff2e1a5a3d55f31a24b8d67afae0d5cabc"
+  bytes = 3428
+  sha256 = "38cc605e5c673c085ae2db70af91bbc09ce02801d4460badbd112cc41e7efc81"
   triples = 135
 
 [[changelog]]
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "First version: normalised dates, places and occupations of the records (dates-normalized, places-linked, occupation-concepts and occupation-fix of kg-complements, decision 0020), for the stable versions; all occupation IRIs as jl:occupationURI."
+text = "First version: normalised dates, places and occupations of the records (dates-normalized, places-linked, occupation-concepts and occupation-fix of kg-complements, decision 0020), for the stable versions; more date forms; all occupation IRIs as jl:occupationURI."
 +++
 
 Normalised values next to the free-text values of the record datasets: typed birth and death dates, places and

@@ -1,13 +1,13 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T103745Z",
+ "run": "run-20261012T105055Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "0652b9dc4c23b48fa362d290a90d965e75f86612",
+ "commit": "674510796e842173420828de6c247ef993366ee7",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T10:37:45Z",
+ "started": "2026-10-12T10:50:55Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
@@ -266,19 +266,19 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T10:38:23Z",
- "seconds": 38.2,
+ "finished": "2026-10-12T10:51:34Z",
+ "seconds": 39.3,
  "notes": [
-  "Dates left out by records-normalized: 2,953 (of them 222 dictionaries of footprints).",
+  "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 302, 'death before birth': 51, 'no recognised form': 112, 'the year is outside 1–2030': 8}.",
   "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
-  "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 2969, 'syntax': 1, 'vocabulary': 4}."
+  "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 652, 'syntax': 1, 'vocabulary': 4}."
  ],
  "files": [
   {
    "path": "quality-annotations.ttl.gz",
-   "bytes": 89079,
-   "sha256": "24fea8090fa82f33e6cb22d442d0c9c5df348334d3bccb967e4b82449eeb164e",
-   "triples": 17862
+   "bytes": 22625,
+   "sha256": "1615f3cadd683cea7d6e143f2e44f73c8c6e5d48538d74f2c3c5f803a2845024",
+   "triples": 3960
   }
  ],
  "version": "2026-10-12"

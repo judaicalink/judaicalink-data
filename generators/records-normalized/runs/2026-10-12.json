@@ -1,15 +1,15 @@
 {
  "slug": "records-normalized",
- "run": "run-20261012T082935Z",
+ "run": "run-20261012T104951Z",
  "generator": "generators/records-normalized/generate.py",
- "commit": "5194ec7c5788bf0a851f47d1516c44a5d739b7e7",
+ "commit": "7fdfacb9021015ec98278a69885201fd758e546b",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
   "legacy_terms": false
  },
  "input_overrides": [],
- "started": "2026-10-12T08:29:35Z",
+ "started": "2026-10-12T10:49:51Z",
  "inputs": [
   {
    "name": "bhr",
@@ -258,10 +258,10 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T08:29:52Z",
- "seconds": 16.2,
+ "finished": "2026-10-12T10:50:08Z",
+ "seconds": 16.7,
  "notes": [
-  "Dates: {'empty': 2133, 'normalised': 184315, 'not parsed': 2953, 'uncertain': 87}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
+  "Dates: {'death before birth': 102, 'empty': 2133, 'normalised': 186581, 'not parsed': 585, 'uncertain': 145}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
   "Places: {'already linked': 2646, 'not linked': 40946, 'via cm-entities-wikidata places': 8110, 'via pairs in the data': 34628, 'via rujen and geo-coordinates places': 7019}.",
   "Occupations: 6,815 text occupations matched to one of 511 occupation IRIs, 29,877 not matched.",
   "Occupation IRIs stated with jl:occupation or jl:occpation: 15,340, as jl:occupationURI (15,340 new)."
@@ -269,9 +269,9 @@
  "files": [
   {
    "path": "records-normalized-dates.ttl.gz",
-   "bytes": 1362424,
-   "sha256": "98781ddfb620791833a70f3ed6bf273dab99067b0bb592c895f81afcd67dcd72",
-   "triples": 184388
+   "bytes": 1382061,
+   "sha256": "e94c396e746a6c2652692feea711cc3f38e6d1a38f05939c6c791c8c624c7746",
+   "triples": 186593
   },
   {
    "path": "records-normalized-occupations.ttl.gz",
