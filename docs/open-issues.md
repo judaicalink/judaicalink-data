@@ -30,6 +30,11 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   update-dataindex|sync-site`, the finder page and template changes in `judaicalink-site` (also: show the changelog and the
   derived contributors on the dataset pages, 0013), restructuring the archive
   to `<slug>/<version>/<path>`, finder page `/dataindex/`.
+- **The five removed datasets** (0015; confirmed 2026-10-12): their pages in `judaicalink-site/content/datasets/` are
+  deleted by hand when the site is synced (the sync never removes entries, 0014). `/datasets/ep-supp/`,
+  `/datasets/cm-tagme-supp/` and `/datasets/rujen-translation-supp/` redirect to `ep`, `cm-tagme` and
+  `rujen-translation` (aliases); `cmtest` and `beacon-persons` have no related page. Also to fix then: `rujen` and
+  `rujen-translation` claim the same two aliases (as on the site since before 2026).
 - **To discuss with Frankfurt:** they can drop `cmtest`, `ep-supp`, `cm-tagme-supp`, `rujen-translation-supp` and
   `beacon-persons` from their catalogue ([0015](decisions/0015-dumps-clean-start.md)); stable access URLs on data.judaicalink.org instead of web.judaicalink.org
   (0014); their loader expects `<slug>.meta.ttl` in one shared metadata graph (0006); their catalogue pages

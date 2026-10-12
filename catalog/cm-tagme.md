@@ -4,6 +4,7 @@ title = "Linking Compact Memory - Resources and References"
 author = "Kai Eckert"
 date = "2021-01-19"
 namespaces = ["cm-tagme"]
+aliases = ["/datasets/cm-tagme-supp/"]
 stable = "2021-01-18"
 kind = "complement"
 method = ["statistical"]
