@@ -126,10 +126,9 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   records-normalized and ep. Also open for epidat: the family relations of the TEI (14,264, no ontology terms), the
   451 persons of 2023 that Epidat has withdrawn (seven cemeteries, "not yet published"; taken over again when Epidat
   publishes them), the cemetery GND/coordinates.
-- **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
-  article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):
-  life dates at the start of the abstract → person (1,077), place links → place, else subject; subsections
-  are not subjects; records keep their place on continued pages even without a type.
+- **YIVO articles were untyped:** typed by record-classes 2026-10-12 and linked to Wikidata by ls-yivo-wikidata
+  (decision 0025). Open: the 346 article subsections (`skos:Concept`), which ep takes as subjects; ep must read both
+  datasets (classes from record-classes, `jl:Subject`).
 - **GeoNames nodes** (803) and a few haskala/djh records without type: check what they are before typing.
 - Further items of the data improvement plan: `../PLAN-2026-10-05-data-improvements.md`.
 
