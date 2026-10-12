@@ -22,6 +22,8 @@ INPUTS = {
     "ls_nli_legacy": "ls-nli-legacy/2026-10-12",
     "dbp_wiki_geo_linking": "dbp-wiki-geo-linking/2021-01-13",
     "cm_entities": "cm-entities/2026-10-12/cm-entities-wikidata.ttl.gz",
+    "footprints": "footprints/2026-10-12",
+    "haskala": "haskala/2026-10-12/haskala.ttl.gz",
 }
 PARAMS = {}
 
@@ -134,6 +136,25 @@ CORRECTIONS = [
         + same("Granada", "http://ru.wikipedia.org/wiki/Гренада_(значения)")
         + same("Limerick", "http://ru.wikipedia.org/wiki/Лимерик_(значения)")
         + same("geonames/3580239", "http://ru.wikipedia.org/wiki/Гренада_(значения)"), []),
+    ("footprints", [
+        "footprints: persons linked to the VIAF cluster of a work (a name-title record of the NLI, nli-records):",
+        "\"Jerusalem Talmud\" (as a person) to Simeon Kayyara, Halakhot Gedolot; Yonah Ashkenazi to his ʼIsur ṿe-heter;",
+        "Baruch ben Isaac to his Sefer Terumah; Moses ben Jacob of Coucy to his Sefer mitsvot gadol; Bahya ibn Paquda to",
+        "his al-Hidaja (Duties of the Heart); Judah ben Samuel ha-Levi to Samuel Edels, Hiddushi Halachot; Raphael Levi",
+        "Hannover to his Luhot Ha-Ibbur.",
+    ], same("footprints/30aa893b-8880-5548-9003-70ad30da0e73", "https://viaf.org/viaf/178212074/")
+        + same("footprints/3bcbbdc2-1b0e-5398-8b73-046bfbca08f3", "https://viaf.org/viaf/21145304384378571647/")
+        + same("footprints/69042b94-1349-5b54-9068-99ea16d24a59", "https://viaf.org/viaf/181391513/")
+        + same("footprints/78efcb24-87bd-5922-ad15-12f2095e2320", "https://viaf.org/viaf/306078411/")
+        + same("footprints/919635b6-dc25-533d-8758-b0f1a7df8d8d", "https://viaf.org/viaf/180286221/")
+        + same("footprints/a9b1231a-6499-52d7-81a0-cc01658a990d", "https://viaf.org/viaf/308265424/")
+        + same("footprints/df14b9c6-8e87-5ab5-9af7-1dece6c0a2a6", "https://viaf.org/viaf/3876147484331149360004/"), []),
+    ("haskala", [
+        "haskala: persons whose VIAF id (database field viaf_id, kept as given) is now the cluster of a work (nli-records):",
+        "Friedrich Wilhelm (person 1715) to Hegel, Phenomenology of Spirit (Hebrew translation); Abraham ben Aryeh Leib",
+        "(person 530) to Avraham Mordechai Alter of Gur, Imrei Emet.",
+    ], same("haskala/person/1715", "http://viaf.org/viaf/310739787")
+        + same("haskala/person/530", "http://viaf.org/viaf/310739127"), []),
 ]
 
 
