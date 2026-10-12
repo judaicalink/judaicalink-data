@@ -11,7 +11,7 @@ kind = "records"
 method = ["converted"]
 
 [license]
-name = "CC4.0"
+name = "CC BY 4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
@@ -35,6 +35,11 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 1870
   sha256 = "9083e2d4d96b96244d3160543c984517e924a1c4f34b25846a1e6944e89322be"
   triples = 57
+
+[[changelog]]
+date = "2026-10-12"
+author = "Kai Eckert"
+text = "Licence name corrected to CC BY 4.0 (was \"CC4.0\"); the licence URI is unchanged."
 +++
 [Soundscape Synagogue](https://www.soundscape-synagoge.de) provides information on the musical heritage of Jewish communities in Europe. <!--more-->
 Here you will find knowledge on Jewish cantors of the past and present, as well as information on various traditions of Jewish-liturgical music, including texts, images, sound recordings and films. 

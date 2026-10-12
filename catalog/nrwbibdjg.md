@@ -11,7 +11,7 @@ kind = "records"
 method = ["converted", "lookup"]
 
 [license]
-name = "CC4.0"
+name = "CC BY 4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
@@ -35,6 +35,11 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 1960
   sha256 = "ba6dd259c1c7eac0f847faf33dc03703f71fe2b3228687c06476d2df7bfea0ec"
   triples = 58
+
+[[changelog]]
+date = "2026-10-12"
+author = "Kai Eckert"
+text = "Licence name corrected to CC BY 4.0 (was \"CC4.0\"); the licence URI is unchanged."
 
 [[changelog]]
 date = "2024-12-03"

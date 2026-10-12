@@ -41,6 +41,13 @@ have the same kind and the same automated status, and belong together in content
   `ls-nli-legacy` (records and linkset; the linkset concerns only holders of legacy URIs),
   `gnd-persons-entityfacts` (records), `quality-annotations` (notes, partly about datasets).
 - Result: 7 new datasets and a new version of `compact-memory`, instead of 15 datasets.
+- `quality-annotations` keeps only annotations about the data (decided 2026-10-12): the dates `records-normalized`
+  cannot normalise (its date rules as shared code), issues of Compact Memory in isolated years (on the issue, which
+  states the date, not on its pages), and problems of single versions, found by checks and targeted at the version
+  (`datasets/<slug>/<version>`). Dropped: the notes on the old catalogues and dumps (fixed or obsolete; the licence
+  name "CC4.0" is corrected in the catalogue instead) and the broken links of the legacy entity pages (0008). IRIs
+  `data/quality-annotations/annotation/<hash>`, no `dcterms:created` (the time of the run made every run differ).
+  Details in `generators/quality-annotations/README.md`.
 
 ### Ontology terms: pull requests to judaicalink-ontology
 

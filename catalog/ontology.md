@@ -11,7 +11,7 @@ kind = "ontology"
 method = ["curated"]
 
 [license]
-name = "CC4.0"
+name = "CC BY 4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"
 image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 
@@ -35,6 +35,11 @@ description = "The ontology as of judaicalink-ontology b26c961, as served on ont
   bytes = 1710
   sha256 = "21762f0fca59f12e4326358643be3cac98db973d49409ac306143e31138561c8"
   triples = 57
+
+[[changelog]]
+date = "2026-10-12"
+author = "Kai Eckert"
+text = "Licence name corrected to CC BY 4.0 (was \"CC4.0\"); the licence URI is unchanged."
 
 [[changelog]]
 date = "2020-09-29"

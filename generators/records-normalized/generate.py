@@ -103,6 +103,15 @@ def normalize_date(raw):
     return None
 
 
+def parse_date(raw):
+    """normalize_date, with years outside 1000–2030 left out: (literal, uncertain) or None. Also used by
+    quality-annotations for the dates left out (shared code)."""
+    result = normalize_date(raw)
+    if result and 1000 <= int(re.match(r"(\d{4})", result[0].value).group(1)) <= 2030:
+        return result
+    return None
+
+
 def dates(run, values):
     t = set()
     stats = Counter()
@@ -112,9 +121,8 @@ def dates(run, values):
             if not d.strip():
                 stats["empty"] += 1
                 continue
-            result = normalize_date(d)
-            year_ok = result and 1000 <= int(re.match(r"(\d{4})", result[0].value).group(1)) <= 2030
-            if not result or not year_ok:
+            result = parse_date(d)
+            if not result:
                 stats["not parsed"] += 1
                 unparsed.append(d)
                 continue
