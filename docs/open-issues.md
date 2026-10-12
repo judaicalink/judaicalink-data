@@ -112,7 +112,9 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   to the GND number of a namesake (Otto Warburg, Kurt Singer), so its GND links may have been made by name; check them
   against the life dates. cm-entities takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula).
   The closure check only sees conflations that meet a second Wikidata item or class; others need other checks (life
-  dates of the records of a group). Havilah (dbpedia-persons, a person, and cm-entities, a place, with one Wikidata item
+  dates of the records of a group). 2014links links 30 rujen records typed as persons to places (rujenDBpediaPlace 9,
+  rujenLGDOPlace 21): either rujen typed a place as a person (Marseille, corrected) or the link joins a person by name
+  with a place (Lyubin and Lubin, corrected); the others are to be checked one by one. Havilah (dbpedia-persons, a person, and cm-entities, a place, with one Wikidata item
   for both) is left as it is.
 - **YIVO articles are untyped:** the 1,798 articles have no `rdf:type`, so they are on no entity page; the 346
   article subsections (`skos:Concept`) were taken as subjects. Proposal: a typing dataset (`record-classes`):

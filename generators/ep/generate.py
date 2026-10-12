@@ -91,6 +91,21 @@ FACT_PROPS = {
     JLO + "lon": "lon", "http://www.w3.org/2003/01/geo/wgs84_pos#long": "lon",
     SAME: "sameAs", GNDID: "gndId",
 }
+# Records known to be different entities, each joined once by wrong links that corrections-links deletes (decision
+# 0023): a test, not a rule. If one of these pairs is in one group again, a new link joins them; the run stops so that
+# it is corrected in the data, not here.
+KNOWN_DISTINCT = [(JL + a, JL + b) for a, b in [
+    ("dbpedia/Simeon_ben_Gamliel_II", "gnd/124813631"), ("dbpedia/Menahem_ben_Moshe_Bavli", "gnd/122534107"),
+    ("dbpedia/Abraham_ben_David", "dbpedia/Abraham_ibn_Daud"), ("gnd/119169053", "gnd/143229036"),
+    ("bhr/Kohn_Samuel", "gnd/137101554"), ("bhr/Kohn_Samuel-1", "bhr/Kohn_Samuel"),
+    ("dbpedia/Herbert_Morrison", "gnd/11878501X"), ("dbpedia/Johann_Eck", "gnd/11852870X"),
+    ("dbpedia/Randolph_Churchill", "gnd/119410346"), ("gnd/118960881", "gnd/1053284543"),
+    ("gnd/1029068879", "gnd/13366936X"), ("gnd/119017806", "gnd/12279916X"), ("Granada", "dbpedia/Grenada"),
+    ("nli/record/viaf-294403101", "gnd/118540238"), ("nli/record/viaf-179642103", "nli/record/viaf-22144877"),
+    ("gnd/1140070320", "gnd/124269214"), ("hhkeydocs/Otto_Warburg", "nli/record/viaf-112658460"),
+    ("hhkeydocs/Kurt_Singer", "nli/record/viaf-59920664"), ("dbpedia/Isaak_ben_Salomo_Sahula", "nli/record/viaf-308556423"),
+    ("gnd/141432381", "nli/record/viaf-56213280"), ("Lubin", "rujen/lyubin"),
+]]
 _IRI_BAD = re.compile(r'[<>"{}|^`\\\s]')
 
 
@@ -330,6 +345,9 @@ def generate(run):
     for r in records:
         groups[cl.find(r)].add(r)
     stats["groups"] = len(groups)
+    joined = [(a, b) for a, b in KNOWN_DISTINCT if a in cl.parent and b in cl.parent and cl.find(a) == cl.find(b)]
+    if joined:
+        raise GeneratorError(f"records known to be different are in one group again (a new link joins them): {joined}")
 
     # 3. comparison with the previous pages
     def resolve(m, depth=0):

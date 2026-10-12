@@ -14,6 +14,7 @@ from jl.turtle import PREFIXES
 
 INPUTS = {
     "interlinks": "interlinks/2018-07-18",
+    "links_2014": "2014links/2017-02-15",
     "dbpedia_persons": "dbpedia-persons/2018-10-24",
     "gnd_persons": "gnd-persons/2018-11-29",
     "ubffm_persons": "ubffm-persons/2019-01-24",
@@ -120,6 +121,12 @@ CORRECTIONS = [
         + same("nli/record/viaf-4975148269815005230004", LC + "n84182018")
         + same("nli/record/viaf-308552496", LC + "n85813504") + same("nli/record/viaf-56213280", LC + "no97016740")
         + same("nli/record/viaf-154146462665727771679", LC + "nr91021404"), []),
+    ("nli_records", [
+        "nli-records: the work 56213280 carries the VIAF number of its author Solomon Small (1868-1943; GND 141432381).",
+    ], same("nli/record/viaf-56213280", "http://viaf.org/viaf/56213280"), []),
+    ("links_2014", [
+        "2014links: Yakov Lyubin (rujen, a singer, died 1914) is not the town of Lubin in Poland.",
+    ], same("rujen/lyubin", "http://dbpedia.org/resource/Lubin"), []),
     ("cm_entities", [
         "cm-entities: VIAF 308556423 is the work Meshal ha-kadmoni (NLI), not its author Isaac ben Solomon Sahula",
         "(taken over from Wikidata Q61126269, which has both).",

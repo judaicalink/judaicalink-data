@@ -6,7 +6,7 @@ date = "2026-10-12"
 kind = "correction"
 method = ["curated"]
 stable = "2026-10-12"
-inputs = ["interlinks", "dbpedia-persons", "gnd-persons", "ubffm-persons", "hhkeydocs", "nli-records", "ls-nli-legacy", "dbp-wiki-geo-linking", "rujen", "cm-entities"]
+inputs = ["interlinks", "2014links", "dbpedia-persons", "gnd-persons", "ubffm-persons", "hhkeydocs", "nli-records", "ls-nli-legacy", "dbp-wiki-geo-linking", "rujen", "cm-entities"]
 
 [license]
 name = "CC0"
