@@ -1,0 +1,50 @@
+{
+ "slug": "footprints",
+ "run": "run-20261012T213933Z",
+ "generator": "generators/footprints/generate.py",
+ "commit": "0cb49a37364697f434fecbddce7865478f484a90",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "identifier_iris": true,
+  "relation_iris": true,
+  "dict_dates": true,
+  "nameless": true,
+  "run_times": true,
+  "empty_values": true,
+  "wkt": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-12T21:39:33Z",
+ "inputs": [
+  {
+   "name": "previous",
+   "ref": "footprints/2024-03-18/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "a5d06cb5f3c5aee2216f7cae92060a194d1598730ecd7f822f50f01ab4781deb",
+   "bytes": 1347325
+  }
+ ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T21:39:34Z",
+ "seconds": 0.9,
+ "notes": [
+  "2,298 owl:sameAs as IRIs, 673 'None' dropped; 6,029 relations as IRIs (86 gndo:ditor as gndo:editor); 220 dictionary dates dropped as duplicates, 2 stated as EDTF; the nameless resource and its 74 links dropped; 11,571 run times dropped; 967 empty or 'None' values dropped, 2 addresses repaired; 99 WKT points repaired."
+ ],
+ "files": [
+  {
+   "path": "footprints.ttl.gz",
+   "bytes": 1257277,
+   "sha256": "31fc38e2552f719c8cd5bf65d3336bf722deb1311ef505c3ea304b6ba9581df3",
+   "triples": 91781
+  }
+ ],
+ "version": "2026-10-12"
+}

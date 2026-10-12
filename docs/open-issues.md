@@ -100,6 +100,7 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   2026-10-12). The usable value is `edtf_format` (EDTF); a fix belongs to a new footprints version or a rule in
   records-normalized. records-normalized reads the EDTF value (2026-10-12); 20 are intervals or centuries and stay
   out (quality-annotations).
+  Fixed in footprints 2026-10-12 (the dictionary dates repeat values of the person loop; dropped).
 - **gba URIs changed** on 2025-03-21 (generator commit `6fce1cd`, `clean_url_string` replaces characters with `_`
   instead of removing them): the 24 URIs of the version before are gone (e.g. `data/gba/JecheskelEzechielLandau` →
   `Jecheskel__Ezechiel__Landau`). Check whether anything links to the old ones.
