@@ -68,8 +68,8 @@ several Wikidata items or incompatible classes, keys shared by many records of o
 About two minutes, 8 GB of memory.
 
 The first version (2026-10-12) is made from 2021-05-28: of its 1,717,191 IRIs, 245,053 stay pages, 14,357 are merged
-into another page (9,126 legacy NLI pages into the page of the same person, now linked through `nli-records`; 468
-legacy NLI pages of one person; 4,763 others), 1,492 are split (1,481 legacy NLI URIs that stood for several people,
+into another page (9,125 legacy NLI pages into the page of the same person, now linked through `nli-records`; 468
+legacy NLI pages of one person; 4,764 others), 1,492 are split (1,481 legacy NLI URIs that stood for several people,
 followed through `prov:wasDerivedFrom` of `ls-nli-legacy`; 11 conflations of 2021, among them the two Abrahams,
 Hai and Sherira Gaon, Marseille and the composer Paul Marselle), 1,456,289 are retired (mentions, pages and images of
 Compact Memory and other IRIs that are no person, place, organisation, work or subject); 50,331 new pages, numbers
