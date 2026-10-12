@@ -122,5 +122,3 @@ status from whether all of them are automated (`-meta`, 0018).
   facts (precedence, languages, labels) are kept, with `jl:occupationURI` (0020) and the dataset names of the
   catalogue.
 - The two non-identifiers become the first correction dataset (0023), before the first `ep` version.
-- Still to decide: the rules of 2026-10-06 to revisit (precedence list with the
-  catalogue's dataset names, organisations outside the core).
