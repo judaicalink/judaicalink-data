@@ -32,10 +32,11 @@ have the same kind and the same automated status, and belong together in content
 | ontology-complements | **no dataset**: its terms go into the ontology (below) | – |
 
 - `compact-memory` gets a new version rather than a successor dataset: the corpus data (journals, issues, pages)
-  belongs to it, and a new version takes the place of the old one without harm as long as it keeps everything the
-  old one said. The new version is checked to contain every triple of the version 2021-01-18, including the image
-  links (`jl:hasVisualRepresentation`), which the kg-complements builder derived instead of stating;
-  differences are documented. `compact-memory-supp` stays its support data.
+  belongs to it. A new version may clean up: it is compared with the version it follows, and what it no longer
+  states is documented in its description (decided 2026-10-12, for `compact-memory` after the comparison with
+  2021-01-18: 4,710 of its 624,682 triples are dropped, see the version). The image links
+  (`jl:hasVisualRepresentation`), which the kg-complements builder derived instead of stating, are stated for every
+  page. `compact-memory-supp` stays its support data.
 - Not combined: `cm-ocr-quality` (automated; it would flag the exact corpus data), `nli-records` and
   `ls-nli-legacy` (records and linkset; the linkset concerns only holders of legacy URIs),
   `gnd-persons-entityfacts` (records), `quality-annotations` (notes, partly about datasets).

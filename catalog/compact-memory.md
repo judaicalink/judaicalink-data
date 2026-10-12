@@ -20,6 +20,8 @@ path = "generators/compact-memory"
 
 [files]
 "cm_tagme_pages.ttl.gz" = "Page metadata in RDF for Compact Memory, for pages where entity references have been found (624682 triples)."
+"compact-memory-journals.ttl.gz" = "The journals: title, subtitle, place of publication, publisher, period, language, ZDB and URN, Visual Library page, number of pages in the full-text index."
+"compact-memory-pages.ttl.gz" = "Volumes, issues and pages: for every page its issue, sequence, label and image in the Visual Library; for every volume and issue its parent, journal, label and date."
 
 [[versions]]
 version = "2021-01-18"
@@ -43,6 +45,13 @@ date = "2025-06-05"
 author = "Benjamin Schnabel"
 text = "Generator ported from Jupyter notebooks to Python scripts (judaicalink-generators); the published version was not regenerated."
 +++
-Page metadata description in RDF for pages in Compact Memory where an entity mention has been found. The dataset describes pages, journals, journal issues and their relations, along with a pointer to the visual representation of each page in the Visual Library.
+The Compact Memory corpus of UB Frankfurt (Jewish periodicals in German-speaking countries) as linked data: its journals, their volumes and issues, and the pages of the full-text index, with links to the journal pages and page images in the Visual Library.
 
 <!--more-->
+
+Journal descriptions come from the MODS records of UB Frankfurt (export of 15 June 2020), the structure of volumes,
+issues and pages from its page table (compact-memory-supp). Since 2026 the dataset describes every page of the
+full-text index of the FID portal; the version of 2021 described only the pages on which entities had been found
+(see cm-tagme), and its page IRIs are kept. Page IRIs have the form
+`<journal>-<volume>-<issue>--<file prefix>-<page VLID>`; the page VLID is the document id of the full-text index, and
+the page image is `http://sammlungen.ub.uni-frankfurt.de/cm/periodical/pageview/<VLID>`.

@@ -23,6 +23,24 @@ committed notebooks contain bugs the actual run did not hit (a NameError when sa
 
 **Reproducible** from the page metadata and the cm-tagme intermediates (backup).
 
+## Framework generator
+
+`generate.py` (2026-10-12, decision 0020): a port of `cm_journals` and `cm_structure` of kg-complements
+(`datasets_deterministic.py`, 2026-10-05) without changes to their logic, plus the image link of every page;
+`cm_sources.py` holds the functions it needs from `extract_cm_fulltext.py` (cm_indexer of the FID portal). Inputs: the
+page table `compact-memory-supp/2021-01-19/CM_Seiten_Metadaten.csv.gz`, and from the inputs area (decision 0021)
+`compact-memory/mods-2020-06-15` (MODS records), `compact-memory/ocr-paths-2026-10-05` (the OCR file list, for the page
+IRIs) and `compact-memory/fulltext-2026-10-05-v2` (the full-text bundle: which pages are in the index, with date, label
+and journal); the version 2021-01-18 for the existing page IRIs. Writes `compact-memory-journals.ttl.gz` (3,707
+triples, identical to cm-journals) and `compact-memory-pages.ttl.gz` (3,629,104 triples: cm-structure plus 846,499
+image links). About one minute.
+
+Compared with the version 2021-01-18 (624,682 triples), 4,710 triples are no longer stated (decided 2026-10-12):
+the second IRI of 2,060 pages that had two (one per OCR file copy; they are `owl:sameAs` the page that carries the
+data, same issue in every case), the 3 pages whose two OCR copies differ (not in the full-text index), the journal
+titles as `jl:title` and journal-level image links (now `dcterms:title` from the MODS records and `foaf:page`), and 16
+volumes and issues assigned to a second record of the same journal (the page table assigns them to the other).
+
 ## Original files
 
 `original/` holds copies of the files below, unchanged unless noted, under `<repository>@<commit>/<path>`. They are the record of what was used; they are not run from here.
