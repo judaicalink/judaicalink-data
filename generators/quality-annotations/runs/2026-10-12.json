@@ -1,0 +1,285 @@
+{
+ "slug": "quality-annotations",
+ "run": "run-20261012T103745Z",
+ "generator": "generators/quality-annotations/generate.py",
+ "commit": "0652b9dc4c23b48fa362d290a90d965e75f86612",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-12T10:37:45Z",
+ "shared_code": [
+  "generators/records-normalized/generate.py"
+ ],
+ "inputs": [
+  {
+   "name": "bhr",
+   "ref": "bhr/2018-10-24/bhr-final-05.ttl.gz",
+   "file": "bhr-final-05.ttl.gz",
+   "sha256": "a64d950ecc572e9fb8bceb9d289647857fcc68bad0363b60ecc6f0625f5c959f",
+   "bytes": 1516250
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2018-10-24/Entityfacts-bhr-sameas.ttl.gz",
+   "file": "Entityfacts-bhr-sameas.ttl.gz",
+   "sha256": "2f1706d67e03b34d204a6c578b0e2f421104a55b144a0afe2f99bfc1039602f4",
+   "bytes": 32483
+  },
+  {
+   "name": "dbpedia_persons",
+   "ref": "dbpedia-persons/2018-10-24/generated_persons_DBPedia_enriched_02.ttl.gz",
+   "file": "generated_persons_DBPedia_enriched_02.ttl.gz",
+   "sha256": "34e353fd9b7bf20e8c53a673503eeeb400e4bef4c14a6f532041fde3191c96b3",
+   "bytes": 710023
+  },
+  {
+   "name": "dbpedia_persons",
+   "ref": "dbpedia-persons/2018-10-24/persons-gndid.ttl.gz",
+   "file": "persons-gndid.ttl.gz",
+   "sha256": "e8d8cdab643f0b98840c5181299b7c6a00ea0274331ffd3420b2fe9ff68392f8",
+   "bytes": 30570
+  },
+  {
+   "name": "dbpedia_persons",
+   "ref": "dbpedia-persons/2018-10-24/Entityfacts-dbpedia-sameas.ttl.gz",
+   "file": "Entityfacts-dbpedia-sameas.ttl.gz",
+   "sha256": "c1ff0f22f44f0c244aec4f609822cccc5710b706ca1b4b21e8c68ab750844105",
+   "bytes": 135800
+  },
+  {
+   "name": "djh",
+   "ref": "djh/2018-10-22/djh.ttl.gz",
+   "file": "djh.ttl.gz",
+   "sha256": "b77f295c62f8687a18a4a14783add3a952248a4182d13573a3e6a8e5419e7019",
+   "bytes": 104832
+  },
+  {
+   "name": "epidat",
+   "ref": "epidat/2023-07-14/epidat-final-01.ttl.gz",
+   "file": "epidat-final-01.ttl.gz",
+   "sha256": "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a",
+   "bytes": 1533441
+  },
+  {
+   "name": "footprints",
+   "ref": "footprints/2024-03-18/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "a5d06cb5f3c5aee2216f7cae92060a194d1598730ecd7f822f50f01ab4781deb",
+   "bytes": 1347325
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2019-12-18/bhr-final-05.ttl",
+   "file": "bhr-final-05.ttl",
+   "sha256": "c41abb0ec2f45696f990ae09318d4b8f12d09b327e5fe1963407c172f3ec5ad7",
+   "bytes": 68032
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2019-12-18/djh.ttl",
+   "file": "djh.ttl",
+   "sha256": "0eea649ea56a43abcd44aaa39999e9fc4b1949ed2bcab26fdb6084711d70eb69",
+   "bytes": 30333
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2019-12-18/generated_persons_GND_enriched.ttl",
+   "file": "generated_persons_GND_enriched.ttl",
+   "sha256": "502517c89ff6e122c7a5cc44614ff9b9cbbde352ad860f24b4e83ba27041c798",
+   "bytes": 78222
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2019-12-18/Haskala_enriched.ttl",
+   "file": "Haskala_enriched.ttl",
+   "sha256": "61e0ab29fb2f6c76e5016a81cd1a4e4959152c9e746fb1591f1c60629773d12d",
+   "bytes": 390
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2019-12-18/HirschFamily.ttl",
+   "file": "HirschFamily.ttl",
+   "sha256": "ff5bca2dbbabaccfa0cb3f8ead851ed497973b82e680b96cb8582890d2a74f19",
+   "bytes": 6226
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2019-12-18/ubffm-authors.ttl",
+   "file": "ubffm-authors.ttl",
+   "sha256": "129bc5e805971128c7b123d113da5934295ad15e0b185e0c37bcf412e1f7f810",
+   "bytes": 121351
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2019-12-18/geo_interlinks.ttl",
+   "file": "geo_interlinks.ttl",
+   "sha256": "e6352d602c21aabf682932734f8c292b91b73cff02e32c3ac3c731571ef26621",
+   "bytes": 676542
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/generated_persons_GND.ttl.gz",
+   "file": "generated_persons_GND.ttl.gz",
+   "sha256": "ab4565b96130b30f1a73ec7ce18f1d2a0ba63e51d9e0d24577147a20bf5ea55c",
+   "bytes": 288346
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/generated_persons_GND_enriched.ttl.gz",
+   "file": "generated_persons_GND_enriched.ttl.gz",
+   "sha256": "a0e44d4858926dede65493f4b4da23df8137d4fca6ac03a382920323ffc3672e",
+   "bytes": 339726
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/Freimann-GND-enriched-05.ttl.gz",
+   "file": "Freimann-GND-enriched-05.ttl.gz",
+   "sha256": "c47cba2d316625202e97e2328266e0e1d6289af70ae1303292da2a9c83c1dcb2",
+   "bytes": 35454
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/ub-authors.ttl.gz",
+   "file": "ub-authors.ttl.gz",
+   "sha256": "1399b7c2b1695b151917f398f63e78fa7207e475d0ef256bc8173112597046e3",
+   "bytes": 2407331
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/Entityfacts-ubgnd-sameas.ttl.gz",
+   "file": "Entityfacts-ubgnd-sameas.ttl.gz",
+   "sha256": "3f41408595864abfd4b1d01baebc3f08fb61799f4ba73642a4140bcd9e6f8fcd",
+   "bytes": 1907589
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/Entityfacts-gnd-sameas.ttl.gz",
+   "file": "Entityfacts-gnd-sameas.ttl.gz",
+   "sha256": "b13b59fa8113da1d0f6105f34efebba0a9b5e7c8fa7981e98c29c2c24b2ca6f5",
+   "bytes": 213523
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/Entityfacts-freimann-sameas.ttl.gz",
+   "file": "Entityfacts-freimann-sameas.ttl.gz",
+   "sha256": "4c5f08614b7689d04b0aae34e1828d69c5c1a3b62f724943bf29e2729e7459bf",
+   "bytes": 35142
+  },
+  {
+   "name": "gnd_persons",
+   "ref": "gnd-persons/2018-11-29/jl-zbw.ttl.gz",
+   "file": "jl-zbw.ttl.gz",
+   "sha256": "58dc19daf6495f84e78110c0c3472692736f4b2ff911caa4b3b82eba2c73b1d9",
+   "bytes": 5731
+  },
+  {
+   "name": "gnd_persons_entityfacts",
+   "ref": "gnd-persons-entityfacts/2026-10-12/gnd-persons-entityfacts.ttl.gz",
+   "file": "gnd-persons-entityfacts.ttl.gz",
+   "sha256": "2d0123d5bdf2533af5d4ac2634a3ad69724392fe2b0d854329785602c27a83c6",
+   "bytes": 178370
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2019-07-01/Haskala_enriched.ttl.gz",
+   "file": "Haskala_enriched.ttl.gz",
+   "sha256": "b024ce78236af00ba1480dd63eff33a5f42e0c22c8c0251b0e760fb7e7d7049b",
+   "bytes": 34911
+  },
+  {
+   "name": "hhkeydocs",
+   "ref": "hhkeydocs/2025-03-21/hhkeydocs-final-01.ttl.gz",
+   "file": "hhkeydocs-final-01.ttl.gz",
+   "sha256": "2d912a077e7c53ff363d16f4b37882714373205efcc13abdb2f428ea400ce445",
+   "bytes": 156824
+  },
+  {
+   "name": "hirsch_family",
+   "ref": "hirsch-family/2018-10-30/HirschFamily.ttl.gz",
+   "file": "HirschFamily.ttl.gz",
+   "sha256": "3e0d15737004352dd8aa63d3a82ec40b4ff4de2de329734ffa10adc94210919e",
+   "bytes": 4656
+  },
+  {
+   "name": "jre",
+   "ref": "jre/2019-11-29/jre.ttl.gz",
+   "file": "jre.ttl.gz",
+   "sha256": "938de30400eef55d65f129553a8c1e0156ac57aa2e1b81fb373f883bc464c932",
+   "bytes": 12926
+  },
+  {
+   "name": "nli_records",
+   "ref": "nli-records/2026-10-12/nli-records.ttl.gz",
+   "file": "nli-records.ttl.gz",
+   "sha256": "bd276fe6239583d8e2e6f44108add9dacb282cf4ad24ab3e8e871b5ffed5f93e",
+   "bytes": 10690626
+  },
+  {
+   "name": "sosy",
+   "ref": "sosy/2022-07-07/sosy-final-01.ttl.gz",
+   "file": "sosy-final-01.ttl.gz",
+   "sha256": "89890dd8b42bb09afd30809e8b8f963abf0e07a5ba402ecdf13e36fb295297d8",
+   "bytes": 12497
+  },
+  {
+   "name": "ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors.ttl.gz",
+   "file": "ubffm-authors.ttl.gz",
+   "sha256": "6cc3ae3df6bb6972230cb77c87a269cc9cffd0d63047f62164a77ba3771f0364",
+   "bytes": 505187
+  },
+  {
+   "name": "ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors-02.ttl.gz",
+   "file": "ubffm-authors-02.ttl.gz",
+   "sha256": "a6ab1fe57f453fe962fdc0066cca216207a55e0f45d35d7ad0eb526b3cce50e2",
+   "bytes": 408010
+  },
+  {
+   "name": "compact_memory",
+   "ref": "compact-memory/2026-10-12/compact-memory-journals.ttl.gz",
+   "file": "compact-memory-journals.ttl.gz",
+   "sha256": "a772acceb7afcec44e37c253d64b9bef74e7ecf655353d9436311248e1ee5cb3",
+   "bytes": 29685
+  },
+  {
+   "name": "compact_memory",
+   "ref": "compact-memory/2026-10-12/compact-memory-pages.ttl.gz",
+   "file": "compact-memory-pages.ttl.gz",
+   "sha256": "f6a8f335d9fc4e7b03c9ac9b29eabc3f81307f1fe382682701caaef251fef04c",
+   "bytes": 11842228
+  },
+  {
+   "name": "geo_coordinates",
+   "ref": "geo-coordinates/2018-08-08/city-geocoor-05.ttl.gz",
+   "file": "city-geocoor-05.ttl.gz",
+   "sha256": "c4fdf74620e2023a938bbab11103b1af87c5cef0daf5f8ae40b0c74d1ab18004",
+   "bytes": 142001
+  },
+  {
+   "name": "nrwbibdjg",
+   "ref": "nrwbibdjg/2024-05-24/nrwbibdjg.ttl.gz",
+   "file": "nrwbibdjg.ttl.gz",
+   "sha256": "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466",
+   "bytes": 371256
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T10:38:23Z",
+ "seconds": 38.2,
+ "notes": [
+  "Dates left out by records-normalized: 2,953 (of them 222 dictionaries of footprints).",
+  "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
+  "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 2969, 'syntax': 1, 'vocabulary': 4}."
+ ],
+ "files": [
+  {
+   "path": "quality-annotations.ttl.gz",
+   "bytes": 89079,
+   "sha256": "24fea8090fa82f33e6cb22d442d0c9c5df348334d3bccb967e4b82449eeb164e",
+   "triples": 17862
+  }
+ ],
+ "version": "2026-10-12"
+}

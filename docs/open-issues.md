@@ -92,6 +92,9 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   e.g. `{'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}`; records-normalized leaves them out (found
   2026-10-12). The usable value is `edtf_format` (EDTF); a fix belongs to a new footprints version or a rule in
   records-normalized. Until then quality-annotations notes each of them (222) with its EDTF date.
+- **Dates records-normalized could normalise:** of the 2,953 dates it leaves out (quality-annotations 2026-10-12),
+  991 are English dates like "October 28, 1905" and 606 ranges like "1663-1711"; rules for them (and the footprints
+  dictionaries) would make a new version of records-normalized and quality-annotations.
 - **gba URIs changed** on 2025-03-21 (generator commit `6fce1cd`, `clean_url_string` replaces characters with `_`
   instead of removing them): the 24 URIs of the version before are gone (e.g. `data/gba/JecheskelEzechielLandau` →
   `Jecheskel__Ezechiel__Landau`). Check whether anything links to the old ones.
