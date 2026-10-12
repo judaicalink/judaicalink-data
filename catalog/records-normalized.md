@@ -60,9 +60,13 @@ occupations as IRIs. The original values stay as they are.
 <!--more-->
 
 - **Dates** (`records-normalized-dates.ttl.gz`): `jl:birthDateNormalized` and `jl:deathDateNormalized` as `xsd:date`,
-  `xsd:gYearMonth` or `xsd:gYear` for the free-text `jl:birthDate` and `jl:deathDate`. Recognised: ISO dates,
-  D.M.YYYY, bare years, Hebrew years in letters (converted, marked uncertain), and markers of uncertainty (?, ca., um,
-  בערך, …), which set `jl:birthDateUncertain` / `jl:deathDateUncertain`; other values are left out.
+  `xsd:gYearMonth` or `xsd:gYear` for the free-text `jl:birthDate` and `jl:deathDate`. Recognised: ISO dates (also
+  as dateTimes), year and month (1914-11, 9.1749), D.M.YYYY (also with XX for an unknown day or month), English dates
+  (October 28, 1905), bare years from 1 to 2030, years with unknown month and day (1942--) or one of two months
+  (1347-06/07), Hebrew years in letters or as numbers (converted, marked uncertain), Hebrew-Gregorian pairs
+  (5559-1798), the EDTF value of dates written as Python dictionaries (footprints), and markers of uncertainty (?,
+  ca., um, בערך, ~, brackets), which set `jl:birthDateUncertain` / `jl:deathDateUncertain`. Left out: ranges, bounds
+  (vor 1593), negative years, and the dates of a record whose one death date is before its one birth date.
 - **Places** (`records-normalized-places.ttl.gz`): `jl:birthLocationURI` and `jl:deathLocationURI` for the text values
   of `jl:birthLocation` and `jl:deathLocation`, where a dictionary gives exactly one IRI: pairs of text and IRI
   already in the data, places of cm-entities, places of rujen and geo-coordinates (exact match after lowercasing; for

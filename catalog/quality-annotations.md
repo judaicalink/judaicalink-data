@@ -51,8 +51,9 @@ Web Annotation): dates that could not be normalised, issues with an unlikely yea
 Each annotation (`dqv:QualityAnnotation`, `oa:Annotation`) names its target with `oa:hasTarget`, describes the
 problem in `oa:bodyValue` and gives its kind in `dcterms:type`:
 
-- **date**: a birth or death date of a record that `records-normalized` could not normalise (the same rules; for
-  the dates of footprints written as Python dictionaries, the EDTF date in them), and issues of Compact Memory in a
+- **date**: a birth or death date of a record that `records-normalized` could not normalise, with the reason (the
+  same rules: a range, a bound, a negative year, …), records whose death date is before their birth date, and issues
+  of Compact Memory in a
   year more than 15 years away from every other year of their journal (probably a typo in the source metadata);
 - **vocabulary**, **datatype**, **syntax**, **data error**: problems of one version of a dataset, targeted at the
   version (`datasets/<slug>/<version>`): the misspelt property `jl:occpation`, IRIs as values of `jl:occupation`,

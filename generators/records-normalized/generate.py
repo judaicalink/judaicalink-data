@@ -1,14 +1,19 @@
 """records-normalized: normalised values for the literals of the record datasets: dates, places, occupations.
 
 Transformation only, a port of four builders of kg-complements (2026-10-06; decision 0020) without changes to their
-logic: dates_normalized and places_linked (datasets_algorithmic.py), occupation_concepts and occupation_fix
+logic (except the date rules, below): dates_normalized and places_linked (datasets_algorithmic.py), occupation_concepts and occupation_fix
 (datasets_deterministic.py). They queried "all graphs" of the endpoint; here the inputs are the versions that hold
 the values they read (checked 2026-10-12 against all stable versions and the kg-complements outputs). Facts about
 records, never about entity pages (0008).
 
 Files:
 - records-normalized-dates.ttl.gz: jl:birthDateNormalized / jl:deathDateNormalized (xsd:date, gYearMonth, gYear) for the
-  free-text jl:birthDate / jl:deathDate, with jl:birthDateUncertain / jl:deathDateUncertain;
+  free-text jl:birthDate / jl:deathDate, with jl:birthDateUncertain / jl:deathDateUncertain. The rules of the port
+  were extended on 2026-10-12, before the first version was published, for the forms that quality-annotations found
+  left out: English dates (October 28, 1905), year and month (1914-11), dateTimes, 1942-- and 1347-06/07 (the year),
+  XX.10.1944, 9.1749, years 1–999, Hebrew years as numbers (5676) and Hebrew-Gregorian pairs (5559-1798), equal years
+  (1831-1831), the EDTF value of the footprints dictionaries; a record whose one death date is before its one
+  birth date gets neither. Ranges, bounds (vor 1593) and years before the common era stay out;
 - records-normalized-places.ttl.gz: jl:birthLocationURI / jl:deathLocationURI for the text places, where a dictionary
   gives exactly one IRI (pairs already in the data, places of cm-entities, places of rujen and geo-coordinates);
 - records-normalized-occupations.ttl.gz: jl:occupationURI for text occupations equal to the name of an occupation IRI
@@ -53,7 +58,7 @@ def lit(value, dt=None):
     return Literal(str(value), dt)
 
 
-# --- dates (copied from datasets_algorithmic.py) ---------------------------------------------------
+# --- dates (from datasets_algorithmic.py, with more forms, 2026-10-12) -------------------------------
 
 HEBREW_VALUES = {"א": 1, "ב": 2, "ג": 3, "ד": 4, "ה": 5, "ו": 6, "ז": 7, "ח": 8, "ט": 9, "י": 10, "כ": 20, "ך": 20,
                  "ל": 30, "מ": 40, "ם": 40, "נ": 50, "ן": 50, "ס": 60, "ע": 70, "פ": 80, "ף": 80, "צ": 90, "ץ": 90,
@@ -62,6 +67,12 @@ HEBREW_VALUES = {"א": 1, "ב": 2, "ג": 3, "ד": 4, "ה": 5, "ו": 6, "ז": 7, 
 UNCERTAIN = re.compile(r"\?|\bca\.?|\bum\b|\bcirca\b|\bc\.\s|בערך|~", re.I)
 # a Hebrew year in letters is one word with geresh/gershayim: תרע"ג, ה'תרע"ג, תר״ס
 HEBREW_YEAR_RE = re.compile(r"^(?:[א-ת]['׳])?[א-ת]{1,3}[\"״][א-ת]$")
+# footprints writes some dates as Python dictionaries: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}
+DICT_DATE = re.compile(r"^\{.*'edtf_format': '([^']*)'")
+MONTHS = {m: i for i, m in enumerate(("january", "february", "march", "april", "may", "june", "july", "august",
+                                      "september", "october", "november", "december"), 1)}
+YEARS = (1, 2030)   # years before the common era (-0126) are left out: standards number them differently
+HEBREW_YEARS = (5000, 5800)   # a year written as a number in this span is a Hebrew year (anno mundi)
 
 
 def hebrew_year(s):
@@ -75,27 +86,62 @@ def hebrew_year(s):
     return 5000 + value - 3760 if 100 <= value <= 799 else None
 
 
+def ymd(y, mo=None, d=None):
+    """The most precise literal for a year, month and day (a day or month out of range is dropped)."""
+    if mo and 1 <= mo <= 12:
+        if d and 1 <= d <= 31:
+            return lit(f"{y:04d}-{mo:02d}-{d:02d}", XSD + "date")
+        return lit(f"{y:04d}-{mo:02d}", XSD + "gYearMonth")
+    return lit(f"{y:04d}", XSD + "gYear")
+
+
 def normalize_date(raw):
     """Free-text date -> (literal, uncertain) or None."""
     s = raw.strip()
+    m = DICT_DATE.match(s)
+    if m:   # the EDTF value of a footprints dictionary (EDTF marks approximate and uncertain dates with ~ and ?)
+        s = m.group(1)
     uncertain = bool(UNCERTAIN.search(s))
-    core = UNCERTAIN.sub(" ", s).strip(" .,")
-    m = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", core)
+    bracketed = bool(re.fullmatch(r"\[.*\]", s))   # supplied by the cataloguer
+    core = UNCERTAIN.sub(" ", s).strip(" .,[]()")
+    uncertain = uncertain or bracketed
+    m = re.fullmatch(r"(\d{3,4})-(\d{2})-(\d{2})(?:T[\d:.]+Z?)?", core)   # ISO date, also as a dateTime
     if m:
-        y, mo, d = map(int, m.groups())
-        if 1 <= mo <= 12 and 1 <= d <= 31:
-            return lit(f"{y:04d}-{mo:02d}-{d:02d}", XSD + "date"), uncertain
-        if 1 <= mo <= 12:
-            return lit(f"{y:04d}-{mo:02d}", XSD + "gYearMonth"), uncertain
-        return lit(f"{y:04d}", XSD + "gYear"), uncertain
-    m = re.fullmatch(r"(\d{1,2})\.\s?(\d{1,2})\.\s?(\d{4})", core)
+        return ymd(*map(int, m.groups())), uncertain
+    m = re.fullmatch(r"(\d{3,4})-(\d{2})-*", core)   # year and month (epidat also 1925-03-)
+    if m and 1 <= int(m.group(2)) <= 12:
+        return ymd(*map(int, m.groups())), uncertain
+    m = re.fullmatch(r"(\d{4})-(\d{2})/(\d{2})", core)   # one of two months: the year is known
     if m:
-        d, mo, y = map(int, m.groups())
-        if 1 <= mo <= 12 and 1 <= d <= 31:
-            return lit(f"{y:04d}-{mo:02d}-{d:02d}", XSD + "date"), uncertain
-    m = re.fullmatch(r"(\d{4})", core)
+        return ymd(int(m.group(1))), uncertain
+    m = re.fullmatch(r"(\d{4})-+", core)   # month and day unknown (epidat: 1942--)
     if m:
-        return lit(core, XSD + "gYear"), uncertain
+        return ymd(int(m.group(1))), uncertain
+    m = re.fullmatch(r"(\d{1,2}|XX)\.\s?(\d{1,2}|XX)\.\s?(\d{4})", core)   # D.M.YYYY, XX for unknown parts
+    if m:
+        d, mo, y = (None if x == "XX" else int(x) for x in m.groups())
+        if d is None or mo is not None:
+            return ymd(y, mo, d if mo else None), uncertain
+    m = re.fullmatch(r"(\d{1,2})\.(\d{4})", core)   # M.YYYY
+    if m and 1 <= int(m.group(1)) <= 12:
+        return ymd(int(m.group(2)), int(m.group(1))), uncertain
+    m = re.fullmatch(r"([A-Za-z]+)\.? (\d{1,2}), (\d{4})", core)   # English: October 28, 1905
+    if m and m.group(1).lower() in MONTHS:
+        return ymd(int(m.group(3)), MONTHS[m.group(1).lower()], int(m.group(2))), uncertain
+    m = re.fullmatch(r"(\d{4})\s*[-/]\s*(\d{4})", core)
+    if m:
+        a, b = map(int, m.groups())
+        if a == b:   # 1831-1831
+            return ymd(a), uncertain
+        if HEBREW_YEARS[0] < a < HEBREW_YEARS[1] and b - (a - 3760) in (0, 1):   # Hebrew and Gregorian: 5559-1798
+            return ymd(b), uncertain
+        return None
+    m = re.fullmatch(r"\d{3,4}", core)
+    if m:
+        y = int(core)
+        if HEBREW_YEARS[0] < y < HEBREW_YEARS[1]:
+            return ymd(y - 3760), True   # a Hebrew year spans two Gregorian years
+        return ymd(y), uncertain
     if HEBREW_YEAR_RE.match(core):
         y = hebrew_year(core)
         if y:
@@ -103,20 +149,46 @@ def normalize_date(raw):
     return None
 
 
+def year_of(value):
+    return int(value.value[:4])
+
+
 def parse_date(raw):
-    """normalize_date, with years outside 1000–2030 left out: (literal, uncertain) or None. Also used by
+    """normalize_date, with years outside YEARS left out: (literal, uncertain) or None. Also used by
     quality-annotations for the dates left out (shared code)."""
     result = normalize_date(raw)
-    if result and 1000 <= int(re.match(r"(\d{4})", result[0].value).group(1)) <= 2030:
+    if result and YEARS[0] <= year_of(result[0]) <= YEARS[1]:
         return result
     return None
 
 
+def why_not(raw):
+    """Why a date is left out, for quality-annotations (or None: no recognised form)."""
+    s = raw.strip()
+    m = DICT_DATE.match(s)
+    if m:
+        return f"a Python dictionary written as text, whose EDTF value '{m.group(1)}' is not a single date"
+    if re.fullmatch(r"-\d+(-\d\d){0,2}", s):
+        return ("a negative year: before the common era (left out, standards number these years differently) or the end "
+                "of an open range")
+    if re.match(r"(vor|nach|before|after|bis|ab)\b", s, re.I):
+        return "a bound (before or after), not a date"
+    if re.search(r"\d{3,4}(-\d\d)?\s*[-–/~]\s*\d{2,4}", s):
+        return "a range, not a single date"
+    result = normalize_date(s)
+    if result:
+        return f"the year {year_of(result[0])} is outside {YEARS[0]}–{YEARS[1]}"
+    return None
+
+
 def dates(run, values):
+    """The normalised dates; a record whose death is before its birth gets neither (e.g. years before the common era
+    written without a minus sign: Aeschylus 0525–0456)."""
     t = set()
     stats = Counter()
     unparsed = []
-    for prop, target in (("birthDate", "birthDateNormalized"), ("deathDate", "deathDateNormalized")):
+    parsed = defaultdict(lambda: defaultdict(list))
+    for prop in ("birthDate", "deathDate"):
         for s, d in sorted(values[prop]):
             if not d.strip():
                 stats["empty"] += 1
@@ -126,15 +198,29 @@ def dates(run, values):
                 stats["not parsed"] += 1
                 unparsed.append(d)
                 continue
-            value, uncertain = result
-            t.add((iri(s), IRI(JLO + target), value))
-            if uncertain:
-                t.add((iri(s), IRI(JLO + target.replace("Normalized", "Uncertain")), Literal("true", XSD + "boolean")))
-                stats["uncertain"] += 1
-            stats["normalised"] += 1
+            parsed[s][prop].append(result)
+    for s in sorted(parsed):
+        if death_before_birth(parsed[s]):
+            stats["death before birth"] += sum(len(x) for x in parsed[s].values())
+            continue
+        for prop, results in parsed[s].items():
+            target = prop + "Normalized"
+            for value, uncertain in results:
+                t.add((iri(s), IRI(JLO + target), value))
+                if uncertain:
+                    t.add((iri(s), IRI(JLO + prop.replace("Date", "DateUncertain")), Literal("true", XSD + "boolean")))
+                    stats["uncertain"] += 1
+                stats["normalised"] += 1
     examples = ", ".join(sorted(set(unparsed), key=lambda x: (len(x), x))[-8:])
     run.note(f"Dates: {dict(sorted(stats.items()))}. Examples of values left out: {examples}.")
     return t
+
+
+def death_before_birth(parsed):
+    """parsed: {"birthDate": [(literal, uncertain)], "deathDate": [...]}; compared by year, for records with one birth
+    and one death date (records with several, e.g. in epidat, may stand for several people and keep them)."""
+    births, deaths = parsed.get("birthDate", []), parsed.get("deathDate", [])
+    return len(births) == 1 and len(deaths) == 1 and year_of(deaths[0][0]) < year_of(births[0][0])
 
 
 # --- places ----------------------------------------------------------------------------------------

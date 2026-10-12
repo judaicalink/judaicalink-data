@@ -24,6 +24,11 @@ graph the endpoint of 2026-10-06 did not hold.
 Differences of the dataset (decided 2026-10-12):
 - the stable versions footprints 2024-03-18 and haskala 2019-07-01 are complemented: 1,839 and 274 more dates, 116 more
   places (haskala); 184,388 date and 49,754 place triples;
+- more date forms (2026-10-12, found by quality-annotations, before the first version was published; the first
+  version 2026-10-12 was made again): English dates (gnd-persons-entityfacts), year and month, years 1–999, `1942--`
+  (epidat), dateTimes (sosy), the EDTF value of the footprints dictionaries, Hebrew-Gregorian pairs and more (see
+  `generate.py`); 186,581 dates normalised instead of 184,315. Records with one birth and one death date
+  where the death is before the birth get neither (51 records, 102 dates; 70 triples of the port dropped);
 - `jl:occupationURI` instead of `jl:occupationConcept`, and every occupation IRI stated with `jl:occupation` or
   `jl:occpation` (15,340, against the literal range of `jl:occupation`) is stated as `jl:occupationURI`; the typo fix
   is part of that, so there is no separate file: 22,155 occupation triples.

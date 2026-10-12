@@ -41,8 +41,6 @@ BASE = "http://data.judaicalink.org/data/quality-annotations/annotation/"
 CM = "http://data.judaicalink.org/data/compact-memory/"
 GAP = 15
 HTML_VIEW = "https://data.judaicalink.org/data/html/"
-# footprints writes some dates as Python dictionaries: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}
-DICT_DATE = re.compile(r"^\{.*'edtf_format': '([^']*)'")
 
 # found by hand: (input, target, kind, text, a triple pattern (s, p) that must still be in the input)
 FOUND = [
@@ -81,7 +79,7 @@ def generate(run):
             for s, pred, o in rdf.read_triples(p, report):
                 local = pred[len(JLO):] if pred.startswith(JLO) else None
                 if local in ("birthDate", "deathDate") and name in rn.RECORDS and isinstance(o, Literal) \
-                        and not s.startswith(rn.EP) and o.value.strip() and rn.parse_date(o.value) is None:
+                        and not s.startswith(rn.EP) and o.value.strip():
                     dates.add((str(s), local, o.value))
                 elif local == "occpation":
                     c["occpation"] += 1
@@ -135,16 +133,24 @@ def generate(run):
         run.log(f"{name}: {dict(c)}, rdf_star {report.get('rdf_star', 0)}, swapped {len(swapped)}")
 
     # --- dates that records-normalized leaves out ------------------------------------------------------
-    dict_dates = 0
+    parsed = defaultdict(lambda: defaultdict(list))
+    reasons = Counter()
     for s, prop, value in sorted(dates):
-        m = DICT_DATE.match(value)
-        if m:
-            note(s, "date", f"jl:{prop} is a Python dictionary written as text, '{value}'; the date in it is "
-                 f"'{m.group(1)}' (EDTF).")
-            dict_dates += 1
-        else:
-            note(s, "date", f"jl:{prop} '{value}' could not be normalised (records-normalized).")
-    run.note(f"Dates left out by records-normalized: {len(dates):,} (of them {dict_dates:,} dictionaries of footprints).")
+        result = rn.parse_date(value)
+        if result:
+            parsed[s][prop].append((value, result))
+            continue
+        why = rn.why_not(value)
+        reasons[re.sub(r"the year \d+", "the year", why.split(",")[0]) if why else "no recognised form"] += 1
+        note(s, "date", f"jl:{prop} '{value}' could not be normalised (records-normalized): "
+             + (why or "not a date in a recognised form") + ".")
+    for s in sorted(parsed):
+        if rn.death_before_birth({p: [r for _, r in x] for p, x in parsed[s].items()}):
+            values = "; ".join(f"jl:{p} '{v}'" for p in sorted(parsed[s]) for v, _ in parsed[s][p])
+            note(s, "date", f"The death is before the birth ({values}), so records-normalized normalises neither "
+                 "(a typo, or years before the common era written without a minus sign).")
+            reasons["death before birth"] += 1
+    run.note(f"Dates left out by records-normalized: {dict(sorted(reasons.items()))}.")
 
     # --- Compact Memory: issues in isolated years ----------------------------------------------------
     journal_of, date_of, issues, titles, present = {}, {}, set(), {}, set()
