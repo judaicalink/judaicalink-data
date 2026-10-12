@@ -52,8 +52,8 @@ description = "Made from the Drupal database of the Library of Haskala (dump of 
 
   [[versions.files]]
   path = "haskala-meta.ttl.gz"
-  bytes = 3116
-  sha256 = "567dd0e1acef113cfde0357f15bece2ee5945be21fc18e3c0be5533707c940c1"
+  bytes = 4206
+  sha256 = "34e0ab3e18960da514ac450c1cb14dbb576de69f3e579c14f422b75f6606b2dc"
   triples = 101
 
 [[versions]]
@@ -114,9 +114,45 @@ with the persons who wrote, translated, printed, funded or are mentioned in them
 
 The data comes from a German-Israeli research project (2004–2010) headed by Shmuel Feiner (Bar-Ilan University),
 Zohar Shavit (Tel Aviv University) and Christoph Schulte (University of Potsdam). Its database was published as
-haskala-library.net, hosted by the Judaica Division of the Frankfurt University Library.
-Since version 2026-10-12, the dataset holds the whole database: persons, books with their bibliographical and
-material description, editions, prefaces, translations, the persons mentioned in the books and their roles, and the
-taxonomies (places, publishers, topics, languages, …), together with a description of its schema.
-Version 2019-07-01 held the persons only, enriched with GND data; it also includes 32 persons of the Haskala
-biographies of the University of Potsdam (haskala.net), which the current version keeps.
+haskala-library.net, hosted by the Judaica Division of the Frankfurt University Library; the site is offline now
+(archived by the Internet Archive from 2016 to 2025). Since version 2026-10-12, the dataset holds the whole database:
+persons, books with their bibliographical and material description, editions, prefaces, translations, the persons
+mentioned in the books and their roles, and the taxonomies (places, publishers, topics, languages, …), together with
+a description of its schema. Version 2019-07-01 held the persons only, enriched with GND data; it also includes 32
+persons of the Haskala biographies of the University of Potsdam (haskala.net), which the current version keeps.
+
+### The start page of haskala-library.net (last version)
+
+> This database contains 525 books in German and Hebrew identified by leading scholars as Haskala literature. The
+> database is hosted and run by the Judaica Division of the Frankfurt University Library.
+>
+> Contact: (E-Mail: digitalisierung@ub.uni-frankfurt.de / k.vonderkrone@ub.uni-frankfurt.de /
+> u.simeon@ub.uni-frankfurt.de ) Please share any further information.
+>
+> The detailed bio-bibliographical information, presented here for the first time, was collected as result of a
+> collaborative research, headed by Profs. Shmuel Feiner, Bar Ilan University; Zohar Shavit, Tel Aviv University and
+> Christoph Schulte, Universität Potsdam within a joint German-Israeli Research Project in 2004-2010.
+>
+> Please note: for every book title only those fields containing information are presented.
+
+### How the site presented the data
+
+From the archived pages (Internet Archive, 2016–2019) and the configuration in the database:
+
+- **Start page:** the text above and a tag cloud of topics.
+- **Books, Digital books, People, Places:** lists from A to Z, by Latin and Hebrew initial. Digital books are the
+  books with a link to a digitised copy. Places also show a map of the cities with coordinates.
+- **A page for every term** of the taxonomies (topics, textual models, fonts, languages, publishers, cities,
+  occupations, …), listing its books, 20 per page.
+- **Book pages:** the title and the main facts first (type of book, full title, whether the text is presented as an
+  original, a translation or a new edition, its textual and cultural sources), then sections with jump links:
+  Publisher/ Printing press, Editions, Book structure, Persons mentioned in book, Textual models, Catalog numbers,
+  References and bibliography, Book producers (the persons with their roles), Prefaces (number, writer, role,
+  title). Only fields with a value are shown; yes/no fields as "Yes"/"No"; terms, persons and places as links.
+- **Person pages:** Hebrew and German name, gender, dates and places of birth and death, occupations (roles in book
+  production), VIAF id, and the related books.
+- No search form appears on the archived pages (a full-text search was configured in the database, but it is not
+  known whether it was offered); editing was for logged-in editors only.
+
+The sections of the book pages are not stored in the database (they were part of the site's code). In the dataset,
+each field of a content type is described in `haskala-vocabulary.ttl.gz` with its label, help text and order.
