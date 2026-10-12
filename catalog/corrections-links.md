@@ -6,7 +6,7 @@ date = "2026-10-12"
 stable = "2026-10-12"
 kind = "correction"
 method = ["curated"]
-inputs = ["interlinks", "2014links", "dbpedia-persons", "gnd-persons", "ubffm-persons", "hhkeydocs", "nli-records", "ls-nli-legacy", "dbp-wiki-geo-linking", "rujen", "cm-entities"]
+inputs = ["interlinks", "dbpedia-persons", "gnd-persons", "ubffm-persons", "hhkeydocs", "nli-records", "ls-nli-legacy", "dbp-wiki-geo-linking", "cm-entities"]
 
 [license]
 name = "CC0"
@@ -44,7 +44,7 @@ commit = "dc401a969c2fdafccdfd2e43afb782c220801a98"
 date = "2026-10-12"
 version = "2026-10-12"
 author = "Kai Eckert"
-text = "First version: 80 wrong identity links deleted in 11 datasets (persons and places joined with others), 3 places of rujen typed as places; found with the entity-page closure (decisions 0022, 0023)."
+text = "First version: 76 wrong identity links deleted in 9 datasets (persons and places joined with others); found with the entity-page closure (decisions 0022, 0023)."
 +++
 
 Corrections of identity links (`owl:sameAs`, GND numbers, types) that join different persons or places: Sherira Gaon
@@ -55,8 +55,7 @@ authors, and others. A correction dataset (decision 0023): its deletions are app
 
 - `corrections-links-deletions.ru.gz`: the triples to delete from every graph that contains them, as SPARQL 1.1 Update
   in the fixed form of decision 0023, with the evidence for each block as a comment.
-- `corrections-links.ttl.gz`: the triples added (the class `jl:Place` for three places of rujen that were typed as
-  persons).
+- `corrections-links.ttl.gz`: the triples added, in a version that adds any (this one does not).
 
 Found by checking the groups of the entity-page closure (decision 0022) that contain several Wikidata items or records
 of incompatible classes, and checked one by one (Wikidata, id.loc.gov, the records themselves). Systematic errors of a

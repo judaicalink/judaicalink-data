@@ -4,17 +4,16 @@ Single findings (0024) from the check of the entity-page closure of 2026-10-12 (
 different persons or places. Each block names the dataset, the triples deleted and the evidence; the generator checks
 that every deleted triple is in the stable version of its dataset (a correction that no longer applies stops the run)
 and that no added triple is there already. Deletions: corrections-links-deletions.ru.gz (SPARQL Update, applied after
-all other datasets); additions: corrections-links.ttl.gz.
+all other datasets); additions, if there are any: corrections-links.ttl.gz.
 """
 
 from jl import corrections
 from jl.generator import GeneratorError
-from jl.rdf import IRI, RDF_TYPE, Literal
+from jl.rdf import IRI, Literal
 from jl.turtle import PREFIXES
 
 INPUTS = {
     "interlinks": "interlinks/2018-07-18",
-    "links_2014": "2014links/2017-02-15",
     "dbpedia_persons": "dbpedia-persons/2018-10-24",
     "gnd_persons": "gnd-persons/2018-11-29",
     "ubffm_persons": "ubffm-persons/2019-01-24",
@@ -22,7 +21,6 @@ INPUTS = {
     "nli_records": "nli-records/2026-10-12",
     "ls_nli_legacy": "ls-nli-legacy/2026-10-12",
     "dbp_wiki_geo_linking": "dbp-wiki-geo-linking/2021-01-13",
-    "rujen": "rujen/2020-09-28",
     "cm_entities": "cm-entities/2026-10-12/cm-entities-wikidata.ttl.gz",
 }
 PARAMS = {}
@@ -124,9 +122,6 @@ CORRECTIONS = [
     ("nli_records", [
         "nli-records: the work 56213280 carries the VIAF number of its author Solomon Small (1868-1943; GND 141432381).",
     ], same("nli/record/viaf-56213280", "http://viaf.org/viaf/56213280"), []),
-    ("links_2014", [
-        "2014links: Yakov Lyubin (rujen, a singer, died 1914) is not the town of Lubin in Poland.",
-    ], same("rujen/lyubin", "http://dbpedia.org/resource/Lubin"), []),
     ("cm_entities", [
         "cm-entities: VIAF 308556423 is the work Meshal ha-kadmoni (NLI), not its author Isaac ben Solomon Sahula",
         "(taken over from Wikidata Q61126269, which has both).",
@@ -139,10 +134,6 @@ CORRECTIONS = [
         + same("Granada", "http://ru.wikipedia.org/wiki/Гренада_(значения)")
         + same("Limerick", "http://ru.wikipedia.org/wiki/Лимерик_(значения)")
         + same("geonames/3580239", "http://ru.wikipedia.org/wiki/Гренада_(значения)"), []),
-    ("rujen", [
-        "rujen: Marseille, Berlin and Lviv are places, typed as persons.",
-    ], [(J + f"rujen/{x}", RDF_TYPE, JLO + "Person") for x in ("marselj", "berlin", "ljvov")],
-        [(J + f"rujen/{x}", RDF_TYPE, JLO + "Place") for x in ("marselj", "berlin", "ljvov")]),
 ]
 
 
@@ -172,4 +163,5 @@ def generate(run):
     n = sum(len(b[1]) for b in blocks)
     run.note(f"{n} triples deleted in {len({c[0] for c in CORRECTIONS})} datasets, {len(additions)} added.")
     run.write_deletions("corrections-links-deletions.ru.gz", blocks)
-    run.write_turtle("corrections-links.ttl.gz", additions)
+    if additions:
+        run.write_turtle("corrections-links.ttl.gz", additions)

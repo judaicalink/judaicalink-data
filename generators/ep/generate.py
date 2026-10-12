@@ -104,7 +104,8 @@ KNOWN_DISTINCT = [(JL + a, JL + b) for a, b in [
     ("nli/record/viaf-294403101", "gnd/118540238"), ("nli/record/viaf-179642103", "nli/record/viaf-22144877"),
     ("gnd/1140070320", "gnd/124269214"), ("hhkeydocs/Otto_Warburg", "nli/record/viaf-112658460"),
     ("hhkeydocs/Kurt_Singer", "nli/record/viaf-59920664"), ("dbpedia/Isaak_ben_Salomo_Sahula", "nli/record/viaf-308556423"),
-    ("gnd/141432381", "nli/record/viaf-56213280"), ("Lubin", "rujen/lyubin"),
+    ("gnd/141432381", "nli/record/viaf-56213280"), ("Lubin", "rujen/lyubin"), ("Marseille", "rujen/marselj"),
+    ("dbpedia/Berlin", "rujen/berlin"), ("Lemberg", "rujen/ljvov"),
 ]]
 _IRI_BAD = re.compile(r'[<>"{}|^`\\\s]')
 
