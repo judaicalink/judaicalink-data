@@ -1,30 +1,30 @@
 {
  "slug": "quality-annotations",
- "run": "run-20261012T105055Z",
+ "run": "run-20261012T143248Z",
  "generator": "generators/quality-annotations/generate.py",
- "commit": "674510796e842173420828de6c247ef993366ee7",
+ "commit": "0f6bb49c8b0fa7c01d10c26a941e7737c1ef22e2",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {},
  "input_overrides": [],
- "started": "2026-10-12T10:50:55Z",
+ "started": "2026-10-12T14:32:48Z",
  "shared_code": [
   "generators/records-normalized/generate.py"
  ],
  "inputs": [
   {
    "name": "bhr",
-   "ref": "bhr/2018-10-24/bhr-final-05.ttl.gz",
-   "file": "bhr-final-05.ttl.gz",
-   "sha256": "a64d950ecc572e9fb8bceb9d289647857fcc68bad0363b60ecc6f0625f5c959f",
-   "bytes": 1516250
+   "ref": "bhr/2026-10-12/Entityfacts-bhr-sameas.ttl.gz",
+   "file": "Entityfacts-bhr-sameas.ttl.gz",
+   "sha256": "9f62e0d592c89b796aa3873cec32dfb45fbd91ad8262568a08008c5461a33962",
+   "bytes": 29596
   },
   {
    "name": "bhr",
-   "ref": "bhr/2018-10-24/Entityfacts-bhr-sameas.ttl.gz",
-   "file": "Entityfacts-bhr-sameas.ttl.gz",
-   "sha256": "2f1706d67e03b34d204a6c578b0e2f421104a55b144a0afe2f99bfc1039602f4",
-   "bytes": 32483
+   "ref": "bhr/2026-10-12/bhr-final-05.ttl.gz",
+   "file": "bhr-final-05.ttl.gz",
+   "sha256": "333b321a0641f753dc528a15d928243bf8aeeefcb5b6fae4a2ae54cb8c6a4519",
+   "bytes": 1439067
   },
   {
    "name": "dbpedia_persons",
@@ -266,19 +266,19 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T10:51:34Z",
- "seconds": 39.3,
+ "finished": "2026-10-12T14:33:26Z",
+ "seconds": 38.7,
  "notes": [
   "Dates left out by records-normalized: {'a Python dictionary written as text': 20, 'a bound': 4, 'a negative year': 139, 'a range': 302, 'death before birth': 51, 'no recognised form': 112, 'the year is outside 1–2030': 8}.",
   "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
-  "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 652, 'syntax': 1, 'vocabulary': 4}."
+  "Annotations by kind: {'data error': 2, 'datatype': 1, 'date': 652, 'syntax': 1, 'vocabulary': 3}."
  ],
  "files": [
   {
    "path": "quality-annotations.ttl.gz",
-   "bytes": 22625,
-   "sha256": "1615f3cadd683cea7d6e143f2e44f73c8c6e5d48538d74f2c3c5f803a2845024",
-   "triples": 3960
+   "bytes": 22549,
+   "sha256": "2bd5019d95cc16ea57cda6a92a5d179ba29e6934b1acb12845fcb8f8a207a2f5",
+   "triples": 3954
   }
  ],
  "version": "2026-10-12"

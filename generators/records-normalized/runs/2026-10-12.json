@@ -1,29 +1,29 @@
 {
  "slug": "records-normalized",
- "run": "run-20261012T104951Z",
+ "run": "run-20261012T143231Z",
  "generator": "generators/records-normalized/generate.py",
- "commit": "7fdfacb9021015ec98278a69885201fd758e546b",
+ "commit": "0f6bb49c8b0fa7c01d10c26a941e7737c1ef22e2",
  "uncommitted": [],
  "python": "3.14.8",
  "params": {
   "legacy_terms": false
  },
  "input_overrides": [],
- "started": "2026-10-12T10:49:51Z",
+ "started": "2026-10-12T14:32:31Z",
  "inputs": [
   {
    "name": "bhr",
-   "ref": "bhr/2018-10-24/bhr-final-05.ttl.gz",
-   "file": "bhr-final-05.ttl.gz",
-   "sha256": "a64d950ecc572e9fb8bceb9d289647857fcc68bad0363b60ecc6f0625f5c959f",
-   "bytes": 1516250
+   "ref": "bhr/2026-10-12/Entityfacts-bhr-sameas.ttl.gz",
+   "file": "Entityfacts-bhr-sameas.ttl.gz",
+   "sha256": "9f62e0d592c89b796aa3873cec32dfb45fbd91ad8262568a08008c5461a33962",
+   "bytes": 29596
   },
   {
    "name": "bhr",
-   "ref": "bhr/2018-10-24/Entityfacts-bhr-sameas.ttl.gz",
-   "file": "Entityfacts-bhr-sameas.ttl.gz",
-   "sha256": "2f1706d67e03b34d204a6c578b0e2f421104a55b144a0afe2f99bfc1039602f4",
-   "bytes": 32483
+   "ref": "bhr/2026-10-12/bhr-final-05.ttl.gz",
+   "file": "bhr-final-05.ttl.gz",
+   "sha256": "333b321a0641f753dc528a15d928243bf8aeeefcb5b6fae4a2ae54cb8c6a4519",
+   "bytes": 1439067
   },
   {
    "name": "dbpedia_persons",
@@ -258,13 +258,13 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-12T10:50:08Z",
- "seconds": 16.7,
+ "finished": "2026-10-12T14:32:47Z",
+ "seconds": 16.5,
  "notes": [
-  "Dates: {'death before birth': 102, 'empty': 2133, 'normalised': 186581, 'not parsed': 585, 'uncertain': 145}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
+  "Dates: {'death before birth': 102, 'empty': 28, 'normalised': 186581, 'not parsed': 585, 'uncertain': 145}. Examples of values left out: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}, {'id': 1108, 'edtf_format': '1506/1589', 'display': '1506 - 1589'}, {'id': 1155, 'edtf_format': '1250/1305', 'display': '1250 - 1305'}, {'id': 1187, 'edtf_format': '1555/1631', 'display': '1555 - 1631'}, {'id': 14192, 'edtf_format': '1480/1540', 'display': '1480 - 1540'}, {'id': 14205, 'edtf_format': '1380/1441', 'display': '1380 - 1441'}, {'id': 951, 'edtf_format': '1640~/1707', 'display': 'c. 1640 - 1707'}, {'id': 14087, 'edtf_format': '1342~/1418~', 'display': 'c. 1342 - c. 1418'}.",
   "Places: {'already linked': 2646, 'not linked': 40946, 'via cm-entities-wikidata places': 8110, 'via pairs in the data': 34628, 'via rujen and geo-coordinates places': 7019}.",
   "Occupations: 6,815 text occupations matched to one of 511 occupation IRIs, 29,877 not matched.",
-  "Occupation IRIs stated with jl:occupation or jl:occpation: 15,340, as jl:occupationURI (15,340 new)."
+  "Occupation IRIs stated with jl:occupation or jl:occpation: 12,440, as jl:occupationURI (12,440 new)."
  ],
  "files": [
   {
@@ -275,9 +275,9 @@
   },
   {
    "path": "records-normalized-occupations.ttl.gz",
-   "bytes": 166703,
-   "sha256": "91a5a4e6c050b979b6ff64435e2f8121f96e9c4203e73251084c7bb159e4c2bb",
-   "triples": 22155
+   "bytes": 147429,
+   "sha256": "02c59d6528ef5e448e51643f9fd771b6172ef7c8b5a93489950ff07afc93cff9",
+   "triples": 19255
   },
   {
    "path": "records-normalized-places.ttl.gz",
