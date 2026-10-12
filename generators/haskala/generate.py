@@ -10,7 +10,11 @@ Everything of the database is stated, so that it can be rebuilt from the data wi
 translation; not the one page of site text), every field value and every taxonomy term. The schema is stated as well
 (haskala-vocabulary.ttl.gz): a class per content type, a property per field (the Drupal machine name without
 "field_"), with type, cardinality, target vocabulary or content type and allowed values, and per content type and
-field an instance with the Drupal label, help text, order and whether it is shown. Terms are coined in the dataset
+field an instance with the Drupal label, help text, order and whether it is shown. The sections of the book
+pages, which the database does not store, are read from the archived pages (inputs:haskala/wayback-books-2026-10-13):
+every section and heading (vocab:Section, in the order of the pages), the section of each book field (vocab:section)
+and the sections in which editions, mentions, productions, prefaces and translations were shown
+(vocab:shownInSection). Terms are coined in the dataset
 namespace, data/haskala/vocab/. Field values: text in Drupal's HTML formats as rdf:HTML (the notes mark chronograms
 with <strong> and <ins>), other text as given, yes/no fields as xsd:boolean, numbers as xsd:integer, taxonomy and
 content references as IRIs, links as IRIs, coordinates as geosparql:asWKT in the form of geo-coordinates.
@@ -29,6 +33,7 @@ of Potsdam, not in the database) keep their IRIs and their 2019 triples, with th
 of 2025-03-24 (one value per occupation) and without empty values (haskala-net.ttl.gz).
 """
 
+import html
 import re
 import unicodedata
 from collections import Counter, defaultdict
@@ -44,6 +49,7 @@ INPUTS = {
     "drupal": "inputs:haskala/drupal-2015-04-20/haskala-drupal-2015-04-20.sql.gz",
     "previous": "haskala/2019-07-01",
     "net": "haskala/2025-03-24/Haskala_net.ttl.gz",
+    "pages": "inputs:haskala/wayback-books-2026-10-13",   # fetched by fetch_wayback.py
 }
 PARAMS = {}
 
@@ -76,6 +82,12 @@ META = [
     ("weight", "property", "Weight", "The order of a field on the page, or of a term in its vocabulary (lower first)."),
     ("hidden", "property", "Hidden", "Whether the field is not shown on the page of the node."),
     ("drupalVocabulary", "property", "Drupal vocabulary", "The machine name of the Drupal taxonomy of a scheme."),
+    ("Section", "class", "Section of the book page",
+     "A section of the page of a book on haskala-library.net, or a part of a section under its own heading; read "
+     "from the archived pages."),
+    ("section", "property", "Section", "The section of the book page in which a field is shown."),
+    ("shownInSection", "property", "Shown in section",
+     "A section of the book page in which the nodes of a content type linked to the book are shown."),
 ]
 
 
@@ -101,6 +113,94 @@ def wkt(lat, lng):
         s = repr(float(x))
         return s if s.startswith("-") else "+" + s
     return f"Point ( {f(lng)} {f(lat)} )"
+
+
+TOKEN = re.compile(r'<section id="(top-details|bottom-details)"|class="tab-sub-title[^"]*">\s*([^<]*?)\s*</div>'
+                   r'|class="fields-group-name">\s*([^<]*?)\s*</div>|class="field field-name-(field-[a-z0-9-]+)')
+MAIN = "Main part"
+
+
+def slug(label):
+    return re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+
+
+def sections(run, inst_iri, filled, cls, schema, add, n):
+    """The section (and the heading within it) of every field shown on the archived book pages. The page has a main
+    part under the title and tabs ("fields groups"); both can have headings ("tab sub titles"). Fields of other
+    content types shown on the book page (editions, mentions, productions, prefaces, ...) give the sections in
+    which these content types are shown."""
+    seen = defaultdict(Counter)
+    pages = [p for p in run.inputs("pages") if p.name.startswith("book-")]
+    position = defaultdict(list)   # (group, sub) -> its relative position on each page where it appears
+    ahead = Counter()              # (tab a, tab b) -> on how many pages a comes before b in the navigation
+    for path in pages:
+        group, sub = None, None
+        order = []
+        text = path.read_text(encoding="utf-8", errors="replace")
+        nav = text[text.find('id="details-navigation"'):text.find("</nav>", text.find('id="details-navigation"'))]
+        tabs = [html.unescape(x).strip() for x in re.findall(r'<li><a href="#[^"]*">([^<]*)</a></li>', nav)]
+        for i, a in enumerate(tabs):
+            for b in tabs[i + 1:]:
+                ahead[(a, b)] += 1
+        for m in TOKEN.finditer(text):
+            if m.group(1):
+                group, sub = (MAIN if m.group(1) == "top-details" else None), None
+            elif m.group(2) is not None:
+                sub = html.unescape(m.group(2)).strip() or None
+            elif m.group(3) is not None:
+                group, sub = html.unescape(m.group(3)).strip(), None
+            elif m.group(4) and group:
+                seen[m.group(4).replace("-", "_")][(group, sub)] += 1
+                for w in ((group, None), (group, sub)):
+                    if w not in order:
+                        order.append(w)
+        for i, w in enumerate(order):
+            position[w].append(i / len(order))
+    owners = defaultdict(set)   # the content types that have values in a field (book has field_role, never filled)
+    for (bundle, fname) in inst_iri:
+        if (bundle, fname) in filled:
+            owners[fname].add(bundle)
+    placed, shown = {}, defaultdict(set)
+    for fname, c in sorted(seen.items()):
+        (where, k), = c.most_common(1)
+        if len(c) > 1 and "book" in owners[fname]:
+            run.log(f"{fname}: in several sections {dict(c)}; {where} taken")
+        if "book" in owners[fname]:   # a field of the book (field_language is also on translations, shown in Editions)
+            placed[fname] = where
+        elif len(owners[fname]) == 1:   # a field of one other content type: where its nodes are shown
+            for (group, _sub) in c:
+                shown[next(iter(owners[fname]))].add(group)
+    # the order: the main part, then the tabs in the order of the navigation of the pages (a tab comes before the
+    # tabs it precedes on most pages; the order changed slightly over the years of the captures), each followed by
+    # its headings in the order of the pages (mean relative position)
+    mean = {w: sum(ps) / len(ps) for w, ps in position.items()}
+    groups = {g for g, _s in position} - {MAIN}
+    wins = {g: sum(1 for h in groups if ahead[(g, h)] > ahead[(h, g)]) for g in groups}
+    tabs = sorted(groups, key=lambda g: (-wins[g], mean[(g, None)]))
+    ranked = []
+    for g in [MAIN] + tabs:
+        ranked.append((g, None))
+        ranked += sorted((w for w in position if w[0] == g and w[1]), key=lambda w: mean[w])
+    iri = {}
+    for rank, where in enumerate(ranked):
+        group, sub = where
+        s = f"{V}Book/section/{slug(group)}" + (f"/{slug(sub)}" if sub else "")
+        iri[where] = s
+        add(s, RDF_TYPE, V + "Section", schema)
+        add(s, RDFS + "label", lit(sub or group), schema)
+        add(s, V + "weight", number(rank), schema)
+    for (group, sub), s in iri.items():
+        if sub:
+            add(s, PREFIXES["dcterms"] + "isPartOf", iri[(group, None)], schema)
+    for fname, where in placed.items():
+        add(inst_iri[("book", fname)][0], V + "section", iri[where], schema)
+    for b, groups in shown.items():
+        for g in groups:
+            if (g, None) in iri:
+                add(cls[b], V + "shownInSection", iri[(g, None)], schema)
+    n["archived book pages"] = len(pages)
+    n["book fields with their section"] = len(placed)
+    n["book fields not on the archived pages"] = sum(1 for (b, f) in inst_iri if b == "book" and f not in placed)
 
 
 def generate(run):
@@ -187,6 +287,7 @@ def generate(run):
         elif r["type"].startswith("list_"):
             for k, v in (st.get("allowed_values") or {}).items():
                 add(p, V + "allowedValue", lit(f"{k} = {v}"), schema)
+    inst_iri = {}
     for r, d in instances:
         owner = cls.get(r["bundle"]) or scheme[r["bundle"]]
         local = r["field_name"][len("field_"):] if r["field_name"].startswith("field_") else r["field_name"]
@@ -203,6 +304,12 @@ def generate(run):
             add(s, V + "weight", number(display["weight"]), schema)
         add(s, V + "hidden", boolean(display.get("type") == "hidden"), schema)
         n["field instances"] += 1
+        inst_iri[(r["bundle"], r["field_name"])] = (s, display.get("weight", 0))
+
+    # --- the sections of the book pages, from the archived pages -------------------------------------
+    filled = {(r["bundle"], name[len("field_data_"):]) for name in t if name.startswith("field_data_")
+              for r in table(t, name)}
+    sections(run, inst_iri, filled, cls, schema, add, n)
 
     # --- nodes and terms ----------------------------------------------------------------------------
     alias = {}

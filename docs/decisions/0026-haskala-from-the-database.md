@@ -44,6 +44,8 @@ own RDF export is generated from the portal's Django models, with IRIs and terms
 - `haskala` 2026-10-12 is made from the database (`generators/haskala/generate.py`); its persons, books and cities
   get entity pages, joined through VIAF and the carried-over GND links.
 - The field groups (sections of the book page) and the views (browse and search pages) were defined in code and are
-  not in any dump; a viewer that rebuilds the library needs its own layout. Where Drupal labels are ambiguous
+  not in any dump. The sections are read from the book pages archived by the Internet Archive (decided 2026-10-13,
+  fetched at one request per second) and stated in the vocabulary; the browse and search pages are described in the
+  dataset description. Where Drupal labels are ambiguous
   ("Notes"), the field instance says which content type the field belongs to, and the property label follows the
   machine name.

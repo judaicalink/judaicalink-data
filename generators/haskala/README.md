@@ -48,7 +48,11 @@ so that it could be rebuilt from the data without a particular portal (decided 2
 - The schema (`haskala-vocabulary.ttl.gz`): classes per content type and properties per field in
   `data/haskala/vocab/`, with the Drupal machine names, types, cardinality, targets, allowed values, and per content
   type the label, help text, order and visibility of each field. The sections of the book page (field groups) and the
-  browse and search pages (views) were defined in code, not in the database; they are not in any dump.
+  browse and search pages (views) were defined in code, not in the database; they are not in any dump. The sections
+  are read from the 525 book pages archived by the Internet Archive (`fetch_wayback.py`, 2026-10-13, one request
+  per second; `inputs:haskala/wayback-books-2026-10-13`): 22 sections and headings in the order of the page
+  navigation, the section of 159 book fields (14 are empty on every page), and the sections in which editions,
+  translations, mentions, productions and prefaces were shown.
 - JudaicaLink terms in addition: persons `foaf:Person`, `skos:prefLabel` (German name; for 151 persons without one,
   the part of the title before " - <Hebrew name>"), `skos:altLabel`, `owl:sameAs` VIAF (583), birth and death;
   books `jl:Work`; terms `skos:Concept`, cities `jl:Place` with `geosparql:asWKT`.
