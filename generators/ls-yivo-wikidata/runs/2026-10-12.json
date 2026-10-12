@@ -1,0 +1,61 @@
+{
+ "slug": "ls-yivo-wikidata",
+ "run": "run-20261012T183122Z",
+ "generator": "generators/ls-yivo-wikidata/generate.py",
+ "commit": "8255612e31d1e6e4ac6dd976e47b3db40187d161",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-12T18:31:22Z",
+ "shared_code": [
+  "generators/ls-yivo-wikidata/yivo_wikidata.py"
+ ],
+ "inputs": [
+  {
+   "name": "yivo",
+   "ref": "yivo/2020-09-30/yivo.ttl.gz",
+   "file": "yivo.ttl.gz",
+   "sha256": "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842",
+   "bytes": 695155
+  },
+  {
+   "name": "wikidata",
+   "ref": "inputs:web-caches/wikidata-yivo-2026-10-12/p8569.tsv",
+   "file": "p8569.tsv",
+   "sha256": "6800f530d8af9583ab52af0bba4d3c0800db8a30c4266e4a5c30e85f3a602ded",
+   "bytes": 188404
+  }
+ ],
+ "input_descriptions": {
+  "inputs:web-caches/wikidata-yivo-2026-10-12": {
+   "title": "Wikidata: items with a YIVO Encyclopedia ID (P8569) and the classes of their types (2026-10-12)",
+   "origin": "Two queries to the Wikidata Query Service, https://query.wikidata.org/sparql, on 2026-10-12 (answers as tab-separated values).",
+   "description": "p8569.tsv: the answer to p8569.rq, every Wikidata item with a YIVO Encyclopedia of Jews in Eastern Europe ID (P8569, the article name of yivoencyclopedia.org/article.aspx/<id>) and its instance-of classes (P31), one row per item and class (1,953 rows, 1,453 items). classes-top.tsv: the answer to classes-top.rq, for the 323 classes found, which of nine upper classes they are subclasses of (P279*): geographic location Q2221906, administrative territorial entity Q56061, human settlement Q486972, organization Q43229, written work Q47461344, periodical Q1002697, creative work Q17537576, family Q8436, group of humans Q16334295.",
+   "date": "2026-10-12",
+   "note": "Not published: answers of a third-party service, needed only to make ls-yivo-wikidata and record-classes again without network access."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12/corrections-links-deletions.ru.gz",
+   "sha256": "54a4866666912964a3f0bbbf537ef9f5fcdc03333a38eeb08329dda24c5617ce",
+   "deletions": 76
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-12T18:31:23Z",
+ "seconds": 0.2,
+ "notes": [
+  "1,798 articles; 1,438 linked to their Wikidata item; 5 with several items left out; 2 P8569 values name no article (dance/traditional_dance, language/multilingualism)."
+ ],
+ "files": [
+  {
+   "path": "ls-yivo-wikidata.ttl.gz",
+   "bytes": 20313,
+   "sha256": "0bc5a37278a875ecc95d36800ebe5b79dcc92ca9b8332fabebc18c0a36cf5c7d",
+   "triples": 1438
+  }
+ ],
+ "version": "2026-10-12"
+}
