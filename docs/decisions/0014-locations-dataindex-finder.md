@@ -1,6 +1,6 @@
 # 0014 Locations, data index and dataset finder; how entries reach the catalogues
 
-Status: accepted · Date: 2026-10-08
+Status: accepted · Date: 2026-10-08 · Amended by [0027](0027-store-beside-the-old-dumps.md) (archive = `archive.judaicalink.org/store/`)
 
 ## Context
 

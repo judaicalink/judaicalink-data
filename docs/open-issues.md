@@ -20,8 +20,8 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   data, `occupations`, file descriptions, HTML left in older bodies), entries for our new datasets, then adapting
   judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue and its documentation to
   Frankfurt.
-- **Catalogue, open questions** (0013): redirects from the old archive paths (a `current` symlink per dataset
-  makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
+- **Catalogue, open questions** (0013): when to remove the old `archive.judaicalink.org/dumps/` (0027), and whether
+  its paths then redirect (a `current` symlink per dataset makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
 - **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of
   the grown setup of the VM; where the platform code lives; whether a pubby-like frontend is needed.
   Which SPARQL engine: QLever changes literal values (0018), so engines are compared in `../endpoints/`
@@ -50,8 +50,7 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   ported, 0020), and what the labs VM backup holds (`../BACKUP-PLAN-2026-10-10.md`).
 
 - **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is the store `lokal/store` (formerly `dumps-new`; 79 files,
-  189 MB, `jl collect-store`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
-  from the old paths?), then keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
+  189 MB, `jl collect-store`). To do: publish it on archive.judaicalink.org/store/ (beside the old `/dumps/`, 0027), then keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
   delete the rest there. Nothing else on the VM is deleted before the backup in
   `../BACKUP-PLAN-2026-10-10.md` exists (`/data/archive`, `/data/cm` and more hold the only copies of sources,
   intermediates and working folders).

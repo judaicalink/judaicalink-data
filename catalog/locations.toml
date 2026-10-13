@@ -2,7 +2,7 @@
 # location is a prefix: dumps + <slug>/<version>/<path>, catalogues + <slug>/. Read by `jl update-dataindex`.
 
 [dumps]
-archive = "https://archive.judaicalink.org/dumps/"   # Mannheim
+archive = "https://archive.judaicalink.org/store/"   # Mannheim (the old files stay in /dumps/ for now, 0027)
 data = "https://data.judaicalink.org/dumps/"         # Frankfurt (forwards to www.jewishstudies.de/judaicalink/dumps/)
 
 [catalogues]
