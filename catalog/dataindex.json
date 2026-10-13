@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-13T06:17:27Z",
+ "checked": "2026-10-13T06:40:29Z",
  "locations": {
   "dumps": {
    "archive": "https://archive.judaicalink.org/store/",
@@ -324,7 +324,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -364,7 +366,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -540,7 +544,9 @@
    "stable": "2026-10-12-2",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12-2",
@@ -1263,7 +1269,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -1556,7 +1564,9 @@
    "stable": "2026-10-11",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-11",
@@ -1588,7 +1598,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -1620,7 +1632,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -1652,7 +1666,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -1723,7 +1739,9 @@
     "nli-persons"
    ],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -1859,7 +1877,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -1891,7 +1911,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -1923,7 +1945,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-12",
@@ -2178,7 +2202,9 @@
    "stable": "2020-10-06",
    "replaces": [],
    "replaced_by": [],
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2020-10-06",
