@@ -34,7 +34,7 @@ is ready; Frankfurt gets the catalogue and its documentation and adapts their sy
 | `slug` | **required.** The id of the dataset, used everywhere: file name `<slug>.md`, graph IRI and dataset IRI `http://data.judaicalink.org/datasets/<slug>` ([0006](0006-graphs-and-meta.md)), dump paths `<slug>/<version>/<path>` (0014), Hugo page URL `/datasets/<slug>/` |
 | `title` | **required.** Name of the dataset |
 | `author` | **required.** The current maintainer: name, or list of names |
-| `license` | **required.** Table `name`, `uri`, `image`, and optionally `attribution`: the credit the licence asks for, as text (in the `-meta` as `cc:attributionName`; added 2026-10-13) |
+| `license` | **required.** Table `name`, `uri`, `image`, and optionally `attribution`: the credit the licence asks for, as text (in the `-meta` as `cc:attributionName`; added 2026-10-13), and `statement`: the page where the source states the licence, preferably an archived capture (dated, unchanging), so we can show why we take the data as open when we have no written confirmation (in the `-meta` as `dcterms:rights`; added 2026-10-15) |
 | `date` | date of the entry (Hugo; sorting) |
 | `website` | the source of the data: the institution, project, website, API or dump location that owns or provides it (details in the body) |
 | `links` | list of related links without predefined purpose: `[[links]]` with `url`, `label` (e.g. the online source, a generator, a paper, related support data) |

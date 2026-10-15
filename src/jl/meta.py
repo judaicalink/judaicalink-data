@@ -140,6 +140,8 @@ def render(entry, version, files, record, stats, registry):
         t.append((D, DCTERMS.license, IRI(lic["uri"])))
     if lic.get("attribution"):   # the credit the licence asks for (0013)
         t.append((D, CC.attributionName, Literal(lic["attribution"])))
+    if is_url(lic.get("statement")):   # where the source states the licence (0013)
+        t.append((D, DCTERMS.rights, IRI(lic["statement"])))
     if is_url(d.get("website")):
         t.append((D, DCTERMS.source, IRI(d["website"])))
     if is_url(d.get("example")):
