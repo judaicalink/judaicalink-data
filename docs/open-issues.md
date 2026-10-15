@@ -27,6 +27,13 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   ls-nli-legacy, 1 in date-enriched). Jena loads both with a warning.
 - **Catalogue, open questions** (0013): when to remove the old `archive.judaicalink.org/dumps/` (0027), and whether
   its paths then redirect (a `current` symlink per dataset makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
+- **Licence evidence** (0013, 2026-10-15): for every dataset we must be able to show why its licence holds. Where the
+  source states it publicly: `license.statement`, an archived capture of that page (done for footprints). Where we
+  have a written permission: the document. yivo, rujen and djh are CC0 by written permission (yivo and djh publish
+  only the beginning of each article), but the permissions exist only on paper. To do: scan them, keep the files
+  privately (not in git), and record in the catalogue only a file name and its SHA-256, so the document can be
+  found quickly (field still to define in 0013). Then check every other entry whose licence the source does not
+  state publicly (e.g. hhkeydocs, stolpersteine, haskala, sosy, jre, hirsch-family, ubffm-persons).
 - **mannheim.judaicalink.org:** the platform and its decisions are in `../judaicalink-mannheim/` (`docs/decisions/`,
   not on GitHub yet); a local test VM runs it. Engine comparison (QLever, Fuseki) in `../endpoints/`.
 - **Ontology (found 2026-10-14, with decision 0002 of judaicalink-mannheim):** rujen uses `jl:Person` as a class (8,283 records), which the ontology does not
@@ -99,6 +106,8 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   with epidat 2026-10-12); no `dataslug` for
   yivo, rujen, rujen-translation, date-enriched, dbp-wiki-geo-linking; geo-coordinates `graph` is
   `data/geo-coor`; rujen contains one junk subject `mailto%3Amail%40rujen.ru`.
+  The `-meta` of epidat 2023-07-14, rendered again, would get the namespace `data/epidat/` and example of the entry,
+  which fit only 2026-10-12 (the old version uses `data/epi/`); found 2026-10-15, not rendered.
 
 ## Data
 
