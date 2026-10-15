@@ -85,7 +85,8 @@ substantially changed file structure usually means a new dataset.
 
 `[[changelog]]`: `date`, `text`, optional `version`, `author` (name, or list of names) and `refs` (decision
 numbers). Records what changed and why: new versions, stable pointer moved, superseded, files moved to the
-archive, description changed. Only real changes to the dataset or its description are recorded, not changes
+archive, description changed. A replaced dataset is shown as deprecated on the sites, with its newest changelog
+entry as the reason, so the entry recording the supersession is the newest one. Only real changes to the dataset or its description are recorded, not changes
 of the maintainer or of the entry format.
 
 **Contributors.** Everyone who worked on a dataset is acknowledged: the contributors are derived from the

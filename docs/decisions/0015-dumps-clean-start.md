@@ -1,7 +1,7 @@
 # 0015 Clean start of the dumps: the published version, plus richer earlier ones
 
 Status: accepted · Date: 2026-10-09 · Supersedes in part [0005](0005-dumps-archive-and-mannheim.md) (files on
-the archive are not changed: one exception, this restructuring) · Amended by [0019](0019-dumps-locations-equal.md) (no location is permanent) and [0018](0018-generator-framework.md) (labs self-descriptions)
+the archive are not changed: one exception, this restructuring) · Amended by [0019](0019-dumps-locations-equal.md) (no location is permanent) and [0018](0018-generator-framework.md) (labs self-descriptions), [0027](0027-store-beside-the-old-dumps.md) (store beside the old dumps)
 
 ## Context
 
@@ -40,7 +40,7 @@ crawls behind rujen, yivo and stolpersteine.
 - Every file is a single file; the tar archives named `.gz` (epidat, `ep_GND_ids.json.gz`, haskala, ontology),
   each holding one file, are replaced by plain gzip files with the same content.
 - The tree is built by `catalog.py collect` from local copies, finding each file by its checksum; locally it
-  is `lokal/dumps-new` (since 2026-10-11 `lokal/store`, the store of [0019](0019-dumps-locations-equal.md)). It replaces dumps-clean on archive.judaicalink.org when it is published (on request).
+  is `lokal/dumps-new` (since 2026-10-11 `lokal/store`, the store of [0019](0019-dumps-locations-equal.md)). It replaces dumps-clean on archive.judaicalink.org when it is published (on request). *Amended by [0027](0027-store-beside-the-old-dumps.md): published in `/store/` beside the old `/dumps/`, which stays for now.*
 - `labs:/data/dumps` stays until the new tree is published and checked. Then only the backups of 2025-02-06
   (git history) and 2025-12-19 (last state) are kept, offline and unpublished; everything else in `/data/dumps` is
   deleted. The rest of the VM is not touched by this decision; what to keep from it goes into a separate, private
@@ -49,7 +49,7 @@ crawls behind rujen, yivo and stolpersteine.
 ## Consequences
 
 - Frankfurt's catalogue still lists the five removed datasets; they should drop them.
-- Links to the old paths on archive.judaicalink.org break unless redirects are set up (open question of 0013).
+- Links to the old paths on archive.judaicalink.org break unless redirects are set up (open question of 0013). *With 0027 they keep working while `/dumps/` stays.*
 - *Replaced by [0019](0019-dumps-locations-equal.md): the files of a version never change, at any location; locations may add
   and drop versions; historical versions may be pruned.* After the clean start, files on the archive are again never changed; versions are added. Removing versions
   later needs a new decision.

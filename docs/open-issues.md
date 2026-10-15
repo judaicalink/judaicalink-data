@@ -20,12 +20,19 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   data, `occupations`, file descriptions, HTML left in older bodies), entries for our new datasets, then adapting
   judaicalink-site (templates, finder, `dumpLocations`) and handing the catalogue and its documentation to
   Frankfurt.
-- **Catalogue, open questions** (0013): redirects from the old archive paths (a `current` symlink per dataset
-  makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
-- **mannheim.judaicalink.org:** reproducible setup (SPARQL endpoint, dumps, demonstrators), independent of
-  the grown setup of the VM; where the platform code lives; whether a pubby-like frontend is needed.
-  Which SPARQL engine: QLever changes literal values (0018), so engines are compared in `../endpoints/`
-  (prepared 2026-10-11, QLever 0.6.0 measured; Oxigraph, Jena Fuseki, Virtuoso to be installed and run).
+- **Fuseki warnings** (test load of all stable versions into Fuseki 6.2.0, 2026-10-13: 20.6 million triples, 81 graphs,
+  every graph equal to the `void:triples` of its `-meta` less the 85 corrections): 13 impossible dates typed
+  `xsd:date` (e.g. `1902-02-29`, `1971-04-31`; 7 in records-normalized, 6 carried into ep), which records-normalized
+  should not type as dates; 57 IRIs with `[` or other characters not allowed in IRIs, all legacy `data/nli/` URIs (47 in
+  ls-nli-legacy, 1 in date-enriched). Jena loads both with a warning.
+- **Catalogue, open questions** (0013): when to remove the old `archive.judaicalink.org/dumps/` (0027), and whether
+  its paths then redirect (a `current` symlink per dataset makes 34 of the 82 old paths resolve again, 0018); DOIs for versions (would need a location that promises permanence, e.g. Zenodo; 0019).
+- **mannheim.judaicalink.org:** the platform and its decisions are in `../judaicalink-mannheim/` (`docs/decisions/`,
+  not on GitHub yet); a local test VM runs it. Engine comparison (QLever, Fuseki) in `../endpoints/`.
+- **Ontology (found 2026-10-14, with decision 0002 of judaicalink-mannheim):** rujen uses `jl:Person` as a class (8,283 records), which the ontology does not
+  define (it has `jl:Place`): add the term or map rujen to another class. In Frankfurt, ontology term IRIs do not resolve
+  (`data.judaicalink.org/ontology/<term>` → a 404 page of the portal, also for Turtle); suggest a redirect to
+  ontology.judaicalink.org.
 - **Catalogue tools and finder** ([0014](decisions/0014-locations-dataindex-finder.md)): `jl
   update-dataindex|sync-site`, the finder page and template changes in `judaicalink-site` (also: show the changelog and the
   derived contributors on the dataset pages, 0013), restructuring the archive
@@ -49,9 +56,9 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   caches (`lokal/work/api-cache`), the NLI export, the other inputs of kg-complements (moved when their datasets are
   ported, 0020), and what the labs VM backup holds (`../BACKUP-PLAN-2026-10-10.md`).
 
-- **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is the store `lokal/store` (formerly `dumps-new`; 79 files,
-  189 MB, `jl collect-store`). To do: publish it on archive.judaicalink.org (replacing dumps-clean; redirects
-  from the old paths?), then keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
+- **Dumps clean start** ([0015](decisions/0015-dumps-clean-start.md)): the new tree is the store `lokal/store` (formerly `dumps-new`; 179 files,
+  318 MB, `jl collect-store`), published 2026-10-13 on archive.judaicalink.org/store/ (beside the old `/dumps/`, 0027). To do: remove the old
+  `/dumps/` there some day; keep the backups 2025-02-06 and 2025-12-19 of `labs:/data/dumps` offline and
   delete the rest there. Nothing else on the VM is deleted before the backup in
   `../BACKUP-PLAN-2026-10-10.md` exists (`/data/archive`, `/data/cm` and more hold the only copies of sources,
   intermediates and working folders).

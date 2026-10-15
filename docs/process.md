@@ -19,7 +19,8 @@ The dumps locations are equal and none promises completeness or permanence; the 
 changed wherever they are (except `-meta`), and the git history of this repository is the permanent record
 ([0019](decisions/0019-dumps-locations-equal.md)). archive.judaicalink.org is the location web.judaicalink.org
 links to; it currently holds the catalogue state `judaicalink-site` `81b42a5` (identical to what Frankfurt
-loaded), in the old layout until the store (`lokal/store`) replaces it. Everything we produced since 2026-10-05 is
+loaded), in the old layout in `/dumps/`; the store (`lokal/store`) goes beside it in `/store/`, the archive location of the index
+([0027](decisions/0027-store-beside-the-old-dumps.md)). Everything we produced since 2026-10-05 is
 *in development*.
 
 ## 1. Developing a dataset
