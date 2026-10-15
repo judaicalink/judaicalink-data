@@ -6,3 +6,7 @@ build = "../lokal/build"              # build area: <slug>/<run-id>/ (decision 0
 # cache = "../lokal/build/.cache"     # canonical forms, by file checksum (default: <build>/.cache)
 legacy_dumps = ["../lokal/dumps"]     # older dump trees in any layout, searched by checksum (collect-store)
 inputs = "../lokal/inputs"            # the inputs area: <source>/<name>/ with input.toml (decision 0021)
+
+# User-Agent per host, where a source needs another one than the default (decision 0028):
+# [user_agent]
+# "footprints.ctl.columbia.edu" = "..."

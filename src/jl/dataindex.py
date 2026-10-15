@@ -19,12 +19,12 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from . import fetch
 from .catalog import Catalog, as_list
 from .config import CATALOG
 
 LOCATIONS = CATALOG / "locations.toml"
 INDEX = CATALOG / "dataindex.json"
-UA = "JudaicaLink-data (https://github.com/judaicalink/judaicalink-data)"
 COPY_NOTE = ("<!-- Copy of catalog/{slug}.md of https://github.com/judaicalink/judaicalink-data "
              "(jl sync-site); change it there. -->\n")
 
@@ -34,16 +34,11 @@ def locations(path=LOCATIONS):
     return {"dumps": dict(data.get("dumps", {})), "catalogues": dict(data.get("catalogues", {}))}
 
 
-class _Head(urllib.request.Request):
-    def get_method(self):
-        return "HEAD"
-
-
 def probe(url, pause=0.3):
     """(found, size or None) for a URL: HEAD, redirects followed, found if the last answer is 200."""
     time.sleep(pause)
     try:
-        with urllib.request.urlopen(_Head(url, headers={"User-Agent": UA}), timeout=30) as r:
+        with urllib.request.urlopen(fetch.request(url, method="HEAD"), timeout=30) as r:
             size = r.headers.get("Content-Length")
             return r.status == 200, int(size) if size and size.isdigit() else None
     except urllib.error.HTTPError as e:

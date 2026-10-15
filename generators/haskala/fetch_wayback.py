@@ -7,7 +7,7 @@ code), but the pages show it: every field is a <div class="field field-name-fiel
 script lists the captures of book pages in the Wayback Machine (CDX API), takes for every book node the earliest
 capture with status 200 of its page address, and saves the page as archived (the "id_" form, without the archive's
 frame) as book-<node id>.html, with manifest.tsv (node id, address, capture time, archived URL, sha256). One request
-per second; the User-Agent names the project.
+per second; the User-Agent is the framework's (decision 0028).
 """
 
 import hashlib
@@ -16,27 +16,15 @@ import sys
 import time
 import unicodedata
 import urllib.parse
-import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 import drupal_sql  # noqa: E402
+from jl.fetch import get  # noqa: E402
 
-UA = "JudaicaLink-data (https://github.com/judaicalink/judaicalink-data)"
 CDX = ("https://web.archive.org/cdx/search/cdx?url=haskala-library.net/books/&matchType=prefix&output=json"
        "&fl=timestamp,original,statuscode&filter=statuscode:200")
-
-
-def get(url, tries=5):
-    for i in range(tries):
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=60) as r:
-                return r.read()
-        except Exception as e:   # the archive answers 429/503 when busy: wait longer
-            print(f"  retry {i + 1} after {e}", flush=True)
-            time.sleep(10 * (i + 1))
-    raise RuntimeError(f"failed: {url}")
 
 
 def key(path):
