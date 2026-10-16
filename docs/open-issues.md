@@ -34,6 +34,9 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
   privately (not in git), and record in the catalogue only a file name and its SHA-256, so the document can be
   found quickly (field still to define in 0013). Then check every other entry whose licence the source does not
   state publicly (e.g. hhkeydocs, stolpersteine, haskala, sosy, jre, hirsch-family, ubffm-persons).
+  hhkeydocs: its terms of use (schluesseldokumente.net/nutzungsbedingungen, archived 2026-10-11) put the articles
+  and source interpretations under CC BY-NC-ND 4.0, but say nothing about the index of persons, places and
+  organisations that the dataset holds; to ask the IGdJ.
 - **mannheim.judaicalink.org:** the platform and its decisions are in `../judaicalink-mannheim/` (`docs/decisions/`,
   not on GitHub yet); a local test VM runs it. Engine comparison (QLever, Fuseki) in `../endpoints/`.
 - **Ontology (found 2026-10-14, with decision 0002 of judaicalink-mannheim):** rujen uses `jl:Person` as a class (8,283 records), which the ontology does not

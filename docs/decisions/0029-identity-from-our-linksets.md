@@ -30,9 +30,15 @@ the others do not.
   (gnd-persons, gnd-persons-entityfacts) and DBpedia (dbpedia-persons). Each is made from a dump or query answer in the
   inputs area; its file name, checksum and version are in the run record and the `-meta` of every version made from
   it; a newer dump is a new input and gives a new version.
-- **Linksets are made by key** (GND, VIAF, LC, Wikidata, DBpedia, GeoNames, direct links between our records) from
-  the identifiers in our records and in the source datasets, by stated rules: a match must be unique in both
-  directions; ambiguous cases are left out and logged.
+- **One linkset per authority dataset** (`ls-gnd`, `ls-viaf`, `ls-lc`, `ls-geonames`, `ls-wikidata`; decided
+  2026-10-16): it finds every reference to its authority in all our datasets (`jl.identifiers`), resolves it through
+  the authority dataset to the current record (replacements), and links each referencing record to that record, by
+  stated rules: a match must be unique; ambiguous cases are left out and logged. The links form a star (record →
+  authority record), not pairs of datasets; a new dataset needs no new linkset. `ls-wikidata` also links the records
+  whose source identifiers Wikidata states (BHR, YIVO, rujen, NLI) and, through the Wikipedia sitelinks, the DBpedia
+  references. The pairwise linksets ls-nli-wikidata, ls-bhr-wikidata and ls-rujen-wikidata (never published) are
+  dropped; ls-yivo-wikidata is replaced by ls-wikidata. The few direct links between our records (e.g. bhr → djh)
+  get one linkset of their own.
 - **We trust the sources and point to them.** Identifier statements of authority files and knowledge bases are taken
   as given; we do not repair them. When a link is wrong, its provenance (record, identifier, source dataset, dump)
   leads to the source, where it is reported. Every source dataset describes the character of its data (who makes it
@@ -64,8 +70,9 @@ the others do not.
 
 ## Consequences
 
-- To do, in this order: the source datasets (`wikidata`, `viaf`, `lc`, `geonames`; GND and DBpedia exist), then the
-  linksets by key; then ep with `identity = linksets`, compared with the previous version.
+- To do, in this order: the record datasets made again (bhr from a full harvest of the portal, epidat, hhkeydocs,
+  rujen, …); the authority datasets (`gnd`, `lc`, `geonames`, `wikidata`, `viaf`; kind `authority`); the linksets
+  per authority dataset; then ep with `identity = linksets`, compared with the previous version.
 - The existing linksets made from sources' links of earlier years (2014links, interlinks, dbp-wiki-geo-linking,
   ls-nli-legacy) count as ours; they are made again where their sources allow.
 - The licences of the source datasets follow their sources (VIAF: ODC Attribution 1.0, with canonical

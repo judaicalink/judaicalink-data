@@ -17,14 +17,15 @@ hirsch-family and ubffm-persons:
 import re
 from collections import Counter, defaultdict
 
+from jl.generator import stable_inputs
 from jl.rdf import IRI, Literal
 from jl.turtle import PREFIXES
 
 import gazetteer
 
-SOURCES = {"bhr": "bhr/2026-10-12", "djh": "djh/2018-10-22", "gnd_persons": "gnd-persons/2018-11-29",
-           "haskala": "haskala/2026-10-12", "hirsch_family": "hirsch-family/2018-10-30",
-           "ubffm_persons": "ubffm-persons/2019-01-24"}
+# every record and authority dataset (decided 2026-10-16: only places given as text without an IRI are linked); gnd
+# replaces gnd-persons. The gnd run must become the gnd version before this dataset becomes a version.
+SOURCES = stable_inputs(kinds={"records", "authority"}, add={"gnd": "run-20261016T125144Z"})
 INPUTS = {**SOURCES, "geo_coordinates": "geo-coordinates/2026-10-12",
           "previous": "geo-enriched/2019-12-18",
           "geonames": "inputs:geonames/dump-2026-10-15/allCountries.zip",
@@ -48,11 +49,21 @@ def geonames_iri(gid):
 
 def generate(run):
     # the place texts of the records
-    statements = []
+    statements, has_iri, skipped = [], set(), Counter()
     for name in SOURCES:
+        found = []
         for s, p, o in run.triples(name):
             if p in PROPS and isinstance(o, Literal):
-                statements.append((name, str(s), PROPS[p], o.value))
+                found.append((name, str(s), PROPS[p], o.value))
+            elif p in PROPS.values() and not isinstance(o, Literal):
+                has_iri.add((str(s), p))
+        for st in found:   # only places given as text: a record with a place IRI for it is not enriched
+            if (st[1], st[2]) in has_iri:
+                skipped[name] += 1
+            else:
+                statements.append(st)
+    run.log("place texts left out because the record has a place IRI: "
+            + ", ".join(f"{k} {v:,}" for k, v in sorted(skipped.items())))
     texts = sorted({lit for _, _, _, lit in statements})
     run.log(f"{len(statements):,} place statements, {len(texts):,} distinct texts")
 

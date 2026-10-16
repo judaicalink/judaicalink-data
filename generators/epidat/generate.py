@@ -23,8 +23,9 @@ Added 2026-10-15, each a parameter with the addition as default (with all off, t
   (https://www.bundesarchiv.de/gedenkbuch/de<id>, the form Epidat uses in its commentaries) and in the Yad Vashem
   names database (https://collections.yadvashem.org/en/names/<id>), from the gedenkbuchID and yadvashemID columns.
 - family_relations: the relations of the TEI files (listRelation, by person id): schema:parent (child to parent),
-  schema:spouse and schema:sibling (both ways). Relations to persons not in the files are left out; grandparent
-  relations too (schema.org has no term). The person table gives parents and spouses only as names; not used.
+  jl:grandparent (grandchild to grandparent; schema.org has no term, judaicalink-ontology), schema:spouse and
+  schema:sibling (both ways). Relations to persons not in the files are left out. The person table gives parents and
+  spouses only as names; not used.
 
 63 files are not well-formed XML: 30 have a doubled quote in a link target, which is repaired; of the others the
 person list is parsed alone, where there is one.
@@ -253,6 +254,10 @@ def add_persdata(run, t, persons, rows):
              + ", ".join(f"{k} {v}" for k, v in sorted(absent.items(), key=lambda kv: (-kv[1], kv[0]))) + ".")
 
 
+RELATION = {"parent": SDO + "parent", "grandparent": PREFIXES["jl"] + "grandparent", "spouse": SDO + "spouse",
+            "sibling": SDO + "sibling"}
+
+
 def add_relations(run, t, persons, relations):
     """The family relations of the TEI files between persons of the files."""
     c, pairs = Counter(), set()
@@ -261,16 +266,16 @@ def add_relations(run, t, persons, relations):
         if not ids <= set(persons):
             c["relations with a person not in the files"] += 1
             continue
-        if name == "parent":
-            pairs.update((child, "parent", parent) for parent in active for child in passive)
+        if name in ("parent", "grandparent"):
+            pairs.update((child, name, parent) for parent in active for child in passive)
         elif name in ("spouse", "sibling"):
             pairs.update((a, name, b) for a in mutual for b in mutual if a != b)
         else:
             c[f"{name} relations (no term)"] += 1
     for a, name, b in pairs:
-        t.add((IRI(NS + a), IRI(SDO + name), IRI(NS + b)))
+        t.add((IRI(NS + a), IRI(RELATION[name]), IRI(NS + b)))
         c[name] += 1
     run.note(f"family relations: {len(relations):,} distinct relations in the TEI files; stated "
-             f"{c['parent']:,} schema:parent, {c['spouse']:,} schema:spouse, {c['sibling']:,} schema:sibling; left "
-             f"out {c['relations with a person not in the files']} with a person not in the files, "
-             f"{c['grandparent relations (no term)']} grandparent relations.")
+             f"{c['parent']:,} schema:parent, {c['grandparent']:,} jl:grandparent, {c['spouse']:,} schema:spouse, "
+             f"{c['sibling']:,} schema:sibling; left out {c['relations with a person not in the files']} with a person "
+             f"not in the files" + "".join(f", {n} {k}" for k, n in sorted(c.items()) if k.endswith("(no term)")) + ".")
