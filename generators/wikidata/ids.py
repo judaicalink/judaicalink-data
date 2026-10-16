@@ -1,0 +1,45 @@
+"""The identifiers by which our data reaches Wikidata items (shared by query.py and generate.py).
+
+DATASETS: the stable versions of our datasets and the runs of the source datasets and linksets that are no versions
+yet (they become versions later; then their versions are named here). collect() lists, per source and identifier,
+the datasets that name it as object (jl.identifiers): Wikidata items themselves, and the identifiers Wikidata
+states for items (GND, VIAF, LC, GeoNames, ISNI) and English DBpedia resources (an English Wikipedia article).
+"""
+
+from collections import defaultdict
+from urllib.parse import unquote
+
+from jl import identifiers
+from jl.generator import stable_inputs
+
+RUNS = {
+        "ls-nli-wikidata": "run-20261015T210917Z", "ls-bhr-wikidata": "run-20261015T210838Z",
+        "ls-rujen-wikidata": "run-20261016T114653Z"}
+DATASETS = stable_inputs("linked_", exclude={"wikidata", "gnd-persons", "gnd-persons-entityfacts", "ep",
+                                             "compact-memory", "compact-memory-supp", "cm-ocr-quality", "cm-tagme",
+                                             "corrections-links", "quality-annotations", "judaicalink-agents",
+                                             "judaicalink-vocabulary", "ontology"}, add=RUNS)
+# the sources and the Wikidata properties that state them
+PROPERTIES = {"gnd": "P227", "viaf": "P214", "lc-names": "P244", "geonames": "P1566", "isni": "P213"}
+SOURCES = {"wikidata", "dbpedia", *PROPERTIES}
+
+
+def collect(triples_of):
+    """triples_of: [(dataset, triples)] -> {source: {identifier: {dataset}}}."""
+    found = defaultdict(lambda: defaultdict(set))
+    for slug, triples in triples_of:
+        for _s, p, o in triples:
+            x = identifiers.identify(o, p)
+            if x and x[0] in SOURCES:
+                found[x[0]][x[1]].add(slug)
+    return found
+
+
+def isni_value(n):
+    """ISNI as Wikidata states it: 16 characters without spaces (checked 2026-10-16)."""
+    return n.replace(" ", "")
+
+
+def article_name(resource):
+    """The English Wikipedia title of a DBpedia resource name (as in its IRI)."""
+    return unquote(resource).replace("_", " ")

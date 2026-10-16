@@ -29,6 +29,7 @@ import re
 from collections import Counter, defaultdict
 from urllib.parse import unquote
 
+from jl import classes
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
@@ -326,7 +327,7 @@ def generate(run):
             pairs[place_key(label)].add(u)
     cm, cm_places, cm_labels = defaultdict(set), set(), defaultdict(set)
     for s, p, o in run.triples("cm_entities"):
-        if p == RDF_TYPE and o == JLO + "Place":
+        if p == RDF_TYPE and classes.kind(o) == "Place":
             cm_places.add(str(s))
         elif p == SKOS + "prefLabel" and isinstance(o, Literal) and o.lang in ("de", "en"):
             cm_labels[str(s)].add(o.value)
@@ -336,7 +337,7 @@ def generate(run):
     rujen_geo = defaultdict(set)
     rujen_places, rujen_labels = set(), defaultdict(set)
     for s, p, o in run.triples("rujen"):
-        if p == RDF_TYPE and o == JLO + "Place":
+        if p == RDF_TYPE and classes.kind(o) == "Place":
             rujen_places.add(str(s))
         elif p == SKOS + "prefLabel" and isinstance(o, Literal):
             rujen_labels[str(s)].add(o.value)

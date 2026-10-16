@@ -11,6 +11,7 @@ foaf:Person; every other article jl:Subject. The article subsections (skos:Conce
 import re
 from collections import Counter
 
+from jl import classes
 from jl.generator import load_shared
 from jl.rdf import IRI, RDF_TYPE, Literal
 from jl.turtle import PREFIXES
@@ -25,8 +26,8 @@ INPUTS = {
 PARAMS = {}
 
 JLO, FOAF = PREFIXES["jl"], PREFIXES["foaf"]
-CLASS_IRI = {"Person": FOAF + "Person", "Place": JLO + "Place", "Organization": FOAF + "Organization",
-             "Work": JLO + "Work", "Subject": JLO + "Subject"}
+CLASS_IRI = {"Person": classes.PERSON, "Place": classes.PLACE, "Organization": classes.ORGANISATION,
+             "Work": classes.WORK, "Subject": classes.SUBJECT}
 DATES = re.compile(r"\b\d{3,4}\b|\b\d{1,2}(st|nd|rd|th)\b|centur|\b[bd]\.\s|–\s*$|\?")
 
 

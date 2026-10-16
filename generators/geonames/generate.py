@@ -5,7 +5,7 @@
    itself if the feature is in the dump, empty if it is not (GeoNames publishes no cumulative list of merged or
    deleted features, so no successor can be stated).
 2. The data (geonames.ttl.gz): every linked feature of the dump as a record data/geonames/<id>: owl:sameAs
-   <https://sws.geonames.org/<id>/>, jl:Place, skos:prefLabel (the name), skos:altLabel (the alternate names, with
+   <https://sws.geonames.org/<id>/>, schema:Place, skos:prefLabel (the name), skos:altLabel (the alternate names, with
    their language where it is a language: not postal codes, airport and other codes, abbreviations, links),
    geosparql:asWKT, gn:featureClass and gn:featureCode, gn:countryCode, gn:population (if given), gn:parentADM1 (the
    first-level administrative division), foaf:isPrimaryTopicOf the Wikipedia articles and owl:sameAs the Wikidata
@@ -21,6 +21,7 @@ import zipfile
 from collections import defaultdict
 
 from jl import identifiers
+from jl import classes
 from jl.generator import stable_inputs
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
@@ -81,7 +82,7 @@ def generate(run):
     counts = defaultdict(int)
     for gid, c in sorted(rows.items()):
         rec = IRI(JL + "geonames/" + gid)
-        t |= {(rec, IRI(SAME), IRI(SWS + gid + "/")), (rec, IRI(RDF_TYPE), IRI(JLO + "Place")),
+        t |= {(rec, IRI(SAME), IRI(SWS + gid + "/")), (rec, IRI(RDF_TYPE), IRI(classes.PLACE)),
               (rec, IRI(SKOS + "prefLabel"), Literal(c[1]))}
         lat, lon = c[4], c[5]
         t.add((rec, IRI(GEO + "asWKT"), Literal(f"POINT({float(lon)} {float(lat)})", GEO + "wktLiteral")))

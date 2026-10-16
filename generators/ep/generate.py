@@ -26,6 +26,7 @@ import unicodedata
 from collections import Counter, defaultdict
 from urllib.parse import unquote
 
+from jl import classes
 from jl.generator import GeneratorError
 from jl.iris import canonical_triples, canonical_wkt
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
@@ -82,14 +83,15 @@ HISTORY = {JLO + "mergedInto", JLO + "mergeDate", JLO + "splitInto", JLO + "spli
 
 CLASS_OF_TYPE = {FOAF + "Person": "Person", JLO + "Person": "Person", JLO + "Place": "Place", DBO + "Place": "Place",
                  GNDO + "PlaceOrGeographicName": "Place", FOAF + "Organization": "Organization",
-                 GNDO + "Work": "Work", JLO + "Work": "Work", SKOS + "Concept": "Subject", JLO + "Subject": "Subject"}
+                 GNDO + "Work": "Work", JLO + "Work": "Work", SKOS + "Concept": "Subject", JLO + "Subject": "Subject",
+                 classes.PLACE: "Place", classes.WORK: "Work"}   # the deprecated jl: classes read as before
 SUBJECT_DATASETS = {"yivo", "djh", "rujen"}   # their other skos:Concepts are subjects (0022)
 # datasets that state the classes of records of other datasets (0025): a class counts for the dataset whose namespace
 # the record is in
 CLASS_DATASETS = {"record-classes"}
 CLASS_ORDER = ["Person", "Place", "Organization", "Work", "Subject"]
-CLASS_IRI = {"Person": FOAF + "Person", "Place": JLO + "Place", "Organization": FOAF + "Organization",
-             "Work": JLO + "Work", "Subject": JLO + "Subject"}
+CLASS_IRI = {"Person": classes.PERSON, "Place": classes.PLACE, "Organization": classes.ORGANISATION,
+             "Work": classes.WORK, "Subject": classes.SUBJECT}
 
 FACT_PROPS = {
     SKOS + "prefLabel": "label", FOAF + "name": "label", RDFS + "label": "label",

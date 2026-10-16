@@ -4,7 +4,7 @@ Transformation only, a port of nli_records of kg-complements (nli_records.py, 20
 without changes to its logic; the reading and matching of the export is in nli_export.py, shared with ls-nli-legacy.
 Each record keeps the identifiers of the export (VIAF from 901, LC from 010, owl:sameAs), its headings in all scripts,
 variant names (400, 700), dates (046, else the heading's dates), places (370), occupations (374), gender (375) and
-notes (678). Name/title records are works (jl:Work) linked to their creator where the heading matches exactly one
+notes (678). Name/title records are works (schema:CreativeWork) linked to their creator where the heading matches exactly one
 person record. Subject headings are left out. IRIs: data/nli/record/viaf-<VIAF>, or h-<hash of the headings> for
 records without a unique VIAF number.
 """
@@ -14,6 +14,7 @@ from collections import Counter
 
 from nli_export import (REC, SCRIPT_LANG, TITLE_CODES, clean, dates, heading, kind, named_person, names,
                         person_index, read_records, record_iri, sub)
+from jl import classes
 from jl.rdf import IRI, RDF_TYPE, Literal
 from jl.turtle import PREFIXES
 
@@ -111,7 +112,7 @@ def generate(run):
                 for v in sub(f, "a") + sub(f, "b"):
                     add(s, SKOS + "note", lit(v))
         else:  # work: name/title heading
-            add(s, RDF_TYPE, JLO + "Work")
+            add(s, RDF_TYPE, classes.WORK)
             for f in r["100"]:
                 title = clean(" ".join(v for c in "tnpklmor" for v in sub(f, c)))
                 script = f.get("9", ["lat"])[0]

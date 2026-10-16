@@ -23,6 +23,7 @@ import json
 from collections import Counter, defaultdict
 from urllib.parse import unquote
 
+from jl import classes
 from jl.generator import GeneratorError
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
@@ -178,7 +179,7 @@ def wikidata(run, entities, cache):
         if "Q5" in instance_of:
             t.append((s, IRI(RDF_TYPE), IRI(FOAF + "Person"))); kinds["person"] += 1
         elif coords:
-            t.append((s, IRI(RDF_TYPE), IRI(JLO + "Place"))); kinds["place"] += 1
+            t.append((s, IRI(RDF_TYPE), IRI(classes.PLACE))); kinds["place"] += 1
         else:
             kinds["other"] += 1
         if coords:

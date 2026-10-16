@@ -5,12 +5,13 @@ default on):
 - namespace_iris: the places had IRIs without a namespace (data/Aachen), which no dataset may coin; they get
   data/geo-coordinates/<the same name>, and every old IRI is stated dcterms:isReplacedBy its new IRI (one each, so
   entity pages and the links of other datasets to the old IRIs stay valid, decision 0022);
-- place_type: jl:Place instead of skos:Concept;
+- place_type: schema:Place instead of skos:Concept (jl:Place until 2026-10-17);
 - drop_lat_lon: jl:lat/jl:lon of three places (Glogau, Naugard, Rheydt) have the values swapped and repeat their
   geo:asWKT; they are dropped.
 Everything else is unchanged. With the fixes off, the output has the same triples as 2018-08-08.
 """
 
+from jl import classes
 from jl.rdf import IRI, RDF_TYPE
 from jl.turtle import PREFIXES
 
@@ -32,7 +33,7 @@ def generate(run):
             n["latlon"] += 1
             continue
         if prm["place_type"] and p == RDF_TYPE and o == SKOS + "Concept":
-            o = IRI(JLO + "Place")
+            o = IRI(classes.PLACE)
             n["type"] += 1
         if prm["namespace_iris"]:
             places.add(s)
@@ -41,5 +42,5 @@ def generate(run):
     for s in places:
         out.add((s, IRI(DCT + "isReplacedBy"), IRI(NS + s[len(DATA):])))
     run.note(f"{len(places):,} places moved to {NS} (old IRIs dcterms:isReplacedBy the new ones); "
-             f"{n['type']:,} typed jl:Place; {n['latlon']} jl:lat/jl:lon dropped.")
+             f"{n['type']:,} typed schema:Place; {n['latlon']} jl:lat/jl:lon dropped.")
     run.write_turtle("geo-coordinates.ttl.gz", out)

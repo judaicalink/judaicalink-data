@@ -23,8 +23,8 @@ IRIs: data/haskala/<content type>/<node id>, data/haskala/<vocabulary>/<term id>
 (the scheme). Every node and term: rdfs:label (the title or name), jl:describedAt (its page on haskala-library.net),
 dcterms:identifier (the record id of the research database, from the migration maps, where there is one). Mapped to
 JudaicaLink terms in addition: persons foaf:Person, skos:prefLabel (the German name, else the title), skos:altLabel
-(the Hebrew name, the pseudonym), owl:sameAs VIAF, jl:birthDate/jl:deathDate and the places as given; books jl:Work
-with skos:prefLabel; terms skos:Concept with skos:prefLabel, skos:inScheme, skos:broader; cities also jl:Place.
+(the Hebrew name, the pseudonym), owl:sameAs VIAF, jl:birthDate/jl:deathDate and the places as given; books schema:CreativeWork
+with skos:prefLabel; terms skos:Concept with skos:prefLabel, skos:inScheme, skos:broader; cities also schema:Place.
 
 From 2019-07-01: its 194 persons of the library are dcterms:isReplacedBy the person node of their page (matched by
 the page address, which Drupal treats without case); their GND links, from the 2019 working list and not in the
@@ -39,6 +39,7 @@ import unicodedata
 from collections import Counter, defaultdict
 from urllib.parse import unquote
 
+from jl import classes
 from jl.generator import GeneratorError, load_shared
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
@@ -342,7 +343,7 @@ def generate(run):
         add(s, RDF_TYPE, cls[r["type"]])
         common(s, "node", r["nid"], r["title"])
         if r["type"] == "book":
-            add(s, RDF_TYPE, JLO + "Work")
+            add(s, RDF_TYPE, classes.WORK)
             add(s, SKOS + "prefLabel", lit(r["title"]))
         n["nodes " + r["type"]] += 1
     parents = defaultdict(list)
@@ -354,7 +355,7 @@ def generate(run):
         s = term_iri(r["tid"])
         add(s, RDF_TYPE, SKOS + "Concept")
         if v == "cities":
-            add(s, RDF_TYPE, JLO + "Place")
+            add(s, RDF_TYPE, classes.PLACE)
         add(s, SKOS + "prefLabel", lit(r["name"]))
         add(s, SKOS + "inScheme", scheme[v])
         common(s, "taxonomy/term", r["tid"], r["name"])

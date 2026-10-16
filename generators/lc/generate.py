@@ -12,7 +12,7 @@
    record IRI, IRIs in canonical form, jl.iris) and of its Real World Object (dates, places, occupations, fields of
    activity, languages; blank nodes of occupations and fields flattened to their IRI), and gets owl:sameAs
    <http://id.loc.gov/authorities/names/<id>>, the classes the entity pages know (foaf:Person for personal names,
-   foaf:Organization for corporate names, jl:Place for geographic names, jl:Work for titles), skos:prefLabel
+   foaf:Organization for corporate names, schema:Place for geographic names, schema:CreativeWork for titles), skos:prefLabel
    (madsrdf:authoritativeLabel), skos:altLabel (the variant labels), jl:birthDate/deathDate (madsrdf:birthDate/
    deathDate), jl:birthLocation(URI)/deathLocation(URI), and owl:sameAs for the exact external authorities that are
    identifiers of a known source (GND, VIAF clusters, ISNI, Wikidata, TGN; not the VIAF source records
@@ -27,6 +27,7 @@ import re
 from collections import defaultdict
 
 from jl import identifiers, iris
+from jl import classes
 from jl.generator import GeneratorError, stable_inputs
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, BNode, Literal, parse_ntriples, unescape_string
@@ -54,8 +55,8 @@ BEGIN = re.compile(r"^# BEGIN /authorities/names/(" + LC_ID + r")\s*$")
 LABEL_OF = re.compile(r'^<http://id\.loc\.gov/authorities/names/(' + LC_ID + r')> <http://www\.loc\.gov/mads/rdf/v1#'
                       r'authoritativeLabel> "((?:[^"\\]|\\.)*)"', re.M)
 
-CLASSES = {"PersonalName": FOAF + "Person", "CorporateName": FOAF + "Organization", "Geographic": JLO + "Place",
-           "HierarchicalGeographic": JLO + "Place", "Title": JLO + "Work", "NameTitle": JLO + "Work"}
+CLASSES = {"PersonalName": FOAF + "Person", "CorporateName": FOAF + "Organization", "Geographic": classes.PLACE,
+           "HierarchicalGeographic": classes.PLACE, "Title": classes.WORK, "NameTitle": classes.WORK}
 LEFT_OUT = {MADS + "adminMetadata", MADS + "hasSource", MADS + "elementList", MADS + "componentList",
             MADS + "hasAffiliation", MADS + "identifiesRWO", MADS + "isIdentifiedByAuthority", RDFS + "label"}
 FLATTEN = {MADS + "occupation", MADS + "fieldOfActivity"}   # RWO -> blank node -> IRI

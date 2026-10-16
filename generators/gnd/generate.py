@@ -35,6 +35,7 @@ import re
 from collections import defaultdict
 
 from jl import identifiers
+from jl import classes
 from jl.generator import GeneratorError, slug_of, stable_inputs
 from jl.iris import WKT, canonical, canonical_wkt
 from jl.rdf import IRI, RDF_TYPE, XSD, BNode, Literal, parse_ntriples, unescape_string
@@ -250,7 +251,7 @@ def generate(run):
             if p == RDF_TYPE and o.startswith(GNDO):
                 c = o[len(GNDO):]
                 for group, cls in ((PERSON, FOAF + "Person"), (ORGANISATION, FOAF + "Organization"),
-                                   (PLACE, JLO + "Place"), (WORK, JLO + "Work")):
+                                   (PLACE, classes.PLACE), (WORK, classes.WORK)):
                     if c in group:
                         t.add((rec, IRI(RDF_TYPE), IRI(cls)))
             elif local and local.startswith("preferredNameFor"):
