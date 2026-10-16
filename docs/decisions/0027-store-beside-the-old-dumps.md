@@ -22,5 +22,7 @@ The download paths were never promised to be stable; the catalogue links to them
 
 ## Addendum 2026-10-16
 
-The old `/dumps/` has been deleted on archive.judaicalink.org; only `/store/` remains. The local copy `lokal/dumps`
-stays as the record of the former published basis.
+The old `/dumps/` has been deleted on archive.judaicalink.org, earlier than planned: the disk of the archive was full,
+and the old dumps are not needed there any more (the store holds the published versions). Only `/store/` remains. The
+local copy `lokal/dumps` is kept, at least until there is real production experience with the new system and its
+data updates.
