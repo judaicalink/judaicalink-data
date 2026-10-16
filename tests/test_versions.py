@@ -268,7 +268,8 @@ class Versions(unittest.TestCase):
         cfg = config.Config({"cache": str(self.t / "cache")}, None)
         s = meta.statistics([canonical.canonical(p, cfg)])
         self.assertEqual(s, {"triples": 4, "distinct_subjects": 3, "current_subjects": 2, "properties": 3,
-                             "classes": 1})
+                             "classes": 1, "vocabularies": ["http://a/", "http://purl.org/dc/terms/",
+                                                            "http://www.w3.org/1999/02/22-rdf-syntax-ns#"]})
 
 
 if __name__ == "__main__":

@@ -94,7 +94,8 @@ NOT_CURRENT = {f"<{x}>" for x in (PREFIXES["dcterms"] + "isReplacedBy", PREFIXES
 def statistics(infos):
     """Measured on the canonical form of the data files (union): triples, distinct subjects, the distinct subjects
     that are current (not replaced, merged, split, retired or deprecated: the number of entities, which does not grow
-    with every new IRI), properties, classes (objects of rdf:type)."""
+    with every new IRI), properties, classes (objects of rdf:type), and the namespaces of the properties and classes
+    (void:vocabulary)."""
     triples = subjects = gone = 0
     last, last_gone = None, False
     properties, classes = set(), set()
@@ -113,7 +114,14 @@ def statistics(infos):
             classes.add(rest[:-2])
     gone += last_gone
     return {"triples": triples, "distinct_subjects": subjects, "current_subjects": subjects - gone,
-            "properties": len(properties), "classes": len(classes)}
+            "properties": len(properties), "classes": len(classes),
+            "vocabularies": sorted({namespace(t[1:-1]) for t in properties | classes} - {None})}
+
+
+def namespace(term):
+    """The namespace of a term: its IRI up to the last '#' or '/' (void:vocabulary)."""
+    m = re.match(r"^(.*[#/])[^#/]+$", term)
+    return m.group(1) if m else None
 
 
 def commit_url(commit, path):
@@ -182,6 +190,7 @@ def render(entry, version, files, record, stats, registry):
                 if "current_subjects" in stats else []),
               (V, VOID.properties, integer(stats["properties"])),
               (V, VOID.classes, integer(stats["classes"]))]
+        t += [(V, VOID.vocabulary, IRI(ns)) for ns in stats.get("vocabularies", [])]
 
     # the files
     for f in files + [{"path": meta_path(slug), "description": "Metadata of this version (this file)."}]:

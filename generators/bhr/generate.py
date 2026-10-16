@@ -164,6 +164,8 @@ def generate(run):
                 if head in AS_PUBLICATION:
                     t.add((r, IRI(JLO + "hasPublication"), Literal(x)))
     for h, p, en, de in SECTIONS:
+        if h in AS_PUBLICATION:   # the same as the common term (judaicalink-ontology), which the data also states
+            voc.add((IRI(VOCAB + p), IRI(RDFS + "subPropertyOf"), IRI(JLO + "hasPublication")))
         voc |= {(IRI(VOCAB + p), IRI(RDF_TYPE), IRI(PREFIXES["rdf"] + "Property")),
                 (IRI(VOCAB + p), IRI(RDFS + "label"), Literal(en, None, "en")),
                 (IRI(VOCAB + p), IRI(RDFS + "label"), Literal(de, None, "de")),
