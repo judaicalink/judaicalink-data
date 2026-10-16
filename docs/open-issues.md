@@ -73,6 +73,9 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **cm-entities** takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula); `ls-viaf` must
   not follow these.
 - **YIVO subsections** (346 `skos:Concept`) are taken by ep as subjects; ep must read both yivo and record-classes.
+- **gba** uses the GND namespace for its own fields (`gndo:birthDate`, `deathDate`, `occupation`, `hasAbstract`,
+  `hasPublication`, `relation`, `alternativeName`; not in the GND ontology); **nrwbibdjg** writes `gndo:forname`
+  (for `gndo:forename`). Both for their next versions (found by judaicalink-terms, 2026-10-17).
 - **gba** IRIs changed in 2025 (`JecheskelEzechielLandau` → `Jecheskel__Ezechiel__Landau`): check whether anything
   links to the old ones. **djh** 2018 has non-ASCII characters in IRIs.
 - **The `-meta` of epidat 2023-07-14**, rendered again, would get the namespace and example of the entry, which fit
