@@ -1,8 +1,7 @@
 """The classes of the entities in our data (the common layer, judaicalink-ontology).
 
-Standard classes since 2026-10-17: jl:Place, jl:Work and jl:Subject are deprecated in favour of schema:Place,
-schema:CreativeWork and skos:Concept; data published before keeps them, datasets switch with their next version.
-Generators write PERSON, ORGANISATION, PLACE, WORK, SUBJECT; readers use kind() to recognise both forms.
+Generators write PERSON, ORGANISATION, PLACE, WORK, SUBJECT; readers use kind(), which also knows the deprecated
+jl:Place, jl:Work, jl:Subject (and jl:Person, never defined).
 """
 
 from .turtle import PREFIXES
