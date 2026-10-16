@@ -1,0 +1,304 @@
+{
+ "slug": "geo-enriched",
+ "run": "run-20261016T162206Z",
+ "generator": "generators/geo-enriched/generate.py",
+ "commit": "8ce98cbcb278dc4ce4df6d093e75a36f3c0bda1e",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-16T16:22:06Z",
+ "inputs": [
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-16/bhr-beacon.ttl.gz",
+   "file": "bhr-beacon.ttl.gz",
+   "sha256": "5378c6f76daf2980afaaca4409bfb0bd88755b9d337ba40afa218120bc173047",
+   "bytes": 6684
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-16/bhr-vocabulary.ttl.gz",
+   "file": "bhr-vocabulary.ttl.gz",
+   "sha256": "d9c4c0ad89e44d435c814c36a7e35abcd644c3dd510603b3bcd88a9c3c2eb996",
+   "bytes": 528
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-16/bhr.ttl.gz",
+   "file": "bhr.ttl.gz",
+   "sha256": "f03b2b1e257128434830ef1aed146e509a4b2f4b49983bc918bf421611f20d64",
+   "bytes": 2352277
+  },
+  {
+   "name": "dbpedia_persons",
+   "ref": "dbpedia-persons/2018-10-24/generated_persons_DBPedia_enriched_02.ttl.gz",
+   "file": "generated_persons_DBPedia_enriched_02.ttl.gz",
+   "sha256": "34e353fd9b7bf20e8c53a673503eeeb400e4bef4c14a6f532041fde3191c96b3",
+   "bytes": 710023
+  },
+  {
+   "name": "dbpedia_persons",
+   "ref": "dbpedia-persons/2018-10-24/persons-gndid.ttl.gz",
+   "file": "persons-gndid.ttl.gz",
+   "sha256": "e8d8cdab643f0b98840c5181299b7c6a00ea0274331ffd3420b2fe9ff68392f8",
+   "bytes": 30570
+  },
+  {
+   "name": "dbpedia_persons",
+   "ref": "dbpedia-persons/2018-10-24/Entityfacts-dbpedia-sameas.ttl.gz",
+   "file": "Entityfacts-dbpedia-sameas.ttl.gz",
+   "sha256": "c1ff0f22f44f0c244aec4f609822cccc5710b706ca1b4b21e8c68ab750844105",
+   "bytes": 135800
+  },
+  {
+   "name": "djh",
+   "ref": "djh/2018-10-22/djh.ttl.gz",
+   "file": "djh.ttl.gz",
+   "sha256": "b77f295c62f8687a18a4a14783add3a952248a4182d13573a3e6a8e5419e7019",
+   "bytes": 104832
+  },
+  {
+   "name": "epidat",
+   "ref": "epidat/2026-10-16/epidat.ttl.gz",
+   "file": "epidat.ttl.gz",
+   "sha256": "435146d4c6df73e5f3b7f4eaa40917cd2697689a40e0d5a3122fd24ac859d076",
+   "bytes": 1832757
+  },
+  {
+   "name": "footprints",
+   "ref": "footprints/2026-10-12/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "31fc38e2552f719c8cd5bf65d3336bf722deb1311ef505c3ea304b6ba9581df3",
+   "bytes": 1257277
+  },
+  {
+   "name": "gba",
+   "ref": "gba/2025-03-21/gba-final-01.ttl.gz",
+   "file": "gba-final-01.ttl.gz",
+   "sha256": "33fe2d67b4c621c75a7386429c3acd1b15435b2e41b3dfdf9dd2ba74a938192d",
+   "bytes": 2937
+  },
+  {
+   "name": "geo_coordinates",
+   "ref": "geo-coordinates/2026-10-12/geo-coordinates.ttl.gz",
+   "file": "geo-coordinates.ttl.gz",
+   "sha256": "b059aeb643db2567c8f9988cc4df0080d62494006fc55ede2a93fc2b4ab01ad2",
+   "bytes": 155920
+  },
+  {
+   "name": "gnd",
+   "ref": "gnd/2026-10-16/gnd.ttl.gz",
+   "file": "gnd.ttl.gz",
+   "sha256": "553d87cf4518115fc5114a9f74eb2f73fafc0128187d0c667fa53f2702db2be9",
+   "bytes": 11973998
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-gnd-2019.ttl.gz",
+   "file": "haskala-gnd-2019.ttl.gz",
+   "sha256": "1d96ec95b4954865b0c2a912e5db1fc9ce352328b6eb4b07a9ef7c6afcd7f0f7",
+   "bytes": 1257
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-net.ttl.gz",
+   "file": "haskala-net.ttl.gz",
+   "sha256": "d2b6283f9ea5e15d426aeaa2ecbb983d4afd3389ca9d43762c471457e92c7cbc",
+   "bytes": 5941
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
+   "file": "haskala-vocabulary.ttl.gz",
+   "sha256": "2bc6a01ce4bb316b4efd715533899be52bfdd273b78619f8499268b79f179440",
+   "bytes": 13093
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala.ttl.gz",
+   "file": "haskala.ttl.gz",
+   "sha256": "03c3c988a5abf8cd72c3fa9f963345cfa3798f77f8c5ce3482e900a874d26b2a",
+   "bytes": 871677
+  },
+  {
+   "name": "hhkeydocs",
+   "ref": "hhkeydocs/2026-10-16/hhkeydocs.ttl.gz",
+   "file": "hhkeydocs.ttl.gz",
+   "sha256": "e36abbab400c9a32d21e705fa625289ef110358ef0fec6a4bd472a94fa2ac489",
+   "bytes": 258738
+  },
+  {
+   "name": "hirsch_family",
+   "ref": "hirsch-family/2018-10-30/HirschFamily.ttl.gz",
+   "file": "HirschFamily.ttl.gz",
+   "sha256": "3e0d15737004352dd8aa63d3a82ec40b4ff4de2de329734ffa10adc94210919e",
+   "bytes": 4656
+  },
+  {
+   "name": "jre",
+   "ref": "jre/2019-11-29/jre.ttl.gz",
+   "file": "jre.ttl.gz",
+   "sha256": "938de30400eef55d65f129553a8c1e0156ac57aa2e1b81fb373f883bc464c932",
+   "bytes": 12926
+  },
+  {
+   "name": "nli_records",
+   "ref": "nli-records/2026-10-12/nli-records.ttl.gz",
+   "file": "nli-records.ttl.gz",
+   "sha256": "bd276fe6239583d8e2e6f44108add9dacb282cf4ad24ab3e8e871b5ffed5f93e",
+   "bytes": 10690626
+  },
+  {
+   "name": "nrwbibdjg",
+   "ref": "nrwbibdjg/2024-05-24/nrwbibdjg.ttl.gz",
+   "file": "nrwbibdjg.ttl.gz",
+   "sha256": "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466",
+   "bytes": 371256
+  },
+  {
+   "name": "rujen",
+   "ref": "rujen/2026-10-16/rujen.ttl.gz",
+   "file": "rujen.ttl.gz",
+   "sha256": "3e68c0aa3f47c0d7f8e7fe29f085c8f70118c54c2cba2b288a6fb32fd48b5c11",
+   "bytes": 6829500
+  },
+  {
+   "name": "sosy",
+   "ref": "sosy/2026-10-12/sosy-final-01.ttl.gz",
+   "file": "sosy-final-01.ttl.gz",
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "bytes": 12555
+  },
+  {
+   "name": "stolpersteine",
+   "ref": "stolpersteine/2020-10-06/stolpersteine.ttl.gz",
+   "file": "stolpersteine.ttl.gz",
+   "sha256": "f00d52fdf756ab50694750a31d960ee0c5aace0a42e889169a4182d5efe63266",
+   "bytes": 9314
+  },
+  {
+   "name": "ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors.ttl.gz",
+   "file": "ubffm-authors.ttl.gz",
+   "sha256": "6cc3ae3df6bb6972230cb77c87a269cc9cffd0d63047f62164a77ba3771f0364",
+   "bytes": 505187
+  },
+  {
+   "name": "ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors-02.ttl.gz",
+   "file": "ubffm-authors-02.ttl.gz",
+   "sha256": "a6ab1fe57f453fe962fdc0066cca216207a55e0f45d35d7ad0eb526b3cce50e2",
+   "bytes": 408010
+  },
+  {
+   "name": "yivo",
+   "ref": "yivo/2020-09-30/yivo.ttl.gz",
+   "file": "yivo.ttl.gz",
+   "sha256": "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842",
+   "bytes": 695155
+  },
+  {
+   "name": "previous",
+   "ref": "geo-enriched/2019-12-18/bhr-final-05.ttl",
+   "file": "bhr-final-05.ttl",
+   "sha256": "c41abb0ec2f45696f990ae09318d4b8f12d09b327e5fe1963407c172f3ec5ad7",
+   "bytes": 68032
+  },
+  {
+   "name": "previous",
+   "ref": "geo-enriched/2019-12-18/djh.ttl",
+   "file": "djh.ttl",
+   "sha256": "0eea649ea56a43abcd44aaa39999e9fc4b1949ed2bcab26fdb6084711d70eb69",
+   "bytes": 30333
+  },
+  {
+   "name": "previous",
+   "ref": "geo-enriched/2019-12-18/generated_persons_GND_enriched.ttl",
+   "file": "generated_persons_GND_enriched.ttl",
+   "sha256": "502517c89ff6e122c7a5cc44614ff9b9cbbde352ad860f24b4e83ba27041c798",
+   "bytes": 78222
+  },
+  {
+   "name": "previous",
+   "ref": "geo-enriched/2019-12-18/Haskala_enriched.ttl",
+   "file": "Haskala_enriched.ttl",
+   "sha256": "61e0ab29fb2f6c76e5016a81cd1a4e4959152c9e746fb1591f1c60629773d12d",
+   "bytes": 390
+  },
+  {
+   "name": "previous",
+   "ref": "geo-enriched/2019-12-18/HirschFamily.ttl",
+   "file": "HirschFamily.ttl",
+   "sha256": "ff5bca2dbbabaccfa0cb3f8ead851ed497973b82e680b96cb8582890d2a74f19",
+   "bytes": 6226
+  },
+  {
+   "name": "previous",
+   "ref": "geo-enriched/2019-12-18/ubffm-authors.ttl",
+   "file": "ubffm-authors.ttl",
+   "sha256": "129bc5e805971128c7b123d113da5934295ad15e0b185e0c37bcf412e1f7f810",
+   "bytes": 121351
+  },
+  {
+   "name": "previous",
+   "ref": "geo-enriched/2019-12-18/geo_interlinks.ttl",
+   "file": "geo_interlinks.ttl",
+   "sha256": "e6352d602c21aabf682932734f8c292b91b73cff02e32c3ac3c731571ef26621",
+   "bytes": 676542
+  },
+  {
+   "name": "geonames",
+   "ref": "inputs:geonames/dump-2026-10-15/allCountries.zip",
+   "file": "allCountries.zip",
+   "sha256": "2fbf54cea14028837ed0571fc424402fd6a84afe09ed5208b0553bcd2815223b",
+   "bytes": 422029404
+  },
+  {
+   "name": "geonames_alt",
+   "ref": "inputs:geonames/dump-2026-10-15/alternateNamesV2.zip",
+   "file": "alternateNamesV2.zip",
+   "sha256": "8f3e7b963d0bd31c3465df489fc59f2eda4930f1b28d0c0a6a4d0b37bb3dbe51",
+   "bytes": 204846759
+  }
+ ],
+ "input_descriptions": {
+  "inputs:geonames/dump-2026-10-15": {
+   "title": "GeoNames: the full dump (allCountries), alternate names, admin1 codes and country info (2026-10-15)",
+   "origin": "https://download.geonames.org/export/dump/",
+   "description": "The GeoNames data dump as offered on 2026-10-15 (files dated 2026-10-15 by the server): allCountries.zip (all features, one line per GeoNames record: id, name, ASCII name, alternate names, coordinates, feature class and code, country, admin codes, population, ...), alternateNamesV2.zip (the alternate names with their language, preferred/short/colloquial/historic flags), admin1CodesASCII.txt (names of the first-level administrative divisions), countryInfo.txt (countries), readme.txt (the format). Licence CC BY 4.0 (readme.txt). Used to find GeoNames ids for place names offline and deterministically.",
+   "date": "2026-10-15",
+   "note": "Not published: a copy of a third-party dump (CC BY 4.0), kept to make datasets that match places against GeoNames again without network access."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-16T16:22:55Z",
+ "seconds": 48.8,
+ "notes": [
+  "45,033 place statements of 12,112 distinct texts; texts: GeoNames (alternate name without language and qualifier) 59, GeoNames (alternate name without language and qualifier), a geo-coordinates place 14, GeoNames (alternate name without language and qualifier, by population) 1, GeoNames (alternate name without language) 264, GeoNames (alternate name without language), a geo-coordinates place 45, GeoNames (alternate name without language, by population) 12, GeoNames (name and qualifier) 1,395, GeoNames (name and qualifier), a geo-coordinates place 817, GeoNames (name and qualifier, by population) 184, GeoNames (name and qualifier, by population), a geo-coordinates place 183, GeoNames (name) 1,561, GeoNames (name), a geo-coordinates place 350, GeoNames (name, by population) 588, GeoNames (name, by population), a geo-coordinates place 396, ambiguous 1,645, geo-coordinates label 851, no candidate 3,456, placeholder 2, qualifier fits no candidate 178, uncertain 111; statements: bhr 1,998 of 3,546, dbpedia_persons 1,062 of 1,113, djh 265 of 307, epidat 436 of 621, footprints 0 of 0, gba 0 of 0, geo_coordinates 0 of 0, gnd 0 of 0, haskala 51 of 63, hhkeydocs 0 of 0, hirsch_family 24 of 58, jre 0 of 0, nli_records 27,592 of 37,596, nrwbibdjg 0 of 0, rujen 0 of 0, sosy 68 of 185, stolpersteine 0 of 0, ubffm_persons 1,465 of 1,544, yivo 0 of 0."
+ ],
+ "deleted_by_corrections": {
+  "dbpedia_persons": 24,
+  "footprints": 7,
+  "gnd": 1,
+  "haskala": 2,
+  "nli_records": 11,
+  "ubffm_persons": 1
+ },
+ "files": [
+  {
+   "path": "geo-enriched.ttl.gz",
+   "bytes": 270321,
+   "sha256": "b1b5783f1669b50cadf1fb46e7492ba9644d5ecc20ba5578c4a30c2473c246e9",
+   "triples": 32952
+  }
+ ],
+ "version": "2026-10-16"
+}
