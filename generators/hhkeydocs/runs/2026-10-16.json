@@ -1,0 +1,61 @@
+{
+ "slug": "hhkeydocs",
+ "run": "run-20261016T142713Z",
+ "generator": "generators/hhkeydocs/generate.py",
+ "commit": "b57d381e790de0f9ccfb6feabfbc775b62afe03b",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-16T14:27:13Z",
+ "inputs": [
+  {
+   "name": "harvest",
+   "ref": "inputs:hhkeydocs/jsonld-2026-10-15/jsonld.jsonl.gz",
+   "file": "jsonld.jsonl.gz",
+   "sha256": "7e80d74e315e63076d2f51977ca19d2727f0612e10a059801c229a8eb55b14c2",
+   "bytes": 265316
+  },
+  {
+   "name": "previous",
+   "ref": "hhkeydocs/2025-03-21/hhkeydocs-final-01.ttl.gz",
+   "file": "hhkeydocs-final-01.ttl.gz",
+   "sha256": "2d912a077e7c53ff363d16f4b37882714373205efcc13abdb2f428ea400ce445",
+   "bytes": 156824
+  }
+ ],
+ "input_descriptions": {
+  "inputs:hhkeydocs/jsonld-2026-10-15": {
+   "title": "schluesseldokumente.net: the JSON-LD of all persons, organisations and places (harvest of 2026-10-15)",
+   "origin": "https://schluesseldokumente.net/",
+   "description": "Made by generators/hhkeydocs/harvest.py on 2026-10-15/16 (one request per second, User-Agent JudaicaLink-data). beacon-person.txt (/person/gnd/beacon: 1,158 lines, 1,152 distinct GND numbers), beacon-organisation.txt (/organisation/gnd/beacon: 751 GND numbers), sitemap.person.xml (1,191 persons: 1,152 by GND number, 39 by the site's own number), sitemap.organization.xml (751), sitemap.place.xml (688 places by TGN number) and ort.html (the place list /ort: 717 places, a superset of the sitemap), all unchanged; jsonld.jsonl.gz: for each of the 2,659 addresses (persons, organisations, places) one JSON line with the address, the HTTP status (all 200) and the text of <address>.jsonld (schema.org) unchanged. Licence of the site's data: CC BY-NC-ND 4.0 (https://schluesseldokumente.net/nutzungsbedingungen).",
+   "date": "2026-10-15",
+   "note": "Not published: a copy of a public source, kept to make the dataset hhkeydocs reproducibly."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-16T14:27:14Z",
+ "seconds": 0.4,
+ "notes": [
+  "{'birth places': 868, 'death places': 776, 'organisations': 751, 'persons (GND)': 1152, 'persons (site number)': 39, 'places': 1111, 'places with a page of their own': 717}; previous records: {'replaced by one record': 1814, 'replaced by several records': 10}; sameAs targets other than GND and TGN: none."
+ ],
+ "deleted_by_corrections": {
+  "previous": 4
+ },
+ "files": [
+  {
+   "path": "hhkeydocs.ttl.gz",
+   "bytes": 258738,
+   "sha256": "e36abbab400c9a32d21e705fa625289ef110358ef0fec6a4bd472a94fa2ac489",
+   "triples": 32088
+  }
+ ],
+ "version": "2026-10-16"
+}

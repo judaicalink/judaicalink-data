@@ -1,0 +1,82 @@
+{
+ "slug": "epidat",
+ "run": "run-20261016T142658Z",
+ "generator": "generators/epidat/generate.py",
+ "commit": "b57d381e790de0f9ccfb6feabfbc775b62afe03b",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "birth_dates": true,
+  "memorial_links": true,
+  "family_relations": true,
+  "canonical_forms": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-16T14:26:58Z",
+ "inputs": [
+  {
+   "name": "tei",
+   "ref": "inputs:epidat/data-2026-08-13/epidat-tei.tar.gz",
+   "file": "epidat-tei.tar.gz",
+   "sha256": "c6abfc01d1dea13a5f6e8b910a8ca64b4abb97c46a7546cfda8f65d2a8d6ad85",
+   "bytes": 25403942
+  },
+  {
+   "name": "persdata",
+   "ref": "inputs:epidat/persdata-2026-08-13/epidat_persdata.tsv",
+   "file": "epidat_persdata.tsv",
+   "sha256": "ab14f304b340db1d46c64d3421398db74eec8077bd3c38b51b434c39a7aa4623",
+   "bytes": 2114847
+  },
+  {
+   "name": "previous",
+   "ref": "epidat/2023-07-14/epidat-final-01.ttl.gz",
+   "file": "epidat-final-01.ttl.gz",
+   "sha256": "0aea2e25ff18d0fa193b62a49ce923bcd5dcc87732d81b38350f0011b166718a",
+   "bytes": 1533441
+  }
+ ],
+ "input_descriptions": {
+  "inputs:epidat/data-2026-08-13": {
+   "title": "Epidat research data (TEI/EpiDoc and cemetery table), commit 61046f3",
+   "origin": "https://gitlab.rlp.net/epidat/data/-/tree/61046f34c3e9e898bfc0c43d27cde8dd6abbd28d",
+   "description": "The research data repository of Epidat (Steinheim-Institut), named as the harvesting interface by https://www.steinheim-institut.de/cgi-bin/epidat?info=howtoharvest, at commit 61046f34c3e9e898bfc0c43d27cde8dd6abbd28d (2026-08-13). epidat-tei.tar.gz is the GitLab repository archive of the folder xml/tei at that commit (api/v4/projects/49332/repository/archive.tar.gz?sha=61046f34c3e9e898bfc0c43d27cde8dd6abbd28d&path=xml/tei, downloaded 2026-10-12): 48,041 EpiDoc TEI files, one per gravestone, in 268 cemetery folders; 63 are not well-formed XML. epidat-metadata.tsv is tsv/epidat-metadata.tsv at that commit: 603 cemeteries with code, name, country, coordinates, TGN and GeoNames numbers. Licence CC BY 4.0 (stated in every TEI file).",
+   "date": "2026-08-13",
+   "note": "Not published: a copy of a public source, kept to make the dataset epidat reproducibly."
+  },
+  "inputs:epidat/persdata-2026-08-13": {
+   "title": "Epidat: person table (tsv/epidat_persdata.tsv) at commit 61046f3",
+   "origin": "https://gitlab.rlp.net/epidat/data/-/blob/61046f34c3e9e898bfc0c43d27cde8dd6abbd28d/tsv/epidat_persdata.tsv",
+   "description": "tsv/epidat_persdata.tsv of the Epidat research data repository at commit 61046f34c3e9e898bfc0c43d27cde8dd6abbd28d (2026-08-13; the file was added in 2da218ff, 2026-01-28, 'Upload epidat_persdata v01'), downloaded 2026-10-15 through api/v4/projects/49332/repository/files/tsv%2Fepidat_persdata.tsv/raw?ref=61046f34c3e9e898bfc0c43d27cde8dd6abbd28d: 10,441 persons (UTF-8 with BOM, tab-separated, 21 columns: persid, grabid, dates of death and birth, names, childOf/spouseOf as names, gedenkbuchID, yadvashemID, comments). Same commit as epidat/data-2026-08-13. Licence CC BY 4.0 (as the repository).",
+   "date": "2026-08-13",
+   "note": "Not published: a copy of a public source, kept to make the dataset epidat reproducibly."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-16T14:27:13Z",
+ "seconds": 15.0,
+ "notes": [
+  "person table: 10,441 rows, 6,347 of them persons of the TEI files; 3,203 birth dates, 116 Gedenkbuch and 63 Yad Vashem links; 19 values in other forms left out (log).",
+  "person table: 4,094 persons not in the TEI files, by cemetery: wdf 1111, sul 428, kgh 426, rmo 364, sbg 329, dr2 198, bnr 154, mz1 145, rg1 135, wrm 118, er2 106, end 98, kle 97, prf 84, tol 38, vbl 29, blh 25, met 25, dge 24, lbg 24, we2 17, alf 16, zzz 14, sle 13, mnz 11, rbn 11, erp 7, we1 7, dst 6, lem 5, spy 5, liv 4, rwd 3, aa5 2, alp 2, go2 2, mec 2, ryg 2, cux 1, el1 1, em2 1, hgb 1, kll 1, sll 1, zul 1.",
+  "family relations: 10,546 distinct relations in the TEI files; stated 6,685 schema:parent, 221 jl:grandparent, 5,702 schema:spouse, 2,750 schema:sibling; left out 394 with a person not in the files.",
+  "48,041 TEI files, 41,378 persons in 268 cemeteries; 30 files repaired, 8 with only the person list parsed, 25 not parsed (no person list).",
+  "304 persons without a name, 77 GND links.",
+  "2023-07-14: 29,418 IRIs; 26,488 replaced by one person, 2,615 by several, 315 by none; 451 of its person ids are not in the TEI files (cemeteries gre, kal, l10, mue, nie, ora, tol: Epidat answers 'not yet published')."
+ ],
+ "files": [
+  {
+   "path": "epidat.ttl.gz",
+   "bytes": 1832757,
+   "sha256": "435146d4c6df73e5f3b7f4eaa40917cd2697689a40e0d5a3122fd24ac859d076",
+   "triples": 435464
+  }
+ ],
+ "version": "2026-10-16"
+}
