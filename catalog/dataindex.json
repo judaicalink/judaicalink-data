@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-16T15:56:56Z",
+ "checked": "2026-10-16T16:39:50Z",
  "locations": {
   "dumps": {
    "archive": "https://archive.judaicalink.org/store/",
@@ -255,6 +255,45 @@
     "portal"
    ],
    "versions": [
+    {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "bhr-beacon.ttl.gz",
+       "bytes": 6684,
+       "sha256": "5378c6f76daf2980afaaca4409bfb0bd88755b9d337ba40afa218120bc173047",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "bhr-vocabulary.ttl.gz",
+       "bytes": 528,
+       "sha256": "d9c4c0ad89e44d435c814c36a7e35abcd644c3dd510603b3bcd88a9c3c2eb996",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "bhr.ttl.gz",
+       "bytes": 2352277,
+       "sha256": "f03b2b1e257128434830ef1aed146e509a4b2f4b49983bc918bf421611f20d64",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "bhr-meta.ttl.gz",
+       "bytes": 2876,
+       "sha256": "4b9edfbcd43949f6643f809ecd52376001c480d5dd220dd657128553df073e1b",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
     {
      "version": "2026-10-12",
      "issued": "2026-10-12",
@@ -869,6 +908,29 @@
    ],
    "versions": [
     {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "epidat.ttl.gz",
+       "bytes": 1832757,
+       "sha256": "435146d4c6df73e5f3b7f4eaa40917cd2697689a40e0d5a3122fd24ac859d076",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "epidat-meta.ttl.gz",
+       "bytes": 3393,
+       "sha256": "fd0ba30d7b1bc75902807463ef5340e631c4d93019297ba4b315dee692c106fb",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-12",
      "issued": "2026-10-12",
      "status": "older",
@@ -1092,7 +1154,7 @@
   },
   "geo-enriched": {
    "title": "Geographic Enrichment",
-   "stable": "2019-12-18",
+   "stable": "2026-10-16",
    "replaces": [],
    "replaced_by": [],
    "catalogues": [
@@ -1101,9 +1163,32 @@
    ],
    "versions": [
     {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "geo-enriched.ttl.gz",
+       "bytes": 270321,
+       "sha256": "b1b5783f1669b50cadf1fb46e7492ba9644d5ecc20ba5578c4a30c2473c246e9",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geo-enriched-meta.ttl.gz",
+       "bytes": 3128,
+       "sha256": "3cb578e03ca66c4995202176014a3e0f48d406d4518bd93c46ed39d1eef61ff1",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2019-12-18",
      "issued": "2019-12-18",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "bhr-final-05.ttl",
@@ -1165,6 +1250,89 @@
        "path": "geo-enriched-meta.ttl.gz",
        "bytes": 2225,
        "sha256": "5d63ce17eaec0c04d4eab1d249c871e75aff117b4b1c6dcc7d7c0b900e620045",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "geonames": {
+   "title": "GeoNames: the places JudaicaLink uses",
+   "stable": "2026-10-16",
+   "replaces": [],
+   "replaced_by": [],
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "geonames-selection.tsv.gz",
+       "bytes": 52476,
+       "sha256": "1cb51b58b6d958dec2e7956c19d556626881266c0181f761db7964a24360b046",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geonames.ttl.gz",
+       "bytes": 1324246,
+       "sha256": "f4cd218c7c5b4f8c6524ef16644799d4c4b0074506f63182f9c5f992767d89b7",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geonames-meta.ttl.gz",
+       "bytes": 3338,
+       "sha256": "a0113ca9de471be0b7eaf835b5f2061a3a0af965d7eb51fbcb98892edb4ad708",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "gnd": {
+   "title": "GND (Gemeinsame Normdatei): the records JudaicaLink uses",
+   "stable": "2026-10-16",
+   "replaces": [
+    "gnd-persons",
+    "gnd-persons-entityfacts"
+   ],
+   "replaced_by": [],
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "gnd-selection.tsv.gz",
+       "bytes": 594947,
+       "sha256": "192c67a6609be89af0cb233b5c33ba5c877d00603886b347498ec74a4e37361c",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "gnd.ttl.gz",
+       "bytes": 11973998,
+       "sha256": "553d87cf4518115fc5114a9f74eb2f73fafc0128187d0c667fa53f2702db2be9",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "gnd-meta.ttl.gz",
+       "bytes": 4048,
+       "sha256": "55e42219b662342d6c6acc524ed3fb9e7a37154ff0399860676a6f834f3ae0d9",
        "locations": [
         "archive"
        ]
@@ -1426,6 +1594,29 @@
    ],
    "versions": [
     {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "hhkeydocs.ttl.gz",
+       "bytes": 258738,
+       "sha256": "e36abbab400c9a32d21e705fa625289ef110358ef0fec6a4bd472a94fa2ac489",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "hhkeydocs-meta.ttl.gz",
+       "bytes": 2268,
+       "sha256": "8455a7dca3f56b6835e967f41f05d2d16d8b7b6460b8a256b44d69cdb4074fe3",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2025-03-21",
      "issued": "2025-03-21",
      "status": "older",
@@ -1623,6 +1814,46 @@
        "path": "judaicalink-vocabulary-meta.ttl.gz",
        "bytes": 1519,
        "sha256": "ef227244f8769f01a85b2ec6def1cd0b84bf08f990b47e44629d298134fdf8ed",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "lc": {
+   "title": "LC Name Authority File: the records JudaicaLink uses",
+   "stable": "2026-10-16",
+   "replaces": [],
+   "replaced_by": [],
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "lc-selection.tsv.gz",
+       "bytes": 669590,
+       "sha256": "859d9c9dbe96c591c97fda5c3e4b8fb437a06d30906318d99886a363e1ed5483",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "lc.ttl.gz",
+       "bytes": 9233750,
+       "sha256": "8d79b2af56f36706457c18f4d1556d4600af7903b969e6651cc80417d7e806ca",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "lc-meta.ttl.gz",
+       "bytes": 3358,
+       "sha256": "b37e43166627e3eb834b77bd4af08415d7a71b0e1fced796e5850c39dc337e78",
        "locations": [
         "archive"
        ]
@@ -2004,6 +2235,37 @@
     "portal"
    ],
    "versions": [
+    {
+     "version": "2026-10-16",
+     "issued": "2026-10-16",
+     "status": "stable",
+     "files": [
+      {
+       "path": "rujen.jsonl.gz",
+       "bytes": 7829862,
+       "sha256": "2ded560739a06d39eee86c0506aa093d961a144491a246efc09755f1d49b3d6e",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "rujen.ttl.gz",
+       "bytes": 6829500,
+       "sha256": "3e68c0aa3f47c0d7f8e7fe29f085c8f70118c54c2cba2b288a6fb32fd48b5c11",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "rujen-meta.ttl.gz",
+       "bytes": 2032,
+       "sha256": "a135802e8e111feccca0f9167334e2dd2ec2eae57ebaeb5145d121994989a94d",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
     {
      "version": "2020-09-28",
      "issued": "2020-09-28",
