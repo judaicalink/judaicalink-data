@@ -26,6 +26,7 @@ import json
 import re
 from collections import Counter, defaultdict
 
+from jl.iris import canonical_triples
 from jl.generator import GeneratorError
 from jl.rdf import IRI, RDF_TYPE, Literal
 from jl.turtle import PREFIXES
@@ -241,4 +242,4 @@ def generate(run):
         stats[f"places: {k}"] = v
     run.note(f"{dict(sorted(stats.items()))}; previous records: {dict(sorted(rep.items()))}; sameAs targets other "
              f"than GND and TGN: {dict(sorted(others.items())) or 'none'}.")
-    run.write_turtle("hhkeydocs.ttl.gz", t)
+    run.write_turtle("hhkeydocs.ttl.gz", set(canonical_triples(t)))   # docs/iri-forms.md

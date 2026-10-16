@@ -26,6 +26,7 @@ Added 2026-10-15, each a parameter with the addition as default (with all off, t
   jl:grandparent (grandchild to grandparent; schema.org has no term, judaicalink-ontology), schema:spouse and
   schema:sibling (both ways). Relations to persons not in the files are left out. The person table gives parents and
   spouses only as names; not used.
+- canonical_forms: the GND and GeoNames IRIs and the points in canonical form (docs/iri-forms.md).
 
 63 files are not well-formed XML: 30 have a doubled quote in a link target, which is repaired; of the others the
 person list is parsed alone, where there is one.
@@ -38,6 +39,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 
 from jl.rdf import IRI, RDF_TYPE, Literal
+from jl.iris import canonical_triples
 from jl.turtle import PREFIXES
 
 INPUTS = {
@@ -45,7 +47,7 @@ INPUTS = {
     "persdata": "inputs:epidat/persdata-2026-08-13/epidat_persdata.tsv",
     "previous": "epidat/2023-07-14",
 }
-PARAMS = {"birth_dates": True, "memorial_links": True, "family_relations": True}
+PARAMS = {"birth_dates": True, "memorial_links": True, "family_relations": True, "canonical_forms": True}
 
 T = "{http://www.tei-c.org/ns/1.0}"
 XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
@@ -219,6 +221,8 @@ def generate(run):
              f"{replaced[0]} by none; {len(withdrawn)} of its person ids are not in the TEI files "
              f"(cemeteries {', '.join(sorted({i.split('-')[0] for i in withdrawn}))}: "
              f"Epidat answers 'not yet published').")
+    if run.params["canonical_forms"]:   # GND and GeoNames IRIs and points in canonical form (docs/iri-forms.md)
+        t = set(canonical_triples(t))
     run.write_turtle("epidat.ttl.gz", t)
 
 

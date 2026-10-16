@@ -62,6 +62,18 @@ def canonical(iri):
     return s
 
 
+def canonical_triples(triples):
+    """The triples with every known IRI (subject and object) and every point (geosparql:asWKT) in canonical form."""
+    from .rdf import IRI, BNode, Literal
+    for s, p, o in triples:
+        if isinstance(o, Literal):
+            if p == AS_WKT:
+                o = Literal(canonical_wkt(o.value), WKT, None)
+        elif not isinstance(o, BNode):
+            o = IRI(canonical(o))
+        yield (s if isinstance(s, BNode) else IRI(canonical(s))), p, o
+
+
 def kind(iri):
     for name, pattern, _form, _source in FORMS:
         if pattern.match(str(iri)):
