@@ -19,3 +19,8 @@ The download paths were never promised to be stable; the catalogue links to them
 
 - Publishing the store and switching the site are independent of cleaning up the old files.
 - The archive is updated by adding new version folders to `/store/` (files of a version never change, 0019).
+
+## Addendum 2026-10-16
+
+The old `/dumps/` has been deleted on archive.judaicalink.org; only `/store/` remains. The local copy `lokal/dumps`
+stays as the record of the former published basis.
