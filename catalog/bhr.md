@@ -4,11 +4,11 @@ title = "Biographisches Handbuch der Rabbiner"
 author = "Kai Eckert"
 date = "2017-09-14"
 website = "http://www.steinheim-institut.de/wiki/index.php/Biographisches_Handbuch_der_Rabbiner_%28BHR%29"
-example = "http://data.judaicalink.org/data/bhr/Abarbanell_Hirsch"
+example = "http://data.judaicalink.org/data/bhr/1"
 namespaces = ["bhr"]
 stable = "2026-10-12"
 kind = "records"
-method = ["scraped", "rule-based", "lookup"]
+method = ["scraped"]
 
 [license]
 name = "CC BY 4.0"
@@ -21,6 +21,9 @@ path = "generators/bhr"
 
 [files]
 "Entityfacts-bhr-sameas.ttl.gz" = "Links of the persons to the GND and to EntityFacts (owl:sameAs)."
+"bhr.ttl.gz" = "The entries of the Biographisches Portal der Rabbiner, one record per entry (from 2026-10-16)."
+"bhr-beacon.ttl.gz" = "The GND numbers of the entries, from the BEACON file the Steinheim-Institut publishes (owl:sameAs)."
+"bhr-vocabulary.ttl.gz" = "The properties of the sections of the portal pages (literature, documents, publications, …)."
 
 [[versions]]
 version = "2026-10-12"

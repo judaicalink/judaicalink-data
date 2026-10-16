@@ -13,6 +13,8 @@ Biographisches Handbuch der Rabbiner (Steinheim-Institut), by Maral Dadvar.
   (`Entityfacts-01.py`, Maral Dadvar).
 - Later: README 2019-07-31; 2025-06 path fixes and Python-3 reformatting (Benjamin Schnabel, no functional
   change); 2025-11 moved to `legacy/bhr/`.
+- 2026-10-12: framework generator transforming 2018-10-24 (fixes; below, superseded).
+- 2026-10-16 (Kai Eckert): made from a full harvest of the Biographisches Portal der Rabbiner (below).
 
 ## Kept version 2018-10-24
 
@@ -34,6 +36,9 @@ The final integration step is **reproducible** from the committed intermediates.
 EntityFacts links are **not**: local paths (`C:\Users\Maral\Desktop`), Python 2, the local GND of 2017, a changed
 website, changed EntityFacts answers.
 
+Since 2026-10-16 the dataset is **reproducible** from the harvest of the portal (`inputs:bhr/portal-2026-10-16`);
+a new harvest is a new input and gives a new version.
+
 ## Original files
 
 `original/` holds copies of the files below, unchanged unless noted, under `<repository>@<commit>/<path>`. They are the record of what was used; they are not run from here.
@@ -53,9 +58,9 @@ website, changed EntityFacts answers.
 | [`generators/Datasets/BHR/Round2/scripts/Integrate-new-old-04.py`](https://github.com/judaicalink/judaicalink-loader/blob/5a51e8c8f87613481b5bc9627738d9c3326f8b6a/generators/Datasets/BHR/Round2/scripts/Integrate-new-old-04.py) | judaicalink-loader | `5a51e8c` (2018-05-03, Maral Dadvar) |  |
 | [`bhr/Round2/scripts/Entityfacts-01.py`](https://github.com/judaicalink/judaicalink-generators/blob/abe8e67e1114cb00b8ada5b964fbdf828014f2e2/bhr/Round2/scripts/Entityfacts-01.py) | judaicalink-generators | `abe8e67` (2018-10-24, Maral Dadvar) |  |
 
-## Framework generator (2026-10-12)
+## Framework generator of 2026-10-12 (superseded)
 
-`generate.py` makes a new version from 2018-10-24 (decision 0024: a systematic error in one dataset is fixed by a new
+Until 2026-10-16, `generate.py` made a new version from 2018-10-24 (decision 0024: a systematic error in one dataset is fixed by a new
 version of it; the chain above cannot be run again, so the previous version is transformed). The fixes are
 parameters, on by default; with all of them off the output has the same 32,884 triples as 2018-10-24 (checked):
 
@@ -79,3 +84,45 @@ new (Lazarus, Arnold); none contradicts a GND number of ours. The literal `jl:de
 
 In 2021 the empty GND links joined the three persons into one legacy entity page (`ep/1012090`), and the service
 page would join the 783 persons into one group when every `owl:sameAs` target is a key (decision 0022).
+
+## Generator from the portal (2026-10-16)
+
+`generate.py` makes bhr from the Biographisches Portal der Rabbiner, true to the portal (decision 0026, as haskala
+and hhkeydocs); the transform of 2018-10-24 above is replaced (it is in the git history).
+
+**Input** `inputs:bhr/portal-2026-10-16` (`harvest_portal.py`): the pages of all 2,703 entries (ids 1 … 2703; the
+numbers above answer "Eintrag nicht vorhanden") and the BEACON (timestamp 2025-06-05, 805 GND numbers).
+
+**The pages:** a heading (the name with variants, e.g. "AACH, Löb (hebr. Juda-L.)", "EGER, Moses, bürgerlich Moses
+SCHLESINGER"; no Hebrew script), the reference to the printed handbook ("BHR I.1, 121"; BHR I and II), a list with
+"Geb." (1,911), "Gest." (2,063) and the biography, and up to seven sections of texts: Literatur (2,553 entries have
+it), Dokumente (1,594), Publikationen (1,396), Dissertation (624), Bildmaterialien (542), Epigraphik (522),
+Manuskripte (345). The box "Externe Quellen" shows the GND number of the entry (805 entries, exactly the numbers of
+the BEACON, one page each) and links the portal looks up in DNB EntityFacts (VIAF, LC, Wikidata, Wikipedia, …), which
+are not the portal's own statements and are not taken over (decision 0029).
+
+**The model** (three files):
+
+| File | Content |
+|---|---|
+| `bhr.ttl.gz` | one record per entry, `data/bhr/<id>` (the id without leading zeros, as the portal's links and Wikidata P10405 write it), `foaf:Person`: `rdfs:label` the heading as given; `skos:prefLabel` the name (the first two parts of the heading, "SURNAME, given names", the surname written as a name: "Aach, Löb"); `skos:altLabel` the names introduced by auch, bürgerlich, gen., genannt, eigentlich, früher, vormals, verh. (titles, abbreviated Hebrew forms and remarks stay in the heading); `jl:birthDate`/`jl:birthLocation` and `jl:deathDate`/`jl:deathLocation` as the page gives them ("ca. 1750", "Trier"; records-normalized normalises them); `jl:hasAbstract` the biography (the other items of the list, one per line); `dcterms:bibliographicCitation` the handbook reference; `jl:describedAt` the page; `jl:occupationURI` `data/occupation/Rabbi` (parameter `rabbi`, as in 2018: derived from the scope of the handbook, a handbook of rabbis; the pages do not state it); the texts of the sections with the properties of `data/bhr/vocab/` (dissertation, document, manuscript, publication, image, epigraphy, literature), the publications and dissertations also as `jl:hasPublication` |
+| `bhr-beacon.ttl.gz` | the portal's BEACON: the record `owl:sameAs <https://d-nb.info/gnd/<n>>`, 805 links (the user's decision: the Steinheim-Institut publishes it, so it is a file of its own) |
+| `bhr-vocabulary.ttl.gz` | the seven section properties (labels de/en, domain, range) |
+
+**Replacements of the records of 2026-10-12** (name IRIs such as `data/bhr/Aach_Löb`): `dcterms:isReplacedBy` the
+record of the BHR id in their `jl:describedAt` ("…, id:<n>"; 2,532 records; 3 that held two entries in 2018,
+Auerbach_Hirsch 71/74, Pollak_Markus 1412/1413, Rappaport_Isaak 1448/1449, by both). The 368 records of 2018 without
+an id came from another list (with name and at most life years; 258 repeat the name of a record with an id, as
+`…-1`); they are replaced by the record with the same name (case and spaces ignored) if exactly one has it and no
+year contradicts: 241; 117 have no record of that name (other spellings, e.g. "Altmann, Alexander" for "ALTMANN,
+Alexander Israel, Prof. Dr.", "Brüll, Nehemia" for "BRÜLL, Nehemiah, Dr.") and 10 several. These 127 are
+`owl:deprecated true` (decided 2026-10-16): the old IRIs made from names could not always be matched; whoever has one
+on file looks up the entry in the portal and links its new IRI. They are named in the run log.
+
+**Against 2026-10-12:** all 780 GND links of 2018 are in the BEACON file, identical. Not taken over: the links that
+the 2018 integration looked up in EntityFacts (`Entityfacts-bhr-sameas.ttl.gz`: VIAF 661, ISNI 335, Wikidata 276, LC
+254, DDB, Wikipedia, Kalliope …), which by decision 0029 come through the authority datasets and linksets, and the
+years the 2018 integration extracted from the dates (the full texts are given instead).
+
+**Run of 2026-10-16:** 2,703 records, 80,648 triples in `bhr.ttl.gz`, 805 in `bhr-beacon.ttl.gz`, 42 in the
+vocabulary; about one second.

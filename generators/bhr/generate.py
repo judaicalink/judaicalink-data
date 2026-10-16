@@ -1,148 +1,247 @@
-"""bhr: a new version made from the version 2018-10-24 with the errors of its generator fixed (decision 0024).
+"""bhr: the Biographisches Handbuch der Rabbiner, made from the pages of the Biographisches Portal der Rabbiner
+(Steinheim-Institut), true to the portal (decision 0026, as haskala and hhkeydocs).
 
-The chain that made 2018-10-24 cannot be run again (crawl of 2017/18, a local GND in Fuseki, Python 2; README), so this
-generator transforms the previous version. Each fix is a parameter with the fix as default; with all of them off, the
-output has the same triples as 2018-10-24.
+Input inputs:bhr/portal-2026-10-16: the pages of all entries (harvest_portal.py) and the portal's BEACON. Each page:
+the heading (the name with variants: "AACH, Löb (hebr. Juda-L.)", "EGER, Moses, bürgerlich Moses SCHLESINGER"), the
+reference to the printed handbook ("BHR I.1, 121"), a list with birth ("Geb."), death ("Gest.") and the biography,
+and sections (Dissertation, Dokumente, Manuskripte, Publikationen, Bildmaterialien, Epigraphik, Literatur), each a
+list of texts. The box "Externe Quellen" shows the GND number of the entry and links that the portal looks up in DNB
+EntityFacts; only the GND number is the portal's own statement, and the BEACON states it (all 805 agree).
 
-- drop_service_page: owl:sameAs <http://www.dnb.de/…/entityfacts_node.html>, the EntityFacts service page, which the
-  generator stated for every person with a GND number (783); it identifies nothing.
-- drop_empty: the links built for persons without a GND number, with an empty identifier (d-nb.info/gnd//,
-  hub.culturegraph.org/entityfacts//, the Steinheim GND query with text1=/; 9), the empty literals (2,141: birth
-  and death dates, publications, abstracts, GND numbers) and the placeholder "NA" for a missing GND number (1,692).
-- split_mixed: the records of Glückmann and Gunzenhausen, which the integration grouped with Gutheim by their empty
-  GND number, hold the BHR entries, abstracts and publications of all three; each keeps its own (MIXED: the death date
-  stated in the record matches one abstract each; the BHR page order 372 < 398 < 399 is the alphabetical order of the
-  three names; Gutheim's record holds only his own).
-- occupation_uri: jl:occpation (a typo; 2,900, every person) with occupation IRIs as values becomes
-  jl:occupationURI, the property for occupation IRIs (0020).
-- portal_links: owl:sameAs <http://steinheim-institut.de:50580/cgi-bin/bhr?id=N>, the page of the person in the BHR
-  database of 2018, which no longer answers (and a page is not the person), becomes jl:describedAt the page of the same
-  id in the Biographisches Portal der Rabbiner, <https://www.steinheim-institut.de/cgi-bin/bhr?id=N> (the portal's own
-  links and Wikidata P10405 use the id without leading zeros).
-- portal_gnd: the GND numbers of the portal's BEACON (input inputs:bhr/portal-2026-10-15: the BEACON of 2025-06-05 and,
-  for each number, the BHR id of the page it leads to) as owl:sameAs <http://d-nb.info/gnd/…> for the records of
-  that id that have no GND link; a record with another GND number than the portal's keeps its own (named in the log),
-  and so do ids held by two records.
+Files:
+- bhr.ttl.gz: one record per entry, data/bhr/<id> (the id without leading zeros, as the portal links and Wikidata
+  P10405 write it), foaf:Person; rdfs:label the heading as given; skos:prefLabel the name (the heading up to its
+  variants, the surname in capitals written as a name: "Aach, Löb"), skos:altLabel the variants introduced by
+  auch, bürgerlich, gen., genannt, eigentlich, früher, vormals, verh.; jl:birthDate/jl:birthLocation and jl:deathDate/jl:deathLocation as the
+  page gives them ("ca. 1750", "Trier"); jl:hasAbstract the biography (the other items of the list, one per line);
+  dcterms:bibliographicCitation the reference to the printed handbook; jl:describedAt the page; jl:occupationURI
+  data/occupation/Rabbi (parameter rabbi: the handbook is of rabbis; the 2018 version stated it for every person);
+  the texts of the sections with the properties of the dataset's vocabulary (data/bhr/vocab/<section>), the
+  publications and the dissertation also as jl:hasPublication.
+- bhr-beacon.ttl.gz: the portal's BEACON, record owl:sameAs <https://d-nb.info/gnd/<n>> (the page of the GND number
+  names the entry).
+- bhr-vocabulary.ttl.gz: the properties of the sections.
+- Replacements: every record of the version 2026-10-12 is dcterms:isReplacedBy the record(s) of its BHR id (the
+  "id:<n>" of its jl:describedAt); a record without an id (the 2018 data has 368) by the record with the same name
+  (skos:prefLabel, case and spaces ignored) if exactly one has it and no birth or death year contradicts. An old
+  record with no such successor (other spellings, several candidates) is owl:deprecated true: the old IRIs made from
+  names cannot always be matched; whoever has one on file looks up the entry in the portal and links its new IRI.
 """
 
-import csv
+import html
+import io
+import re
+import tarfile
+from collections import Counter, defaultdict
 
-from jl.rdf import IRI, Literal
+from jl.iris import canonical_triples
+from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
-INPUTS = {"previous": "bhr/2018-10-24", "portal": "inputs:bhr/portal-2026-10-15/gnd-bhr.tsv"}
-PARAMS = {"drop_service_page": True, "drop_empty": True, "split_mixed": True, "occupation_uri": True,
-          "portal_links": True, "portal_gnd": True}
+INPUTS = {"pages": "inputs:bhr/portal-2026-10-16/bhr-pages-2026-10-16.tar.gz",
+          "beacon": "inputs:bhr/portal-2026-10-16/beacon.txt",
+          "previous": "bhr/2026-10-12"}
+PARAMS = {"rabbi": True}
+XSD_BOOLEAN = XSD + "boolean"
 
-JLO = PREFIXES["jl"]
-OWL_SAME = PREFIXES["owl"] + "sameAs"
-GNDID = "http://d-nb.info/standards/elementset/gnd#gndIdentifier"
-BHR = "http://data.judaicalink.org/data/bhr/"
-SERVICE_PAGE = "http://www.dnb.de/DE/Service/DigitaleDienste/EntityFacts/entityfacts_node.html"
-EMPTY_IDS = {"http://d-nb.info/gnd//", "http://hub.culturegraph.org/entityfacts//",
-             "http://www.steinheim-institut.de/see-also/query.html?kategorie1=GND&text1=/"}
-STEINHEIM = "http://steinheim-institut.de:50580/cgi-bin/bhr?id="
-PORTAL = "https://www.steinheim-institut.de/cgi-bin/bhr?id="
-GND = "http://d-nb.info/gnd/"
-# the record, its BHR id and the beginnings of its own abstract and publications
-MIXED = {
-    BHR + "Glückmann_David": ("572", ["Gest.  2. Juli 1851 in Pleszew"], []),
-    BHR + "Gunzenhausen_IsakHirsch": ("638", ["Geb.  in Fürth,Gest.  Sept. 1881 in Binswangen"],
-                                      ["Anfrage in Hamburger"]),
-}
-FILES = ("bhr-final-05.ttl.gz", "Entityfacts-bhr-sameas.ttl.gz")
+JL = "http://data.judaicalink.org/data/"
+BHR = JL + "bhr/"
+VOCAB = BHR + "vocab/"
+PAGE = "https://www.steinheim-institut.de/cgi-bin/bhr?id="
+JLO, SKOS, RDFS, FOAF, DCT, OWL = (PREFIXES[p] for p in ("jl", "skos", "rdfs", "foaf", "dcterms", "owl"))
+RABBI = JL + "occupation/Rabbi"
+NO_ENTRY = "Eintrag nicht vorhanden"
 
-
-def keep_mixed(s, p, o):
-    """For a mixed record: is this one of its own values?"""
-    bhr_id, abstracts, publications = MIXED[s]
-    if p == OWL_SAME and o.startswith(STEINHEIM):
-        return o == STEINHEIM + bhr_id
-    if p == JLO + "describedAt":
-        return o.value.endswith(f"id:{bhr_id}")
-    if p == JLO + "hasAbstract":
-        return any(o.value.startswith(a) for a in abstracts)
-    if p == JLO + "hasPublication":
-        return any(o.value.startswith(a) for a in publications)
-    return True
+# the sections of a page: (heading, property name, English label, German label)
+SECTIONS = [("Dissertation", "dissertation", "dissertation", "Dissertation"),
+            ("Dokumente", "document", "document", "Dokument"),
+            ("Manuskripte", "manuscript", "manuscript", "Manuskript"),
+            ("Publikationen", "publication", "publication", "Publikation"),
+            ("Bildmaterialien", "image", "image", "Bildmaterial"),
+            ("Epigraphik", "epigraphy", "epigraphy (gravestone)", "Epigraphik (Grabstein)"),
+            ("Literatur", "literature", "literature", "Literatur")]
+AS_PUBLICATION = {"Dissertation", "Publikationen"}
+VARIANT = re.compile(r",\s*(?:auch|bürgerlich|gen\.|genannt|eigentlich|früher|vormals|verh\.)\s+([^,]+)")
 
 
-def portal_gnd(run, files):
-    """The links to add: (record, GND IRI) for the portal's GND numbers, from the cleaned triples of all files."""
-    ids, gnds = {}, {}
-    for triples in files.values():
-        for s, p, o in triples:
-            for prefix in (STEINHEIM, PORTAL):
-                if p in (OWL_SAME, JLO + "describedAt") and isinstance(o, IRI) and o.startswith(prefix):
-                    ids.setdefault(o[len(prefix):], set()).add(s)
-            if p == OWL_SAME and isinstance(o, IRI) and o.startswith(GND):
-                gnds.setdefault(s, set()).add(o[len(GND):].removesuffix("/about"))
-    with open(run.input("portal"), encoding="utf-8", newline="") as f:
-        portal = [(r["gnd"], r["bhr"].lstrip("0")) for r in csv.DictReader(f, delimiter="\t")]
-    add, stats = set(), {}
+def text(x):
+    return html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", x))).strip()
 
-    def count(k):
-        stats[k] = stats.get(k, 0) + 1
 
-    for gnd, bhr_id in sorted(portal):
-        records = ids.get(bhr_id, set())
-        if not bhr_id or not records:
-            count("portal GND of an id we do not have")
-            run.log("no record:", f"GND {gnd} -> BHR id {bhr_id or '(none)'}")
-        elif len(records) > 1:
-            count("id held by several records, left out")
-            run.log("several records:", f"GND {gnd} -> BHR id {bhr_id}: {', '.join(sorted(records))}")
-        else:
-            s = next(iter(records))
-            have = gnds.get(s, set())
-            if gnd in have:
-                count("record has it already")
-            elif have:
-                count("record has another GND number, left out")
-                run.log("conflict:", f"{s} has GND {', '.join(sorted(have))}, the portal gives {gnd} (BHR id {bhr_id})")
-            else:
-                count("added")
-                add.add((s, IRI(OWL_SAME), IRI(GND + gnd)))
-    run.note(f"portal_gnd: {dict(sorted(stats.items()))}")
-    return add
+def as_name(s):
+    """Surnames written in capitals as names: "AACH, Löb" -> "Aach, Löb"."""
+    return re.sub(r"\b([A-ZÄÖÜ][A-ZÄÖÜß'-]+)\b", lambda m: m.group(1).capitalize()
+                  if len(m.group(1)) > 1 else m.group(1), s)
+
+
+def names(heading):
+    """(preferred name, [variants]) from the heading "SURNAME, given names, further information": the name is the
+    first two parts; variants are the names introduced by auch, bürgerlich, gen., genannt, eigentlich, früher,
+    vormals, verh. Titles, abbreviated Hebrew forms and remarks stay only in the heading (rdfs:label)."""
+    h = re.sub(r"\s*\(hebr\.[^)]*\)", "", heading).strip()
+    parts = [x.strip() for x in h.split(",")]
+    main = ", ".join(parts[:2]) if len(parts) > 1 else parts[0]
+    variants = [v for v in (m.group(1).strip(" „“\"") for m in VARIANT.finditer(h)) if v]
+    return as_name(main), [as_name(v) for v in variants]
+
+
+def life(item, word):
+    """(date, place) of an item "Geb. ca. 1750 in Trier,"."""
+    rest = item[len(word):].strip().rstrip(",").strip()
+    date, sep, place = rest.partition(" in ")
+    if not sep and rest.startswith("in "):
+        date, place = "", rest[3:]
+    return date.strip(" ,"), place.strip(" ,")
+
+
+def parse(page):
+    art = page[page.find("<article>"):page.find("<aside>") if "<aside>" in page else len(page)]
+    heads = re.findall(r"<h3>(.*?)</h3>", art, re.S)
+    nav = re.search(r"<nav>(.*?)<br/>", art, re.S)
+    main = re.search(r"</nav>\s*<ul>(.*?)</ul>", art, re.S)
+    items = [text(li) for li in re.findall(r"<li>(.*?)</li>", main.group(1), re.S)] if main else []
+    sections = {}
+    for m in re.finditer(r"<h3>(.*?)</h3>\s*<ul>(.*?)</ul>", art, re.S):
+        sections[text(m.group(1))] = [x for x in (text(li) for li in re.findall(r"<li>(.*?)</li>", m.group(2), re.S))
+                                      if x]
+    return {"heading": text(heads[0]) if heads else "", "citation": text(nav.group(1)) if nav else "",
+            "items": [i for i in items if i], "sections": sections}
+
+
+def year(s):
+    m = re.search(r"\b(1[0-9]{3})\b", s or "")
+    return m.group(1) if m else None
 
 
 def generate(run):
-    params = run.params
-    outs = {}
-    for path in run.inputs("previous"):
-        if path.name not in FILES:
-            continue
-        name = path.name
-        out = set()
-        stats = {}
-        for s, p, o in run.triples("previous", file=name):
-            reason = None
-            if params["drop_service_page"] and p == OWL_SAME and o == SERVICE_PAGE:
-                reason = "sameAs the EntityFacts service page"
-            elif params["drop_empty"] and p == OWL_SAME and o in EMPTY_IDS:
-                reason = "sameAs with an empty identifier"
-            elif params["drop_empty"] and isinstance(o, Literal) and not o.value.strip():
-                reason = "empty literal"
-            elif params["drop_empty"] and p == GNDID and isinstance(o, Literal) and o.value.strip() == "NA":
-                reason = "GND number NA (placeholder)"
-            elif params["split_mixed"] and s in MIXED and not keep_mixed(s, p, o):
-                reason = "value of another record (mixed records)"
-            if reason:
-                stats[reason] = stats.get(reason, 0) + 1
+    t, voc, beacon = set(), set(), set()
+    entries, unknown = {}, Counter()
+    with tarfile.open(run.input("pages"), "r:gz") as tar:
+        for m in tar.getmembers():
+            if not m.isfile():
                 continue
-            if params["occupation_uri"] and p == JLO + "occpation":
-                p = IRI(JLO + "occupationURI")
-                stats["jl:occpation as jl:occupationURI"] = stats.get("jl:occpation as jl:occupationURI", 0) + 1
-            if params["portal_links"] and p == OWL_SAME and isinstance(o, IRI) and o.startswith(STEINHEIM):
-                p, o = IRI(JLO + "describedAt"), IRI(PORTAL + o[len(STEINHEIM):])
-                stats["BHR database link as jl:describedAt the portal page"] = \
-                    stats.get("BHR database link as jl:describedAt the portal page", 0) + 1
-            out.add((s, p, o))
-        run.note(f"{name}: {dict(sorted(stats.items()))}")
-        outs[name] = out
-    if params["portal_gnd"]:
-        outs["Entityfacts-bhr-sameas.ttl.gz"] |= portal_gnd(run, outs)
-    for name, out in outs.items():
-        run.write_turtle(name, out)
+            page = tar.extractfile(m).read().decode("utf-8", errors="replace")
+            if NO_ENTRY in page:
+                continue
+            entries[int(re.search(r"(\d+)\.html$", m.name).group(1))] = parse(page)
+    birth, death, label_of = {}, {}, {}
+    for n, e in sorted(entries.items()):
+        r = IRI(BHR + str(n))
+        t.add((r, IRI(RDF_TYPE), IRI(FOAF + "Person")))
+        t.add((r, IRI(JLO + "describedAt"), IRI(PAGE + str(n))))
+        t.add((r, IRI(RDFS + "label"), Literal(e["heading"])))
+        pref, variants = names(e["heading"])
+        label_of[n] = pref
+        t.add((r, IRI(SKOS + "prefLabel"), Literal(pref)))
+        for v in variants:
+            t.add((r, IRI(SKOS + "altLabel"), Literal(v)))
+        if e["citation"]:
+            t.add((r, IRI(DCT + "bibliographicCitation"), Literal(e["citation"])))
+        if run.params["rabbi"]:
+            t.add((r, IRI(JLO + "occupationURI"), IRI(RABBI)))
+        bio = []
+        for item in e["items"]:
+            for word, which, store in (("Geb.", "birth", birth), ("Gest.", "death", death)):
+                if item.startswith(word):
+                    date, place = life(item, word)
+                    if date:
+                        t.add((r, IRI(JLO + which + "Date"), Literal(date)))
+                        store[n] = date
+                    if place:
+                        t.add((r, IRI(JLO + which + "Location"), Literal(place)))
+                    break
+            else:
+                bio.append(item)
+        if bio:
+            t.add((r, IRI(JLO + "hasAbstract"), Literal("\n".join(bio))))
+        for head, items in e["sections"].items():
+            prop = next((p for h, p, _en, _de in SECTIONS if h == head), None)
+            if prop is None:
+                unknown[head] += 1
+                continue
+            for x in items:
+                t.add((r, IRI(VOCAB + prop), Literal(x)))
+                if head in AS_PUBLICATION:
+                    t.add((r, IRI(JLO + "hasPublication"), Literal(x)))
+    for h, p, en, de in SECTIONS:
+        voc |= {(IRI(VOCAB + p), IRI(RDF_TYPE), IRI(PREFIXES["rdf"] + "Property")),
+                (IRI(VOCAB + p), IRI(RDFS + "label"), Literal(en, None, "en")),
+                (IRI(VOCAB + p), IRI(RDFS + "label"), Literal(de, None, "de")),
+                (IRI(VOCAB + p), IRI(RDFS + "comment"), Literal(
+                    f"A text of the section “{h}” of an entry of the Biographisches Portal der Rabbiner, as "
+                    "the portal gives it.", None, "en")),
+                (IRI(VOCAB + p), IRI(RDFS + "domain"), IRI(FOAF + "Person")),
+                (IRI(VOCAB + p), IRI(RDFS + "range"), IRI(RDFS + "Literal"))}
 
+    # the BEACON: the GND number of an entry (the page of the number names it)
+    page_of_gnd = {}
+    with tarfile.open(run.input("pages"), "r:gz") as tar:
+        for m in tar.getmembers():
+            if m.isfile():
+                page = tar.extractfile(m).read().decode("utf-8", errors="replace")
+                aside = page[page.find("<aside>"):page.find("</aside>")]
+                for g in set(re.findall(r"d-nb\.info/gnd/([0-9X-]+)", aside)):
+                    page_of_gnd.setdefault(g, set()).add(int(re.search(r"(\d+)\.html$", m.name).group(1)))
+    listed = [line.strip() for line in open(run.input("beacon"), encoding="utf-8")
+              if line.strip() and not line.startswith("#")]
+    no_page = []
+    for g in listed:
+        ids = page_of_gnd.get(g, set())
+        if len(ids) == 1:
+            beacon.add((IRI(BHR + str(next(iter(ids)))), IRI(OWL + "sameAs"), IRI("https://d-nb.info/gnd/" + g)))
+        else:
+            no_page.append(g)
+
+    # replacements of the records of 2026-10-12
+    old_ids, old_label, old_years = defaultdict(set), {}, {}
+    for s, p, o in run.triples("previous"):
+        if not s.startswith(BHR):
+            continue
+        if p == JLO + "describedAt" and isinstance(o, Literal):
+            m = re.search(r"id:(\d+)", o.value)
+            if m:
+                old_ids[s].add(int(m.group(1)))
+        elif p == SKOS + "prefLabel" and isinstance(o, Literal):
+            old_label[s] = o.value
+        elif p in (JLO + "birthDate", JLO + "deathDate") and isinstance(o, Literal):
+            old_years.setdefault(s, {})[p.rsplit("/", 1)[1][:5]] = year(o.value)
+    key = lambda s: re.sub(r"\s+", " ", s).strip().lower()  # noqa: E731
+    by_label = defaultdict(set)
+    for n, lab in label_of.items():
+        by_label[key(lab)].add(n)
+    stats, how = Counter(), []
+    for s in sorted(set(old_label) | set(old_ids)):
+        targets = {n for n in old_ids.get(s, set()) if n in entries}
+        if old_ids.get(s) and not targets:
+            stats["id no longer in the portal"] += 1
+        if not old_ids.get(s):
+            cand = by_label.get(key(old_label.get(s, "")), set())
+            ys = old_years.get(s, {})
+            cand = {n for n in cand if (not ys.get("birth") or not year(birth.get(n)) or ys["birth"] == year(birth.get(n)))
+                    and (not ys.get("death") or not year(death.get(n)) or ys["death"] == year(death.get(n)))}
+            if len(cand) == 1:
+                targets = cand
+                stats["without id: by name"] += 1
+            else:
+                stats[f"without id: {'no' if not cand else 'several'} record of that name"] += 1
+                how.append(f"{s[len(BHR):]}: {len(cand)} candidates")
+        else:
+            stats["by id"] += 1
+        if len(targets) > 1:
+            stats["replaced by several"] += 1
+        for n in targets:
+            t.add((IRI(s), IRI(DCT + "isReplacedBy"), IRI(BHR + str(n))))
+        if not targets:   # no successor: deprecated (decided 2026-10-16; whoever has the IRI looks up the entry)
+            t.add((IRI(s), IRI(PREFIXES["owl"] + "deprecated"), Literal("true", XSD_BOOLEAN)))
+            stats["deprecated without successor"] += 1
+    for line in how:
+        run.log("old record not replaced:", line)
+    if unknown:
+        run.log("sections not known:", dict(unknown))
+    for g in no_page:
+        run.log("BEACON number without exactly one page:", g)
+    run.note(f"{len(entries):,} entries; BEACON {len(listed)} GND numbers, {len(beacon)} linked; records of 2026-10-12: "
+             + ", ".join(f"{k} {v:,}" for k, v in sorted(stats.items())) + ".")
+    run.write_turtle("bhr.ttl.gz", set(canonical_triples(t)))
+    run.write_turtle("bhr-beacon.ttl.gz", set(canonical_triples(beacon)))
+    run.write_turtle("bhr-vocabulary.ttl.gz", voc)
