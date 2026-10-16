@@ -27,7 +27,7 @@ from collections import Counter, defaultdict
 from urllib.parse import unquote
 
 from jl.generator import GeneratorError
-from jl.iris import canonical_wkt
+from jl.iris import canonical_triples, canonical_wkt
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
@@ -76,6 +76,7 @@ PROV = "http://www.w3.org/ns/prov#"
 GNDO = "http://d-nb.info/standards/elementset/gnd#"
 DBO = "http://dbpedia.org/ontology/"
 SAME, GNDID, REPLACED, DERIVED = OWL + "sameAs", GNDO + "gndIdentifier", DCT + "isReplacedBy", PROV + "wasDerivedFrom"
+JLSAME = JLO + "sameAs"   # identity as JudaicaLink states it (linksets, entities; decision 0029)
 HISTORY = {JLO + "mergedInto", JLO + "mergeDate", JLO + "splitInto", JLO + "splitDate", JLO + "retiredDate",
            DCT + "isReplacedBy"}   # dcterms:isReplacedBy: the merges of sets before 2026-10 (none in the legacy set)
 
@@ -274,7 +275,7 @@ def closure(records, links, replaced):
     cl = Closure()
     for r in sorted(records):
         cl.find(r)
-    for s, k, _ds in sorted(links):
+    for s, k, *_ in sorted(links):
         cl.union(s, k)
     for r in sorted(records):   # a record in an unambiguous authority namespace is that identifier (data/gnd/N)
         k = key(r)
@@ -307,8 +308,8 @@ def identity_report(run, records, classes, links, replaced, cl_all, cl_ours):
     run.log(f"identity report: {len(parts):,} groups with all links; {len(split):,} of them ({in_split:,} records) "
             f"would be split into {sum(len(p) for p in split.values()):,} groups by the linksets alone")
     by_key = defaultdict(list)   # key -> [(subject, dataset)]
-    for s, k, ds in links:
-        by_key[k].append((s, ds))
+    for s, k, ds, ours in links:
+        by_key[k].append((s, ds if not ours else "+" + ds))
     needed = Counter()               # (dataset, key type) -> links doing a join the linksets do not make
     partners = defaultdict(Counter)  # (dataset, key type) -> datasets of the records joined on the other side
     examples = defaultdict(list)
@@ -320,7 +321,7 @@ def identity_report(run, records, classes, links, replaced, cl_all, cl_ours):
         if len(comps) < 2:
             continue
         for s, ds in subs:
-            if ds in LINKSETS or s not in comp:
+            if ds.startswith("+") or s not in comp:   # a link of ours
                 continue
             others = {m for m in members if comp[m] != comp[s]}
             if not others:
@@ -342,7 +343,7 @@ def identity_report(run, records, classes, links, replaced, cl_all, cl_ours):
     taken = set()
     for kt, _n in order.most_common():
         taken.add(kt)
-        cl = closure(records, [x for x in links if x[2] in LINKSETS or key_type(x[1]) in taken], replaced)
+        cl = closure(records, [x for x in links if x[3] or key_type(x[1]) in taken], replaced)
         left = defaultdict(set)
         for r in records:
             left[cl_all.find(r)].add(cl.find(r))
@@ -364,7 +365,7 @@ def read_previous(run):
         iris.add(s)
         if p in HISTORY:
             history.add((IRI(s), IRI(p), o))
-        elif p in (SAME, JLO + "represents") and isinstance(o, str) and o.startswith(JL) and not o.startswith(EPNS):
+        elif p in (SAME, JLO + "represents", JLSAME) and isinstance(o, str) and o.startswith(JL) and not o.startswith(EPNS):
             members[s].add(str(o))
     inactive = {str(s) for s, _p, _o in history}
     pages = {e: members.get(e, set()) for e in iris if e not in inactive}   # pages without JudaicaLink members too
@@ -406,14 +407,15 @@ def generate(run):
             if p == JLO + "entity" and slug == "cm-entities":
                 entities_cm.add(str(o))
                 continue
-            if p in (SAME, GNDID):
+            if p in (SAME, GNDID, JLSAME):
+                ours = p == JLSAME or slug in LINKSETS
                 if isinstance(o, Literal):
                     if p == GNDID and re.fullmatch(r"[0-9]+[0-9X-]*", o.value.strip()):
-                        links.append((s, "gnd:" + o.value.strip().upper(), slug))
+                        links.append((s, "gnd:" + o.value.strip().upper(), slug, ours))
                 else:
                     k = key(o)
                     if k:
-                        links.append((s, k, slug))
+                        links.append((s, k, slug, ours))
             elif p in (REPLACED, DERIVED) and isinstance(o, str) and o.startswith(JL) and not o.startswith(EPNS):
                 (replaced if p == REPLACED else derived)[s].add(str(o))
             field = FACT_PROPS.get(p)
@@ -434,7 +436,7 @@ def generate(run):
     if run.params["identity"] not in ("all", "linksets"):
         raise GeneratorError(f"identity must be 'all' or 'linksets', not {run.params['identity']!r}")
     cl_all = closure(records, links, replaced)
-    cl_ours = closure(records, [x for x in links if x[2] in LINKSETS], replaced)
+    cl_ours = closure(records, [x for x in links if x[3]], replaced)
     identity_report(run, records, classes, links, replaced, cl_all, cl_ours)
     cl = cl_all if run.params["identity"] == "all" else cl_ours
     groups = defaultdict(set)
@@ -513,7 +515,7 @@ def generate(run):
             cls.add("Person" if merged_facts.get("birth") or merged_facts.get("death") else "Subject")
         c = next(x for x in CLASS_ORDER if x in cls)
         by_class[c] += 1
-        out |= {(page, IRI(RDF_TYPE), IRI(JLO + "EntityPage")), (page, IRI(RDF_TYPE), IRI(CLASS_IRI[c]))}
+        out.add((page, IRI(RDF_TYPE), IRI(CLASS_IRI[c])))   # the class of what it is (jl:EntityPage deprecated)
         rank = {m: min(src_rank(ds) for ds in classes[m]) if classes[m] else len(RANK) for m in members}
 
         # names
@@ -588,7 +590,7 @@ def generate(run):
 
         # records, external identifiers, web pages
         for m in members:
-            out.add((page, IRI(JLO + "represents"), iri(m)))
+            out.add((page, IRI(JLSAME), iri(m)))   # replaces jl:represents (decision 0029)
         for v, _l, _ds, t, _s in merged_facts.get("sameAs", []):
             if t == "uri" and not v.startswith(JL) and not v.startswith("https://data.judaicalink.org/"):
                 out.add((page, IRI(SAME), iri(v)))
@@ -622,5 +624,5 @@ def generate(run):
         run.log(f"merged {e} into {target}")
 
     run.note(f"{dict(stats)}; classes {dict(by_class)}; conflicts {dict(conflicts)}.")
-    run.write_turtle("ep.ttl.gz", out)
+    run.write_turtle("ep.ttl.gz", set(canonical_triples(out)))
     run.write_turtle("ep-history.ttl.gz", history)

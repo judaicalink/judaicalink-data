@@ -4,7 +4,8 @@ record of the current authority entry.
 authority_linkset(run, source, authority, inputs, prefix) reads the authority dataset (its records <prefix><id>, the
 replacements of its identifiers, dcterms:isReplacedBy, and the deprecated ones, owl:deprecated), finds every
 reference to the source in the inputs (jl.identifiers: IRIs as objects in any form, identifier literals), resolves it
-to the current record and states <record> owl:sameAs <prefix><current id>. Only identity statements count (owl:sameAs,
+to the current record and states <record> jl:sameAs <prefix><current id> (a subproperty of owl:sameAs: the identity
+as JudaicaLink states it). Only identity statements count (owl:sameAs,
 skos:exactMatch, madsrdf:hasExactExternalAuthority, identifier literals): a place of birth or an occupation that is an
 authority entry does not make the record that entry. Left out and logged: references to
 identifiers that are deprecated or not in the authority dataset, references by blank nodes or by records of the
@@ -19,6 +20,7 @@ from .rdf import BNode, IRI, Literal
 from .turtle import PREFIXES
 
 SAME = PREFIXES["owl"] + "sameAs"
+JLSAME = PREFIXES["jl"] + "sameAs"   # identity as JudaicaLink states it (decision 0029)
 REPLACED = PREFIXES["dcterms"] + "isReplacedBy"
 DEPRECATED = PREFIXES["owl"] + "deprecated"
 # the statements that say a record is the authority entry; other references (a place of birth, an occupation) are not
@@ -83,7 +85,7 @@ def authority_linkset(run, source, authority, inputs, prefix):
                 c[f"left out: {why}"] += 1
                 left_out.append(f"{s} {n} ({why}, {slug})")
                 continue
-            links.add((IRI(s), IRI(SAME), IRI(prefix + cur)))
+            links.add((IRI(s), IRI(JLSAME), IRI(prefix + cur)))
             targets[s].add(cur)
             by_dataset[slug] += 1
     several = {s: t for s, t in targets.items() if len(t) > 1}

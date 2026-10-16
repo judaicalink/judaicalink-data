@@ -30,6 +30,13 @@ the others do not.
   (gnd-persons, gnd-persons-entityfacts) and DBpedia (dbpedia-persons). Each is made from a dump or query answer in the
   inputs area; its file name, checksum and version are in the run record and the `-meta` of every version made from
   it; a newer dump is a new input and gives a new version.
+- **`jl:sameAs` for the identity JudaicaLink states** (decided 2026-10-16): a subproperty of `owl:sameAs`, used by
+  the linksets and by the entities of `ep` for their records (instead of `jl:represents`); `owl:sameAs` in a record
+  dataset is a statement of its source. The entity-page closure follows `jl:sameAs` (and, until they are made again,
+  the `owl:sameAs` of the older linksets), the replacements of our own IRIs and the authority namespaces. An entity in
+  `ep` has the class of what it is (`foaf:Person` …); `jl:EntityPage` is deprecated (its role is given by the dataset,
+  the web page about an entity is its description, as VIAF separates a cluster from its page). Labels of foreign terms
+  likewise: `jl:label` (subproperty of `rdfs:label`), in the ontology, which describes the common layer.
 - **One linkset per authority dataset** (`ls-gnd`, `ls-viaf`, `ls-lc`, `ls-geonames`, `ls-wikidata`; decided
   2026-10-16): it finds every reference to its authority in all our datasets (`jl.identifiers`), resolves it through
   the authority dataset to the current record (replacements), and links each referencing record to that record, by
