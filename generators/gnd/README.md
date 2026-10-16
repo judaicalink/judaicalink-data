@@ -44,13 +44,14 @@ dcterms:isReplacedBy <https://d-nb.info/gnd/<n>>` (the GND states them as `owl:s
 where our own record exists for the old number, also `data/gnd/<old> dcterms:isReplacedBy data/gnd/<n>`; deleted
 numbers that our data cites as `owl:deprecated true`.
 
-## Run of 2026-10-16
+## Version 2026-10-16
 
-41,346 records, 1,390,614 triples; numbers by reason (in brackets: not reached by a reason above): linked 19,489,
-freimann 587 (343), ubffm-authors 33,161 (25,446), previous 35,301 (1,915: mostly the persons of the 2017 rule).
-18,914 former numbers replaced (3 of them our own records); 5 cited numbers deleted; 1,371 cited numbers are in
-neither the dump nor the redirect file (mostly from ubffm-persons, presumably former undifferentiated name records).
-Coordinates in canonical form (docs/iri-forms.md). About four minutes.
+42,207 records, 1,419,588 triples, from the stable versions of 2026-10-16 (bhr, epidat, hhkeydocs and rujen made
+again); numbers by reason (in brackets: not reached by a reason above): linked 20,380, freimann 587 (342),
+ubffm-authors 33,161 (25,431), previous 35,301 (1,914: mostly the persons of the 2017 rule). 20,024 former numbers
+replaced (3 of them our own records); 5 cited numbers deleted; 1,371 cited numbers are in neither the dump nor the
+redirect file (mostly from ubffm-persons, presumably former undifferentiated name records). Coordinates in canonical
+form (docs/iri-forms.md). About four minutes.
 
 ## Reproduction
 
