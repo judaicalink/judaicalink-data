@@ -27,6 +27,7 @@ from collections import Counter, defaultdict
 from urllib.parse import unquote
 
 from jl.generator import GeneratorError
+from jl.iris import canonical_wkt
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
@@ -55,7 +56,12 @@ STABLE = {
     "ls-yivo-wikidata": "2026-10-12", "record-classes": "2026-10-12",
 }
 INPUTS = {"previous": "ep/2021-05-28", **{s.replace("-", "_"): f"{s}/{v}" for s, v in STABLE.items()}}
-PARAMS = {}
+# identity: "all" follows every identity link of every dataset (0022); "linksets" only those of our linksets, the
+# replacements and the authority namespaces (decision 0029). The run log always reports the joins that only links
+# outside the linksets make (the linksets still to be made).
+PARAMS = {"identity": "all"}
+# the datasets whose identity links are our own decisions (catalogue kind "linkset")
+LINKSETS = {"2014links", "interlinks", "dbp-wiki-geo-linking", "ls-nli-legacy", "ls-yivo-wikidata"}
 DATASET_OF = {s.replace("-", "_"): s for s in STABLE}
 RANK = {s: i for i, s in enumerate(PRECEDENCE)}
 # datasets whose typed resources are records (the others only add facts or links to records)
@@ -64,7 +70,8 @@ LANGUAGES = ["en", "de", "he"]
 
 JL = "http://data.judaicalink.org/data/"
 EPNS = JL + "ep/"
-JLO, FOAF, SKOS, RDFS, OWL, DCT, GEO = (PREFIXES[p] for p in ("jl", "foaf", "skos", "rdfs", "owl", "dcterms", "geo"))
+JLO, FOAF, SKOS, RDFS, OWL, DCT = (PREFIXES[p] for p in ("jl", "foaf", "skos", "rdfs", "owl", "dcterms"))
+GEO = PREFIXES["geosparql"]   # asWKT, wktLiteral (GeoSPARQL; PREFIXES["geo"] is WGS84)
 PROV = "http://www.w3.org/ns/prov#"
 GNDO = "http://d-nb.info/standards/elementset/gnd#"
 DBO = "http://dbpedia.org/ontology/"
@@ -261,6 +268,90 @@ def number(e):
     return int(m.group(1)) if m else None
 
 
+# --- identity ----------------------------------------------------------------------------------------------
+
+def closure(records, links, replaced):
+    cl = Closure()
+    for r in sorted(records):
+        cl.find(r)
+    for s, k, _ds in sorted(links):
+        cl.union(s, k)
+    for r in sorted(records):   # a record in an unambiguous authority namespace is that identifier (data/gnd/N)
+        k = key(r)
+        if k and not k.startswith(JL) and re.match(r"(gnd|geonames):", k):
+            cl.union(r, k)
+    for s, ts in sorted(replaced.items()):
+        if len(ts) == 1 and s not in records:
+            cl.union(s, next(iter(ts)))   # replaced by exactly one IRI: the same thing (a node, not a member)
+    return cl
+
+
+def key_type(k):
+    return "jl" if k.startswith(JL) else k.split(":", 1)[0]
+
+
+def owner(r):
+    return r[len(JL):].split("/")[0] if r.startswith(JL) else "?"
+
+
+def identity_report(run, records, classes, links, replaced, cl_all, cl_ours):
+    """The joins that only identity links outside our linksets make (decision 0029): the groups of all links that
+    the linksets alone would split, and per dataset and key the links that do such a join, with the datasets on the
+    other side. Written to the run log ("identity report: ..."); the closure used is chosen by the parameter."""
+    comp = {r: cl_ours.find(r) for r in records}
+    parts = defaultdict(set)
+    for r in records:
+        parts[cl_all.find(r)].add(comp[r])
+    split = {g: ps for g, ps in parts.items() if len(ps) > 1}
+    in_split = sum(1 for r in records if cl_all.find(r) in split)
+    run.log(f"identity report: {len(parts):,} groups with all links; {len(split):,} of them ({in_split:,} records) "
+            f"would be split into {sum(len(p) for p in split.values()):,} groups by the linksets alone")
+    by_key = defaultdict(list)   # key -> [(subject, dataset)]
+    for s, k, ds in links:
+        by_key[k].append((s, ds))
+    needed = Counter()               # (dataset, key type) -> links doing a join the linksets do not make
+    partners = defaultdict(Counter)  # (dataset, key type) -> datasets of the records joined on the other side
+    examples = defaultdict(list)
+    for k, subs in sorted(by_key.items()):
+        members = {s for s, _ds in subs if s in comp}
+        if k in comp:
+            members.add(k)   # the key is itself a record (another JudaicaLink record)
+        comps = {comp[m] for m in members}
+        if len(comps) < 2:
+            continue
+        for s, ds in subs:
+            if ds in LINKSETS or s not in comp:
+                continue
+            others = {m for m in members if comp[m] != comp[s]}
+            if not others:
+                continue
+            t = (ds, key_type(k))
+            needed[t] += 1
+            for m in others:
+                partners[t][next(iter(sorted(classes[m]))) if classes.get(m) else owner(m)] += 1
+            if len(examples[t]) < 3:
+                examples[t].append(f"{s[len(JL):]} ~{k}~ {sorted(others)[0][len(JL):]}")
+    for (ds, kt), n in sorted(needed.items(), key=lambda x: (-x[1], x[0])):
+        other = ", ".join(f"{d} {c:,}" for d, c in partners[(ds, kt)].most_common())
+        run.log(f"identity report: {ds} via {kt}: {n:,} links join records only linked this way; "
+                f"other side: {other}; e.g. {' | '.join(examples[(ds, kt)])}")
+    # the key types added one after the other (most needed first): how many groups would still be split
+    order = Counter()
+    for (_ds, kt), n in needed.items():
+        order[kt] += n
+    taken = set()
+    for kt, _n in order.most_common():
+        taken.add(kt)
+        cl = closure(records, [x for x in links if x[2] in LINKSETS or key_type(x[1]) in taken], replaced)
+        left = defaultdict(set)
+        for r in records:
+            left[cl_all.find(r)].add(cl.find(r))
+        n_split = sum(1 for ps in left.values() if len(ps) > 1)
+        n_rec = sum(len(ps) for ps in left.values() if len(ps) > 1)
+        run.log(f"identity report: with linksets for {', '.join(sorted(taken))}: {n_split:,} groups still split "
+                f"(into {n_rec:,} parts)")
+
+
 # --- the run -----------------------------------------------------------------------------------------------
 
 def read_previous(run):
@@ -340,18 +431,12 @@ def generate(run):
     stats["records"] = len(records)
 
     # 2. the closure
-    cl = Closure()
-    for r in sorted(records):
-        cl.find(r)
-    for s, k, _ds in sorted(links):
-        cl.union(s, k)
-    for r in sorted(records):   # a record in an unambiguous authority namespace is that identifier (data/gnd/N)
-        k = key(r)
-        if k and not k.startswith(JL) and re.match(r"(gnd|geonames):", k):
-            cl.union(r, k)
-    for s, ts in sorted(replaced.items()):
-        if len(ts) == 1 and s not in records:
-            cl.union(s, next(iter(ts)))   # replaced by exactly one IRI: the same thing (a node, not a member)
+    if run.params["identity"] not in ("all", "linksets"):
+        raise GeneratorError(f"identity must be 'all' or 'linksets', not {run.params['identity']!r}")
+    cl_all = closure(records, links, replaced)
+    cl_ours = closure(records, [x for x in links if x[2] in LINKSETS], replaced)
+    identity_report(run, records, classes, links, replaced, cl_all, cl_ours)
+    cl = cl_all if run.params["identity"] == "all" else cl_ours
     groups = defaultdict(set)
     for r in records:
         groups[cl.find(r)].add(r)
@@ -499,7 +584,7 @@ def generate(run):
         if c == "Place":
             w = wkt_of(merged_facts)
             if w:
-                out.add((page, IRI(GEO + "asWKT"), lit(w, GEO + "wktLiteral")))
+                out.add((page, IRI(GEO + "asWKT"), lit(canonical_wkt(w), GEO + "wktLiteral")))
 
         # records, external identifiers, web pages
         for m in members:
