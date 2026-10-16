@@ -13,13 +13,24 @@ skos:prefLabel and foaf:name, the civil name as skos:altLabel (editorial bracket
 jl:deathDate as given (records-normalized reads it); the settlement of the cemetery (before a comma, as 2023) as
 jl:deathLocation and its TGN IRI (GeoNames for five cemeteries) as jl:deathLocationURI (as 2023: Epidat gives the
 place of burial); owl:sameAs the GND where Epidat links one and Epidat's own URI (lod.academy); jl:describedAt the
-Epidat page. Not taken over: the family relations (no ontology terms yet), occupations and birth years (2023 found
-them with spaCy in the commentaries).
+Epidat page. Not taken over: occupations (2023 found them with spaCy in the commentaries).
+
+Added 2026-10-15, each a parameter with the addition as default (with all off, the triples of 2026-10-12):
+- birth_dates: jl:birthDate as given by the person table of the repository (inputs:epidat/persdata-2026-08-13,
+  tsv/epidat_persdata.tsv at the same commit; the TEI files have no birth dates), only in the forms YYYY,
+  YYYY-MM, YYYY-MM-DD and YYYY/YY; the others are listed in the log.
+- memorial_links: rdfs:seeAlso the entry of the person in the Gedenkbuch of the Bundesarchiv
+  (https://www.bundesarchiv.de/gedenkbuch/de<id>, the form Epidat uses in its commentaries) and in the Yad Vashem
+  names database (https://collections.yadvashem.org/en/names/<id>), from the gedenkbuchID and yadvashemID columns.
+- family_relations: the relations of the TEI files (listRelation, by person id): schema:parent (child to parent),
+  schema:spouse and schema:sibling (both ways). Relations to persons not in the files are left out; grandparent
+  relations too (schema.org has no term). The person table gives parents and spouses only as names; not used.
 
 63 files are not well-formed XML: 30 have a doubled quote in a link target, which is repaired; of the others the
 person list is parsed alone, where there is one.
 """
 
+import csv
 import re
 import tarfile
 import xml.etree.ElementTree as ET
@@ -30,16 +41,21 @@ from jl.turtle import PREFIXES
 
 INPUTS = {
     "tei": "inputs:epidat/data-2026-08-13/epidat-tei.tar.gz",
+    "persdata": "inputs:epidat/persdata-2026-08-13/epidat_persdata.tsv",
     "previous": "epidat/2023-07-14",
 }
-PARAMS = {}
+PARAMS = {"birth_dates": True, "memorial_links": True, "family_relations": True}
 
 T = "{http://www.tei-c.org/ns/1.0}"
 XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
 NS = "http://data.judaicalink.org/data/epidat/"
 PAGE = "http://www.steinheim-institut.de/cgi-bin/epidat?id="
 LOD = "https://lod.academy/epidat/id/"
-JLO, FOAF, SKOS, OWL, DCT = (PREFIXES[p] for p in ("jl", "foaf", "skos", "owl", "dcterms"))
+JLO, FOAF, SKOS, OWL, DCT, RDFS, SDO = (PREFIXES[p] for p in ("jl", "foaf", "skos", "owl", "dcterms", "rdfs",
+                                                                "schema"))
+GEDENKBUCH = "https://www.bundesarchiv.de/gedenkbuch/de"
+YAD_VASHEM = "https://collections.yadvashem.org/en/names/"
+BIRTH_FORM = re.compile(r"[0-9]{4}(-[0-9]{2}(-[0-9]{2})?|/[0-9]{2})?")
 GENDER = {"1": "male", "2": "female"}   # ISO 5218, as in the TEI; 0 = not known
 NO_DATE = {"", "-", "--"}
 
@@ -89,8 +105,9 @@ def names(raw):
 
 
 def read_tei(path, counts):
-    """{person id: person data}, {cemetery code: Counter of (settlement, TGN or GeoNames IRI or None)}."""
-    persons, places = {}, defaultdict(Counter)
+    """{person id: person data}, {cemetery code: Counter of (settlement, TGN or GeoNames IRI or None)}, the set of
+    relations (name, active ids, passive ids, mutual ids)."""
+    persons, places, relations = {}, defaultdict(Counter), set()
     with tarfile.open(path) as tf:
         for m in tf:
             if not m.name.endswith(".xml"):
@@ -118,12 +135,23 @@ def read_tei(path, counts):
                     "ref": pn.get("ref") if pn is not None else None,
                     "death": (d.get("when") or "").strip() if d is not None else "",
                 }
-    return persons, places
+            for r in root.iter(T + "relation"):
+                ids = [tuple(sorted(x.lstrip("#") for x in (r.get(a) or "").split())) for a in
+                       ("active", "passive", "mutual")]
+                relations.add((r.get("name"), *ids))
+    return persons, places, relations
+
+
+def read_persdata(path):
+    """{person id: row} of the person table."""
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        return {r["persid"]: r for r in csv.DictReader(f, delimiter="\t")}
 
 
 def generate(run):
     counts = Counter()
-    persons, places = read_tei(run.input("tei"), counts)
+    persons, places, relations = read_tei(run.input("tei"), counts)
+    prm = run.params
     place = {}
     for code, c in places.items():
         if len(c) > 1:
@@ -162,6 +190,11 @@ def generate(run):
         t.add((s, IRI(OWL + "sameAs"), IRI(LOD + pid)))
         t.add((s, IRI(JLO + "describedAt"), Literal(PAGE + pid)))
 
+    if prm["birth_dates"] or prm["memorial_links"]:
+        add_persdata(run, t, persons, read_persdata(run.input("persdata")))
+    if prm["family_relations"]:
+        add_relations(run, t, persons, relations)
+
     # the IRIs of 2023-07-14: replaced by the persons they described
     described = defaultdict(set)
     for s, p, o in run.triples("previous", file="epidat-final-01.ttl.gz"):
@@ -186,3 +219,58 @@ def generate(run):
              f"(cemeteries {', '.join(sorted({i.split('-')[0] for i in withdrawn}))}: "
              f"Epidat answers 'not yet published').")
     run.write_turtle("epidat.ttl.gz", t)
+
+
+def add_persdata(run, t, persons, rows):
+    """Birth dates and memorial links of the person table, for the persons of the TEI files."""
+    prm, c, odd = run.params, Counter(), []
+    absent = Counter(pid.split("-")[0] for pid in rows if pid not in persons)
+    for pid in sorted(rows):
+        if pid not in persons:
+            continue
+        r, s = rows[pid], IRI(NS + pid)
+        birth = r["dateofbirth"].strip()
+        if prm["birth_dates"] and birth:
+            if BIRTH_FORM.fullmatch(birth):
+                t.add((s, IRI(JLO + "birthDate"), Literal(birth)))
+                c["birth dates"] += 1
+            else:
+                odd.append(f"{pid}: dateofbirth {birth!r}")
+        if prm["memorial_links"]:
+            for col, base, digits in (("gedenkbuchID", GEDENKBUCH, 5), ("yadvashemID", YAD_VASHEM, 6)):
+                v = r[col].strip()
+                if re.fullmatch(f"[0-9]{{{digits},}}", v):
+                    t.add((s, IRI(RDFS + "seeAlso"), IRI(base + v)))
+                    c[col] += 1
+                elif v:
+                    odd.append(f"{pid}: {col} {v!r}")
+    for line in odd:
+        run.log("person table, value left out:", line)
+    run.note(f"person table: {len(rows):,} rows, {len(rows) - sum(absent.values()):,} of them persons of the TEI "
+             f"files; {c['birth dates']:,} birth dates, {c['gedenkbuchID']} Gedenkbuch and {c['yadvashemID']} Yad "
+             f"Vashem links; {len(odd)} values in other forms left out (log).")
+    run.note(f"person table: {sum(absent.values()):,} persons not in the TEI files, by cemetery: "
+             + ", ".join(f"{k} {v}" for k, v in sorted(absent.items(), key=lambda kv: (-kv[1], kv[0]))) + ".")
+
+
+def add_relations(run, t, persons, relations):
+    """The family relations of the TEI files between persons of the files."""
+    c, pairs = Counter(), set()
+    for name, active, passive, mutual in sorted(relations, key=lambda r: tuple(map(str, r))):
+        ids = set(active) | set(passive) | set(mutual)
+        if not ids <= set(persons):
+            c["relations with a person not in the files"] += 1
+            continue
+        if name == "parent":
+            pairs.update((child, "parent", parent) for parent in active for child in passive)
+        elif name in ("spouse", "sibling"):
+            pairs.update((a, name, b) for a in mutual for b in mutual if a != b)
+        else:
+            c[f"{name} relations (no term)"] += 1
+    for a, name, b in pairs:
+        t.add((IRI(NS + a), IRI(SDO + name), IRI(NS + b)))
+        c[name] += 1
+    run.note(f"family relations: {len(relations):,} distinct relations in the TEI files; stated "
+             f"{c['parent']:,} schema:parent, {c['spouse']:,} schema:spouse, {c['sibling']:,} schema:sibling; left "
+             f"out {c['relations with a person not in the files']} with a person not in the files, "
+             f"{c['grandparent relations (no term)']} grandparent relations.")

@@ -24,8 +24,33 @@ kept file. Every subject of the dump is in the set to be enriched computed from 
 
 ## Reproduction
 
-**Not reproducible**: the endpoint is closed and its 2021 state unknown. Note: the GeoNames IRIs from geo-enriched
-end with a slash and never match in this notebook, so that route contributed nothing.
+2021: **not reproducible**: the endpoint is closed and its 2021 state unknown. Note: the GeoNames IRIs from geo-enriched
+end with a slash and never match in this notebook, so that route contributed nothing. Since 2026-10-15:
+**reproducible** from the cached Wikidata answers (framework generator, below).
+
+## Framework generator (2026-10-15)
+
+`generate.py` makes the dataset again (decision 0024), offline and deterministically, from the answers of the
+Wikidata Query Service (`inputs:web-caches/wikidata-geonames-2026-10-15`, fetched by `fetch_wikidata.py`): the items
+with the GND numbers (P227) and the GeoNames ids (P1566) of the 2,701 places of `geo-coordinates` 2026-10-12, and
+their English, German and Russian Wikipedia articles. The GND route decides (the places are GND records): a place gets
+its only item by GND (2,451 places; GeoNames gives the same item for 1,065 of them, another for 929, none for 457),
+with several items by GND the one GeoNames also gives (10), without an item by GND its only item by GeoNames (145).
+GeoNames ids in Wikidata often sit on a second item for the settlement beside the item of the town or municipality
+(Ansbach: Q117751859 "main settlement of Ansbach" beside Q14859), hence the 929. Left out: 85 without an item, 10 with
+several items (named in the log).
+
+For each of the 2,606 linked places: `owl:sameAs` the Wikidata item and the DBpedia resource of its English article
+(2,449), `foaf:isPrimaryTopicOf` the articles themselves (en 2,449, de 2,561, ru 2,364; documents about the place, so
+not `owl:sameAs` as in 2021, and as cm-entities states them). 35 items are the item of two or more places, all the
+same place under two names (Bromberg and Bydgoszcz, Czernowitz in four spellings), which the entity pages join.
+Output `dbp-wiki-geo-linking.ttl.gz`, 12,429 triples. Subjects are the new IRIs of geo-coordinates only: the places
+that geo-enriched links by their GeoNames IRI are not records, and Wikidata states their items itself (P1566).
+
+Against 2021 (7,023 triples, 2,835 subjects: 2,150 old geo-coordinates IRIs, 685 `data/geonames/<id>`): of the 2,150
+places with a DBpedia link, 2,032 have the same, 92 another (2021 errors such as `Altenkirchen_(disambiguation)`,
+`Battenberg_family`, `Blaubeuren_Abbey`, `Bolesławice,_Bolesławiec_County`, `Old_Delhi`, and renamed articles), 26
+none now.
 
 ## Original files
 

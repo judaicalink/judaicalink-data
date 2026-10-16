@@ -2,8 +2,16 @@
 
 Transformation only: the RDF step of judaicalink-labs `1ac14f1` (`create_rdf`, `local`, `get_latin_string` in
 original/judaicalink-labs@1ac14f1/.../generate_rujen.py), ported to the framework without changes to its logic,
-including its quirks (the doubled "/index.php//index.php/" in jl:describedAt). The crawl (acquisition with
-Scrapy and BeautifulSoup) is the input, one JSON object per page; it is published with the version.
+including its quirks. The crawl (acquisition with Scrapy and BeautifulSoup) is the input, one JSON object per page;
+it is published with the version.
+
+Fixes (decision 0024), parameters with the fix as default; with both off the output has the triples of 2020-09-28:
+- described_at_path: jl:describedAt was "http://rujen.ru/index.php/" + the page path, which already starts with
+  "/index.php/", giving "/index.php//index.php/<page>" for every page; now "http://rujen.ru" + the page path.
+- drop_main_page: the crawl holds the main page of the wiki ("Заглавная страница", id 1), which is not an article:
+  a skos:Concept with an empty abstract, related to 31 "Служебная:Все_страницы/<letter>" pages, 2 categories and
+  "mailto:mail@rujen.ru" (subject <mailto%3Amail%40rujen.ru>), which became records of their own through their
+  skos:altLabel. The main page and these links are left out.
 """
 
 import gzip
@@ -15,7 +23,9 @@ from jl.rdf import IRI, RDF_TYPE, Literal
 from jl.turtle import PREFIXES, Namespace
 
 INPUTS = {"crawl": "rujen/2020-09-28/rujen.jsonl.gz"}
-PARAMS = {}
+PARAMS = {"described_at_path": True, "drop_main_page": True}
+
+MAIN_PAGE = "Заглавная страница"
 
 JLO = Namespace(PREFIXES["jl"])
 SKOS = Namespace(PREFIXES["skos"])
@@ -41,11 +51,12 @@ def local(uri):
     return IRI(uri)
 
 
-def page_triples(d, log):
+def page_triples(d, log, prm):
     subject = local(d["uri"])
     t = [(subject, TYPE, SKOS.Concept),
          (subject, SKOS.prefLabel, Literal(d["title"])),
-         (subject, JLO.describedAt, IRI(f"http://rujen.ru/index.php/{d['uri']}"))]
+         (subject, JLO.describedAt, IRI(f"http://rujen.ru{d['uri']}" if prm["described_at_path"]
+                                        else f"http://rujen.ru/index.php/{d['uri']}"))]
     identifier = unquote(d["uri"].replace("/index.php/", ""))
     t.append((subject, DCTERMS.identifier, Literal(identifier)))
     for link in d["links"]:
@@ -83,6 +94,9 @@ def generate(run):
     triples = []
     with gzip.open(run.input("crawl"), "rt", encoding="utf-8") as f:
         for line in f:
-            triples += page_triples(json.loads(line), run.log)
+            d = json.loads(line)
+            if run.params["drop_main_page"] and d["title"] == MAIN_PAGE:
+                continue
+            triples += page_triples(d, run.log, run.params)
     run.write_turtle("rujen.ttl.gz", triples)
     run.copy_input("crawl")

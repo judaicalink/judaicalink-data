@@ -65,6 +65,17 @@ parameters, on by default; with all of them off the output has the same 32,884 t
 | `drop_empty` | links with an empty identifier (`d-nb.info/gnd//`, `hub.culturegraph.org/entityfacts//`, the Steinheim GND query `text1=/`), empty literals, the GND number placeholder `"NA"` | 9 + 2,141 + 1,692 removed |
 | `split_mixed` | Glückmann (BHR id 572) and Gunzenhausen (638) held the entries, abstracts and publications of themselves and Gutheim (640), grouped by their empty GND number in the integration of 2018; each keeps its own (the record's death date matches one abstract each, the BHR page order 372 < 398 < 399 is alphabetical, Gutheim's record holds only his own) | 15 removed |
 | `occupation_uri` | `jl:occpation` (typo) with occupation IRIs → `jl:occupationURI` | 2,900 changed |
+| `portal_links` | `owl:sameAs` the page of the BHR database of 2018 (`http://steinheim-institut.de:50580/cgi-bin/bhr?id=N`, no longer answering; a page is not the person) → `jl:describedAt` the page of the same id in the Biographisches Portal der Rabbiner, `https://www.steinheim-institut.de/cgi-bin/bhr?id=N` (added 2026-10-15) | 2,535 changed |
+| `portal_gnd` | the GND numbers of the portal's BEACON as `owl:sameAs <http://d-nb.info/gnd/…>` for records of that BHR id without a GND link (added 2026-10-15) | 1 added |
+
+The portal (2026-10-15) uses the ids of 2018: the page of every id names the person of our record with that id
+(checked for all 781 records reached through the BEACON and for 12 records without GND number, fetched by id). The
+portal's own links and Wikidata (P10405) write the id without leading zeros; the page shows it zero-padded. Input
+`inputs:bhr/portal-2026-10-15` (`fetch_portal.py`): the BEACON (timestamp 2025-06-05, 805 GND numbers) and, for each
+number, the page it leads to with its BHR id. Of the 805: 778 our records have already, 25 belong to ids that are not
+in the 2018 data, one to id 71, held by two records (Auerbach Hirsch and Auerbach Benjamin-Hirsch, left out), one is
+new (Lazarus, Arnold); none contradicts a GND number of ours. The literal `jl:describedAt` "BHR I.1, 121, id:1"
+(volume, page and id of the printed handbook) is kept.
 
 In 2021 the empty GND links joined the three persons into one legacy entity page (`ep/1012090`), and the service
 page would join the 783 persons into one group when every `owl:sameAs` target is a key (decision 0022).
