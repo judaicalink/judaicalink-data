@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-13T06:40:29Z",
+ "checked": "2026-10-16T15:56:56Z",
  "locations": {
   "dumps": {
    "archive": "https://archive.judaicalink.org/store/",
@@ -247,7 +247,7 @@
   },
   "bhr": {
    "title": "Biographisches Handbuch der Rabbiner",
-   "stable": "2026-10-12",
+   "stable": "2026-10-16",
    "replaces": [],
    "replaced_by": [],
    "catalogues": [
@@ -258,7 +258,7 @@
     {
      "version": "2026-10-12",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "Entityfacts-bhr-sameas.ttl.gz",
@@ -860,7 +860,7 @@
   },
   "epidat": {
    "title": "Epidat - Epigraphical Database",
-   "stable": "2026-10-12",
+   "stable": "2026-10-16",
    "replaces": [],
    "replaced_by": [],
    "catalogues": [
@@ -871,7 +871,7 @@
     {
      "version": "2026-10-12",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "epidat.ttl.gz",
@@ -1177,7 +1177,9 @@
    "title": "Persons from GND",
    "stable": "2018-11-29",
    "replaces": [],
-   "replaced_by": [],
+   "replaced_by": [
+    "gnd"
+   ],
    "catalogues": [
     "web",
     "portal"
@@ -1268,7 +1270,9 @@
    "title": "GND persons of hhkeydocs, nrwbibdjg and gba (DNB EntityFacts)",
    "stable": "2026-10-12",
    "replaces": [],
-   "replaced_by": [],
+   "replaced_by": [
+    "gnd"
+   ],
    "catalogues": [
     "web"
    ],
@@ -1413,7 +1417,7 @@
   },
   "hhkeydocs": {
    "title": "Hamburger Schlüsseldokumente zur deutsch-jüdischen Geschichte",
-   "stable": "2025-03-21",
+   "stable": "2026-10-16",
    "replaces": [],
    "replaced_by": [],
    "catalogues": [
@@ -1424,7 +1428,7 @@
     {
      "version": "2025-03-21",
      "issued": "2025-03-21",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "hhkeydocs-final-01.ttl.gz",
@@ -1992,7 +1996,7 @@
   },
   "rujen": {
    "title": "Encyclopedia of Russian Jewry",
-   "stable": "2020-09-28",
+   "stable": "2026-10-16",
    "replaces": [],
    "replaced_by": [],
    "catalogues": [
@@ -2003,7 +2007,7 @@
     {
      "version": "2020-09-28",
      "issued": "2020-09-28",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "rujen.ttl.gz",
