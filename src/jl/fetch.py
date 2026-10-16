@@ -42,9 +42,16 @@ def request(url, *, method=None, headers=None, data=None, agent=None):
     return urllib.request.Request(url, data=data, headers=h, method=method)
 
 
-def get(url, *, headers=None, agent=None, timeout=60, tries=5, wait=10):
-    """The body of url; retried with growing waits (servers answer 429/503 when busy). Other client errors
-    (404, 403, ...) are raised at once as urllib.error.HTTPError."""
+def retry_after(e):
+    """The seconds a 429/503 answer asks to wait (Retry-After in seconds), or None."""
+    v = (e.headers or {}).get("Retry-After", "") if hasattr(e, "headers") else ""
+    return int(v) if str(v).strip().isdigit() else None
+
+
+def get(url, *, headers=None, agent=None, timeout=60, tries=6, wait=10, max_wait=900):
+    """The body of url; retried with growing waits (wait, 2 x wait, ...), or as long as the server asks (Retry-After)
+    when that is at most max_wait seconds (servers answer 429/503 when busy); a longer Retry-After ends at once.
+    Other client errors (404, 403, ...) are raised at once as urllib.error.HTTPError."""
     for i in range(tries):
         try:
             with urllib.request.urlopen(request(url, headers=headers, agent=agent), timeout=timeout) as r:
@@ -52,12 +59,15 @@ def get(url, *, headers=None, agent=None, timeout=60, tries=5, wait=10):
         except urllib.error.HTTPError as e:
             if e.code < 500 and e.code != 429:
                 raise
-            if i + 1 == tries:
-                raise RuntimeError(f"failed: {url}: {e}") from e
-            print(f"  retry {i + 1} after {e}", flush=True)
-            time.sleep(wait * (i + 1))
+            asked = retry_after(e)
+            if i + 1 == tries or (asked is not None and asked > max_wait):
+                raise RuntimeError(f"failed: {url}: {e}" + (f" (Retry-After {asked} s)" if asked else "")) from e
+            pause = max(asked or 0, wait * 2 ** i)
+            print(f"  retry {i + 1} in {pause} s after {e}" + (f" (Retry-After {asked} s)" if asked else ""),
+                  flush=True)
+            time.sleep(pause)
         except Exception as e:
             if i + 1 == tries:
                 raise RuntimeError(f"failed: {url}: {e}") from e
-            print(f"  retry {i + 1} after {e}", flush=True)
-            time.sleep(wait * (i + 1))
+            print(f"  retry {i + 1} in {wait * 2 ** i} s after {e}", flush=True)
+            time.sleep(wait * 2 ** i)
