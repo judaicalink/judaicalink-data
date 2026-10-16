@@ -24,8 +24,8 @@ from jl.turtle import PREFIXES
 import gazetteer
 
 # every record and authority dataset (decided 2026-10-16: only places given as text without an IRI are linked); gnd
-# replaces gnd-persons. The gnd run must become the gnd version before this dataset becomes a version.
-SOURCES = stable_inputs(kinds={"records", "authority"}, add={"gnd": "run-20261016T125144Z"})
+# replaces gnd-persons.
+SOURCES = stable_inputs(kinds={"records", "authority"})
 INPUTS = {**SOURCES, "geo_coordinates": "geo-coordinates/2026-10-12",
           "previous": "geo-enriched/2019-12-18",
           "geonames": "inputs:geonames/dump-2026-10-15/allCountries.zip",

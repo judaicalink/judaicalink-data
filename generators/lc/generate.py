@@ -32,12 +32,10 @@ from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, BNode, Literal, parse_ntriples, unescape_string
 from jl.turtle import PREFIXES
 
-GND_RUN = "run-20261016T121839Z"   # the gnd run; becomes the gnd version once it is made
 LINKED = stable_inputs("linked_", exclude={"lc", "gnd-persons", "gnd-persons-entityfacts", "ep", "compact-memory",
                                            "compact-memory-supp", "cm-ocr-quality", "cm-tagme", "corrections-links",
                                            "quality-annotations", "judaicalink-agents", "judaicalink-vocabulary",
-                                           "ontology"},
-                       add={"gnd": GND_RUN})
+                                           "ontology"})
 INPUTS = {"names": "inputs:lc/names-2026-09-27/names.madsrdf.nt.gz", **LINKED}
 PARAMS = {}
 

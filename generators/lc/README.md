@@ -14,8 +14,8 @@ id.loc.gov.
   World Object (`id.loc.gov/rwo/agents/<id>`: dates, places, occupations) and its blank nodes (variants, sources,
   element lists, administrative metadata). The SHA-1 stated in the export's description file does not match the
   file; the archive is intact.
-- The stable versions of the datasets that link LC records (`stable_inputs`), and the run of gnd named in
-  `GND_RUN` (EntityFacts links GND records to LC); it becomes the gnd version once that is made.
+- The stable versions of the datasets that link LC records (`stable_inputs`), among them gnd (EntityFacts links GND
+  records to LC).
 
 ## Selection
 
