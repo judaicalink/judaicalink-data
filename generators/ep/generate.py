@@ -34,7 +34,7 @@ from jl.turtle import PREFIXES
 # Datasets in order of precedence for choosing facts (decision 0009, 0022): 1 GND; 2 libraries and bibliographies;
 # 3 curated reference works and research databases; 4 general knowledge bases; 5 automatically derived or linked.
 PRECEDENCE = [
-    "gnd-persons", "gnd-persons-entityfacts",
+    "gnd",
     "nli-records", "ubffm-persons", "nrwbibdjg", "haskala",
     "yivo", "rujen", "rujen-translation", "bhr", "djh", "hhkeydocs", "jre", "epidat", "stolpersteine", "hirsch-family",
     "sosy", "gba", "footprints",
@@ -45,7 +45,7 @@ PRECEDENCE = [
 # The deletions of the correction datasets are applied to every input (0023); a correction version that also adds
 # triples (corrections-links 2026-10-12 adds none) is declared here as an input like any other dataset.
 STABLE = {
-    "gnd-persons": "2018-11-29", "gnd-persons-entityfacts": "2026-10-12", "nli-records": "2026-10-12",
+    "gnd": "2026-10-16", "nli-records": "2026-10-12",
     "ubffm-persons": "2019-01-24", "nrwbibdjg": "2024-05-24", "haskala": "2026-10-12", "yivo": "2020-09-30",
     "rujen": "2020-09-28", "rujen-translation": "2026-10-12", "bhr": "2026-10-12", "djh": "2018-10-22",
     "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2026-10-12", "stolpersteine": "2020-10-06",
@@ -518,7 +518,7 @@ def generate(run):
 
         # names
         labels = [(norm_label(v), lang, ds, None, s) for v, lang, ds, t, s in merged_facts.get("label", []) if t == "literal"]
-        gnd = [x for x in labels if x[2] in ("gnd-persons", "gnd-persons-entityfacts")]
+        gnd = [x for x in labels if x[2] == "gnd"]
         if not labels:
             labels = [(unquote(m.rstrip("/").rsplit("/", 1)[-1]).replace("_", " "), "", "cm-entities", None, m)
                       for m in members]

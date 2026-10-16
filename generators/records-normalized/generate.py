@@ -35,7 +35,7 @@ from jl.turtle import PREFIXES
 RECORDS = {
     "bhr": "bhr/2026-10-12", "dbpedia_persons": "dbpedia-persons/2018-10-24", "djh": "djh/2018-10-22",
     "epidat": "epidat/2026-10-12", "footprints": "footprints/2026-10-12", "geo_enriched": "geo-enriched/2019-12-18",
-    "gnd_persons": "gnd-persons/2018-11-29", "gnd_persons_entityfacts": "gnd-persons-entityfacts/2026-10-12",
+    "gnd": "gnd/2026-10-16",   # replaces gnd-persons and gnd-persons-entityfacts (decision 0029)
     "haskala": "haskala/2026-10-12", "hhkeydocs": "hhkeydocs/2025-03-21", "hirsch_family": "hirsch-family/2018-10-30",
     "jre": "jre/2019-11-29", "nli_records": "nli-records/2026-10-12", "sosy": "sosy/2026-10-12",
     "ubffm_persons": "ubffm-persons/2019-01-24",
