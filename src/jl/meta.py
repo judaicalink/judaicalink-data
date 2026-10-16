@@ -85,11 +85,18 @@ def media_type(path):
     return None
 
 
+# predicates that say a subject is no longer current: replaced, merged, split, retired or deprecated (0022, 0029)
+NOT_CURRENT = {f"<{x}>" for x in (PREFIXES["dcterms"] + "isReplacedBy", PREFIXES["jl"] + "mergedInto",
+                                  PREFIXES["jl"] + "splitInto", PREFIXES["jl"] + "retiredDate",
+                                  PREFIXES["owl"] + "deprecated")}
+
+
 def statistics(infos):
-    """Measured on the canonical form of the data files (union): triples, distinct subjects, properties,
-    classes (objects of rdf:type)."""
-    triples = subjects = 0
-    last = None
+    """Measured on the canonical form of the data files (union): triples, distinct subjects, the distinct subjects
+    that are current (not replaced, merged, split, retired or deprecated: the number of entities, which does not grow
+    with every new IRI), properties, classes (objects of rdf:type)."""
+    triples = subjects = gone = 0
+    last, last_gone = None, False
     properties, classes = set(), set()
     type_iri = f"<{RDF_TYPE}>"
     for line in canonical.union(infos):
@@ -97,11 +104,16 @@ def statistics(infos):
         s, p, rest = line.split(" ", 2)
         if s != last:
             subjects += 1
-            last = s
+            gone += last_gone
+            last, last_gone = s, False
+        if p in NOT_CURRENT:
+            last_gone = True
         properties.add(p)
         if p == type_iri:
             classes.add(rest[:-2])
-    return {"triples": triples, "distinct_subjects": subjects, "properties": len(properties), "classes": len(classes)}
+    gone += last_gone
+    return {"triples": triples, "distinct_subjects": subjects, "current_subjects": subjects - gone,
+            "properties": len(properties), "classes": len(classes)}
 
 
 def commit_url(commit, path):
@@ -166,6 +178,8 @@ def render(entry, version, files, record, stats, registry):
     if stats:
         t += [(V, VOID.triples, integer(stats["triples"])),
               (V, VOID.distinctSubjects, integer(stats["distinct_subjects"])),
+              *([(V, IRI(PREFIXES["jl"] + "currentSubjects"), integer(stats["current_subjects"]))]
+                if "current_subjects" in stats else []),
               (V, VOID.properties, integer(stats["properties"])),
               (V, VOID.classes, integer(stats["classes"]))]
 

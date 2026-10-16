@@ -414,6 +414,9 @@ def cmd_generate(args, cfg):
     for f in rec["files"]:
         t = f" {f['triples']:>10,} triples" if "triples" in f else ""
         print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
+        if f.get("noncanonical"):
+            print("    IRIs not in canonical form (docs/iri-forms.md): "
+                  + ", ".join(f"{k} {n:,}" for k, n in f["noncanonical"].items()))
     for n in rec.get("notes", []):
         print(f"  note: {n}")
     if rec["status"] != "ok":

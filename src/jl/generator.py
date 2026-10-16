@@ -33,7 +33,7 @@ import time
 import traceback
 from pathlib import Path
 
-from . import catalog, corrections, inputs, rdf, runs, turtle
+from . import catalog, corrections, inputs, iris, rdf, runs, turtle
 from .config import GENERATORS, ROOT
 from .graph import Graph
 
@@ -94,6 +94,25 @@ def load_generator(slug):
 
 
 # --- inputs ----------------------------------------------------------------------------------------
+
+def stable_inputs(prefix="", exclude=(), add=None, kinds=None, replaced=False):
+    """INPUTS for the stable versions of the catalogue: {prefix + slug (with "_" for "-"): "<slug>/<version>"}.
+    exclude: slugs left out; kinds: only these catalogue kinds; replaced: also the datasets that another entry
+    replaces (dcterms:replaces); add: {slug: version or run id}, added or instead of the stable version. Evaluated
+    when the generator is loaded; the run record names the versions used. slug_of(ref) gives the slug back."""
+    cat = catalog.Catalog()
+    gone = set() if replaced else {r for e in cat.entries.values() for r in catalog.as_list(e.data.get("replaces"))}
+    chosen = {slug: e.stable for slug, e in cat.entries.items()
+              if e.stable and slug not in exclude and slug not in gone
+              and (kinds is None or e.data.get("kind") in kinds)}
+    chosen.update(add or {})
+    return {prefix + s.replace("-", "_"): f"{s}/{v}" for s, v in sorted(chosen.items())}
+
+
+def slug_of(ref):
+    """The dataset of an input reference "<slug>/<version>[/<path>]"."""
+    return ref.split("/", 1)[0]
+
 
 def is_meta(name):
     return Path(name).name.split(".")[0].endswith("-meta")
@@ -233,9 +252,14 @@ class Run:
         return p
 
     def write_turtle(self, rel, triples, prefixes=None):
-        info = turtle.write(self.path(rel), triples, prefixes=prefixes)
+        check = iris.Check()
+        info = turtle.write(self.path(rel), check.watch(triples), prefixes=prefixes)
         self.written[rel] = {"triples": info["triples"]}
         self.log(f"wrote {rel}: {info['triples']:,} triples, {info['bytes']:,} bytes")
+        if check.counts:   # IRIs not in canonical form (docs/iri-forms.md)
+            self.written[rel]["noncanonical"] = check.summary()
+            for k, v in check.summary().items():
+                self.log(f"  not canonical ({k}): {v['count']:,}, e.g. {', '.join(v['examples'])}")
         return info
 
     def write_deletions(self, rel, blocks, prefixes=None):
@@ -338,6 +362,8 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
             f = {"path": rel, "bytes": p.stat().st_size, "sha256": catalog.sha256(p)}
             if run is not None and rel in run.written:
                 f["triples"] = run.written[rel]["triples"]
+                if "noncanonical" in run.written[rel]:
+                    f["noncanonical"] = {k: v["count"] for k, v in run.written[rel]["noncanonical"].items()}
             files.append(f)
         record["files"] = files
     (d / "run.json").write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")

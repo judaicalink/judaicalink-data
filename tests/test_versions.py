@@ -262,11 +262,13 @@ class Versions(unittest.TestCase):
     def test_meta_statistics(self):
         p = self.t / "x.nt"
         p.write_text('<http://a/1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://a/C> .\n'
-                     '<http://a/1> <http://a/p> "x" .\n<http://a/2> <http://a/p> "y" .\n')
+                     '<http://a/1> <http://a/p> "x" .\n<http://a/2> <http://a/p> "y" .\n'
+                     '<http://a/3> <http://purl.org/dc/terms/isReplacedBy> <http://a/1> .\n')
         from jl import canonical
         cfg = config.Config({"cache": str(self.t / "cache")}, None)
         s = meta.statistics([canonical.canonical(p, cfg)])
-        self.assertEqual(s, {"triples": 3, "distinct_subjects": 2, "properties": 2, "classes": 1})
+        self.assertEqual(s, {"triples": 4, "distinct_subjects": 3, "current_subjects": 2, "properties": 3,
+                             "classes": 1})
 
 
 if __name__ == "__main__":
