@@ -159,3 +159,40 @@ State 2026-10-12. Remove an item when it is solved (with a reference to the deci
 - Compact Memory full-text index for the portal (handover to Frankfurt): `../NOTES-2026-10-05-cm-fulltext-portal.md`.
 - Entity-page demonstrator: deployment files exist (`../ep-demonstrator/deploy/`), to be adapted to
   mannheim.judaicalink.org instead of `judaicalink.ki.hs-mannheim.de`.
+
+## Issues found from browsing the data, Kai 2026-10-15
+
+- **Deprecated GNDs and https URIs in GND**
+  Our data often shows multiple GND numbers, e.g.: http://data.judaicalink.org/data/ep/1000232
+  The GND Identifier come from multiple sources where they are linkes as owl:sameAs. 
+  In GND, all but one are deprecated and redirected to:
+  <https://d-nb.info/gnd/4028586-8> gndo:gndIdentifier "4028586-8";
+  owl:sameAs <http://viaf.org/viaf/23147121724526391653>, <http://www.wikidata.org/entity/Q1218>;
+  gndo:oldAuthorityNumber "(DE-588)5210156-3";
+  owl:sameAs <https://d-nb.info/gnd/5210156-3>;
+  dnbt:deprecatedUri "https://d-nb.info/gnd/5210156-3";
+  gndo:oldAuthorityNumber "(DE-588b)5210156-3", "(DE-588)5210124-1";
+  owl:sameAs <https://d-nb.info/gnd/5210124-1>;
+  dnbt:deprecatedUri "https://d-nb.info/gnd/5210124-1";
+  gndo:oldAuthorityNumber "(DE-588b)5210124-1", "(DE-588)1028326-2";
+  owl:sameAs <https://d-nb.info/gnd/1028326-2>;
+  dnbt:deprecatedUri "https://d-nb.info/gnd/1028326-2";
+  gndo:oldAuthorityNumber "(DE-588b)1028326-2", "(DE-588c)4028586-8";
+  gndo:relatedDdcWithDegreeOfDeterminacy4 <http://dewey.info/class/2--569442/>;
+  gndo:relatedDdcWithDegreeOfDeterminacy3 <http://dewey.info/class/2--33442/>;
+  owl:sameAs <https://sws.geonames.org/281184>;
+  geo:hasGeometry _:node1k0rmm5k0x239553038 .
+  Thoughts: Is it helpful to have the deprecated URIs to merge data when we get external links with old identifiers?
+  Instead of adding all of them, it would be better to collect them at our GND representaion in the gnd dataset.
+  Could be done via a complementary dataset that adds all deprecated and sameAs URIs. Could be turned into a central
+  service, where all kind=deprecated datasets are loaded and a lookup service is provided to return the current identifier. 
+  Generators should always check foreign URIs against this service. The kind=deprecated datasets would be new datasets
+  that are specifically created for important link sources like GND. Would contain ALL deprecated URIs, not JudaicaLink specific
+  so that we can resolve all unknown new links.
+  Alternative, generally usable, but slow: online dereferencing and looking for information if a URI should be updated.
+- **GND uses https URIs, we link http URIs.** Fix all generators. The links might come from a source, should we centralize 
+  this as as a cleanup or check task that is automatically run after a generation and looks for certain known issues like these?
+- **Wrong GeoNames URIs** GeoNames has a slash at the end of its URIs and also uses https: https://sws.geonames.org/3247449/about.rdf
+  Similar to GND. At least for prominent link targets, we need to document the correct URI schema and check all generated data. In this
+  case the new geo-coordinates dataset did it wrong: http://data.judaicalink.org/data/geo-coordinates/Jerusalem
+- 
