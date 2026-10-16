@@ -31,8 +31,7 @@ from jl.turtle import PREFIXES
 LINKED = stable_inputs("linked_", exclude={"geonames", "gnd-persons", "gnd-persons-entityfacts", "ep",
                                            "compact-memory", "compact-memory-supp", "cm-ocr-quality", "cm-tagme",
                                            "corrections-links", "quality-annotations", "judaicalink-agents",
-                                           "judaicalink-vocabulary", "ontology"},
-                       add={"gnd": "run-20261016T121839Z", "geo-enriched": "run-20261015T212320Z"})
+                                           "judaicalink-vocabulary", "ontology"})
 DUMP = "inputs:geonames/dump-2026-10-15/"
 INPUTS = {"all": DUMP + "allCountries.zip", "alternate": DUMP + "alternateNamesV2.zip",
           "admin1": DUMP + "admin1CodesASCII.txt", **LINKED}
