@@ -26,8 +26,8 @@ import unicodedata
 from collections import Counter, defaultdict
 from urllib.parse import unquote
 
-from jl import classes
-from jl.generator import GeneratorError
+from jl import catalog, classes
+from jl.generator import GeneratorError, slug_of, stable_inputs
 from jl.iris import canonical_triples, canonical_wkt
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
@@ -45,24 +45,21 @@ PRECEDENCE = [
 ]
 # The deletions of the correction datasets are applied to every input (0023); a correction version that also adds
 # triples (corrections-links 2026-10-12 adds none) is declared here as an input like any other dataset.
-STABLE = {
-    "gnd": "2026-10-16", "nli-records": "2026-10-12",
-    "ubffm-persons": "2019-01-24", "nrwbibdjg": "2024-05-24", "haskala": "2026-10-12", "yivo": "2020-09-30",
-    "rujen": "2020-09-28", "rujen-translation": "2026-10-12", "bhr": "2026-10-12", "djh": "2018-10-22",
-    "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2026-10-12", "stolpersteine": "2020-10-06",
-    "hirsch-family": "2018-10-30", "sosy": "2026-10-12", "gba": "2025-03-21", "footprints": "2026-10-12",
-    "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2026-10-12",
-    "interlinks": "2018-07-18", "2014links": "2026-10-12", "geo-enriched": "2019-12-18",
-    "dbp-wiki-geo-linking": "2021-01-13", "records-normalized": "2026-10-12", "ls-nli-legacy": "2026-10-12",
-    "ls-yivo-wikidata": "2026-10-12", "record-classes": "2026-10-12",
-}
-INPUTS = {"previous": "ep/2021-05-28", **{s.replace("-", "_"): f"{s}/{v}" for s, v in STABLE.items()}}
+# The stable versions of the catalogue for the datasets above and record-classes, and RUNS (runs of datasets that are
+# not versions yet; a run of ep with RUNS cannot become a version).
+RUNS = {}
+STABLE = {slug_of(ref): ref.split("/", 1)[1]
+          for ref in stable_inputs(add=RUNS).values()
+          if slug_of(ref) in set(PRECEDENCE) | {"record-classes"} | set(RUNS)}
+INPUTS = {"previous": "ep/" + catalog.Catalog().entries["ep"].stable,
+          **{s.replace("-", "_"): f"{s}/{v}" for s, v in STABLE.items()}}
 # identity: "all" follows every identity link of every dataset (0022); "linksets" only those of our linksets, the
 # replacements and the authority namespaces (decision 0029). The run log always reports the joins that only links
 # outside the linksets make (the linksets still to be made).
 PARAMS = {"identity": "all"}
 # the datasets whose identity links are our own decisions (catalogue kind "linkset")
-LINKSETS = {"2014links", "interlinks", "dbp-wiki-geo-linking", "ls-nli-legacy", "ls-yivo-wikidata"}
+LINKSETS = {"2014links", "interlinks", "dbp-wiki-geo-linking", "ls-nli-legacy", "ls-yivo-wikidata", "ls-gnd", "ls-lc",
+            "ls-geonames"}
 DATASET_OF = {s.replace("-", "_"): s for s in STABLE}
 RANK = {s: i for i, s in enumerate(PRECEDENCE)}
 # datasets whose typed resources are records (the others only add facts or links to records)

@@ -32,7 +32,7 @@ import gzip
 import io
 import json
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 from jl import identifiers
 from jl import classes
@@ -57,7 +57,8 @@ INPUTS = {
     **LINKED,
 }
 # area_rule: "occupation" (the 2017 rule with any occupation) or "off"
-PARAMS = {"area_rule": "off"}   # decided 2026-10-16: off (see README)
+PARAMS = {"area_rule": "off",   # decided 2026-10-16: off (see README)
+          "drop_placeholders": True}   # EntityFacts links with an unfilled "[ID]" (2026-10-18; off: as 2026-10-16)
 REASONS = ["linked", "area-occupation", "freimann", "ubffm-authors", "previous"]
 
 JL = "http://data.judaicalink.org/data/"
@@ -228,6 +229,7 @@ def generate(run):
         run.log("unknown number:", n)
 
     links = entityfacts(run, found)
+    placeholders = Counter()
     t, rec_of = set(), {}
     for n in sorted(found):
         rec = IRI(JL + "gnd/" + n)
@@ -271,6 +273,9 @@ def generate(run):
                 if name:
                     t.add((rec, IRI(JLO + "occupation"), Literal(name)))
         for x in links.get(n, []):
+            if run.params["drop_placeholders"] and "[ID]" in x:
+                placeholders[x] += 1   # a BEACON link template, the same IRI for every record (e.g. epidat)
+                continue
             x = BAD_IRI.sub(lambda m: "%{:02X}".format(ord(m.group(0))), x.strip().strip('"'))
             if gnd_number(x) is None and re.match(r"^https?://[^/]+/", x) and not identifiers.is_ours(x):
                 # not the GND itself (record, description, former numbers), not JudaicaLink (from our BEACON, 0029)
@@ -305,6 +310,8 @@ def generate(run):
         by_reason[reason].add(n)
     only = {r: len(by_reason[r] - set().union(*(by_reason[x] for x in REASONS[:REASONS.index(r)])))
             for r in REASONS}
+    for x, k in placeholders.items():
+        run.log(f"EntityFacts link with a placeholder left out: {x} ({k:,} records)")
     run.note(f"{len(found):,} records; numbers by reason: "
              + ", ".join(f"{r} {len(by_reason[r]):,} ({only[r]:,} not in the reasons before)" for r in REASONS)
              + f"; {len(current_of):,} former numbers replaced; {len(listed & deleted):,} cited numbers deleted; "
