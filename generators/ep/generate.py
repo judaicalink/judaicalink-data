@@ -117,8 +117,10 @@ KNOWN_DISTINCT = [(JL + a, JL + b) for a, b in [
     ("dbpedia/Randolph_Churchill", "gnd/119410346"), ("gnd/118960881", "gnd/1053284543"),
     ("gnd/1029068879", "gnd/13366936X"), ("gnd/119017806", "gnd/12279916X"), ("Granada", "dbpedia/Grenada"),
     ("nli/record/viaf-294403101", "gnd/118540238"), ("nli/record/viaf-179642103", "nli/record/viaf-22144877"),
-    ("gnd/1140070320", "gnd/124269214"), ("hhkeydocs/Otto_Warburg", "nli/record/viaf-112658460"),
-    ("hhkeydocs/Kurt_Singer", "nli/record/viaf-59920664"), ("dbpedia/Isaak_ben_Salomo_Sahula", "nli/record/viaf-308556423"),
+    ("gnd/1140070320", "gnd/124269214"),
+    ("hhkeydocs/person/gnd/117565725", "nli/record/viaf-112658460"),   # in 2025-03-21 hhkeydocs/Otto_Warburg
+    ("hhkeydocs/person/gnd/117402362", "nli/record/viaf-59920664"),    # in 2025-03-21 hhkeydocs/Kurt_Singer
+    ("dbpedia/Isaak_ben_Salomo_Sahula", "nli/record/viaf-308556423"),
     ("gnd/141432381", "nli/record/viaf-56213280"), ("Lubin", "rujen/lyubin"), ("Marseille", "rujen/marselj"),
     ("dbpedia/Berlin", "rujen/berlin"), ("Lemberg", "rujen/ljvov"),
 ]]
