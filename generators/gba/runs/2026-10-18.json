@@ -1,0 +1,67 @@
+{
+ "slug": "gba",
+ "run": "run-20261017T221930Z",
+ "generator": "generators/gba/generate.py",
+ "commit": "704a36d0f885a2199ea12de02114899ff909f577",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "common_terms": true,
+  "dates_as_text": true,
+  "relation_links": true,
+  "whitespace": true,
+  "gnd_links": true,
+  "described_at": true,
+  "drop_created": true,
+  "canonical_forms": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-17T22:19:30Z",
+ "inputs": [
+  {
+   "name": "csv",
+   "ref": "inputs:gba/gidal-csv-2022-07-08/gidal.csv",
+   "file": "gidal.csv",
+   "sha256": "69117851e579d0f779ff798b1c1de19b67487e7a35027ee956351caeda979341",
+   "bytes": 4439
+  },
+  {
+   "name": "previous",
+   "ref": "gba/2025-03-21/gba-final-01.ttl.gz",
+   "file": "gba-final-01.ttl.gz",
+   "sha256": "33fe2d67b4c621c75a7386429c3acd1b15435b2e41b3dfdf9dd2ba74a938192d",
+   "bytes": 2937
+  }
+ ],
+ "input_descriptions": {
+  "inputs:gba/gidal-csv-2022-07-08": {
+   "title": "Gidal-Bildarchiv: the hand-made table of persons (gidal.csv)",
+   "origin": "https://github.com/judaicalink/judaicalink-generators/blob/dd0d4aaec987daabca2565e37b1668f58e90b205/gba/source/gidal.csv",
+   "description": "The hand-made input of the gba generator: 24 persons and one organisation of the Gidal-Bildarchiv of the Steinheim-Institut (from its BEACON), with GND number, type, name, birth and death year, occupation, publications, relation, alternative name and abstract; unchanged since 2022-07-08 (judaicalink-generators gidal/ until 2025, gba/source/ since 2025-11).",
+   "date": "2022-07-08",
+   "note": "Not published: the input of the dataset gba."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-17T22:19:30Z",
+ "seconds": 0.0,
+ "notes": [
+  "24 rows; 10 with a GND number; 10 relations linked."
+ ],
+ "files": [
+  {
+   "path": "gba.ttl.gz",
+   "bytes": 2981,
+   "sha256": "ae7d84aeba44e09a0c937676129e554b12879c75f1dc070bd83189d8ce71667a",
+   "triples": 202
+  }
+ ],
+ "version": "2026-10-18"
+}

@@ -15,6 +15,10 @@ Gidal-Bildarchiv (photo archive of the Steinheim-Institut): persons, by Benjamin
 **Probable, confirmed by content** `6fce1cd`: the run started 11 minutes after the commit, the URIs follow the new
 rule, and the 2025-11 rebuild from the same CSV gives the same triples except the timestamps.
 
+## Version 2026-10-18
+
+Run of the framework generator (below) with all fixes on: 202 triples.
+
 ## Inputs
 
 `inputs:gba/gidal-csv-2022-07-08/gidal.csv`: the hand-made table (header and 24 rows, unchanged since 2022-07-08;

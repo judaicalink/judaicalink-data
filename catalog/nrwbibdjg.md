@@ -6,7 +6,7 @@ date = "2024-06-03"
 website = "https://www.steinheim-institut.de/ebib-djg-nrw/"
 example = "http://data.judaicalink.org/data/nrwbibdjg/112504981"
 namespaces = ["nrwbibdjg"]
-stable = "2024-05-24"
+stable = "2026-10-18"
 kind = "records"
 method = ["scraped", "deterministic", "rule-based"]
 
@@ -18,6 +18,25 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/nrwbibdjg"
+
+[[versions]]
+version = "2026-10-18"
+issued = "2026-10-18"
+author = "Kai Eckert"
+commit = "5601068c22b0be99ec3c864163e3e75b70681015"
+description = "Made from a new harvest of the bibliography (BEACON and the list of titles per GND number, 2026-10-17)."
+
+  [[versions.files]]
+  path = "nrwbibdjg.ttl.gz"
+  bytes = 361897
+  sha256 = "215ea3c4060b9aed6b472b63c0a9d5d9b6d78180480e5d7abb58821418a63e37"
+  triples = 24475
+
+  [[versions.files]]
+  path = "nrwbibdjg-meta.ttl.gz"
+  bytes = 2410
+  sha256 = "411023a6057436a7fa32164f5ea501d683497ada6b596820aa1a9fcee1079b42"
+  triples = 77
 
 [[versions]]
 version = "2024-05-24"
@@ -35,6 +54,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 1960
   sha256 = "ba6dd259c1c7eac0f847faf33dc03703f71fe2b3228687c06476d2df7bfea0ec"
   triples = 58
+
+[[changelog]]
+date = "2026-10-18"
+version = "2026-10-18"
+author = "Kai Eckert"
+text = "New harvest: 2,250 works with IRIs from the bibliography's ids (the IRIs of 2024 replaced); authors, editors and subjects told apart (2024 stated every listed person as author); links to the GND instead of copied GND data."
 
 [[changelog]]
 date = "2026-10-12"

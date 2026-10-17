@@ -6,7 +6,7 @@ date = "2022-07-08"
 website = "https://www.steinheim-institut.de/wiki/index.php/Archive:Gidal-Bildarchiv"
 example = "http://data.judaicalink.org/data/gba/Moses_Mendelssohn"
 namespaces = ["gba"]
-stable = "2025-03-21"
+stable = "2026-10-18"
 kind = "records"
 method = ["converted", "curated"]
 
@@ -18,6 +18,25 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/gba"
+
+[[versions]]
+version = "2026-10-18"
+issued = "2026-10-18"
+author = "Kai Eckert"
+commit = "704a36d0f885a2199ea12de02114899ff909f577"
+description = "Made by the framework from gidal.csv (2022-07-08), with common terms instead of terms invented in the GND namespace."
+
+  [[versions.files]]
+  path = "gba.ttl.gz"
+  bytes = 2981
+  sha256 = "ae7d84aeba44e09a0c937676129e554b12879c75f1dc070bd83189d8ce71667a"
+  triples = 202
+
+  [[versions.files]]
+  path = "gba-meta.ttl.gz"
+  bytes = 2552
+  sha256 = "0ddca80c71f6884960cda1fc7f927d33104c5d057503535a919b16455d1e948c"
+  triples = 71
 
 [[versions]]
 version = "2025-03-21"
@@ -35,6 +54,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 2177
   sha256 = "6a424995d274d57515bde0ba2312d002d37d27057154801a470ef2184d392f8d"
   triples = 58
+
+[[changelog]]
+date = "2026-10-18"
+version = "2026-10-18"
+author = "Kai Eckert"
+text = "Common terms instead of gndo:birthDate, gndo:occupation and other terms the GND ontology does not have; relations as gndo:relatedPerson; links to the GND and to the archive's search by GND number."
 
 [[changelog]]
 date = "2026-10-12"

@@ -13,6 +13,10 @@ Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen (Steinheim-Institu
 
 **Exact**: the file is byte-identical to the output committed in `68c9692`.
 
+## Version 2026-10-18
+
+Run of the framework generator on the harvest of 2026-10-17 (counts below).
+
 ## Inputs
 
 Of 2024-05-24, live only: the BEACON file and OPAC of the bibliography at the Steinheim-Institut (answered 503 on

@@ -38,10 +38,6 @@ solved is in the decisions, the changelogs of the versions and the git history.
   <geometry>`, `<geometry> a geo:Geometry ; geo:asWKT "POINT(…)"^^geo:wktLiteral`, the geometry IRI coined in the
   complement's namespace from the place IRI (e.g. `data/geometries/geonames/281184`), generated from all stable
   datasets; then test GeoSPARQL queries (distance, within) in Fuseki and QLever on the platform.
-- **rujen** types its records `jl:Person`, which the ontology does not define: the next rujen version uses
-  `foaf:Person`, like all other datasets (the entity pages read both).
-- **Pull requests prepared** (branches, not pushed): `common-layer-terms` (terms used by several datasets, from
-  `reports/2026-10-17-terms-in-use.md`) and `dcterms-only` (decision 0030); merge in this order.
 - In Frankfurt, ontology term IRIs do not resolve (`data.judaicalink.org/ontology/<term>` → a 404 page): suggest a
   redirect to ontology.judaicalink.org.
 - The catalogue names ontology version 2025-11-27 (in `lokal/dumps-additions/ontology/2025-11-27/`, not published);
@@ -67,8 +63,9 @@ solved is in the decisions, the changelogs of the versions and the git history.
   first the licence (Wikipedia CC BY-SA, our entry CC0; or base it on Wikidata, CC0).
 - **occupations:** never a version; records-normalized uses 484 occupation IRIs that nothing describes; licence in
   the entry CC BY 4.0, the rest CC0.
-- **nrwbibdjg:** reachable again; stable work IRIs from the bibliography's ids instead of title collisions, about 800
-  undefined IRIs, copied GND triples. **jre:** the wiki's API is open; licence not stated.
+- **jre:** the wiki's API is open; licence not stated.
+- **nrwbibdjg** (2026-10-18) reaches about 2,250 of the about 7,500 titles (search by GND number only); two GND
+  numbers look wrong in the source (121918424, 128477008).
 - **hhkeydocs:** the documents, articles and bibliography of the site as records (later).
 - **Fuseki warnings** (test load 2026-10-13): 13 impossible dates typed `xsd:date` (e.g. `1902-02-29`; 7 in
   records-normalized, 6 carried into ep), which records-normalized should not type as dates; 57 legacy `data/nli/`
@@ -80,9 +77,6 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **cm-entities** takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula); `ls-viaf` must
   not follow these.
 - **YIVO subsections** (346 `skos:Concept`) are taken by ep as subjects; ep must read both yivo and record-classes.
-- **gba** uses the GND namespace for its own fields (`gndo:birthDate`, `deathDate`, `occupation`, `hasAbstract`,
-  `hasPublication`, `relation`, `alternativeName`; not in the GND ontology); **nrwbibdjg** writes `gndo:forname`
-  (for `gndo:forename`). Both for their next versions (found by judaicalink-terms, 2026-10-17).
 - **DC Elements** (decision 0030): the generators of nli-records (`dc:creator`), hirsch-family and stolpersteine
   fail until they write `dcterms:`; with their next versions. hirsch-family states source documents (PDF, scans)
   as `dc:subject` strings of the person: IRIs with `rdfs:seeAlso`; stolpersteine the photo of the stone:

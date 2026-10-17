@@ -1,0 +1,49 @@
+{
+ "slug": "rujen",
+ "run": "run-20261017T221927Z",
+ "generator": "generators/rujen/generate.py",
+ "commit": "704a36d0f885a2199ea12de02114899ff909f577",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "described_at_path": true,
+  "drop_main_page": true,
+  "entity_classes": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-17T22:19:27Z",
+ "inputs": [
+  {
+   "name": "crawl",
+   "ref": "rujen/2020-09-28/rujen.jsonl.gz",
+   "file": "rujen.jsonl.gz",
+   "sha256": "2ded560739a06d39eee86c0506aa093d961a144491a246efc09755f1d49b3d6e",
+   "bytes": 7829862
+  }
+ ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-17T22:19:30Z",
+ "seconds": 2.9,
+ "notes": [],
+ "files": [
+  {
+   "path": "rujen.jsonl.gz",
+   "bytes": 7829862,
+   "sha256": "2ded560739a06d39eee86c0506aa093d961a144491a246efc09755f1d49b3d6e"
+  },
+  {
+   "path": "rujen.ttl.gz",
+   "bytes": 6832950,
+   "sha256": "1ac2da8a90f3abc79b02708fb289a71ee154daccdaef388e8455961409a311b7",
+   "triples": 140402
+  }
+ ],
+ "version": "2026-10-18"
+}

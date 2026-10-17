@@ -1,0 +1,82 @@
+{
+ "slug": "nrwbibdjg",
+ "run": "run-20261017T222046Z",
+ "generator": "generators/nrwbibdjg/generate.py",
+ "commit": "5601068c22b0be99ec3c864163e3e75b70681015",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-17T22:20:46Z",
+ "inputs": [
+  {
+   "name": "pages",
+   "ref": "inputs:nrwbibdjg/opac-2026-10-17/nrwbibdjg-pages-2026-10-17.tar.gz",
+   "file": "nrwbibdjg-pages-2026-10-17.tar.gz",
+   "sha256": "8cc84658eff0891df386827470e9deccecc9c9352c38a7ae5239085e56e0edc6",
+   "bytes": 1996190
+  },
+  {
+   "name": "beacon",
+   "ref": "inputs:nrwbibdjg/opac-2026-10-17/beacon.txt",
+   "file": "beacon.txt",
+   "sha256": "7299341d85aa96406c826cd75b59ee1713ae6e617878f61e20d55664c2553f74",
+   "bytes": 8755
+  },
+  {
+   "name": "gnd",
+   "ref": "gnd/2026-10-16/gnd.ttl.gz",
+   "file": "gnd.ttl.gz",
+   "sha256": "553d87cf4518115fc5114a9f74eb2f73fafc0128187d0c667fa53f2702db2be9",
+   "bytes": 11973998
+  },
+  {
+   "name": "gnd-selection",
+   "ref": "gnd/2026-10-16/gnd-selection.tsv.gz",
+   "file": "gnd-selection.tsv.gz",
+   "sha256": "192c67a6609be89af0cb233b5c33ba5c877d00603886b347498ec74a4e37361c",
+   "bytes": 594947
+  },
+  {
+   "name": "previous",
+   "ref": "nrwbibdjg/2024-05-24/nrwbibdjg.ttl.gz",
+   "file": "nrwbibdjg.ttl.gz",
+   "sha256": "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466",
+   "bytes": 371256
+  }
+ ],
+ "input_descriptions": {
+  "inputs:nrwbibdjg/opac-2026-10-17": {
+   "title": "Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen: BEACON and the titles of each GND number (2026-10-17)",
+   "origin": "https://www.steinheim-institut.de/ebib-djg-nrw/ebib-djg-nrw-beacon.txt and https://www.steinheim-institut.de/ebib-djg-nrw/query.html?database=NRW-Bibliografie&text1=<GND>&kategorie1=gnd",
+   "description": "The BEACON of the Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen (Steinheim-Institut; timestamp 2026-10-13, 806 GND numbers) and, for each number, the OPAC's list of its titles, fetched 2026-10-17 by generators/nrwbibdjg/harvest.py, unchanged, as nrwbibdjg-pages-2026-10-17.tar.gz (gnd/<number>.html).",
+   "date": "2026-10-17",
+   "note": "Not published: a copy of a public source, the input of the dataset nrwbibdjg."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-17T22:20:54Z",
+ "seconds": 7.5,
+ "notes": [
+  "806 records (790 persons, 11 organisations, 5 places), 2,250 works, 365 journals and volumes; 2,107 author, 110 editor and 315 subject links. Of 2024-05-24: 806 records keep their IRI, 2,181 works are replaced, 4 IRIs deprecated."
+ ],
+ "deleted_by_corrections": {
+  "gnd": 1
+ },
+ "files": [
+  {
+   "path": "nrwbibdjg.ttl.gz",
+   "bytes": 361897,
+   "sha256": "215ea3c4060b9aed6b472b63c0a9d5d9b6d78180480e5d7abb58821418a63e37",
+   "triples": 24475
+  }
+ ],
+ "version": "2026-10-18"
+}

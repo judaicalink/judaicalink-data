@@ -23,6 +23,12 @@ Imported (`jl import-files`): `judaicalink-ontology.ttl` at `4597e7f`, after pul
 (the terms of decision 0020), gzipped; re-running `generate.py` on the Markdown at that commit gives the same bytes.
 Made the stable version on 2026-10-12.
 
+## Versions 2026-10-17 and 2026-10-18
+
+Imported like 2026-10-12: `judaicalink-ontology.ttl` at `d7abf5f` (pull requests 21–23, the common layer) and at
+`918d57c` (pull requests 24 and 25: terms used by several datasets, `dcterms:` only); `generate.py` gives the same
+bytes.
+
 ## Inputs
 
 `judaicalink-ontology.md` in the judaicalink-ontology repository.

@@ -17,6 +17,10 @@ Encyclopedia of Russian Jewry (rujen.ru), crawled by Kai Eckert.
 **Exact** `1ac14f1`: the generator's self-description (`rujen-metadata.ttl.gz`, written 2020-09-28T06:36:31Z; removed from the version 2026-10-11, 0018) recorded the commit, and running its RDF step on the kept crawl
 (`rujen.jsonl.gz`) gives an isomorphic graph (140,472 triples).
 
+## Version 2026-10-18
+
+Run of `generate.py` with all fixes on (also `entity_classes`: foaf:Person, schema:Place); 15,729 `rdf:type` triples differ from 2026-10-16, nothing else.
+
 ## Inputs
 
 On file: `rujen.jsonl.gz` (the crawl) in the kept version. A new crawl of rujen.ru would differ.
