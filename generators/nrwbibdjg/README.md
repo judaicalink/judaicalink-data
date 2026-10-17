@@ -43,12 +43,12 @@ entry (2,250 of the about 7,500 of the bibliography); a search for all titles is
   entry (`foaf:Person`, `foaf:Organization`, `schema:Place`); `foaf:Person` for a number the GND has deleted
   (undifferentiated names); `skos:prefLabel` and `foaf:name` the name the bibliography gives most often;
   `owl:sameAs` the GND; `jl:describedAt` the OPAC's list. No data copied from the GND.
-- Works `data/nrwbibdjg/work/<UUID>`, `schema:CreativeWork`: `dc:title` ("[Online-Ressource]" taken off),
-  `dcterms:issued` (the year of the COinS), `dc:creator` / `dc:contributor` the names of the authors / editors,
+- Works `data/nrwbibdjg/work/<UUID>`, `schema:CreativeWork`: `dcterms:title` ("[Online-Ressource]" taken off),
+  `dcterms:issued` (the year of the COinS), `dcterms:creator` / `dcterms:contributor` the names of the authors / editors,
   `gndo:author` / `gndo:editor` the record of a GND entry of the item with that name, `dcterms:subject` the records of
   the other GND entries, `dcterms:bibliographicCitation` the rest of the citation, `dcterms:isPartOf` the journal or
   volume, `rdfs:seeAlso` the online resource, `jl:describedAt` the bibliography's page of the title.
-- Journals and volumes `data/nrwbibdjg/work/<id>` (`z…` journals, `_b…` volumes), `schema:CreativeWork`: `dc:title`,
+- Journals and volumes `data/nrwbibdjg/work/<id>` (`z…` journals, `_b…` volumes), `schema:CreativeWork`: `dcterms:title`,
   `jl:describedAt` the OPAC's list of their contents.
 - 2024-05-24 made work IRIs from the titles (one IRI for equal titles) and took the titles of journals and volumes as
   works too. Each is `dcterms:isReplacedBy` the works or journals and volumes with that title in the lists of its GND

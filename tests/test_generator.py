@@ -99,6 +99,14 @@ class Generate(unittest.TestCase):
         self.assertIn("no such version", rec["error"])
         self.assertTrue((d / "run.json").is_file())
 
+    def test_not_used_vocabulary(self):
+        # DC Elements: the run fails and names the dcterms: term to use
+        path = self.cfg.path("build").parent / "generators" / "test" / "generate.py"
+        path.write_text(GENERATE.replace('"http://example.org/p"', '"http://purl.org/dc/elements/1.1/title"'))
+        _, rec = generator.generate(self.cfg, "test", [], log=lambda *a: None)
+        self.assertEqual(rec["status"], "failed")
+        self.assertIn("use http://purl.org/dc/terms/title", rec["error"])
+
 
 if __name__ == "__main__":
     unittest.main()

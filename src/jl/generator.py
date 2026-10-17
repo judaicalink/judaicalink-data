@@ -260,6 +260,9 @@ class Run:
             self.written[rel]["noncanonical"] = check.summary()
             for k, v in check.summary().items():
                 self.log(f"  not canonical ({k}): {v['count']:,}, e.g. {', '.join(v['examples'])}")
+        if check.not_used:   # vocabularies we do not write (docs/iri-forms.md)
+            raise GeneratorError(f"{rel}: terms of a vocabulary we do not use: " + "; ".join(
+                f"{term} ({n:,}): use {iris.instead(term)}" for term, n in sorted(check.not_used.items())))
         return info
 
     def write_deletions(self, rel, blocks, prefixes=None):

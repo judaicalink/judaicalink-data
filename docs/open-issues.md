@@ -40,7 +40,8 @@ solved is in the decisions, the changelogs of the versions and the git history.
   datasets; then test GeoSPARQL queries (distance, within) in Fuseki and QLever on the platform.
 - **rujen** types its records `jl:Person`, which the ontology does not define: the next rujen version uses
   `foaf:Person`, like all other datasets (the entity pages read both).
-- **Pull requests** #21 (`jl:currentSubjects`) and #22 (`jl:grandparent`, used by epidat 2026-10-16) to merge.
+- **Pull requests prepared** (branches, not pushed): `common-layer-terms` (terms used by several datasets, from
+  `reports/2026-10-17-terms-in-use.md`) and `dcterms-only` (decision 0030); merge in this order.
 - In Frankfurt, ontology term IRIs do not resolve (`data.judaicalink.org/ontology/<term>` → a 404 page): suggest a
   redirect to ontology.judaicalink.org.
 - The catalogue names ontology version 2025-11-27 (in `lokal/dumps-additions/ontology/2025-11-27/`, not published);
@@ -82,6 +83,12 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **gba** uses the GND namespace for its own fields (`gndo:birthDate`, `deathDate`, `occupation`, `hasAbstract`,
   `hasPublication`, `relation`, `alternativeName`; not in the GND ontology); **nrwbibdjg** writes `gndo:forname`
   (for `gndo:forename`). Both for their next versions (found by judaicalink-terms, 2026-10-17).
+- **DC Elements** (decision 0030): the generators of nli-records (`dc:creator`), hirsch-family and stolpersteine
+  fail until they write `dcterms:`; with their next versions. hirsch-family states source documents (PDF, scans)
+  as `dc:subject` strings of the person: IRIs with `rdfs:seeAlso`; stolpersteine the photo of the stone:
+  `foaf:depiction`. Footprints: `dcterms:` in the new generator.
+- **lc 2026-10-16** types 1,495 records with `http://www.loc.gov/standards/mads/rdf/v1#Geographic` (made before
+  the canonical-form check); the next run writes the canonical namespace.
 - **gba** IRIs changed in 2025 (`JecheskelEzechielLandau` → `Jecheskel__Ezechiel__Landau`): check whether anything
   links to the old ones. **djh** 2018 has non-ASCII characters in IRIs.
 - **The `-meta` of epidat 2023-07-14**, rendered again, would get the namespace and example of the entry, which fit

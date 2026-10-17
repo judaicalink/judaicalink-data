@@ -85,6 +85,21 @@ def canonical_triples(triples):
         yield (s if isinstance(s, BNode) else IRI(canonical(s))), IRI(canonical(p)), o
 
 
+# vocabularies we do not write, with the namespace to use instead (docs/iri-forms.md); a run that writes one fails
+NOT_USED = [
+    ("http://purl.org/dc/elements/1.1/", "http://purl.org/dc/terms/", "DC Elements: dcterms: only (decision 0030)"),
+]
+
+
+def instead(iri):
+    """For a term of a vocabulary we do not write, the term to use instead, else None."""
+    s = str(iri)
+    for ns, new, _reason in NOT_USED:
+        if s.startswith(ns):
+            return new + s[len(ns):]
+    return None
+
+
 def kind(iri):
     for old, _new, _source in VOCABULARIES:
         if str(iri).startswith(old):
@@ -96,16 +111,20 @@ def kind(iri):
 
 
 class Check:
-    """Counts the IRIs that are not in canonical form, by kind, with a few examples."""
+    """Counts the IRIs that are not in canonical form, by kind, with a few examples, and the properties and classes
+    of vocabularies we do not write (not_used: {term: count})."""
 
     def __init__(self):
-        self.counts, self.examples = {}, {}
+        self.counts, self.examples, self.not_used = {}, {}, {}
 
     def watch(self, triples):
         """Pass the triples through and note the subjects, predicates and IRI objects that are not canonical."""
-        from .rdf import BNode, Literal
+        from .rdf import RDF_TYPE, BNode, Literal
         for t in triples:
             o = t[2]
+            for term in (t[1], o if t[1] == RDF_TYPE and not isinstance(o, Literal) else None):
+                if term is not None and instead(term):
+                    self.not_used[str(term)] = self.not_used.get(str(term), 0) + 1
             if isinstance(o, Literal) and t[1] == AS_WKT and (canonical_wkt(o.value) != o.value or o.datatype != WKT):
                 self.counts["wkt"] = self.counts.get("wkt", 0) + 1
                 ex = self.examples.setdefault("wkt", [])

@@ -35,3 +35,4 @@ consequences. Short is better than complete; link to the documentation that has 
 | [0027](0027-store-beside-the-old-dumps.md) | The store is published in `archive.judaicalink.org/store/`, beside the old `/dumps/`, which stays for now | 2026-10-13 |
 | [0028](0028-user-agent.md) | One User-Agent `JudaicaLink-data (https://judaicalink.org)` for every request (`jl.fetch`); overrides by the generator or per host in `local.toml` (proposed) | 2026-10-15 |
 | [0029](0029-identity-from-our-linksets.md) | Identity on the entity pages only from our linksets (by key, with rules); external sources (Wikidata, VIAF, LC, GeoNames, GND, DBpedia) kept on file as datasets, trusted and described; VIAF linked unless dates contradict (proposed) | 2026-10-16 |
+| [0030](0030-dcterms-only.md) | Dublin Core: only `dcterms:`, also where a source uses the elements; a run that writes `dc:` fails | 2026-10-18 |

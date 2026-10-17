@@ -32,6 +32,13 @@ The terms of a vocabulary in the namespace its publisher uses in its own files (
 | GeoNames ontology | `https://www.geonames.org/ontology#` | `http://www.geonames.org/ontology#` |
 | MADS/RDF | `http://www.loc.gov/mads/rdf/v1#` | `http://www.loc.gov/standards/mads/rdf/v1#` |
 
+Vocabularies we do not write (`NOT_USED` in `src/jl/iris.py`); a run whose output has one of their properties or
+classes fails:
+
+| Vocabulary | Use instead | |
+|---|---|---|
+| DC Elements `http://purl.org/dc/elements/1.1/` | `http://purl.org/dc/terms/` (the same name) | decision 0030 |
+
 ## Coordinates
 
 A point is written `"POINT(<longitude> <latitude>)"^^geosparql:wktLiteral` (GeoSPARQL; decided 2026-10-16), the

@@ -13,13 +13,13 @@ Records:
   (foaf:Person, foaf:Organization, schema:Place) from gnd/2026-10-16, as the source does not say; foaf:Person for a
   number the GND has deleted (undifferentiated names); skos:prefLabel and foaf:name the name the bibliography gives;
   owl:sameAs the GND; jl:describedAt the OPAC's list of its titles.
-- one per title, data/nrwbibdjg/work/<UUID>, schema:CreativeWork: dc:title ("[Online-Ressource]" taken off),
-  dcterms:issued the year of the COinS, dc:creator / dc:contributor the names of the authors / editors, gndo:author /
+- one per title, data/nrwbibdjg/work/<UUID>, schema:CreativeWork: dcterms:title ("[Online-Ressource]" taken off),
+  dcterms:issued the year of the COinS, dcterms:creator / dcterms:contributor the names of the authors / editors, gndo:author /
   gndo:editor the record of a GND entry of the item with that name, dcterms:subject the records of the other GND
   entries, dcterms:bibliographicCitation the rest of the citation, dcterms:isPartOf the journal or volume,
   rdfs:seeAlso the online resource, jl:describedAt the bibliography's page of the title.
 - one per journal or volume, data/nrwbibdjg/work/<id> (the bibliography's id, z… journals, _b… volumes),
-  schema:CreativeWork: dc:title; jl:describedAt the OPAC's list of its contents.
+  schema:CreativeWork: dcterms:title; jl:describedAt the OPAC's list of its contents.
 - Replacements: a work of 2024-05-24 (its IRI made from the title) is dcterms:isReplacedBy the works with that title
   in the lists of its GND numbers; failing that, by the only work with that title. Records of 2024-05-24 without a
   successor are owl:deprecated true.
@@ -51,7 +51,7 @@ OPAC = "https://www.steinheim-institut.de/ebib-djg-nrw/"
 LIST = OPAC + "query.html?database=NRW-Bibliografie&text1={}&kategorie1=gnd"
 GND = "https://d-nb.info/gnd/"
 GNDO = "https://d-nb.info/standards/elementset/gnd#"
-JLO, SKOS, RDFS, FOAF, DC, DCT, OWL = (PREFIXES[p] for p in ("jl", "skos", "rdfs", "foaf", "dc", "dcterms", "owl"))
+JLO, SKOS, RDFS, FOAF, DCT, OWL = (PREFIXES[p] for p in ("jl", "skos", "rdfs", "foaf", "dcterms", "owl"))
 XSD_BOOLEAN = XSD + "boolean"
 # numbers of the BEACON that gnd/2026-10-16 does not have (linked by no stable version), classed by their name
 NOT_IN_GND = {"7777102-3": classes.ORGANISATION}   # Jüdische Gemeinde Reken
@@ -202,7 +202,7 @@ def generate(run):
         if [title] != coins_values(c, "rft.atitle") and title and "&" not in title:
             stats["works: title of the COinS differs from the list's"] += 1
             run.log("title differs:", uuid, repr(title), coins_values(c, "rft.atitle"))
-        add(w, DC + "title", Literal(title) if title else None)
+        add(w, DCT + "title", Literal(title) if title else None)
         stats["works without a title"] += not title
         for d in coins_values(c, "rft.date"):
             add(w, DCT + "issued", Literal(d))
@@ -211,7 +211,7 @@ def generate(run):
             stats["works: author of the COinS not the list's first"] += 1
             run.log("COinS author differs:", uuid, au, it["persons"])
         for a in it["persons"]:
-            add(w, DC + ("creator" if it["role"] == "author" else "contributor"), Literal(a))
+            add(w, DCT + ("creator" if it["role"] == "author" else "contributor"), Literal(a))
         stats[f"works: {it['role']}s named"] += len(it["persons"])
         for g, name in it["entries"]:
             if NS + g not in records:
@@ -241,7 +241,7 @@ def generate(run):
         if len(v) > 1:
             run.log("container with several titles:", cid, sorted(v))
         t.add((w, IRI(RDF_TYPE), IRI(classes.WORK)))
-        add(w, DC + "title", Literal(ctitle) if ctitle else None)
+        add(w, DCT + "title", Literal(ctitle) if ctitle else None)
         add(w, JLO + "describedAt", IRI(OPAC + "query.html?database=NRW-Bibliografie&text1="
                                         + urllib.parse.quote(cid) + "&kategorie1=" + kind))
         stats[f"containers: {kind}"] += 1
