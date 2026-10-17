@@ -40,7 +40,7 @@ PRECEDENCE = [
     "yivo", "rujen", "rujen-translation", "bhr", "djh", "hhkeydocs", "jre", "epidat", "stolpersteine", "hirsch-family",
     "sosy", "gba", "footprints",
     "dbpedia-persons", "cm-entities", "geo-coordinates",
-    "interlinks", "2014links", "date-enriched", "geo-enriched", "dbp-wiki-geo-linking", "records-normalized",
+    "interlinks", "2014links", "geo-enriched", "dbp-wiki-geo-linking", "records-normalized",
     "ls-nli-legacy", "ls-yivo-wikidata",
 ]
 # The deletions of the correction datasets are applied to every input (0023); a correction version that also adds
@@ -52,7 +52,7 @@ STABLE = {
     "hhkeydocs": "2025-03-21", "jre": "2019-11-29", "epidat": "2026-10-12", "stolpersteine": "2020-10-06",
     "hirsch-family": "2018-10-30", "sosy": "2026-10-12", "gba": "2025-03-21", "footprints": "2026-10-12",
     "dbpedia-persons": "2018-10-24", "cm-entities": "2026-10-12", "geo-coordinates": "2026-10-12",
-    "interlinks": "2018-07-18", "2014links": "2026-10-12", "date-enriched": "2020-07-31", "geo-enriched": "2019-12-18",
+    "interlinks": "2018-07-18", "2014links": "2026-10-12", "geo-enriched": "2019-12-18",
     "dbp-wiki-geo-linking": "2021-01-13", "records-normalized": "2026-10-12", "ls-nli-legacy": "2026-10-12",
     "ls-yivo-wikidata": "2026-10-12", "record-classes": "2026-10-12",
 }

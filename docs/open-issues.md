@@ -72,6 +72,10 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **Fuseki warnings** (test load 2026-10-13): 13 impossible dates typed `xsd:date` (e.g. `1902-02-29`; 7 in
   records-normalized, 6 carried into ep), which records-normalized should not type as dates; 57 legacy `data/nli/`
   IRIs with characters not allowed in IRIs (47 in ls-nli-legacy, 1 in date-enriched).
+- **Dates beyond xsd** (intervals "1663/1711", decades "182X", circa): EDTF (ISO 8601-2, the LC datatype
+  `http://id.loc.gov/datatypes/edtf/EDTF`) as the normalised value where `xsd:date`/`gYear` cannot express it; with
+  records-normalized and Footprints (which writes EDTF). HeidelTime for dates in running text (biographies) and
+  OWL-Time (intervals, Hebrew calendar) noted, not planned.
 - **cm-entities** takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula); `ls-viaf` must
   not follow these.
 - **YIVO subsections** (346 `skos:Concept`) are taken by ep as subjects; ep must read both yivo and record-classes.
