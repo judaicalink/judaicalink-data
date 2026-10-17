@@ -30,6 +30,8 @@ VOCABS = {n: f"inputs:vocabularies/{n}-2026-10-17/{f}" for n, f in [
 INPUTS = {**DATA, **{"vocab_" + n: ref for n, ref in VOCABS.items()},
           "wikidata_properties": "inputs:web-caches/wikidata-properties-2026-10-17/properties.jsonl"}
 PARAMS = {}
+# our own labels for terms that no source labels (the last source)
+OWN_LABELS = {"http://www.loc.gov/mads/rdf/v1#hasCharacteristic": [("characteristic", "en"), ("Merkmal", "de")]}
 
 JL = "http://data.judaicalink.org/data/"
 JLO, RDFS, SKOS = PREFIXES["jl"], PREFIXES["rdfs"], PREFIXES["skos"]
@@ -114,6 +116,8 @@ def generate(run):
         for line in f:
             r = json.loads(line)
             wd[r["id"]] = [(v, lang) for lang, v in sorted(r["labels"].items())]
+
+    sources.append(("judaicalink", OWN_LABELS))
 
     # 2. per term and language the first source with a label
     t, by_source, none = set(), Counter(), []

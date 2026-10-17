@@ -5,13 +5,14 @@ original/judaicalink-labs@1ac14f1/.../generate_rujen.py), ported to the framewor
 including its quirks. The crawl (acquisition with Scrapy and BeautifulSoup) is the input, one JSON object per page;
 it is published with the version.
 
-Fixes (decision 0024), parameters with the fix as default; with both off the output has the triples of 2020-09-28:
+Fixes (decision 0024), parameters with the fix as default; with all off the output has the triples of 2020-09-28:
 - described_at_path: jl:describedAt was "http://rujen.ru/index.php/" + the page path, which already starts with
   "/index.php/", giving "/index.php//index.php/<page>" for every page; now "http://rujen.ru" + the page path.
 - drop_main_page: the crawl holds the main page of the wiki ("Заглавная страница", id 1), which is not an article:
   a skos:Concept with an empty abstract, related to 31 "Служебная:Все_страницы/<letter>" pages, 2 categories and
   "mailto:mail@rujen.ru" (subject <mailto%3Amail%40rujen.ru>), which became records of their own through their
   skos:altLabel. The main page and these links are left out.
+- entity_classes: persons foaf:Person and places schema:Place (jl:Person was never defined; jl:Place is deprecated).
 """
 
 import gzip
@@ -19,11 +20,12 @@ import json
 import re
 from urllib.parse import unquote
 
+from jl import classes
 from jl.rdf import IRI, RDF_TYPE, Literal
 from jl.turtle import PREFIXES, Namespace
 
 INPUTS = {"crawl": "rujen/2020-09-28/rujen.jsonl.gz"}
-PARAMS = {"described_at_path": True, "drop_main_page": True}
+PARAMS = {"described_at_path": True, "drop_main_page": True, "entity_classes": True}
 
 MAIN_PAGE = "Заглавная страница"
 
@@ -65,9 +67,9 @@ def page_triples(d, log, prm):
             t.append((local(link["href"]), SKOS.altLabel, Literal(link["text"])))
     for cat in d.get("categories", []):
         if cat == "Персоналии":
-            t.append((subject, TYPE, JLO.Person))
+            t.append((subject, TYPE, IRI(classes.PERSON) if prm["entity_classes"] else JLO.Person))
         elif cat == "География":
-            t.append((subject, TYPE, JLO.Place))
+            t.append((subject, TYPE, IRI(classes.PLACE) if prm["entity_classes"] else JLO.Place))
         else:
             log("Unknown category: " + cat)
     if "abstract" in d:
