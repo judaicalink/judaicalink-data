@@ -52,9 +52,20 @@ def canonical_wkt(value):
     return f"POINT({_number(m.group(1))} {_number(m.group(2))})" if m else value
 
 
+# vocabulary namespaces in the form their publisher uses (old prefix, canonical prefix, where the publisher states it)
+VOCABULARIES = [
+    ("http://d-nb.info/standards/elementset/gnd#", "https://d-nb.info/standards/elementset/gnd#", "the GND ontology"),
+    ("http://www.geonames.org/ontology#", "https://www.geonames.org/ontology#", "the GeoNames ontology"),
+    ("http://www.loc.gov/standards/mads/rdf/v1#", "http://www.loc.gov/mads/rdf/v1#", "MADS/RDF"),
+]
+
+
 def canonical(iri):
-    """The canonical form of an IRI we know, else the IRI unchanged."""
+    """The canonical form of an IRI we know (identifiers and vocabulary terms), else the IRI unchanged."""
     s = str(iri)
+    for old, new, _source in VOCABULARIES:
+        if s.startswith(old):
+            return new + s[len(old):]
     for _name, pattern, form, _source in FORMS:
         m = pattern.match(s)
         if m:
@@ -71,10 +82,13 @@ def canonical_triples(triples):
                 o = Literal(canonical_wkt(o.value), WKT, None)
         elif not isinstance(o, BNode):
             o = IRI(canonical(o))
-        yield (s if isinstance(s, BNode) else IRI(canonical(s))), p, o
+        yield (s if isinstance(s, BNode) else IRI(canonical(s))), IRI(canonical(p)), o
 
 
 def kind(iri):
+    for old, _new, _source in VOCABULARIES:
+        if str(iri).startswith(old):
+            return "vocabulary"
     for name, pattern, _form, _source in FORMS:
         if pattern.match(str(iri)):
             return name
@@ -88,7 +102,7 @@ class Check:
         self.counts, self.examples = {}, {}
 
     def watch(self, triples):
-        """Pass the triples through and note the subjects and IRI objects that are not canonical."""
+        """Pass the triples through and note the subjects, predicates and IRI objects that are not canonical."""
         from .rdf import BNode, Literal
         for t in triples:
             o = t[2]
@@ -97,7 +111,7 @@ class Check:
                 ex = self.examples.setdefault("wkt", [])
                 if len(ex) < 3:
                     ex.append(f"{o.value} ({o.datatype or 'no datatype'})")
-            for x in (t[0], t[2]):
+            for x in (t[0], t[1], t[2]):
                 if not isinstance(x, str) or isinstance(x, BNode):
                     continue
                 c = canonical(x)

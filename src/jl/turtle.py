@@ -30,7 +30,7 @@ PREFIXES = {
     "foaf": "http://xmlns.com/foaf/0.1/",
     "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
     "geosparql": "http://www.opengis.net/ont/geosparql#",
-    "gn": "http://www.geonames.org/ontology#",
+    "gn": "https://www.geonames.org/ontology#",
     "gndo": "https://d-nb.info/standards/elementset/gnd#",
     "jl": "http://data.judaicalink.org/ontology/",
     "oa": "http://www.w3.org/ns/oa#",

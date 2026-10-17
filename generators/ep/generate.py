@@ -74,7 +74,8 @@ EPNS = JL + "ep/"
 JLO, FOAF, SKOS, RDFS, OWL, DCT = (PREFIXES[p] for p in ("jl", "foaf", "skos", "rdfs", "owl", "dcterms"))
 GEO = PREFIXES["geosparql"]   # asWKT, wktLiteral (GeoSPARQL; PREFIXES["geo"] is WGS84)
 PROV = "http://www.w3.org/ns/prov#"
-GNDO = "http://d-nb.info/standards/elementset/gnd#"
+GNDO = "http://d-nb.info/standards/elementset/gnd#"       # older datasets
+GNDO_S = "https://d-nb.info/standards/elementset/gnd#"    # the publisher's form (gnd)
 DBO = "http://dbpedia.org/ontology/"
 SAME, GNDID, REPLACED, DERIVED = OWL + "sameAs", GNDO + "gndIdentifier", DCT + "isReplacedBy", PROV + "wasDerivedFrom"
 JLSAME = JLO + "sameAs"   # identity as JudaicaLink states it (linksets, entities; decision 0029)
@@ -83,7 +84,8 @@ HISTORY = {JLO + "mergedInto", JLO + "mergeDate", JLO + "splitInto", JLO + "spli
 
 CLASS_OF_TYPE = {FOAF + "Person": "Person", JLO + "Person": "Person", JLO + "Place": "Place", DBO + "Place": "Place",
                  GNDO + "PlaceOrGeographicName": "Place", FOAF + "Organization": "Organization",
-                 GNDO + "Work": "Work", JLO + "Work": "Work", SKOS + "Concept": "Subject", JLO + "Subject": "Subject",
+                 GNDO + "Work": "Work", JLO + "Work": "Work", GNDO_S + "Work": "Work",
+                 GNDO_S + "PlaceOrGeographicName": "Place", SKOS + "Concept": "Subject", JLO + "Subject": "Subject",
                  classes.PLACE: "Place", classes.WORK: "Work"}   # the deprecated jl: classes read as before
 SUBJECT_DATASETS = {"yivo", "djh", "rujen"}   # their other skos:Concepts are subjects (0022)
 # datasets that state the classes of records of other datasets (0025): a class counts for the dataset whose namespace
@@ -104,7 +106,7 @@ FACT_PROPS = {
     JLO + "hasAbstract": "abstract", JLO + "describedAt": "describedAt", GEO + "asWKT": "wkt",
     JLO + "lat": "lat", "http://www.w3.org/2003/01/geo/wgs84_pos#lat": "lat",
     JLO + "lon": "lon", "http://www.w3.org/2003/01/geo/wgs84_pos#long": "lon",
-    SAME: "sameAs", GNDID: "gndId",
+    SAME: "sameAs", GNDID: "gndId", GNDO_S + "gndIdentifier": "gndId",
 }
 # Records known to be different entities, each joined once by wrong links that corrections-links deletes (decision
 # 0023): a test, not a rule. If one of these pairs is in one group again, a new link joins them; the run stops so that
@@ -409,10 +411,10 @@ def generate(run):
             if p == JLO + "entity" and slug == "cm-entities":
                 entities_cm.add(str(o))
                 continue
-            if p in (SAME, GNDID, JLSAME):
+            if p in (SAME, GNDID, GNDO_S + "gndIdentifier", JLSAME):
                 ours = p == JLSAME or slug in LINKSETS
                 if isinstance(o, Literal):
-                    if p == GNDID and re.fullmatch(r"[0-9]+[0-9X-]*", o.value.strip()):
+                    if p in (GNDID, GNDO_S + "gndIdentifier") and re.fullmatch(r"[0-9]+[0-9X-]*", o.value.strip()):
                         links.append((s, "gnd:" + o.value.strip().upper(), slug, ours))
                 else:
                     k = key(o)

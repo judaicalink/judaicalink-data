@@ -1,8 +1,8 @@
 # Canonical forms of IRIs and coordinates
 
-The same identifier can be written in several forms: `http` or `https`, with or without a final slash, or the
-address of the description document instead of the thing (`…/about`, `…/about.rdf`, `….html`). We write each
-identifier in one form, the one its source uses in its own data. The forms are in `src/jl/iris.py` (`FORMS`,
+The same identifier or term can be written in several forms: `http` or `https`, with or without a final slash, or
+the address of the description document instead of the thing (`…/about`, `…/about.rdf`, `….html`). We write each in
+one form: the one the publisher of the data or the ontology uses. The forms are in `src/jl/iris.py` (`FORMS`,
 `canonical()`); generators write external IRIs through `canonical()`.
 
 A canonical form only fixes the spelling. It never replaces one identifier by another: that an identifier is
@@ -22,6 +22,16 @@ deprecated, replaced or deleted is data, stated in the source datasets (`dcterms
 | DBpedia | `http://dbpedia.org/resource/<name>` | the DBpedia resource IRIs | `https` |
 | Getty TGN | `http://vocab.getty.edu/tgn/<number>` | vocab.getty.edu | `https`, `-place` |
 
+## Vocabulary terms
+
+The terms of a vocabulary in the namespace its publisher uses in its own files (`VOCABULARIES` in `src/jl/iris.py`):
+
+| Vocabulary | Canonical namespace | Variant brought to it |
+|---|---|---|
+| GND ontology | `https://d-nb.info/standards/elementset/gnd#` | `http://d-nb.info/standards/elementset/gnd#` |
+| GeoNames ontology | `https://www.geonames.org/ontology#` | `http://www.geonames.org/ontology#` |
+| MADS/RDF | `http://www.loc.gov/mads/rdf/v1#` | `http://www.loc.gov/standards/mads/rdf/v1#` |
+
 ## Coordinates
 
 A point is written `"POINT(<longitude> <latitude>)"^^geosparql:wktLiteral` (GeoSPARQL; decided 2026-10-16), the
@@ -32,8 +42,8 @@ functions, and different spellings of the same point look like different values.
 
 ## The check
 
-Every `jl generate` counts the subjects and IRI objects of the files it writes that are not in canonical form, by
-source, and the `geosparql:asWKT` values not in canonical form or without the datatype (`wkt`), with examples: in the run log, in the run record (`files[].noncanonical`) and in the summary the command
+Every `jl generate` counts the subjects, predicates and IRI objects of the files it writes that are not in canonical
+form, by source, and the `geosparql:asWKT` values not in canonical form or without the datatype (`wkt`), with examples: in the run log, in the run record (`files[].noncanonical`) and in the summary the command
 prints. It warns; it does not stop a run, because the record datasets keep the forms of their sources until their
 generators are made again.
 
