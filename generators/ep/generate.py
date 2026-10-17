@@ -615,7 +615,7 @@ def generate(run):
     # 6. report: conflicts that point to mistakes in the data (0022)
     conflicts = Counter()
     keys_of = defaultdict(set)
-    for s, k, _ds in links:
+    for s, k, *_ in links:
         keys_of[cl.find(s)].add(k)
     for root, members in sorted(groups.items()):
         wds = sorted(k for k in keys_of[root] if k.startswith("wd:"))
@@ -625,7 +625,7 @@ def generate(run):
         if len(wds) > 1 or incompatible:
             conflicts["several Wikidata items" if len(wds) > 1 else "incompatible classes"] += 1
             run.log(f"conflict {iri_of[root]}: {', '.join(wds)} {sorted(members)[:8]}")
-    shared = Counter((k, ds) for s, k, ds in set(links) if not k.startswith(JL))
+    shared = Counter((k, ds) for s, k, ds, *_ in set(links) if not k.startswith(JL))
     for (k, ds), n in sorted(shared.items()):
         if n >= 20 and not k.startswith(("gnd:", "viaf:", "wd:")):
             run.log(f"key shared by {n} records of {ds}: {k}")
