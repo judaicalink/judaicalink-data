@@ -33,6 +33,11 @@ solved is in the decisions, the changelogs of the versions and the git history.
   with value types, cardinality, usage notes and the canonical forms) describes which terms we use; documentation and
   SHACL shapes are generated from it, and the framework checks every run against them. To decide with it: our classes
   `jl:Place`, `jl:Work`, `jl:Subject` against standard classes.
+- **Coordinates:** we keep `geo:asWKT` directly on the place (decided 2026-10-17). To try: a complement
+  (e.g. `geometries`) that adds the GeoSPARQL form for every place with a point: `<place> geo:hasGeometry
+  <geometry>`, `<geometry> a geo:Geometry ; geo:asWKT "POINT(…)"^^geo:wktLiteral`, the geometry IRI coined in the
+  complement's namespace from the place IRI (e.g. `data/geometries/geonames/281184`), generated from all stable
+  datasets; then test GeoSPARQL queries (distance, within) in Fuseki and QLever on the platform.
 - **rujen** types its records `jl:Person`, which the ontology does not define: the next rujen version uses
   `foaf:Person`, like all other datasets (the entity pages read both).
 - **Pull requests** #21 (`jl:currentSubjects`) and #22 (`jl:grandparent`, used by epidat 2026-10-16) to merge.
