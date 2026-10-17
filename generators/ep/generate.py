@@ -102,6 +102,7 @@ FACT_PROPS = {
     JLO + "birthDateNormalized": "birthN", JLO + "deathDateNormalized": "deathN",
     JLO + "birthLocation": "birthPlace", JLO + "deathLocation": "deathPlace",
     JLO + "birthLocationURI": "birthPlaceURI", JLO + "deathLocationURI": "deathPlaceURI",
+    JLO + "burialLocation": "burialPlace", JLO + "burialLocationURI": "burialPlaceURI",
     JLO + "occupation": "occupation", JLO + "occpation": "occupation", JLO + "occupationURI": "occupationURI",
     JLO + "hasAbstract": "abstract", JLO + "describedAt": "describedAt", GEO + "asWKT": "wkt",
     JLO + "lat": "lat", "http://www.w3.org/2003/01/geo/wgs84_pos#lat": "lat",
@@ -564,6 +565,13 @@ def generate(run):
             uri = next((u for u in uris if places and u[4] == places[0][4]), uris[0] if uris else None)
             if uri:
                 out.add((page, IRI(JLO + f"{kind}LocationURI"), iri(uri[0])))
+        places = sorted([v for v in merged_facts.get("burialPlace", []) if v[3] == "literal" and v[0].strip()], key=order)
+        uris = sorted([v for v in merged_facts.get("burialPlaceURI", []) if v[3] == "uri"], key=order)
+        if places:
+            out.add((page, IRI(JLO + "burialLocation"), lit(places[0][0].strip())))
+        uri = next((u for u in uris if places and u[4] == places[0][4]), uris[0] if uris else None)
+        if uri:
+            out.add((page, IRI(JLO + "burialLocationURI"), iri(uri[0])))
 
         # occupations: text, and IRIs as jl:occupationURI
         occ_seen = set()

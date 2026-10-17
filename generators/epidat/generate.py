@@ -11,8 +11,8 @@ jl:describedAt links name the person ids), so entity pages keep or split (decisi
 Per person: foaf:Person; the name before the spouse (⚭) and without the civil name in final parentheses as
 skos:prefLabel and foaf:name, the civil name as skos:altLabel (editorial brackets kept as given); foaf:gender;
 jl:deathDate as given (records-normalized reads it); the settlement of the cemetery (before a comma, as 2023) as
-jl:deathLocation and its TGN IRI (GeoNames for five cemeteries) as jl:deathLocationURI (as 2023: Epidat gives the
-place of burial); owl:sameAs the GND where Epidat links one and Epidat's own URI (lod.academy); jl:describedAt the
+jl:burialLocation and its TGN IRI (GeoNames for five cemeteries) as jl:burialLocationURI (parameter burial_terms;
+before: jl:deathLocation/jl:deathLocationURI, which is not true for everyone); owl:sameAs the GND where Epidat links one and Epidat's own URI (lod.academy); jl:describedAt the
 Epidat page. Not taken over: occupations (2023 found them with spaCy in the commentaries).
 
 Added 2026-10-15, each a parameter with the addition as default (with all off, the triples of 2026-10-12):
@@ -47,7 +47,7 @@ INPUTS = {
     "persdata": "inputs:epidat/persdata-2026-08-13/epidat_persdata.tsv",
     "previous": "epidat/2023-07-14",
 }
-PARAMS = {"birth_dates": True, "memorial_links": True, "family_relations": True, "canonical_forms": True}
+PARAMS = {"birth_dates": True, "memorial_links": True, "family_relations": True, "canonical_forms": True, "burial_terms": True}
 
 T = "{http://www.tei-c.org/ns/1.0}"
 XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
@@ -179,9 +179,10 @@ def generate(run):
             t.add((s, IRI(JLO + "deathDate"), Literal(p["death"])))
         if p["code"] in place:
             settlement, uri = place[p["code"]]
-            t.add((s, IRI(JLO + "deathLocation"), Literal(settlement)))
+            which = "burial" if run.params["burial_terms"] else "death"
+            t.add((s, IRI(JLO + which + "Location"), Literal(settlement)))
             if uri:
-                t.add((s, IRI(JLO + "deathLocationURI"), IRI(uri)))
+                t.add((s, IRI(JLO + which + "LocationURI"), IRI(uri)))
         else:
             counts["persons without a cemetery place"] += 1
         ref = p["ref"] or ""

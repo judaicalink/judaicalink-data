@@ -46,9 +46,6 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - The catalogue names ontology version 2025-11-27 (in `lokal/dumps-additions/ontology/2025-11-27/`, not published);
   `ontology-complements` redefines six terms of it (`belongsToIssue`, `belongsToJournal`, `birthLocationURI`,
   `deathLocationURI`, `gitCommit`, `gitWeb`): rebuild it and load both in an endpoint (with the platform, 0016).
-- **epidat: place of burial as place of death.** Epidat gives the place of burial; epidat states it as
-  `jl:deathLocation`/`jl:deathLocationURI`, which is not true for everyone (kept, decided 2026-10-12). Proper terms
-  (`jl:burialLocation(URI)`) would need a pull request and readers in records-normalized and ep.
 
 ## Data
 
