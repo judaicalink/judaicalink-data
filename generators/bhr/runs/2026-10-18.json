@@ -1,0 +1,86 @@
+{
+ "slug": "bhr",
+ "run": "run-20261017T223236Z",
+ "generator": "generators/bhr/generate.py",
+ "commit": "906c9b0d7c201f32c0dc966c0c4c5256747469e8",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {
+  "rabbi": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-17T22:32:36Z",
+ "inputs": [
+  {
+   "name": "pages",
+   "ref": "inputs:bhr/portal-2026-10-16/bhr-pages-2026-10-16.tar.gz",
+   "file": "bhr-pages-2026-10-16.tar.gz",
+   "sha256": "daacf6557d6b6ded9dd7c008d415100de76494a4d741847bd3519191aba4b1b2",
+   "bytes": 3425579
+  },
+  {
+   "name": "beacon",
+   "ref": "inputs:bhr/portal-2026-10-16/beacon.txt",
+   "file": "beacon.txt",
+   "sha256": "636509a8c33c6bf16a78289506e0132687fb8fc796028dd4c7f911bcbb2efe46",
+   "bytes": 8859
+  },
+  {
+   "name": "previous",
+   "ref": "bhr/2026-10-12/Entityfacts-bhr-sameas.ttl.gz",
+   "file": "Entityfacts-bhr-sameas.ttl.gz",
+   "sha256": "9f62e0d592c89b796aa3873cec32dfb45fbd91ad8262568a08008c5461a33962",
+   "bytes": 29596
+  },
+  {
+   "name": "previous",
+   "ref": "bhr/2026-10-12/bhr-final-05.ttl.gz",
+   "file": "bhr-final-05.ttl.gz",
+   "sha256": "333b321a0641f753dc528a15d928243bf8aeeefcb5b6fae4a2ae54cb8c6a4519",
+   "bytes": 1439067
+  }
+ ],
+ "input_descriptions": {
+  "inputs:bhr/portal-2026-10-16": {
+   "title": "Biographisches Portal der Rabbiner: all entries and the BEACON (2026-10-16)",
+   "origin": "https://www.steinheim-institut.de/cgi-bin/bhr?id=<n> and https://www.steinheim-institut.de/daten/projekte/work3/beacon.txt",
+   "description": "The pages of all entries of the Biographisches Portal der Rabbiner (Steinheim-Institut), fetched 2026-10-16 by generators/bhr/harvest_portal.py for n = 1 … 2753 (2703 entries; the numbers above answer 'Eintrag nicht vorhanden'), unchanged, as bhr-pages-2026-10-16.tar.gz (id/<n>.html); harvest.tsv: number, entry yes/no, heading; beacon.txt: the BEACON of the portal (GND numbers with an entry), unchanged.",
+   "date": "2026-10-16",
+   "note": "Not published: a copy of a public source, the input of the dataset bhr."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-17T22:32:38Z",
+ "seconds": 1.4,
+ "notes": [
+  "2,703 entries; BEACON 805 GND numbers, 805 linked; records of 2026-10-12: by id 2,532, deprecated without successor 127, replaced by several 3, without id: by name 241, without id: no record of that name 117, without id: several record of that name 10."
+ ],
+ "files": [
+  {
+   "path": "bhr-beacon.ttl.gz",
+   "bytes": 6684,
+   "sha256": "4474eeebbd4469688fc9d63c4dc2c1a88afd6ff46e968fb1439d4bc59b4ed0ea",
+   "triples": 805
+  },
+  {
+   "path": "bhr-vocabulary.ttl.gz",
+   "bytes": 563,
+   "sha256": "0b660e99e29cc378b22266a949a27d77897d120ff342a302e01f3678a08dbf2b",
+   "triples": 44
+  },
+  {
+   "path": "bhr.ttl.gz",
+   "bytes": 2352277,
+   "sha256": "d623747814a001ba82bf00617872d840a0d01ab3c794b17453afa4569f0affa3",
+   "triples": 80775
+  }
+ ],
+ "version": "2026-10-18"
+}

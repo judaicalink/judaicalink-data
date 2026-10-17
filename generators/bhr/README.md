@@ -126,3 +126,6 @@ years the 2018 integration extracted from the dates (the full texts are given in
 
 **Run of 2026-10-16:** 2,703 records, 80,648 triples in `bhr.ttl.gz`, 805 in `bhr-beacon.ttl.gz`, 42 in the
 vocabulary; about one second.
+
+**Version 2026-10-18:** the vocabulary states `publication` and `dissertation` as `rdfs:subPropertyOf jl:hasPublication`
+(2 triples more); otherwise as 2026-10-16.

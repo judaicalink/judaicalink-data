@@ -63,7 +63,7 @@ table (not used yet).
 
 Result: 41,378 persons in 268 cemeteries (2023: 37,193 entries in 29,418 IRIs, 222 cemeteries); 416,724 triples.
 
-## Additions (2026-10-15, not a version yet)
+## Additions (2026-10-15, in the version 2026-10-16)
 
 Each is a parameter, default on; with all three off the run has the same 416,724 triples as 2026-10-12 (checked).
 New input `inputs:epidat/persdata-2026-08-13`: `tsv/epidat_persdata.tsv` of the repository at the same commit
@@ -91,3 +91,9 @@ here (they need their TEI files from the harvesting interface).
 Checked 2026-10-15: the harvesting interface now gives TEI files with persons for the first gravestone of `gre`,
 `kal`, `mue`, `nie` and `ora` (no person on `l10-1`), so most of the 451 persons of 2023 not taken over are no
 longer "not yet published".
+
+## Version 2026-10-18
+
+Parameter `burial_terms` (default on; off gives 2026-10-16): the cemetery of a gravestone is the place of burial,
+`jl:burialLocation` (name) and `jl:burialLocationURI` (TGN, GeoNames for five cemeteries), for 41,378 persons;
+before, the same values were stated as place of death. 435,464 triples.

@@ -1,0 +1,68 @@
+{
+ "slug": "record-classes",
+ "run": "run-20261017T223253Z",
+ "generator": "generators/record-classes/generate.py",
+ "commit": "906c9b0d7c201f32c0dc966c0c4c5256747469e8",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-17T22:32:53Z",
+ "shared_code": [
+  "generators/ls-yivo-wikidata/yivo_wikidata.py"
+ ],
+ "inputs": [
+  {
+   "name": "yivo",
+   "ref": "yivo/2020-09-30/yivo.ttl.gz",
+   "file": "yivo.ttl.gz",
+   "sha256": "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842",
+   "bytes": 695155
+  },
+  {
+   "name": "items",
+   "ref": "inputs:web-caches/wikidata-yivo-2026-10-12/p8569.tsv",
+   "file": "p8569.tsv",
+   "sha256": "6800f530d8af9583ab52af0bba4d3c0800db8a30c4266e4a5c30e85f3a602ded",
+   "bytes": 188404
+  },
+  {
+   "name": "classes",
+   "ref": "inputs:web-caches/wikidata-yivo-2026-10-12/classes-top.tsv",
+   "file": "classes-top.tsv",
+   "sha256": "16ffb7bb0e78caf204126b826f385ade3f7dc6cd61cdd232a42b83f8726d149c",
+   "bytes": 92711
+  }
+ ],
+ "input_descriptions": {
+  "inputs:web-caches/wikidata-yivo-2026-10-12": {
+   "title": "Wikidata: items with a YIVO Encyclopedia ID (P8569) and the classes of their types (2026-10-12)",
+   "origin": "Two queries to the Wikidata Query Service, https://query.wikidata.org/sparql, on 2026-10-12 (answers as tab-separated values).",
+   "description": "p8569.tsv: the answer to p8569.rq, every Wikidata item with a YIVO Encyclopedia of Jews in Eastern Europe ID (P8569, the article name of yivoencyclopedia.org/article.aspx/<id>) and its instance-of classes (P31), one row per item and class (1,953 rows, 1,453 items). classes-top.tsv: the answer to classes-top.rq, for the 323 classes found, which of nine upper classes they are subclasses of (P279*): geographic location Q2221906, administrative territorial entity Q56061, human settlement Q486972, organization Q43229, written work Q47461344, periodical Q1002697, creative work Q17537576, family Q8436, group of humans Q16334295.",
+   "date": "2026-10-12",
+   "note": "Not published: answers of a third-party service, needed only to make ls-yivo-wikidata and record-classes again without network access."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-17T22:32:53Z",
+ "seconds": 0.2,
+ "notes": [
+  "yivo: Organization by Wikidata 97; Person by Wikidata 986; Person by life dates 106; Place by Wikidata 199; Subject by other 356; Work by Wikidata 54."
+ ],
+ "files": [
+  {
+   "path": "record-classes.ttl.gz",
+   "bytes": 16275,
+   "sha256": "931ce0da0b1aeaf78d5d35f03f28b78e9695024f0045b0b8101638745217575b",
+   "triples": 1798
+  }
+ ],
+ "version": "2026-10-18"
+}
