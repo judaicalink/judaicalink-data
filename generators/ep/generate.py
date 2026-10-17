@@ -84,6 +84,9 @@ CLASS_OF_TYPE = {FOAF + "Person": "Person", JLO + "Person": "Person", JLO + "Pla
                  GNDO + "Work": "Work", JLO + "Work": "Work", GNDO_S + "Work": "Work",
                  GNDO_S + "PlaceOrGeographicName": "Place", SKOS + "Concept": "Subject", JLO + "Subject": "Subject",
                  classes.PLACE: "Place", classes.WORK: "Work"}   # the deprecated jl: classes read as before
+# the keys of the authority datasets (decision 0029) and the namespaces of their records
+AUTHORITY_KEYS = {"gnd": "GND", "lc": "LC", "geonames": "GeoNames", "wd": "Wikidata", "viaf": "VIAF"}
+AUTHORITY_NS = {"gnd": "gnd/", "lc": "lc/", "geonames": "geonames/", "wd": "wikidata/", "viaf": "viaf/"}
 SUBJECT_DATASETS = {"yivo", "djh", "rujen"}   # their other skos:Concepts are subjects (0022)
 # datasets that state the classes of records of other datasets (0025): a class counts for the dataset whose namespace
 # the record is in
@@ -165,6 +168,9 @@ def key(o):
     m = re.match(r"^https?://(?:sws\.|www\.)?geonames\.org/([0-9]+)/?$", o) or re.match(re.escape(JL) + r"geonames/([0-9]+)$", o)
     if m:
         return "geonames:" + m.group(1)
+    for prefix, ns in (("lc:", "lc/"), ("wd:", "wikidata/"), ("viaf:", "viaf/")):   # our authority records (0029)
+        if o.startswith(JL + ns) and re.fullmatch(r"[A-Za-z]*[0-9]+", o[len(JL + ns):]):
+            return prefix + o[len(JL + ns):]
     m = re.match(r"^https?://dbpedia\.org/resource/(.+)$", o)
     if m:
         return "dbpedia:" + m.group(1)   # English DBpedia; data/dbpedia/<title> is not the same key (0022)
@@ -283,7 +289,7 @@ def closure(records, links, replaced):
         cl.union(s, k)
     for r in sorted(records):   # a record in an unambiguous authority namespace is that identifier (data/gnd/N)
         k = key(r)
-        if k and not k.startswith(JL) and re.match(r"(gnd|geonames):", k):
+        if k and not k.startswith(JL) and re.match(r"(gnd|geonames|lc|wd|viaf):", k):
             cl.union(r, k)
     for s, ts in sorted(replaced.items()):
         if len(ts) == 1 and s not in records:
@@ -617,14 +623,34 @@ def generate(run):
     keys_of = defaultdict(set)
     for s, k, *_ in links:
         keys_of[cl.find(s)].add(k)
+    def current_key(k):   # the identifier an authority dataset of our inputs replaced it by (dcterms:isReplacedBy)
+        prefix, _, ident = k.partition(":")
+        node, seen = JL + AUTHORITY_NS[prefix] + ident, set()
+        while len(replaced.get(node, ())) == 1 and node not in seen:
+            seen.add(node)
+            node = next(iter(replaced[node]))
+        return key(node) or k
+
     for root, members in sorted(groups.items()):
-        wds = sorted(k for k in keys_of[root] if k.startswith("wd:"))
         sets = [set().union(*classes[m].values()) & {"Person", "Place", "Organization", "Work"} for m in members]
         sets = [x for x in sets if x]
-        incompatible = any(not (a & b) for i, a in enumerate(sets) for b in sets[i + 1:])
-        if len(wds) > 1 or incompatible:
-            conflicts["several Wikidata items" if len(wds) > 1 else "incompatible classes"] += 1
-            run.log(f"conflict {iri_of[root]}: {', '.join(wds)} {sorted(members)[:8]}")
+        if any(not (a & b) for i, a in enumerate(sets) for b in sets[i + 1:]):
+            conflicts["incompatible classes"] += 1
+            run.log(f"conflict {iri_of[root]}: incompatible classes {sorted(members)[:8]}")
+        # every entity: at most one identifier per authority, the current one (decision 0029)
+        for prefix, name in AUTHORITY_KEYS.items():
+            ks = sorted(k for k in keys_of[root] if k.startswith(prefix + ":"))
+            if not ks:
+                continue
+            cur = sorted({current_key(k) for k in ks})
+            old = [k for k in ks if current_key(k) != k]
+            if len(cur) > 1:
+                conflicts[f"several {name} identifiers"] += 1
+                run.log(f"conflict {iri_of[root]}: several {name} identifiers {', '.join(cur)} {sorted(members)[:8]}")
+            if old:
+                conflicts[f"replaced {name} identifiers"] += 1
+                run.log(f"conflict {iri_of[root]}: replaced {name} identifiers "
+                        + ", ".join(f"{k} -> {current_key(k)}" for k in old))
     shared = Counter((k, ds) for s, k, ds, *_ in set(links) if not k.startswith(JL))
     for (k, ds), n in sorted(shared.items()):
         if n >= 20 and not k.startswith(("gnd:", "viaf:", "wd:")):
