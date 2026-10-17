@@ -538,6 +538,29 @@ def cmd_add_version(args, cfg):
     return 0
 
 
+def cmd_check_authority_links(args, cfg):
+    counts, rows = authorities.check_links(cfg, generator.parse_use(args.use))
+    if args.tsv:
+        with open(args.tsv, "w", encoding="utf-8") as f:
+            f.write("finding\tfrom\tto\tdetail\trecord\ttarget\tother\n")
+            for r in rows:
+                f.write("\t".join(r) + "\n")
+    if args.json:
+        print(json.dumps({"counts": counts, "findings": rows}, indent=1, ensure_ascii=False))
+        return 0
+    examples = {}
+    for r in rows:
+        key = f"{r[0]}: {r[1]} -> {r[2]}" + (f" -> {r[3]}" if r[3] else "")
+        examples.setdefault(key, [])
+        if len(examples[key]) < args.examples:
+            examples[key].append(" ".join(x for x in r[4:] if x))
+    for key, n in counts.items():
+        print(f"{n:>9,}  {key}   e.g. {' | '.join(examples[key])}")
+    if not counts:
+        print("no findings")
+    return 0
+
+
 def cmd_check_authorities(args, cfg):
     out = authorities.check(cfg, generator.parse_use(args.use), log=print if args.verbose else (lambda *a: None))
     if args.json:
@@ -747,6 +770,13 @@ def parser():
         (("--use",), {"metavar": "SLUG/REF", "action": "append", "default": [],
                       "help": "count this version or run instead of the stable version; repeatable"}),
         (("--verbose",), {"action": "store_true", "help": "list the datasets read"}))
+    add("check-authority-links", cmd_check_authority_links,
+        "check the identity links between the authority datasets: several targets, old identifiers, links not "
+        "returned, chains (decision 0029)",
+        (("--use",), {"metavar": "SLUG/REF", "action": "append", "default": [],
+                      "help": "read this version or run instead of the stable version; repeatable"}),
+        (("--tsv",), {"metavar": "FILE", "type": Path, "help": "write every finding to FILE"}),
+        (("--examples",), {"type": int, "default": 3, "help": "examples per kind of finding (default 3)"}))
     add("import-files", cmd_import_files,
         "take files made elsewhere in as a run (<slug> files…), or attach a run record to a version (<slug>/<version>)",
         (("id",), {"metavar": "<slug>[/<version>]"}),

@@ -132,3 +132,128 @@ def check(cfg, use=None, log=print):
         if ids or cat.get(slug):
             out.update(compare(cfg, cat, {source: ids}, use))
     return out
+
+
+# --- the links between the authority datasets ------------------------------------------------------
+
+WDTN = "http://www.wikidata.org/prop/direct-normalized/"
+# the properties by which an authority record states that it is the same as a record of another source
+IDENTITY = {"http://www.w3.org/2002/07/owl#sameAs", "http://www.w3.org/2004/02/skos/core#exactMatch",
+            "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority", *identifiers.LITERAL_PROPERTIES,
+            WDTN + "P227", WDTN + "P214", WDTN + "P244", WDTN + "P1566"}
+REPLACED = "http://purl.org/dc/terms/isReplacedBy"
+DEPRECATED = "http://www.w3.org/2002/07/owl#deprecated"
+
+
+class Authority:
+    """What one authority dataset says: its records, replacements and deprecations, and the identity links of its
+    records to the other sources."""
+
+    def __init__(self, source):
+        self.source = source
+        self.records, self.deprecated = set(), set()
+        self.replaced = defaultdict(set)
+        self.links = defaultdict(lambda: defaultdict(set))   # id -> source -> {id}
+
+    def read(self, triples):
+        for s, p, o in triples:
+            x = identifiers.identify(s)
+            if not x or x[0] != self.source:
+                continue
+            ident = x[1]
+            if p == REPLACED:
+                y = identifiers.identify(o)
+                if y and y[0] == self.source:
+                    self.replaced[ident].add(y[1])
+                continue
+            if p == DEPRECATED and isinstance(o, rdf.Literal) and o.value == "true":
+                self.deprecated.add(ident)
+                continue
+            self.records.add(ident)
+            if p in IDENTITY:
+                y = identifiers.identify(o, p)
+                if y and y[0] in DATASET and y[0] != self.source:
+                    self.links[ident][y[0]].add(y[1])
+
+    def current(self, ident):
+        """(current identifiers, status): status current, replaced, deprecated, or not in the dataset (not selected
+        yet, or not in the source: the selection says which)."""
+        seen, todo, out = set(), [ident], set()
+        while todo:
+            i = todo.pop()
+            if i in seen:
+                continue
+            seen.add(i)
+            if self.replaced.get(i):
+                todo.extend(self.replaced[i])
+            elif i in self.records and i not in self.deprecated:
+                out.add(i)
+        status = ("current" if ident in self.records and ident not in self.deprecated and not self.replaced.get(ident)
+                  else "replaced" if self.replaced.get(ident) else "deprecated" if ident in self.deprecated
+                  else "not in the dataset")
+        return out, status
+
+
+def check_links(cfg, use=None, log=print):
+    """The identity links between the authority datasets (the stable versions, or use): per pair of sources, the
+    records that link to several records of the other source, to an identifier it does not hold as current
+    (replaced, deprecated, unknown), whose link the other side does not return (it links back to another record),
+    and the chains A -> B -> C -> A' that come back to another record. Returns ({finding: count}, [rows])."""
+    use = use or {}
+    cat = catalog.Catalog()
+    data = {}
+    for slug, source in SOURCE.items():
+        ref = selection_ref(cat, slug, use)
+        if ref is None:
+            continue
+        a = Authority(source)
+        for f in generator.resolve(cfg, cat, f"{slug}/{ref}"):
+            a.read(rdf.read_triples(f["path"]))
+        data[source] = a
+        log(f"  read {slug}/{ref}: {len(a.records):,} records")
+    counts, rows = defaultdict(int), []
+
+    def note(kind, a_src, b_src, detail, *ex):
+        key = f"{kind}: {DATASET[a_src]} -> {DATASET[b_src]}" + (f" -> {detail}" if detail else "")
+        counts[key] += 1
+        rows.append((kind, DATASET[a_src], DATASET[b_src], detail or "", *ex))
+
+    def resolve(src, ident):
+        return data[src].current(ident)[0] if src in data else {ident}
+
+    for a_src, a in data.items():
+        for a_id, by_source in a.links.items():
+            if a_id in a.deprecated or a.replaced.get(a_id):
+                continue
+            for b_src, b_ids in by_source.items():
+                cur, missing = set(), False
+                for b_id in b_ids:
+                    c, status = data[b_src].current(b_id) if b_src in data else ({b_id}, "current")
+                    if status != "current":
+                        note("not current", a_src, b_src, status, a_id, b_id, " ".join(sorted(c)))
+                    missing = missing or status == "not in the dataset"
+                    cur |= c
+                if len(cur) > 1:
+                    note("several", a_src, b_src, "", a_id, " ".join(sorted(cur)), "")
+                elif len(b_ids) > 1:
+                    note("several, not all in the dataset" if missing else "several, the same after replacement",
+                         a_src, b_src, "", a_id, " ".join(sorted(b_ids)), "")
+                if b_src not in data:
+                    continue
+                for b_id in cur:
+                    back = set()
+                    for x in data[b_src].links.get(b_id, {}).get(a_src, ()):
+                        back |= resolve(a_src, x)
+                    if back and a_id not in back:
+                        note("not returned", a_src, b_src, "", a_id, b_id, " ".join(sorted(back)))
+                    for c_src, c_ids in data[b_src].links.get(b_id, {}).items():
+                        if c_src in (a_src, b_src) or c_src not in data:
+                            continue
+                        for c_id in set().union(*(resolve(c_src, c) for c in c_ids)):
+                            other = set()
+                            for x in data[c_src].links.get(c_id, {}).get(a_src, ()):
+                                other |= resolve(a_src, x)
+                            if other and a_id not in other:
+                                note("chain", a_src, b_src, DATASET[c_src], a_id, f"{b_id} {c_id}",
+                                     " ".join(sorted(other)))
+    return dict(sorted(counts.items())), rows

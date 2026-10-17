@@ -395,3 +395,19 @@ class RemoveGuards(unittest.TestCase):
         from jl.versions import VersionError
         with self.assertRaisesRegex(VersionError, "latest version"):
             self.run_remove("2020-01-01", "2026-01-01")
+
+
+class AuthorityLinks(unittest.TestCase):
+    def test_current(self):
+        G, W = "http://data.judaicalink.org/data/gnd/", "http://data.judaicalink.org/data/wikidata/"
+        same = "http://www.w3.org/2002/07/owl#sameAs"
+        g = authorities.Authority("gnd")
+        g.read([(G + "1", same, "https://d-nb.info/gnd/1"), (G + "2", authorities.REPLACED, G + "1"),
+                (G + "3", same, "http://www.wikidata.org/entity/Q1"), (G + "3", same, "http://www.wikidata.org/entity/Q2")])
+        self.assertEqual(g.current("2"), ({"1"}, "replaced"))
+        self.assertEqual(g.current("1"), ({"1"}, "current"))
+        self.assertEqual(g.current("9"), (set(), "not in the dataset"))
+        self.assertEqual(dict(g.links["3"]), {"wikidata": {"Q1", "Q2"}})   # its own source is not a link
+        w = authorities.Authority("wikidata")
+        w.read([(W + "Q1", authorities.WDTN + "P227", "https://d-nb.info/gnd/2")])
+        self.assertEqual(dict(w.links["Q1"]), {"gnd": {"2"}})
