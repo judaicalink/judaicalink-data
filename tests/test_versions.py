@@ -12,7 +12,7 @@ from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from jl import agents, catalog, config, generator, meta, rdf, runs, versions  # noqa: E402
+from jl import agents, authorities, catalog, config, generator, meta, rdf, runs, versions  # noqa: E402
 
 GENERATE = '''
 from jl.rdf import IRI, Literal
@@ -79,6 +79,34 @@ name = "Ann Example"
 
 [software.judaicalink-data]
 label = "the framework"
+'''
+
+GEN_AB = '''
+from jl.rdf import IRI, Literal
+INPUTS = {"other": "src/2020-01-01/data.txt"}
+PARAMS = {}
+
+def generate(run):
+    run.input("other")
+    run.write_turtle("SLUG.ttl.gz", [(IRI("http://data.judaicalink.org/data/SLUG/1"),
+                                      IRI("http://www.w3.org/2004/02/skos/core#prefLabel"), Literal("x"))])
+'''
+
+LC = '''+++
+slug = "lc"
+title = "LC"
+author = "Ann Example"
+stable = "2020-01-01"
+
+[license]
+name = "CC0"
+
+[[versions]]
+version = "2020-01-01"
+
+  [[versions.files]]
+  path = "lc-selection.tsv.gz"
++++
 '''
 
 CLEAN = ("a" * 40, [])
@@ -190,6 +218,68 @@ class Versions(unittest.TestCase):
         vid2 = versions.add_version(self.cfg, "test", rec2["run"])[0]
         _, rec3 = self.run_generator()
         self.assertEqual(versions.add_version(self.cfg, "test", rec3["run"], dry_run=True)[0], vid2 + "-2")
+
+    def test_versions_together(self):
+        # two datasets that read each other (the authority datasets): the last runs read the runs before them
+        for slug in ("a", "b"):
+            (self.t / "catalog" / f"{slug}.md").write_text(ENTRY.replace('slug = "test"', f'slug = "{slug}"')
+                                                           .replace('namespaces = ["test"]', f'namespaces = ["{slug}"]'))
+            (self.t / "generators" / slug).mkdir()
+            (self.t / "generators" / slug / "generate.py").write_text(GEN_AB.replace("SLUG", slug))
+        quiet = {"log": lambda *a: None}
+        _, a1 = generator.generate(self.cfg, "a", [], **quiet)
+        _, b1 = generator.generate(self.cfg, "b", [], [f"other=a/{a1['run']}/a.ttl.gz"], **quiet)
+        _, a2 = generator.generate(self.cfg, "a", [], [f"other=b/{b1['run']}/b.ttl.gz"], **quiet)
+        with self.assertRaises(versions.VersionError):   # alone, b read a run
+            versions.add_version(self.cfg, "b", b1["run"], dry_run=True)
+        (vid_a, _, va, _), (vid_b, _, vb, _) = versions.add_versions(
+            self.cfg, [("a", a2["run"]), ("b", b1["run"])], version="2020-02-02")
+        rec_b = runs.version_record("b", vid_b)
+        i = rec_b["inputs"][0]
+        self.assertEqual(i["ref"], f"a/{vid_a}/a.ttl.gz")            # a1 has the same file as a2
+        self.assertEqual(i["read_as"], f"a/{a1['run']}/a.ttl.gz")
+        self.assertEqual(i["sha256"], next(f["sha256"] for f in va["files"] if f["path"] == "a.ttl.gz"))
+        self.assertEqual(runs.version_record("a", vid_a)["inputs"][0]["ref"], f"b/{vid_b}/b.ttl.gz")
+
+    def test_versions_together_differ(self):
+        for slug in ("a", "b"):
+            (self.t / "catalog" / f"{slug}.md").write_text(ENTRY.replace('slug = "test"', f'slug = "{slug}"')
+                                                           .replace('namespaces = ["test"]', f'namespaces = ["{slug}"]'))
+            (self.t / "generators" / slug).mkdir()
+            (self.t / "generators" / slug / "generate.py").write_text(GEN_AB.replace("SLUG", slug))
+        quiet = {"log": lambda *a: None}
+        _, a1 = generator.generate(self.cfg, "a", [], **quiet)
+        _, b1 = generator.generate(self.cfg, "b", [], [f"other=a/{a1['run']}/a.ttl.gz"], **quiet)
+        (self.t / "generators" / "a" / "generate.py").write_text(GEN_AB.replace("SLUG", "a").replace('"x"', '"other"'))
+        _, a2 = generator.generate(self.cfg, "a", [], [f"other=b/{b1['run']}/b.ttl.gz"], **quiet)
+        with self.assertRaisesRegex(versions.VersionError, "run b again"):
+            versions.add_versions(self.cfg, [("a", a2["run"]), ("b", b1["run"])], dry_run=True)
+
+    def test_use(self):
+        self.assertNotIn("src", generator.stable_inputs())                # src has no stable version
+        generator.USE.update({"src": "2020-01-01"})
+        try:
+            self.assertEqual(generator.stable_inputs()["src"], "src/2020-01-01")
+            self.assertNotIn("src", generator.stable_inputs(exclude={"src"}))
+        finally:
+            generator.USE.clear()
+        _, rec = generator.generate(self.cfg, "test", [], log=lambda *a: None, use={"src": "2020-01-01"})
+        self.assertEqual(rec["use"], {"src": "2020-01-01"})
+        self.assertEqual(generator.USE, {})
+
+    def test_authority_selection(self):
+        (self.t / "catalog" / "lc.md").write_text(LC)
+        d = self.t / "store" / "lc" / "2020-01-01"
+        d.mkdir(parents=True)
+        with gzip.open(d / "lc-selection.tsv.gz", "wt") as f:
+            f.write("lc\tcurrent\treason\tdetail\nn1\tn1\tlinked\tx\n")
+        found = authorities.named([("s", "http://www.w3.org/2002/07/owl#sameAs", "http://id.loc.gov/authorities/names/n1"),
+                                   ("s", "http://www.w3.org/2002/07/owl#sameAs", "https://id.loc.gov/rwo/agents/n2"),
+                                   ("s", "http://www.w3.org/2002/07/owl#sameAs", "https://d-nb.info/gnd/123")])
+        out = authorities.compare(self.cfg, catalog.Catalog(), found, {}, own="gnd")
+        self.assertEqual(set(out), {"lc"})                                 # the run's own source is not counted
+        self.assertEqual((out["lc"]["named"], out["lc"]["new"], out["lc"]["examples"]), (2, 1, ["n2"]))
+        self.assertEqual(out["lc"]["selection"], "lc/2020-01-01")
 
     def test_refusals(self):
         _, rec = self.run_generator()

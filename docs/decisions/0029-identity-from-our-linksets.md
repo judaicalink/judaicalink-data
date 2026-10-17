@@ -69,6 +69,16 @@ the others do not.
   `src/jl/iris.py`); every run reports the IRIs it writes in another form. A canonical form changes only the
   spelling, never the identifier. Coordinates likewise: `"POINT(<lon> <lat>)"^^geosparql:wktLiteral`, the numbers
   as the source gives them (decided 2026-10-16).
+- **The authority datasets select from each other** (decided 2026-10-18): an authority dataset holds the records
+  that our record datasets or the other authority datasets link to (`jl.authorities.linking_inputs`). If we trust
+  Wikidata, the GND numbers it states for our entities are ours to take as well. The selection lists the linking
+  dataset of every identifier, so the records that only an authority brings in can be told apart. A run of an
+  authority dataset records the identifiers of other sources it names that their datasets do not have yet (run
+  record: `authority_links`); those datasets are run again on this run (`jl generate <slug> --use <slug>/<run>`)
+  until no run names new identifiers. The cascade ends: an identifier is taken over once, and the identifiers of a
+  source never select records of its own dataset (at most one round per authority dataset). Then all runs become
+  versions together (`jl add-version` with several runs; an input may be another run of a dataset of the call if
+  its file is the same). `jl check-authorities` lists what each authority dataset lacks.
 - **VIAF gets the benefit of the doubt:** a VIAF match is linked unless the data of the two sides contradict each
   other (birth or death dates given on both sides that differ); the contradictions are left out and logged.
 - **Transition:** the linksets are made for all joins that the sources' links make today, so that the entity pages

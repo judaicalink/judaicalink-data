@@ -1,6 +1,7 @@
 """geonames: the GeoNames features JudaicaLink uses (decision 0029), made from the GeoNames dump.
 
-1. The selection list (geonames-selection.tsv.gz): one row per GeoNames id and dataset that links it (an IRI of
+1. The selection list (geonames-selection.tsv.gz): one row per GeoNames id and dataset that links it (our datasets
+   and the other authority datasets, jl.authorities; an IRI of
    GeoNames in any form, or our record data/geonames/<id>, as object; jl.identifiers), with the current id: the id
    itself if the feature is in the dump, empty if it is not (GeoNames publishes no cumulative list of merged or
    deleted features, so no successor can be stated).
@@ -20,19 +21,13 @@ import re
 import zipfile
 from collections import defaultdict
 
-from jl import identifiers
-from jl import classes
-from jl.generator import stable_inputs
+from jl import authorities, classes, identifiers
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
-# the stable versions that may link GeoNames (all except ep, made from the others, and the ones without links to
-# records); gnd and geo-enriched as their latest runs until they are versions
-LINKED = stable_inputs("linked_", exclude={"geonames", "gnd-persons", "gnd-persons-entityfacts", "ep",
-                                           "compact-memory", "compact-memory-supp", "cm-ocr-quality", "cm-tagme",
-                                           "corrections-links", "quality-annotations", "judaicalink-agents",
-                                           "judaicalink-vocabulary", "ontology"})
+# the datasets that may link GeoNames: our datasets and the other authority datasets (jl.authorities)
+LINKED = authorities.linking_inputs("geonames")
 DUMP = "inputs:geonames/dump-2026-10-15/"
 INPUTS = {"all": DUMP + "allCountries.zip", "alternate": DUMP + "alternateNamesV2.zip",
           "admin1": DUMP + "admin1CodesASCII.txt", **LINKED}

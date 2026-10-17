@@ -2,7 +2,8 @@
 
 1. The selection list (gnd-selection.tsv.gz): one row per GND number and reason, with the current number the GND
    gives for it.
-   - linked: every GND number that a stable version of one of our datasets links: an IRI d-nb.info/gnd/<n> or a
+   - linked: every GND number that one of our datasets or another authority dataset links (jl.authorities: the
+     stable versions, or the runs of jl generate --use): an IRI d-nb.info/gnd/<n> or a
      record data/gnd/<n> as object (owl:sameAs or any other property), or a gndo:gndIdentifier; the detail is the
      dataset. A record data/gnd/<n> as subject is a statement about the record (e.g. records-normalized), not a link.
    - area-occupation (parameter area_rule): the rule of gnd-persons 2017, applied to the current GND: a
@@ -34,19 +35,14 @@ import json
 import re
 from collections import Counter, defaultdict
 
-from jl import identifiers
-from jl import classes
-from jl.generator import GeneratorError, slug_of, stable_inputs
+from jl import authorities, classes, identifiers
+from jl.generator import GeneratorError
 from jl.iris import WKT, canonical, canonical_wkt
 from jl.rdf import IRI, RDF_TYPE, XSD, BNode, Literal, parse_ntriples, unescape_string
 from jl.turtle import PREFIXES
 
-# the stable versions whose GND links are the core: all datasets except gnd-persons (the previous version of this
-# one), ep (made from the others) and the ones without links to records
-LINKED = stable_inputs("linked_", exclude={"gnd", "gnd-persons", "gnd-persons-entityfacts", "ep", "compact-memory",
-                                           "compact-memory-supp", "cm-ocr-quality", "cm-tagme", "corrections-links",
-                                           "quality-annotations", "judaicalink-agents", "judaicalink-vocabulary",
-                                           "ontology"})
+# the datasets whose GND links are the core: our datasets and the other authority datasets (jl.authorities)
+LINKED = authorities.linking_inputs("gnd")
 INPUTS = {
     "lds": "inputs:gnd/lds-2026-02-17/authorities-gnd_lds_20260217.nt.gz",
     "entityfacts": "inputs:gnd/entityfacts-2026-10-13/authorities-gnd_entityfacts_20261013.ndjson.gz",

@@ -1,8 +1,8 @@
 """lc: the records of the LC Name Authority File that JudaicaLink uses (decision 0029), made from the LC dump.
 
 1. The selection list (lc-selection.tsv.gz): one row per LC identifier and reason, with the current identifier.
-   - linked: every LC name identifier that a stable version of one of our datasets (and the run of gnd named in
-     LINKED, through EntityFacts) links as object: the authority record (id.loc.gov/authorities/names/<id>) or its
+   - linked: every LC name identifier that one of our datasets or another authority dataset (jl.authorities: the
+     stable versions, or the runs of jl generate --use) links as object: the authority record (id.loc.gov/authorities/names/<id>) or its
      Real World Object (id.loc.gov/rwo/agents/<id>); the detail is the dataset.
    LC marks a withdrawn record as madsrdf:DeprecatedAuthority (record status "deprecated") and states no successor
    in the export (madsrdf:hasLaterEstablishedForm links a heading to a later, different one, e.g. a renamed
@@ -26,17 +26,14 @@ import gzip
 import re
 from collections import defaultdict
 
-from jl import identifiers, iris
+from jl import authorities, identifiers, iris
 from jl import classes
-from jl.generator import GeneratorError, stable_inputs
+from jl.generator import GeneratorError
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, BNode, Literal, parse_ntriples, unescape_string
 from jl.turtle import PREFIXES
 
-LINKED = stable_inputs("linked_", exclude={"lc", "gnd-persons", "gnd-persons-entityfacts", "ep", "compact-memory",
-                                           "compact-memory-supp", "cm-ocr-quality", "cm-tagme", "corrections-links",
-                                           "quality-annotations", "judaicalink-agents", "judaicalink-vocabulary",
-                                           "ontology"})
+LINKED = authorities.linking_inputs("lc")   # our datasets and the other authority datasets (jl.authorities)
 INPUTS = {"names": "inputs:lc/names-2026-09-27/names.madsrdf.nt.gz", **LINKED}
 PARAMS = {}
 

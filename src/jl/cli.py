@@ -6,7 +6,8 @@ import os
 import sys
 from pathlib import Path
 
-from . import canonical, catalog, config, corrections, dataindex, generator, inputs, rdf, runs, versions
+from . import (authorities, canonical, catalog, config, corrections, dataindex, generator, inputs, rdf, runs,
+               versions)
 from .agents import AgentError, Registry, person_iri, software_iri
 
 def emit(args, obj, text):
@@ -405,7 +406,7 @@ def select_part(files, meta):
 
 
 def cmd_generate(args, cfg):
-    d, rec = generator.generate(cfg, args.slug, args.param, args.input)
+    d, rec = generator.generate(cfg, args.slug, args.param, args.input, use=generator.parse_use(args.use))
     print(f"{args.slug}/{rec['run']}: {rec['status']}" + (f" ({rec['error']})" if rec.get("error") else "")
           + f", {rec['seconds']} s")
     print(f"  {d}")
@@ -422,6 +423,8 @@ def cmd_generate(args, cfg):
     if rec["status"] != "ok":
         print(f"  log: {d / 'log.txt'}")
         return 1
+    for line in authority_lines(rec.get("authority_links", {}), f"{args.slug}/{rec['run']}"):
+        print(line)
     e = catalog.Catalog().get(args.slug)
     if e and e.stable:
         print(f"  compare: ./jl compare {args.slug}/{e.stable} {args.slug}/{rec['run']}")
@@ -499,24 +502,53 @@ def cmd_show_canonical(args, cfg):
 
 # --- versions and metadata ------------------------------------------------------------------------
 
+def authority_lines(links, what):
+    """The authority links of a run (jl.authorities): which datasets lack identifiers it names."""
+    todo = {s: i for s, i in links.items() if i["new"]}
+    for s, i in sorted(links.items()):
+        yield (f"  names {i['named']:,} {s} identifiers, {i['new']:,} not in {i['selection'] or s + ' (no version)'}"
+               + (f", e.g. {', '.join(i['examples'])}" if i["new"] else ""))
+    if todo:
+        yield (f"  run again: {', '.join(f'./jl generate {s} --use {what}' for s in sorted(todo))}")
+    elif links:
+        yield "  no new identifiers for the other authority datasets"
+
+
 def cmd_add_version(args, cfg):
-    slug, run_id = split_id(args.id)
-    if not run_id or not runs.is_run_id(run_id):
-        return fail("give <slug>/<run-id>")
-    vid, d, v, warnings = versions.add_version(cfg, slug, run_id, version=args.version, author=args.author,
-                                               description=args.description,
-                                               text=args.text, issued=args.issued, dry_run=args.dry_run)
-    print(f"{slug}/{vid}" + (" (dry run, nothing changed)" if args.dry_run else "") + f": {d}")
-    for f in v["files"]:
-        t = f" {f['triples']:>10,} triples" if f.get("triples") is not None else ""
-        print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
-    for w in warnings:
-        print(f"  warning: {w}")
-    if args.dry_run:
-        print(f"  entry as it would be: {d / 'catalog-entry.md'}; run record: {d / 'run.json'}")
-    else:
-        print(f"  catalogue entry, generators/{slug}/runs/{vid}.json: review and commit; stable is unchanged")
+    items = []
+    for ident in args.ids:
+        slug, run_id = split_id(ident)
+        if not run_id or not runs.is_run_id(run_id):
+            return fail(f"{ident}: give <slug>/<run-id>")
+        items.append((slug, run_id))
+    results = versions.add_versions(cfg, items, version=args.version, author=args.author,
+                                    description=args.description, text=args.text, issued=args.issued,
+                                    dry_run=args.dry_run)
+    for (slug, _run_id), (vid, d, v, warnings) in zip(items, results):
+        print(f"{slug}/{vid}" + (" (dry run, nothing changed)" if args.dry_run else "") + f": {d}")
+        for f in v["files"]:
+            t = f" {f['triples']:>10,} triples" if f.get("triples") is not None else ""
+            print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
+        for w in warnings:
+            print(f"  warning: {w}")
+        if args.dry_run:
+            print(f"  entry as it would be: {d / 'catalog-entry.md'}; run record: {d / 'run.json'}")
+        else:
+            print(f"  catalogue entry, generators/{slug}/runs/{vid}.json: review and commit; stable is unchanged")
     return 0
+
+
+def cmd_check_authorities(args, cfg):
+    out = authorities.check(cfg, generator.parse_use(args.use), log=print if args.verbose else (lambda *a: None))
+    if args.json:
+        print(json.dumps(out, indent=1, ensure_ascii=False))
+        return 0
+    todo = [s for s, i in out.items() if i["new"]]
+    for s, i in sorted(out.items()):
+        print(f"{s:<10} {i['named']:>9,} named, {i['new']:>9,} not in {i['selection'] or '(no version)'}"
+              + (f"; e.g. {', '.join(i['examples'])}" if i["new"] else ""))
+    print("run: " + ", ".join(todo) if todo else "every authority dataset has the identifiers our datasets name")
+    return 1 if todo else 0
 
 
 def cmd_import_files(args, cfg):
@@ -684,6 +716,9 @@ def parser():
         (("--param",), {"metavar": "K=V", "action": "append", "default": [], "help": "set a parameter; repeatable"}),
         (("--input",), {"metavar": "NAME=REF", "action": "append", "default": [],
                         "help": "use another input for a declared name (recorded); repeatable"}),
+        (("--use",), {"metavar": "SLUG/REF", "action": "append", "default": [],
+                      "help": "read this version or run of a dataset instead of its stable version, wherever the "
+                              "generator takes the stable versions (recorded); repeatable"}),
         json_out=False)
     add("compare", cmd_compare, "compare the triples of two versions, runs or files (exit 1 if they differ)",
         (("a",), {"metavar": "<a>", "help": target}), (("b",), {"metavar": "<b>"}),
@@ -697,7 +732,8 @@ def parser():
         (("--all",), {"action": "store_true", "help": "data and -meta files together"}),
         (("--count",), {"action": "store_true", "help": "only count the triples"}), json_out=False)
     add("add-version", cmd_add_version, "make a run a version: header comments, -meta, run record, catalogue, store",
-        (("id",), {"metavar": "<slug>/<run-id>"}),
+        (("ids",), {"metavar": "<slug>/<run-id>", "nargs": "+",
+                    "help": "one run, or several that become versions together (runs that read each other)"}),
         (("--version",), {"help": "the version id (default: the run date, -2, -3 … if taken)"}),
         (("--author",), {"help": "who makes the version (default: git config user.name); must be registered"}),
         (("--description",), {"help": "a short remark on the version (catalogue)"}),
@@ -706,6 +742,11 @@ def parser():
         (("--dry-run",), {"action": "store_true",
                           "help": "write the version into the build area only; catalogue, store, run unchanged"}),
         json_out=False)
+    add("check-authorities", cmd_check_authorities,
+        "list per authority dataset the identifiers our datasets name that it does not have (decision 0029)",
+        (("--use",), {"metavar": "SLUG/REF", "action": "append", "default": [],
+                      "help": "count this version or run instead of the stable version; repeatable"}),
+        (("--verbose",), {"action": "store_true", "help": "list the datasets read"}))
     add("import-files", cmd_import_files,
         "take files made elsewhere in as a run (<slug> files…), or attach a run record to a version (<slug>/<version>)",
         (("id",), {"metavar": "<slug>[/<version>]"}),

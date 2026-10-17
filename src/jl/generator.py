@@ -95,16 +95,26 @@ def load_generator(slug):
 
 # --- inputs ----------------------------------------------------------------------------------------
 
+# {slug: version or run id} that stable_inputs reads instead of the stable version (or in addition, for a dataset
+# without one): set by jl generate --use for one run (e.g. a round of the authority datasets, jl.authorities)
+USE = {}
+
+
 def stable_inputs(prefix="", exclude=(), add=None, kinds=None, replaced=False):
     """INPUTS for the stable versions of the catalogue: {prefix + slug (with "_" for "-"): "<slug>/<version>"}.
     exclude: slugs left out; kinds: only these catalogue kinds; replaced: also the datasets that another entry
-    replaces (dcterms:replaces); add: {slug: version or run id}, added or instead of the stable version. Evaluated
-    when the generator is loaded; the run record names the versions used. slug_of(ref) gives the slug back."""
+    replaces (dcterms:replaces); add: {slug: version or run id}, added or instead of the stable version. USE (jl
+    generate --use) applies to every call, for the datasets it does not leave out. Evaluated when the generator is
+    loaded; the run record names the versions used. slug_of(ref) gives the slug back."""
     cat = catalog.Catalog()
     gone = set() if replaced else {r for e in cat.entries.values() for r in catalog.as_list(e.data.get("replaces"))}
     chosen = {slug: e.stable for slug, e in cat.entries.items()
               if e.stable and slug not in exclude and slug not in gone
               and (kinds is None or e.data.get("kind") in kinds)}
+    for slug, ref in USE.items():
+        e = cat.get(slug)
+        if e and slug not in exclude and (kinds is None or e.data.get("kind") in kinds):
+            chosen[slug] = ref
     chosen.update(add or {})
     return {prefix + s.replace("-", "_"): f"{s}/{v}" for s, v in sorted(chosen.items())}
 
@@ -294,13 +304,33 @@ def parse_params(defaults, given):
     return params
 
 
-def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
+def parse_use(items):
+    """["<slug>/<version or run id>", …] -> {slug: version or run id} (jl generate --use)."""
+    use = {}
+    for item in items:
+        s, _, v = item.partition("/")
+        if not s or not v or "/" in v:
+            raise GeneratorError(f"--use {item!r}: give <slug>/<version or run id>")
+        use[s] = v
+    return use
+
+
+def generate(cfg, slug, given_params=(), input_overrides=(), log=print, use=None):
     """Run the generator of a dataset; returns the run directory. The run record is written also when the
-    generator fails (status "failed")."""
+    generator fails (status "failed"). use: {slug: version or run id} read by stable_inputs instead of the stable
+    versions (USE)."""
     cat = catalog.Catalog()
     if cat.get(slug) is None:
         raise GeneratorError(f"no dataset {slug!r} in the catalogue")
-    module = load_generator(slug)
+    for s, v in (use or {}).items():
+        if cat.get(s) is None:
+            raise GeneratorError(f"--use {s}/{v}: no dataset {s!r} in the catalogue")
+    USE.clear()
+    USE.update(use or {})
+    try:
+        module = load_generator(slug)
+    finally:
+        USE.clear()
     declared = dict(getattr(module, "INPUTS", {}))
     for item in input_overrides:
         k, sep, v = item.partition("=")
@@ -323,6 +353,8 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
     record = {"slug": slug, "run": run_id, "generator": f"generators/{slug}/generate.py", "commit": commit,
               "uncommitted": dirty, "python": platform.python_version(), "params": params,
               "input_overrides": list(input_overrides), "started": utc(started)}
+    if use:
+        record["use"] = dict(sorted(use.items()))
     if shared:
         record["shared_code"] = shared
     run = None
@@ -369,5 +401,9 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print):
                     f["noncanonical"] = {k: v["count"] for k, v in run.written[rel]["noncanonical"].items()}
             files.append(f)
         record["files"] = files
+        if record["status"] == "ok":
+            from . import authorities
+            if slug in authorities.SOURCE:   # the identifiers of other authorities this run names (the cascade)
+                record["authority_links"] = authorities.new_links(cfg, slug, d, files, use or {})
     (d / "run.json").write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return d, record

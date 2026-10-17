@@ -1,7 +1,7 @@
 """The identifiers by which our data reaches Wikidata items (shared by query.py and generate.py).
 
-DATASETS: the stable versions of our datasets and the runs of the source datasets and linksets that are no versions
-yet (they become versions later; then their versions are named here). collect() lists, per source and identifier,
+DATASETS: our datasets and the other authority datasets (jl.authorities.linking_inputs: the stable versions, or the
+runs of jl generate --use), and in RUNS the runs of linksets that are no versions yet. collect() lists, per source and identifier,
 the datasets that name it as object (jl.identifiers): Wikidata items themselves, and the identifiers Wikidata
 states for items (GND, VIAF, LC, GeoNames, ISNI) and English DBpedia resources (an English Wikipedia article).
 """
@@ -9,16 +9,12 @@ states for items (GND, VIAF, LC, GeoNames, ISNI) and English DBpedia resources (
 from collections import defaultdict
 from urllib.parse import unquote
 
-from jl import identifiers
-from jl.generator import stable_inputs
+from jl import authorities, identifiers
 
 RUNS = {
         "ls-nli-wikidata": "run-20261015T210917Z", "ls-bhr-wikidata": "run-20261015T210838Z",
         "ls-rujen-wikidata": "run-20261016T114653Z"}
-DATASETS = stable_inputs("linked_", exclude={"wikidata", "gnd-persons", "gnd-persons-entityfacts", "ep",
-                                             "compact-memory", "compact-memory-supp", "cm-ocr-quality", "cm-tagme",
-                                             "corrections-links", "quality-annotations", "judaicalink-agents",
-                                             "judaicalink-vocabulary", "ontology"}, add=RUNS)
+DATASETS = authorities.linking_inputs("wikidata", add=RUNS)   # with the other authority datasets (jl.authorities)
 # the sources and the Wikidata properties that state them
 PROPERTIES = {"gnd": "P227", "viaf": "P214", "lc-names": "P244", "geonames": "P1566", "isni": "P213"}
 SOURCES = {"wikidata", "dbpedia", *PROPERTIES}

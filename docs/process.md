@@ -61,6 +61,18 @@ Entity pages are made again after changes to the records ([0009](decisions/0009-
    correction in a correction dataset), then the run is repeated.
 4. `./jl add-version ep/<run>`; update the counts in `generators/ep/README.md`, the dashboard and the demonstrators.
 
+## 2a. Authority datasets: the cascade
+
+The authority datasets (`gnd`, `lc`, `geonames`, `wikidata`, `viaf`) select their records from our datasets and from
+each other ([0029](decisions/0029-identity-from-our-linksets.md)). When a record dataset or an authority input changes:
+
+1. `jl check-authorities`: which authority datasets lack identifiers our datasets name.
+2. `jl generate <slug>` for each of them; the summary lists the identifiers of the other sources the run names that
+   their datasets do not have, with the command to run them again (`--use <slug>/<run>`; also `--use` for every run
+   of this round that is not a version yet). Repeat until no run names new identifiers.
+3. The linksets (`ls-gnd`, …) and the entity pages on these runs (test), then
+   `jl add-version gnd/<run> lc/<run> …` with all the runs together, one version id for all.
+
 ## 3. Publishing at a dumps location
 
 1. Copy the files to `<location>/<slug>/<version>/<path>`: mannheim.judaicalink.org for versions shown on the
