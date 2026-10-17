@@ -3,7 +3,7 @@ slug = "gba"
 title = "Gidal Image Archive"
 author = "Kai Eckert"
 date = "2022-07-08"
-website = "http://www.steinheim-institut.de/gba"
+website = "https://www.steinheim-institut.de/wiki/index.php/Archive:Gidal-Bildarchiv"
 example = "http://data.judaicalink.org/data/gba/Moses_Mendelssohn"
 namespaces = ["gba"]
 stable = "2025-03-21"
@@ -46,7 +46,7 @@ date = "2022-07-08"
 author = "Benjamin Schnabel"
 text = "First version."
 +++
-[Gidal Image Archive](http://www.steinheim-institut.de/wiki/index.php/Archive:Gidal-Bildarchiv) contains information 
+[Gidal Image Archive](https://www.steinheim-institut.de/wiki/index.php/Archive:Gidal-Bildarchiv) contains information 
 on the image collection from Ignaz Nachum Gidalewitsch.
 <!--more-->
 

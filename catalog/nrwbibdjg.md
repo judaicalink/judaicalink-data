@@ -3,12 +3,12 @@ slug = "nrwbibdjg"
 title = "Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen"
 author = "Kai Eckert"
 date = "2024-06-03"
-website = "http://www.steinheim-institut.de/ebib-djg-nrw/"
+website = "https://www.steinheim-institut.de/ebib-djg-nrw/"
 example = "http://data.judaicalink.org/data/nrwbibdjg/112504981"
 namespaces = ["nrwbibdjg"]
 stable = "2024-05-24"
 kind = "records"
-method = ["converted", "lookup"]
+method = ["scraped", "deterministic", "rule-based"]
 
 [license]
 name = "CC BY 4.0"
@@ -52,4 +52,4 @@ The **Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen** (Bibliogra
 The bibliography compiled and constantly updated by Harald Lordick with its almost 7,000 references can be researched as an online catalogue on the Steinheim Institute's website. 
 It works with georeferencing and with Linked Open Data (Gemeinsame Normdatei, GND). A corresponding BEACON file is available. The database system (in-house development) is based on XML/XSLT. 
 
-The dataset includes the titles provided by the Steinheim Institute, enriched with data about the authors from the GND.
+The dataset holds the titles that the catalogue lists for the persons, places and organisations of its BEACON file (about 2,250 of the titles), with their authors, editors and subjects, linked to the GND.

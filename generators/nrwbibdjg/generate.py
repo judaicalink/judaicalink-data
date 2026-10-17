@@ -291,5 +291,15 @@ def generate(run):
             rep["works: deprecated" + (" (several candidates)" if cand else "")] += 1
             run.log("previous work deprecated:", s, "candidates:", len(cand))
 
-    run.note(f"{dict(sorted(stats.items()))}; previous records: {dict(sorted(rep.items()))}.")
+    run.log("counts:", dict(sorted(stats.items())), "previous:", dict(sorted(rep.items())))
+    replaced = sum(n for k, n in rep.items() if k.startswith("works: replaced"))
+    run.note(f"{stats['records: Person'] + stats['records: Organization'] + stats['records: Place']:,} records "
+             f"({stats['records: Person']:,} persons, {stats['records: Organization']:,} organisations, "
+             f"{stats['records: Place']:,} places), {stats['works']:,} works, "
+             f"{stats['containers: Zeitschrift'] + stats['containers: Sammelband']:,} journals and volumes; "
+             f"{stats['works: author links']:,} author, {stats['works: editor links']:,} editor and "
+             f"{stats['works: subject links']:,} subject links. Of 2024-05-24: {rep['records: same IRI']:,} records "
+             f"keep their IRI, {replaced:,} works are replaced, "
+             f"{rep['records: deprecated'] + sum(n for k, n in rep.items() if k.startswith('works: deprecated')):,} "
+             "IRIs deprecated.")
     run.write_turtle("nrwbibdjg.ttl.gz", set(canonical_triples(t)))   # docs/iri-forms.md
