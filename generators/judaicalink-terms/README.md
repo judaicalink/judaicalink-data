@@ -14,8 +14,6 @@ A label (`jl:label`, English and German) for every class and property used in th
 - `inputs:vocabularies/<name>-2026-10-17`: the official files of the vocabularies our data uses (GND, agrelon, MADS/RDF,
   SKOS, DCMI terms and elements, FOAF, schema.org, RDF, RDFS, OWL, GeoNames, Web Annotation, PROV-O, BIBFRAME, BFLC, LC
   identifiers, GeoSPARQL 1.0, DQV), each with its address in `input.toml`.
-- `inputs:vocabularies/judaicalink-ontology-common-layer-b039648`: the Turtle of the ontology branch `common-layer`
-  (until it is merged); the ontology version of the catalogue is read as well.
 - `inputs:web-caches/wikidata-properties-2026-10-17`: the labels of the Wikidata properties used.
 
 ## Rule

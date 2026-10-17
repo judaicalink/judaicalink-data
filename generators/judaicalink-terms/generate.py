@@ -3,13 +3,11 @@
 Terms: every predicate and every object of rdf:type in the stable versions (and the wikidata run, until it is a
 version). Labels, per language from the first source that has one:
 1. the dataset that coins the term (its vocabulary file, e.g. data/haskala/vocab/, data/bhr/vocab/);
-2. the JudaicaLink ontology (branch common-layer: jl:label of foreign terms, rdfs:label of own terms; then the
-   ontology version in the catalogue);
+2. the JudaicaLink ontology (its stable version: jl:label of foreign terms, rdfs:label of own terms);
 3. the term's own vocabulary (rdfs:label, skos:prefLabel), read from the official file;
 4. Wikidata, for its properties (wdt:, wdtn:).
 A label is copied with its language tag; one without tag only if the term has neither English nor German. Terms of
-the GND ontology are looked up under https (the DNB moved its namespace; older data uses http), MADS/RDF under both
-of its namespaces.
+the GND and GeoNames ontology are looked up under http and https, MADS/RDF under both of its namespaces.
 """
 
 import json
@@ -30,7 +28,6 @@ VOCABS = {n: f"inputs:vocabularies/{n}-2026-10-17/{f}" for n, f in [
     ("prov", "prov.ttl"), ("bibframe", "bibframe.rdf"), ("bflc", "bflc.rdf"), ("identifiers", "identifiers.rdf"),
     ("geosparql", "geosparql.rdf"), ("dqv", "dqv.ttl")]}
 INPUTS = {**DATA, **{"vocab_" + n: ref for n, ref in VOCABS.items()},
-          "ontology_branch": "inputs:vocabularies/judaicalink-ontology-common-layer-b039648/judaicalink-ontology.ttl",
           "wikidata_properties": "inputs:web-caches/wikidata-properties-2026-10-17/properties.jsonl"}
 PARAMS = {}
 
@@ -100,11 +97,6 @@ def generate(run):
 
     # the sources in order: (name, {term: [(text, lang)]})
     sources = [("datasets", own)]
-    onto = defaultdict(list)
-    for s, p, o in run.triples("ontology_branch"):
-        if p in (JLLABEL, RDFS + "label") and isinstance(o, Literal):
-            onto[str(s)].append((o.value, (o.lang or "").lower()))
-    sources.append(("ontology (common-layer)", onto))
     onto_v = defaultdict(list)
     for s, p, o in run.triples("ds_ontology"):
         if p in (JLLABEL, RDFS + "label") and isinstance(o, Literal):
