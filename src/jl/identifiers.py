@@ -9,6 +9,7 @@ identity statements count (selects).
 
 import re
 from collections import defaultdict
+from urllib.parse import unquote
 
 from . import iris
 from .rdf import BNode, Literal
@@ -45,6 +46,15 @@ def normal(source, identifier):
     return identifier.strip().upper() if source == "gnd" else identifier.strip()
 
 
+# Wikipedia and DBpedia: one source per language (decision 0031); the article and the resource are one identifier
+WIKI = [("wikipedia-en", re.compile(r"^https?://(?:en\.(?:m\.)?wikipedia\.org/wiki/|dbpedia\.org/resource/)(.+)$")),
+        ("wikipedia-de", re.compile(r"^https?://(?:de\.(?:m\.)?wikipedia\.org/wiki/|de\.dbpedia\.org/resource/)(.+)$"))]
+
+
+def wiki_title(t):
+    return unquote(t).replace(" ", "_")
+
+
 def identify(term, predicate=None):
     """(source, identifier) or None."""
     if isinstance(term, Literal):
@@ -58,8 +68,12 @@ def identify(term, predicate=None):
         m = pattern.match(term)
         if m:
             return source, normal(source, m.group(1))
+    for name, pattern in WIKI:
+        m = pattern.match(term)
+        if m:
+            return name, wiki_title(m.group(1))
     for name, pattern, _form, _src in iris.FORMS:
-        if name == "judaicalink":
+        if name in ("judaicalink", "dbpedia"):
             continue
         m = pattern.match(term)
         if m:
