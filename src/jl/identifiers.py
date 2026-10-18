@@ -84,7 +84,18 @@ def selects(slug, predicate, source=None):
 
 
 def normal(source, identifier):
+    if source.startswith("wikipedia-"):
+        return wiki_title(identifier.strip())
     return identifier.strip().upper() if source == "gnd" else identifier.strip()
+
+
+# characters of a title that an IRI path cannot hold as they are (our records data/dbpedia/<lang>/<title>, 0031)
+_TITLE_ESCAPE = re.compile(r'[\x00-\x20<>"{}|\\^`?#%]')
+
+
+def title_iri_part(title):
+    """A Wikipedia title (underscores) as the last part of an IRI: the characters an IRI cannot hold escaped."""
+    return _TITLE_ESCAPE.sub(lambda m: "%{:02X}".format(ord(m.group(0))), title.replace(" ", "_"))
 
 
 # Wikipedia and DBpedia: one source per language (decision 0031); the article and the resource are one identifier
