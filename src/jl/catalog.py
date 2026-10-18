@@ -268,6 +268,7 @@ DATASET = {
     "changelog": (lambda v: True, ""),
     "identity": (lambda v: isinstance(v, dict) and all(is_str_list(x) for x in v.values()),
                  "a table: property -> list of sources (decision 0032)"),
+    "several_per_entity": TEXT,   # why several records of the dataset may belong to one entity (0032)
 }
 REQUIRED = ("slug", "title", "author", "license")
 

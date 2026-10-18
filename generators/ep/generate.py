@@ -204,8 +204,15 @@ def key(o):
 
 
 class Closure:
-    def __init__(self):
+    """Union-find over records and identifier keys. With owner (record -> the record dataset it counts for, or None),
+    a union that would bring two records of the same record dataset into one group is refused (decision 0032) and
+    noted in refused."""
+
+    def __init__(self, owner=None):
         self.parent = {}
+        self.owner = owner
+        self.members = {}   # root -> {dataset: record} of the constrained datasets
+        self.refused = []
 
     def find(self, x):
         p = self.parent
@@ -217,12 +224,29 @@ class Closure:
             p[x], x = r, p[x]
         return r
 
-    def union(self, a, b):
+    def union(self, a, b, why=None):
         ra, rb = self.find(a), self.find(b)
-        if ra != rb:
-            if rb < ra:
-                ra, rb = rb, ra
-            self.parent[rb] = ra
+        if ra == rb:
+            return True
+        if self.owner is not None:
+            ma, mb = self.members_of(ra), self.members_of(rb)
+            clash = sorted(d for d in ma.keys() & mb.keys() if ma[d] != mb[d])
+            if clash:
+                self.refused.append((a, b, why, clash[0], ma[clash[0]], mb[clash[0]]))
+                return False
+        if rb < ra:
+            ra, rb = rb, ra
+        self.parent[rb] = ra
+        if self.owner is not None:
+            merged = {**self.members.pop(rb, {}), **self.members.get(ra, {})}
+            self.members[ra] = merged
+        return True
+
+    def members_of(self, root):
+        if root not in self.members:
+            d = self.owner(root) if root in self.parent and self.parent[root] == root else None
+            self.members[root] = {d: root} if d else {}
+        return self.members[root]
 
 
 # --- choosing facts (from kg-complements/ep_generator.py) ------------------------------------------------
@@ -326,19 +350,27 @@ def number(e):
 
 # --- identity ----------------------------------------------------------------------------------------------
 
-def closure(records, links, replaced):
-    cl = Closure()
+# the order in which identity links are applied (the most trusted first, decision 0032): a link refused because of
+# the one-record-per-dataset rule is then always a less trusted one
+KEY_ORDER = {"gnd": 0, "lc": 1, "wd": 2, "viaf": 3, "wp-en": 4, "wp-de": 4, "geonames": 5, "isni": 6, "tgn": 6}
+
+
+def closure(records, links, replaced, owner=None):
+    """The groups: first every record in an authority namespace with its identifier (data/gnd/N is gnd:N), then the
+    replacements (replaced by exactly one IRI: the same thing, a node, not a member), then the identity links in
+    KEY_ORDER; with owner, unions against the one-record-per-dataset rule are refused (Closure)."""
+    cl = Closure(owner)
     for r in sorted(records):
         cl.find(r)
-    for s, k, *_ in sorted(links):
-        cl.union(s, k)
-    for r in sorted(records):   # a record in an unambiguous authority namespace is that identifier (data/gnd/N)
+    for r in sorted(records):
         k = key(r)
-        if k and not k.startswith(JL) and re.match(r"(gnd|geonames|lc|wd|viaf):", k):
-            cl.union(r, k)
+        if k and not k.startswith(JL) and re.match(r"(gnd|geonames|lc|wd|viaf|wp-en|wp-de):", k):
+            cl.union(r, k, "own identifier")
     for s, ts in sorted(replaced.items()):
         if len(ts) == 1 and s not in records:
-            cl.union(s, next(iter(ts)))   # replaced by exactly one IRI: the same thing (a node, not a member)
+            cl.union(s, next(iter(ts)), "replaced")
+    for s, k, *_ in sorted(links, key=lambda x: (KEY_ORDER.get(key_type(x[1]), 9), x[1], x[0])):
+        cl.union(s, k, k)
     return cl
 
 
@@ -486,7 +518,8 @@ def generate(run):
                     facts[s][field].append((str(o), "", slug, "uri", s))
     for e in entities_cm:   # the entities linked in Compact Memory are records (of cm-entities)
         classes[e].setdefault("cm-entities", set())
-    records = set(classes)
+    records = {r for r in classes if r not in replaced}   # a replaced IRI is never a member (0032)
+    stats["typed IRIs that are replaced (not members)"] = len(classes) - len(records)
     missing = sorted({d for r in records for d in classes[r]} - set(PRECEDENCE))
     if missing:
         raise GeneratorError(f"datasets with records but not in PRECEDENCE: {missing}")
@@ -497,10 +530,26 @@ def generate(run):
         raise GeneratorError(f"identity must be 'all' or 'linksets', not {run.params['identity']!r}")
     for ks, ko in replaced_key.items():   # a replaced identifier is the same thing as its successor (0029)
         replaced[ks].add(ko)
-    cl_all = closure(records, links, replaced)
-    cl_ours = closure(records, [x for x in links if x[3]], replaced)
+    several = {slug for slug in DATASET_OF.values() if (catalog.Catalog().get(slug) or {}) and
+               catalog.Catalog().get(slug).data.get("several_per_entity")}
+
+    def owner(r):
+        """The record dataset a record counts for in the one-record-per-dataset rule (0032), or None: authority
+        datasets (their duplicates are accepted) and datasets declared with several records per entity are free;
+        dbpedia counts per language."""
+        ds = sorted((d for d in classes.get(r, {}) if d not in CLASS_DATASETS), key=src_rank)
+        d = ds[0] if ds else None
+        if d is None or d in AUTHORITY_ONLY or d == "gnd" or d in several:
+            return None
+        return f"dbpedia/{r[len(JL):].split('/')[1]}" if d == "dbpedia" else d
+
+    cl_all = closure(records, links, replaced, owner)
+    cl_ours = closure(records, [x for x in links if x[3]], replaced, owner)
     identity_report(run, records, classes, links, replaced, cl_all, cl_ours)
     cl = cl_all if run.params["identity"] == "all" else cl_ours
+    for a, b, why, ds, ra, rb in cl.refused:   # one record per record dataset (0032)
+        stats["links refused (a second record of one dataset)"] += 1
+        run.log(f"refused: {a} ~{why}~ {b}: would join {ra} and {rb} of {ds}")
     groups = defaultdict(set)
     for r in records:
         groups[cl.find(r)].add(r)
