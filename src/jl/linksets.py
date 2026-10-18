@@ -23,9 +23,9 @@ SAME = PREFIXES["owl"] + "sameAs"
 JLSAME = PREFIXES["jl"] + "sameAs"   # identity as JudaicaLink states it (decision 0029)
 REPLACED = PREFIXES["dcterms"] + "isReplacedBy"
 DEPRECATED = PREFIXES["owl"] + "deprecated"
-# the statements that say a record is the authority entry; other references (a place of birth, an occupation) are not
-IDENTITY = {SAME, PREFIXES["skos"] + "exactMatch", "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority",
-            *identifiers.LITERAL_PROPERTIES}
+# the statements that say a record is the authority entry (also Wikidata's identifier properties); other references
+# (a place of birth, an occupation) are not
+IDENTITY = identifiers.IDENTITY
 
 
 def authority_index(run, source, authority):
@@ -51,8 +51,9 @@ def authority_index(run, source, authority):
     return current, to, deprecated
 
 
-def authority_linkset(run, source, authority, inputs, prefix):
-    """The links (a set of triples) and writes the counts as a note; see the module docstring."""
+def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
+    """The links (a set of triples) and writes the counts as a note; see the module docstring. leave_out(record,
+    current id): a reason to leave the link out (e.g. contradicting life dates, ls-viaf), or None."""
     current, to, deprecated = authority_index(run, source, authority)
     run.log(f"{authority}: {len(current):,} current records, {len(to):,} replaced identifiers, "
             f"{len(deprecated):,} deprecated")
@@ -84,6 +85,11 @@ def authority_linkset(run, source, authority, inputs, prefix):
                 why = "deprecated" if n in deprecated else "not in the authority dataset"
                 c[f"left out: {why}"] += 1
                 left_out.append(f"{s} {n} ({why}, {slug})")
+                continue
+            why = leave_out(str(s), cur) if leave_out else None
+            if why:
+                c[f"left out: {why}"] += 1
+                left_out.append(f"{s} {cur} ({why}, {slug})")
                 continue
             links.add((IRI(s), IRI(JLSAME), IRI(prefix + cur)))
             targets[s].add(cur)

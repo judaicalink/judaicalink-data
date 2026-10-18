@@ -1,16 +1,14 @@
 """ls-geonames: every record of ours that refers to a GeoNames entry, linked to our record of the current entry (decision 0029).
 
-References: GeoNames ids (sws.geonames.org/<id> in any form, our records data/geonames/<id>) in the stable versions of our datasets (all but geonames itself and ep); resolved
+References: GeoNames ids (sws.geonames.org/<id> in any form, our records data/geonames/<id>) in our datasets and the other authority datasets (jl.authorities.linking_inputs: the stable versions, or the runs of jl generate --use); resolved
 through the replacements of the dataset geonames; the rules are in jl.linksets.
 """
 
-from jl.generator import stable_inputs
+from jl import authorities
 from jl.linksets import authority_linkset
 
-LINKED = stable_inputs("linked_", exclude={"geonames", "ep", "compact-memory", "compact-memory-supp", "cm-ocr-quality",
-                                           "cm-tagme", "corrections-links", "quality-annotations", "judaicalink-agents",
-                                           "judaicalink-vocabulary", "ontology"}, kinds=None)
-INPUTS = {"authority": "geonames/2026-10-16", **LINKED}
+LINKED = authorities.linking_inputs("geonames")   # our datasets and the other authority datasets
+INPUTS = {"authority": authorities.authority_input("geonames"), **LINKED}
 PARAMS = {}
 
 

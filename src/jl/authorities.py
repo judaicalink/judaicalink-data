@@ -37,6 +37,13 @@ def linking_inputs(slug, add=None):
     return generator.stable_inputs("linked_", exclude=NOT_LINKING | {slug}, add=add)
 
 
+def authority_input(slug):
+    """The input reference of the authority dataset slug: the run or version of jl generate --use, else the stable
+    version (for the linksets, which read the authority dataset they link to)."""
+    ref = selection_ref(catalog.Catalog(), slug, generator.USE)
+    return f"{slug}/{ref}" if ref else None
+
+
 def selection_ref(cat, slug, use):
     """The version or run whose selection counts for slug: use (jl generate --use), else the stable version."""
     if slug in use:
