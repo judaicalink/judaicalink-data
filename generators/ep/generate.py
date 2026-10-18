@@ -33,7 +33,8 @@ from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
 # Datasets in order of precedence for choosing facts (decision 0009, 0022): 1 GND; 2 libraries and bibliographies;
-# 3 curated reference works and research databases; 4 general knowledge bases; 5 automatically derived or linked.
+# 3 curated reference works and research databases; 4 general knowledge bases; 5 automatically derived or linked;
+# 6 the other authority datasets (0029: their records are members of an entity, their facts come last).
 PRECEDENCE = [
     "gnd",
     "nli-records", "ubffm-persons", "nrwbibdjg", "haskala",
@@ -42,7 +43,11 @@ PRECEDENCE = [
     "dbpedia-persons", "cm-entities", "geo-coordinates",
     "interlinks", "2014links", "geo-enriched", "dbp-wiki-geo-linking", "records-normalized",
     "ls-nli-legacy", "ls-yivo-wikidata",
+    "wikidata", "viaf", "lc", "geonames",
 ]
+# authority datasets whose records join an entity but never make one on their own, give no altLabels and do not vote
+# for the preferred name (they fill a language only where no other record has a name in it)
+AUTHORITY_ONLY = {"wikidata", "viaf", "lc", "geonames"}
 # The deletions of the correction datasets are applied to every input (0023); a correction version that also adds
 # triples (corrections-links 2026-10-12 adds none) is declared here as an input like any other dataset.
 # The stable versions of the catalogue for the datasets above and record-classes, and RUNS (runs of datasets that are
@@ -495,6 +500,9 @@ def generate(run):
     groups = defaultdict(set)
     for r in records:
         groups[cl.find(r)].add(r)
+    for root in [g for g, ms in groups.items() if all(classes[m] and set(classes[m]) <= AUTHORITY_ONLY for m in ms)]:
+        del groups[root]   # only records of authority datasets (e.g. a cluster whose link ls-viaf left out)
+        stats["groups of authority records only (no page)"] += 1
     stats["groups"] = len(groups)
     joined = [(a, b) for a, b in KNOWN_DISTINCT if a in cl.parent and b in cl.parent and cl.find(a) == cl.find(b)]
     if joined:
@@ -601,23 +609,26 @@ def generate(run):
         rank_of = lambda v: rank.get(v[4], last)
 
         # names
-        labels = [(norm_label(v), lang, ds, None, s) for v, lang, ds, t, s in merged_facts.get("label", []) if t == "literal"]
+        all_labels = [(norm_label(v), lang, ds, None, s) for v, lang, ds, t, s in merged_facts.get("label", [])
+                      if t == "literal"]
+        labels = [x for x in all_labels if x[2] not in AUTHORITY_ONLY]
         gnd = sorted((x for x in labels if x[2] == "gnd"), key=lambda x: (rank_of(x), x[0]))
         if not labels:
-            labels = [(unquote(m.rstrip("/").rsplit("/", 1)[-1]).replace("_", " "), "", "cm-entities", None, m)
-                      for m in members]
+            labels = all_labels or [(unquote(m.rstrip("/").rsplit("/", 1)[-1]).replace("_", " "), "", "cm-entities",
+                                     None, m) for m in members]
         pref = choose_label(labels, gnd)
         seen = set()
         if pref:
             out.add((page, IRI(SKOS + "prefLabel"), lit(pref)))
             seen.add(label_key(pref))
         for lang in LANGUAGES:
-            cands = [v for v in labels if v[1] == lang]
+            cands = [v for v in labels if v[1] == lang] or [v for v in all_labels if v[1] == lang]
             if cands:
                 v = sorted(cands, key=lambda x: (x[0].isupper(), rank_of(x), x[0]))[0]
                 out.add((page, IRI(SKOS + "prefLabel"), lit(v[0], lang=lang)))
                 seen.add(label_key(v[0]))
-        alts = [(norm_label(v), lang, ds) for v, lang, ds, t, _s in merged_facts.get("alt", []) if t == "literal"]
+        alts = [(norm_label(v), lang, ds) for v, lang, ds, t, _s in merged_facts.get("alt", [])
+                if t == "literal" and ds not in AUTHORITY_ONLY]
         for v, lang, ds in sorted(alts + [x[:3] for x in labels], key=lambda x: (src_rank(x[2]), lang_rank(x[1]), x[0])):
             k = label_key(v)
             if k and k not in seen:
