@@ -108,6 +108,12 @@ FACT_PROPS = {
     JLO + "lat": "lat", "http://www.w3.org/2003/01/geo/wgs84_pos#lat": "lat",
     JLO + "lon": "lon", "http://www.w3.org/2003/01/geo/wgs84_pos#long": "lon",
     SAME: "sameAs", GNDID: "gndId", GNDO_S + "gndIdentifier": "gndId",
+    # for choosing the primary record of a dataset (record_order)
+    GNDO + "succeedingPlaceOrGeographicName": "successor", GNDO_S + "succeedingPlaceOrGeographicName": "successor",
+    GNDO + "succeedingCorporateBody": "successor", GNDO_S + "succeedingCorporateBody": "successor",
+    GNDO + "realIdentity": "realIdentity", GNDO_S + "realIdentity": "realIdentity",
+    "https://www.geonames.org/ontology#featureCode": "featureCode",
+    "http://www.geonames.org/ontology#featureCode": "featureCode",
 }
 # Records known to be different entities, each joined once by wrong links that corrections-links deletes (decision
 # 0023): a test, not a rule. If one of these pairs is in one group again, a new link joins them; the run stops so that
@@ -227,11 +233,6 @@ def label_key(s):
     return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower().replace(",", " ").strip() or s.lower()
 
 
-def best(values):
-    """values: [(value, lang, dataset, type, subject)] -> the one with the best dataset precedence, then language."""
-    return sorted(values, key=lambda v: (src_rank(v[2]), lang_rank(v[1]), v[0]))[0] if values else None
-
-
 def choose_label(labels, gnd_labels):
     """The GND form if there is one; otherwise the most common form across the records (each record counts once per
     form), ties by language, then dataset precedence."""
@@ -260,10 +261,44 @@ def choose_label(labels, gnd_labels):
     return spelling(sorted(votes, key=order)[0])
 
 
-def wkt_of(facts):
-    """geo:asWKT by precedence; else jl:lat/jl:lon as given."""
+# GeoNames feature codes: a populated place before an administrative unit, and among populated places by rank
+PLACE_CODES = ["P.PPLC", "P.PPLA", "P.PPLA2", "P.PPLA3", "P.PPLA4", "P.PPLA5", "P.PPL"]
+KEY_IRI = {"gnd": "https://d-nb.info/gnd/{}", "lc": "http://id.loc.gov/authorities/names/{}",
+           "geonames": "https://sws.geonames.org/{}/", "wd": "http://www.wikidata.org/entity/{}",
+           "viaf": "https://viaf.org/viaf/{}"}
+
+
+def id_order(r):
+    """The identifier of a record, for the last tie: numbers by value, then the text."""
+    tail = r.rstrip("/").rsplit("/", 1)[-1]
+    digits = re.sub(r"\D", "", tail)
+    return (int(digits) if digits else float("inf"), tail)
+
+
+def record_order(members, facts, classes, named_by):
+    """The order of the records of a group by which their facts are chosen (decision 0029): dataset precedence; then,
+    among records of one dataset: not succeeded by another record of the group (the GND's succession of places and
+    organisations: Vilnius before Wilna), not a pseudonym of one (gndo:realIdentity), a populated place before an
+    administrative unit (GeoNames feature class P before A, PPLC before PPLA … PPL), named by more of our datasets,
+    the lowest identifier. Returns {record: sort key} and {record: why it is first among its dataset}."""
+    keys = {key(m) for m in members}
+    order = {}
+    for m in members:
+        f = facts[m]
+        succeeded = any(key(v) in keys for v, *_ in f.get("successor", []))
+        pseudonym = any(key(v) in keys for v, *_ in f.get("realIdentity", []))
+        codes = [str(v).rsplit("#", 1)[-1] for v, *_ in f.get("featureCode", [])]
+        code = min((PLACE_CODES.index(c) if c in PLACE_CODES else len(PLACE_CODES) + (0 if c.startswith("P.") else 1)
+                    for c in codes), default=len(PLACE_CODES) + 2)
+        ds_rank = min(src_rank(ds) for ds in classes[m]) if classes[m] else len(RANK)
+        order[m] = (ds_rank, succeeded, pseudonym, code, -len(named_by.get(key(m), ())), id_order(m))
+    return order
+
+
+def wkt_of(facts, rank_of):
+    """geo:asWKT of the first record; else jl:lat/jl:lon as given."""
     if facts.get("wkt"):
-        return best(facts["wkt"])[0]
+        return sorted(facts["wkt"], key=lambda v: (rank_of(v), lang_rank(v[1]), v[0]))[0][0]
     lats = {ds: v for v, _l, ds, _t, _s in facts.get("lat", [])}
     lons = {ds: v for v, _l, ds, _t, _s in facts.get("lon", [])}
     for ds in sorted(set(lats) & set(lons), key=src_rank):
@@ -510,6 +545,27 @@ def generate(run):
                              f"e.g. {unaccounted[:3]}")
 
     # 5. the pages
+    def current_key(k):   # the identifier an authority dataset of our inputs replaced it by (dcterms:isReplacedBy)
+        prefix, _, ident = k.partition(":")
+        if prefix not in AUTHORITY_NS:
+            return k
+        node, seen = JL + AUTHORITY_NS[prefix] + ident, set()
+        while len(replaced.get(node, ())) == 1 and node not in seen:
+            seen.add(node)
+            node = next(iter(replaced[node]))
+        return key(node) or k
+
+    def current_iri(v):
+        k = key(v)
+        c = current_key(k) if k else None
+        if c and c != k:
+            prefix, _, ident = c.partition(":")
+            return iri(KEY_IRI[prefix].format(ident))
+        return iri(v)
+
+    named_by = defaultdict(set)   # key -> the datasets that name it
+    for _s, k, ds, *_ in links:
+        named_by[k].add(ds)
     out = set()
     by_class = Counter()
     for root in sorted(groups, key=lambda g: iri_of[g]):
@@ -526,11 +582,13 @@ def generate(run):
         c = next(x for x in CLASS_ORDER if x in cls)
         by_class[c] += 1
         out.add((page, IRI(RDF_TYPE), IRI(CLASS_IRI[c])))   # the class of what it is (jl:EntityPage deprecated)
-        rank = {m: min(src_rank(ds) for ds in classes[m]) if classes[m] else len(RANK) for m in members}
+        rank = record_order(members, facts, classes, named_by)
+        last = (len(RANK) + 1,)
+        rank_of = lambda v: rank.get(v[4], last)
 
         # names
         labels = [(norm_label(v), lang, ds, None, s) for v, lang, ds, t, s in merged_facts.get("label", []) if t == "literal"]
-        gnd = [x for x in labels if x[2] == "gnd"]
+        gnd = sorted((x for x in labels if x[2] == "gnd"), key=lambda x: (rank_of(x), x[0]))
         if not labels:
             labels = [(unquote(m.rstrip("/").rsplit("/", 1)[-1]).replace("_", " "), "", "cm-entities", None, m)
                       for m in members]
@@ -542,7 +600,7 @@ def generate(run):
         for lang in LANGUAGES:
             cands = [v for v in labels if v[1] == lang]
             if cands:
-                v = sorted(cands, key=lambda x: (x[0].isupper(), src_rank(x[2]), x[0]))[0]
+                v = sorted(cands, key=lambda x: (x[0].isupper(), rank_of(x), x[0]))[0]
                 out.add((page, IRI(SKOS + "prefLabel"), lit(v[0], lang=lang)))
                 seen.add(label_key(v[0]))
         alts = [(norm_label(v), lang, ds) for v, lang, ds, t, _s in merged_facts.get("alt", []) if t == "literal"]
@@ -553,7 +611,7 @@ def generate(run):
                 out.add((page, IRI(SKOS + "altLabel"), lit(v, lang=lang or None)))
 
         # life dates and places: of the record with the highest precedence; derived values follow their record
-        order = lambda v: (rank.get(v[4], len(RANK)), lang_rank(v[1]), v[0])
+        order = lambda v: (rank_of(v), lang_rank(v[1]), v[0])
         for kind in ("birth", "death"):
             raws = sorted([v for v in merged_facts.get(kind, []) if v[3] == "literal" and v[0].strip()], key=order)
             norms = sorted([v for v in merged_facts.get(kind + "N", []) if v[3] == "literal"], key=order)
@@ -593,27 +651,27 @@ def generate(run):
         # descriptions: the best per preferred language, and the best in another language (40 characters or more)
         abstracts = [v for v in merged_facts.get("abstract", []) if v[3] == "literal" and len(v[0].strip()) >= 40]
         for lang in LANGUAGES:
-            a = best([v for v in abstracts if v[1] == lang])
+            a = min((v for v in abstracts if v[1] == lang), key=order, default=None)
             if a:
                 out.add((page, IRI(JLO + "hasAbstract"), lit(a[0].strip(), lang=lang)))
-        other = best([v for v in abstracts if v[1] not in LANGUAGES])
+        other = min((v for v in abstracts if v[1] not in LANGUAGES), key=order, default=None)
         if other:
             out.add((page, IRI(JLO + "hasAbstract"), lit(other[0].strip(), lang=other[1] or None)))
 
         if c == "Place":
-            w = wkt_of(merged_facts)
+            w = wkt_of(merged_facts, rank_of)
             if w:
                 out.add((page, IRI(GEO + "asWKT"), lit(canonical_wkt(w), GEO + "wktLiteral")))
 
         # records, external identifiers, web pages
         for m in members:
             out.add((page, IRI(JLSAME), iri(m)))   # replaces jl:represents (decision 0029)
-        for v, _l, _ds, t, _s in merged_facts.get("sameAs", []):
+        for v, _l, _ds, t, _s in merged_facts.get("sameAs", []):   # every identifier; a replaced one as its successor
             if t == "uri" and not v.startswith(JL) and not v.startswith("https://data.judaicalink.org/"):
-                out.add((page, IRI(SAME), iri(v)))
+                out.add((page, IRI(SAME), current_iri(v)))
         for v, _l, _ds, t, _s in merged_facts.get("gndId", []):
             if t == "literal" and re.fullmatch(r"[0-9]+[0-9X-]*", v.strip()):
-                out.add((page, IRI(SAME), IRI("http://d-nb.info/gnd/" + v.strip().upper())))
+                out.add((page, IRI(SAME), current_iri("https://d-nb.info/gnd/" + v.strip().upper())))
         for v, _l, _ds, t, _s in merged_facts.get("describedAt", []):
             if v.startswith("http"):
                 out.add((page, IRI(RDFS + "seeAlso"), iri(v)))
@@ -623,21 +681,14 @@ def generate(run):
     keys_of = defaultdict(set)
     for s, k, *_ in links:
         keys_of[cl.find(s)].add(k)
-    def current_key(k):   # the identifier an authority dataset of our inputs replaced it by (dcterms:isReplacedBy)
-        prefix, _, ident = k.partition(":")
-        node, seen = JL + AUTHORITY_NS[prefix] + ident, set()
-        while len(replaced.get(node, ())) == 1 and node not in seen:
-            seen.add(node)
-            node = next(iter(replaced[node]))
-        return key(node) or k
-
     for root, members in sorted(groups.items()):
         sets = [set().union(*classes[m].values()) & {"Person", "Place", "Organization", "Work"} for m in members]
         sets = [x for x in sets if x]
         if any(not (a & b) for i, a in enumerate(sets) for b in sets[i + 1:]):
             conflicts["incompatible classes"] += 1
             run.log(f"conflict {iri_of[root]}: incompatible classes {sorted(members)[:8]}")
-        # every entity: at most one identifier per authority, the current one (decision 0029)
+        # several identifiers of one authority: all are linked, the first record by record_order gives the facts;
+        # replaced identifiers are written as their successors (decision 0029)
         for prefix, name in AUTHORITY_KEYS.items():
             ks = sorted(k for k in keys_of[root] if k.startswith(prefix + ":"))
             if not ks:
