@@ -207,6 +207,22 @@ def run(cfg, out, use=None, log=print):
     return sizes, rounds
 
 
+CASCADE = "inputs:cascade/2026-10-18/"   # the cascade input the authority generators read (jl cascade, registered)
+
+
+def selection_input(slug):
+    """The input reference of the selection of an authority dataset in the cascade input."""
+    return CASCADE + f"{slug}-selection.tsv.gz"
+
+
+def selection_rows(path):
+    """[(source, identifier, current, reason, detail)] of a cascade selection file."""
+    with gzip.open(path, "rt", encoding="utf-8") as f:
+        r = csv.reader(f, delimiter="\t")
+        next(r, None)
+        return [tuple(x) for x in r if len(x) == 5]
+
+
 def read_selection(path):
     """{source: {identifier: current or None}} from a cascade selection file."""
     out = defaultdict(dict)

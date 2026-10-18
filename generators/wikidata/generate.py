@@ -1,14 +1,15 @@
 """wikidata: the Wikidata items JudaicaLink uses (decision 0029), from answers of Wikidata kept in the inputs area.
 
-1. The selection list (wikidata-selection.tsv.gz): one row per item and reason, with the current item (the one a
-   merged item redirects to; empty if the item is deleted).
-   - linked: an item named as object in one of our datasets (ids.DATASETS); the detail is the dataset.
-   - by-gnd, by-viaf, by-lc, by-geonames, by-isni: an item that states an identifier our data names (P227, P214,
-     P244, P1566, P213); the detail is the identifier. A statement whose reference cites JudaicaLink (stated in or
-     imported from JudaicaLink, Q132858785, or a reference URL in judaicalink.org) does not count: links to
-     JudaicaLink are never evidence (decision 0029); such statements are also left out of the data.
-   - by-dbpedia: the item of the English Wikipedia article of a DBpedia resource our data names; the detail is the
-     resource name.
+1. The selection list (wikidata-selection.tsv.gz): the selection of the cascade (jl.cascade), one row per item and
+   reason, with the current item (the one a merged item redirects to; empty if the item is deleted).
+   - linked: an item named as object in one of our datasets, or by a declared identity statement of another authority
+     dataset; the detail is the dataset.
+   - by-gnd, by-viaf, by-lc-names, by-geonames, by-isni: an item that states an identifier the cascade selected or
+     found (P227, P214, P244, P1566, P213; lookup.py); the detail is the identifier. A statement whose reference cites
+     JudaicaLink (stated in or imported from JudaicaLink, Q132858785, or a reference URL in judaicalink.org) does not
+     count: links to JudaicaLink are never evidence (decision 0029); such statements are also left out of the data.
+   - replaces: the item a selected item was merged into.
+   The items of Wikipedia articles come through the dataset dbpedia (its Wikidata links, decision 0031).
 2. The data (wikidata.ttl.gz), for every current item named by the list, from the answers of the Wikidata API (the
    best-ranked statements: preferred, else normal): data/wikidata/<Q> owl:sameAs the item; skos:prefLabel (en, de,
    he, mul); the classes (wdt:P31) and foaf:Person for humans (Q5), schema:Place for items with a GeoNames ID (P1566);
@@ -27,19 +28,13 @@ import json
 import urllib.parse
 from collections import defaultdict
 
-from jl import identifiers
-from jl import classes
-from jl.generator import load_shared
+from jl import cascade, classes, identifiers
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
-ids = load_shared("wikidata", "ids")
-
-CACHE = "inputs:web-caches/wikidata-2026-10-18-2/"
-INPUTS = {"entities": CACHE + "entities.jsonl.gz", "articles": CACHE + "articles.tsv",
-          **{f"find_{p}": CACHE + f"find-{p}.tsv" for p in ids.PROPERTIES.values()},
-          **ids.DATASETS}
+INPUTS = {"entities": cascade.CASCADE + "entities.jsonl.gz",
+          "selection": cascade.selection_input("wikidata")}   # the cascade input (jl cascade)
 PARAMS = {}
 
 JL = "http://data.judaicalink.org/data/"
@@ -49,7 +44,7 @@ JUDAICALINK = "Q132858785"
 JLO, SKOS, OWL, FOAF, DCT = (PREFIXES[p] for p in ("jl", "skos", "owl", "foaf", "dcterms"))
 SAME = OWL + "sameAs"
 REASON_OF = {"gnd": "by-gnd", "viaf": "by-viaf", "lc-names": "by-lc", "geonames": "by-geonames", "isni": "by-isni"}
-REASONS = ["linked", "by-gnd", "by-viaf", "by-lc", "by-geonames", "by-isni", "by-dbpedia"]
+REASONS = ["linked", "replaces", "by-gnd", "by-viaf", "by-lc-names", "by-geonames", "by-isni"]
 # identifier properties: as IRIs (canonical form) or as literals
 AS_IRI = {"P227": "https://d-nb.info/gnd/{}", "P214": "https://viaf.org/viaf/{}",
           "P244": "http://id.loc.gov/authorities/names/{}", "P1566": "https://sws.geonames.org/{}/",
@@ -96,7 +91,6 @@ def norm_value(prop, v):
 
 
 def generate(run):
-    found = identifiers_named(run)
     entities = {}
     with gzip.open(run.input("entities"), "rt", encoding="utf-8") as f:
         for line in f:
@@ -109,37 +103,10 @@ def generate(run):
             return ""
         return row.get("redirect", q)
 
-    rows = set()
-    for q, slugs in found["wikidata"].items():
-        for slug in slugs:
-            rows.add((q, "linked", slug))
+    # the selection of the cascade (jl cascade): named items ("linked") and items found by an identifier ("by-gnd" …)
+    rows = {(q, reason, detail) for _s, q, _c, reason, detail in cascade.selection_rows(run.input("selection"))}
+    found = {"wikidata": {q for q, reason, _d in rows if reason in ("linked", "replaces")}}
     dropped = 0
-    for source, prop in ids.PROPERTIES.items():
-        named = {norm_value(prop, v if source != "isni" else ids.isni_value(v)): v for v in found[source]}
-        with open(run.input(f"find_{prop}"), encoding="utf-8") as f:
-            for line in list(f)[1:]:
-                cells = line.rstrip("\n").split("\t")
-                if len(cells) < 2:
-                    continue
-                value = norm_value(prop, cells[0].strip('"'))
-                q = cells[1].strip("<>").rsplit("/", 1)[-1]
-                if value not in named:
-                    continue
-                e = entities.get(q, {}).get("entity") or {}
-                statements = [s for s in e.get("claims", {}).get(prop, []) if norm_value(prop, s.get("value")) == value]
-                if statements and all(cites_judaicalink(s) for s in statements):
-                    dropped += 1
-                    run.log(f"left out (cites JudaicaLink): {q} {prop} {value}")
-                    continue
-                rows.add((q, REASON_OF[source], named[value]))
-    by_name = defaultdict(set)
-    for n in found["dbpedia"]:
-        by_name[ids.article_name(n)].add(n)
-    with open(run.input("articles"), encoding="utf-8", newline="") as f:
-        for r in csv.DictReader(f, delimiter="\t"):
-            for n in by_name.get(r["title"], ()):
-                rows.add((r["item"], "by-dbpedia", n))
-
     selected = sorted({current(q) for q, _r, _d in rows} - {""}, key=lambda x: int(x[1:]))
     t = set()
     for q in selected:
@@ -193,18 +160,14 @@ def generate(run):
         w = csv.writer(f, delimiter="\t", lineterminator="\n")
         w.writerow(["item", "current", "reason", "detail"])
         for q, reason, detail in sorted(rows, key=lambda r: (int(r[0][1:]) if r[0][1:].isdigit() else 0, r[0],
-                                                               REASONS.index(r[1]), r[2])):
+                                                               REASONS.index(r[1]) if r[1] in REASONS else 99, r[2])):
             w.writerow([q, current(q), reason, detail])
     by = defaultdict(set)
     for q, reason, _d in rows:
         by[reason].add(current(q) or q)
-    only = {r: len(by[r] - set().union(*(by[x] for x in REASONS[:REASONS.index(r)]))) for r in REASONS}
+    only = {r: len(by[r] - set().union(set(), *(by[x] for x in REASONS[:REASONS.index(r)]))) for r in REASONS}
     run.note(f"{len(selected):,} items; by reason: "
              + ", ".join(f"{r} {len(by[r]):,} ({only[r]:,} not in the reasons before)" for r in REASONS)
              + f"; {merged:,} named items merged, {deleted:,} named items deleted; {dropped:,} identifier "
              f"statements left out because they cite JudaicaLink.")
     run.write_turtle("wikidata.ttl.gz", t)
-
-
-def identifiers_named(run):
-    return ids.collect((ref.split("/", 1)[0], run.triples(name)) for name, ref in ids.DATASETS.items())

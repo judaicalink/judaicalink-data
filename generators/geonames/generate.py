@@ -1,7 +1,7 @@
 """geonames: the GeoNames features JudaicaLink uses (decision 0029), made from the GeoNames dump.
 
-1. The selection list (geonames-selection.tsv.gz): one row per GeoNames id and dataset that links it (our datasets
-   and the other authority datasets, jl.authorities; an IRI of
+1. The selection list (geonames-selection.tsv.gz): the selection of the cascade (jl.cascade), one row per GeoNames id
+   and dataset or reason (an IRI of
    GeoNames in any form, or our record data/geonames/<id>, as object; jl.identifiers), with the current id: the id
    itself if the feature is in the dump, empty if it is not (GeoNames publishes no cumulative list of merged or
    deleted features, so no successor can be stated).
@@ -21,16 +21,14 @@ import re
 import zipfile
 from collections import defaultdict
 
-from jl import authorities, classes, identifiers
+from jl import cascade, classes, identifiers
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
-# the datasets that may link GeoNames: our datasets and the other authority datasets (jl.authorities)
-LINKED = authorities.linking_inputs("geonames")
 DUMP = "inputs:geonames/dump-2026-10-15/"
 INPUTS = {"all": DUMP + "allCountries.zip", "alternate": DUMP + "alternateNamesV2.zip",
-          "admin1": DUMP + "admin1CodesASCII.txt", **LINKED}
+          "admin1": DUMP + "admin1CodesASCII.txt", "selection": cascade.selection_input("geonames")}
 PARAMS = {}
 
 JL = "http://data.judaicalink.org/data/"
@@ -52,9 +50,11 @@ def lines(path, member):
 
 
 def generate(run):
-    linked = identifiers.scan(run, LINKED, {"geonames"}).get("geonames", {})
+    linked = defaultdict(set)   # the selection of the cascade (jl cascade): id -> the datasets or reasons
+    for _s, gid, _c, reason, detail in cascade.selection_rows(run.input("selection")):
+        linked[gid].add(detail if reason == "linked" else reason)
     wanted = set(linked)
-    run.log(f"linked: {len(wanted):,} GeoNames ids")
+    run.log(f"selected: {len(wanted):,} GeoNames ids")
 
     rows = {}
     for line in lines(run.input("all"), "allCountries.txt"):

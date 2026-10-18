@@ -3,11 +3,9 @@
 Per language one source: the article https://<lang>.wikipedia.org/wiki/<title> and the resource
 http://dbpedia.org/resource/<title> (en) or http://de.dbpedia.org/resource/<title> (de) are one identifier.
 
-1. The selection list (dbpedia-selection.tsv.gz): one row per source (wikipedia-en, wikipedia-de), title and dataset
-   that names it (our datasets with every statement, the other authority datasets with their declared identity
-   statements: jl.authorities.linking_inputs; and the records of dbpedia-persons, which this dataset replaces), with
-   the current title (empty if the article does not exist). Titles in other namespaces than articles are not
-   selected (query.py).
+1. The selection list (dbpedia-selection.tsv.gz): the selection of the cascade (jl.cascade: one row per source,
+   wikipedia-en or wikipedia-de, title and reason; the records of dbpedia-persons are its seeds), with the current
+   title (empty if the article does not exist). The answers of Wikipedia come with the cascade input (lookup.py).
 2. The data (dbpedia.ttl.gz), per language and current article, a record data/dbpedia/<lang>/<title> (the title
    escaped where an IRI needs it, jl.identifiers.title_iri_part): owl:sameAs the DBpedia resource and the Wikidata
    item of the article (from Wikipedia's page properties), foaf:isPrimaryTopicOf the article, skos:prefLabel the
@@ -24,7 +22,7 @@ import csv
 import gzip
 import json
 
-from jl import authorities, identifiers
+from jl import cascade, identifiers
 from jl.generator import load_shared
 from jl.iris import canonical, canonical_triples
 from jl.rdf import IRI, Literal
@@ -32,10 +30,8 @@ from jl.turtle import PREFIXES
 
 q = load_shared("dbpedia", "query")   # is_article, LANGS
 
-CACHE = "inputs:web-caches/dbpedia-2026-10-18/"
-LINKED = authorities.linking_inputs("dbpedia")   # our datasets and the other authority datasets
-INPUTS = {"titles_en": CACHE + "titles-en.jsonl", "titles_de": CACHE + "titles-de.jsonl",
-          "previous": "dbpedia-persons/2018-10-24", **LINKED}
+INPUTS = {"titles_en": cascade.CASCADE + "titles-en.jsonl", "titles_de": cascade.CASCADE + "titles-de.jsonl",
+          "selection": cascade.selection_input("dbpedia"), "previous": "dbpedia-persons/2018-10-24"}
 PARAMS = {}
 
 JL = "http://data.judaicalink.org/data/"
@@ -69,14 +65,8 @@ def generate(run):
     def art(lang, title):
         return IRI(ARTICLE[lang] + identifiers.title_iri_part(title))
 
-    # 1. the selection
-    rows = set()
-    for name, ref in {**LINKED, "previous": INPUTS["previous"]}.items():
-        slug = ref.split("/", 1)[0]
-        for _s, p, o in run.triples(name):
-            x = identifiers.identify(o, p)
-            if x and x[0] in q.LANGS and q.is_article(x[1]) and (name == "previous" or identifiers.selects(slug, p, x[0])):
-                rows.add((x[0], x[1], slug))
+    # 1. the selection of the cascade (jl cascade)
+    rows = cascade.selection_rows(run.input("selection"))
     t, stats = set(), {}
     current = {lang: {c for c in cur[lang].values() if c} for lang in cur}
 
@@ -138,8 +128,8 @@ def generate(run):
 
     with gzip.open(run.path("dbpedia-selection.tsv.gz"), "wt", encoding="utf-8", newline="") as f:
         w = csv.writer(f, delimiter="\t", lineterminator="\n")
-        w.writerow(["source", "title", "current", "reason", "detail"])
-        for src, title, slug in sorted(rows):
-            w.writerow([src, title, cur[q.LANGS[src]].get(title) or "", "linked", slug])
+        w.writerow(["source", "identifier", "current", "reason", "detail"])
+        for src, title, _c, reason, detail in sorted(rows):
+            w.writerow([src, title, cur[q.LANGS[src]].get(title) or "", reason, detail])
     run.note("; ".join(f"{k} {v:,}" for k, v in sorted(stats.items())) + f"; selection rows {len(rows):,}.")
     run.write_turtle("dbpedia.ttl.gz", set(canonical_triples(t)))   # docs/iri-forms.md

@@ -1,8 +1,8 @@
 """viaf: the VIAF clusters JudaicaLink uses (decision 0029), made from the yearly VIAF dump.
 
-1. The selection list (viaf-selection.tsv.gz): one row per VIAF number and dataset that links it (our datasets and the
-   other authority datasets, jl.authorities; an IRI viaf.org/viaf/<n> in any form, or our record data/viaf/<n>, as
-   object), with the current number: the number itself if the cluster is in the dump, empty if it is not. The dump
+1. The selection list (viaf-selection.tsv.gz): the selection of the cascade (jl.cascade: one row per VIAF number and
+   reason, e.g. the dataset that links it), with the current number: the number itself if the cluster is in the dump,
+   empty if it is not. The dump
    states no merged or withdrawn clusters, and a cluster made after the dump is not in it either, so a missing
    number gets no successor and is not marked deprecated.
 2. The data (viaf.ttl.gz): every selected cluster of the dump as a record data/viaf/<n>: owl:sameAs
@@ -24,13 +24,13 @@ import gzip
 import re
 from collections import defaultdict
 
-from jl import authorities, classes, identifiers
+from jl import cascade, classes, identifiers
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, Literal, ParseError, parse_ntriples
 from jl.turtle import PREFIXES
 
-LINKED = authorities.linking_inputs("viaf")   # our datasets and the other authority datasets (jl.authorities)
-INPUTS = {"dump": "inputs:viaf/clusters-2024-08-04/viaf-20240804-clusters-rdf.nt.gz", **LINKED}
+INPUTS = {"dump": "inputs:viaf/clusters-2024-08-04/viaf-20240804-clusters-rdf.nt.gz",
+          "selection": cascade.selection_input("viaf")}   # the selection of the cascade (jl cascade)
 PARAMS = {}
 
 JL = "http://data.judaicalink.org/data/viaf/"
@@ -46,9 +46,9 @@ NO_PATH = re.compile(r"^https?://[^/]+/?(#.*)?$")   # names no record (VIAF: htt
 
 
 def generate(run):
-    linked = identifiers.scan(run, LINKED, {"viaf"}).get("viaf", {})
-    wanted = set(linked)
-    run.log(f"linked: {len(wanted):,} VIAF numbers")
+    rows = cascade.selection_rows(run.input("selection"))
+    wanted = {i for _s, i, _c, _r, _d in rows}
+    run.log(f"selected: {len(wanted):,} VIAF numbers")
 
     lines = defaultdict(list)
     n = 0
@@ -95,10 +95,9 @@ def generate(run):
 
     with gzip.open(run.path("viaf-selection.tsv.gz"), "wt", encoding="utf-8", newline="") as f:
         w = csv.writer(f, delimiter="\t", lineterminator="\n")
-        w.writerow(["viaf", "current", "reason", "detail"])
-        for num in sorted(linked, key=lambda x: (len(x), x)):
-            for slug in sorted(linked[num]):
-                w.writerow([num, num if num in lines else "", "linked", slug])
+        w.writerow(["source", "identifier", "current", "reason", "detail"])
+        for s, num, _c, reason, detail in sorted(rows, key=lambda r: (len(r[1]), r[1], r[3], r[4])):
+            w.writerow([s, num, num if num in lines else "", reason, detail])
     missing = len(wanted - set(lines))
     run.note(f"{len(lines):,} clusters of {len(wanted):,} linked VIAF numbers; {missing:,} not in the dump"
              + "".join(f"; {k} {v:,}" for k, v in sorted(stats.items())) + ".")
