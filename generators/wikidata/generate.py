@@ -150,10 +150,10 @@ def generate(run):
         for lang, label in sorted(e.get("labels", {}).items()):
             t.add((rec, IRI(SKOS + "prefLabel"), Literal(label, None, lang)))
         claims = e.get("claims", {})
-        classes = {s["value"].get("id") for s in best(claims.get("P31", [])) if isinstance(s["value"], dict)}
-        for c in sorted(x for x in classes if x):
+        p31 = {s["value"].get("id") for s in best(claims.get("P31", [])) if isinstance(s["value"], dict)}
+        for c in sorted(x for x in p31 if x):
             t.add((rec, IRI(WDT + "P31"), IRI(WD + c)))
-        if "Q5" in classes:
+        if "Q5" in p31:
             t.add((rec, IRI(RDF_TYPE), IRI(FOAF + "Person")))
         elif best(claims.get("P1566", [])):
             t.add((rec, IRI(RDF_TYPE), IRI(classes.PLACE)))
