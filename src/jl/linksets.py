@@ -31,6 +31,7 @@ IDENTITY = identifiers.IDENTITY
 
 
 # kinds that cannot be the same thing (an organisation can be a place, e.g. a city, or a person's firm, e.g. a printer)
+HUB = 3   # records of one dataset on one target from which the target is listed as a hub
 CONTRADICTING = {frozenset({"Person", "Work"}), frozenset({"Person", "Place"}), frozenset({"Work", "Place"})}
 
 
@@ -82,6 +83,7 @@ def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
             f"{len(deprecated):,} deprecated")
     kind_of = kinds(run, [authority, *inputs])
     links, targets = set(), defaultdict(set)
+    linked_by = defaultdict(lambda: defaultdict(set))   # target -> dataset -> records (the hub check)
     c, by_dataset, left_out = Counter(), Counter(), []
     for name, ref in inputs.items():
         slug = ref.split("/", 1)[0]
@@ -116,7 +118,14 @@ def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
                 continue
             links.add((IRI(s), IRI(JLSAME), IRI(prefix + cur)))
             targets[s].add(cur)
+            linked_by[cur][slug].add(str(s))
             by_dataset[slug] += 1
+    hubs = sorted(((t, ds, len(rs)) for t, by in linked_by.items() for ds, rs in by.items() if len(rs) >= HUB),
+                  key=lambda x: (-x[2], x[0]))
+    for t, ds, n in hubs:   # one entry named by several records of one dataset: duplicates or matches by name
+        run.log(f"hub: {source} {t} linked by {n} records of {ds}: "
+                + ", ".join(sorted(linked_by[t][ds])[:5]))
+    c["targets linked by 3 or more records of one dataset (hubs, log)"] = len(hubs)
     several = {s: t for s, t in targets.items() if len(t) > 1}
     for s, t in sorted(several.items()):
         run.log(f"several {source} records: {s} -> {', '.join(sorted(t))}")
