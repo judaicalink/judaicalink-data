@@ -17,12 +17,18 @@ from pathlib import Path
 
 from jl import identifiers
 from jl.cascade import static_seeds
-from jl.generator import load_shared
+from urllib.parse import unquote
+
+from jl.generator import load_shared, resolve as resolve_ref
+from jl.rdf import Literal, read_triples
 
 q = load_shared("wikidata", "query")      # api, sparql, reduce, FIND, literal, LANGUAGES, SITES
 gen = load_shared("wikidata", "generate")  # best, cites_judaicalink, norm_value, article, AS_IRI
 
 WORK = Path("/Users/kai/lokal/judaicalink/work/wikidata-query")
+DESCRIBED = "http://data.judaicalink.org/ontology/describedAt"
+BHR_PAGES = ("http://steinheim-institut.de:50580/cgi-bin/bhr?id=", "https://www.steinheim-institut.de/cgi-bin/bhr?id=",
+             "https://steinheim-institut.de/cgi-bin/bhr?id=", "http://www.steinheim-institut.de/cgi-bin/bhr?id=")
 WDTN = "http://www.wikidata.org/prop/direct-normalized/"
 TOPIC = "http://xmlns.com/foaf/0.1/isPrimaryTopicOf"
 PROP_OF = {"gnd": "P227", "viaf": "P214", "lc-names": "P244", "geonames": "P1566", "isni": "P213"}
@@ -114,7 +120,54 @@ class Lookup:
 
     # -- the interface ------------------------------------------------------------------------------
     def seeds(self):
-        return static_seeds(self.cfg, self.cat, "wikidata")
+        """The static lists, and the items that state the identifier of a record of ours (decision 0029; as
+        ls-wikidata matches them): YIVO (P8569, the article name), BHR (P10405, the id of the portal page), Encyclopedia
+        of Russian Jewry (P10278, the page id or name of the crawl). All items with these properties are asked once
+        from the Query Service (cached); reason by-yivo, by-bhr, by-rujen, detail our record."""
+        out = static_seeds(self.cfg, self.cat, "wikidata")
+        stable = {slug: self.cat.get(slug).stable for slug in ("yivo", "bhr", "rujen")}
+        yw = load_shared("ls-yivo-wikidata", "yivo_wikidata")
+        rj = load_shared("rujen", "generate")
+        yivo = yw.articles(t for f in resolve_ref(self.cfg, self.cat, f"yivo/{stable['yivo']}")
+                           for t in read_triples(f["path"]))
+        bhr = {}
+        for f in resolve_ref(self.cfg, self.cat, f"bhr/{stable['bhr']}"):
+            for s, p, o in read_triples(f["path"]):
+                if p == DESCRIBED and not isinstance(o, Literal):
+                    for prefix in BHR_PAGES:
+                        if str(o).startswith(prefix):
+                            bhr.setdefault(str(o)[len(prefix):].lstrip("0"), set()).add(str(s))
+        by_id, by_name = {}, {}
+        crawl = resolve_ref(self.cfg, self.cat, f"rujen/{stable['rujen']}/rujen.jsonl.gz")[0]["path"]
+        with gzip.open(crawl, "rt", encoding="utf-8") as f:
+            for line in f:
+                d = json.loads(line)
+                if d["title"] != rj.MAIN_PAGE:
+                    r = rj.local(d["uri"])
+                    by_id[str(d["id"])] = r
+                    by_name[unquote(d["uri"]).replace("/index.php/", "").lower()] = r
+        rules = {"P8569": ("yivo", lambda v: yivo.get(yw.key(v))),
+                 "P10405": ("bhr", lambda v: next(iter(bhr[v.lstrip("0")])) if len(bhr.get(v.lstrip("0"), ())) == 1
+                            else None),
+                 "P10278": ("rujen", lambda v: by_id.get(v) or by_name.get(v.replace(" ", "_").lower()))}
+        for prop, (name, record_of) in rules.items():
+            for item, value in self.all_values(prop):
+                r = record_of(value)
+                if r:
+                    out.append(("wikidata", item, f"by-{name}", r))
+        return out
+
+    def all_values(self, prop):
+        """[(item, value)] of every item with prop (Query Service, cached in the work dir)."""
+        path = WORK / f"all-{prop}.tsv"
+        if not path.is_file():
+            path.write_text(q.sparql(f"SELECT ?item ?v WHERE {{ ?item wdt:{prop} ?v . }}"), encoding="utf-8")
+        out = []
+        for line in path.read_text(encoding="utf-8").splitlines()[1:]:
+            c = line.split("\t")
+            if len(c) >= 2:
+                out.append((c[0].strip("<>").rsplit("/", 1)[-1], c[1].strip('"').split('"^^')[0]))
+        return out
 
     def resolve(self, source, ids):
         rows = self.entities(ids)
