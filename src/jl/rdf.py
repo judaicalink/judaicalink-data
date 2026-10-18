@@ -161,7 +161,13 @@ def unescape_string(s, source=None, line=None):
                 raise ParseError(f"invalid escape \\{m.group(3)}", source, line)
             return c
         return chr(int(m.group(1) or m.group(2), 16))
-    return _STR_UNESC.sub(rep, s)
+    out = _STR_UNESC.sub(rep, s)
+    if _SURROGATE.search(out):   # \u escapes of UTF-16 surrogates (not N-Triples, but written e.g. by VIAF)
+        out = out.encode("utf-16", "surrogatepass").decode("utf-16", "replace")
+    return out
+
+
+_SURROGATE = re.compile("[\ud800-\udfff]")
 
 
 _NT_IRI = r'<([^\x00-\x20<>"{}|^`\\]*(?:\\[uU][0-9A-Fa-f]+[^\x00-\x20<>"{}|^`\\]*)*)>'

@@ -177,3 +177,11 @@ class InvalidIRI(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Surrogates(unittest.TestCase):
+    def test_pairs(self):
+        from jl.rdf import unescape_string
+        self.assertEqual(unescape_string(r"a😀b"), "a\U0001F600b")   # a pair: its character
+        self.assertEqual(unescape_string(r"x\uD83Dy"), "x�y")             # alone: the replacement character
+        self.assertEqual(unescape_string(r"é"), "é")
