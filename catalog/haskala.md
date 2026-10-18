@@ -11,7 +11,7 @@ kind = "records"
 method = ["scraped", "converted", "lookup", "curated"]
 
 [identity]   # the properties that state identity, and towards which sources (decision 0032)
-"owl:sameAs" = ["gnd", "viaf"]
+"owl:sameAs" = ["gnd"]   # VIAF: matched by name (37% in docs/reports/2026-10-18-link-quality.md)
 "gndo:gndIdentifier" = ["gnd"]
 
 [license]
