@@ -26,7 +26,7 @@ import json
 
 from jl import authorities, identifiers
 from jl.generator import load_shared
-from jl.iris import canonical
+from jl.iris import canonical, canonical_triples
 from jl.rdf import IRI, Literal
 from jl.turtle import PREFIXES
 
@@ -120,7 +120,6 @@ def generate(run):
         if str(s) in moved and not (p == SAME and identifiers.identify(o, p) and
                                     identifiers.identify(o, p)[0] in q.LANGS):
             t.add((moved[str(s)], p, o))
-    unplaced = sum(1 for s in run.triples("previous") if False)
     stats["dbpedia-persons records moved"] = len(moved)
     stats["dbpedia-persons records without an article (deprecated)"] = len(old_lang) - len(moved)
     stats["dbpedia-persons records of no English or German article"] = len(
@@ -143,4 +142,4 @@ def generate(run):
         for src, title, slug in sorted(rows):
             w.writerow([src, title, cur[q.LANGS[src]].get(title) or "", "linked", slug])
     run.note("; ".join(f"{k} {v:,}" for k, v in sorted(stats.items())) + f"; selection rows {len(rows):,}.")
-    run.write_turtle("dbpedia.ttl.gz", t)
+    run.write_turtle("dbpedia.ttl.gz", set(canonical_triples(t)))   # docs/iri-forms.md
