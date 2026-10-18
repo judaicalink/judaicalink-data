@@ -36,7 +36,7 @@ from jl.turtle import PREFIXES
 
 ids = load_shared("wikidata", "ids")
 
-CACHE = "inputs:web-caches/wikidata-2026-10-16/"
+CACHE = "inputs:web-caches/wikidata-2026-10-18/"
 INPUTS = {"entities": CACHE + "entities.jsonl.gz", "articles": CACHE + "articles.tsv",
           **{f"find_{p}": CACHE + f"find-{p}.tsv" for p in ids.PROPERTIES.values()},
           **ids.DATASETS}
