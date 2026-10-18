@@ -123,6 +123,12 @@ def normal(source, identifier):
 _TITLE_ESCAPE = re.compile(r'[\x00-\x20<>"{}|\\^`?#%]')
 
 
+def iri_part(source, identifier):
+    """The identifier as the last part of the IRI of our record of it (data/<namespace>/<part>): a Wikipedia title
+    escaped (title_iri_part), the others as they are."""
+    return title_iri_part(identifier) if source.startswith("wikipedia-") else identifier
+
+
 def title_iri_part(title):
     """A Wikipedia title (underscores) as the last part of an IRI: the characters an IRI cannot hold escaped."""
     return _TITLE_ESCAPE.sub(lambda m: "%{:02X}".format(ord(m.group(0))), title.replace(" ", "_"))

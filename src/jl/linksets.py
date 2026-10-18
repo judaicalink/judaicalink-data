@@ -119,7 +119,7 @@ def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
                 c[f"left out: {why}"] += 1
                 left_out.append(f"{s} {cur} ({why}, {slug})")
                 continue
-            links.add((IRI(s), IRI(JLSAME), IRI(prefix + cur)))
+            links.add((IRI(s), IRI(JLSAME), IRI(prefix + identifiers.iri_part(source, cur))))
             targets[s].add(cur)
             linked_by[cur][slug].add(str(s))
             by_dataset[slug] += 1

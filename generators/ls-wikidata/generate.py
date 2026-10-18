@@ -13,10 +13,8 @@
    - the NLI J9U ID (P8189) is not used: our nli-records do not state J9U numbers.
    A record is linked only if the match is unique in both directions: its value leads to one item and that item to
    no other record of the dataset; the others are left out and named in the log.
-3. DBpedia through the sitelinks: a dbpedia-persons record data/dbpedia/<name> (the name of the English DBpedia
-   resource, which is the title of the English Wikipedia article) and the item whose English Wikipedia article
-   (foaf:isPrimaryTopicOf en.wikipedia.org/wiki/<title>) has that title (percent-decoded, underscores as spaces);
-   unique in both directions as in 2.
+3. Wikipedia: the records of the dataset dbpedia name the item of their article themselves (owl:sameAs, its
+   declared identity), so they are linked by 1.
 Every link: <record> jl:sameAs <data/wikidata/<Q>>. A link of 2. or 3. that names another item than the record's
 identity statements (1.) is left out and listed in the log: a DBpedia name of 2018 can now be the title of another
 article (dbpedia/Aaron_Wise, the rabbi, is Q4662552; the article "Aaron Wise" is now Q138545231).
@@ -43,16 +41,10 @@ PARAMS = {}
 JL = "http://data.judaicalink.org/data/"
 PREFIX = JL + "wikidata/"
 WDT = "http://www.wikidata.org/prop/direct/"
-TOPIC = "http://xmlns.com/foaf/0.1/isPrimaryTopicOf"
 DESCRIBED = "http://data.judaicalink.org/ontology/describedAt"
-ENWIKI = "https://en.wikipedia.org/wiki/"
 BHR_PAGES = ("http://steinheim-institut.de:50580/cgi-bin/bhr?id=", "https://www.steinheim-institut.de/cgi-bin/bhr?id=",
              "http://www.steinheim-institut.de/cgi-bin/bhr?id=")
 SOURCES = {"P8569": "yivo", "P10405": "bhr", "P10278": "rujen"}
-
-
-def title(name):
-    return unquote(name).replace("_", " ").strip()
 
 
 def unique_links(run, kind, values, record_of):
@@ -94,7 +86,7 @@ def generate(run):
 
     # what the current items state
     current, _to, _deprecated = authority_index(run, "wikidata", "authority")
-    values = {src: defaultdict(set) for src in list(SOURCES) + ["enwiki"]}
+    values = {src: defaultdict(set) for src in SOURCES}
     for s, p, o in run.triples("authority"):
         if not str(s).startswith(PREFIX):
             continue
@@ -103,8 +95,6 @@ def generate(run):
             continue
         if p.startswith(WDT) and p[len(WDT):] in SOURCES and isinstance(o, Literal):
             values[p[len(WDT):]][q].add(o.value.strip())
-        elif p == TOPIC and str(o).startswith(ENWIKI):
-            values["enwiki"][q].add(title(str(o)[len(ENWIKI):]))
 
     # 2. the identifiers of our sources
     yivo = yw.articles(run.triples("linked_yivo"))
@@ -124,11 +114,6 @@ def generate(run):
             by_id[str(d["id"])] = r
             by_name[unquote(d["uri"]).replace("/index.php/", "").lower()] = r
     rujen_records = {str(s) for s, _p, _o in run.triples("linked_rujen")}
-    dbpedia = {}
-    for s, _p, _o in run.triples("linked_dbpedia_persons"):
-        s = str(s)
-        if s.startswith(JL + "dbpedia/"):
-            dbpedia.setdefault(title(s[len(JL + "dbpedia/"):]), set()).add(s)
 
     def one(found):
         return next(iter(found)) if found and len(found) == 1 else None
@@ -139,8 +124,7 @@ def generate(run):
 
     rules = {"P8569": ("yivo (P8569)", lambda v: yivo.get(yw.key(v))),
              "P10405": ("bhr (P10405)", lambda v: one(bhr.get(v.lstrip("0")))),
-             "P10278": ("rujen (P10278)", rujen_of),
-             "enwiki": ("dbpedia-persons (English Wikipedia)", lambda v: one(dbpedia.get(v)))}
+             "P10278": ("rujen (P10278)", rujen_of)}
     t = set(links)
     for key_, (kind, record_of) in rules.items():
         found, c = unique_links(run, kind, values[key_], record_of)
