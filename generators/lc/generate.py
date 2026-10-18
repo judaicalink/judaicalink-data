@@ -75,8 +75,8 @@ def select(run):
     rows = set()
     for name, ref in LINKED.items():
         slug = ref.split("/", 1)[0]
-        for _s, _p, o in run.triples(name):
-            n = lc_id(o)
+        for _s, p, o in run.triples(name):
+            n = lc_id(o) if identifiers.selects(slug, p) else None   # authority datasets: identity statements only
             if n:
                 rows.add((n, "linked", slug))
     return rows

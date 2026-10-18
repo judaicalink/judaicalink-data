@@ -60,10 +60,13 @@ def read_selection(path, source):
         return {identifiers.normal(source, line.split("\t", 1)[0]) for line in f if line.strip()}
 
 
-def named(triples, sources=None):
-    """{source: {identifier}} for the identifiers of authority sources the triples name as objects."""
+def named(triples, sources=None, slug=None):
+    """{source: {identifier}} for the identifiers of authority sources the triples (of the dataset slug) name as
+    objects; of an authority dataset only its identity statements (identifiers.selects)."""
     found = defaultdict(set)
     for _s, p, o in triples:
+        if slug and not identifiers.selects(slug, p):
+            continue
         x = identifiers.identify(o, p)
         if x and x[0] in DATASET and (sources is None or x[0] in sources):
             found[x[0]].add(x[1])
@@ -95,7 +98,7 @@ def new_links(cfg, slug, directory, files, use):
         p = directory / f["path"]
         if rdf.rdf_format(f["path"]) is None or generator.is_meta(f["path"]):
             continue
-        for source, ids in named(rdf.read_triples(p)).items():
+        for source, ids in named(rdf.read_triples(p), slug=slug).items():
             if source != SOURCE[slug]:
                 found[source] |= ids
     return compare(cfg, catalog.Catalog(), found, use, own=slug)
@@ -122,7 +125,7 @@ def check(cfg, use=None, log=print):
         found = defaultdict(set)
         for f in generator.resolve(cfg, cat, ref):
             ts = (t for t in rdf.read_triples(f["path"]) if not deleted or corrections.key(t) not in deleted)
-            for source, ids in named(ts).items():
+            for source, ids in named(ts, slug=slug).items():
                 found[source] |= ids
         by_dataset[slug] = found
         log(f"  read {ref}")
@@ -136,11 +139,8 @@ def check(cfg, use=None, log=print):
 
 # --- the links between the authority datasets ------------------------------------------------------
 
-WDTN = "http://www.wikidata.org/prop/direct-normalized/"
-# the properties by which an authority record states that it is the same as a record of another source
-IDENTITY = {"http://www.w3.org/2002/07/owl#sameAs", "http://www.w3.org/2004/02/skos/core#exactMatch",
-            "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority", *identifiers.LITERAL_PROPERTIES,
-            WDTN + "P227", WDTN + "P214", WDTN + "P244", WDTN + "P1566"}
+WDTN = identifiers.WDTN
+IDENTITY = identifiers.IDENTITY   # the properties by which an authority record names itself in another source
 REPLACED = "http://purl.org/dc/terms/isReplacedBy"
 DEPRECATED = "http://www.w3.org/2002/07/owl#deprecated"
 

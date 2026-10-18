@@ -428,3 +428,13 @@ class AuthorityLinks(unittest.TestCase):
         w.read([(W + "Q1", authorities.WDTN + "P227", "https://d-nb.info/gnd/2")])
         self.assertEqual(dict(w.links["Q1"]), {"gnd": {"2"}})
 
+
+
+class Selects(unittest.TestCase):
+    def test_identity_only_for_authorities(self):
+        from jl import identifiers
+        birth = "http://data.judaicalink.org/ontology/birthLocationURI"
+        self.assertTrue(identifiers.selects("yivo", birth))                 # our datasets: every statement
+        self.assertFalse(identifiers.selects("gnd", birth))                 # authority datasets: identity only
+        self.assertTrue(identifiers.selects("gnd", "http://www.w3.org/2002/07/owl#sameAs"))
+        self.assertTrue(identifiers.selects("wikidata", identifiers.WDTN + "P227"))

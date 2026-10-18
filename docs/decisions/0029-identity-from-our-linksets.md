@@ -72,7 +72,11 @@ the others do not.
 - **The authority datasets select from each other** (decided 2026-10-18): an authority dataset holds the records
   that our record datasets or the other authority datasets link to (`jl.authorities.linking_inputs`). If we trust
   Wikidata, the GND numbers it states for our entities are ours to take as well. The selection lists the linking
-  dataset of every identifier, so the records that only an authority brings in can be told apart. A run of an
+  dataset of every identifier, so the records that only an authority brings in can be told apart. Of an authority
+  dataset only the identity statements select (`owl:sameAs`, `skos:exactMatch`, `madsrdf:hasExactExternalAuthority`,
+  the GND number, Wikidata's identifier properties), not its places of birth, occupations or related persons: through
+  these the cascade would take in the neighbours of our entities (the first try reached Essen and Nordrhein-Westfalen
+  through a place of birth). A run of an
   authority dataset records the identifiers of other sources it names that their datasets do not have yet (run
   record: `authority_links`); those datasets are run again on this run (`jl generate <slug> --use <slug>/<run>`)
   until no run names new identifiers. The cascade ends: an identifier is taken over once, and the identifiers of a
