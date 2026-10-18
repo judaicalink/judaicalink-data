@@ -94,12 +94,12 @@ def sample(cfg, out, use=None, size=100, small=150, seed=2026, only=None, log=pr
         slug = generator.slug_of(ref)
         if only and slug not in only:
             continue
-        own = authorities.SOURCE.get(slug)
+        own = authorities.SOURCE.get(slug, ())
         for s, p, o in triples(ref):
             if str(p) not in CANDIDATES or not str(s).startswith(JL):
                 continue
             x = identifiers.identify(o, p)
-            if not x or x[0] == own or (x[0] not in NS and not x[0].startswith("wikipedia-")):
+            if not x or x[0] in own or (x[0] not in NS and not x[0].startswith("wikipedia-")):
                 continue
             units[(slug, str(p), x[0])].append((str(s), x[1], str(o)))
         log(f"  links of {ref}: {sum(len(v) for k, v in units.items() if k[0] == slug):,}")

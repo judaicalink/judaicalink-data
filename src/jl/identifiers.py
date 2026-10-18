@@ -20,7 +20,9 @@ AUTHORITY_NAMESPACES = [("gnd", re.compile(re.escape(JL) + r"gnd/([0-9]+[0-9X-]*
                         ("geonames", re.compile(re.escape(JL) + r"geonames/([0-9]+)$")),
                         ("lc-names", re.compile(re.escape(JL) + r"lc/([a-z]+[0-9]+)$")),
                         ("wikidata", re.compile(re.escape(JL) + r"wikidata/(Q[0-9]+)$")),
-                        ("viaf", re.compile(re.escape(JL) + r"viaf/([0-9]+)$"))]
+                        ("viaf", re.compile(re.escape(JL) + r"viaf/([0-9]+)$")),
+                        ("wikipedia-en", re.compile(re.escape(JL) + r"dbpedia/en/(.+)$")),   # decision 0031
+                        ("wikipedia-de", re.compile(re.escape(JL) + r"dbpedia/de/(.+)$"))]
 # properties whose literal value is an identifier
 LITERAL_PROPERTIES = {"http://d-nb.info/standards/elementset/gnd#gndIdentifier": "gnd",
                       "https://d-nb.info/standards/elementset/gnd#gndIdentifier": "gnd"}
@@ -28,7 +30,7 @@ LITERAL_PROPERTIES = {"http://d-nb.info/standards/elementset/gnd#gndIdentifier":
 SAME_IDENTIFIER = {"lc-rwo": "lc-names"}
 SYNTAX = {"gnd": re.compile(r"[0-9]+[0-9X-]*$", re.I)}
 # the authority datasets (jl.authorities) and the statements by which a record of one names itself in another source
-AUTHORITY_DATASETS = {"gnd", "lc", "geonames", "wikidata", "viaf"}
+AUTHORITY_DATASETS = {"gnd", "lc", "geonames", "wikidata", "viaf", "dbpedia"}
 WDTN = "http://www.wikidata.org/prop/direct-normalized/"
 IDENTITY = {"http://www.w3.org/2002/07/owl#sameAs", "http://www.w3.org/2004/02/skos/core#exactMatch",
             "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority", *LITERAL_PROPERTIES,

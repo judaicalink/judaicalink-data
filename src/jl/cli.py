@@ -509,7 +509,7 @@ def authority_lines(links, what):
         yield (f"  names {i['named']:,} {s} identifiers, {i['new']:,} not in {i['selection'] or s + ' (no version)'}"
                + (f", e.g. {', '.join(i['examples'])}" if i["new"] else ""))
     if todo:
-        yield (f"  run again: {', '.join(f'./jl generate {s} --use {what}' for s in sorted(todo))}")
+        yield (f"  run again: {', '.join(sorted({f'./jl generate {i.get("dataset", s)} --use {what}' for s, i in todo.items()}))}")
     elif links:
         yield "  no new identifiers for the other authority datasets"
 

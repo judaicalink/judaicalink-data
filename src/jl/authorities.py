@@ -18,8 +18,9 @@ from collections import defaultdict
 from . import catalog, corrections, generator, identifiers, rdf, runs
 
 # authority dataset -> its source (jl.identifiers)
-SOURCE = {"gnd": "gnd", "lc": "lc-names", "geonames": "geonames", "wikidata": "wikidata", "viaf": "viaf"}
-DATASET = {v: k for k, v in SOURCE.items()}
+SOURCE = {"gnd": ("gnd",), "lc": ("lc-names",), "geonames": ("geonames",), "wikidata": ("wikidata",),
+          "viaf": ("viaf",), "dbpedia": ("wikipedia-en", "wikipedia-de")}   # dbpedia: one source per language (0031)
+DATASET = {src: slug for slug, srcs in SOURCE.items() for src in srcs}
 # datasets whose links never select records: made from the others (ep, quality-annotations), without links to records
 # of a source, or replaced (gnd-persons); and our linksets to the authority datasets, which only link what these
 # already have
@@ -61,10 +62,14 @@ def selection_file(cfg, slug, ref):
 
 
 def read_selection(path, source):
-    """The identifiers of a selection file (first column), normalised as jl.identifiers does."""
+    """The identifiers of a selection file (first column), normalised as jl.identifiers does; a file with a first
+    column "source" (several sources, dbpedia) gives the identifiers of the second column for this source."""
     with gzip.open(path, "rt", encoding="utf-8") as f:
-        next(f, None)
-        return {identifiers.normal(source, line.split("\t", 1)[0]) for line in f if line.strip()}
+        head = next(f, "").split("\t")
+        rows = [line.rstrip("\n").split("\t") for line in f if line.strip()]
+    if head and head[0] == "source":
+        return {identifiers.normal(source, r[1]) for r in rows if r[0] == source and len(r) > 1}
+    return {identifiers.normal(source, r[0]) for r in rows}
 
 
 def named(triples, sources=None, slug=None):
@@ -92,8 +97,9 @@ def compare(cfg, cat, found, use, own=None):
         path = selection_file(cfg, slug, ref)
         have = read_selection(path, source) if path else set()
         new = sorted(ids - have)
-        out[slug] = {"named": len(ids), "new": len(new), "examples": new[:EXAMPLES],
-                     "selection": f"{slug}/{ref}" if path else None}
+        label = slug if len(SOURCE[slug]) == 1 else f"{slug} ({source})"
+        out[label] = {"dataset": slug, "named": len(ids), "new": len(new), "examples": new[:EXAMPLES],
+                      "selection": f"{slug}/{ref}" if path else None}
     return out
 
 
@@ -106,7 +112,7 @@ def new_links(cfg, slug, directory, files, use):
         if rdf.rdf_format(f["path"]) is None or generator.is_meta(f["path"]):
             continue
         for source, ids in named(rdf.read_triples(p), slug=slug).items():
-            if source != SOURCE[slug]:
+            if source not in SOURCE[slug]:
                 found[source] |= ids
     return compare(cfg, catalog.Catalog(), found, use, own=slug)
 
@@ -137,10 +143,11 @@ def check(cfg, use=None, log=print):
         by_dataset[slug] = found
         log(f"  read {ref}")
     out = {}
-    for slug, source in SOURCE.items():
-        ids = set().union(*(f.get(source, set()) for s, f in by_dataset.items() if s != slug))
-        if ids or cat.get(slug):
-            out.update(compare(cfg, cat, {source: ids}, use))
+    for slug, sources in SOURCE.items():
+        for source in sources:
+            ids = set().union(*(f.get(source, set()) for s, f in by_dataset.items() if s != slug))
+            if ids or cat.get(slug):
+                out.update(compare(cfg, cat, {source: ids}, use))
     return out
 
 
@@ -208,15 +215,16 @@ def check_links(cfg, use=None, log=print):
     use = use or {}
     cat = catalog.Catalog()
     data = {}
-    for slug, source in SOURCE.items():
+    for slug, sources in SOURCE.items():
         ref = selection_ref(cat, slug, use)
         if ref is None:
             continue
-        a = Authority(source, slug)
-        for f in generator.resolve(cfg, cat, f"{slug}/{ref}"):
-            a.read(rdf.read_triples(f["path"]))
-        data[source] = a
-        log(f"  read {slug}/{ref}: {len(a.records):,} records")
+        for source in sources:
+            a = Authority(source, slug)
+            for f in generator.resolve(cfg, cat, f"{slug}/{ref}"):
+                a.read(rdf.read_triples(f["path"]))
+            data[source] = a
+            log(f"  read {slug}/{ref} ({source}): {len(a.records):,} records")
     counts, rows = defaultdict(int), []
 
     def note(kind, a_src, b_src, detail, *ex):
