@@ -93,7 +93,7 @@ def new_links(cfg, slug, directory, files, use):
     found = defaultdict(set)
     for f in files:
         p = directory / f["path"]
-        if rdf.rdf_format(p) is None or generator.is_meta(p):
+        if rdf.rdf_format(f["path"]) is None or generator.is_meta(f["path"]):
             continue
         for source, ids in named(rdf.read_triples(p)).items():
             if source != SOURCE[slug]:

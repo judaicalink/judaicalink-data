@@ -366,6 +366,22 @@ if __name__ == "__main__":
     unittest.main()
 
 
+    def test_new_links(self):
+        (self.t / "catalog" / "lc.md").write_text(LC)
+        d = self.t / "store" / "lc" / "2020-01-01"
+        d.mkdir(parents=True)
+        with gzip.open(d / "lc-selection.tsv.gz", "wt") as f:
+            f.write("lc\\tcurrent\\treason\\tdetail\\nn1\\tn1\\tlinked\\tx\\n")
+        run = self.t / "run"
+        run.mkdir()
+        from jl import turtle
+        turtle.write(run / "gnd.ttl.gz", [(rdf.IRI("http://data.judaicalink.org/data/gnd/1"),
+                                           rdf.IRI("http://www.w3.org/2002/07/owl#sameAs"),
+                                           rdf.IRI("http://id.loc.gov/authorities/names/n2"))])
+        out = authorities.new_links(self.cfg, "gnd", run, [{"path": "gnd.ttl.gz"}], {})
+        self.assertEqual((out["lc"]["named"], out["lc"]["new"]), (1, 1))
+
+
 class RemoveGuards(unittest.TestCase):
     """remove-version refuses stable versions, asks for --latest on the latest one, and never touches anything
     when it refuses (decision 0018)."""
@@ -411,3 +427,4 @@ class AuthorityLinks(unittest.TestCase):
         w = authorities.Authority("wikidata")
         w.read([(W + "Q1", authorities.WDTN + "P227", "https://d-nb.info/gnd/2")])
         self.assertEqual(dict(w.links["Q1"]), {"gnd": {"2"}})
+

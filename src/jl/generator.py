@@ -404,6 +404,10 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print, use=None
         if record["status"] == "ok":
             from . import authorities
             if slug in authorities.SOURCE:   # the identifiers of other authorities this run names (the cascade)
-                record["authority_links"] = authorities.new_links(cfg, slug, d, files, use or {})
+                try:
+                    record["authority_links"] = authorities.new_links(cfg, slug, d, files, use or {})
+                except Exception as e:
+                    record["status"] = "failed"
+                    record["error"] = f"authority links: {type(e).__name__}: {e}"
     (d / "run.json").write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return d, record
