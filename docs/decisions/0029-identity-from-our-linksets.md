@@ -79,6 +79,16 @@ the others do not.
   source never select records of its own dataset (at most one round per authority dataset). Then all runs become
   versions together (`jl add-version` with several runs; an input may be another run of a dataset of the call if
   its file is the same). `jl check-authorities` lists what each authority dataset lacks.
+- **One entity, all identifiers, one value per fact** (decided 2026-10-18): connecting identifiers is the purpose
+  of JudaicaLink, so an entity links every identifier its records and our linksets give it, also several of one
+  authority (the GND's historic names of a place, its duplicates, the LC's duplicates, a city and its municipality in
+  GeoNames): what our sources state as the same is not our mistake. A replaced identifier is linked as its
+  successor. Facts are not doubled: each (name per language, life dates, places, coordinates, abstract per language)
+  comes from the first record by a fixed order: dataset precedence; then within one dataset, the record that no
+  other record of the group succeeds (Vilnius before Wilna), not a pseudonym of one (`gndo:realIdentity`), a
+  populated place before an administrative unit (GeoNames class P before A; PPLC, PPLA, …, PPL), the record more of
+  our datasets name, the lowest identifier. The run log lists the entities with several identifiers of one authority
+  and the authority datasets are checked against each other (`jl check-authority-links`).
 - **VIAF gets the benefit of the doubt:** a VIAF match is linked unless the data of the two sides contradict each
   other (birth or death dates given on both sides that differ); the contradictions are left out and logged.
 - **Transition:** the linksets are made for all joins that the sources' links make today, so that the entity pages
