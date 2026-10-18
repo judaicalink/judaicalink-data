@@ -6,8 +6,8 @@ import os
 import sys
 from pathlib import Path
 
-from . import (authorities, canonical, catalog, config, corrections, dataindex, generator, inputs, rdf, runs,
-               versions)
+from . import (authorities, canonical, catalog, config, corrections, dataindex, generator, inputs, linkquality, rdf,
+               runs, versions)
 from .agents import AgentError, Registry, person_iri, software_iri
 
 def emit(args, obj, text):
@@ -561,6 +561,31 @@ def cmd_check_authority_links(args, cfg):
     return 0
 
 
+def cmd_sample_links(args, cfg):
+    rows = linkquality.sample(cfg, args.out, generator.parse_use(args.use), size=args.size, seed=args.seed,
+                              only=set(args.dataset) or None)
+    for r in rows:
+        print(f"{r['unit']:<60} {r['links']:>9,} links, sample {r['sample']:,}")
+    print(f"{len(rows)} units in {args.out}")
+    return 0
+
+
+def cmd_link_quality(args, cfg):
+    rows = linkquality.report(args.dir)
+    lines = ["| Dataset | Property | Target | Links | Sample | Correct | Wrong | Undecidable | Accuracy (95% interval) |",
+             "|---|---|---|--:|--:|--:|--:|--:|---|"]
+    for u, c, acc, ci in sorted(rows, key=lambda r: (r[0]["dataset"], -r[0]["links"])):
+        a = f"{acc:.0%} ({ci[0]:.0%}–{ci[1]:.0%})" if acc is not None else "–"
+        prop = u["property"].rsplit("/", 1)[-1].rsplit("#", 1)[-1]
+        lines.append(f"| {u['dataset']} | {prop} | {u['source']} | {u['links']:,} | {u['sample']:,} | "
+                     f"{c.get('correct', 0)} | {c.get('wrong', 0)} | {c.get('undecidable', 0)} | {a} |")
+    text = "\n".join(lines)
+    if args.out:
+        Path(args.out).write_text(text + "\n", encoding="utf-8")
+    print(text)
+    return 0
+
+
 def cmd_check_authorities(args, cfg):
     out = authorities.check(cfg, generator.parse_use(args.use), log=print if args.verbose else (lambda *a: None))
     if args.json:
@@ -777,6 +802,18 @@ def parser():
                       "help": "read this version or run instead of the stable version; repeatable"}),
         (("--tsv",), {"metavar": "FILE", "type": Path, "help": "write every finding to FILE"}),
         (("--examples",), {"type": int, "default": 3, "help": "examples per kind of finding (default 3)"}))
+    add("sample-links", cmd_sample_links,
+        "draw random samples of the identity links per dataset, property and target, with the evidence of both sides",
+        (("out",), {"metavar": "DIR", "type": Path}),
+        (("--use",), {"metavar": "SLUG/REF", "action": "append", "default": [],
+                      "help": "read this version or run instead of the stable version; repeatable"}),
+        (("--dataset",), {"action": "append", "default": [], "help": "only this dataset; repeatable"}),
+        (("--size",), {"type": int, "default": 100, "help": "links per unit (default 100; all of a unit up to 150)"}),
+        (("--seed",), {"type": int, "default": 2026}), json_out=False)
+    add("link-quality", cmd_link_quality,
+        "the accuracy of the identity links per unit from the verdicts next to the samples (sample-links)",
+        (("dir",), {"metavar": "DIR", "type": Path}),
+        (("--out",), {"metavar": "FILE", "type": Path, "help": "write the table to FILE"}), json_out=False)
     add("import-files", cmd_import_files,
         "take files made elsewhere in as a run (<slug> files…), or attach a run record to a version (<slug>/<version>)",
         (("id",), {"metavar": "<slug>[/<version>]"}),

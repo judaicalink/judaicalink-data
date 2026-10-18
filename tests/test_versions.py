@@ -438,3 +438,18 @@ class Selects(unittest.TestCase):
         self.assertFalse(identifiers.selects("gnd", birth))                 # authority datasets: identity only
         self.assertTrue(identifiers.selects("gnd", "http://www.w3.org/2002/07/owl#sameAs"))
         self.assertTrue(identifiers.selects("wikidata", identifiers.WDTN + "P227"))
+
+
+class LinkQuality(unittest.TestCase):
+    def test_report(self):
+        from jl import linkquality
+        lo, hi = linkquality.wilson(95, 100)
+        self.assertTrue(0.88 < lo < 0.90 and 0.97 < hi < 0.99)
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "units.json").write_text(json.dumps([{"unit": "x--sameAs--gnd", "dataset": "x", "property": "p",
+                                                        "source": "gnd", "links": 3, "sample": 3}]))
+            (d / "x--sameAs--gnd.verdicts.jsonl").write_text(
+                '{"i": 0, "verdict": "correct"}\n{"i": 1, "verdict": "wrong"}\n{"i": 2, "verdict": "undecidable"}\n')
+            (u, c, acc, ci), = linkquality.report(d)
+            self.assertEqual((c["correct"], c["wrong"], c["undecidable"], acc), (1, 1, 1, 0.5))
