@@ -193,7 +193,7 @@ def key(o):
         return f"wp-{m.group(1)}:" + m.group(2)
     if o.startswith(JL):
         return o   # another JudaicaLink resource: the node itself
-    if re.match(r"^https?://[^/]+/.+", o):
+    if re.match(r"^https?://[^/#]+/[^#]", o):   # not an IRI without a path (http://data.bnf.fr/#foaf:Person)
         return "iri:" + re.sub(r"^https://", "http://", o.rstrip("/"))
     return None
 

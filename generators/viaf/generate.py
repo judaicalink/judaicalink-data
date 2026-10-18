@@ -10,7 +10,8 @@
    schema:Person, schema:Organization, schema:Place and schema:CreativeWork (jl.classes); skos:prefLabel the
    preferred names as VIAF gives them (one per source library, with its language tag); skos:altLabel the
    schema:alternateName; jl:birthDate and jl:deathDate as given (schema:birthDate, schema:deathDate); owl:sameAs the
-   records of the sources VIAF names (schema:sameAs: GND, LC, Wikidata, ISNI, BnF, …; canonical forms, jl.iris);
+   records of the sources VIAF names (schema:sameAs: GND, LC, Wikidata, ISNI, BnF, …; canonical forms, jl.iris;
+   left out: IRIs without a path, which name no record, e.g. http://data.bnf.fr/#foaf:Person for 8,141 clusters);
    owl:differentFrom as given. The source records of the cluster (VIAF's sourceID nodes) and the works of the
    cluster are not taken over.
 
@@ -41,6 +42,7 @@ CLASSES = {SCHEMA + "Person": classes.PERSON, SCHEMA + "Organization": classes.O
 KEEP = {RDF_TYPE, SKOS + "prefLabel", SCHEMA + "alternateName", SCHEMA + "birthDate", SCHEMA + "deathDate",
         SCHEMA + "sameAs", OWL + "differentFrom"}
 SUBJECT = re.compile(r"^<http://viaf\.org/viaf/([0-9]+)> <([^>]+)>")
+NO_PATH = re.compile(r"^https?://[^/]+/?(#.*)?$")   # names no record (VIAF: http://data.bnf.fr/#foaf:Person)
 
 
 def generate(run):
@@ -81,6 +83,9 @@ def generate(run):
                 t.add((rec, IRI(JLO + ("birthDate" if p.endswith("birthDate") else "deathDate")), Literal(o.value)))
             elif p == SCHEMA + "sameAs" and not isinstance(o, Literal):
                 x = canonical(o)
+                if NO_PATH.match(x):
+                    stats["links without an identifier left out (e.g. http://data.bnf.fr/#foaf:Person)"] += 1
+                    continue
                 if identifiers.is_ours(x):
                     stats["links to JudaicaLink left out"] += 1   # never evidence (0029)
                     continue
