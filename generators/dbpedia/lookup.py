@@ -62,16 +62,17 @@ class Lookup:
         return {t: rows.get(t, {"asked": t, "invalid": True}) for t in titles}
 
     def seeds(self):
+        """The static lists, and every English or German article the records of dbpedia-persons (which dbpedia
+        replaces) name by their declared identity (owl:sameAs: their own article and that in the other language)."""
         out = static_seeds(self.cfg, self.cat, "dbpedia")
-        langs = {}
+        seen = set()
         for f in resolve_ref(self.cfg, self.cat, PREVIOUS):
             for s, p, o in read_triples(f["path"]):
                 if str(s).startswith(OLD) and p == SAME:
                     x = identifiers.identify(o, p)
-                    name = identifiers.wiki_title(str(s)[len(OLD):])
-                    if x and x[0] in q.LANGS and x[1] == name and langs.get(str(s)) != "wikipedia-en":
-                        langs[str(s)] = x[0]   # the English article where both have the name (as generate.py)
-        out += [(src, identifiers.wiki_title(s[len(OLD):]), "previous", PREVIOUS) for s, src in sorted(langs.items())]
+                    if x and x[0] in q.LANGS and q.is_article(x[1]) and x not in seen:
+                        seen.add(x)
+                        out.append((x[0], x[1], "previous", PREVIOUS))
         return out
 
     def resolve(self, source, ids):
