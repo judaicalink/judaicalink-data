@@ -55,7 +55,7 @@ INPUTS = {
 # area_rule: "occupation" (the 2017 rule with any occupation) or "off"
 PARAMS = {"area_rule": "off",   # decided 2026-10-16: off (see README)
           "drop_placeholders": True}   # EntityFacts links with an unfilled "[ID]" (2026-10-18; off: as 2026-10-16)
-REASONS = ["linked", "area-occupation", "freimann", "ubffm-authors", "previous"]
+REASONS = ["linked", "replaces", "area-occupation", "freimann", "ubffm-authors", "previous"]   # replaces: the current number of a selected one (jl.cascade)
 
 JL = "http://data.judaicalink.org/data/"
 GND = "https://d-nb.info/gnd/"
