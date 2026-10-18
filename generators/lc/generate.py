@@ -1,8 +1,8 @@
 """lc: the records of the LC Name Authority File that JudaicaLink uses (decision 0029), made from the LC dump.
 
 1. The selection list (lc-selection.tsv.gz): one row per LC identifier and reason, with the current identifier.
-   - linked: every LC name identifier that one of our datasets or another authority dataset (jl.authorities: the
-     stable versions, or the runs of jl generate --use) links as object: the authority record (id.loc.gov/authorities/names/<id>) or its
+   - linked: the selection of the cascade (jl.cascade): every LC name identifier that one of our datasets or another
+     authority dataset (its declared identity) links as object: the authority record (id.loc.gov/authorities/names/<id>) or its
      Real World Object (id.loc.gov/rwo/agents/<id>); the detail is the dataset.
    LC marks a withdrawn record as madsrdf:DeprecatedAuthority (record status "deprecated") and states no successor
    in the export (madsrdf:hasLaterEstablishedForm links a heading to a later, different one, e.g. a renamed
@@ -26,15 +26,15 @@ import gzip
 import re
 from collections import defaultdict
 
-from jl import authorities, identifiers, iris
+from jl import cascade, identifiers, iris
 from jl import classes
 from jl.generator import GeneratorError
 from jl.iris import canonical
 from jl.rdf import IRI, RDF_TYPE, XSD, BNode, Literal, parse_ntriples, unescape_string
 from jl.turtle import PREFIXES
 
-LINKED = authorities.linking_inputs("lc")   # our datasets and the other authority datasets (jl.authorities)
-INPUTS = {"names": "inputs:lc/names-2026-09-27/names.madsrdf.nt.gz", **LINKED}
+INPUTS = {"names": "inputs:lc/names-2026-09-27/names.madsrdf.nt.gz",
+          "selection": cascade.selection_input("lc")}   # the selection of the cascade (jl cascade)
 PARAMS = {}
 
 JL = "http://data.judaicalink.org/data/"
@@ -72,16 +72,8 @@ def wikidata_page(x):
 
 
 def select(run):
-    rows = set()
-    for name, ref in LINKED.items():
-        slug = ref.split("/", 1)[0]
-        for _s, p, o in run.triples(name):
-            n = lc_id(o)
-            if n and not identifiers.selects(slug, p, "lc-names"):   # authority datasets: their declared identity
-                n = None
-            if n:
-                rows.add((n, "linked", slug))
-    return rows
+    """The selection rows {(id, reason, detail)} of the cascade (jl cascade)."""
+    return {(i, reason, detail) for _src, i, _c, reason, detail in cascade.selection_rows(run.input("selection"))}
 
 
 def blocks(path):

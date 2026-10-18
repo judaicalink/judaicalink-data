@@ -2,10 +2,9 @@
 
 1. The selection list (gnd-selection.tsv.gz): one row per GND number and reason, with the current number the GND
    gives for it.
-   - linked: every GND number that one of our datasets or another authority dataset links (jl.authorities: the
-     stable versions, or the runs of jl generate --use): an IRI d-nb.info/gnd/<n> or a
-     record data/gnd/<n> as object (owl:sameAs or any other property), or a gndo:gndIdentifier; the detail is the
-     dataset. A record data/gnd/<n> as subject is a statement about the record (e.g. records-normalized), not a link.
+   - linked, replaces, …: the selection of the cascade (jl.cascade): every GND number our datasets link (every
+     statement) or another authority dataset links (its declared identity), with the dataset as detail; the static
+     lists below are its seeds (lookup.py).
    - area-occupation (parameter area_rule): the rule of gnd-persons 2017, applied to the current GND: a
      differentiated person (gndo:DifferentiatedPerson) with the geographic area code XB-IL (Israel) or XY (Jews) and at
      least one occupation (gndo:professionOrOccupation). The occupation ontology that limited the occupations in 2017
@@ -35,7 +34,7 @@ import json
 import re
 from collections import Counter, defaultdict
 
-from jl import authorities, classes, identifiers
+from jl import authorities, cascade, classes, identifiers
 from jl.generator import GeneratorError
 from jl.iris import WKT, canonical, canonical_wkt
 from jl.rdf import IRI, RDF_TYPE, XSD, BNode, Literal, parse_ntriples, unescape_string
@@ -50,7 +49,8 @@ INPUTS = {
     "freimann": "inputs:gnd/ubffm-lists-2018/Freimann-GND-03.rdf",
     "ubffm_authors": "inputs:gnd/ubffm-lists-2018/tp-records_gnd-ids.csv",
     "previous": "gnd-persons/2018-11-29",
-    **LINKED,
+    "selection": cascade.selection_input("gnd"),   # the selection of the cascade (jl cascade)
+    **LINKED,   # for our own records data/gnd/<n> (replacements of our IRIs)
 }
 # area_rule: "occupation" (the 2017 rule with any occupation) or "off"
 PARAMS = {"area_rule": "off",   # decided 2026-10-16: off (see README)
@@ -99,12 +99,12 @@ def gnd_number(term):
 
 
 def select(run):
-    """The selection rows [(number, reason, detail)] except area-occupation, which is decided while reading the
-    dump; and our own entities data/gnd/<n> (numbers)."""
+    """The selection rows [(number, reason, detail)] from the cascade (jl cascade: the numbers our datasets and the
+    other authority datasets link, and the static lists of lookup.py: freimann, ubffm-authors, previous); except
+    area-occupation, which is decided while reading the dump; and our own entities data/gnd/<n> (numbers)."""
     rows, own = set(), set()
-    for n, slugs in identifiers.scan(run, LINKED, {"gnd"}).get("gnd", {}).items():
-        for slug in slugs:
-            rows.add((n, "linked", slug))
+    for _src, n, _cur, reason, detail in cascade.selection_rows(run.input("selection")):
+        rows.add((n, reason, detail))
     for name in LINKED:   # our own records data/gnd/<n> (for the replacements of our IRIs)
         for s, _p, o in run.triples(name):
             for term in (s, o):
@@ -112,18 +112,9 @@ def select(run):
                     n = gnd_number(term)
                     if n:
                         own.add(n)
-    text = open(run.input("freimann"), encoding="utf-8").read()
-    for n in re.findall(re.escape(JL) + "gnd/(" + NUMBER + ")>", text):
-        rows.add((number(n), "freimann", ""))
-    with open(run.input("ubffm_authors"), encoding="utf-8", newline="") as f:
-        for r in csv.DictReader(f):
-            n = gnd_number(r["GND_ID"].strip())
-            if n:
-                rows.add((n, "ubffm-authors", r["PPN_TP_Record"].strip()))
     for s, _p, _o in run.triples("previous"):
         n = gnd_number(s) if s.startswith(JL) else None
         if n:
-            rows.add((n, "previous", ""))
             own.add(n)
     return rows, own
 
