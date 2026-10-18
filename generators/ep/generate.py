@@ -432,8 +432,14 @@ def generate(run):
     derived = defaultdict(set)         # IRI -> what it was derived from (only for the comparison, never identity)
     facts = defaultdict(lambda: defaultdict(list))
     entities_cm = set()
+    replaced_key = {}                  # authority key -> the key it is replaced by (in the source's own IRIs)
     for name, slug in DATASET_OF.items():
         for s, p, o in run.triples(name):
+            if p == REPLACED and not s.startswith(JL) and isinstance(o, str) and not isinstance(o, Literal):
+                ks, ko = key(str(s)), key(str(o))
+                if ks and ko and ks.split(":", 1)[0] in AUTHORITY_NS and ks != ko:
+                    replaced_key[ks] = ko
+                continue
             if not s.startswith(JL) or s.startswith(EPNS):
                 continue
             s = str(s)
@@ -480,6 +486,8 @@ def generate(run):
     # 2. the closure
     if run.params["identity"] not in ("all", "linksets"):
         raise GeneratorError(f"identity must be 'all' or 'linksets', not {run.params['identity']!r}")
+    for ks, ko in replaced_key.items():   # a replaced identifier is the same thing as its successor (0029)
+        replaced[ks].add(ko)
     cl_all = closure(records, links, replaced)
     cl_ours = closure(records, [x for x in links if x[3]], replaced)
     identity_report(run, records, classes, links, replaced, cl_all, cl_ours)
@@ -550,9 +558,15 @@ def generate(run):
         if prefix not in AUTHORITY_NS:
             return k
         node, seen = JL + AUTHORITY_NS[prefix] + ident, set()
-        while len(replaced.get(node, ())) == 1 and node not in seen:
+        while node not in seen:
             seen.add(node)
-            node = next(iter(replaced[node]))
+            if len(replaced.get(node, ())) == 1:
+                node = next(iter(replaced[node]))
+            elif key(node) in replaced_key:
+                prefix, _, ident = replaced_key[key(node)].partition(":")
+                node = JL + AUTHORITY_NS[prefix] + ident
+            else:
+                break
         return key(node) or k
 
     def current_iri(v):
