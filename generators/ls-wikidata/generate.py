@@ -17,8 +17,9 @@
    resource, which is the title of the English Wikipedia article) and the item whose English Wikipedia article
    (foaf:isPrimaryTopicOf en.wikipedia.org/wiki/<title>) has that title (percent-decoded, underscores as spaces);
    unique in both directions as in 2.
-Every link: <record> jl:sameAs <data/wikidata/<Q>>. Records whose links of 2. or 3. name another item than their
-identity statements (1.) are listed in the log; both links are kept (the entity pages join them).
+Every link: <record> jl:sameAs <data/wikidata/<Q>>. A link of 2. or 3. that names another item than the record's
+identity statements (1.) is left out and listed in the log: a DBpedia name of 2018 can now be the title of another
+article (dbpedia/Aaron_Wise, the rabbi, is Q4662552; the article "Aaron Wise" is now Q138545231).
 """
 
 import gzip
@@ -146,9 +147,10 @@ def generate(run):
         new = 0
         for r, q in found.items():
             if by_record.get(r) and q not in by_record[r]:
-                run.log(f"{kind}: another item than the identity statements: {r} {q} (identity: "
+                run.log(f"{kind}: another item than the identity statements, left out: {r} {q} (identity: "
                         f"{', '.join(sorted(by_record[r]))})")
-                c["another item than the identity statements (both kept)"] += 1
+                c["left out: another item than the identity statements"] += 1
+                continue
             if (IRI(r), IRI(JLSAME), IRI(PREFIX + q)) not in t:
                 new += 1
             t.add((IRI(r), IRI(JLSAME), IRI(PREFIX + q)))

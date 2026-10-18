@@ -24,8 +24,9 @@ ls-yivo-wikidata; the drafts ls-nli-wikidata, ls-bhr-wikidata and ls-rujen-wikid
 3. DBpedia: a dbpedia-persons record `data/dbpedia/<name>` and the item whose English Wikipedia article has the title
    `<name>` (percent-decoded, underscores as spaces).
 
-In 2 and 3 a link is made only if it is unique in both directions; the rest is left out and named in the log. Links
-of 2 and 3 that name another item than the record's identity statements are logged; both are kept.
+In 2 and 3 a link is made only if it is unique in both directions, and not if it names another item than the
+record's identity statements (1): a DBpedia name of 2018 can now be the title of another article (`dbpedia/Aaron_Wise`,
+the rabbi, is Q4662552; the article "Aaron Wise" is now Q138545231). What is left out is named in the log.
 
 ## Reproduction
 
