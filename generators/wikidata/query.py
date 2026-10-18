@@ -1,6 +1,9 @@
 """Ask Wikidata for the items our data reaches and their content (makes the input of wikidata).
 
-python3 query.py <out dir> [<work dir>]
+python3 query.py <out dir> [<work dir>] [--use <slug>/<version or run id> …]
+
+--use: read this version or run instead of the stable version (as jl generate --use; a round of the authority
+datasets, jl.authorities).
 
 1. The identifiers our data names (ids.py: the stable versions and the runs named there).
 2. Which items:
@@ -32,6 +35,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from jl import catalog, config, generator  # noqa: E402
 from jl.fetch import request  # noqa: E402
 from jl.rdf import read_triples  # noqa: E402
+
+ARGS, USE = [], []
+_it = iter(sys.argv[1:])
+for _a in _it:
+    if _a == "--use":
+        USE.append(next(_it, ""))
+    else:
+        ARGS.append(_a)
+generator.USE.update(generator.parse_use(USE))   # read by ids.DATASETS (jl.authorities.linking_inputs)
 import ids  # noqa: E402
 
 WDQS = "https://query.wikidata.org/sparql"
@@ -274,6 +286,7 @@ def main(out, work):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) not in (2, 3):
+    if len(ARGS) not in (1, 2):
         sys.exit(__doc__)
-    main(sys.argv[1], sys.argv[2] if len(sys.argv) == 3 else "/Users/kai/lokal/judaicalink/work/wikidata-query")
+    print("datasets:", ", ".join(sorted(ids.DATASETS.values())), flush=True)
+    main(ARGS[0], ARGS[1] if len(ARGS) == 2 else "/Users/kai/lokal/judaicalink/work/wikidata-query")

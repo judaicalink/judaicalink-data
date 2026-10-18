@@ -20,8 +20,9 @@ The Wikidata items JudaicaLink uses (decision 0029), from answers of Wikidata ke
     the statements of P31, P19, P20, P569, P570, P227, P214, P244, P1566, P213, P8189, P8569, P10405, P10278 (rank,
     value, and of the references only P248, P143, P854). A merged item is answered under its old id with
     `"redirect"`, a deleted one without `"entity"`.
-- The identifiers our data names: the stable versions of our datasets and the runs of the source datasets and
-  linksets that are no versions yet (`ids.py`: `RUNS`; they are replaced by their versions when these exist).
+- The identifiers our data names: our datasets and the other authority datasets (`jl.authorities.linking_inputs`:
+  the stable versions, or the runs given with `--use` to `query.py` and `jl generate`), and the runs of linksets that
+  are no versions yet (`ids.py`: `RUNS`).
 
 The Query Service was used only for the lookups by identifier: on 2026-10-16 it throttled and timed out on the
 content queries, and the API answers 50 items with all their statements, ranks, precisions and references in one
@@ -41,7 +42,7 @@ request.
 
 Each record `data/wikidata/<Q>` has `owl:sameAs` the item and, from the best-ranked statements (preferred, else
 normal; those citing JudaicaLink left out): `skos:prefLabel` (en, de, he, mul), the classes (`wdt:P31`), `foaf:Person`
-for humans (Q5) and `jl:Place` for items with a GeoNames ID (other classes of places are left to record-classes),
+for humans (Q5) and `schema:Place` for items with a GeoNames ID (other classes of places are left to record-classes),
 `jl:birthDate`/`deathDate` in the precision Wikidata gives (year, month, day; coarser values left out, the calendar
 as given), `wdt:P19`/`P20` and `jl:birthLocationURI`/`deathLocationURI` (the items of the places), the identifiers
 GND, VIAF, LC, GeoNames, ISNI as IRIs in canonical form with Wikidata's normalized properties (`wdtn:`), NLI J9U,
