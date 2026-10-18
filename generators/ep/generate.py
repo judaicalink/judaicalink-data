@@ -497,7 +497,7 @@ def generate(run):
                         raise GeneratorError(f"{slug}: a class for {s}, which is in no dataset namespace")
                 if o == SKOS + "Concept" and owner not in SUBJECT_DATASETS:
                     c = None
-                if c and owner not in NOT_SOURCES:
+                if c and owner not in NOT_SOURCES and slug not in LINKSETS:   # a linkset makes no records
                     classes[s].setdefault(owner, set()).add(c)
                 continue
             if p == JLO + "entity" and slug == "cm-entities":
