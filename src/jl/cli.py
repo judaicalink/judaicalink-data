@@ -6,8 +6,8 @@ import os
 import sys
 from pathlib import Path
 
-from . import (authorities, canonical, catalog, config, corrections, dataindex, generator, inputs, linkquality, rdf,
-               runs, versions)
+from . import (authorities, canonical, cascade, catalog, config, corrections, dataindex, generator, inputs, linkquality,
+               rdf, runs, versions)
 from .agents import AgentError, Registry, person_iri, software_iri
 
 def emit(args, obj, text):
@@ -561,6 +561,12 @@ def cmd_check_authority_links(args, cfg):
     return 0
 
 
+def cmd_cascade(args, cfg):
+    sizes, rounds = cascade.run(cfg, args.out, generator.parse_use(args.use))
+    print(f"{rounds} rounds; " + ", ".join(f"{s} {n:,}" for s, n in sorted(sizes.items())) + f"; written to {args.out}")
+    return 0
+
+
 def cmd_sample_links(args, cfg):
     rows = linkquality.sample(cfg, args.out, generator.parse_use(args.use), size=args.size, seed=args.seed,
                               only=set(args.dataset) or None)
@@ -802,6 +808,13 @@ def parser():
                       "help": "read this version or run instead of the stable version; repeatable"}),
         (("--tsv",), {"metavar": "FILE", "type": Path, "help": "write every finding to FILE"}),
         (("--examples",), {"type": int, "default": 3, "help": "examples per kind of finding (default 3)"}))
+    add("cascade", cmd_cascade,
+        "the selections of the authority datasets: seeds, then the identity links of the selected records until nothing "
+        "is pending (decision 0029); writes the selections to DIR, the input of the authority generators",
+        (("out",), {"metavar": "DIR", "type": Path}),
+        (("--use",), {"metavar": "SLUG/REF", "action": "append", "default": [],
+                      "help": "read this version or run instead of the stable version (seeds); repeatable"}),
+        json_out=False)
     add("sample-links", cmd_sample_links,
         "draw random samples of the identity links per dataset, property and target, with the evidence of both sides",
         (("out",), {"metavar": "DIR", "type": Path}),
