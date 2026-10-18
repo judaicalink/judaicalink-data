@@ -35,7 +35,7 @@ PARAMS = {}
 
 JL = "http://data.judaicalink.org/data/"
 SWS = "https://sws.geonames.org/"
-GN = "http://www.geonames.org/ontology#"
+GN = PREFIXES["gn"]   # the publisher's form, https (docs/iri-forms.md)
 JLO, SKOS, OWL, FOAF, GEO = (PREFIXES[p] for p in ("jl", "skos", "owl", "foaf", "geosparql"))
 SAME = OWL + "sameAs"
 LANGUAGE = re.compile(r"^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$")   # not post, iata, icao, link, wkdt, fr_1793, ...
