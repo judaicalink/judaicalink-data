@@ -10,6 +10,9 @@ method = ["converted"]
 namespaces = ["geonames"]
 stable = "2026-10-16"
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"owl:sameAs" = ["wikidata"]
+
 [license]
 name = "CC BY 4.0"
 uri = "https://creativecommons.org/licenses/by/4.0/"

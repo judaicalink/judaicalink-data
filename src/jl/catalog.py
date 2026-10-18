@@ -266,6 +266,8 @@ DATASET = {
     "aliases": (lambda v: is_str_list(v) and all(x.startswith("/") for x in v), "a list of paths starting with /"),
     "files": (lambda v: True, ""), "versions": (lambda v: True, ""),
     "changelog": (lambda v: True, ""),
+    "identity": (lambda v: isinstance(v, dict) and all(is_str_list(x) for x in v.values()),
+                 "a table: property -> list of sources (decision 0032)"),
 }
 REQUIRED = ("slug", "title", "author", "license")
 
@@ -289,6 +291,14 @@ def check_entry(r, e, slugs, decisions):
 
     if "license" in d:
         check_table(r, f"{where} license", d["license"], LICENSE, ("name",))
+    if isinstance(d.get("identity"), dict):
+        from . import identifiers
+        for prop, sources in d["identity"].items():
+            if not identifiers.expand(prop):
+                r.error(where, f"identity: '{prop}' is not a property (prefix:local with a known prefix, or <iri>)")
+            for src in sources if isinstance(sources, list) else []:
+                if src not in identifiers.SOURCES:
+                    r.error(where, f"identity: '{src}' is not a known source ({', '.join(sorted(identifiers.SOURCES))})")
     if "links" in d:
         check_list_of_tables(r, f"{where} links", d["links"], LINK, ("url",))
     if "generator" in d:

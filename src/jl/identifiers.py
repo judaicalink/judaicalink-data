@@ -35,11 +35,50 @@ IDENTITY = {"http://www.w3.org/2002/07/owl#sameAs", "http://www.w3.org/2004/02/s
             WDTN + "P227", WDTN + "P214", WDTN + "P244", WDTN + "P1566"}
 
 
-def selects(slug, predicate):
+# the sources an identity declaration can name (catalogue field "identity")
+SOURCES = {"gnd", "viaf", "wikidata", "geonames", "lc-names", "isni", "tgn", "wikipedia-en", "wikipedia-de",
+           "judaicalink"}   # judaicalink: links between our own records (not in an authority namespace)
+# prefixes of the declarations beyond jl.turtle.PREFIXES
+DECLARATION_PREFIXES = {"madsrdf": "http://www.loc.gov/mads/rdf/v1#", "wdtn": WDTN}
+_declared = {}
+
+
+def expand(term):
+    """The IRI of a property of a declaration: "prefix:local", or "<iri>"; None if the prefix is unknown."""
+    from .turtle import PREFIXES
+    if term.startswith("<") and term.endswith(">"):
+        return iris.canonical(term[1:-1])   # the variants of a vocabulary are one property (http and https GND)
+    prefix, sep, local = term.partition(":")
+    ns = {**PREFIXES, **DECLARATION_PREFIXES}.get(prefix) if sep else None
+    return iris.canonical(ns + local) if ns else None
+
+
+def declared(slug):
+    """{property IRI (canonical form): {sources}}: the identity declaration of the dataset (catalogue field
+    "identity", decision 0032): which properties of the dataset state that a record is the same as a record of which
+    source. A dataset without a declaration states no identity."""
+    if slug not in _declared:
+        from . import catalog
+        e = catalog.Catalog().get(slug)
+        table = (e.data.get("identity") if e else None) or {}
+        _declared[slug] = {expand(k): frozenset(v) for k, v in table.items() if expand(k)}
+    return _declared[slug]
+
+
+def identity(slug, predicate, source):
+    """Whether a statement of the dataset slug with this predicate, naming an identifier of source, states identity."""
+    return source in declared(slug).get(iris.canonical(str(predicate)), ())
+
+
+def selects(slug, predicate, source=None):
     """Whether a statement of the dataset slug selects the records it names in the authority datasets (decision 0029):
-    every statement of our datasets (also places of birth, occupations), of the authority datasets only their identity
-    statements (otherwise the cascade would follow the places, occupations and related persons of authority records)."""
-    return slug not in AUTHORITY_DATASETS or predicate in IDENTITY
+    every statement of our datasets (also places of birth, occupations), of the authority datasets only their declared
+    identity statements (otherwise the cascade would follow the places, occupations and related persons of authority
+    records)."""
+    if slug not in AUTHORITY_DATASETS:
+        return True
+    d = declared(slug).get(iris.canonical(str(predicate)), ())
+    return source in d if source else bool(d)
 
 
 def normal(source, identifier):
@@ -82,6 +121,15 @@ def identify(term, predicate=None):
     return None
 
 
+def source_of(term, predicate=None):
+    """identify(), and for one of our records outside the authority namespaces ("judaicalink", the IRI)."""
+    x = identify(term, predicate)
+    if x is None and isinstance(term, str) and not isinstance(term, (Literal, BNode)) and \
+            iris.canonical(term).startswith(JL):
+        return "judaicalink", iris.canonical(term)
+    return x
+
+
 def scan(run, inputs, sources=None):
     """{source: {identifier: {dataset}}} for the identifiers the inputs name as objects. inputs: {input name:
     "<slug>/<version>"} (e.g. jl.generator.stable_inputs); sources: only these sources."""
@@ -89,9 +137,9 @@ def scan(run, inputs, sources=None):
     for name, ref in inputs.items():
         slug = ref.split("/", 1)[0]
         for _s, p, o in run.triples(name):
-            if not selects(slug, p):
-                continue
             x = identify(o, p)
+            if x and not selects(slug, p, x[0]):
+                continue
             if x and (sources is None or x[0] in sources):
                 found[x[0]][x[1]].add(slug)
     return found

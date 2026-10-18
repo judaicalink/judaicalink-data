@@ -25,9 +25,9 @@ def collect(triples_of):
     found = defaultdict(lambda: defaultdict(set))
     for slug, triples in triples_of:
         for _s, p, o in triples:
-            if not identifiers.selects(slug, p):   # authority datasets: identity statements only (0029)
-                continue
             x = identifiers.identify(o, p)
+            if x and not identifiers.selects(slug, p, x[0]):   # authority datasets: their declared identity (0032)
+                continue
             if x and x[0] in SOURCES:
                 found[x[0]][x[1]].add(slug)
     return found

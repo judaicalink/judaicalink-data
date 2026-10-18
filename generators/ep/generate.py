@@ -26,7 +26,7 @@ import unicodedata
 from collections import Counter, defaultdict
 from urllib.parse import unquote
 
-from jl import catalog, classes
+from jl import catalog, classes, identifiers
 from jl.generator import GeneratorError, slug_of, stable_inputs
 from jl.iris import canonical_triples, canonical_wkt
 from jl.linksets import contradict
@@ -90,6 +90,9 @@ CLASS_OF_TYPE = {FOAF + "Person": "Person", JLO + "Person": "Person", JLO + "Pla
                  GNDO + "Work": "Work", JLO + "Work": "Work", GNDO_S + "Work": "Work",
                  GNDO_S + "PlaceOrGeographicName": "Place", SKOS + "Concept": "Subject", JLO + "Subject": "Subject",
                  classes.PLACE: "Place", classes.WORK: "Work"}   # the deprecated jl: classes read as before
+# the key of an identifier of a source (jl.identifiers) in the closure
+ID_KEY = {"gnd": "gnd:", "viaf": "viaf:", "wikidata": "wd:", "lc-names": "lc:", "geonames": "geonames:",
+          "isni": "isni:", "tgn": "tgn:", "wikipedia-en": "wp-en:", "wikipedia-de": "wp-de:"}
 # the keys of the authority datasets (decision 0029) and the namespaces of their records
 AUTHORITY_KEYS = {"gnd": "GND", "lc": "LC", "geonames": "GeoNames", "wd": "Wikidata", "viaf": "VIAF"}
 AUTHORITY_NS = {"gnd": "gnd/", "lc": "lc/", "geonames": "geonames/", "wd": "wikidata/", "viaf": "viaf/"}
@@ -183,9 +186,9 @@ def key(o):
     for prefix, ns in (("lc:", "lc/"), ("wd:", "wikidata/"), ("viaf:", "viaf/")):   # our authority records (0029)
         if o.startswith(JL + ns) and re.fullmatch(r"[A-Za-z]*[0-9]+", o[len(JL + ns):]):
             return prefix + o[len(JL + ns):]
-    m = re.match(r"^https?://dbpedia\.org/resource/(.+)$", o)
-    if m:
-        return "dbpedia:" + m.group(1)   # English DBpedia; data/dbpedia/<title> is not the same key (0022)
+    x = identifiers.identify(o)
+    if x and x[0] in ("wikipedia-en", "wikipedia-de"):   # article and DBpedia resource: one key per language (0031)
+        return ID_KEY[x[0]] + x[1]
     m = re.match(r"^https?://([a-z]+)\.dbpedia\.org/resource/(.+)$", o)
     if m:
         return f"dbpedia-{m.group(1)}:" + m.group(2)
@@ -439,6 +442,9 @@ def generate(run):
     facts = defaultdict(lambda: defaultdict(list))
     entities_cm = set()
     replaced_key = {}                  # authority key -> the key it is replaced by (in the source's own IRIs)
+    identity_props = {slug: {IRI(p) for p in identifiers.declared(slug)} | {
+        IRI(p.replace("https://d-nb.info/", "http://d-nb.info/")) for p in identifiers.declared(slug)}
+        for slug in DATASET_OF.values()}
     for name, slug in DATASET_OF.items():
         for s, p, o in run.triples(name):
             if p == REPLACED and not s.startswith(JL) and isinstance(o, str) and not isinstance(o, Literal):
@@ -464,15 +470,11 @@ def generate(run):
             if p == JLO + "entity" and slug == "cm-entities":
                 entities_cm.add(str(o))
                 continue
-            if p in (SAME, GNDID, GNDO_S + "gndIdentifier", JLSAME):
-                ours = p == JLSAME or slug in LINKSETS
-                if isinstance(o, Literal):
-                    if p in (GNDID, GNDO_S + "gndIdentifier") and re.fullmatch(r"[0-9]+[0-9X-]*", o.value.strip()):
-                        links.append((s, "gnd:" + o.value.strip().upper(), slug, ours))
-                else:
-                    k = key(o)
-                    if k:
-                        links.append((s, k, slug, ours))
+            x = identifiers.source_of(o, p) if p in identity_props.get(slug, ()) else None
+            if x and identifiers.identity(slug, p, x[0]):   # declared in the catalogue entry (decision 0032)
+                k = ID_KEY[x[0]] + x[1] if x[0] in ID_KEY else key(str(o))
+                if k:
+                    links.append((s, k, slug, p == JLSAME or slug in LINKSETS))
             elif p in (REPLACED, DERIVED) and isinstance(o, str) and o.startswith(JL) and not o.startswith(EPNS):
                 (replaced if p == REPLACED else derived)[s].add(str(o))
             field = FACT_PROPS.get(p)

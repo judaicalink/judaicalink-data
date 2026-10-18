@@ -10,6 +10,9 @@ method = ["converted"]
 namespaces = ["lc"]
 stable = "2026-10-16"
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"madsrdf:hasExactExternalAuthority" = ["gnd", "tgn", "wikidata", "viaf", "isni", "geonames"]
+
 [license]
 name = "Public domain"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"

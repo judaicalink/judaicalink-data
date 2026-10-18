@@ -5,8 +5,8 @@ authority_linkset(run, source, authority, inputs, prefix) reads the authority da
 replacements of its identifiers, dcterms:isReplacedBy, and the deprecated ones, owl:deprecated), finds every
 reference to the source in the inputs (jl.identifiers: IRIs as objects in any form, identifier literals), resolves it
 to the current record and states <record> jl:sameAs <prefix><current id> (a subproperty of owl:sameAs: the identity
-as JudaicaLink states it). Only identity statements count (owl:sameAs,
-skos:exactMatch, madsrdf:hasExactExternalAuthority, identifier literals): a place of birth or an occupation that is an
+as JudaicaLink states it). Only identity statements count, as the catalogue
+entry of each dataset declares them (field identity, decision 0032): a place of birth or an occupation that is an
 authority entry does not make the record that entry. Left out and logged: references to
 identifiers that are deprecated or not in the authority dataset, references by blank nodes or by records of the
 authority itself, and links whose two sides are of contradicting kinds (a person and a work, a person or a work and
@@ -86,10 +86,8 @@ def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
     for name, ref in inputs.items():
         slug = ref.split("/", 1)[0]
         for s, p, o in run.triples(name):
-            if p not in IDENTITY:
-                continue
             x = identifiers.identify(o, p)
-            if not x or x[0] != source:
+            if not x or x[0] != source or not identifiers.identity(slug, p, source):   # the declaration (0032)
                 continue
             c["references"] += 1
             if isinstance(s, BNode) or not s.startswith(identifiers.JL):

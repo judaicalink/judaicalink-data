@@ -9,6 +9,9 @@ method = ["deterministic", "rule-based"]
 inputs = ["wikidata", "yivo", "bhr", "rujen", "dbpedia-persons"]
 replaces = ["ls-yivo-wikidata"]
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"jl:sameAs" = ["wikidata"]
+
 [license]
 name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"

@@ -9,6 +9,14 @@ kind = "authority"
 method = ["converted", "lookup"]
 namespaces = ["wikidata"]
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"wdtn:P227" = ["gnd"]
+"wdtn:P214" = ["viaf"]
+"wdtn:P244" = ["lc-names"]
+"wdtn:P1566" = ["geonames"]
+"wdtn:P213" = ["isni"]
+"foaf:isPrimaryTopicOf" = ["wikipedia-en", "wikipedia-de"]
+
 [license]
 name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"

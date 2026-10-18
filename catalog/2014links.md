@@ -8,6 +8,9 @@ stable = "2026-10-12"
 kind = "linkset"
 method = ["rule-based"]
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"owl:sameAs" = ["wikipedia-en", "geonames"]
+
 [license]
 name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"

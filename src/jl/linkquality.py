@@ -125,7 +125,7 @@ def sample(cfg, out, use=None, size=100, small=150, seed=2026, only=None, log=pr
         ref = authorities.selection_ref(cat, slug, use)
         if ref is None:
             continue
-        a = authorities.Authority(source)
+        a = authorities.Authority(source, slug)
         a.read(triples(f"{slug}/{ref}"))
         auth[source] = (a, f"{slug}/{ref}")
     want = defaultdict(set)

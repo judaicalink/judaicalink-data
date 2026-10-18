@@ -72,9 +72,9 @@ def named(triples, sources=None, slug=None):
     objects; of an authority dataset only its identity statements (identifiers.selects)."""
     found = defaultdict(set)
     for _s, p, o in triples:
-        if slug and not identifiers.selects(slug, p):
-            continue
         x = identifiers.identify(o, p)
+        if x and slug and not identifiers.selects(slug, p, x[0]):
+            continue
         if x and x[0] in DATASET and (sources is None or x[0] in sources):
             found[x[0]].add(x[1])
     return found
@@ -156,8 +156,8 @@ class Authority:
     """What one authority dataset says: its records, replacements and deprecations, and the identity links of its
     records to the other sources."""
 
-    def __init__(self, source):
-        self.source = source
+    def __init__(self, source, slug=None):
+        self.source, self.slug = source, slug or DATASET.get(source)
         self.records, self.deprecated = set(), set()
         self.replaced = defaultdict(set)
         self.links = defaultdict(lambda: defaultdict(set))   # id -> source -> {id}
@@ -177,10 +177,9 @@ class Authority:
                 self.deprecated.add(ident)
                 continue
             self.records.add(ident)
-            if p in IDENTITY:
-                y = identifiers.identify(o, p)
-                if y and y[0] in DATASET and y[0] != self.source:
-                    self.links[ident][y[0]].add(y[1])
+            y = identifiers.identify(o, p)
+            if y and y[0] in DATASET and y[0] != self.source and identifiers.identity(self.slug, p, y[0]):
+                self.links[ident][y[0]].add(y[1])
 
     def current(self, ident):
         """(current identifiers, status): status current, replaced, deprecated, or not in the dataset (not selected
@@ -213,7 +212,7 @@ def check_links(cfg, use=None, log=print):
         ref = selection_ref(cat, slug, use)
         if ref is None:
             continue
-        a = Authority(source)
+        a = Authority(source, slug)
         for f in generator.resolve(cfg, cat, f"{slug}/{ref}"):
             a.read(rdf.read_triples(f["path"]))
         data[source] = a

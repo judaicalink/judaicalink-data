@@ -434,10 +434,23 @@ class Selects(unittest.TestCase):
     def test_identity_only_for_authorities(self):
         from jl import identifiers
         birth = "http://data.judaicalink.org/ontology/birthLocationURI"
-        self.assertTrue(identifiers.selects("yivo", birth))                 # our datasets: every statement
-        self.assertFalse(identifiers.selects("gnd", birth))                 # authority datasets: identity only
-        self.assertTrue(identifiers.selects("gnd", "http://www.w3.org/2002/07/owl#sameAs"))
-        self.assertTrue(identifiers.selects("wikidata", identifiers.WDTN + "P227"))
+        same = "http://www.w3.org/2002/07/owl#sameAs"
+        saved = dict(identifiers._declared)
+        identifiers._declared.update({"gnd": {same: frozenset({"viaf"})},
+                                      "wikidata": {identifiers.WDTN + "P227": frozenset({"gnd"})}})
+        try:
+            self.assertTrue(identifiers.selects("yivo", birth))                 # our datasets: every statement
+            self.assertFalse(identifiers.selects("gnd", birth))                 # authority datasets: declared only
+            self.assertTrue(identifiers.selects("gnd", same, "viaf"))
+            self.assertFalse(identifiers.selects("gnd", same, "wikidata"))      # not declared for this source
+            self.assertTrue(identifiers.selects("wikidata", identifiers.WDTN + "P227", "gnd"))
+            self.assertEqual(identifiers.expand("gndo:gndIdentifier"),
+                             "https://d-nb.info/standards/elementset/gnd#gndIdentifier")
+            self.assertEqual(identifiers.expand("<http://d-nb.info/standards/elementset/gnd#gndIdentifier>"),
+                             "https://d-nb.info/standards/elementset/gnd#gndIdentifier")
+        finally:
+            identifiers._declared.clear()
+            identifiers._declared.update(saved)
 
 
 class LinkQuality(unittest.TestCase):

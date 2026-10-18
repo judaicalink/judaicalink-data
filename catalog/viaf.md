@@ -9,6 +9,9 @@ kind = "authority"
 method = ["converted"]
 namespaces = ["viaf"]
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"owl:sameAs" = ["gnd", "lc-names", "wikidata", "isni", "wikipedia-en"]
+
 [license]
 name = "ODC-By 1.0"
 uri = "https://opendatacommons.org/licenses/by/1-0/"

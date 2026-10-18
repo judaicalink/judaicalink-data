@@ -9,6 +9,10 @@ stable = "2026-10-12"
 kind = "records"
 method = ["rule-based"]
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"owl:sameAs" = ["gnd", "viaf", "geonames"]
+"gndo:gndIdentifier" = ["gnd"]
+
 [license]
 name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"

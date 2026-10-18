@@ -8,6 +8,9 @@ kind = "linkset"
 method = ["deterministic"]
 inputs = ["viaf"]
 
+[identity]   # the properties that state identity, and towards which sources (decision 0032)
+"jl:sameAs" = ["viaf"]
+
 [license]
 name = "CC0"
 uri = "https://creativecommons.org/publicdomain/zero/1.0/"
