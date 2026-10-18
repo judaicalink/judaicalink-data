@@ -36,15 +36,25 @@ from jl import catalog, config, generator  # noqa: E402
 from jl.fetch import request  # noqa: E402
 from jl.rdf import read_triples  # noqa: E402
 
-ARGS, USE = [], []
-_it = iter(sys.argv[1:])
-for _a in _it:
-    if _a == "--use":
-        USE.append(next(_it, ""))
-    else:
-        ARGS.append(_a)
-generator.USE.update(generator.parse_use(USE))   # read by ids.DATASETS (jl.authorities.linking_inputs)
-import ids  # noqa: E402
+ids = None   # ids.py, imported by load_ids() after --use is set (its DATASETS are evaluated on import)
+
+
+def parse_args(argv):
+    args, use = [], []
+    it = iter(argv)
+    for a in it:
+        if a == "--use":
+            use.append(next(it, ""))
+        else:
+            args.append(a)
+    return args, use
+
+
+def load_ids(use):
+    global ids
+    generator.USE.update(generator.parse_use(use))   # read by ids.DATASETS (jl.authorities.linking_inputs)
+    import ids as module  # noqa: E402
+    ids = module
 
 WDQS = "https://query.wikidata.org/sparql"
 API = "https://www.wikidata.org/w/api.php"
@@ -286,7 +296,9 @@ def main(out, work):
 
 
 if __name__ == "__main__":
+    ARGS, USE = parse_args(sys.argv[1:])
     if len(ARGS) not in (1, 2):
         sys.exit(__doc__)
+    load_ids(USE)
     print("datasets:", ", ".join(sorted(ids.DATASETS.values())), flush=True)
     main(ARGS[0], ARGS[1] if len(ARGS) == 2 else "/Users/kai/lokal/judaicalink/work/wikidata-query")
