@@ -69,7 +69,10 @@ each other ([0029](decisions/0029-identity-from-our-linksets.md)). When a record
 1. `jl check-authorities`: which authority datasets lack identifiers our datasets name.
 2. `jl generate <slug>` for each of them; the summary lists the identifiers of the other sources the run names that
    their datasets do not have, with the command to run them again (`--use <slug>/<run>`; also `--use` for every run
-   of this round that is not a version yet). Repeat until no run names new identifiers.
+   of this round that is not a version yet). Repeat until no run names new identifiers. Run the datasets of a round
+   one after the other, each on the runs just made: run in parallel, on each other's runs of the round before, two
+   records that select only each other (a GND record and the VIAF cluster that names it) appear and vanish in turn
+   and the rounds never end.
 3. The linksets (`ls-gnd`, …) and the entity pages on these runs (test), then
    `jl add-version gnd/<run> lc/<run> …` with all the runs together, one version id for all.
 
