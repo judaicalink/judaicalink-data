@@ -15,7 +15,7 @@
    cluster are not taken over.
 
 The dump is read in one pass; its lines are not grouped by cluster, so the triples of the selected clusters are
-collected in memory.
+collected in memory. Lines that are not valid N-Triples are left out and listed in the log.
 """
 
 import csv
@@ -25,7 +25,7 @@ from collections import defaultdict
 
 from jl import authorities, classes, identifiers
 from jl.iris import canonical
-from jl.rdf import IRI, RDF_TYPE, Literal, parse_ntriples
+from jl.rdf import IRI, RDF_TYPE, Literal, ParseError, parse_ntriples
 from jl.turtle import PREFIXES
 
 LINKED = authorities.linking_inputs("viaf")   # our datasets and the other authority datasets (jl.authorities)
@@ -62,7 +62,14 @@ def generate(run):
     for num in sorted(lines):
         rec = IRI(JL + num)
         t.add((rec, IRI(OWL + "sameAs"), IRI(canonical(CLUSTER + num))))
-        for _s, p, o in parse_ntriples(lines[num]):
+        triples = []
+        for line in lines[num]:   # a line that is not valid N-Triples is left out and listed in the log
+            try:
+                triples.extend(parse_ntriples([line]))
+            except ParseError:
+                stats["lines that are not valid N-Triples, left out"] += 1
+                run.log("not valid N-Triples:", line.rstrip()[:300])
+        for _s, p, o in triples:
             if p == RDF_TYPE:
                 if o in CLASSES:
                     t.add((rec, IRI(RDF_TYPE), IRI(CLASSES[o])))
