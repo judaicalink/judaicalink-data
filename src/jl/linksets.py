@@ -91,6 +91,9 @@ def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
             x = identifiers.identify(o, p)
             if not x or x[0] != source or not identifiers.identity(slug, p, source):   # the declaration (0032)
                 continue
+            if identifiers.below_threshold(slug, p, source):   # measured link quality (0032): linked, not joined
+                c[f"left out: link quality of {slug} below the threshold"] += 1
+                continue
             c["references"] += 1
             if isinstance(s, BNode) or not s.startswith(identifiers.JL):
                 c["left out: subject not one of our records"] += 1

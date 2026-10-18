@@ -1,0 +1,1056 @@
+# The measured quality of the identity links per dataset, property and target source (decision 0032).
+# A unit joins records (linksets, entity pages) if accuracy >= 0.95 and, when only a sample was checked, the lower
+# bound of its 95% interval >= 0.90; below, it is linked but joins nothing. Units not measured join. Made from the verdicts of the report named in each entry.
+
+accuracy = 0.95
+lower = 0.90
+
+[[unit]]
+dataset = "2014links"
+property = "owl:sameAs"
+source = "geonames"
+accuracy = 0.917
+lower = 0.850
+upper = 0.956
+correct = 100
+wrong = 9
+undecidable = 0
+links = 109
+sample = 109
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "2014links"
+property = "owl:sameAs"
+source = "wikipedia-en"
+accuracy = 0.905
+lower = 0.830
+upper = 0.949
+correct = 86
+wrong = 9
+undecidable = 5
+links = 1403
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "bhr"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 0.990
+lower = 0.943
+upper = 0.998
+correct = 95
+wrong = 1
+undecidable = 4
+links = 805
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "cm-entities"
+property = "owl:sameAs"
+source = "geonames"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 100
+wrong = 0
+undecidable = 0
+links = 1504
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "cm-entities"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 0.970
+lower = 0.915
+upper = 0.990
+correct = 96
+wrong = 3
+undecidable = 1
+links = 4951
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "cm-entities"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 0.988
+lower = 0.937
+upper = 0.998
+correct = 85
+wrong = 1
+undecidable = 14
+links = 5318
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "cm-entities"
+property = "owl:sameAs"
+source = "wikidata"
+accuracy = 0.990
+lower = 0.946
+upper = 0.998
+correct = 99
+wrong = 1
+undecidable = 0
+links = 4848
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "cm-entities"
+property = "foaf:isPrimaryTopicOf"
+source = "wikipedia-de"
+accuracy = 1.000
+lower = 0.960
+upper = 1.000
+correct = 93
+wrong = 0
+undecidable = 7
+links = 4848
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbp-wiki-geo-linking"
+property = "owl:sameAs"
+source = "wikipedia-de"
+accuracy = 0.971
+lower = 0.855
+upper = 0.995
+correct = 34
+wrong = 1
+undecidable = 11
+links = 46
+sample = 46
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbp-wiki-geo-linking"
+property = "owl:sameAs"
+source = "wikipedia-en"
+accuracy = 0.986
+lower = 0.925
+upper = 0.998
+correct = 71
+wrong = 1
+undecidable = 28
+links = 5710
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbpedia-persons"
+property = "gndo:gndIdentifier"
+source = "gnd"
+accuracy = 0.990
+lower = 0.945
+upper = 0.998
+correct = 98
+wrong = 1
+undecidable = 1
+links = 3626
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbpedia-persons"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 99
+wrong = 0
+undecidable = 1
+links = 3596
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbpedia-persons"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 1.000
+lower = 0.959
+upper = 1.000
+correct = 90
+wrong = 0
+undecidable = 10
+links = 3146
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbpedia-persons"
+property = "owl:sameAs"
+source = "wikidata"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 98
+wrong = 0
+undecidable = 2
+links = 6954
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbpedia-persons"
+property = "owl:sameAs"
+source = "wikipedia-de"
+accuracy = 0.969
+lower = 0.914
+upper = 0.990
+correct = 95
+wrong = 3
+undecidable = 2
+links = 3505
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "dbpedia-persons"
+property = "owl:sameAs"
+source = "wikipedia-en"
+accuracy = 1.000
+lower = 0.961
+upper = 1.000
+correct = 94
+wrong = 0
+undecidable = 6
+links = 6951
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "epidat"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 0.959
+lower = 0.886
+upper = 0.986
+correct = 70
+wrong = 3
+undecidable = 4
+links = 77
+sample = 77
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "footprints"
+property = "gndo:gndIdentifier"
+source = "gnd"
+accuracy = 0.507
+lower = 0.424
+upper = 0.591
+correct = 68
+wrong = 66
+undecidable = 5
+links = 139
+sample = 139
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "footprints"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 0.917
+lower = 0.844
+upper = 0.957
+correct = 88
+wrong = 8
+undecidable = 4
+links = 812
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "footprints"
+property = "owl:sameAs"
+source = "lc-names"
+accuracy = 0.000
+lower = 0.000
+upper = 0.793
+correct = 0
+wrong = 1
+undecidable = 0
+links = 1
+sample = 1
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "footprints"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 0.886
+lower = 0.803
+upper = 0.937
+correct = 78
+wrong = 10
+undecidable = 12
+links = 1478
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gba"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.722
+upper = 1.000
+correct = 10
+wrong = 0
+undecidable = 0
+links = 10
+sample = 10
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gba"
+property = "gndo:gndIdentifier"
+source = "gnd"
+accuracy = 1.000
+lower = 0.722
+upper = 1.000
+correct = 10
+wrong = 0
+undecidable = 0
+links = 10
+sample = 10
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "geo-coordinates"
+property = "gndo:gndIdentifier"
+source = "gnd"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 100
+wrong = 0
+undecidable = 0
+links = 2705
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "geo-coordinates"
+property = "owl:sameAs"
+source = "geonames"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 97
+wrong = 0
+undecidable = 3
+links = 2643
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "geo-coordinates"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 100
+wrong = 0
+undecidable = 0
+links = 2513
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "geo-coordinates"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 0.944
+lower = 0.864
+upper = 0.978
+correct = 67
+wrong = 4
+undecidable = 29
+links = 2701
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "geonames"
+property = "owl:sameAs"
+source = "wikidata"
+accuracy = 1.000
+lower = 0.961
+upper = 1.000
+correct = 95
+wrong = 0
+undecidable = 5
+links = 2660
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "geonames"
+property = "foaf:isPrimaryTopicOf"
+source = "wikipedia-de"
+accuracy = 0.982
+lower = 0.906
+upper = 0.997
+correct = 55
+wrong = 1
+undecidable = 13
+links = 69
+sample = 69
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "geonames"
+property = "foaf:isPrimaryTopicOf"
+source = "wikipedia-en"
+accuracy = 1.000
+lower = 0.959
+upper = 1.000
+correct = 89
+wrong = 0
+undecidable = 11
+links = 6762
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "owl:sameAs"
+source = "geonames"
+accuracy = 0.989
+lower = 0.943
+upper = 0.998
+correct = 94
+wrong = 1
+undecidable = 5
+links = 4358
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "owl:sameAs"
+source = "lc-names"
+accuracy = 0.979
+lower = 0.926
+upper = 0.994
+correct = 92
+wrong = 2
+undecidable = 6
+links = 56177
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 1.000
+lower = 0.960
+upper = 1.000
+correct = 92
+wrong = 0
+undecidable = 8
+links = 68173
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "owl:sameAs"
+source = "wikidata"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 98
+wrong = 0
+undecidable = 2
+links = 60923
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "owl:sameAs"
+source = "wikipedia-de"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 99
+wrong = 0
+undecidable = 1
+links = 27977
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "owl:sameAs"
+source = "wikipedia-en"
+accuracy = 0.980
+lower = 0.929
+upper = 0.994
+correct = 97
+wrong = 2
+undecidable = 1
+links = 38212
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "skos:exactMatch"
+source = "lc-names"
+accuracy = 1.000
+lower = 0.207
+upper = 1.000
+correct = 1
+wrong = 0
+undecidable = 0
+links = 1
+sample = 1
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "gnd"
+property = "foaf:page"
+source = "wikipedia-de"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 96
+wrong = 0
+undecidable = 4
+links = 27956
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "haskala"
+property = "gndo:gndIdentifier"
+source = "gnd"
+accuracy = 1.000
+lower = 0.893
+upper = 1.000
+correct = 32
+wrong = 0
+undecidable = 0
+links = 32
+sample = 32
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "haskala"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 98
+wrong = 0
+undecidable = 2
+links = 157
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "haskala"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 0.367
+lower = 0.247
+upper = 0.507
+correct = 18
+wrong = 31
+undecidable = 51
+links = 581
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "hhkeydocs"
+property = "gndo:gndIdentifier"
+source = "gnd"
+accuracy = 0.990
+lower = 0.946
+upper = 0.998
+correct = 99
+wrong = 1
+undecidable = 0
+links = 1903
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "hhkeydocs"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 96
+wrong = 0
+undecidable = 4
+links = 2274
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "interlinks"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 99
+wrong = 0
+undecidable = 1
+links = 738
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "interlinks"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 1.000
+lower = 0.966
+upper = 1.000
+correct = 109
+wrong = 0
+undecidable = 12
+links = 121
+sample = 121
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "interlinks"
+property = "owl:sameAs"
+source = "wikidata"
+accuracy = 1.000
+lower = 0.959
+upper = 1.000
+correct = 89
+wrong = 0
+undecidable = 11
+links = 238
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "interlinks"
+property = "owl:sameAs"
+source = "wikipedia-de"
+accuracy = 1.000
+lower = 0.959
+upper = 1.000
+correct = 91
+wrong = 0
+undecidable = 9
+links = 173
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "interlinks"
+property = "owl:sameAs"
+source = "wikipedia-en"
+accuracy = 0.989
+lower = 0.943
+upper = 0.998
+correct = 94
+wrong = 1
+undecidable = 5
+links = 238
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "jre"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 0.975
+lower = 0.912
+upper = 0.993
+correct = 77
+wrong = 2
+undecidable = 21
+links = 313
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "lc"
+property = "madsrdf:hasExactExternalAuthority"
+source = "geonames"
+accuracy = 1.000
+lower = 0.207
+upper = 1.000
+correct = 1
+wrong = 0
+undecidable = 0
+links = 1
+sample = 1
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "lc"
+property = "madsrdf:hasExactExternalAuthority"
+source = "gnd"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 100
+wrong = 0
+undecidable = 0
+links = 201
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "lc"
+property = "madsrdf:hasExactExternalAuthority"
+source = "viaf"
+accuracy = 1.000
+lower = 0.342
+upper = 1.000
+correct = 2
+wrong = 0
+undecidable = 0
+links = 2
+sample = 2
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "lc"
+property = "madsrdf:hasExactExternalAuthority"
+source = "wikidata"
+accuracy = 1.000
+lower = 0.342
+upper = 1.000
+correct = 2
+wrong = 0
+undecidable = 0
+links = 2
+sample = 2
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "lc"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 98
+wrong = 0
+undecidable = 2
+links = 201
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "lc"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 1.000
+lower = 0.342
+upper = 1.000
+correct = 2
+wrong = 0
+undecidable = 0
+links = 2
+sample = 2
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "lc"
+property = "owl:sameAs"
+source = "wikidata"
+accuracy = 1.000
+lower = 0.342
+upper = 1.000
+correct = 2
+wrong = 0
+undecidable = 0
+links = 2
+sample = 2
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "ls-nli-legacy"
+property = "owl:sameAs"
+source = "lc-names"
+accuracy = 1.000
+lower = 0.951
+upper = 1.000
+correct = 74
+wrong = 0
+undecidable = 26
+links = 54056
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "ls-nli-legacy"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 1.000
+lower = 0.935
+upper = 1.000
+correct = 55
+wrong = 0
+undecidable = 45
+links = 177815
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "nli-records"
+property = "owl:sameAs"
+source = "lc-names"
+accuracy = 0.990
+lower = 0.943
+upper = 0.998
+correct = 95
+wrong = 1
+undecidable = 4
+links = 54117
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "nli-records"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 1.000
+lower = 0.946
+upper = 1.000
+correct = 67
+wrong = 0
+undecidable = 33
+links = 182552
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "nrwbibdjg"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.947
+upper = 1.000
+correct = 69
+wrong = 0
+undecidable = 31
+links = 806
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "ubffm-persons"
+property = "gndo:gndIdentifier"
+source = "gnd"
+accuracy = 1.000
+lower = 0.949
+upper = 1.000
+correct = 71
+wrong = 0
+undecidable = 29
+links = 5018
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "ubffm-persons"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.952
+upper = 1.000
+correct = 76
+wrong = 0
+undecidable = 24
+links = 6568
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "ubffm-persons"
+property = "owl:sameAs"
+source = "viaf"
+accuracy = 1.000
+lower = 0.958
+upper = 1.000
+correct = 88
+wrong = 0
+undecidable = 12
+links = 3856
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "ubffm-persons"
+property = "owl:sameAs"
+source = "wikipedia-en"
+accuracy = 1.000
+lower = 0.960
+upper = 1.000
+correct = 93
+wrong = 0
+undecidable = 7
+links = 628
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "viaf"
+property = "owl:sameAs"
+source = "gnd"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 96
+wrong = 0
+undecidable = 4
+links = 66169
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "viaf"
+property = "owl:sameAs"
+source = "lc-names"
+accuracy = 1.000
+lower = 0.961
+upper = 1.000
+correct = 95
+wrong = 0
+undecidable = 5
+links = 89121
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "viaf"
+property = "owl:sameAs"
+source = "wikidata"
+accuracy = 1.000
+lower = 0.961
+upper = 1.000
+correct = 95
+wrong = 0
+undecidable = 5
+links = 59038
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "viaf"
+property = "owl:sameAs"
+source = "wikipedia-en"
+accuracy = 0.979
+lower = 0.926
+upper = 0.994
+correct = 93
+wrong = 2
+undecidable = 5
+links = 31266
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "wikidata"
+property = "wdtn:P1566"
+source = "geonames"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 97
+wrong = 0
+undecidable = 3
+links = 8296
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "wikidata"
+property = "wdtn:P214"
+source = "viaf"
+accuracy = 0.968
+lower = 0.909
+upper = 0.989
+correct = 90
+wrong = 3
+undecidable = 7
+links = 88706
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "wikidata"
+property = "wdtn:P227"
+source = "gnd"
+accuracy = 1.000
+lower = 0.962
+upper = 1.000
+correct = 98
+wrong = 0
+undecidable = 2
+links = 61409
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "wikidata"
+property = "wdtn:P244"
+source = "lc-names"
+accuracy = 0.967
+lower = 0.908
+upper = 0.989
+correct = 89
+wrong = 3
+undecidable = 8
+links = 60845
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "wikidata"
+property = "foaf:isPrimaryTopicOf"
+source = "wikipedia-de"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 100
+wrong = 0
+undecidable = 0
+links = 34334
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"
+
+[[unit]]
+dataset = "wikidata"
+property = "foaf:isPrimaryTopicOf"
+source = "wikipedia-en"
+accuracy = 1.000
+lower = 0.963
+upper = 1.000
+correct = 100
+wrong = 0
+undecidable = 0
+links = 38451
+sample = 100
+report = "docs/reports/2026-10-18-link-quality.md"

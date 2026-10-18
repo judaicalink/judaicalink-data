@@ -72,6 +72,36 @@ def identity(slug, predicate, source):
     return source in declared(slug).get(iris.canonical(str(predicate)), ())
 
 
+_quality = {}
+
+
+def below_threshold(slug, predicate, source):
+    """Whether the measured quality of this unit (catalog/link-quality.toml, decision 0032) is below the threshold:
+    accuracy under the threshold, or, when only a sample was checked, the lower bound of its interval under the
+    threshold of the lower bound. A unit not measured is not below."""
+    if not _quality:
+        import tomllib
+        from . import catalog
+        path = catalog.CATALOG / "link-quality.toml"
+        d = tomllib.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+        _quality["threshold"] = (d.get("accuracy", 0), d.get("lower", 0))
+        for u in d.get("unit", []):
+            prop = expand(u["property"])
+            if prop:
+                _quality[(u["dataset"], prop, u["source"])] = u
+    u = _quality.get((slug, iris.canonical(str(predicate)), source))
+    if not u:
+        return False
+    acc, low = _quality["threshold"]
+    return u["accuracy"] < acc or (u.get("sample", 0) < u.get("links", 0) and u["lower"] < low)
+
+
+def joins(slug, predicate, source):
+    """Whether a statement joins records (linksets, entity pages): declared identity of a unit not below the
+    threshold of the measured link quality (decision 0032); below it, the link is kept but joins nothing."""
+    return identity(slug, predicate, source) and not below_threshold(slug, predicate, source)
+
+
 def selects(slug, predicate, source=None):
     """Whether a statement of the dataset slug selects the records it names in the authority datasets (decision 0029):
     every statement of our datasets (also places of birth, occupations), of the authority datasets only their declared

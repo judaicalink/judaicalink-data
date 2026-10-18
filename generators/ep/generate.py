@@ -21,6 +21,7 @@ history; the previous history is contained in the new one; every dataset that co
 The date of the events is the date of the run (data, not a version id; 0018).
 """
 
+import math
 import re
 import unicodedata
 from collections import Counter, defaultdict
@@ -471,7 +472,7 @@ def generate(run):
                 entities_cm.add(str(o))
                 continue
             x = identifiers.source_of(o, p) if p in identity_props.get(slug, ()) else None
-            if x and identifiers.identity(slug, p, x[0]):   # declared in the catalogue entry (decision 0032)
+            if x and identifiers.joins(slug, p, x[0]):   # declared, quality not below the threshold (0032)
                 k = ID_KEY[x[0]] + x[1] if x[0] in ID_KEY else key(str(o))
                 if k:
                     links.append((s, k, slug, p == JLSAME or slug in LINKSETS))
@@ -709,6 +710,25 @@ def generate(run):
     keys_of = defaultdict(set)
     for s, k, *_ in links:
         keys_of[cl.find(s)].add(k)
+    def closely_linked(keys):
+        """Several GeoNames features of one place (a city and its municipality, 0032): every pair shares a name and
+        lies within 25 km."""
+        feats = []
+        for k in keys:
+            f = facts.get(JL + "geonames/" + k.split(":", 1)[1], {})
+            names = {label_key(v[0]) for field in ("label", "alt") for v in f.get(field, []) if v[3] == "literal"}
+            m = re.match(r"\s*POINT\s*\(\s*(-?[0-9.]+)\s+(-?[0-9.]+)\s*\)", f["wkt"][0][0]) if f.get("wkt") else None
+            if not names or not m:
+                return False
+            feats.append((names, float(m.group(2)), float(m.group(1))))
+        for i, (na, la, lo) in enumerate(feats):
+            for nb, lb, mb in feats[i + 1:]:
+                d = 6371 * 2 * math.asin(math.sqrt(math.sin(math.radians(lb - la) / 2) ** 2 + math.cos(math.radians(la))
+                                                   * math.cos(math.radians(lb)) * math.sin(math.radians(mb - lo) / 2) ** 2))
+                if not (na & nb) or d > 25:
+                    return False
+        return True
+
     for root, members in sorted(groups.items()):
         sets = [set().union(*classes[m].values()) & {"Person", "Place", "Organization", "Work"} for m in members]
         sets = [x for x in sets if x]
@@ -723,7 +743,9 @@ def generate(run):
                 continue
             cur = sorted({current_key(k) for k in ks})
             old = [k for k in ks if current_key(k) != k]
-            if len(cur) > 1:
+            if len(cur) > 1 and prefix == "geonames" and closely_linked(cur):
+                conflicts["several GeoNames identifiers, closely linked (same name, near)"] += 1
+            elif len(cur) > 1:
                 conflicts[f"several {name} identifiers"] += 1
                 run.log(f"conflict {iri_of[root]}: several {name} identifiers {', '.join(cur)} {sorted(members)[:8]}")
             if old:
