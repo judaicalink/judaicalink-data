@@ -12,6 +12,7 @@ from jl import identifiers
 from jl.cascade import index_path, static_seeds
 from jl.generator import load_shared, resolve
 from jl.iris import canonical
+from jl.rdf import unescape_string
 
 gen = load_shared("viaf", "generate")
 
@@ -46,7 +47,7 @@ class Lookup:
                     last = k
                 m = LINE.match(line)
                 if m and m.group(2) == gen.SCHEMA + "sameAs" and not gen.NO_PATH.match(m.group(3)):
-                    links.append((k, canonical(m.group(3))))
+                    links.append((k, canonical(unescape_string(m.group(3)))))   # \u escapes, as the generator reads them
                 if len(ids) >= 1_000_000:
                     db.executemany("INSERT OR IGNORE INTO clusters VALUES (?)", ids)
                     ids = []
