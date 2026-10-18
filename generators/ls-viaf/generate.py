@@ -7,8 +7,8 @@ are in jl.linksets. VIAF gets the benefit of the doubt (0029); a link is left ou
   years are within one year of each other (a difference of one year is kept and counted: calendars and conversions
   differ by a year often); the years are the first three- or four-digit numbers of jl:birthDate/jl:deathDate and
   jl:birthDateNormalized/jl:deathDateNormalized (records-normalized), of the record and of the cluster;
-- the classes contradict: the cluster is a work (schema:CreativeWork) and the record a person or the other way round
-  (e.g. cm-entities takes every VIAF number of a Wikidata item, which can include the cluster of a work).
+- the classes contradict (jl.linksets, for every linkset: e.g. cm-entities takes every VIAF number of a Wikidata item,
+  which can include the cluster of a work).
 The dump states no successors of merged clusters, so a number not in the dataset viaf is left out (logged).
 """
 
@@ -61,8 +61,6 @@ def generate(run):
 
     def leave_out(s, n):
         r, c = record.get(s, {}), cluster.get(VIAF + n, {})
-        if r.get("class") and c.get("class") and not (r["class"] & c["class"]):
-            return "classes contradict (person and work)"
         for kind in ("birth", "death"):
             a, b = r.get(kind), c.get(kind)
             if a and b:

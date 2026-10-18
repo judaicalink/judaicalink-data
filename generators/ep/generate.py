@@ -29,6 +29,7 @@ from urllib.parse import unquote
 from jl import catalog, classes
 from jl.generator import GeneratorError, slug_of, stable_inputs
 from jl.iris import canonical_triples, canonical_wkt
+from jl.linksets import contradict
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
@@ -709,7 +710,7 @@ def generate(run):
     for root, members in sorted(groups.items()):
         sets = [set().union(*classes[m].values()) & {"Person", "Place", "Organization", "Work"} for m in members]
         sets = [x for x in sets if x]
-        if any(not (a & b) for i, a in enumerate(sets) for b in sets[i + 1:]):
+        if any(contradict(a, b) for i, a in enumerate(sets) for b in sets[i + 1:]):
             conflicts["incompatible classes"] += 1
             run.log(f"conflict {iri_of[root]}: incompatible classes {sorted(members)[:8]}")
         # several identifiers of one authority: all are linked, the first record by record_order gives the facts;

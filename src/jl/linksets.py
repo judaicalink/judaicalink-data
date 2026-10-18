@@ -9,14 +9,16 @@ as JudaicaLink states it). Only identity statements count (owl:sameAs,
 skos:exactMatch, madsrdf:hasExactExternalAuthority, identifier literals): a place of birth or an occupation that is an
 authority entry does not make the record that entry. Left out and logged: references to
 identifiers that are deprecated or not in the authority dataset, references by blank nodes or by records of the
-authority itself. A record that refers to several current entries is linked to each (the entity pages join them, as
+authority itself, and links whose two sides are of contradicting kinds (a person and a work, a person or a work and
+a place: e.g. Wikidata gives a person the LC number of one of his books; an organisation can be a place or a person's
+firm). A record that refers to several current entries is linked to each (the entity pages join them, as
 before) and listed in the log for review.
 """
 
 from collections import Counter, defaultdict
 
-from . import identifiers
-from .rdf import BNode, IRI, Literal
+from . import classes, identifiers
+from .rdf import RDF_TYPE, BNode, IRI, Literal
 from .turtle import PREFIXES
 
 SAME = PREFIXES["owl"] + "sameAs"
@@ -26,6 +28,27 @@ DEPRECATED = PREFIXES["owl"] + "deprecated"
 # the statements that say a record is the authority entry (also Wikidata's identifier properties); other references
 # (a place of birth, an occupation) are not
 IDENTITY = identifiers.IDENTITY
+
+
+# kinds that cannot be the same thing (an organisation can be a place, e.g. a city, or a person's firm, e.g. a printer)
+CONTRADICTING = {frozenset({"Person", "Work"}), frozenset({"Person", "Place"}), frozenset({"Work", "Place"})}
+
+
+def kinds(run, names, prefix=identifiers.JL):
+    """{record: {Person, Place, Work, Organization, Subject}} from the rdf:type statements of the inputs."""
+    out = defaultdict(set)
+    for name in names:
+        for s, p, o in run.triples(name):
+            if p == RDF_TYPE and not isinstance(o, Literal) and str(s).startswith(prefix):
+                k = classes.kind(str(o))
+                if k:
+                    out[str(s)].add(k)
+    return out
+
+
+def contradict(a, b):
+    """Whether two sets of kinds cannot belong to the same thing (every pair contradicts)."""
+    return bool(a and b) and all(frozenset({x, y}) in CONTRADICTING for x in a for y in b)
 
 
 def authority_index(run, source, authority):
@@ -57,6 +80,7 @@ def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
     current, to, deprecated = authority_index(run, source, authority)
     run.log(f"{authority}: {len(current):,} current records, {len(to):,} replaced identifiers, "
             f"{len(deprecated):,} deprecated")
+    kind_of = kinds(run, [authority, *inputs])
     links, targets = set(), defaultdict(set)
     c, by_dataset, left_out = Counter(), Counter(), []
     for name, ref in inputs.items():
@@ -86,7 +110,8 @@ def authority_linkset(run, source, authority, inputs, prefix, leave_out=None):
                 c[f"left out: {why}"] += 1
                 left_out.append(f"{s} {n} ({why}, {slug})")
                 continue
-            why = leave_out(str(s), cur) if leave_out else None
+            why = ("classes contradict" if contradict(kind_of.get(str(s), set()), kind_of.get(prefix + cur, set()))
+                   else leave_out(str(s), cur) if leave_out else None)
             if why:
                 c[f"left out: {why}"] += 1
                 left_out.append(f"{s} {cur} ({why}, {slug})")
