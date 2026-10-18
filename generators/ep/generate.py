@@ -64,7 +64,7 @@ INPUTS = {"previous": "ep/" + catalog.Catalog().entries["ep"].stable,
 PARAMS = {"identity": "all"}
 # the datasets whose identity links are our own decisions (catalogue kind "linkset")
 LINKSETS = {"2014links", "interlinks", "dbp-wiki-geo-linking", "ls-nli-legacy", "ls-yivo-wikidata", "ls-gnd", "ls-lc",
-            "ls-geonames"}
+            "ls-geonames", "ls-viaf", "ls-wikidata"}
 DATASET_OF = {s.replace("-", "_"): s for s in STABLE}
 RANK = {s: i for i, s in enumerate(PRECEDENCE)}
 # datasets whose typed resources are records (the others only add facts or links to records)
