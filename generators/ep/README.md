@@ -90,3 +90,28 @@ template links of gnd-persons-entityfacts, and 76 wrong links in nine datasets (
 key normalisation (DBpedia titles, hyphenated ISNIs) and the use of `prov:wasDerivedFrom` as an identity link were
 errors of the port, corrected before the version. Compared with `ep-2026-10-06` (first made on 2026-10-12, before the YIVO and epidat records): 295,384 instead of 294,129 pages,
 the legacy NLI pages carried over (no exception), splits and merges by comparison instead of growing clusters.
+
+## Version 2026-10-19
+
+Made from ep 2026-10-12 and the stable versions of 2026-10-19 (decisions 0029, 0031, 0032):
+
+- **Identity only from our linksets** (`identity = linksets`, the default since then): ls-gnd, ls-lc, ls-geonames,
+  ls-viaf, ls-wikidata, ls-dbpedia and the older linksets; each counts only the identity its datasets declare
+  (catalogue field `identity`), and only for units above the quality threshold (`catalog/link-quality.toml`).
+- **Members:** the records of the record datasets and of the authority datasets; a replaced IRI is never a member
+  (586 typed IRIs); what a linkset types is no record; groups of authority records only get no page (2,941).
+- **One record per record dataset:** a link that would bring a second record of the same record dataset into an
+  entity is refused, in an order of trust (`KEY_ORDER`), and logged (788, mostly NLI duplicates); datasets may declare
+  several records per entity (`several_per_entity`: geo-coordinates, haskala).
+- **All identifiers, one value per fact:** every identifier is linked, a replaced one as its successor; names, dates,
+  places, coordinates and abstracts come from the first record by a fixed order (`record_order`: dataset precedence,
+  then not succeeded, not a pseudonym, a populated place before an administrative unit, named by more datasets, the
+  lowest identifier).
+- **Report:** several identifiers of one authority per entity, replaced identifiers, GeoNames features not connected
+  through pairs of the same name within 25 km, incompatible classes.
+
+Result: 313,312 entities from 767,626 records; of the 310,214 pages of 2026-10-12, 306,188 keep their IRI, 2,428
+are merged, 1,395 split, 203 retired; 7,124 new IRIs. Splits mostly where links are now below the quality threshold
+(footprints, 2014links: rujen and geo-coordinates records joined only through them) or refused as a second record of
+one dataset (NLI duplicates). Conflicts: 41 incompatible classes; several GND identifiers 1,533, LC 1,668, Wikidata
+2,152, VIAF 8,358, GeoNames 648 (and 1,452 closely linked).
