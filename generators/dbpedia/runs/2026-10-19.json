@@ -1,0 +1,112 @@
+{
+ "slug": "dbpedia",
+ "run": "run-20261019T001107Z",
+ "generator": "generators/dbpedia/generate.py",
+ "commit": "a925699a8fcec1c453a3634722f5c3625f385e78",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-19T00:11:07Z",
+ "shared_code": [
+  "generators/dbpedia/query.py"
+ ],
+ "inputs": [
+  {
+   "name": "titles_en",
+   "ref": "inputs:cascade/2026-10-19/titles-en.jsonl",
+   "file": "titles-en.jsonl",
+   "sha256": "6a39bd0408de7ea77715abb7d0397f7973e16124eb0a8e20bb3e470ad66b92e5",
+   "bytes": 3842071
+  },
+  {
+   "name": "titles_de",
+   "ref": "inputs:cascade/2026-10-19/titles-de.jsonl",
+   "file": "titles-de.jsonl",
+   "sha256": "7165129da477af48aa2b9d195db7bf240b7369320ffb9e74850ed4a42c8a597d",
+   "bytes": 3396274
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-19/dbpedia-selection.tsv.gz",
+   "file": "dbpedia-selection.tsv.gz",
+   "sha256": "ff6388ea6a3944aca8e29fcf03482e3b4b895b9fec4644a4fdb4a8190d1a4103",
+   "bytes": 1179326
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/generated_persons_DBPedia_enriched_02.ttl.gz",
+   "file": "generated_persons_DBPedia_enriched_02.ttl.gz",
+   "sha256": "34e353fd9b7bf20e8c53a673503eeeb400e4bef4c14a6f532041fde3191c96b3",
+   "bytes": 710023
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/persons-gndid.ttl.gz",
+   "file": "persons-gndid.ttl.gz",
+   "sha256": "e8d8cdab643f0b98840c5181299b7c6a00ea0274331ffd3420b2fe9ff68392f8",
+   "bytes": 30570
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/Entityfacts-dbpedia-sameas.ttl.gz",
+   "file": "Entityfacts-dbpedia-sameas.ttl.gz",
+   "sha256": "c1ff0f22f44f0c244aec4f609822cccc5710b706ca1b4b21e8c68ab750844105",
+   "bytes": 135800
+  }
+ ],
+ "input_descriptions": {
+  "inputs:cascade/2026-10-19": {
+   "title": "The cascade of the authority datasets, 2026-10-19",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-19, with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-19",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-19T00:11:14Z",
+ "seconds": 6.9,
+ "notes": [
+  "dbpedia-persons records moved 5,230; dbpedia-persons records of no English or German article 0; dbpedia-persons records without an article (deprecated) 64; records de 34,556; records en 38,572; titles missing de 255; titles missing en 143; titles replaced de 260; titles replaced en 1,052; selection rows 177,839."
+ ],
+ "deleted_by_corrections": {
+  "previous": 72
+ },
+ "files": [
+  {
+   "path": "dbpedia-selection.tsv.gz",
+   "bytes": 1179326,
+   "sha256": "7818536858b8f75bb53aea1034fcddce29c3e7d79ae43b905db6f517c0c0aa53"
+  },
+  {
+   "path": "dbpedia.ttl.gz",
+   "bytes": 2842576,
+   "sha256": "cfcc39933cf57817014cb104a1279103ebfefd7c1ba6a67b77e4dc4872431a98",
+   "triples": 400712
+  }
+ ],
+ "authority_links": {
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 47719,
+   "new": 47719,
+   "examples": [
+    "Q100",
+    "Q100005",
+    "Q1000078",
+    "Q10001",
+    "Q1000147"
+   ],
+   "selection": null
+  }
+ },
+ "version": "2026-10-19"
+}

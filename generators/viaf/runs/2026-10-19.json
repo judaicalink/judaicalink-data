@@ -1,0 +1,124 @@
+{
+ "slug": "viaf",
+ "run": "run-20261019T000438Z",
+ "generator": "generators/viaf/generate.py",
+ "commit": "a925699a8fcec1c453a3634722f5c3625f385e78",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-19T00:04:38Z",
+ "inputs": [
+  {
+   "name": "dump",
+   "ref": "inputs:viaf/clusters-2024-08-04/viaf-20240804-clusters-rdf.nt.gz",
+   "file": "viaf-20240804-clusters-rdf.nt.gz",
+   "sha256": "e3e3f46fae45a82dbeffa464eb5c38d1314e766b01188ab46b36b6c06bc3f217",
+   "bytes": 14653578835
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-19/viaf-selection.tsv.gz",
+   "file": "viaf-selection.tsv.gz",
+   "sha256": "c923c0928417850bdaf0848c98a30341b56e95937fc8d84616c30ff0eb0ee55b",
+   "bytes": 2434727
+  }
+ ],
+ "input_descriptions": {
+  "inputs:viaf/clusters-2024-08-04": {
+   "title": "VIAF clusters (RDF, N-Triples), 2024-08-04",
+   "origin": "https://downloads.viaf.org/download/yearly/viaf-20240804-clusters-rdf.nt.gz",
+   "description": "The yearly VIAF dump of 2024-08-04, all clusters in RDF as N-Triples, sorted by line, as offered on https://viaf.org/en/viaf/data (the only RDF file of the dump). Downloaded on the labs VM 2026-10-17/18 (downloads.viaf.org ignores byte ranges, so interrupted downloads cannot be resumed), copied here, unchanged; SHA-256 checked against the copy on the labs VM. Licence ODC Attribution 1.0 (viaf.org/en/viaf/data).",
+   "date": "2024-08-04",
+   "note": "Not published: a copy of a public source, the input of the dataset viaf (decision 0029)."
+  },
+  "inputs:cascade/2026-10-19": {
+   "title": "The cascade of the authority datasets, 2026-10-19",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-19, with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-19",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-19T00:10:32Z",
+ "seconds": 353.8,
+ "notes": [
+  "213,653 clusters of 231,552 linked VIAF numbers; 17,899 not in the dump; lines that are not valid N-Triples, left out 21; links without an identifier left out (e.g. http://data.bnf.fr/#foaf:Person) 8,461."
+ ],
+ "files": [
+  {
+   "path": "viaf-selection.tsv.gz",
+   "bytes": 2346416,
+   "sha256": "846baaf184f816a2a18aeba05b4124932f8a81c505a2557321d5086db5ceb36a"
+  },
+  {
+   "path": "viaf.ttl.gz",
+   "bytes": 22825972,
+   "sha256": "efa37ab23f4906295dd74d8632808f6c5dae30ba7ce90c8f50a5371343116485",
+   "triples": 2968180
+  }
+ ],
+ "authority_links": {
+  "gnd": {
+   "dataset": "gnd",
+   "named": 66203,
+   "new": 25109,
+   "examples": [
+    "100013805",
+    "10003811-6",
+    "10006244-1",
+    "1000631-X",
+    "10006591-0"
+   ],
+   "selection": "gnd/2026-10-16"
+  },
+  "lc": {
+   "dataset": "lc",
+   "named": 89161,
+   "new": 11000,
+   "examples": [
+    "n00005083",
+    "n00009743",
+    "n00022572",
+    "n00022633",
+    "n00025545"
+   ],
+   "selection": "lc/2026-10-16"
+  },
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 59086,
+   "new": 59086,
+   "examples": [
+    "Q100",
+    "Q100005",
+    "Q1000078",
+    "Q10001",
+    "Q1000147"
+   ],
+   "selection": null
+  },
+  "dbpedia (wikipedia-en)": {
+   "dataset": "dbpedia",
+   "named": 31303,
+   "new": 31303,
+   "examples": [
+    "'Ali_ibn_al-'Abbas_al-Majusi",
+    "14th_Dalai_Lama",
+    "A.G._Lafley",
+    "A.S._Mopeli-Paulus",
+    "A._A._Milne"
+   ],
+   "selection": null
+  }
+ },
+ "version": "2026-10-19"
+}

@@ -5,6 +5,7 @@ author = "Kai Eckert"
 date = "2026-10-18"
 example = "http://data.judaicalink.org/data/nli/record/viaf-54984961"
 kind = "linkset"
+stable = "2026-10-19"
 method = ["deterministic"]
 inputs = ["viaf"]
 
@@ -19,6 +20,31 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/ls-viaf"
+
+[[versions]]
+version = "2026-10-19"
+issued = "2026-10-19"
+author = "Kai Eckert"
+commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
+description = "Made in the cascade of the authority datasets of 2026-10-19 (decisions 0029, 0032)."
+
+  [[versions.files]]
+  path = "ls-viaf.ttl.gz"
+  bytes = 4971636
+  sha256 = "b3177010d107092a8b091d04ec70b2066834bbcf2d101d46353d0a4734fccd9c"
+  triples = 485579
+
+  [[versions.files]]
+  path = "ls-viaf-meta.ttl.gz"
+  bytes = 2801
+  sha256 = "a4ff97994799eb52a73fe91e6e14b508156657aa236875187797a5418d295b9a"
+  triples = 147
+
+[[changelog]]
+date = "2026-10-19"
+version = "2026-10-19"
+author = "Kai Eckert"
+text = "First version: 485,579 links to the VIAF clusters; left out where the years of birth or death contradict (4,275), the classes contradict (37), and links of units below the quality threshold (footprints, geo-coordinates)."
 +++
 
 Every JudaicaLink record that refers to a VIAF cluster, linked to the JudaicaLink record of the cluster in the

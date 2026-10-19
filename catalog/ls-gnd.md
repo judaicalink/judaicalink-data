@@ -5,6 +5,7 @@ author = "Kai Eckert"
 date = "2026-10-16"
 example = "http://data.judaicalink.org/data/bhr/1"
 kind = "linkset"
+stable = "2026-10-19"
 method = ["deterministic"]
 inputs = ["gnd"]
 
@@ -19,6 +20,31 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/ls-gnd"
+
+[[versions]]
+version = "2026-10-19"
+issued = "2026-10-19"
+author = "Kai Eckert"
+commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
+description = "Made in the cascade of the authority datasets of 2026-10-19 (decisions 0029, 0032)."
+
+  [[versions.files]]
+  path = "ls-gnd.ttl.gz"
+  bytes = 1384243
+  sha256 = "536817e13cea4f8cf1eb8602f836aaf0cead2ecbdf8c35dccfe5009bf7c0e09f"
+  triples = 138571
+
+  [[versions.files]]
+  path = "ls-gnd-meta.ttl.gz"
+  bytes = 2670
+  sha256 = "01d64e32838790d8a5c444e8a15d64e9acf6f4e3cadff48ea3531762ccf06406"
+  triples = 146
+
+[[changelog]]
+date = "2026-10-19"
+version = "2026-10-19"
+author = "Kai Eckert"
+text = "Made from gnd 2026-10-19 with the declared identity of every dataset (0032): 138,571 links; links of units below the quality threshold left out (footprints 951)."
 +++
 
 Every JudaicaLink record that refers to a GND entry, linked to the JudaicaLink record of the current entry in the

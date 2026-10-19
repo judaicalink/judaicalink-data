@@ -5,6 +5,7 @@ author = "Kai Eckert"
 date = "2026-10-18"
 example = "http://data.judaicalink.org/data/yivo/abramovich_rafail"
 kind = "linkset"
+stable = "2026-10-19"
 method = ["deterministic", "rule-based"]
 inputs = ["wikidata", "yivo", "bhr", "rujen", "dbpedia-persons"]
 replaces = ["ls-yivo-wikidata"]
@@ -20,6 +21,31 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/ls-wikidata"
+
+[[versions]]
+version = "2026-10-19"
+issued = "2026-10-19"
+author = "Kai Eckert"
+commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
+description = "Made in the cascade of the authority datasets of 2026-10-19 (decisions 0029, 0032)."
+
+  [[versions.files]]
+  path = "ls-wikidata.ttl.gz"
+  bytes = 2226494
+  sha256 = "5c52dd8ea2345afe5cc20f32ff13db8722c13611fdae7d8bca2e119d77d85a32"
+  triples = 203139
+
+  [[versions.files]]
+  path = "ls-wikidata-meta.ttl.gz"
+  bytes = 2840
+  sha256 = "b44028ed18099e32aed6ca005a0ac36ac42d4fab6b3932d58b7dd9adbac86f4d"
+  triples = 156
+
+[[changelog]]
+date = "2026-10-19"
+version = "2026-10-19"
+author = "Kai Eckert"
+text = "First version, replacing ls-yivo-wikidata: 203,139 links to the Wikidata items, also by the YIVO, BHR and rujen identifiers Wikidata states (2,506)."
 +++
 
 Every JudaicaLink record that is a Wikidata item, linked to the JudaicaLink record of the current item in the

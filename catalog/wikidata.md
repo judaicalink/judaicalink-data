@@ -6,6 +6,7 @@ date = "2026-10-16"
 website = "https://www.wikidata.org/"
 example = "http://data.judaicalink.org/data/wikidata/Q559622"
 kind = "authority"
+stable = "2026-10-19"
 method = ["converted", "lookup"]
 namespaces = ["wikidata"]
 
@@ -26,6 +27,36 @@ statement = "https://web.archive.org/web/20261006200927/https://www.wikidata.org
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/wikidata"
+
+[[versions]]
+version = "2026-10-19"
+issued = "2026-10-19"
+author = "Kai Eckert"
+commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
+description = "Made in the cascade of the authority datasets of 2026-10-19 (decisions 0029, 0032)."
+
+  [[versions.files]]
+  path = "wikidata-selection.tsv.gz"
+  bytes = 3356513
+  sha256 = "bca1ac788f2d2a50330e9cb783645644b2ba597a68dd0ec149e58ae0d5dd2c0a"
+
+  [[versions.files]]
+  path = "wikidata.ttl.gz"
+  bytes = 8341919
+  sha256 = "82d7500fc193c8ea093ee6a0c3e18cc412b37e2d94539382d4040e56b4ce0943"
+  triples = 1232811
+
+  [[versions.files]]
+  path = "wikidata-meta.ttl.gz"
+  bytes = 2803
+  sha256 = "b6d3999ec64649d5cecf028c7b690a572d692fd148e5f35efc17eaec525b1f73"
+  triples = 81
+
+[[changelog]]
+date = "2026-10-19"
+version = "2026-10-19"
+author = "Kai Eckert"
+text = "First version: 89,457 items: those our datasets name, those that state a selected GND, VIAF, LC, GeoNames or ISNI number, and those that state the identifier of a record of ours (YIVO, BHR, rujen)."
 +++
 
 The items of Wikidata that JudaicaLink uses: every item one of our datasets links, and the items that state an

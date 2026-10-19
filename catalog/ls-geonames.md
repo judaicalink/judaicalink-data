@@ -5,6 +5,7 @@ author = "Kai Eckert"
 date = "2026-10-16"
 example = "http://data.judaicalink.org/data/geo-coordinates/Jerusalem"
 kind = "linkset"
+stable = "2026-10-19"
 method = ["deterministic"]
 inputs = ["geonames"]
 
@@ -19,6 +20,31 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/ls-geonames"
+
+[[versions]]
+version = "2026-10-19"
+issued = "2026-10-19"
+author = "Kai Eckert"
+commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
+description = "Made in the cascade of the authority datasets of 2026-10-19 (decisions 0029, 0032)."
+
+  [[versions.files]]
+  path = "ls-geonames.ttl.gz"
+  bytes = 136596
+  sha256 = "96eb2fceab9c2fc9242c4a3c9fe302328df111cc97820a615a9c264eec665d5b"
+  triples = 15362
+
+  [[versions.files]]
+  path = "ls-geonames-meta.ttl.gz"
+  bytes = 2576
+  sha256 = "65e703a7fbd1998253627e88f54106f7ce057ab3a9245cc0f27f1c011bf93e4b"
+  triples = 146
+
+[[changelog]]
+date = "2026-10-19"
+version = "2026-10-19"
+author = "Kai Eckert"
+text = "Made from geonames 2026-10-19 with the declared identity of every dataset: 15,362 links; the links of 2014links left out (below the quality threshold)."
 +++
 
 Every JudaicaLink record that refers to a GeoNames entry, linked to the JudaicaLink record of the current entry in the

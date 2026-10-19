@@ -1,0 +1,114 @@
+{
+ "slug": "lc",
+ "run": "run-20261018T235857Z",
+ "generator": "generators/lc/generate.py",
+ "commit": "a925699a8fcec1c453a3634722f5c3625f385e78",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-18T23:58:57Z",
+ "inputs": [
+  {
+   "name": "names",
+   "ref": "inputs:lc/names-2026-09-27/names.madsrdf.nt.gz",
+   "file": "names.madsrdf.nt.gz",
+   "sha256": "c00a55fd16cfc446b114e29374403ee35ea8d42b3f332153bd5fd21d4f020e08",
+   "bytes": 7329753448
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-19/lc-selection.tsv.gz",
+   "file": "lc-selection.tsv.gz",
+   "sha256": "9bafe2f62c92f9c144df73e411a5f0237cd681d49324e04aec8c005042b8b0a5",
+   "bytes": 1221339
+  }
+ ],
+ "input_descriptions": {
+  "inputs:lc/names-2026-09-27": {
+   "title": "LC Name Authority File (MADS/RDF, N-Triples), 2026-09-27",
+   "origin": "https://id.loc.gov/download/authorities/names.madsrdf.nt.gz",
+   "description": "The complete LC Name Authority File (LCNAF) in MADS/RDF as N-Triples, bulk export of id.loc.gov (dcterms:issued 2026-09-27, dcterms:modified 2026-09-13 in names.madsrdf.nt.json, which is the description file of the export), downloaded 2026-10-16. One block per authority record (# BEGIN/# END comments) with its Real World Object (rwo/agents) and blank nodes. The SHA-1 stated in the description file (c56cf844…) does not match the downloaded file (37dfc78a…); the archive is intact (gzip -t). Public domain (id.loc.gov/about).",
+   "date": "2026-09-27",
+   "note": "Not published: a copy of a public source, the input of the dataset lc (decision 0029)."
+  },
+  "inputs:cascade/2026-10-19": {
+   "title": "The cascade of the authority datasets, 2026-10-19",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-19, with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-19",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-19T00:04:13Z",
+ "seconds": 316.1,
+ "notes": [
+  "91,943 records of 92,479 linked identifiers (viaf 89,161, wikidata 60,828, gnd 56,087, nli-records 54,079, ls-nli-legacy 53,182, footprints 1); 165 cited identifiers deprecated; 371 not in the dump."
+ ],
+ "files": [
+  {
+   "path": "lc-selection.tsv.gz",
+   "bytes": 1238030,
+   "sha256": "bc6140c8e84704c7cb1c53dd4294803708b7b12ad5bc8cc30276420fc16f8b13"
+  },
+  {
+   "path": "lc.ttl.gz",
+   "bytes": 10663248,
+   "sha256": "26c237b2c3e9a133f12696309b613d19b23a4354b41868d62da74d6839a7de51",
+   "triples": 1986497
+  }
+ ],
+ "authority_links": {
+  "geonames": {
+   "dataset": "geonames",
+   "named": 1,
+   "new": 1,
+   "examples": [
+    "7287650"
+   ],
+   "selection": "geonames/2026-10-16"
+  },
+  "gnd": {
+   "dataset": "gnd",
+   "named": 201,
+   "new": 23,
+   "examples": [
+    "103438319",
+    "116937475",
+    "118564994",
+    "118584790",
+    "118600419"
+   ],
+   "selection": "gnd/2026-10-16"
+  },
+  "viaf": {
+   "dataset": "viaf",
+   "named": 2,
+   "new": 2,
+   "examples": [
+    "202423600",
+    "37602097"
+   ],
+   "selection": null
+  },
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 2,
+   "new": 2,
+   "examples": [
+    "Q2449431",
+    "Q738640"
+   ],
+   "selection": null
+  }
+ },
+ "version": "2026-10-19"
+}

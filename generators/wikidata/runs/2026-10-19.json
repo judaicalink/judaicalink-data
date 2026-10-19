@@ -1,0 +1,143 @@
+{
+ "slug": "wikidata",
+ "run": "run-20261019T001044Z",
+ "generator": "generators/wikidata/generate.py",
+ "commit": "a925699a8fcec1c453a3634722f5c3625f385e78",
+ "uncommitted": [],
+ "python": "3.14.8",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-19T00:10:44Z",
+ "inputs": [
+  {
+   "name": "entities",
+   "ref": "inputs:cascade/2026-10-19/entities.jsonl.gz",
+   "file": "entities.jsonl.gz",
+   "sha256": "620311634ecbe75f8cd4ba0a0d83c0396119802e8e62cbd7b9f3104bc221833b",
+   "bytes": 10931992
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-19/wikidata-selection.tsv.gz",
+   "file": "wikidata-selection.tsv.gz",
+   "sha256": "b402c3d2c7b7e513e5175b7f3f061d61c7239ab9e68e2d1a43c0218cb7853f2e",
+   "bytes": 3341674
+  }
+ ],
+ "input_descriptions": {
+  "inputs:cascade/2026-10-19": {
+   "title": "The cascade of the authority datasets, 2026-10-19",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-19, with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-19",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-19T00:11:00Z",
+ "seconds": 15.2,
+ "notes": [
+  "89,457 items; by reason: linked 77,180 (77,180 not in the reasons before), replaces 35 (0 not in the reasons before), by-gnd 61,202 (50 not in the reasons before), by-viaf 83,522 (11,043 not in the reasons before), by-lc-names 60,387 (38 not in the reasons before), by-geonames 7,963 (865 not in the reasons before), by-isni 61,897 (28 not in the reasons before); 855 named items merged, 18 named items deleted; 0 identifier statements left out because they cite JudaicaLink."
+ ],
+ "files": [
+  {
+   "path": "wikidata-selection.tsv.gz",
+   "bytes": 3356513,
+   "sha256": "bca1ac788f2d2a50330e9cb783645644b2ba597a68dd0ec149e58ae0d5dd2c0a"
+  },
+  {
+   "path": "wikidata.ttl.gz",
+   "bytes": 8341919,
+   "sha256": "82d7500fc193c8ea093ee6a0c3e18cc412b37e2d94539382d4040e56b4ce0943",
+   "triples": 1232811
+  }
+ ],
+ "authority_links": {
+  "geonames": {
+   "dataset": "geonames",
+   "named": 8135,
+   "new": 2451,
+   "examples": [
+    "10064434",
+    "10255490",
+    "10393286",
+    "10400453",
+    "10626549"
+   ],
+   "selection": "geonames/2026-10-16"
+  },
+  "gnd": {
+   "dataset": "gnd",
+   "named": 61421,
+   "new": 23361,
+   "examples": [
+    "100013805",
+    "10003811-6",
+    "10006244-1",
+    "1000631-X",
+    "10007119-3"
+   ],
+   "selection": "gnd/2026-10-16"
+  },
+  "lc": {
+   "dataset": "lc",
+   "named": 60828,
+   "new": 7820,
+   "examples": [
+    "n00022633",
+    "n00025506",
+    "n00025545",
+    "n00026061",
+    "n00027110"
+   ],
+   "selection": "lc/2026-10-16"
+  },
+  "viaf": {
+   "dataset": "viaf",
+   "named": 88476,
+   "new": 88476,
+   "examples": [
+    "100001869",
+    "100008872",
+    "1000156012400249700008",
+    "10001597",
+    "10001760"
+   ],
+   "selection": null
+  },
+  "dbpedia (wikipedia-de)": {
+   "dataset": "dbpedia",
+   "named": 34655,
+   "new": 34655,
+   "examples": [
+    ".wien",
+    "13_Glaubenssätze_des_Maimonides",
+    "A._A._Milne",
+    "A._C._Bhaktivedanta_Prabhupada",
+    "A._D._Miller"
+   ],
+   "selection": null
+  },
+  "dbpedia (wikipedia-en)": {
+   "dataset": "dbpedia",
+   "named": 38699,
+   "new": 38699,
+   "examples": [
+    "'Ali_ibn_al-'Abbas_al-Majusi",
+    ".wien",
+    "14th_Dalai_Lama",
+    "37signals",
+    "A.G._Lafley"
+   ],
+   "selection": null
+  }
+ },
+ "version": "2026-10-19"
+}

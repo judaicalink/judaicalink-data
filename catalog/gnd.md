@@ -9,7 +9,7 @@ kind = "authority"
 method = ["converted"]
 namespaces = ["gnd"]
 replaces = ["gnd-persons", "gnd-persons-entityfacts"]
-stable = "2026-10-16"
+stable = "2026-10-19"
 
 [identity]   # the properties that state identity, and towards which sources (decision 0032)
 "owl:sameAs" = ["viaf", "lc-names", "wikidata", "geonames", "isni", "wikipedia-en", "wikipedia-de"]
@@ -23,6 +23,30 @@ statement = "https://web.archive.org/web/20260624101124/https://data.dnb.de/open
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/gnd"
+
+[[versions]]
+version = "2026-10-19"
+issued = "2026-10-19"
+author = "Kai Eckert"
+commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
+description = "Made in the cascade of the authority datasets of 2026-10-19 (decisions 0029, 0032)."
+
+  [[versions.files]]
+  path = "gnd-selection.tsv.gz"
+  bytes = 1108247
+  sha256 = "9ccc5150d3890bdf4526780eafb62553d43ccc1a9729b9f8f874b6de64580cc5"
+
+  [[versions.files]]
+  path = "gnd.ttl.gz"
+  bytes = 19032050
+  sha256 = "92c5ba1df648c7f52267afc32287ad8b6a2f5f70d73b5adb8f3a51ccc850b514"
+  triples = 2284936
+
+  [[versions.files]]
+  path = "gnd-meta.ttl.gz"
+  bytes = 4350
+  sha256 = "02c5e06c27ffd4c135da5614eb9ab440d5e0d3db1b9342fef857d1f059c7645a"
+  triples = 181
 
 [[versions]]
 version = "2026-10-16"
@@ -47,6 +71,12 @@ description = "The GND records JudaicaLink uses, from the DNB dumps (GND 2026-02
   bytes = 4048
   sha256 = "55e42219b662342d6c6acc524ed3fb9e7a37154ff0399860676a6f834f3ae0d9"
   triples = 179
+
+[[changelog]]
+date = "2026-10-19"
+version = "2026-10-19"
+author = "Kai Eckert"
+text = "Made in the cascade of the authority datasets (0029): 68,768 records our datasets and the other authority datasets link by their declared identity, and the lists of UB Frankfurt and gnd-persons; EntityFacts links with an unfilled [ID] left out; the classes of the common layer."
 
 [[changelog]]
 date = "2026-10-16"

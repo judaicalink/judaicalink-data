@@ -5,6 +5,7 @@ author = "Kai Eckert"
 date = "2026-10-16"
 example = "http://data.judaicalink.org/data/nli/record/viaf-100219535"
 kind = "linkset"
+stable = "2026-10-19"
 method = ["deterministic"]
 inputs = ["lc"]
 
@@ -19,6 +20,31 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/ls-lc"
+
+[[versions]]
+version = "2026-10-19"
+issued = "2026-10-19"
+author = "Kai Eckert"
+commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
+description = "Made in the cascade of the authority datasets of 2026-10-19 (decisions 0029, 0032)."
+
+  [[versions.files]]
+  path = "ls-lc.ttl.gz"
+  bytes = 3244011
+  sha256 = "ebab6bce12c790df7b28f4da8f5b5ea91632526fe8c62c589453e8d1655d1947"
+  triples = 313533
+
+  [[versions.files]]
+  path = "ls-lc-meta.ttl.gz"
+  bytes = 2633
+  sha256 = "571172b66d95bf6c0ab9612277904202c90733003cdf7b96d12fe8885a7e63ec"
+  triples = 146
+
+[[changelog]]
+date = "2026-10-19"
+version = "2026-10-19"
+author = "Kai Eckert"
+text = "Made from lc 2026-10-19 with the declared identity of every dataset: 313,533 links; 28 left out for contradicting classes (a person and the LC record of a work)."
 +++
 
 Every JudaicaLink record that refers to a LC Name Authority File entry, linked to the JudaicaLink record of the current entry in the
