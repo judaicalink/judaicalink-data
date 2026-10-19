@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-16T16:39:50Z",
+ "checked": "2026-10-19T07:27:45Z",
  "locations": {
   "dumps": {
    "archive": "https://archive.judaicalink.org/store/",
@@ -16,6 +16,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": "Name matches of 2014 (Silk) below the quality threshold (DBpedia 0.91, GeoNames 0.92, decision 0032), most targets gone (Freebase, DM2E, LinkedGeoData, NYTimes); not reproducible.",
    "catalogues": [
     "web",
     "portal"
@@ -247,18 +248,58 @@
   },
   "bhr": {
    "title": "Biographisches Handbuch der Rabbiner",
-   "stable": "2026-10-16",
+   "stable": "2026-10-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
    ],
    "versions": [
     {
+     "version": "2026-10-18",
+     "issued": "2026-10-18",
+     "status": "stable",
+     "files": [
+      {
+       "path": "bhr-beacon.ttl.gz",
+       "bytes": 6684,
+       "sha256": "4474eeebbd4469688fc9d63c4dc2c1a88afd6ff46e968fb1439d4bc59b4ed0ea",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "bhr-vocabulary.ttl.gz",
+       "bytes": 563,
+       "sha256": "0b660e99e29cc378b22266a949a27d77897d120ff342a302e01f3678a08dbf2b",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "bhr.ttl.gz",
+       "bytes": 2352277,
+       "sha256": "d623747814a001ba82bf00617872d840a0d01ab3c794b17453afa4569f0affa3",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "bhr-meta.ttl.gz",
+       "bytes": 2938,
+       "sha256": "80218068e022dd329b2306677cc294fb52069792ff3240d78d8358a126eb20c3",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-16",
      "issued": "2026-10-16",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "bhr-beacon.ttl.gz",
@@ -363,6 +404,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -405,6 +447,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -439,6 +482,7 @@
    "stable": "2021-01-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -482,6 +526,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -548,6 +593,7 @@
    "stable": "2021-01-19",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -583,6 +629,7 @@
    "stable": "2026-10-12-2",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -639,7 +686,10 @@
    "title": "Enrichment of Birth- and Deathdates",
    "stable": "2020-07-31",
    "replaces": [],
-   "replaced_by": [],
+   "replaced_by": [
+    "records-normalized"
+   ],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -675,6 +725,7 @@
    "stable": "2021-01-13",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -705,11 +756,57 @@
     }
    ]
   },
+  "dbpedia": {
+   "title": "Wikipedia and DBpedia: the English and German articles JudaicaLink uses",
+   "stable": "2026-10-19",
+   "replaces": [
+    "dbpedia-persons"
+   ],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "dbpedia-selection.tsv.gz",
+       "bytes": 1179326,
+       "sha256": "7818536858b8f75bb53aea1034fcddce29c3e7d79ae43b905db6f517c0c0aa53",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "dbpedia.ttl.gz",
+       "bytes": 2842576,
+       "sha256": "cfcc39933cf57817014cb104a1279103ebfefd7c1ba6a67b77e4dc4872431a98",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "dbpedia-meta.ttl.gz",
+       "bytes": 2465,
+       "sha256": "d96cc353a07f8f97147daa8b174d840141c1258bc2246fb52df593453d020647",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
   "dbpedia-persons": {
    "title": "Persons from DBPedia",
    "stable": "2018-10-24",
    "replaces": [],
-   "replaced_by": [],
+   "replaced_by": [
+    "dbpedia"
+   ],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -761,6 +858,7 @@
    "stable": "2018-10-22",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -793,18 +891,50 @@
   },
   "ep": {
    "title": "Entity Pages - Judaicalink",
-   "stable": "2026-10-12",
+   "stable": "2026-10-19",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
    ],
    "versions": [
     {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ep-history.ttl.gz",
+       "bytes": 4403207,
+       "sha256": "913a39a505bcd1b174f3be912ad3f5e72d66b0326612c6eb4b93f8d33285ccae",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep.ttl.gz",
+       "bytes": 52688291,
+       "sha256": "1de24a2aa4678ebc9a0677c46748c0c553651d76c2f66dd1bffcb98460b6c272",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep-meta.ttl.gz",
+       "bytes": 3771,
+       "sha256": "e783b7e2006c972c5c71860a51e9311441e872dedc1feb788458fb76d19c8949",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-12",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ep-history.ttl.gz",
@@ -899,18 +1029,42 @@
   },
   "epidat": {
    "title": "Epidat - Epigraphical Database",
-   "stable": "2026-10-16",
+   "stable": "2026-10-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
    ],
    "versions": [
     {
+     "version": "2026-10-18",
+     "issued": "2026-10-18",
+     "status": "stable",
+     "files": [
+      {
+       "path": "epidat.ttl.gz",
+       "bytes": 1848653,
+       "sha256": "cd108ec89541404736dc13ae0b4875a008762f72790f82b40883e3f22019beee",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "epidat-meta.ttl.gz",
+       "bytes": 3470,
+       "sha256": "42ebaafc29a3db2dd9536c79e432e735d314fdb1be0689f8eec7eda5f449f509",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-16",
      "issued": "2026-10-16",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "epidat.ttl.gz",
@@ -983,6 +1137,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1061,18 +1216,42 @@
   },
   "gba": {
    "title": "Gidal Image Archive",
-   "stable": "2025-03-21",
+   "stable": "2026-10-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
    ],
    "versions": [
     {
+     "version": "2026-10-18",
+     "issued": "2026-10-18",
+     "status": "stable",
+     "files": [
+      {
+       "path": "gba.ttl.gz",
+       "bytes": 2981,
+       "sha256": "ae7d84aeba44e09a0c937676129e554b12879c75f1dc070bd83189d8ce71667a",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "gba-meta.ttl.gz",
+       "bytes": 2552,
+       "sha256": "0ddca80c71f6884960cda1fc7f927d33104c5d057503535a919b16455d1e948c",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2025-03-21",
      "issued": "2025-03-21",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "gba-final-01.ttl.gz",
@@ -1099,9 +1278,9 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
-    "web",
-    "portal"
+    "web"
    ],
    "versions": [
     {
@@ -1157,6 +1336,7 @@
    "stable": "2026-10-16",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1260,15 +1440,47 @@
   },
   "geonames": {
    "title": "GeoNames: the places JudaicaLink uses",
-   "stable": "2026-10-16",
+   "stable": "2026-10-19",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [],
    "versions": [
     {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "geonames-selection.tsv.gz",
+       "bytes": 87904,
+       "sha256": "96ca6325f185b2ce795a08f814b6248f6a50a9bcfaca47ad5c3bea4554315bcd",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geonames.ttl.gz",
+       "bytes": 1657845,
+       "sha256": "78c12f6670eefacc21cdd73484276b99b2defbd57c23923f26c1f69011705f99",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geonames-meta.ttl.gz",
+       "bytes": 2916,
+       "sha256": "9bb7fe4776142b8c619f5098e81dd1e6e02bb966deb599125cdb4cd90dd6ac67",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-16",
      "issued": "2026-10-16",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "geonames-selection.tsv.gz",
@@ -1300,18 +1512,50 @@
   },
   "gnd": {
    "title": "GND (Gemeinsame Normdatei): the records JudaicaLink uses",
-   "stable": "2026-10-16",
+   "stable": "2026-10-19",
    "replaces": [
     "gnd-persons",
     "gnd-persons-entityfacts"
    ],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [],
    "versions": [
     {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "gnd-selection.tsv.gz",
+       "bytes": 1108247,
+       "sha256": "9ccc5150d3890bdf4526780eafb62553d43ccc1a9729b9f8f874b6de64580cc5",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "gnd.ttl.gz",
+       "bytes": 19032050,
+       "sha256": "92c5ba1df648c7f52267afc32287ad8b6a2f5f70d73b5adb8f3a51ccc850b514",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "gnd-meta.ttl.gz",
+       "bytes": 4350,
+       "sha256": "02c5e06c27ffd4c135da5614eb9ab440d5e0d3db1b9342fef857d1f059c7645a",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-16",
      "issued": "2026-10-16",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "gnd-selection.tsv.gz",
@@ -1348,6 +1592,7 @@
    "replaced_by": [
     "gnd"
    ],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1441,6 +1686,7 @@
    "replaced_by": [
     "gnd"
    ],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -1475,6 +1721,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1588,6 +1835,7 @@
    "stable": "2026-10-16",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1646,6 +1894,7 @@
    "stable": "2018-10-30",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1681,6 +1930,7 @@
    "stable": "2018-07-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1724,6 +1974,7 @@
    "stable": "2019-11-29",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1759,6 +2010,7 @@
    "stable": "2026-10-11",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -1793,6 +2045,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -1824,15 +2077,47 @@
   },
   "lc": {
    "title": "LC Name Authority File: the records JudaicaLink uses",
-   "stable": "2026-10-16",
+   "stable": "2026-10-19",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [],
    "versions": [
     {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "lc-selection.tsv.gz",
+       "bytes": 1238030,
+       "sha256": "bc6140c8e84704c7cb1c53dd4294803708b7b12ad5bc8cc30276420fc16f8b13",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "lc.ttl.gz",
+       "bytes": 10663248,
+       "sha256": "26c237b2c3e9a133f12696309b613d19b23a4354b41868d62da74d6839a7de51",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "lc-meta.ttl.gz",
+       "bytes": 2956,
+       "sha256": "a99645106d2d48cc0079187169a5d04c2cea7e67a3ea492d86037d2a2946426b",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-16",
      "issued": "2026-10-16",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "lc-selection.tsv.gz",
@@ -1862,11 +2147,144 @@
     }
    ]
   },
+  "ls-dbpedia": {
+   "title": "Links to the Wikipedia articles",
+   "stable": "2026-10-19",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-dbpedia.ttl.gz",
+       "bytes": 2091351,
+       "sha256": "14f33e195a1f52de88122243f06f72a264827e315fca591cd22325bc88adefd4",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-dbpedia-meta.ttl.gz",
+       "bytes": 2664,
+       "sha256": "e595fd25c9eb9c446efa77050152e482e4e17a39c1456bef9a158caccada36e6",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "ls-geonames": {
+   "title": "Links to the GeoNames records",
+   "stable": "2026-10-19",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-geonames.ttl.gz",
+       "bytes": 136596,
+       "sha256": "96eb2fceab9c2fc9242c4a3c9fe302328df111cc97820a615a9c264eec665d5b",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-geonames-meta.ttl.gz",
+       "bytes": 2576,
+       "sha256": "65e703a7fbd1998253627e88f54106f7ce057ab3a9245cc0f27f1c011bf93e4b",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "ls-gnd": {
+   "title": "Links to the GND records",
+   "stable": "2026-10-19",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-gnd.ttl.gz",
+       "bytes": 1384243,
+       "sha256": "536817e13cea4f8cf1eb8602f836aaf0cead2ecbdf8c35dccfe5009bf7c0e09f",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-gnd-meta.ttl.gz",
+       "bytes": 2670,
+       "sha256": "01d64e32838790d8a5c444e8a15d64e9acf6f4e3cadff48ea3531762ccf06406",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "ls-lc": {
+   "title": "Links to the LC Name Authority File records",
+   "stable": "2026-10-19",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-lc.ttl.gz",
+       "bytes": 3244011,
+       "sha256": "ebab6bce12c790df7b28f4da8f5b5ea91632526fe8c62c589453e8d1655d1947",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-lc-meta.ttl.gz",
+       "bytes": 2633,
+       "sha256": "571172b66d95bf6c0ab9612277904202c90733003cdf7b96d12fe8885a7e63ec",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
   "ls-nli-legacy": {
    "title": "Legacy nli-persons URIs linked to the NLI authority records",
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -1896,11 +2314,82 @@
     }
    ]
   },
+  "ls-viaf": {
+   "title": "Links to the VIAF clusters",
+   "stable": "2026-10-19",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-viaf.ttl.gz",
+       "bytes": 4971636,
+       "sha256": "b3177010d107092a8b091d04ec70b2066834bbcf2d101d46353d0a4734fccd9c",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-viaf-meta.ttl.gz",
+       "bytes": 2801,
+       "sha256": "a4ff97994799eb52a73fe91e6e14b508156657aa236875187797a5418d295b9a",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "ls-wikidata": {
+   "title": "Links to the Wikidata records",
+   "stable": "2026-10-19",
+   "replaces": [
+    "ls-yivo-wikidata"
+   ],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-wikidata.ttl.gz",
+       "bytes": 2226494,
+       "sha256": "5c52dd8ea2345afe5cc20f32ff13db8722c13611fdae7d8bca2e119d77d85a32",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-wikidata-meta.ttl.gz",
+       "bytes": 2840,
+       "sha256": "b44028ed18099e32aed6ca005a0ac36ac42d4fab6b3932d58b7dd9adbac86f4d",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
   "ls-yivo-wikidata": {
    "title": "YIVO Encyclopedia articles linked to Wikidata",
    "stable": "2026-10-12",
    "replaces": [],
-   "replaced_by": [],
+   "replaced_by": [
+    "ls-wikidata"
+   ],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -1937,6 +2426,7 @@
    "replaced_by": [
     "nli-records"
    ],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -1974,6 +2464,7 @@
     "nli-persons"
    ],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -2005,18 +2496,42 @@
   },
   "nrwbibdjg": {
    "title": "Bibliografie deutsch-jüdische Geschichte Nordrhein-Westfalen",
-   "stable": "2024-05-24",
+   "stable": "2026-10-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
    ],
    "versions": [
     {
+     "version": "2026-10-18",
+     "issued": "2026-10-18",
+     "status": "stable",
+     "files": [
+      {
+       "path": "nrwbibdjg.ttl.gz",
+       "bytes": 361897,
+       "sha256": "215ea3c4060b9aed6b472b63c0a9d5d9b6d78180480e5d7abb58821418a63e37",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "nrwbibdjg-meta.ttl.gz",
+       "bytes": 2410,
+       "sha256": "411023a6057436a7fa32164f5ea501d683497ada6b596820aa1a9fcee1079b42",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2024-05-24",
      "issued": "2024-05-24",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "nrwbibdjg.ttl.gz",
@@ -2043,6 +2558,7 @@
    "stable": null,
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -2051,18 +2567,65 @@
   },
   "ontology": {
    "title": "JudaicaLink Ontology",
-   "stable": "2026-10-12",
+   "stable": "2026-10-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
    ],
    "versions": [
     {
+     "version": "2026-10-18",
+     "issued": "2026-10-18",
+     "status": "stable",
+     "files": [
+      {
+       "path": "judaicalink-ontology.ttl.gz",
+       "bytes": 8965,
+       "sha256": "0b83e3fe9565fbc94e63ce127c314a1a54ef1485649c28c17de4575371ba75b6",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ontology-meta.ttl.gz",
+       "bytes": 1687,
+       "sha256": "2030e77ceb021e3f84354e63e4099c72fce17d5c7290cc8c909a2740cc5831fa",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
+     "version": "2026-10-17",
+     "issued": "2026-10-17",
+     "status": "older",
+     "files": [
+      {
+       "path": "judaicalink-ontology.ttl.gz",
+       "bytes": 7874,
+       "sha256": "680a6b0ddd512a0c9ec30c6598b9a7125c6439a27191d6ba36e69648684c9b6c",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ontology-meta.ttl.gz",
+       "bytes": 1688,
+       "sha256": "13e624c4445aadcc049c781a59f5c8c2a8655a02bfca819a62f9698c30f77abb",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-12",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "judaicalink-ontology.ttl.gz",
@@ -2112,6 +2675,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -2143,17 +2707,41 @@
   },
   "record-classes": {
    "title": "Classes of untyped records",
-   "stable": "2026-10-12",
+   "stable": "2026-10-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
    "versions": [
     {
+     "version": "2026-10-18",
+     "issued": "2026-10-18",
+     "status": "stable",
+     "files": [
+      {
+       "path": "record-classes.ttl.gz",
+       "bytes": 16275,
+       "sha256": "931ce0da0b1aeaf78d5d35f03f28b78e9695024f0045b0b8101638745217575b",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "record-classes-meta.ttl.gz",
+       "bytes": 2345,
+       "sha256": "d6121c261300d9269521c97d16f7a91b928f6eac97b403984691af720b4337a0",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-12",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "record-classes.ttl.gz",
@@ -2178,8 +2766,11 @@
   "records-normalized": {
    "title": "Normalised dates, places and occupations of the records",
    "stable": "2026-10-12",
-   "replaces": [],
+   "replaces": [
+    "date-enriched"
+   ],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -2215,8 +2806,8 @@
       },
       {
        "path": "records-normalized-meta.ttl.gz",
-       "bytes": 3347,
-       "sha256": "cdaec6f9688bf0a94efd58fd17fba641985a61387f74793c7320805b0b4d45bb",
+       "bytes": 3432,
+       "sha256": "42732fac82e3b15922b39a129b07aded93d2f9482fd49facdf44329b4fbe262d",
        "locations": [
         "archive"
        ]
@@ -2227,18 +2818,50 @@
   },
   "rujen": {
    "title": "Encyclopedia of Russian Jewry",
-   "stable": "2026-10-16",
+   "stable": "2026-10-18",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
    ],
    "versions": [
     {
+     "version": "2026-10-18",
+     "issued": "2026-10-18",
+     "status": "stable",
+     "files": [
+      {
+       "path": "rujen.jsonl.gz",
+       "bytes": 7829862,
+       "sha256": "2ded560739a06d39eee86c0506aa093d961a144491a246efc09755f1d49b3d6e",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "rujen.ttl.gz",
+       "bytes": 6832950,
+       "sha256": "1ac2da8a90f3abc79b02708fb289a71ee154daccdaef388e8455961409a311b7",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "rujen-meta.ttl.gz",
+       "bytes": 2079,
+       "sha256": "7a3028069ed738bbc51e5aa02bf41e0aab3a1bc784ffa79c3d1f02b6d12beffb",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-16",
      "issued": "2026-10-16",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "rujen.jsonl.gz",
@@ -2304,6 +2927,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -2410,6 +3034,7 @@
    "stable": "2026-10-12",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -2468,6 +3093,7 @@
    "stable": "2020-10-06",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web"
    ],
@@ -2533,6 +3159,7 @@
    "stable": "2019-01-24",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
@@ -2571,11 +3198,94 @@
     }
    ]
   },
+  "viaf": {
+   "title": "VIAF: the clusters JudaicaLink uses",
+   "stable": "2026-10-19",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "viaf-selection.tsv.gz",
+       "bytes": 2346416,
+       "sha256": "846baaf184f816a2a18aeba05b4124932f8a81c505a2557321d5086db5ceb36a",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "viaf.ttl.gz",
+       "bytes": 22825972,
+       "sha256": "efa37ab23f4906295dd74d8632808f6c5dae30ba7ce90c8f50a5371343116485",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "viaf-meta.ttl.gz",
+       "bytes": 2683,
+       "sha256": "fa7dffb00a8746888268645ad7390675fe2fb747950b329ef37ef06543ffda4b",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "wikidata": {
+   "title": "Wikidata: the items JudaicaLink uses",
+   "stable": "2026-10-19",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-10-19",
+     "issued": "2026-10-19",
+     "status": "stable",
+     "files": [
+      {
+       "path": "wikidata-selection.tsv.gz",
+       "bytes": 3356513,
+       "sha256": "bca1ac788f2d2a50330e9cb783645644b2ba597a68dd0ec149e58ae0d5dd2c0a",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "wikidata.ttl.gz",
+       "bytes": 8341919,
+       "sha256": "82d7500fc193c8ea093ee6a0c3e18cc412b37e2d94539382d4040e56b4ce0943",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "wikidata-meta.ttl.gz",
+       "bytes": 2803,
+       "sha256": "b6d3999ec64649d5cecf028c7b690a572d692fd148e5f35efc17eaec525b1f73",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
   "yivo": {
    "title": "Yivo Encyclopedia",
    "stable": "2020-09-30",
    "replaces": [],
    "replaced_by": [],
+   "withdrawn": null,
    "catalogues": [
     "web",
     "portal"
