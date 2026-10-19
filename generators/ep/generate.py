@@ -55,9 +55,11 @@ AUTHORITY_ONLY = {"wikidata", "viaf", "lc", "geonames"}
 # The stable versions of the catalogue for the datasets above and record-classes, and RUNS (runs of datasets that are
 # not versions yet; a run of ep with RUNS cannot become a version).
 RUNS = {}
+# our linksets to the authority datasets (they make no records, so they are not in PRECEDENCE)
+LINKSET_INPUTS = {"ls-gnd", "ls-lc", "ls-geonames", "ls-viaf", "ls-wikidata", "ls-dbpedia"}
 STABLE = {slug_of(ref): ref.split("/", 1)[1]
           for ref in stable_inputs(add=RUNS).values()
-          if slug_of(ref) in set(PRECEDENCE) | {"record-classes"} | set(RUNS)}
+          if slug_of(ref) in set(PRECEDENCE) | {"record-classes"} | LINKSET_INPUTS | set(RUNS)}
 INPUTS = {"previous": "ep/" + catalog.Catalog().entries["ep"].stable,
           **{s.replace("-", "_"): f"{s}/{v}" for s, v in STABLE.items()}}
 # identity: "all" follows every identity link of every dataset (0022); "linksets" only those of our linksets, the
