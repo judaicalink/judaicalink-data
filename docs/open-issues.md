@@ -49,8 +49,9 @@ solved is in the decisions, the changelogs of the versions and the git history.
 
 ## Data
 
-- **Footprints:** API harvest running (works and imprints done; copies, footprints, persons; the API throttles per
-  worker, the harvest waits and tries again); then the gap fill (374 imprints missed by the paging), the GeoNames
+- **Footprints:** API harvest running (`generators/footprints/harvest_driver.py`; works and imprints done; copies,
+  footprints, persons; the API throttles per worker and asks for a Retry-After of about a day, the driver tries again
+  every 10 minutes); then the gap fill (374 imprints missed by the paging), the GeoNames
   confirmations of the places, and the generator (four levels, IRIs from the Footprints ids, the name IRIs of 2024
   replaced). To ask Footprints: the GeoNames ids and the digital objects of persons, imprints and copies in the API.
 - **geo-coordinates:** a new version with canonical IRIs and points (the check reports 2,643 GeoNames and 5,218 GND
