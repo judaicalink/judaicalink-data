@@ -11,9 +11,7 @@ from urllib.parse import unquote
 
 from jl import authorities, identifiers
 
-RUNS = {
-        "ls-nli-wikidata": "run-20261015T210917Z", "ls-bhr-wikidata": "run-20261015T210838Z",
-        "ls-rujen-wikidata": "run-20261016T114653Z"}
+RUNS = {}   # runs of linksets that are no versions yet
 DATASETS = authorities.linking_inputs("wikidata", add=RUNS)   # with the other authority datasets (jl.authorities)
 # the sources and the Wikidata properties that state them
 PROPERTIES = {"gnd": "P227", "viaf": "P214", "lc-names": "P244", "geonames": "P1566", "isni": "P213"}
