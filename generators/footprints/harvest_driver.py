@@ -1,7 +1,9 @@
 """Run the Footprints harvest until it is complete; after a stop (throttle), wait and try again with varying delays,
 and record per attempt the delay before it and how many pages it got (to learn which delays work).
 
-nohup python3 generators/footprints/harvest_driver.py > /dev/null 2>&1 &   (from judaicalink-data; the paths below)
+nohup python3 generators/footprints/harvest_driver.py > /dev/null 2>&1 &   (from judaicalink-data)
+
+The harvest, its log and the attempts are in the work area (local.toml: work, default ../lokal/work).
 """
 
 import datetime
@@ -11,9 +13,13 @@ import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
-OUT = Path("/Users/kai/lokal/judaicalink/work/footprints-harvest")
-LOG = Path("/Users/kai/lokal/judaicalink/work/footprints-harvest.log")
-REPORT = Path("/Users/kai/lokal/judaicalink/work/footprints-retry.tsv")
+sys.path.insert(0, str(REPO / "src"))
+from jl import config   # noqa: E402
+
+WORK = config.load().path("work") or (REPO / "../lokal/work").resolve()
+OUT = WORK / "footprints-harvest"
+LOG = WORK / "footprints-harvest.log"
+REPORT = WORK / "footprints-retry.tsv"
 DELAYS = [10]   # minutes before a restart (decided 2026-10-17)
 
 
