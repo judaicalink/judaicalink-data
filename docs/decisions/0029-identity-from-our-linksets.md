@@ -26,8 +26,8 @@ the others do not.
   decision) and always reports the joins that only links outside the linksets make, by dataset and key.
 - **External sources are kept on file as datasets** with the parts we use: every entity that a record or a linkset
   of ours reaches (also the ones a linkset leaves out, as the evidence for leaving them out), with labels, dates,
-  places, classes and identifiers as the source gives them: `wikidata`, `viaf`, `lc`, `geonames` (new), the GND
-  (gnd-persons, gnd-persons-entityfacts) and DBpedia (dbpedia-persons). Each is made from a dump or query answer in the
+  places, classes and identifiers as the source gives them: `gnd` (replacing gnd-persons and gnd-persons-entityfacts),
+  `lc`, `geonames`, `viaf`, `wikidata`, `dbpedia` (replacing dbpedia-persons, 0031). Each is made from a dump or query answer in the
   inputs area; its file name, checksum and version are in the run record and the `-meta` of every version made from
   it; a newer dump is a new input and gives a new version.
 - **`jl:sameAs` for the identity JudaicaLink states** (decided 2026-10-16): a subproperty of `owl:sameAs`, used by
@@ -37,13 +37,13 @@ the others do not.
   `ep` has the class of what it is (`foaf:Person` …); `jl:EntityPage` is deprecated (its role is given by the dataset,
   the web page about an entity is its description, as VIAF separates a cluster from its page). Labels of foreign terms
   likewise: `jl:label` (subproperty of `rdfs:label`), in the ontology, which describes the common layer.
-- **One linkset per authority dataset** (`ls-gnd`, `ls-viaf`, `ls-lc`, `ls-geonames`, `ls-wikidata`; decided
+- **One linkset per authority dataset** (`ls-gnd`, `ls-viaf`, `ls-lc`, `ls-geonames`, `ls-wikidata`, `ls-dbpedia`; decided
   2026-10-16): it finds every reference to its authority in all our datasets (`jl.identifiers`), resolves it through
   the authority dataset to the current record (replacements), and links each referencing record to that record, by
   stated rules: a match must be unique; ambiguous cases are left out and logged. The links form a star (record →
   authority record), not pairs of datasets; a new dataset needs no new linkset. `ls-wikidata` also links the records
-  whose source identifiers Wikidata states (BHR, YIVO, rujen, NLI) and, through the Wikipedia sitelinks, the DBpedia
-  references. The pairwise linksets ls-nli-wikidata, ls-bhr-wikidata and ls-rujen-wikidata (never published) are
+  whose source identifiers Wikidata states (BHR, YIVO, rujen); the Wikipedia articles are linked by `ls-dbpedia`
+  (0031). Only the identity a dataset declares counts, and only for units above the quality threshold (0032). The pairwise linksets ls-nli-wikidata, ls-bhr-wikidata and ls-rujen-wikidata (never published) are
   dropped; ls-yivo-wikidata is replaced by ls-wikidata. The few direct links between our records (e.g. bhr → djh)
   get one linkset of their own.
 - **We trust the sources and point to them.** Identifier statements of authority files and knowledge bases are taken
