@@ -63,7 +63,7 @@ INPUTS = {"previous": "ep/" + catalog.Catalog().entries["ep"].stable,
 # identity: "all" follows every identity link of every dataset (0022); "linksets" only those of our linksets, the
 # replacements and the authority namespaces (decision 0029). The run log always reports the joins that only links
 # outside the linksets make (the linksets still to be made).
-PARAMS = {"identity": "all"}
+PARAMS = {"identity": "linksets"}   # decision 0029: identity only from our linksets
 # the datasets whose identity links are our own decisions (catalogue kind "linkset")
 LINKSETS = {"2014links", "interlinks", "dbp-wiki-geo-linking", "ls-nli-legacy", "ls-yivo-wikidata", "ls-gnd", "ls-lc",
             "ls-geonames", "ls-viaf", "ls-wikidata", "ls-dbpedia"}
