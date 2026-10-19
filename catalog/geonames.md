@@ -85,7 +85,8 @@ author = "Kai Eckert"
 text = "First version (decision 0029): 6,622 features with names (alternate names with language tags), coordinates, feature class and code, country, population, Wikipedia articles and Wikidata items as GeoNames gives them; the 801 nodes data/geonames/<id> of geo-enriched 2019 are records of this dataset."
 +++
 
-The places of the GeoNames gazetteer that JudaicaLink uses: every GeoNames feature that one of our datasets links.
+The places of the GeoNames gazetteer that JudaicaLink uses: every GeoNames feature that one of our datasets or another
+authority dataset links.
 
 <!--more-->
 

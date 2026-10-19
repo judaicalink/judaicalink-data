@@ -69,20 +69,19 @@ the others do not.
   `src/jl/iris.py`); every run reports the IRIs it writes in another form. A canonical form changes only the
   spelling, never the identifier. Coordinates likewise: `"POINT(<lon> <lat>)"^^geosparql:wktLiteral`, the numbers
   as the source gives them (decided 2026-10-16).
-- **The authority datasets select from each other** (decided 2026-10-18): an authority dataset holds the records
-  that our record datasets or the other authority datasets link to (`jl.authorities.linking_inputs`). If we trust
-  Wikidata, the GND numbers it states for our entities are ours to take as well. The selection lists the linking
-  dataset of every identifier, so the records that only an authority brings in can be told apart. Of an authority
-  dataset only the identity statements select (`owl:sameAs`, `skos:exactMatch`, `madsrdf:hasExactExternalAuthority`,
-  the GND number, Wikidata's identifier properties), not its places of birth, occupations or related persons: through
-  these the cascade would take in the neighbours of our entities (the first try reached Essen and Nordrhein-Westfalen
-  through a place of birth). A run of an
-  authority dataset records the identifiers of other sources it names that their datasets do not have yet (run
-  record: `authority_links`); those datasets are run again on this run (`jl generate <slug> --use <slug>/<run>`)
-  until no run names new identifiers. The cascade ends: an identifier is taken over once, and the identifiers of a
-  source never select records of its own dataset (at most one round per authority dataset). Then all runs become
-  versions together (`jl add-version` with several runs; an input may be another run of a dataset of the call if
-  its file is the same). `jl check-authorities` lists what each authority dataset lacks.
+- **The authority datasets select from each other** (decided 2026-10-18; worklist 2026-10-19): an authority dataset
+  holds the records that our record datasets or the other authority datasets link to. If we trust Wikidata, the GND
+  numbers it states for our entities are ours to take as well. The selection lists the linking dataset of every
+  identifier, so the records that only an authority brings in can be told apart. Of an authority dataset only the
+  declared identity statements select ([0032](0032-identity-declarations.md)), not its places of birth, occupations
+  or related persons: through these the cascade would take in the neighbours of our entities (the first try reached
+  Essen and Nordrhein-Westfalen through a place of birth). The selection is one worklist (`jl cascade`,
+  `src/jl/cascade.py`), not rounds of generator runs: it starts from the seeds (every identifier our record datasets
+  name, our linksets that are not made from the authority datasets, and the static lists of each authority dataset),
+  resolves each new identifier to the current one, follows the declared identity links of the current records, and
+  ends when nothing is pending; selections only grow within a cascade. Its output is an input
+  (`inputs:cascade/<date>`), from which each authority generator runs once; then all runs and the linksets become
+  versions together (`jl add-version` with several runs).
 - **One entity, all identifiers, one value per fact** (decided 2026-10-18): connecting identifiers is the purpose
   of JudaicaLink, so an entity links every identifier its records and our linksets give it, also several of one
   authority (the GND's historic names of a place, its duplicates, the LC's duplicates, a city and its municipality in

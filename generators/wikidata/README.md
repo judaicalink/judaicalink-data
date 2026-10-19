@@ -4,27 +4,28 @@ The Wikidata items JudaicaLink uses (decision 0029), from answers of Wikidata ke
 
 ## History
 
-- 2026-10-16 (Kai Eckert): new dataset.
+- 2026-10-16 (Kai Eckert): new dataset (run only, 102,769 items; never a version).
+- 2026-10-19 (Kai Eckert): first version; the selection and the answers come from the cascade of the authority
+  datasets (`jl cascade`, decision 0029). The items of Wikipedia articles come through the dataset dbpedia.
 
 ## Inputs
 
-- `inputs:web-caches/wikidata-2026-10-16`, made by `query.py`:
-  - `find-<P>.rq` / `.tsv`: the Wikidata Query Service, which items state an identifier our data names (P227 GND,
-    P214 VIAF, P244 LC, P1566 GeoNames, P213 ISNI); the answers as the service gives them, in batches of 3,000
-    values.
-  - `articles.tsv`: the Wikidata API (`wbgetentities`, `sites=enwiki`, `titles`), the items of the English Wikipedia
-    articles of the DBpedia resources our data names (title as in the DBpedia IRI, underscores as spaces; titles
-    that are redirects in Wikipedia find no item).
-  - `entities.jsonl.gz`: the Wikidata API (`wbgetentities`, 50 items per request), the content of all items found,
-    one line per requested item, reduced to the labels (en, de, he, mul), the sitelinks (enwiki, dewiki, hewiki) and
-    the statements of P31, P19, P20, P569, P570, P227, P214, P244, P1566, P213, P8189, P8569, P10405, P10278 (rank,
-    value, and of the references only P248, P143, P854). A merged item is answered under its old id with
+- `inputs:cascade/2026-10-19`, written by `lookup.py` in the cascade:
+  - `wikidata-selection.tsv.gz`: the selection.
+  - `entities.jsonl.gz`: the Wikidata API (`wbgetentities`, 50 items per request), the content of the selected
+    items, one line per requested item, reduced to the labels (en, de, he, mul), the sitelinks (enwiki, dewiki,
+    hewiki) and the statements of P31, P19, P20, P569, P570, P227, P214, P244, P1566, P213, P8189, P8569, P10405,
+    P10278 (rank, value, and of the references only P248, P143, P854). A merged item is answered under its old id with
     `"redirect"`, a deleted one without `"entity"`.
-- The identifiers our data names: our datasets and the other authority datasets (`jl.authorities.linking_inputs`:
-  the stable versions, or the runs given with `--use` to `query.py` and `jl generate`), and the runs of linksets that
-  are no versions yet (`ids.py`: `RUNS`).
+  - `find-<P>.rq` / `.tsv`: the Wikidata Query Service, which items state an identifier the cascade selected (P227
+    GND, P214 VIAF, P244 LC, P1566 GeoNames, P213 ISNI), in batches of 3,000 values.
 
-The Query Service was used only for the lookups by identifier: on 2026-10-16 it throttled and timed out on the
+`lookup.py` asks online, with caches per item and per value in the work dir (`work/wikidata-query/`), so a later
+cascade asks only for what is new: resolve (a merged item gives the item it redirects to, a deleted one none), links
+(the identity statements as the dataset writes them, and the English and German articles), search (the items that
+state a GND, VIAF, LC, GeoNames or ISNI number), and as seeds the items that state the identifier of a record of ours
+(YIVO P8569, BHR P10405, Encyclopedia of Russian Jewry P10278; all items with these properties asked once, matched as
+in ls-wikidata). The Query Service is used only for these lookups by identifier: it throttles and times out on
 content queries, and the API answers 50 items with all their statements, ranks, precisions and references in one
 request.
 
@@ -34,9 +35,10 @@ request.
 
 | Reason | Rule |
 |---|---|
-| `linked` | an item named as object in one of our datasets; detail: the dataset |
-| `by-gnd`, `by-viaf`, `by-lc`, `by-geonames`, `by-isni` | an item that states an identifier our data names; detail: the identifier. A statement whose reference cites JudaicaLink (stated in or imported from Q132858785, or a reference URL in judaicalink.org) does not count (decision 0029) |
-| `by-dbpedia` | the item of the English Wikipedia article of a DBpedia resource our data names; detail: the resource name |
+| `linked` | an item named as object in one of our datasets, or by a declared identity statement of another authority dataset (decision 0032); detail: the dataset |
+| `replaces` | the item a selected item was merged into; detail: the selected item |
+| `by-gnd`, `by-viaf`, `by-lc-names`, `by-geonames`, `by-isni` | an item that states an identifier the cascade selected; detail: the identifier. A statement whose reference cites JudaicaLink (stated in or imported from Q132858785, or a reference URL in judaicalink.org) does not count (decision 0029) |
+| `by-yivo`, `by-bhr`, `by-rujen` | an item that states the identifier of a record of ours (YIVO P8569, BHR P10405, Encyclopedia of Russian Jewry P10278); detail: the record |
 
 ## Data
 
@@ -47,26 +49,20 @@ for humans (Q5) and `schema:Place` for items with a GeoNames ID (other classes o
 as given), `wdt:P19`/`P20` and `jl:birthLocationURI`/`deathLocationURI` (the items of the places), the identifiers
 GND, VIAF, LC, GeoNames, ISNI as IRIs in canonical form with Wikidata's normalized properties (`wdtn:`), NLI J9U,
 YIVO, BHR and Encyclopedia of Russian Jewry as literals (`wdt:`), and the Wikipedia articles (en, de, he) as
-`foaf:isPrimaryTopicOf`. The identifiers are stated as values, as Wikidata states them, not as `owl:sameAs`; the
-linkset made from this dataset (`ls-wikidata`, decision 0029) decides on identity, and it uses these values,
-including the identifiers of our sources (NLI J9U P8189, YIVO P8569, BHR P10405, Encyclopedia of Russian Jewry
-P10278).
+`foaf:isPrimaryTopicOf`. The identifiers are stated as values, as Wikidata states them, not as `owl:sameAs`; which of
+them state identity is declared in the catalogue entry (decision 0032), and the linksets (`ls-gnd`, …,
+`ls-wikidata`) decide on the links.
 
 Replacements: a named item that was merged, `<old item> dcterms:isReplacedBy <new item>`; a named item that does not
 exist any more, `<item> owl:deprecated true`.
 
-## Run of 2026-10-16
+## Version 2026-10-19
 
-102,769 items, 1,422,933 triples; items by reason (in brackets: not reached by a reason above): linked 82,530,
-by-gnd 52,415 (13,448), by-viaf 77,160 (924), by-lc 56,967 (2,442), by-geonames 6,496 (2,578), by-isni 32,130 (37),
-by-dbpedia 12,314 (831). 226 named items merged, 21 named items deleted. Statements citing JudaicaLink: none among the
-identifiers; two others left out (the place of birth of Q5220790, the date of death of Q25490224). About a minute.
-
-The queries (2026-10-16, about five hours in all, most of it waiting): the Query Service throttled (429) and broke
-off answers (502/503, and once an answer of status 200 that ended in its time-out message, which `query.py` now
-rejects), the API waited repeatedly for its replicas (maxlag). The answers are cached per value in the work dir, so a
-later run asks only for new values; the ISNI values are 16 characters without spaces in Wikidata.
+89,457 items, 1,232,811 triples; items by reason (in brackets: not reached by a reason above): linked 77,180,
+replaces 35 (0), by-gnd 61,202 (50), by-viaf 83,522 (11,043), by-lc-names 60,387 (38), by-geonames 7,963 (865),
+by-isni 61,897 (28); selected by a record of ours: by-yivo 1,447, by-bhr 1,050, by-rujen 28. 855 named items merged,
+18 deleted. No identifier statement cites JudaicaLink. About 15 seconds (the queries are made by the cascade).
 
 ## Reproduction
 
-**Reproducible** from the input. A new query run gives a new input and a new version.
+**Reproducible** from the input. A new cascade gives a new input and a new version (`docs/process.md`, 2a).

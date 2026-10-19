@@ -55,6 +55,6 @@ dataset wikidata.
 
 The links come from the Wikidata identifiers our datasets and the other authority datasets state, resolved through
 the replacements Wikidata states (dataset `wikidata`), and from the identifiers of our sources that Wikidata states:
-the articles of the YIVO Encyclopedia, the Biographisches Portal der Rabbiner and the Encyclopedia of Russian Jewry,
-and the English Wikipedia articles of the DBpedia persons. These are linked only where the match is unique in both
-directions. The links join the records of different datasets on the entity pages (decision 0029).
+the articles of the YIVO Encyclopedia, the Biographisches Portal der Rabbiner and the Encyclopedia of Russian Jewry.
+These are linked only where the match is unique in both directions. The Wikipedia articles (dataset `dbpedia`) name
+their items themselves. The links join the records of different datasets on the entity pages (decision 0029).

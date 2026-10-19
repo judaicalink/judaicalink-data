@@ -86,7 +86,7 @@ text = "First version (decision 0029): 42,207 records with the GND's statements,
 +++
 
 The records of the Gemeinsame Normdatei (GND) of the Deutsche Nationalbibliothek that JudaicaLink uses: every GND
-record that one of our datasets links, the persons of two lists of UB Frankfurt (the Freimann collection and the
+record that one of our datasets or another authority dataset links, the persons of two lists of UB Frankfurt (the Freimann collection and the
 UB's person records), and every record of the former gnd-persons.
 
 <!--more-->

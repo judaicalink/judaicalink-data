@@ -1,25 +1,28 @@
 # Open issues
 
-State 2026-10-16. Remove an item when it is solved (with a reference to the decision, version or commit); what was
+State 2026-10-19. Remove an item when it is solved (with a reference to the decision, version or commit); what was
 solved is in the decisions, the changelogs of the versions and the git history.
 
-## Identity and authority data (decision 0029, in progress)
+## Identity and authority data (decisions 0029, 0032)
 
-- **Authority datasets:** `gnd`, `lc`, `geonames` are versions (2026-10-16). To do: `wikidata` (lookup running:
-  102,865 items; identifier statements whose reference cites JudaicaLink left out), `viaf` (dump of 2024-08-04
-  downloading; check its structure: source records per cluster, redirects of merged clusters, NLI J9U numbers).
-  dbpedia-persons: rename or replace by a `dbpedia` dataset, and a complement from Wikidata (GND, dates, places).
-- **Linksets per authority:** `ls-gnd`, `ls-lc`, `ls-geonames` exist as runs (2026-10-16); to do `ls-wikidata`
-  (also the source identifiers Wikidata states: BHR, YIVO, rujen, NLI; DBpedia through the sitelinks) and `ls-viaf`
-  (linked unless the life dates contradict). Versions of all five together, after the entity pages have been tried.
-- **Entity pages with `identity = linksets`:** the identity report (ep generator) shows what still splits; with
-  ls-gnd, ls-lc, ls-geonames 3,799 groups (of 14,343 with today's linksets alone). Open: about 90 groups joined only
-  by GND numbers the GND no longer has (1,371 such numbers, mostly from ubffm-persons); the 5 direct links between
-  our records (e.g. bhr → djh) need a small linkset; `KNOWN_DISTINCT` must name the new bhr and hhkeydocs IRIs.
-- **Replaced or dropped when ls-wikidata exists:** ls-yivo-wikidata and dbp-wiki-geo-linking (replaced); the drafts
-  ls-nli-wikidata, ls-bhr-wikidata, ls-rujen-wikidata (never published; delete).
+- **Below the quality threshold** (`catalog/link-quality.toml`): the identity links of footprints (GND 0.92,
+  `gndo:gndIdentifier` 0.51, VIAF 0.89, LC) and of 2014links (GeoNames 0.92, English Wikipedia 0.91) stay in their
+  datasets but join nothing (ls-gnd leaves out 951, ls-viaf 1,478, ls-dbpedia 1,403, ls-geonames 109). Remedy: the new
+  Footprints generator with the identifier links of the API; 2014links made again.
+- **GND duplicates kept apart:** hhkeydocs `person/gnd/118989316` (Yaʿaqov Emden) and `person/gnd/1089985185`
+  (Jacob-Israel Hirschel, 1696–1776) are two GND records of one person (both VIAF 82152450).
+- **Entity pages with `identity = linksets`** (the default since 195586e): groups joined only by GND numbers the GND
+  no longer has (2026-10-16: about 90; gnd 2026-10-19 has 1,422 such numbers, mostly from ubffm-persons); the 5 direct links between our
+  records (e.g. bhr → djh) need a small linkset.
+- **Place rule:** GeoNames features of one place are joined through pairs of the same name within 25 km; the exact
+  parents (`gn:parentADM2`–`4`, not yet in `geonames`) would be a better rule.
+- **Link quality of the new units:** dbpedia (its Wikidata links) and the linksets (`jl:sameAs` of ls-gnd, …,
+  ls-dbpedia) are not measured yet.
 - **Made again on the new versions:** records-normalized and quality-annotations (they still read the versions of
-  2026-10-12); corrections-links reads gnd-persons (now deprecated): check whether its corrections still apply.
+  2026-10-12), judaicalink-terms; corrections-links reads gnd-persons (deprecated): check whether its corrections still
+  apply.
+- **Intermediate inputs of 2026-10-18** that no version uses: `web-caches/wikidata-2026-10-18*`,
+  `web-caches/dbpedia-2026-10-18*`, `cascade/2026-10-18` (the first cascade attempts); to remove or keep.
 - **gnd selection:** whether a broader selection (e.g. persons by GND area code, the rule of 2017, which `gnd` keeps
   off) belongs in the graph is a question of content, to be decided with a defined rule.
 - **Wikidata property P13183** ("JudaicaLink person (GND) ID", 31,231 uses) has an `https` formatter URL, which spreads
@@ -74,15 +77,11 @@ solved is in the decisions, the changelogs of the versions and the git history.
   `http://id.loc.gov/datatypes/edtf/EDTF`) as the normalised value where `xsd:date`/`gYear` cannot express it; with
   records-normalized and Footprints (which writes EDTF). HeidelTime for dates in running text (biographies) and
   OWL-Time (intervals, Hebrew calendar) noted, not planned.
-- **cm-entities** takes all VIAF numbers of a Wikidata item, which can include a work's (Sahula); `ls-viaf` must
-  not follow these.
 - **YIVO subsections** (346 `skos:Concept`) are taken by ep as subjects; ep must read both yivo and record-classes.
 - **DC Elements** (decision 0030): the generators of nli-records (`dc:creator`), hirsch-family and stolpersteine
   fail until they write `dcterms:`; with their next versions. hirsch-family states source documents (PDF, scans)
   as `dc:subject` strings of the person: IRIs with `rdfs:seeAlso`; stolpersteine the photo of the stone:
   `foaf:depiction`. Footprints: `dcterms:` in the new generator.
-- **lc 2026-10-16** types 1,495 records with `http://www.loc.gov/standards/mads/rdf/v1#Geographic` (made before
-  the canonical-form check); the next run writes the canonical namespace.
 - **gba** IRIs changed in 2025 (`JecheskelEzechielLandau` → `Jecheskel__Ezechiel__Landau`): check whether anything
   links to the old ones. **djh** 2018 has non-ASCII characters in IRIs.
 - **The `-meta` of epidat 2023-07-14**, rendered again, would get the namespace and example of the entry, which fit
@@ -122,7 +121,7 @@ solved is in the decisions, the changelogs of the versions and the git history.
   graph (0006); their pubby takes the graph from `dataslug` (sometimes a namespace, e.g. `epi`).
 - The BEACON `#TARGET` is `https://data.judaicalink.org/data/gnd/{ID}`, so DNB EntityFacts spreads our IRIs in the
   `https` form: ask for `http://`.
-- The datasets of 2026-10-16: authority datasets and linksets (0029), kind `authority`.
+- The authority datasets and linksets of 2026-10-19 (0029, 0032), kind `authority`.
 
 ## Other threads
 

@@ -47,12 +47,13 @@ author = "Kai Eckert"
 text = "Made from lc 2026-10-19 with the declared identity of every dataset: 313,533 links; 28 left out for contradicting classes (a person and the LC record of a work)."
 +++
 
-Every JudaicaLink record that refers to a LC Name Authority File entry, linked to the JudaicaLink record of the current entry in the
-dataset lc.
+Every JudaicaLink record that refers to an LC Name Authority File entry, linked to the JudaicaLink record of the
+current entry in the dataset lc.
 
 <!--more-->
 
-The links rely on the identifiers our datasets state, as their sources give them, and on the replacements of
-identifiers that the LC Name Authority File itself states (dataset `lc`, whose description says how its records are made). A
-reference to a deprecated identifier, or to one the dataset `lc` does not have, is left out. These links are what
-joins the records of different datasets on the entity pages (decision 0029).
+The links rely on the identity statements our datasets and the other authority datasets make, as each catalogue entry
+declares them (decision 0032); the dataset `lc` says how LC's records are made. A reference to a deprecated
+identifier, or to one the dataset `lc` does not have, is left out; so are the links of a dataset whose measured link
+quality is below the threshold, and links between a person, a work and a place. These links are what joins the
+records of different datasets on the entity pages (decision 0029).

@@ -63,18 +63,30 @@ Entity pages are made again after changes to the records ([0009](decisions/0009-
 
 ## 2a. Authority datasets: the cascade
 
-The authority datasets (`gnd`, `lc`, `geonames`, `wikidata`, `viaf`) select their records from our datasets and from
-each other ([0029](decisions/0029-identity-from-our-linksets.md)). When a record dataset or an authority input changes:
+The authority datasets (`gnd`, `lc`, `geonames`, `viaf`, `wikidata`, `dbpedia`) select their records from our datasets
+and from each other ([0029](decisions/0029-identity-from-our-linksets.md)). When a record dataset or an authority
+input changes (`jl check-authorities` lists the identifiers an authority dataset lacks):
 
-1. `jl check-authorities`: which authority datasets lack identifiers our datasets name.
-2. `jl generate <slug>` for each of them; the summary lists the identifiers of the other sources the run names that
-   their datasets do not have, with the command to run them again (`--use <slug>/<run>`; also `--use` for every run
-   of this round that is not a version yet). Repeat until no run names new identifiers. Run the datasets of a round
-   one after the other, each on the runs just made: run in parallel, on each other's runs of the round before, two
-   records that select only each other (a GND record and the VIAF cluster that names it) appear and vanish in turn
-   and the rounds never end.
-3. The linksets (`ls-gnd`, …) and the entity pages on these runs (test), then
-   `jl add-version gnd/<run> lc/<run> …` with all the runs together, one version id for all.
+1. `jl cascade <dir>` (`src/jl/cascade.py`). The seeds: every identifier of an authority source that our record
+   datasets name (any statement), the linksets that are not made from the authority datasets (2014links, interlinks,
+   ls-nli-legacy, …), and the static lists of each authority dataset (`SEEDS` in its `generate.py`, or the seeds its
+   `lookup.py` gives: the GND lists, the dbpedia-persons articles, the Wikidata items that state the identifier of a
+   record of ours). Then a worklist, until nothing is pending: each authority resolves its new identifiers to the
+   current ones and gives the declared identity links of these records
+   ([0032](decisions/0032-identity-declarations.md)); an identifier of another source that is not yet
+   selected becomes pending there; Wikidata is also searched by the GND, VIAF, LC, GeoNames and ISNI numbers. Each
+   authority takes part with `generators/<slug>/lookup.py` (`resolve`, `links`, `search`, `seeds`, `write`); the
+   dumps are read through indexes built once per dump in `<build>/_index/`, Wikidata and Wikipedia are asked online
+   with caches in the work dir. Selections only grow. With the indexes in place, a cascade takes about two minutes
+   (2026-10-19: 8 rounds).
+2. `jl add-input cascade/<date> <dir>/* --move` and set `CASCADE` in `src/jl/cascade.py` to it: the authority
+   generators read their selection (`<slug>-selection.tsv.gz`) and the answers (`entities.jsonl.gz`,
+   `titles-<lang>.jsonl`) from this input.
+3. `jl generate <slug>` once for each authority dataset, then the linksets (`ls-gnd`, …, `ls-dbpedia`) with
+   `--use <slug>/<run>` for the authority runs, then `jl add-version` with all these runs in one call, one version id
+   for all. Then the entity pages (2).
+
+The cascade replaced rounds of whole generator runs, which were slow and, run in parallel, oscillated.
 
 ## 3. Publishing at a dumps location
 

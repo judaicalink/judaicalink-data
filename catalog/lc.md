@@ -84,7 +84,8 @@ author = "Kai Eckert"
 text = "First version (decision 0029): 79,683 authority records with their MADS statements, names, life dates and places, occupations; deprecated records cited by our data marked owl:deprecated (LC states no successors)."
 +++
 
-The records of the Library of Congress Name Authority File (LCNAF) that one of our datasets links.
+The records of the Library of Congress Name Authority File (LCNAF) that one of our datasets or another authority
+dataset links.
 
 <!--more-->
 
