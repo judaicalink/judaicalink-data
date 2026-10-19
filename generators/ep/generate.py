@@ -760,8 +760,8 @@ def generate(run):
     for s, k, *_ in links:
         keys_of[cl.find(s)].add(k)
     def closely_linked(keys):
-        """Several GeoNames features of one place (a city and its municipality, 0032): every pair shares a name and
-        lies within 25 km."""
+        """Several GeoNames features of one place (a city, its municipality and district, 0032): connected through
+        pairs that share a name and lie within 25 km."""
         feats = []
         for k in keys:
             f = facts.get(JL + "geonames/" + k.split(":", 1)[1], {})
@@ -770,13 +770,18 @@ def generate(run):
             if not names or not m:
                 return False
             feats.append((names, float(m.group(2)), float(m.group(1))))
-        for i, (na, la, lo) in enumerate(feats):
-            for nb, lb, mb in feats[i + 1:]:
+        reached, todo = {0}, [0]
+        while todo:
+            na, la, lo = feats[todo.pop()]
+            for j, (nb, lb, mb) in enumerate(feats):
+                if j in reached or not (na & nb):
+                    continue
                 d = 6371 * 2 * math.asin(math.sqrt(math.sin(math.radians(lb - la) / 2) ** 2 + math.cos(math.radians(la))
                                                    * math.cos(math.radians(lb)) * math.sin(math.radians(mb - lo) / 2) ** 2))
-                if not (na & nb) or d > 25:
-                    return False
-        return True
+                if d <= 25:
+                    reached.add(j)
+                    todo.append(j)
+        return len(reached) == len(feats)
 
     for root, members in sorted(groups.items()):
         sets = [set().union(*classes[m].values()) & {"Person", "Place", "Organization", "Work"} for m in members]

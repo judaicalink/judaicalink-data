@@ -28,8 +28,10 @@ works. Which properties state identity depends on how a source uses them; a fixe
   Wikipedia, GeoNames (91%, 92%), geo-coordinates → VIAF (94%, lower bound 86%).
 - **GeoNames:** several features of one entity are kept (a city and its municipality: the distinction does not
   matter for us; GeoNames serves to tell places of the same name apart and to give coordinates); the coordinates come
-  from the populated place. The entity pages list only pairs that are not closely linked (same name, near each
-  other) as conflicts.
+  from the populated place. The entity pages list as conflicts only features that are not connected through pairs
+  of the same name within 25 km. A dataset may declare that several of its records belong to one entity
+  (`several_per_entity`: geo-coordinates, one record per place name; haskala, the library database and the
+  biographies of haskala.net).
 - To come (proposed): a link counts only if its target matches the pattern of its source (jl.iris), and a check for
   hubs (one identifier linked from unusually many records) in every run of an authority dataset or linkset; on the
   entity pages, a replaced IRI is never a member and at most one current record per record dataset joins an entity
