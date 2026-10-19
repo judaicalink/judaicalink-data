@@ -103,13 +103,13 @@ USE = {}
 def stable_inputs(prefix="", exclude=(), add=None, kinds=None, replaced=False):
     """INPUTS for the stable versions of the catalogue: {prefix + slug (with "_" for "-"): "<slug>/<version>"}.
     exclude: slugs left out; kinds: only these catalogue kinds; replaced: also the datasets that another entry
-    replaces (dcterms:replaces); add: {slug: version or run id}, added or instead of the stable version. USE (jl
+    replaces (dcterms:replaces); withdrawn datasets are left out; add: {slug: version or run id}, added or instead of the stable version. USE (jl
     generate --use) applies to every call, for the datasets it does not leave out. Evaluated when the generator is
     loaded; the run record names the versions used. slug_of(ref) gives the slug back."""
     cat = catalog.Catalog()
     gone = set() if replaced else {r for e in cat.entries.values() for r in catalog.as_list(e.data.get("replaces"))}
     chosen = {slug: e.stable for slug, e in cat.entries.items()
-              if e.stable and slug not in exclude and slug not in gone
+              if e.stable and not e.withdrawn and slug not in exclude and slug not in gone
               and (kinds is None or e.data.get("kind") in kinds)}
     for slug, ref in USE.items():
         e = cat.get(slug)

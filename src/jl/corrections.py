@@ -144,7 +144,7 @@ def stable_deletions(cat, store=None, exclude=()):
     None)]."""
     out = []
     for slug, e in sorted(cat.entries.items()):
-        if e.data.get("kind") != KIND or slug in exclude or not e.stable:
+        if e.data.get("kind") != KIND or slug in exclude or not e.stable or e.withdrawn:
             continue
         for f in (e.version(e.stable) or {}).get("files", []):
             if isinstance(f, dict) and is_deletions(f["path"]):
@@ -172,7 +172,7 @@ def check(cat, store, out=print):
     found = {}   # key -> datasets containing it
     conflicts = 0
     for slug, e in sorted(cat.entries.items()):
-        if not e.stable:
+        if not e.stable or e.withdrawn:
             continue
         for f in (e.version(e.stable) or {}).get("files", []):
             if not isinstance(f, dict) or is_meta(f["path"]) or not rdf.rdf_format(f["path"]):

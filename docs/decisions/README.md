@@ -38,3 +38,4 @@ consequences. Short is better than complete; link to the documentation that has 
 | [0030](0030-dcterms-only.md) | Dublin Core: only `dcterms:`, also where a source uses the elements; a run that writes `dc:` fails | 2026-10-18 |
 | [0031](0031-wikipedia-dbpedia-per-language.md) | Wikipedia and DBpedia are one source per language; one dataset `dbpedia` with `data/dbpedia/en/`, `data/dbpedia/de/`; other languages only as links | 2026-10-18 |
 | [0032](0032-identity-declarations.md) | Identity declared per dataset in the catalogue (`identity`); link quality measured per dataset and property, a threshold for joining; identifier patterns, hub check, one record per dataset (proposed) | 2026-10-18 |
+| [0033](0033-withdrawn-datasets.md) | A dataset with `withdrawn` is left out of the stable inputs, the cascade, the entity pages and the loaders; its versions stay; 2014links withdrawn | 2026-10-19 |

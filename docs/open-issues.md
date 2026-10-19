@@ -69,6 +69,8 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **jre:** the wiki's API is open; licence not stated.
 - **nrwbibdjg** (2026-10-18) reaches about 2,250 of the about 7,500 titles (search by GND number only); two GND
   numbers look wrong in the source (121918424, 128477008).
+- **yivo and rujen links:** with 2014links withdrawn (0033), about 1,400 records lost their only link to Wikipedia
+  and GeoNames (places and persons by name); a new matching with disambiguation, as a linkset of its own.
 - **hhkeydocs:** the documents, articles and bibliography of the site as records (later).
 - **Fuseki warnings** (test load 2026-10-13): 13 impossible dates typed `xsd:date` (e.g. `1902-02-29`; 7 in
   records-normalized, 6 carried into ep), which records-normalized should not type as dates; 57 legacy `data/nli/`

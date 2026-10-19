@@ -52,6 +52,12 @@ class Entry:
         s = self.data.get("stable")
         return s if isinstance(s, str) else None
 
+    @property
+    def withdrawn(self):
+        """The reason, if the dataset should no longer be used (its versions stay in the store)."""
+        w = self.data.get("withdrawn")
+        return w if isinstance(w, str) else None
+
     def versions(self):
         v = self.data.get("versions", [])
         return [x for x in v if isinstance(x, dict)] if isinstance(v, list) else []

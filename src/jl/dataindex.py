@@ -87,7 +87,7 @@ def update(assume=None, out=print, pause=0.3):
                                  "files": files})
         if listed or versions:
             datasets[slug] = {"title": e.title, "stable": e.stable, "replaces": as_list(e.data.get("replaces")),
-                              "replaced_by": cat.replaced_by(slug), "catalogues": listed, "versions": versions}
+                              "replaced_by": cat.replaced_by(slug), "withdrawn": e.withdrawn, "catalogues": listed, "versions": versions}
         out(f"{slug}: catalogues {', '.join(listed) or '-'}; versions with files {len(versions)}")
     for w in warnings:
         out("warning: " + w)
