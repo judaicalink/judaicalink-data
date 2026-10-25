@@ -54,6 +54,12 @@ solved is in the decisions, the changelogs of the versions and the git history.
   every 10 minutes); then the gap fill (374 imprints missed by the paging), the GeoNames
   confirmations of the places, and the generator (four levels, IRIs from the Footprints ids, the name IRIs of 2024
   replaced). To ask Footprints: the GeoNames ids and the digital objects of persons, imprints and copies in the API.
+- **Places without coordinates** (found by the Atlas showcase, jlma-atlas, 2026-10-25, ep 2026-10-19): the burial
+  places of 18,650 Epidat people are Getty TGN IRIs (about 200 cemeteries; Bechhofen alone 2,195) without coordinates
+  in any dataset; about 15,100 birth and 6,000 death places are Wikidata, GND and LC places outside the GeoNames and
+  GND selections (or without coordinates there). Remedy: TGN (or the GeoNames of the cemeteries) and the places of
+  people into the cascade. Also: an ep page "Hamburg" known only by TGN 7003673 (the state; 45 people), 98 people with
+  a life of more than 110 years (e.g. born "1054", buried 1894).
 - **geo-coordinates:** a new version with canonical IRIs and points (the check reports 2,643 GeoNames and 5,218 GND
   IRIs and the points); Berlin is missing; some of its GND→GeoNames links are wrong (Ostrzeszów → Golenice, Bad
   Bramstedt 115 km off).
