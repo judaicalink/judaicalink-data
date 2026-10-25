@@ -27,3 +27,14 @@ subsections (`skos:Concept` in yivo) are not typed here.
 
 Version 2026-10-18: the classes of the common layer (`jl.classes`; 2026-10-12 wrote `jl:Place`, `jl:Work`,
 `jl:Subject`); otherwise the same.
+
+## Footprints persons (2026-10-25, decision 0034)
+
+The Footprints API does not tell persons from organisations. `foaf:Organization` where the VIAF record named by
+Footprints is an organisation (`viaf`) or the name names an institution, firm or group (`ORGANISATION` in
+`generate.py`: libraries, universities, seminaries, congregations, booksellers, printing houses, heirs and partners,
+"&", in English, German, Italian, French, Latin, Dutch, Hebrew and transliterated Hebrew); every other one
+`foaf:Person`. A VIAF record that is a place or a work gives no class. Run of 2026-10-25: 885 organisations (41 by
+VIAF, 78 by VIAF and name, 766 by name), 10,757 persons (1,267 by VIAF). Known imperfections: VIAF calls some
+printers organisations (the firm that bears their name, e.g. "Proops", "Bragadin"); partnerships of two printers are
+organisations by "&".

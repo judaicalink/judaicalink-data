@@ -23,8 +23,9 @@ Benjamin Schnabel.
 
 ## Framework generator (2026-10-12)
 
-`generate.py` makes a new version from 2024-03-18 with its systematic errors fixed (decision 0024); every fix is a
-parameter, default on, and with all of them off the output has the same triples as 2024-03-18. Found in the 2024
+`generate.py` of commit `0cb49a3` made the version 2026-10-12 from 2024-03-18 with its systematic errors fixed
+(decision 0024); every fix is a parameter, default on, and with all of them off the output has the same triples as
+2024-03-18. Found in the 2024
 file and its generator (`830ad95`):
 
 - `owl:sameAs` as text, never as IRIs (2,971; 673 of them "None", where the VIAF record had no GND number): the
@@ -43,14 +44,35 @@ Not changed: the GND numbers of places (`gndo:gndIdentifier`, 139) are the first
 may be wrong; `jl:describedAt` keeps the VIAF and GND pages of the book loop, which repeat `owl:sameAs`.
 The 2025 persons (1,296 names not in 2024, no Footprints ids) are not taken over.
 
+## From the API (decision 0034)
+
+The API answers again to the framework's User-Agent (0028). `harvest.py` saved every page of every list endpoint
+(2026-10-19) and, with `--fill`, the records that other records refer to but the paging missed (until 2026-10-20; the
+API throttles, `harvest_driver.py` restarts it every 10 minutes): `inputs:footprints/api-2026-10-20`. `geonames.py`
+finds the GeoNames ids of the places (candidates from the GeoNames dump within 30 km, confirmed by the API's
+`altname` endpoint): `inputs:footprints/geonames-<date>`. The university network blocks the site since 2026-10
+(DNS filter), so these requests run from outside it.
+
+`generate.py` (since 2026-10-25) makes the version from these inputs, true to the API: works, imprints, copies,
+footprints, persons, places, actor records, roles and languages with every field, without the editors'
+bookkeeping, the rendered descriptions and the narratives; terms in `data/footprints/vocab/`
+(`footprints-vocabulary.ttl.gz`); IRIs from the API ids; dates normalised from the API's EDTF (0035, `jl.dates`). The
+classes of the persons (person or organisation) are in `record-classes`. The IRIs of 2024 are `dcterms:isReplacedBy`
+the records they stood for; the hash of a name stands for all records of that name, so 242 persons and 10 places of
+2024 are replaced by several records (the entity pages split them). Run of 2026-10-25: 3,765 works, 6,860
+imprints, 10,998 copies, 24,482 footprints, 11,642 persons (1,556 with VIAF), 1,027 places, 24,734 actor records;
+replaced: 8,713 persons, 2,185 works, 120 places of 2024 (67 persons, 461 works and 32 places match nothing: names
+changed since, and the regions and countries of 2024).
+
 ## Inputs
 
-Live only: `footprints.ctl.columbia.edu/api/` (now behind a bot challenge), lobid GND, VIAF, Google Translate
-(unofficial client).
+API (`footprints.ctl.columbia.edu/api/`) through the harvest above; the versions before 2026-10 also used lobid GND,
+VIAF and Google Translate (unofficial client), live.
 
 ## Reproduction
 
-**Not reproducible**: the API cannot be scripted any more. The kept 2024 file is the only copy of the rich data.
+The version of 2026-10 is made again from its inputs by `./jl generate footprints`. The versions 2024-03-18 and
+2025-03-21 cannot be made again (live services, no saved answers).
 
 ## Original files
 
