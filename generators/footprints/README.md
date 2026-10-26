@@ -15,7 +15,8 @@ Benjamin Schnabel.
 
 ## Kept versions
 
-- **2024-03-18** (stable): **exact**, the file is byte-identical to the output committed in `830ad95` (Christian
+- **2026-10-26** (stable): from the API (below).
+- **2024-03-18**: **exact**, the file is byte-identical to the output committed in `830ad95` (Christian
   Deuschle, 2024-03-18); code as of `173e91b` (2024-03-14). Books with titles, authors, owners, places and dates of
   publication, languages; persons; places.
 - **2025-03-21**: **probable** `6dd187e` (its output shape fits only this commit): only `foaf:Person`, `foaf:name`,
@@ -59,7 +60,7 @@ bookkeeping, the rendered descriptions and the narratives; terms in `data/footpr
 (`footprints-vocabulary.ttl.gz`); IRIs from the API ids; dates normalised from the API's EDTF (0035, `jl.dates`). The
 classes of the persons (person or organisation) are in `record-classes`. The IRIs of 2024 are `dcterms:isReplacedBy`
 the records they stood for; the hash of a name stands for all records of that name, so 242 persons and 10 places of
-2024 are replaced by several records (the entity pages split them). Run of 2026-10-26: 3,765 works, 6,860
+2024 are replaced by several records (the entity pages split them). Version 2026-10-26: 3,765 works, 6,860
 imprints, 10,998 copies, 24,482 footprints, 11,642 persons (1,556 with VIAF), 1,027 places (983 with GeoNames; not
 confirmed 16, mostly a second record of a place, and 28 without a candidate: regions, countries, misspellings), 24,734
 actor records;

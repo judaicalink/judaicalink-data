@@ -1,0 +1,92 @@
+{
+ "slug": "record-classes",
+ "run": "run-20261026T072452Z",
+ "generator": "generators/record-classes/generate.py",
+ "commit": "d2861c7d51ed66906da52e6c87474b715ca5611d",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-26T07:24:52Z",
+ "shared_code": [
+  "generators/ls-yivo-wikidata/yivo_wikidata.py"
+ ],
+ "inputs": [
+  {
+   "name": "yivo",
+   "ref": "yivo/2020-09-30/yivo.ttl.gz",
+   "file": "yivo.ttl.gz",
+   "sha256": "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842",
+   "bytes": 695155
+  },
+  {
+   "name": "footprints",
+   "ref": "footprints/2026-10-26/footprints-vocabulary.ttl.gz",
+   "file": "footprints-vocabulary.ttl.gz",
+   "sha256": "692d9631989bbe4c11d04f4bdf645dd91e11b489d9dcad37c5204e70e0214add",
+   "bytes": 1623,
+   "read_as": "footprints/run-20261026T072438Z/footprints-vocabulary.ttl.gz"
+  },
+  {
+   "name": "footprints",
+   "ref": "footprints/2026-10-26/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "c4c2c21ae0a2664267b66b9cf06b863e5202daa16f5175747fbf6accc23faa8b",
+   "bytes": 5533393,
+   "read_as": "footprints/run-20261026T072438Z/footprints.ttl.gz"
+  },
+  {
+   "name": "viaf",
+   "ref": "viaf/2026-10-19/viaf.ttl.gz",
+   "file": "viaf.ttl.gz",
+   "sha256": "efa37ab23f4906295dd74d8632808f6c5dae30ba7ce90c8f50a5371343116485",
+   "bytes": 22825972
+  },
+  {
+   "name": "items",
+   "ref": "inputs:web-caches/wikidata-yivo-2026-10-12/p8569.tsv",
+   "file": "p8569.tsv",
+   "sha256": "6800f530d8af9583ab52af0bba4d3c0800db8a30c4266e4a5c30e85f3a602ded",
+   "bytes": 188404
+  },
+  {
+   "name": "classes",
+   "ref": "inputs:web-caches/wikidata-yivo-2026-10-12/classes-top.tsv",
+   "file": "classes-top.tsv",
+   "sha256": "16ffb7bb0e78caf204126b826f385ade3f7dc6cd61cdd232a42b83f8726d149c",
+   "bytes": 92711
+  }
+ ],
+ "input_descriptions": {
+  "inputs:web-caches/wikidata-yivo-2026-10-12": {
+   "title": "Wikidata: items with a YIVO Encyclopedia ID (P8569) and the classes of their types (2026-10-12)",
+   "origin": "Two queries to the Wikidata Query Service, https://query.wikidata.org/sparql, on 2026-10-12 (answers as tab-separated values).",
+   "description": "p8569.tsv: the answer to p8569.rq, every Wikidata item with a YIVO Encyclopedia of Jews in Eastern Europe ID (P8569, the article name of yivoencyclopedia.org/article.aspx/<id>) and its instance-of classes (P31), one row per item and class (1,953 rows, 1,453 items). classes-top.tsv: the answer to classes-top.rq, for the 323 classes found, which of nine upper classes they are subclasses of (P279*): geographic location Q2221906, administrative territorial entity Q56061, human settlement Q486972, organization Q43229, written work Q47461344, periodical Q1002697, creative work Q17537576, family Q8436, group of humans Q16334295.",
+   "date": "2026-10-12",
+   "note": "Not published: answers of a third-party service, needed only to make ls-yivo-wikidata and record-classes again without network access."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-26T07:25:07Z",
+ "seconds": 14.7,
+ "notes": [
+  "yivo: Organization by Wikidata 97; Person by Wikidata 986; Person by life dates 106; Place by Wikidata 199; Subject by other 356; Work by Wikidata 54.",
+  "footprints persons: Organization by VIAF 41; Organization by VIAF and name 78; Organization by name 766; Person by VIAF 1,267; Person by default 9,490."
+ ],
+ "files": [
+  {
+   "path": "record-classes.ttl.gz",
+   "bytes": 51080,
+   "sha256": "fe59603fca41f2a9f8e012d221e8ecd98573fe909424da66ca8ea41e5d4568a0",
+   "triples": 13440
+  }
+ ],
+ "version": "2026-10-26"
+}

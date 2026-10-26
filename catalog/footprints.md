@@ -6,7 +6,7 @@ date = "2024-03-12"
 website = "https://footprints.ctl.columbia.edu/"
 example = "http://data.judaicalink.org/data/footprints/person/6914"
 namespaces = ["footprints"]
-stable = "2026-10-12"
+stable = "2026-10-26"
 kind = "records"
 method = ["converted"]
 
@@ -23,6 +23,31 @@ statement = "https://web.archive.org/web/20251002115806/https://footprints.ctl.c
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/footprints"
+
+[[versions]]
+version = "2026-10-26"
+issued = "2026-10-26"
+author = "Kai Eckert"
+commit = "004ae61d948ec64ebb37bfea0d71ff86a0201168"
+description = "Converted from the Footprints API (harvest of 2026-10-19/20): works, imprints, copies, footprints, persons, places and actor records with every field; dates normalised; persons linked to VIAF, places to GeoNames."
+
+  [[versions.files]]
+  path = "footprints-vocabulary.ttl.gz"
+  bytes = 1623
+  sha256 = "692d9631989bbe4c11d04f4bdf645dd91e11b489d9dcad37c5204e70e0214add"
+  triples = 148
+
+  [[versions.files]]
+  path = "footprints.ttl.gz"
+  bytes = 5533393
+  sha256 = "c4c2c21ae0a2664267b66b9cf06b863e5202daa16f5175747fbf6accc23faa8b"
+  triples = 800700
+
+  [[versions.files]]
+  path = "footprints-meta.ttl.gz"
+  bytes = 3315
+  sha256 = "a7d134789091c728fed76ffe1036150a2a9263fe9c837951c9771489f5499cec"
+  triples = 89
 
 [[versions]]
 version = "2026-10-12"
@@ -76,6 +101,18 @@ description = "The richer version: books with titles, owners, former owners, pla
   bytes = 2314
   sha256 = "57200b629d51a7177f4eb1165498513b038e8abafcef1409db4cd1cf0852b1a3"
   triples = 60
+
+[[changelog]]
+date = "2026-10-26"
+version = "2026-10-26"
+author = "Kai Eckert"
+text = "New version from the Footprints API (decision 0034), made the stable version: 3,765 works, 6,860 imprints, 10,998 copies, 24,482 footprints, 11,642 persons (1,556 with VIAF), 1,027 places (983 with GeoNames confirmed by the API), 24,734 actor records; terms in the Footprints vocabulary; dates as displayed and normalised (decision 0035); IRIs from the API ids; the IRIs of 2024 replaced by the records they stood for (8,713 persons, 2,185 works, 120 places). Made by generators/footprints/generate.py."
+
+[[changelog]]
+date = "2026-10-26"
+version = "2026-10-26"
+author = "Kai Eckert"
+text = "New version, made by the generator in judaicalink-data (run-20261026T072438Z)."
 
 [[changelog]]
 date = "2026-10-12"

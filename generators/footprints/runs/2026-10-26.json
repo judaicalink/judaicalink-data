@@ -1,0 +1,165 @@
+{
+ "slug": "footprints",
+ "run": "run-20261026T072438Z",
+ "generator": "generators/footprints/generate.py",
+ "commit": "004ae61d948ec64ebb37bfea0d71ff86a0201168",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-26T07:24:38Z",
+ "inputs": [
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/actor.jsonl.gz",
+   "file": "actor.jsonl.gz",
+   "sha256": "0fb08eb9bf724abdbdb2625f2c5da6881b0ffb896b3f900cb39a3f4baf680679",
+   "bytes": 8114
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/book.jsonl.gz",
+   "file": "book.jsonl.gz",
+   "sha256": "ac72a7a812ea514d5f75f9cb02a4450a6a5fd6b6cf5cd4b546d7324be91e32a6",
+   "bytes": 3336676
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/digitalformat.jsonl.gz",
+   "file": "digitalformat.jsonl.gz",
+   "sha256": "c4c53054bd038ac6f13bb8757e5369d1b6da3c9269e85c7d3ae8293f8e5c91d6",
+   "bytes": 118
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/footprint.jsonl.gz",
+   "file": "footprint.jsonl.gz",
+   "sha256": "c9f9dc2a4c109a6f23e009f2eea2f7a7f318080853a15dfcdecad90689ae2d86",
+   "bytes": 4625146
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/harvest.json",
+   "file": "harvest.json",
+   "sha256": "f50aa59eaff7e894ee3c46f47b40487bc6dcd7fa6a03abf06eb47bcc28ac8429",
+   "bytes": 1769
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/identifiertype.jsonl.gz",
+   "file": "identifiertype.jsonl.gz",
+   "sha256": "1558e7733a20a2bf33491b0831f3faf671ae09b13393736ab6941800924c9c8d",
+   "bytes": 341
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/imprint.jsonl.gz",
+   "file": "imprint.jsonl.gz",
+   "sha256": "4aae96b8f66914b9a9c8962afa5743587a3625bd366f4bb0cacbdf067668490a",
+   "bytes": 1496492
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/language.jsonl.gz",
+   "file": "language.jsonl.gz",
+   "sha256": "5b035f207c3e89367ee1c7c8555e3cd0448d7a7bf0e2615579f3904060b90e1c",
+   "bytes": 304
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/pages.tar.gz",
+   "file": "pages.tar.gz",
+   "sha256": "bb093c0bb240789c1e67ef2fe73be09442bc1a055f391c61eec1a84f08447b1e",
+   "bytes": 11419055
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/person.jsonl.gz",
+   "file": "person.jsonl.gz",
+   "sha256": "b8415cf3d231f3990ab38b8c68568f56d3ccfccf35d5dddb55da26c395737b4a",
+   "bytes": 229694
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/place.jsonl.gz",
+   "file": "place.jsonl.gz",
+   "sha256": "4bf8a27bbb3371e3f1ecd562db654784d97fe7b296e05b37ecb86ca5a8fae492",
+   "bytes": 2842
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/role.jsonl.gz",
+   "file": "role.jsonl.gz",
+   "sha256": "8f9f90118df303d1169d164fc3edfe35d7b9cc6d37477141e84d1fcd2c51a8d5",
+   "bytes": 254
+  },
+  {
+   "name": "api",
+   "ref": "inputs:footprints/api-2026-10-20/writtenwork.jsonl.gz",
+   "file": "writtenwork.jsonl.gz",
+   "sha256": "cc368b07c9a58b63c9ded6adfade9c3ea9ee442622ed50e16c80f6e844cfca77",
+   "bytes": 270746
+  },
+  {
+   "name": "previous",
+   "ref": "footprints/2026-10-12/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "31fc38e2552f719c8cd5bf65d3336bf722deb1311ef505c3ea304b6ba9581df3",
+   "bytes": 1257277
+  },
+  {
+   "name": "geonames",
+   "ref": "inputs:footprints/geonames-2026-10-26/places.tsv",
+   "file": "places.tsv",
+   "sha256": "6505f8447a0a26c0ef594f4ced4190cb0cfe0f297e93165de28a6b822d0732dd",
+   "bytes": 80605
+  }
+ ],
+ "input_descriptions": {
+  "inputs:footprints/api-2026-10-20": {
+   "title": "Footprints: complete harvest of the API (2026-10-19/20)",
+   "origin": "https://footprints.ctl.columbia.edu/api/",
+   "description": "Every list endpoint of the Footprints API (writtenwork, imprint, book = copy, footprint, person, place, actor, role, language, identifiertype, digitalformat), harvested 2026-10-19 by generators/footprints/harvest.py (one request per second, the framework's User-Agent), and the records that other records refer to but the paging missed, fetched one by one until 2026-10-20 (--fill; the API throttled, harvest_driver.py restarted it). pages.tar.gz: the pages (pages/<endpoint>/<page>.json) and the single records (fill/<endpoint>/<id>.json) as the API sent them; <endpoint>.jsonl.gz: the records by id, each once (assembled from both); harvest.json: per endpoint the count the API reported, the distinct ids, the pages and the records filled.",
+   "date": "2026-10-20",
+   "note": "Not published: the raw answers of the API, with the names of Footprints' editors (created_by, last_modified_by), which the dataset leaves out."
+  },
+  "inputs:footprints/geonames-2026-10-26": {
+   "title": "Footprints: GeoNames ids of the places, confirmed by the API (2026-10-25/26)",
+   "origin": "https://footprints.ctl.columbia.edu/api/altname/",
+   "description": "The GeoNames ids of the 1,027 places of inputs:footprints/api-2026-10-20, made by generators/footprints/geonames.py: candidates from inputs:geonames/dump-2026-10-15 (allCountries.zip) within 30 km of the place's coordinates, each asked at the API's altname endpoint (geonameId=<id>); a candidate whose answer names the place is confirmed. places.tsv: place id, canonical name, GeoNames id or empty, how (confirmed 983, not confirmed 16, no candidate 28), the candidates tried with their distances. altname.tar.gz: the answers as the API sent them (altname/<geonames id>.json, 1,003).",
+   "date": "2026-10-26",
+   "note": "Not published: the raw answers of the API."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-26T07:24:45Z",
+ "seconds": 7.1,
+ "notes": [
+  "3,765 works, 6,860 imprints, 10,998 copies, 24,482 footprints, 11,642 persons (1,556 with VIAF), 1,027 places (983 with GeoNames), 24,734 actor records. IRIs of 2024 replaced: 8,713 persons, 2,185 works, 120 places."
+ ],
+ "deleted_by_corrections": {
+  "previous": 7
+ },
+ "files": [
+  {
+   "path": "footprints-vocabulary.ttl.gz",
+   "bytes": 1623,
+   "sha256": "692d9631989bbe4c11d04f4bdf645dd91e11b489d9dcad37c5204e70e0214add",
+   "triples": 148
+  },
+  {
+   "path": "footprints.ttl.gz",
+   "bytes": 5533393,
+   "sha256": "c4c2c21ae0a2664267b66b9cf06b863e5202daa16f5175747fbf6accc23faa8b",
+   "triples": 800700
+  }
+ ],
+ "version": "2026-10-26"
+}

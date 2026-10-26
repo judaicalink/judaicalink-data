@@ -7,7 +7,7 @@ example = "http://data.judaicalink.org/data/yivo/abramovich_rafail"
 kind = "complement"
 method = ["lookup", "rule-based"]
 inputs = ["yivo", "footprints", "viaf"]
-stable = "2026-10-18"
+stable = "2026-10-26"
 
 [license]
 name = "CC0"
@@ -17,6 +17,25 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/record-classes"
+
+[[versions]]
+version = "2026-10-26"
+issued = "2026-10-26"
+author = "Kai Eckert"
+commit = "d2861c7d51ed66906da52e6c87474b715ca5611d"
+description = "The classes of the yivo articles, as 2026-10-18, and of the Footprints persons (person or organisation)."
+
+  [[versions.files]]
+  path = "record-classes.ttl.gz"
+  bytes = 51080
+  sha256 = "fe59603fca41f2a9f8e012d221e8ecd98573fe909424da66ca8ea41e5d4568a0"
+  triples = 13440
+
+  [[versions.files]]
+  path = "record-classes-meta.ttl.gz"
+  bytes = 2635
+  sha256 = "28104bfce3b42f0d3a51867c2a7d99c315685e61d82dc15eaae12b78f94efa14"
+  triples = 73
 
 [[versions]]
 version = "2026-10-18"
@@ -55,6 +74,18 @@ description = "Classes of the yivo articles: from their Wikidata item, else life
   bytes = 2246
   sha256 = "c7e3294345d5487cd145e887eafba6d27efa1da1d224d34198e5b79ee9bd3860"
   triples = 62
+
+[[changelog]]
+date = "2026-10-26"
+version = "2026-10-26"
+author = "Kai Eckert"
+text = "New version, made the stable version: also the classes of the 11,642 persons of footprints 2026-10-26 (decision 0034): organisation by VIAF 119, by name 766; person 10,757."
+
+[[changelog]]
+date = "2026-10-26"
+version = "2026-10-26"
+author = "Kai Eckert"
+text = "New version, made by the generator in judaicalink-data (run-20261026T072452Z)."
 
 [[changelog]]
 date = "2026-10-18"
