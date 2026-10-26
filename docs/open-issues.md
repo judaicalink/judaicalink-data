@@ -49,13 +49,14 @@ solved is in the decisions, the changelogs of the versions and the git history.
 
 ## Data
 
-- **Footprints** (decision 0034): versions footprints 2026-10-26 and record-classes 2026-10-26 (from the API, GeoNames
-  ids confirmed by the API for 983 of 1,027 places). Next: ls-viaf, ls-geonames, the link quality of the new identity
-  links, ep. The site pages of works, imprints, copies and persons (for `jl:describedAt`) are not checked yet (only
-  `/footprint/<id>/` occurs in the data; the site answers scripts with a challenge of its firewall). To ask
-  Footprints: the GeoNames ids and the digital objects of persons, imprints and copies in the API; the 16 places
-  whose GeoNames id the API gives to another place record (second records, e.g. "Wien" and Vienna, "Vilna" and
-  Vilnius).
+- **Footprints** (decision 0034): versions footprints and record-classes 2026-10-26 (from the API; GeoNames ids
+  confirmed by the API for 983 of 1,027 places), the cascade and the authority datasets and linksets of 2026-10-26.
+  Link quality (`docs/reports/2026-10-26-link-quality-footprints.md`): GeoNames 100%, joins; VIAF 94% (lower bound
+  87%), below the threshold: linked, joins nothing (wrong: persons linked to works, firms to persons). The site pages
+  of works, imprints, copies and persons (for `jl:describedAt`) are not checked yet (only `/footprint/<id>/` occurs in
+  the data; the site answers scripts with a challenge of its firewall). To tell Footprints: the GeoNames ids and the
+  digital objects of persons, imprints and copies in the API; the 16 places whose GeoNames id the API gives to
+  another place record (second records, e.g. "Wien" and Vienna, "Vilna" and Vilnius); the wrong VIAF numbers.
 - **Places without coordinates** (found by the Atlas showcase, jlma-atlas, 2026-10-25, ep 2026-10-19): the burial
   places of 18,650 Epidat people are Getty TGN IRIs (about 200 cemeteries; Bechhofen alone 2,195) without coordinates
   in any dataset; about 15,100 birth and 6,000 death places are Wikidata, GND and LC places outside the GeoNames and

@@ -91,6 +91,23 @@ key normalisation (DBpedia titles, hyphenated ISNIs) and the use of `prov:wasDer
 errors of the port, corrected before the version. Compared with `ep-2026-10-06` (first made on 2026-10-12, before the YIVO and epidat records): 295,384 instead of 294,129 pages,
 the legacy NLI pages carried over (no exception), splits and merges by comparison instead of growing clusters.
 
+## Version 2026-10-26
+
+Made from ep 2026-10-19 and the stable versions of 2026-10-26: footprints from the API (decision 0034) with
+record-classes, and the authority datasets and linksets of the cascade of 2026-10-26 (without the withdrawn
+2014links). Same rules as 2026-10-19.
+
+Result: 324,100 entities from 778,005 records; of the 313,312 pages of 2026-10-19, 311,940 keep their IRI, 95 are
+merged, 265 split, 1,012 retired; 12,160 new IRIs (mostly the works, persons and places of Footprints). Split: the
+footprints IRIs of 2024 that stood for several records (`dcterms:isReplacedBy` to each; a name hash for all persons
+of that name). Retired: 560 pages of footprints IRIs of 2024 that match no record now (names changed since, the
+regions and countries of 2024), and 452 pages of authority records that only the seeds of 2014links had brought into
+the authority datasets (e.g. Americas, Kramatorsk). Merged: mostly Footprints places with the places of the same
+GeoNames id. Footprints persons join other records only through the VIAF links that ls-viaf takes, and those are
+below the threshold (94%, `docs/reports/2026-10-26-link-quality-footprints.md`), so they have pages of their own.
+Conflicts: 41 incompatible classes; several GND identifiers 1,525, LC 1,671, Wikidata 2,114, VIAF 8,293, GeoNames
+639 (and 1,455 closely linked).
+
 ## Version 2026-10-19
 
 Made from ep 2026-10-12 and the stable versions of 2026-10-19 (decisions 0029, 0031, 0032):
