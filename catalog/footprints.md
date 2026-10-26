@@ -11,7 +11,7 @@ kind = "records"
 method = ["converted"]
 
 [identity]   # the properties that state identity, and towards which sources (decision 0032)
-"owl:sameAs" = ["viaf", "lc-names", "geonames"]
+"owl:sameAs" = ["viaf", "geonames"]
 
 [license]
 name = "CC BY-SA 4.0"
