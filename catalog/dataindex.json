@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-26T11:23:20Z",
+ "checked": "2026-10-26T13:11:18Z",
  "locations": {
   "dumps": {
    "archive": "https://archive.judaicalink.org/store/",
@@ -924,7 +924,7 @@
   },
   "ep": {
    "title": "Entity Pages - Judaicalink",
-   "stable": "2026-10-26",
+   "stable": "2026-10-26-2",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -934,9 +934,40 @@
    ],
    "versions": [
     {
-     "version": "2026-10-26",
+     "version": "2026-10-26-2",
      "issued": "2026-10-26",
      "status": "stable",
+     "files": [
+      {
+       "path": "ep-history.ttl.gz",
+       "bytes": 4417180,
+       "sha256": "0e078dc45e5897d38d77191f01ea36866bc97fc443238e4c64022feed0ed8945",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep.ttl.gz",
+       "bytes": 54803605,
+       "sha256": "824a00358794e02b85fa0dfa56904e4e152404516f9091ddb51ac712a9e2a523",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep-meta.ttl.gz",
+       "bytes": 3677,
+       "sha256": "0e71732be4757c6ce57b96cec964931c075e55066557cef743f9108c8c718616",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
+     "version": "2026-10-26",
+     "issued": "2026-10-26",
+     "status": "older",
      "files": [
       {
        "path": "ep-history.ttl.gz",
@@ -2460,7 +2491,9 @@
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
     {
      "version": "2026-10-26",
