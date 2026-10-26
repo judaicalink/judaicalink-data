@@ -207,7 +207,7 @@ def run(cfg, out, use=None, log=print):
     return sizes, rounds
 
 
-CASCADE = "inputs:cascade/2026-10-19/"   # the cascade input the authority generators read (jl cascade, registered)
+CASCADE = "inputs:cascade/2026-10-26/"   # the cascade input the authority generators read (jl cascade, registered)
 
 
 def selection_input(slug):
