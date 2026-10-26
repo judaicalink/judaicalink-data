@@ -4,7 +4,8 @@ python3 geonames.py <harvest dir> <allCountries.zip>
 
 Footprints makes every place from a GeoNames record (name, region and country as the canonical name, the
 coordinates copied), but its API does not give the GeoNames id. Candidates come from the GeoNames dump: records whose
-name (or ASCII or alternate name) is the first part of the canonical name, within 30 km; ranked by equal
+name (or ASCII or alternate name) is the first part of the canonical name (without brackets, or a part before or in
+parentheses: "Lviv (Lemberg)", "[Kenigsberg]"), within 30 km; ranked by equal
 coordinates, feature class (populated places and areas first) and distance. Each candidate is tried at
 /api/altname/?geonameId=<id>, which lists the place names of the place that has that GeoNames id; the first
 candidate whose answer names our place is confirmed. Writes geonames/altname/<geonames id>.json (the answers,
@@ -17,6 +18,7 @@ import gzip
 import io
 import json
 import math
+import re
 import sys
 import time
 import unicodedata
@@ -36,6 +38,12 @@ CLASS_RANK = {"P": 0, "A": 1}
 def norm(s):
     s = unicodedata.normalize("NFKD", s.casefold())
     return "".join(c for c in s if not unicodedata.combining(c)).strip()
+
+
+def variants(name):
+    """The normalised forms of the first part of a canonical name that a GeoNames name may have."""
+    first = name.split(",")[0].replace("[", "").replace("]", "")
+    return {norm(first)} | {norm(v) for v in re.split(r"[()]", first) if v.strip()}
 
 
 def km(a, b):
@@ -73,7 +81,7 @@ def candidates(found, dump):
     cells = {}
     for pid, (name, lat, lng) in found.items():
         cells.setdefault((math.floor(lat), math.floor(lng)), []).append(pid)
-    want = {pid: norm(name.split(",")[0]) for pid, (name, _, _) in found.items()}
+    want = {pid: variants(name) for pid, (name, _, _) in found.items()}
     out = {pid: [] for pid in found}
     with zipfile.ZipFile(dump) as z:
         with z.open("allCountries.txt") as f:
@@ -94,7 +102,7 @@ def candidates(found, dump):
                         continue
                     if names is None:
                         names = {norm(c[1]), norm(c[2])} | {norm(a) for a in c[3].split(",") if a}
-                    if want[pid] not in names:
+                    if not want[pid] & names:
                         continue
                     same = (lat, lng) == (plat, plng)
                     out[pid].append(((0 if same else 1, CLASS_RANK.get(c[6], 2), d), c[0], c[1], round(d, 2)))

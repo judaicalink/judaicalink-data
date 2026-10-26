@@ -50,13 +50,13 @@ solved is in the decisions, the changelogs of the versions and the git history.
 ## Data
 
 - **Footprints** (decision 0034): harvest complete (`inputs:footprints/api-2026-10-20`), GeoNames ids confirmed by the
-  API (`inputs:footprints/geonames-2026-10-26`: 982 of 1,027 places), generator and the record-classes part written
+  API (`inputs:footprints/geonames-2026-10-26`: 983 of 1,027 places), generator and the record-classes part written
   (runs of 2026-10-26). Next: the versions of footprints and record-classes (catalogue entry: method `converted`,
   identity `owl:sameAs` to viaf, lc-names, geonames, no `gndo:gndIdentifier`, example IRI, description), ls-viaf,
   ls-geonames, the link quality of the new identity links, ep. The site pages of works, imprints, copies and persons
   (for `jl:describedAt`) are not checked yet (only `/footprint/<id>/` occurs in the data; the site answers scripts
   with a challenge of its firewall). To ask Footprints: the GeoNames ids and the digital objects of persons, imprints
-  and copies in the API; the 15 places whose GeoNames id the API gives to another place record (second records, e.g.
+  and copies in the API; the 16 places whose GeoNames id the API gives to another place record (second records, e.g.
   "Wien" and Vienna, "Vilna" and Vilnius).
 - **Places without coordinates** (found by the Atlas showcase, jlma-atlas, 2026-10-25, ep 2026-10-19): the burial
   places of 18,650 Epidat people are Getty TGN IRIs (about 200 cemeteries; Bechhofen alone 2,195) without coordinates
