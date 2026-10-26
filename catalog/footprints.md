@@ -4,15 +4,14 @@ title = "Footprints - Jewish Books through Time and Place"
 author = "Kai Eckert"
 date = "2024-03-12"
 website = "https://footprints.ctl.columbia.edu/"
-example = "http://data.judaicalink.org/data/footprints/0039ddb3-52b5-5644-bd42-a7ab92611d03"
+example = "http://data.judaicalink.org/data/footprints/person/6914"
 namespaces = ["footprints"]
 stable = "2026-10-12"
 kind = "records"
-method = ["converted", "rule-based", "machine-translation"]
+method = ["converted"]
 
 [identity]   # the properties that state identity, and towards which sources (decision 0032)
-"owl:sameAs" = ["viaf", "gnd", "lc-names"]
-"gndo:gndIdentifier" = ["gnd"]
+"owl:sameAs" = ["viaf", "lc-names", "geonames"]
 
 [license]
 name = "CC BY-SA 4.0"
@@ -100,5 +99,11 @@ The history of the book is an important part of humanities scholarship. Especial
 
 Every literary work represents a moment in time and space where an idea was conceived and documented. But the history of a book continues long after composition as it is bought, sold, shared, read, confiscated, stored, or even discarded. This history is the essence of Footprints.
 
-This dataset contains persons (foaf.name, skos.prefLabel, jl.birthDate, jl.deathDate, owl.sameAs [GND,VIAF,LOC],  jl.occupation), books (gndo.author,jl.hasAbstract, gndo.language, gndo.associatedPlace, gndo.dateOfPublication, dc.publisher, gndo.author, gndo.editor, gndo.printer, dc.contributor, gndo.compiler, gndo.translator, gndo.sponsorOrPatron, gndo.dedicatee, jl.hasAbstract, jl.describedAt, gndo.owner, gndo.formerOwner) and places (
-gndo.gndIdentifier, jl.describedAt, rdfs.label, skos.prefLabel, geo.asWKT, gndo.hierarchicalSuperiorOfPlaceOrGeographicName)
+The dataset is converted from the Footprints API: written works, imprints, copies (books) and their footprints
+(where a copy was, when, and who owned or handled it), with the persons, places and actors (the roles of persons in
+a work, imprint, copy or footprint), every field as the API gives it, with the terms of the Footprints vocabulary
+(`footprints-vocabulary.ttl.gz`); names, birth and death dates, authors, editors and publishers also with the common
+properties of JudaicaLink. Persons are linked to VIAF as Footprints gives it, places to GeoNames where the API
+confirms the GeoNames id. Dates are given as displayed and normalised, as XSD dates or EDTF. Footprints does not tell
+persons from organisations; their classes are in the dataset record-classes. The IRIs of the earlier versions are
+replaced by the records they stood for.

@@ -6,7 +6,7 @@ date = "2026-10-12"
 example = "http://data.judaicalink.org/data/yivo/abramovich_rafail"
 kind = "complement"
 method = ["lookup", "rule-based"]
-inputs = ["yivo"]
+inputs = ["yivo", "footprints", "viaf"]
 stable = "2026-10-18"
 
 [license]
@@ -78,5 +78,11 @@ The articles of the YIVO Encyclopedia (dataset yivo) have no `rdf:type`. Their c
 of the article (property P8569, the classes of its instance-of statements): humans are persons; geographic
 locations, administrative territorial entities and settlements places; organisations organisations; written works,
 periodicals and creative works works. Articles without such an item are persons if their abstract starts with life
-dates, "(1880–1963), revolutionary and publicist", and subjects otherwise. The classes are assigned automatically
-and not checked one by one.
+dates, "(1880–1963), revolutionary and publicist", and subjects otherwise.
+
+The persons of Footprints (dataset footprints) are persons or organisations; the API does not tell them apart. A
+person is an organisation if its VIAF record (the VIAF number given by Footprints) is one, or if its name names an
+institution, a firm or a group (library, seminary, congregation, bookseller, printing house, heirs, "&", in the
+languages of the data); every other one is a person.
+
+The classes are assigned automatically and not checked one by one.
