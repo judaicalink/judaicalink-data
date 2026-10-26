@@ -1,0 +1,32 @@
+name: Feedback on the data
+description: Something in the data of JudaicaLink is wrong or missing (filled in by the Feedback button of mannheim.judaicalink.org and web.judaicalink.org)
+title: "Feedback: "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your feedback. It is public here, so that others can follow it; the team answers and corrects the data.
+  - type: input
+    id: iri
+    attributes:
+      label: About
+      description: The JudaicaLink resource the feedback is about (an entity page, a record or a dataset).
+      placeholder: http://data.judaicalink.org/data/ep/…
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Where you saw it.
+  - type: textarea
+    id: quote
+    attributes:
+      label: Selected text
+      description: The text on the page the feedback is about.
+  - type: textarea
+    id: description
+    attributes:
+      label: Feedback
+      description: What is wrong, and what should it be? Sources help.
+    validations:
+      required: true
