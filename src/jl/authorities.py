@@ -23,10 +23,10 @@ SOURCE = {"gnd": ("gnd",), "lc": ("lc-names",), "geonames": ("geonames",), "wiki
 DATASET = {src: slug for slug, srcs in SOURCE.items() for src in srcs}
 # datasets whose links never select records: made from the others (ep, quality-annotations), without links to records
 # of a source, or replaced (gnd-persons); and our linksets to the authority datasets, which only link what these
-# already have
+# already have (also the judged linksets, decision 0037)
 NOT_LINKING = {"gnd-persons", "gnd-persons-entityfacts", "ep", "compact-memory", "compact-memory-supp", "cm-ocr-quality",
                "cm-tagme", "corrections-links", "quality-annotations", "judaicalink-agents", "judaicalink-vocabulary",
-               "judaicalink-terms", "ontology"} | {"ls-" + s for s in SOURCE}
+               "judaicalink-terms", "ontology", "ls-footprints-viaf"} | {"ls-" + s for s in SOURCE}
 SELECTION = "{}-selection.tsv.gz"
 EXAMPLES = 5
 

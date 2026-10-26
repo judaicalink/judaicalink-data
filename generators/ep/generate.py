@@ -56,7 +56,7 @@ AUTHORITY_ONLY = {"wikidata", "viaf", "lc", "geonames"}
 # not versions yet; a run of ep with RUNS cannot become a version).
 RUNS = {}
 # our linksets to the authority datasets (they make no records, so they are not in PRECEDENCE)
-LINKSET_INPUTS = {"ls-gnd", "ls-lc", "ls-geonames", "ls-viaf", "ls-wikidata", "ls-dbpedia"}
+LINKSET_INPUTS = {"ls-gnd", "ls-lc", "ls-geonames", "ls-viaf", "ls-wikidata", "ls-dbpedia", "ls-footprints-viaf"}
 STABLE = {slug_of(ref): ref.split("/", 1)[1]
           for ref in stable_inputs(add=RUNS).values()
           if slug_of(ref) in set(PRECEDENCE) | {"record-classes"} | LINKSET_INPUTS | set(RUNS)}
@@ -68,7 +68,7 @@ INPUTS = {"previous": "ep/" + catalog.Catalog().entries["ep"].stable,
 PARAMS = {"identity": "linksets"}   # decision 0029: identity only from our linksets
 # the datasets whose identity links are our own decisions (catalogue kind "linkset")
 LINKSETS = {"2014links", "interlinks", "dbp-wiki-geo-linking", "ls-nli-legacy", "ls-yivo-wikidata", "ls-gnd", "ls-lc",
-            "ls-geonames", "ls-viaf", "ls-wikidata", "ls-dbpedia"}
+            "ls-geonames", "ls-viaf", "ls-wikidata", "ls-dbpedia", "ls-footprints-viaf"}
 DATASET_OF = {s.replace("-", "_"): s for s in STABLE}
 RANK = {s: i for i, s in enumerate(PRECEDENCE)}
 # datasets whose typed resources are records (the others only add facts or links to records)
@@ -208,13 +208,16 @@ def key(o):
 class Closure:
     """Union-find over records and identifier keys. With owner (record -> the record dataset it counts for, or None),
     a union that would bring two records of the same record dataset into one group is refused (decision 0032) and
-    noted in refused."""
+    noted in refused, unless several(why, records) allows it for the records of that dataset (decision 0036: places
+    joined through GeoNames); the allowed ones are noted in several_joined."""
 
-    def __init__(self, owner=None):
+    def __init__(self, owner=None, several=None):
         self.parent = {}
         self.owner = owner
-        self.members = {}   # root -> {dataset: record} of the constrained datasets
+        self.several = several
+        self.members = {}   # root -> {dataset: frozenset of records} of the constrained datasets
         self.refused = []
+        self.several_joined = []
 
     def find(self, x):
         p = self.parent
@@ -234,20 +237,24 @@ class Closure:
             ma, mb = self.members_of(ra), self.members_of(rb)
             clash = sorted(d for d in ma.keys() & mb.keys() if ma[d] != mb[d])
             if clash:
-                self.refused.append((a, b, why, clash[0], ma[clash[0]], mb[clash[0]]))
-                return False
+                both = ma[clash[0]] | mb[clash[0]]
+                if not (self.several and all(self.several(why, ma[d] | mb[d]) for d in clash)):
+                    self.refused.append((a, b, why, clash[0], " ".join(sorted(ma[clash[0]])),
+                                         " ".join(sorted(mb[clash[0]]))))
+                    return False
+                self.several_joined.append((a, b, why, clash[0], " ".join(sorted(both))))
         if rb < ra:
             ra, rb = rb, ra
         self.parent[rb] = ra
         if self.owner is not None:
-            merged = {**self.members.pop(rb, {}), **self.members.get(ra, {})}
-            self.members[ra] = merged
+            ma, mb = self.members.get(ra, {}), self.members.pop(rb, {})
+            self.members[ra] = {d: ma.get(d, frozenset()) | mb.get(d, frozenset()) for d in ma.keys() | mb.keys()}
         return True
 
     def members_of(self, root):
         if root not in self.members:
             d = self.owner(root) if root in self.parent and self.parent[root] == root else None
-            self.members[root] = {d: root} if d else {}
+            self.members[root] = {d: frozenset({root})} if d else {}
         return self.members[root]
 
 
@@ -357,11 +364,12 @@ def number(e):
 KEY_ORDER = {"gnd": 0, "lc": 1, "wd": 2, "viaf": 3, "wp-en": 4, "wp-de": 4, "geonames": 5, "isni": 6, "tgn": 6}
 
 
-def closure(records, links, replaced, owner=None):
+def closure(records, links, replaced, owner=None, several=None):
     """The groups: first every record in an authority namespace with its identifier (data/gnd/N is gnd:N), then the
     replacements (replaced by exactly one IRI: the same thing, a node, not a member), then the identity links in
-    KEY_ORDER; with owner, unions against the one-record-per-dataset rule are refused (Closure)."""
-    cl = Closure(owner)
+    KEY_ORDER; with owner, unions against the one-record-per-dataset rule are refused, except where several allows
+    them (Closure)."""
+    cl = Closure(owner, several)
     for r in sorted(records):
         cl.find(r)
     for r in sorted(records):
@@ -545,13 +553,22 @@ def generate(run):
             return None
         return f"dbpedia/{r[len(JL):].split('/')[1]}" if d == "dbpedia" else d
 
-    cl_all = closure(records, links, replaced, owner)
-    cl_ours = closure(records, [x for x in links if x[3]], replaced, owner)
+    def places_by_geonames(why, rs):
+        """Several records of one dataset may be joined through a GeoNames key if they are all places (decision 0036):
+        a source may have a record for a city and one for its district or municipality, which we do not tell apart."""
+        return (why or "").startswith("geonames:") and all(
+            "Place" in set().union(*classes[r].values()) for r in rs)
+
+    cl_all = closure(records, links, replaced, owner, places_by_geonames)
+    cl_ours = closure(records, [x for x in links if x[3]], replaced, owner, places_by_geonames)
     identity_report(run, records, classes, links, replaced, cl_all, cl_ours)
     cl = cl_all if run.params["identity"] == "all" else cl_ours
     for a, b, why, ds, ra, rb in cl.refused:   # one record per record dataset (0032)
         stats["links refused (a second record of one dataset)"] += 1
         run.log(f"refused: {a} ~{why}~ {b}: would join {ra} and {rb} of {ds}")
+    for a, b, why, ds, rs in cl.several_joined:   # places through GeoNames (0036)
+        stats["links joining several places of one dataset through GeoNames"] += 1
+        run.log(f"several places: {a} ~{why}~ {b}: joins {rs} of {ds}")
     groups = defaultdict(set)
     for r in records:
         groups[cl.find(r)].add(r)
