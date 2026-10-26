@@ -43,6 +43,7 @@ from jl.turtle import PREFIXES
 INPUTS = {
     "api": "inputs:footprints/api-2026-10-20",
     "previous": "footprints/2026-10-12",
+    "geonames": "inputs:footprints/geonames-2026-10-26/places.tsv",
 }
 PARAMS = {}
 

@@ -50,7 +50,7 @@ The API answers again to the framework's User-Agent (0028). `harvest.py` saved e
 (2026-10-19) and, with `--fill`, the records that other records refer to but the paging missed (until 2026-10-20; the
 API throttles, `harvest_driver.py` restarts it every 10 minutes): `inputs:footprints/api-2026-10-20`. `geonames.py`
 finds the GeoNames ids of the places (candidates from the GeoNames dump within 30 km, confirmed by the API's
-`altname` endpoint): `inputs:footprints/geonames-<date>`. The university network blocks the site since 2026-10
+`altname` endpoint): `inputs:footprints/geonames-2026-10-26`. The university network blocks the site since 2026-10
 (DNS filter), so these requests run from outside it.
 
 `generate.py` (since 2026-10-25) makes the version from these inputs, true to the API: works, imprints, copies,
@@ -59,8 +59,10 @@ bookkeeping, the rendered descriptions and the narratives; terms in `data/footpr
 (`footprints-vocabulary.ttl.gz`); IRIs from the API ids; dates normalised from the API's EDTF (0035, `jl.dates`). The
 classes of the persons (person or organisation) are in `record-classes`. The IRIs of 2024 are `dcterms:isReplacedBy`
 the records they stood for; the hash of a name stands for all records of that name, so 242 persons and 10 places of
-2024 are replaced by several records (the entity pages split them). Run of 2026-10-25: 3,765 works, 6,860
-imprints, 10,998 copies, 24,482 footprints, 11,642 persons (1,556 with VIAF), 1,027 places, 24,734 actor records;
+2024 are replaced by several records (the entity pages split them). Run of 2026-10-26: 3,765 works, 6,860
+imprints, 10,998 copies, 24,482 footprints, 11,642 persons (1,556 with VIAF), 1,027 places (982 with GeoNames; not
+confirmed 15, mostly a second record of a place, and 30 without a candidate: regions, countries, misspellings), 24,734
+actor records;
 replaced: 8,713 persons, 2,185 works, 120 places of 2024 (67 persons, 461 works and 32 places match nothing: names
 changed since, and the regions and countries of 2024).
 
