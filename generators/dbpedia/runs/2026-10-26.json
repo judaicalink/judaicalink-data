@@ -1,0 +1,112 @@
+{
+ "slug": "dbpedia",
+ "run": "run-20261026T073332Z",
+ "generator": "generators/dbpedia/generate.py",
+ "commit": "7f1572d6c0ba5fdc5ddabcbee2d7370744df4870",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-26T07:33:32Z",
+ "shared_code": [
+  "generators/dbpedia/query.py"
+ ],
+ "inputs": [
+  {
+   "name": "titles_en",
+   "ref": "inputs:cascade/2026-10-26/titles-en.jsonl",
+   "file": "titles-en.jsonl",
+   "sha256": "029635bf64621e98f3ca01246669e5c927fdba8b9b783419239c28bef2b9925c",
+   "bytes": 3787400
+  },
+  {
+   "name": "titles_de",
+   "ref": "inputs:cascade/2026-10-26/titles-de.jsonl",
+   "file": "titles-de.jsonl",
+   "sha256": "3edb6d3027f3bb9058062dcb8910902d2d07306e5d904ac3abbff4405416aedb",
+   "bytes": 3352161
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-26/dbpedia-selection.tsv.gz",
+   "file": "dbpedia-selection.tsv.gz",
+   "sha256": "9ef96d03af430095bd2f632153ec3fd3f3e1b75418181fbcf0d2cae14f827fb5",
+   "bytes": 1161625
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/generated_persons_DBPedia_enriched_02.ttl.gz",
+   "file": "generated_persons_DBPedia_enriched_02.ttl.gz",
+   "sha256": "34e353fd9b7bf20e8c53a673503eeeb400e4bef4c14a6f532041fde3191c96b3",
+   "bytes": 710023
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/persons-gndid.ttl.gz",
+   "file": "persons-gndid.ttl.gz",
+   "sha256": "e8d8cdab643f0b98840c5181299b7c6a00ea0274331ffd3420b2fe9ff68392f8",
+   "bytes": 30570
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/Entityfacts-dbpedia-sameas.ttl.gz",
+   "file": "Entityfacts-dbpedia-sameas.ttl.gz",
+   "sha256": "c1ff0f22f44f0c244aec4f609822cccc5710b706ca1b4b21e8c68ab750844105",
+   "bytes": 135800
+  }
+ ],
+ "input_descriptions": {
+  "inputs:cascade/2026-10-26": {
+   "title": "The cascade of the authority datasets, 2026-10-26",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-26 (footprints 2026-10-26 new; 2014links withdrawn), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-26",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-26T07:33:39Z",
+ "seconds": 7.2,
+ "notes": [
+  "dbpedia-persons records moved 5,230; dbpedia-persons records of no English or German article 0; dbpedia-persons records without an article (deprecated) 64; records de 34,050; records en 38,039; titles missing de 254; titles missing en 142; titles replaced de 258; titles replaced en 962; selection rows 174,790."
+ ],
+ "deleted_by_corrections": {
+  "previous": 72
+ },
+ "files": [
+  {
+   "path": "dbpedia-selection.tsv.gz",
+   "bytes": 1161625,
+   "sha256": "cd33ac17b120d72b581a5ab5fba4df6b9e49c87ae6632161e23e8b27aa603420"
+  },
+  {
+   "path": "dbpedia.ttl.gz",
+   "bytes": 2814391,
+   "sha256": "c2cf9aaa512fd9f9a73f7470a70cd6c9eb6d5b5b18e55c72c0f6031b312db2b1",
+   "triples": 396370
+  }
+ ],
+ "authority_links": {
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 47193,
+   "new": 348,
+   "examples": [
+    "Q1010236",
+    "Q1012535",
+    "Q1013623",
+    "Q1016394",
+    "Q1016878"
+   ],
+   "selection": "wikidata/2026-10-19"
+  }
+ },
+ "version": "2026-10-26"
+}

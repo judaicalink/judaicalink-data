@@ -1,0 +1,576 @@
+{
+ "slug": "gnd",
+ "run": "run-20261026T073332Z",
+ "generator": "generators/gnd/generate.py",
+ "commit": "7f1572d6c0ba5fdc5ddabcbee2d7370744df4870",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {
+  "area_rule": "off",
+  "drop_placeholders": true
+ },
+ "input_overrides": [],
+ "started": "2026-10-26T07:33:32Z",
+ "inputs": [
+  {
+   "name": "lds",
+   "ref": "inputs:gnd/lds-2026-02-17/authorities-gnd_lds_20260217.nt.gz",
+   "file": "authorities-gnd_lds_20260217.nt.gz",
+   "sha256": "e773583749c425a815e923a4c4a4dcbe26e33c607a4111d8efb56992b42f9a75",
+   "bytes": 2591266134
+  },
+  {
+   "name": "entityfacts",
+   "ref": "inputs:gnd/entityfacts-2026-10-13/authorities-gnd_entityfacts_20261013.ndjson.gz",
+   "file": "authorities-gnd_entityfacts_20261013.ndjson.gz",
+   "sha256": "52a8b26cc1fdfdaf9ac6de14e66e77d0c5f027fd4dc3f0399ec0aef5972382e8",
+   "bytes": 1364213931
+  },
+  {
+   "name": "redirects",
+   "ref": "inputs:gnd/redirects-2026-10-13/authorities-gnd_umlenk_loesch_20261013.jsonld.gz",
+   "file": "authorities-gnd_umlenk_loesch_20261013.jsonld.gz",
+   "sha256": "5f6d3004e4f9ceeea00090234041b629a29edebab6076ac3b88ed3e795b5fa58",
+   "bytes": 8480330
+  },
+  {
+   "name": "freimann",
+   "ref": "inputs:gnd/ubffm-lists-2018/Freimann-GND-03.rdf",
+   "file": "Freimann-GND-03.rdf",
+   "sha256": "b8a3fdca63a865b3a4ac6131cfbcd363eefc8579dd192251c90b0a084b41007c",
+   "bytes": 116362
+  },
+  {
+   "name": "ubffm_authors",
+   "ref": "inputs:gnd/ubffm-lists-2018/tp-records_gnd-ids.csv",
+   "file": "tp-records_gnd-ids.csv",
+   "sha256": "17d5f5300c9c098f0838a637d9c64fdd271694949069da8b9a65751ec418684d",
+   "bytes": 1361153
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/generated_persons_GND.ttl.gz",
+   "file": "generated_persons_GND.ttl.gz",
+   "sha256": "ab4565b96130b30f1a73ec7ce18f1d2a0ba63e51d9e0d24577147a20bf5ea55c",
+   "bytes": 288346
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/generated_persons_GND_enriched.ttl.gz",
+   "file": "generated_persons_GND_enriched.ttl.gz",
+   "sha256": "a0e44d4858926dede65493f4b4da23df8137d4fca6ac03a382920323ffc3672e",
+   "bytes": 339726
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/Freimann-GND-enriched-05.ttl.gz",
+   "file": "Freimann-GND-enriched-05.ttl.gz",
+   "sha256": "c47cba2d316625202e97e2328266e0e1d6289af70ae1303292da2a9c83c1dcb2",
+   "bytes": 35454
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/ub-authors.ttl.gz",
+   "file": "ub-authors.ttl.gz",
+   "sha256": "1399b7c2b1695b151917f398f63e78fa7207e475d0ef256bc8173112597046e3",
+   "bytes": 2407331
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/Entityfacts-ubgnd-sameas.ttl.gz",
+   "file": "Entityfacts-ubgnd-sameas.ttl.gz",
+   "sha256": "3f41408595864abfd4b1d01baebc3f08fb61799f4ba73642a4140bcd9e6f8fcd",
+   "bytes": 1907589
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/Entityfacts-gnd-sameas.ttl.gz",
+   "file": "Entityfacts-gnd-sameas.ttl.gz",
+   "sha256": "b13b59fa8113da1d0f6105f34efebba0a9b5e7c8fa7981e98c29c2c24b2ca6f5",
+   "bytes": 213523
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/Entityfacts-freimann-sameas.ttl.gz",
+   "file": "Entityfacts-freimann-sameas.ttl.gz",
+   "sha256": "4c5f08614b7689d04b0aae34e1828d69c5c1a3b62f724943bf29e2729e7459bf",
+   "bytes": 35142
+  },
+  {
+   "name": "previous",
+   "ref": "gnd-persons/2018-11-29/jl-zbw.ttl.gz",
+   "file": "jl-zbw.ttl.gz",
+   "sha256": "58dc19daf6495f84e78110c0c3472692736f4b2ff911caa4b3b82eba2c73b1d9",
+   "bytes": 5731
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-26/gnd-selection.tsv.gz",
+   "file": "gnd-selection.tsv.gz",
+   "sha256": "7b6b2ac84e82f74ab58b30b4c07108ea62e2869fa93ee8e100c89ab0cac17a8b",
+   "bytes": 1119087
+  },
+  {
+   "name": "linked_bhr",
+   "ref": "bhr/2026-10-18/bhr-beacon.ttl.gz",
+   "file": "bhr-beacon.ttl.gz",
+   "sha256": "4474eeebbd4469688fc9d63c4dc2c1a88afd6ff46e968fb1439d4bc59b4ed0ea",
+   "bytes": 6684
+  },
+  {
+   "name": "linked_bhr",
+   "ref": "bhr/2026-10-18/bhr-vocabulary.ttl.gz",
+   "file": "bhr-vocabulary.ttl.gz",
+   "sha256": "0b660e99e29cc378b22266a949a27d77897d120ff342a302e01f3678a08dbf2b",
+   "bytes": 563
+  },
+  {
+   "name": "linked_bhr",
+   "ref": "bhr/2026-10-18/bhr.ttl.gz",
+   "file": "bhr.ttl.gz",
+   "sha256": "d623747814a001ba82bf00617872d840a0d01ab3c794b17453afa4569f0affa3",
+   "bytes": 2352277
+  },
+  {
+   "name": "linked_cm_entities",
+   "ref": "cm-entities/2026-10-12/cm-entities-presence.ttl.gz",
+   "file": "cm-entities-presence.ttl.gz",
+   "sha256": "cd0544b62161b4ecc6a84a9e9918562328587106f60585db81472fde3a9d5967",
+   "bytes": 151858
+  },
+  {
+   "name": "linked_cm_entities",
+   "ref": "cm-entities/2026-10-12/cm-entities-wikidata.ttl.gz",
+   "file": "cm-entities-wikidata.ttl.gz",
+   "sha256": "8e0d443a9eaa07fe89e68e51c6d35e642e0c034328058d930ada90a0fea20c5c",
+   "bytes": 273155
+  },
+  {
+   "name": "linked_dbp_wiki_geo_linking",
+   "ref": "dbp-wiki-geo-linking/2021-01-13/dbp-wiki-geo-links.ttl",
+   "file": "dbp-wiki-geo-links.ttl",
+   "sha256": "25a8e0ea9d3a2eb06f5ffcfad3929328322c252454707398f28a7e5ecefd5236",
+   "bytes": 515033
+  },
+  {
+   "name": "linked_dbpedia",
+   "ref": "dbpedia/2026-10-19/dbpedia.ttl.gz",
+   "file": "dbpedia.ttl.gz",
+   "sha256": "cfcc39933cf57817014cb104a1279103ebfefd7c1ba6a67b77e4dc4872431a98",
+   "bytes": 2842576
+  },
+  {
+   "name": "linked_djh",
+   "ref": "djh/2018-10-22/djh.ttl.gz",
+   "file": "djh.ttl.gz",
+   "sha256": "b77f295c62f8687a18a4a14783add3a952248a4182d13573a3e6a8e5419e7019",
+   "bytes": 104832
+  },
+  {
+   "name": "linked_epidat",
+   "ref": "epidat/2026-10-18/epidat.ttl.gz",
+   "file": "epidat.ttl.gz",
+   "sha256": "cd108ec89541404736dc13ae0b4875a008762f72790f82b40883e3f22019beee",
+   "bytes": 1848653
+  },
+  {
+   "name": "linked_footprints",
+   "ref": "footprints/2026-10-26/footprints-vocabulary.ttl.gz",
+   "file": "footprints-vocabulary.ttl.gz",
+   "sha256": "692d9631989bbe4c11d04f4bdf645dd91e11b489d9dcad37c5204e70e0214add",
+   "bytes": 1623
+  },
+  {
+   "name": "linked_footprints",
+   "ref": "footprints/2026-10-26/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "c4c2c21ae0a2664267b66b9cf06b863e5202daa16f5175747fbf6accc23faa8b",
+   "bytes": 5533393
+  },
+  {
+   "name": "linked_gba",
+   "ref": "gba/2026-10-18/gba.ttl.gz",
+   "file": "gba.ttl.gz",
+   "sha256": "ae7d84aeba44e09a0c937676129e554b12879c75f1dc070bd83189d8ce71667a",
+   "bytes": 2981
+  },
+  {
+   "name": "linked_geo_coordinates",
+   "ref": "geo-coordinates/2026-10-12/geo-coordinates.ttl.gz",
+   "file": "geo-coordinates.ttl.gz",
+   "sha256": "b059aeb643db2567c8f9988cc4df0080d62494006fc55ede2a93fc2b4ab01ad2",
+   "bytes": 155920
+  },
+  {
+   "name": "linked_geo_enriched",
+   "ref": "geo-enriched/2026-10-16/geo-enriched.ttl.gz",
+   "file": "geo-enriched.ttl.gz",
+   "sha256": "b1b5783f1669b50cadf1fb46e7492ba9644d5ecc20ba5578c4a30c2473c246e9",
+   "bytes": 270321
+  },
+  {
+   "name": "linked_geonames",
+   "ref": "geonames/2026-10-19/geonames.ttl.gz",
+   "file": "geonames.ttl.gz",
+   "sha256": "78c12f6670eefacc21cdd73484276b99b2defbd57c23923f26c1f69011705f99",
+   "bytes": 1657845
+  },
+  {
+   "name": "linked_haskala",
+   "ref": "haskala/2026-10-12/haskala-gnd-2019.ttl.gz",
+   "file": "haskala-gnd-2019.ttl.gz",
+   "sha256": "1d96ec95b4954865b0c2a912e5db1fc9ce352328b6eb4b07a9ef7c6afcd7f0f7",
+   "bytes": 1257
+  },
+  {
+   "name": "linked_haskala",
+   "ref": "haskala/2026-10-12/haskala-net.ttl.gz",
+   "file": "haskala-net.ttl.gz",
+   "sha256": "d2b6283f9ea5e15d426aeaa2ecbb983d4afd3389ca9d43762c471457e92c7cbc",
+   "bytes": 5941
+  },
+  {
+   "name": "linked_haskala",
+   "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
+   "file": "haskala-vocabulary.ttl.gz",
+   "sha256": "2bc6a01ce4bb316b4efd715533899be52bfdd273b78619f8499268b79f179440",
+   "bytes": 13093
+  },
+  {
+   "name": "linked_haskala",
+   "ref": "haskala/2026-10-12/haskala.ttl.gz",
+   "file": "haskala.ttl.gz",
+   "sha256": "03c3c988a5abf8cd72c3fa9f963345cfa3798f77f8c5ce3482e900a874d26b2a",
+   "bytes": 871677
+  },
+  {
+   "name": "linked_hhkeydocs",
+   "ref": "hhkeydocs/2026-10-16/hhkeydocs.ttl.gz",
+   "file": "hhkeydocs.ttl.gz",
+   "sha256": "e36abbab400c9a32d21e705fa625289ef110358ef0fec6a4bd472a94fa2ac489",
+   "bytes": 258738
+  },
+  {
+   "name": "linked_hirsch_family",
+   "ref": "hirsch-family/2018-10-30/HirschFamily.ttl.gz",
+   "file": "HirschFamily.ttl.gz",
+   "sha256": "3e0d15737004352dd8aa63d3a82ec40b4ff4de2de329734ffa10adc94210919e",
+   "bytes": 4656
+  },
+  {
+   "name": "linked_interlinks",
+   "ref": "interlinks/2018-07-18/interlinks.n3.gz",
+   "file": "interlinks.n3.gz",
+   "sha256": "c9935e962444296c896ee094226ff4641532c8fc72d0c54bb8e9da7e797cc466",
+   "bytes": 1903
+  },
+  {
+   "name": "linked_interlinks",
+   "ref": "interlinks/2018-07-18/interlinks-04-enriched-09.ttl.gz",
+   "file": "interlinks-04-enriched-09.ttl.gz",
+   "sha256": "06363cc99920fb6eb2aed740b209a5514ab80867ec053774499c09bc91839bad",
+   "bytes": 35667
+  },
+  {
+   "name": "linked_jre",
+   "ref": "jre/2019-11-29/jre.ttl.gz",
+   "file": "jre.ttl.gz",
+   "sha256": "938de30400eef55d65f129553a8c1e0156ac57aa2e1b81fb373f883bc464c932",
+   "bytes": 12926
+  },
+  {
+   "name": "linked_lc",
+   "ref": "lc/2026-10-19/lc.ttl.gz",
+   "file": "lc.ttl.gz",
+   "sha256": "26c237b2c3e9a133f12696309b613d19b23a4354b41868d62da74d6839a7de51",
+   "bytes": 10663248
+  },
+  {
+   "name": "linked_ls_nli_legacy",
+   "ref": "ls-nli-legacy/2026-10-12/ls-nli-legacy.ttl.gz",
+   "file": "ls-nli-legacy.ttl.gz",
+   "sha256": "5e0554fe573efd5006f1c9e154d49b01b25d7fb62f7dab5f24b069407a8f5888",
+   "bytes": 4821113
+  },
+  {
+   "name": "linked_nli_records",
+   "ref": "nli-records/2026-10-12/nli-records.ttl.gz",
+   "file": "nli-records.ttl.gz",
+   "sha256": "bd276fe6239583d8e2e6f44108add9dacb282cf4ad24ab3e8e871b5ffed5f93e",
+   "bytes": 10690626
+  },
+  {
+   "name": "linked_nrwbibdjg",
+   "ref": "nrwbibdjg/2026-10-18/nrwbibdjg.ttl.gz",
+   "file": "nrwbibdjg.ttl.gz",
+   "sha256": "215ea3c4060b9aed6b472b63c0a9d5d9b6d78180480e5d7abb58821418a63e37",
+   "bytes": 361897
+  },
+  {
+   "name": "linked_record_classes",
+   "ref": "record-classes/2026-10-26/record-classes.ttl.gz",
+   "file": "record-classes.ttl.gz",
+   "sha256": "fe59603fca41f2a9f8e012d221e8ecd98573fe909424da66ca8ea41e5d4568a0",
+   "bytes": 51080
+  },
+  {
+   "name": "linked_records_normalized",
+   "ref": "records-normalized/2026-10-12/records-normalized-dates.ttl.gz",
+   "file": "records-normalized-dates.ttl.gz",
+   "sha256": "5733c1c9a71acd00d20664059acb2b30c3b9443ae97131ae77b523c586cf8bd6",
+   "bytes": 1267235
+  },
+  {
+   "name": "linked_records_normalized",
+   "ref": "records-normalized/2026-10-12/records-normalized-occupations.ttl.gz",
+   "file": "records-normalized-occupations.ttl.gz",
+   "sha256": "15c49b9def03590c9431be3a61abd5e079d91d956c13c2c09e4554e027a2fa7a",
+   "bytes": 143562
+  },
+  {
+   "name": "linked_records_normalized",
+   "ref": "records-normalized/2026-10-12/records-normalized-places.ttl.gz",
+   "file": "records-normalized-places.ttl.gz",
+   "sha256": "d6c57ed715e8bffcd4d24e4b0c1e69721cf61852c7a11e83164bb4fdeac00654",
+   "bytes": 234987
+  },
+  {
+   "name": "linked_rujen",
+   "ref": "rujen/2026-10-18/rujen.ttl.gz",
+   "file": "rujen.ttl.gz",
+   "sha256": "1ac2da8a90f3abc79b02708fb289a71ee154daccdaef388e8455961409a311b7",
+   "bytes": 6832950
+  },
+  {
+   "name": "linked_rujen_translation",
+   "ref": "rujen-translation/2026-10-12/rujen-de-abstract-translations.ttl",
+   "file": "rujen-de-abstract-translations.ttl",
+   "sha256": "7f0cb7250ec9e4990d1ec7c7ac776bc978188b136e25ba36a8300fdb7b6669c5",
+   "bytes": 14104749
+  },
+  {
+   "name": "linked_rujen_translation",
+   "ref": "rujen-translation/2026-10-12/rujen-de-label-translations.ttl",
+   "file": "rujen-de-label-translations.ttl",
+   "sha256": "e3e70a8bbe6c1a572122cba5eb34a9402d90e829ba281d288a74845daab06465",
+   "bytes": 1534116
+  },
+  {
+   "name": "linked_rujen_translation",
+   "ref": "rujen-translation/2026-10-12/rujen-en-abstract-translations.ttl",
+   "file": "rujen-en-abstract-translations.ttl",
+   "sha256": "6387e7a974fbfd095707de0374e2aa2616e405020233569beb0a2c4649b7f042",
+   "bytes": 13384228
+  },
+  {
+   "name": "linked_rujen_translation",
+   "ref": "rujen-translation/2026-10-12/rujen-en-label-translations.ttl",
+   "file": "rujen-en-label-translations.ttl",
+   "sha256": "01d0e12173a9d03759da2c016ec887e3f88f48d9766140acdfd1f9edd847aa93",
+   "bytes": 1531668
+  },
+  {
+   "name": "linked_sosy",
+   "ref": "sosy/2026-10-12/sosy-final-01.ttl.gz",
+   "file": "sosy-final-01.ttl.gz",
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "bytes": 12555
+  },
+  {
+   "name": "linked_stolpersteine",
+   "ref": "stolpersteine/2020-10-06/stolpersteine.ttl.gz",
+   "file": "stolpersteine.ttl.gz",
+   "sha256": "f00d52fdf756ab50694750a31d960ee0c5aace0a42e889169a4182d5efe63266",
+   "bytes": 9314
+  },
+  {
+   "name": "linked_ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors.ttl.gz",
+   "file": "ubffm-authors.ttl.gz",
+   "sha256": "6cc3ae3df6bb6972230cb77c87a269cc9cffd0d63047f62164a77ba3771f0364",
+   "bytes": 505187
+  },
+  {
+   "name": "linked_ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors-02.ttl.gz",
+   "file": "ubffm-authors-02.ttl.gz",
+   "sha256": "a6ab1fe57f453fe962fdc0066cca216207a55e0f45d35d7ad0eb526b3cce50e2",
+   "bytes": 408010
+  },
+  {
+   "name": "linked_viaf",
+   "ref": "viaf/2026-10-19/viaf.ttl.gz",
+   "file": "viaf.ttl.gz",
+   "sha256": "efa37ab23f4906295dd74d8632808f6c5dae30ba7ce90c8f50a5371343116485",
+   "bytes": 22825972
+  },
+  {
+   "name": "linked_wikidata",
+   "ref": "wikidata/2026-10-19/wikidata.ttl.gz",
+   "file": "wikidata.ttl.gz",
+   "sha256": "82d7500fc193c8ea093ee6a0c3e18cc412b37e2d94539382d4040e56b4ce0943",
+   "bytes": 8341919
+  },
+  {
+   "name": "linked_yivo",
+   "ref": "yivo/2020-09-30/yivo.ttl.gz",
+   "file": "yivo.ttl.gz",
+   "sha256": "a81c03d366a2eaa103f5864e401e90386dd9cf6e08ba6c181f8c1a5152a1e842",
+   "bytes": 695155
+  }
+ ],
+ "input_descriptions": {
+  "inputs:gnd/lds-2026-02-17": {
+   "title": "GND, complete (Linked Data Service, N-Triples), 2026-02-17",
+   "origin": "https://data.dnb.de/opendata/authorities-gnd_lds_20260217.nt.gz",
+   "description": "The complete Gemeinsame Normdatei (all entity types) as published by the Deutsche Nationalbibliothek in its Linked Data Service, N-Triples, state 2026-02-17 (file dated 2026-03-02), downloaded 2026-10-16. Licence CC0 1.0 (data.dnb.de/opendata).",
+   "date": "2026-02-17",
+   "note": "Not published: a copy of a public source, the input of the dataset gnd (decision 0029)."
+  },
+  "inputs:gnd/entityfacts-2026-10-13": {
+   "title": "GND EntityFacts, complete (NDJSON), 2026-10-13",
+   "origin": "https://data.dnb.de/opendata/authorities-gnd_entityfacts_20261013.ndjson.gz",
+   "description": "DNB EntityFacts for all GND entities, one JSON-LD object per line, state 2026-10-13, downloaded 2026-10-16: among others the links of each GND entity to other authority files and knowledge bases (sameAs). Licence CC0 1.0 (data.dnb.de/opendata).",
+   "date": "2026-10-13",
+   "note": "Not published: a copy of a public source, the input of the dataset gnd (decision 0029)."
+  },
+  "inputs:gnd/redirects-2026-10-13": {
+   "title": "GND redirects and deletions (JSON-LD), 2026-10-13",
+   "origin": "https://data.dnb.de/opendata/authorities-gnd_umlenk_loesch_20261013.jsonld.gz",
+   "description": "The GND numbers that the DNB has redirected to another record (owl:sameAs, dnb:canonicalUri) or deleted, state 2026-10-13, downloaded 2026-10-16. Licence CC0 1.0 (data.dnb.de/opendata).",
+   "date": "2026-10-13",
+   "note": "Not published: a copy of a public source, the input of the dataset gnd (decision 0029)."
+  },
+  "inputs:gnd/ubffm-lists-2018": {
+   "title": "GND numbers of the Freimann collection and of the authors of UB Frankfurt (2018)",
+   "origin": "judaicalink-generators, legacy/gnd-persons/output/Freimann-GND-03.rdf and legacy/gnd-persons/sources/tp-records_gnd-ids.csv",
+   "description": "Freimann-GND-03.rdf: the persons of the Freimann collection of UB Frankfurt with their GND numbers (2018-02, input of Freimann-GND-enrich.py, gnd-persons 2018-11-29). tp-records_gnd-ids.csv: the GND numbers of the person records (Tp) of UB Frankfurt, with the PPN of the record (2018-07, input of UB-gnd.py). The lists that selected these persons for gnd-persons.",
+   "date": "2018-07-25",
+   "note": "Not published: inputs of the dataset gnd (its selection rules freimann and ubffm-authors)."
+  },
+  "inputs:cascade/2026-10-26": {
+   "title": "The cascade of the authority datasets, 2026-10-26",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-26 (footprints 2026-10-26 new; 2014links withdrawn), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-26",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-26T07:37:49Z",
+ "seconds": 257.0,
+ "notes": [
+  "68,450 records; numbers by reason: linked 74,389 (74,389 not in the reasons before), replaces 292 (7 not in the reasons before), area-occupation 0 (0 not in the reasons before), freimann 587 (10 not in the reasons before), ubffm-authors 33,161 (223 not in the reasons before), previous 35,301 (40 not in the reasons before); 29,604 former numbers replaced; 9 cited numbers deleted; 1,421 unknown."
+ ],
+ "deleted_by_corrections": {
+  "linked_cm_entities": 1,
+  "linked_dbp_wiki_geo_linking": 5,
+  "linked_haskala": 2,
+  "linked_interlinks": 20,
+  "linked_ls_nli_legacy": 6,
+  "linked_nli_records": 11,
+  "linked_ubffm_persons": 1,
+  "previous": 7
+ },
+ "files": [
+  {
+   "path": "gnd-selection.tsv.gz",
+   "bytes": 1105497,
+   "sha256": "44d10d20339bd826ae7b8955d24d82b28455e3973df4adf3ac33e4f1e6e2fbd7"
+  },
+  {
+   "path": "gnd.ttl.gz",
+   "bytes": 18968733,
+   "sha256": "4bc54107d96609c956b457bbd5a0998ee32cc28ce383713e4e184d59f7db0de1",
+   "triples": 2277189
+  }
+ ],
+ "authority_links": {
+  "geonames": {
+   "dataset": "geonames",
+   "named": 3957,
+   "new": 82,
+   "examples": [
+    "2411586",
+    "2523630",
+    "2525468",
+    "2636503",
+    "2638864"
+   ],
+   "selection": "geonames/2026-10-19"
+  },
+  "lc": {
+   "dataset": "lc",
+   "named": 56084,
+   "new": 90,
+   "examples": [
+    "n2001044164",
+    "n2001096561",
+    "n2003038910",
+    "n2003048074",
+    "n2004111734"
+   ],
+   "selection": "lc/2026-10-19"
+  },
+  "viaf": {
+   "dataset": "viaf",
+   "named": 67944,
+   "new": 203,
+   "examples": [
+    "103142324",
+    "1071145424570786830082",
+    "11146030574635861686",
+    "123352044",
+    "123584728"
+   ],
+   "selection": "viaf/2026-10-19"
+  },
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 60518,
+   "new": 314,
+   "examples": [
+    "Q1010236",
+    "Q1013623",
+    "Q1021662",
+    "Q104224571",
+    "Q1075738"
+   ],
+   "selection": "wikidata/2026-10-19"
+  },
+  "dbpedia (wikipedia-de)": {
+   "dataset": "dbpedia",
+   "named": 27826,
+   "new": 82,
+   "examples": [
+    "Abergavenny",
+    "Abreschviller",
+    "Affaltrach",
+    "Ammerschwihr",
+    "Andrew_Fletcher_(Politiker)"
+   ],
+   "selection": "dbpedia/2026-10-19"
+  },
+  "dbpedia (wikipedia-en)": {
+   "dataset": "dbpedia",
+   "named": 28182,
+   "new": 485,
+   "examples": [
+    "Abdul-Qadir_Gilani",
+    "Abdülaziz",
+    "Abergavenny",
+    "Abreschviller",
+    "Abu_al-Qasim_al-Zahrawi"
+   ],
+   "selection": "dbpedia/2026-10-19"
+  }
+ },
+ "version": "2026-10-26"
+}

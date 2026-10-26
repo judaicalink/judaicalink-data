@@ -1,0 +1,143 @@
+{
+ "slug": "wikidata",
+ "run": "run-20261026T073332Z",
+ "generator": "generators/wikidata/generate.py",
+ "commit": "7f1572d6c0ba5fdc5ddabcbee2d7370744df4870",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-26T07:33:32Z",
+ "inputs": [
+  {
+   "name": "entities",
+   "ref": "inputs:cascade/2026-10-26/entities.jsonl.gz",
+   "file": "entities.jsonl.gz",
+   "sha256": "1bc58c37904df79b6efc92c2623cc02faaa6a41b4159b3fb1fe04269e530be0f",
+   "bytes": 11353225
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-26/wikidata-selection.tsv.gz",
+   "file": "wikidata-selection.tsv.gz",
+   "sha256": "6a09cd3241ffd0448d67625d75ffc8808a2d01e6fcf3b6de6176c3e4d9d676ed",
+   "bytes": 3446268
+  }
+ ],
+ "input_descriptions": {
+  "inputs:cascade/2026-10-26": {
+   "title": "The cascade of the authority datasets, 2026-10-26",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-26 (footprints 2026-10-26 new; 2014links withdrawn), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-26",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-26T07:33:48Z",
+ "seconds": 15.7,
+ "notes": [
+  "89,033 items; by reason: linked 76,659 (76,659 not in the reasons before), replaces 33 (0 not in the reasons before), by-gnd 60,959 (49 not in the reasons before), by-viaf 83,243 (11,043 not in the reasons before), by-lc-names 60,192 (40 not in the reasons before), by-geonames 7,665 (961 not in the reasons before), by-isni 61,885 (28 not in the reasons before); 842 named items merged, 18 named items deleted; 0 identifier statements left out because they cite JudaicaLink."
+ ],
+ "files": [
+  {
+   "path": "wikidata-selection.tsv.gz",
+   "bytes": 3372888,
+   "sha256": "67888a98aafee282496ef4404f6b719bb6e4dc6a71c367820dab1fc887f7d323"
+  },
+  {
+   "path": "wikidata.ttl.gz",
+   "bytes": 8301951,
+   "sha256": "344890bf1892128ade051abaf6199efe28614fde16fbd05bf2ad200705a272dd",
+   "triples": 1227487
+  }
+ ],
+ "authority_links": {
+  "geonames": {
+   "dataset": "geonames",
+   "named": 7851,
+   "new": 331,
+   "examples": [
+    "11551058",
+    "11591954",
+    "11788632",
+    "12266148",
+    "126584"
+   ],
+   "selection": "geonames/2026-10-19"
+  },
+  "gnd": {
+   "dataset": "gnd",
+   "named": 61170,
+   "new": 161,
+   "examples": [
+    "100170463",
+    "1003302-6",
+    "10108016-5",
+    "1011639-4",
+    "10123885-X"
+   ],
+   "selection": "gnd/2026-10-19"
+  },
+  "lc": {
+   "dataset": "lc",
+   "named": 60633,
+   "new": 151,
+   "examples": [
+    "n2001044164",
+    "n2001096561",
+    "n2003038910",
+    "n2003048074",
+    "n2003057670"
+   ],
+   "selection": "lc/2026-10-19"
+  },
+  "viaf": {
+   "dataset": "viaf",
+   "named": 88204,
+   "new": 197,
+   "examples": [
+    "103142324",
+    "11146030574635861686",
+    "1160242900552432862",
+    "117152743043327732872",
+    "123266961"
+   ],
+   "selection": "viaf/2026-10-19"
+  },
+  "dbpedia (wikipedia-de)": {
+   "dataset": "dbpedia",
+   "named": 34151,
+   "new": 182,
+   "examples": [
+    "Abergavenny",
+    "Abreschviller",
+    "Affaltrach",
+    "Altstadt_(Stadt_Zürich)",
+    "Amediye"
+   ],
+   "selection": "dbpedia/2026-10-19"
+  },
+  "dbpedia (wikipedia-en)": {
+   "dataset": "dbpedia",
+   "named": 38168,
+   "new": 222,
+   "examples": [
+    "Abergavenny",
+    "Abreschviller",
+    "Aduard",
+    "Althorp_(lost_settlement)",
+    "Altstadt_(Zurich)"
+   ],
+   "selection": "dbpedia/2026-10-19"
+  }
+ },
+ "version": "2026-10-26"
+}

@@ -1,0 +1,102 @@
+{
+ "slug": "lc",
+ "run": "run-20261026T073332Z",
+ "generator": "generators/lc/generate.py",
+ "commit": "7f1572d6c0ba5fdc5ddabcbee2d7370744df4870",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-26T07:33:32Z",
+ "inputs": [
+  {
+   "name": "names",
+   "ref": "inputs:lc/names-2026-09-27/names.madsrdf.nt.gz",
+   "file": "names.madsrdf.nt.gz",
+   "sha256": "c00a55fd16cfc446b114e29374403ee35ea8d42b3f332153bd5fd21d4f020e08",
+   "bytes": 7329753448
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-10-26/lc-selection.tsv.gz",
+   "file": "lc-selection.tsv.gz",
+   "sha256": "595b1531d22e73666a6cb32add47dcfdcc30cdd31a1a7917851dc639b8415b57",
+   "bytes": 1219374
+  }
+ ],
+ "input_descriptions": {
+  "inputs:lc/names-2026-09-27": {
+   "title": "LC Name Authority File (MADS/RDF, N-Triples), 2026-09-27",
+   "origin": "https://id.loc.gov/download/authorities/names.madsrdf.nt.gz",
+   "description": "The complete LC Name Authority File (LCNAF) in MADS/RDF as N-Triples, bulk export of id.loc.gov (dcterms:issued 2026-09-27, dcterms:modified 2026-09-13 in names.madsrdf.nt.json, which is the description file of the export), downloaded 2026-10-16. One block per authority record (# BEGIN/# END comments) with its Real World Object (rwo/agents) and blank nodes. The SHA-1 stated in the description file (c56cf844…) does not match the downloaded file (37dfc78a…); the archive is intact (gzip -t). Public domain (id.loc.gov/about).",
+   "date": "2026-09-27",
+   "note": "Not published: a copy of a public source, the input of the dataset lc (decision 0029)."
+  },
+  "inputs:cascade/2026-10-26": {
+   "title": "The cascade of the authority datasets, 2026-10-26",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-10-26 (footprints 2026-10-26 new; 2014links withdrawn), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-10-26",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-26T07:39:02Z",
+ "seconds": 329.6,
+ "notes": [
+  "91,746 records of 92,268 linked identifiers (viaf 88,972, wikidata 60,633, gnd 55,963, nli-records 54,079, ls-nli-legacy 53,182); 163 cited identifiers deprecated; 359 not in the dump."
+ ],
+ "files": [
+  {
+   "path": "lc-selection.tsv.gz",
+   "bytes": 1240053,
+   "sha256": "dfa5133d8fb9175306c6d18efe212806e0a7e47e1298d19486c9213434600d83"
+  },
+  {
+   "path": "lc.ttl.gz",
+   "bytes": 10639997,
+   "sha256": "18de75081066102d1066fd9e8a68f4c195a8872fa9e8930843e7ce9c50a6506c",
+   "triples": 1982800
+  }
+ ],
+ "authority_links": {
+  "geonames": {
+   "dataset": "geonames",
+   "named": 1,
+   "new": 0,
+   "examples": [],
+   "selection": "geonames/2026-10-19"
+  },
+  "gnd": {
+   "dataset": "gnd",
+   "named": 201,
+   "new": 1,
+   "examples": [
+    "4061163-2"
+   ],
+   "selection": "gnd/2026-10-19"
+  },
+  "viaf": {
+   "dataset": "viaf",
+   "named": 2,
+   "new": 0,
+   "examples": [],
+   "selection": "viaf/2026-10-19"
+  },
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 2,
+   "new": 0,
+   "examples": [],
+   "selection": "wikidata/2026-10-19"
+  }
+ },
+ "version": "2026-10-26"
+}
