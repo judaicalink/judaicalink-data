@@ -6,7 +6,7 @@ date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]
 aliases = ["/datasets/ep-supp/"]
-stable = "2026-10-19"
+stable = "2026-10-26"
 kind = "entity-pages"
 method = ["rule-based"]
 
@@ -28,6 +28,31 @@ path = "generators/ep"
 "subcategorization.ttl.gz" = "Subcategorization dataset for local Judaicalink resources."
 "ep.ttl.gz" = "The entity pages: class, names, life dates and places, occupations, descriptions, coordinates, the records they represent (jl:represents) and their external identifiers (owl:sameAs)."
 "ep-history.ttl.gz" = "IRIs that are no longer entity pages, one statement per event with its date: merged (jl:mergedInto), split (jl:splitInto), retired (jl:retiredDate); the history of earlier versions unchanged."
+
+[[versions]]
+version = "2026-10-26"
+issued = "2026-10-26"
+author = "Kai Eckert"
+commit = "8d3b70ace34729b14dfd7ba7a4fee629e41a3e67"
+description = "Made from ep 2026-10-19 and the stable versions of 2026-10-26 (footprints from the API, the cascade of 2026-10-26)."
+
+  [[versions.files]]
+  path = "ep-history.ttl.gz"
+  bytes = 4411187
+  sha256 = "76b34a042258babe31472d386931fa6d8280958782c008a6290aa76232e41c80"
+  triples = 1501109
+
+  [[versions.files]]
+  path = "ep.ttl.gz"
+  bytes = 52430623
+  sha256 = "dda34b30dd644a7188e47da9a9adb94aa2eab6dbde0611f083e471bd14e78add"
+  triples = 4257599
+
+  [[versions.files]]
+  path = "ep-meta.ttl.gz"
+  bytes = 3673
+  sha256 = "c31e55badb23e8cbff092bcc2ccd4837969eadb6ede072aa00a8ee742f1dbd2b"
+  triples = 172
 
 [[versions]]
 version = "2026-10-19"
@@ -119,6 +144,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 3193
   sha256 = "5536fb2339d73221953443aae454102fecba25b31c09bd09b4e626ce0008e5ef"
   triples = 124
+
+[[changelog]]
+date = "2026-10-26"
+version = "2026-10-26"
+author = "Kai Eckert"
+text = "Footprints from the API and the cascade of 2026-10-26: 324,100 entities (95 merged, 265 split, 1,012 retired, 12,160 new); the footprints IRIs of 2024 split into the records they stood for or retired; the authority records only 2014links had brought in retired."
 
 [[changelog]]
 date = "2026-10-19"
