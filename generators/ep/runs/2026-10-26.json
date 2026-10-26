@@ -1,15 +1,15 @@
 {
  "slug": "ep",
- "run": "run-20261026T080345Z",
+ "run": "run-20261026T103125Z",
  "generator": "generators/ep/generate.py",
- "commit": "8d3b70ace34729b14dfd7ba7a4fee629e41a3e67",
+ "commit": "7bbd93e01bf31503f888beb97df20774049fd175",
  "uncommitted": [],
  "python": "3.15.0",
  "params": {
   "identity": "linksets"
  },
  "input_overrides": [],
- "started": "2026-10-26T08:03:45Z",
+ "started": "2026-10-26T10:31:25Z",
  "inputs": [
   {
    "name": "previous",
@@ -215,6 +215,13 @@
    "bytes": 2073530
   },
   {
+   "name": "ls_footprints_viaf",
+   "ref": "ls-footprints-viaf/2026-10-26/ls-footprints-viaf.ttl.gz",
+   "file": "ls-footprints-viaf.ttl.gz",
+   "sha256": "61b64b5c2ba49da42472374bf47e2ec5a7734613f55c72d111a092165321218a",
+   "bytes": 11000
+  },
+  {
    "name": "ls_geonames",
    "ref": "ls-geonames/2026-10-26/ls-geonames.ttl.gz",
    "file": "ls-geonames.ttl.gz",
@@ -391,10 +398,10 @@
   }
  ],
  "status": "ok",
- "finished": "2026-10-26T08:09:55Z",
- "seconds": 369.9,
+ "finished": "2026-10-26T10:37:36Z",
+ "seconds": 371.2,
  "notes": [
-  "{'previous IRIs': 1788238, 'previous pages': 313312, 'typed IRIs that are replaced (not members)': 586, 'records': 778005, 'links refused (a second record of one dataset)': 802, 'groups of authority records only (no page)': 2688, 'groups': 324100, 'kept IRI': 311940, 'new IRI': 12160, 'merged': 95, 'split': 265, 'retired': 1012, 'highest number': 2800397}; classes {'Person': 291999, 'Place': 13862, 'Work': 15736, 'Subject': 826, 'Organization': 1677}; conflicts {'replaced GND identifiers': 3726, 'several GeoNames identifiers': 639, 'several Wikidata identifiers': 2114, 'several VIAF identifiers': 8293, 'several GND identifiers': 1525, 'several LC identifiers': 1671, 'replaced Wikidata identifiers': 817, 'several GeoNames identifiers, closely linked (same name, near)': 1455, 'incompatible classes': 41}."
+  "{'previous IRIs': 1788238, 'previous pages': 313312, 'typed IRIs that are replaced (not members)': 586, 'records': 778005, 'links refused (a second record of one dataset)': 811, 'links joining several places of one dataset through GeoNames': 14, 'groups of authority records only (no page)': 2493, 'groups': 323117, 'kept IRI': 311034, 'new IRI': 12083, 'merged': 1009, 'split': 260, 'retired': 1009, 'highest number': 2800320}; classes {'Person': 291107, 'Place': 13849, 'Work': 15736, 'Subject': 826, 'Organization': 1599}; conflicts {'replaced GND identifiers': 3726, 'several GeoNames identifiers': 639, 'several Wikidata identifiers': 2114, 'several VIAF identifiers': 8303, 'several GND identifiers': 1526, 'several LC identifiers': 1671, 'replaced Wikidata identifiers': 818, 'several GeoNames identifiers, closely linked (same name, near)': 1455, 'incompatible classes': 41}."
  ],
  "deleted_by_corrections": {
   "cm_entities": 1,
@@ -409,15 +416,15 @@
  "files": [
   {
    "path": "ep-history.ttl.gz",
-   "bytes": 4411187,
-   "sha256": "76b34a042258babe31472d386931fa6d8280958782c008a6290aa76232e41c80",
-   "triples": 1501109
+   "bytes": 4417177,
+   "sha256": "879d7308634b4af70274440de15d185ffd673fa19e9dd9a8014c1213c7111324",
+   "triples": 1502918
   },
   {
    "path": "ep.ttl.gz",
-   "bytes": 52430623,
-   "sha256": "dda34b30dd644a7188e47da9a9adb94aa2eab6dbde0611f083e471bd14e78add",
-   "triples": 4257599
+   "bytes": 52434962,
+   "sha256": "4a690db26848db3073c01ce7cf815243d6d4ba54235bad3808ef21479869ad7e",
+   "triples": 4255691
   }
  ],
  "version": "2026-10-26"

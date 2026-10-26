@@ -65,7 +65,8 @@ imprints, 10,998 copies, 24,482 footprints, 11,642 persons (1,556 with VIAF), 1,
 confirmed 16, mostly a second record of a place, and 28 without a candidate: regions, countries, misspellings), 24,734
 actor records;
 replaced: 8,713 persons, 2,185 works, 120 places of 2024 (67 persons, 461 works and 32 places match nothing: names
-changed since, and the regions and countries of 2024).
+changed since, and the regions and countries of 2024). The VIAF numbers are below the quality threshold; the ones
+judged correct one by one are the linkset ls-footprints-viaf (decision 0037).
 
 ## Inputs
 

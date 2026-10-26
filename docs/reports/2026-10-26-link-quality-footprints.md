@@ -19,3 +19,10 @@ VIAF dump, 11 name-only matches of common names or patronymics, one target witho
 GeoNames (confirmed by the API, `inputs:footprints/geonames-2026-10-26`) joins. The 7 undecidable are common names
 whose target gives no region; 6 links go to the administrative unit of the same name (correct by the rule of 0032),
 two of them of a larger scale: Salzburg to the state, Paris to the département, as Footprints has them.
+
+Since (decision 0037): every VIAF link was judged on its own (rules, then an LLM on the evidence of both sides, in two
+passes); the 1,185 judged correct are the linkset ls-footprints-viaf, which joins. Of the 1,447 links judged, 140 are
+wrong and 122 undecidable; 99 clusters are not in viaf and 10 are works. The share wrong (10% of the judged) is higher
+than the sample's 5%: the judging had more evidence (roles, dates and places of the persons; GND notes), which shows
+presses and firms linked to a person, fathers and sons, and namesakes of another century.
+

@@ -5,10 +5,11 @@ solved is in the decisions, the changelogs of the versions and the git history.
 
 ## Identity and authority data (decisions 0029, 0032)
 
-- **Below the quality threshold** (`catalog/link-quality.toml`): the identity links of footprints (GND 0.92,
-  `gndo:gndIdentifier` 0.51, VIAF 0.89, LC) and of 2014links (GeoNames 0.92, English Wikipedia 0.91) stay in their
-  datasets but join nothing (ls-gnd leaves out 951, ls-viaf 1,478, ls-dbpedia 1,403, ls-geonames 109). Remedy: the new
-  Footprints generator with the identifier links of the API; 2014links made again.
+- **Below the quality threshold** (`catalog/link-quality.toml`): the VIAF numbers of footprints (0.94, lower bound
+  0.87; judged one by one, the correct ones in ls-footprints-viaf, decision 0037) and the links of the withdrawn
+  2014links stay in their datasets but join nothing.
+- **ls-footprints-viaf** (0037): judged by an LLM only. To do: a sample checked by people, to know how good the
+  judgements are.
 - **GND duplicates kept apart:** hhkeydocs `person/gnd/118989316` (Yaʿaqov Emden) and `person/gnd/1089985185`
   (Jacob-Israel Hirschel, 1696–1776) are two GND records of one person (both VIAF 82152450).
 - **Entity pages with `identity = linksets`** (the default since 195586e): groups joined only by GND numbers the GND
@@ -52,13 +53,16 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **Footprints** (decision 0034): versions footprints and record-classes 2026-10-26 (from the API; GeoNames ids
   confirmed by the API for 983 of 1,027 places), the cascade and the authority datasets and linksets of 2026-10-26.
   Link quality (`docs/reports/2026-10-26-link-quality-footprints.md`): GeoNames 100%, joins; VIAF 94% (lower bound
-  87%), below the threshold: linked, joins nothing (wrong: persons linked to works, firms to persons). The site pages
-  of works, imprints, copies and persons (for `jl:describedAt`) are not checked yet (only `/footprint/<id>/` occurs in
+  87%), below the threshold; every VIAF link judged, 1,185 correct in ls-footprints-viaf (0037). The site pages of
+  works, imprints, copies and persons (for `jl:describedAt`) are not checked yet (only `/footprint/<id>/` occurs in
   the data; the site answers scripts with a challenge of its firewall). To tell Footprints: the GeoNames ids and the
   digital objects of persons, imprints and copies in the API; the 16 places whose GeoNames id the API gives to
-  another place record (second records, e.g. "Wien" and Vienna, "Vilna" and Vilnius), and the 14 places of which it
-has two records with GeoNames ids (ep refuses the second; Breslau, Bad Homburg and Offenbach lose their administrative
-unit to a page of their own); the wrong VIAF numbers.
+  another place record (second records, e.g. "Wien" and Vienna, "Vilna" and Vilnius), and the places of which it has
+  two records (city and administrative unit; joined on the entity pages since 0036); the 140 VIAF numbers judged
+  wrong (`ls-footprints-viaf-decisions.tsv.gz`: presses and firms linked to a person, fathers and sons, namesakes,
+  libraries linked to their institution, clusters that mix persons), the Footprints persons that mix persons, and
+  the 23 pairs of Footprints persons that share a VIAF cluster (ep 2026-10-26 refuses the second: duplicates or a wrong
+  number).
 - **Places without coordinates** (found by the Atlas showcase, jlma-atlas, 2026-10-25, ep 2026-10-19): the burial
   places of 18,650 Epidat people are Getty TGN IRIs (about 200 cemeteries; Bechhofen alone 2,195) without coordinates
   in any dataset; about 15,100 birth and 6,000 death places are Wikidata, GND and LC places outside the GeoNames and
