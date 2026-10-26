@@ -29,6 +29,9 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **Wikidata property P13183** ("JudaicaLink person (GND) ID", 31,231 uses) has an `https` formatter URL, which spreads
   the `https` form of our IRIs: propose `http://data.judaicalink.org/data/gnd/$1` on Wikidata.
 
+- **Impossible dates** in the normalised person dates (records-normalized and the sources): 1884-11-31, 1941-02-30,
+  1912-06-31, 1921-06-31, 1902-02-29 (ep 2026-10-26-2 leaves them out); to fix where they are made.
+
 ## Ontology and application profile
 
 - **Application profile:** the ontology defines our terms and also describes foreign terms (`skos:prefLabel`,

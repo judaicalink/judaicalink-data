@@ -91,6 +91,15 @@ key normalisation (DBpedia titles, hyphenated ISNIs) and the use of `prov:wasDer
 errors of the port, corrected before the version. Compared with `ep-2026-10-06` (first made on 2026-10-12, before the YIVO and epidat records): 295,384 instead of 294,129 pages,
 the legacy NLI pages carried over (no exception), splits and merges by comparison instead of growing clusters.
 
+## Version 2026-10-26-2
+
+As 2026-10-26 (the same entities, IRIs and history), with the facts of the other classes (decision 0038): works
+9,622 dates of publication (9,470 normalised), 7,421 creators, 6,927 places of publication, 5,221 languages, 4,085
+publishers; organisations 470 dates of establishment, 291 of termination, 570 seats; subjects 346 broader subjects.
+Descriptions also from the GND's biographical and historical notes (29,634 more; 11 machine translations of rujen give
+way to the GND note). Normalised dates by `jl.dates`: 139 EDTF values that 2026-10-26 typed as `xsd:gYear` are typed
+EDTF, 5 impossible days (e.g. 1884-11-31) are left out.
+
 ## Version 2026-10-26
 
 Made from ep 2026-10-19 and the stable versions of 2026-10-26: footprints from the API (decision 0034; 2026-10-26-2) with
