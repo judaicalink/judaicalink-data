@@ -100,10 +100,12 @@ record-classes, and the authority datasets and linksets of the cascade of 2026-1
 Result: 324,100 entities from 778,005 records; of the 313,312 pages of 2026-10-19, 311,940 keep their IRI, 95 are
 merged, 265 split, 1,012 retired; 12,160 new IRIs (mostly the works, persons and places of Footprints). Split: the
 footprints IRIs of 2024 that stood for several records (`dcterms:isReplacedBy` to each; a name hash for all persons
-of that name). Retired: 560 pages of footprints IRIs of 2024 that match no record now (names changed since, the
+of that name); and 3 places (Breslau, Bad Homburg, Offenbach), where Footprints has two records of the place, one
+with the GeoNames id of the city, one with that of its administrative unit: the second Footprints record is refused
+(one record per record dataset; 14 such links in all) and takes the administrative unit to a page of its own. Retired: 560 pages of footprints IRIs of 2024 that match no record now (names changed since, the
 regions and countries of 2024), and 452 pages of authority records that only the seeds of 2014links had brought into
 the authority datasets (e.g. Americas, Kramatorsk). Merged: mostly Footprints places with the places of the same
-GeoNames id. Footprints persons join other records only through the VIAF links that ls-viaf takes, and those are
+GeoNames id (68 of the 95 merged pages were footprints pages). Footprints persons join other records only through the VIAF links that ls-viaf takes, and those are
 below the threshold (94%, `docs/reports/2026-10-26-link-quality-footprints.md`), so they have pages of their own.
 Conflicts: 41 incompatible classes; several GND identifiers 1,525, LC 1,671, Wikidata 2,114, VIAF 8,293, GeoNames
 639 (and 1,455 closely linked).

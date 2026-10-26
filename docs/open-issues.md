@@ -56,7 +56,9 @@ solved is in the decisions, the changelogs of the versions and the git history.
   of works, imprints, copies and persons (for `jl:describedAt`) are not checked yet (only `/footprint/<id>/` occurs in
   the data; the site answers scripts with a challenge of its firewall). To tell Footprints: the GeoNames ids and the
   digital objects of persons, imprints and copies in the API; the 16 places whose GeoNames id the API gives to
-  another place record (second records, e.g. "Wien" and Vienna, "Vilna" and Vilnius); the wrong VIAF numbers.
+  another place record (second records, e.g. "Wien" and Vienna, "Vilna" and Vilnius), and the 14 places of which it
+has two records with GeoNames ids (ep refuses the second; Breslau, Bad Homburg and Offenbach lose their administrative
+unit to a page of their own); the wrong VIAF numbers.
 - **Places without coordinates** (found by the Atlas showcase, jlma-atlas, 2026-10-25, ep 2026-10-19): the burial
   places of 18,650 Epidat people are Getty TGN IRIs (about 200 cemeteries; Bechhofen alone 2,195) without coordinates
   in any dataset; about 15,100 birth and 6,000 death places are Wikidata, GND and LC places outside the GeoNames and
