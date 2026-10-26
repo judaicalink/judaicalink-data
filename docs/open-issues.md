@@ -32,6 +32,17 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **Impossible dates** in the normalised person dates (records-normalized and the sources): 1884-11-31, 1941-02-30,
   1912-06-31, 1921-06-31, 1902-02-29 (ep 2026-10-26-2 leaves them out); to fix where they are made.
 
+- **Kinds: the real sources** (seen in the dataset cloud on web.judaicalink.org, 2026-10-26): `records` mixes the
+  data contributed to us, the actual basis of the graph (encyclopedias, library and research data), with datasets
+  that make resources of their own from our data or the authorities. geo-coordinates is a gazetteer derived in 2018
+  (one place resource per place name, coordinates and GND numbers looked up in the GND; not reproducible; input of
+  geo-enriched; its links to VIAF below the threshold); ubffm-persons is a source (the authors of the Judaica
+  collection of UB Frankfurt) whose records were enriched with facts copied from the GND in 2019. To discuss: a kind
+  for derived datasets that make resources (or a marker for the contributed sources); geo-coordinates as support or
+  withdrawn (geo-enriched looking place names up in gnd and geonames directly; count first which entity pages and
+  Atlas places only it gives); a new ubffm-persons that keeps what UB Frankfurt states and leaves the GND facts to
+  `gnd`. Note: `kind` selects inputs in geo-enriched (`stable_inputs(kinds=…)`).
+
 ## Ontology and application profile
 
 - **Application profile:** the ontology defines our terms and also describes foreign terms (`skos:prefLabel`,
