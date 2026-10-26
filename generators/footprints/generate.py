@@ -18,7 +18,8 @@ owl:sameAs GeoNames (where Footprints confirmed the id), persons foaf:Agent (the
 owl:sameAs VIAF and LC, jl:birthDate/jl:deathDate and their normalised values; skos:prefLabel for these. The persons
 of a record are linked directly as well, one property per role (gndo:author, gndo:editor, dcterms:publisher, else
 vocab:<role>); the owners of a copy as vocab:owner and vocab:currentOwner. The digital objects of the footprints are
-linked as foaf:depiction. The identifiers of works and imprints are dcterms:identifier "<slug> <identifier>".
+linked as foaf:depiction. Works and footprints link their page on the site (jl:describedAt; imprints, copies,
+persons and places have no page of their own). The identifiers of works and imprints are dcterms:identifier "<slug> <identifier>".
 
 The IRIs of 2024 (uuid5 of the SHA-256 of a name) are dcterms:isReplacedBy the records of the same level they stood
 for: a person by the API addresses it names (jl:describedAt), else by the name; a work by its title; a place by the
@@ -57,7 +58,8 @@ HTML = RDF + "HTML"
 TAG = re.compile(r"<(p|br|em|strong|i|b|u|a|ul|ol|li|span|div|blockquote|sup|sub)\b[^>]*>", re.I)
 # the roles with a standard term; the others get a property of the vocabulary
 STANDARD_ROLE = {"Author": GNDO + "author", "Editor": GNDO + "editor", "Publisher": DCT + "publisher"}
-PAGES = {"footprint": "footprint/{}/"}   # the pages of the site that the data links to
+# the pages of the site that the data links to (checked 2026-10-26: imprints, copies, persons and places have none)
+PAGES = {"footprint": "footprint/{}/", "writtenwork": "writtenwork/{}/"}
 
 CLASSES = [
     ("WrittenWork", "Work", "A literary work, independent of its editions (Footprints: written work)."),
@@ -285,6 +287,7 @@ def generate(run):
         common(s, "WrittenWork", text(w.get("title")), classes.WORK)
         if text(w.get("title")):
             add(s, V + "title", lit(w["title"].strip()))
+        add(s, JLO + "describedAt", lit(SITE + PAGES["writtenwork"].format(w["id"])))
         actors_of(s, w.get("actor"))
         identifiers(s, w.get("standardized_identifier"))
         notes(s, w.get("notes"))
