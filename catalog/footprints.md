@@ -6,7 +6,7 @@ date = "2024-03-12"
 website = "https://footprints.ctl.columbia.edu/"
 example = "http://data.judaicalink.org/data/footprints/person/6914"
 namespaces = ["footprints"]
-stable = "2026-10-26"
+stable = "2026-10-26-2"
 kind = "records"
 method = ["converted"]
 
@@ -23,6 +23,31 @@ statement = "https://web.archive.org/web/20251002115806/https://footprints.ctl.c
 [generator]
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/footprints"
+
+[[versions]]
+version = "2026-10-26-2"
+issued = "2026-10-26"
+author = "Kai Eckert"
+commit = "2ca32e5dd8ccbba1b5bd6ebc2f861d6c61ea01d4"
+description = "As 2026-10-26, with the links of the works to their page on the site."
+
+  [[versions.files]]
+  path = "footprints-vocabulary.ttl.gz"
+  bytes = 1623
+  sha256 = "3a631b4c790e6c477b39a9d4dd97e07bf702bc9b869c800782c4f0c0fbfd57be"
+  triples = 148
+
+  [[versions.files]]
+  path = "footprints.ttl.gz"
+  bytes = 5548113
+  sha256 = "a8c3f82c7ccf32b52c97f7d0325689767974c3db8bd9481c3c8d6e013797f659"
+  triples = 804465
+
+  [[versions.files]]
+  path = "footprints-meta.ttl.gz"
+  bytes = 3277
+  sha256 = "8f568cbd274202bf69674c56ef505320cbcb8f8521093c1c1766b27d009a394f"
+  triples = 89
 
 [[versions]]
 version = "2026-10-26"
@@ -101,6 +126,12 @@ description = "The richer version: books with titles, owners, former owners, pla
   bytes = 2314
   sha256 = "57200b629d51a7177f4eb1165498513b038e8abafcef1409db4cd1cf0852b1a3"
   triples = 60
+
+[[changelog]]
+date = "2026-10-26"
+version = "2026-10-26-2"
+author = "Kai Eckert"
+text = "The works link their page on the Footprints site (jl:describedAt, 3,765); otherwise as 2026-10-26."
 
 [[changelog]]
 date = "2026-10-26"

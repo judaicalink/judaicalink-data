@@ -6,7 +6,7 @@ date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]
 aliases = ["/datasets/ep-supp/"]
-stable = "2026-10-26"
+stable = "2026-10-19"
 kind = "entity-pages"
 method = ["rule-based"]
 
@@ -28,31 +28,6 @@ path = "generators/ep"
 "subcategorization.ttl.gz" = "Subcategorization dataset for local Judaicalink resources."
 "ep.ttl.gz" = "The entity pages: class, names, life dates and places, occupations, descriptions, coordinates, the records they represent (jl:represents) and their external identifiers (owl:sameAs)."
 "ep-history.ttl.gz" = "IRIs that are no longer entity pages, one statement per event with its date: merged (jl:mergedInto), split (jl:splitInto), retired (jl:retiredDate); the history of earlier versions unchanged."
-
-[[versions]]
-version = "2026-10-26"
-issued = "2026-10-26"
-author = "Kai Eckert"
-commit = "7bbd93e01bf31503f888beb97df20774049fd175"
-description = "Made from ep 2026-10-19 and the stable versions of 2026-10-26 (footprints from the API, the cascade of 2026-10-26, ls-footprints-viaf; decisions 0036, 0037)."
-
-  [[versions.files]]
-  path = "ep-history.ttl.gz"
-  bytes = 4417177
-  sha256 = "879d7308634b4af70274440de15d185ffd673fa19e9dd9a8014c1213c7111324"
-  triples = 1502918
-
-  [[versions.files]]
-  path = "ep.ttl.gz"
-  bytes = 52434962
-  sha256 = "4a690db26848db3073c01ce7cf815243d6d4ba54235bad3808ef21479869ad7e"
-  triples = 4255691
-
-  [[versions.files]]
-  path = "ep-meta.ttl.gz"
-  bytes = 3698
-  sha256 = "dab4de525d9cfa81ab36285b55d1d5e1a3d774183366806894817c4e79f5b51b"
-  triples = 174
 
 [[versions]]
 version = "2026-10-19"
@@ -144,12 +119,6 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 3193
   sha256 = "5536fb2339d73221953443aae454102fecba25b31c09bd09b4e626ce0008e5ef"
   triples = 124
-
-[[changelog]]
-date = "2026-10-26"
-version = "2026-10-26"
-author = "Kai Eckert"
-text = "Footprints from the API, its VIAF numbers judged one by one (ls-footprints-viaf) and the cascade of 2026-10-26: 323,117 entities (1,009 merged, 260 split, 1,009 retired, 12,083 new); Footprints persons joined with the pages of the same persons; places of Footprints with two records (city and administrative unit) on one page; the footprints IRIs of 2024 split into the records they stood for or retired; the authority records only 2014links had brought in retired."
 
 [[changelog]]
 date = "2026-10-19"

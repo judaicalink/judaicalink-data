@@ -15,7 +15,8 @@ Benjamin Schnabel.
 
 ## Kept versions
 
-- **2026-10-26** (stable): from the API (below).
+- **2026-10-26-2** (stable): as 2026-10-26, with the links of the works to their page on the site.
+- **2026-10-26**: from the API (below).
 - **2024-03-18**: **exact**, the file is byte-identical to the output committed in `830ad95` (Christian
   Deuschle, 2024-03-18); code as of `173e91b` (2024-03-14). Books with titles, authors, owners, places and dates of
   publication, languages; persons; places.
