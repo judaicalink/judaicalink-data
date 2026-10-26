@@ -28,6 +28,7 @@ from collections import Counter, defaultdict
 from urllib.parse import unquote
 
 from jl import catalog, classes, identifiers
+from jl.dates import normalised
 from jl.generator import GeneratorError, slug_of, stable_inputs
 from jl.iris import canonical_triples, canonical_wkt
 from jl.linksets import contradict
@@ -83,6 +84,8 @@ PROV = "http://www.w3.org/ns/prov#"
 GNDO = "http://d-nb.info/standards/elementset/gnd#"       # older datasets
 GNDO_S = "https://d-nb.info/standards/elementset/gnd#"    # the publisher's form (gnd)
 DBO = "http://dbpedia.org/ontology/"
+MADS = "http://www.loc.gov/mads/rdf/v1#"
+FPV, HV = JL + "footprints/vocab/", JL + "haskala/vocab/"
 SAME, GNDID, REPLACED, DERIVED = OWL + "sameAs", GNDO + "gndIdentifier", DCT + "isReplacedBy", PROV + "wasDerivedFrom"
 JLSAME = JLO + "sameAs"   # identity as JudaicaLink states it (linksets, entities; decision 0029)
 HISTORY = {JLO + "mergedInto", JLO + "mergeDate", JLO + "splitInto", JLO + "splitDate", JLO + "retiredDate",
@@ -120,6 +123,20 @@ FACT_PROPS = {
     JLO + "lat": "lat", "http://www.w3.org/2003/01/geo/wgs84_pos#lat": "lat",
     JLO + "lon": "lon", "http://www.w3.org/2003/01/geo/wgs84_pos#long": "lon",
     SAME: "sameAs", GNDID: "gndId", GNDO_S + "gndIdentifier": "gndId",
+    # the facts of works, organisations and subjects (decision 0038)
+    DCT + "creator": "creator", GNDO_S + "firstAuthor": "creator", GNDO_S + "author": "creator", GNDO + "author": "creator",
+    DCT + "issued": "issued", DCT + "date": "issued", GNDO_S + "dateOfPublication": "issued",
+    GNDO_S + "dateOfProduction": "issued", MADS + "creationDateStart": "issued", HV + "gregorian_year": "issued",
+    FPV + "publicationDate": "issuedN",
+    JLO + "placeOfPublication": "pubPlace", FPV + "place": "pubPlaceURI", HV + "publication_place": "pubPlaceURI",
+    DCT + "language": "language", FPV + "language": "language", HV + "language": "language",
+    GNDO_S + "languageCode": "language",
+    DCT + "publisher": "publisher", HV + "publisher_name": "publisher",
+    GNDO_S + "dateOfEstablishment": "estab", GNDO + "dateOfEstablishment": "estab", MADS + "activityStartDate": "estab",
+    GNDO_S + "dateOfTermination": "term", GNDO + "dateOfTermination": "term", MADS + "activityEndDate": "term",
+    GNDO_S + "placeOfBusiness": "seat", GNDO + "placeOfBusiness": "seat",
+    SKOS + "broader": "broader",
+    GNDO_S + "biographicalOrHistoricalInformation": "abstract", GNDO + "biographicalOrHistoricalInformation": "abstract",
     # for choosing the primary record of a dataset (record_order)
     GNDO + "succeedingPlaceOrGeographicName": "successor", GNDO_S + "succeedingPlaceOrGeographicName": "successor",
     GNDO + "succeedingCorporateBody": "successor", GNDO_S + "succeedingCorporateBody": "successor",
@@ -336,6 +353,16 @@ def record_order(members, facts, classes, named_by):
         ds_rank = min(src_rank(ds) for ds in classes[m]) if classes[m] else len(RANK)
         order[m] = (ds_rank, succeeded, pseudonym, code, -len(named_by.get(key(m), ())), id_order(m))
     return order
+
+
+def date_text(text):
+    """The normalised form of a date written as a year, a year and month, a day (ISO) or a German day ("30.10.1998"),
+    for jl.dates.normalised; else None (decision 0038)."""
+    t = text.strip()
+    m = re.fullmatch(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", t)
+    if m:
+        t = f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+    return t if re.fullmatch(r"\d{4}(-\d{2}(-\d{2})?)?", t) else None
 
 
 def wkt_of(facts, rank_of):
@@ -715,9 +742,9 @@ def generate(run):
             if raws:
                 out.add((page, IRI(JLO + f"{kind}Date"), lit(raws[0][0].strip())))
             norm = next((n for n in norms if raws and n[4] == raws[0][4]), norms[0] if norms else None)
-            if norm:
-                dt = {4: "gYear", 7: "gYearMonth", 10: "date"}.get(len(norm[0]), "gYear")
-                out.add((page, IRI(JLO + f"{kind}DateNormalized"), lit(norm[0], XSD + dt)))
+            typed = normalised(norm[0]) if norm else None
+            if typed:
+                out.add((page, IRI(JLO + f"{kind}DateNormalized"), typed))
             places = sorted([v for v in merged_facts.get(kind + "Place", []) if v[3] == "literal" and v[0].strip()], key=order)
             uris = sorted([v for v in merged_facts.get(kind + "PlaceURI", []) if v[3] == "uri"], key=order)
             if places:
@@ -754,6 +781,56 @@ def generate(run):
         other = min((v for v in abstracts if v[1] not in LANGUAGES), key=order, default=None)
         if other:
             out.add((page, IRI(JLO + "hasAbstract"), lit(other[0].strip(), lang=other[1] or None)))
+
+        # works, organisations, subjects (decision 0038): each fact from the first record that has it; a text and its
+        # normalised value, or a text and its IRI, from the same record; several values only of that one record
+        def first_record(field, kind):
+            vals = sorted((v for v in merged_facts.get(field, []) if v[3] == kind and v[0].strip()), key=order)
+            return [v for v in vals if v[4] == vals[0][4]] if vals else []
+
+        def dated(field, text_prop, norm_prop, need_year=False):
+            raws = [v for v in first_record(field, "literal") if not need_year or re.search(r"\d{3,4}", v[0])][:1]
+            if not raws and need_year:
+                raws = sorted((v for v in merged_facts.get(field, []) if v[3] == "literal"
+                               and re.search(r"\d{3,4}", v[0])), key=order)[:1]
+            norms = sorted((v for v in merged_facts.get(field + "N", []) if v[3] == "literal"), key=order)
+            if raws:
+                out.add((page, IRI(text_prop), lit(raws[0][0].strip())))
+            norm = next((n[0] for n in norms if raws and n[4] == raws[0][4]), None)
+            if norm is None and raws:
+                norm = date_text(raws[0][0])
+            if norm is None and norms:
+                norm = norms[0][0]
+            typed = normalised(norm) if norm else None
+            if typed:
+                out.add((page, IRI(norm_prop), typed))
+
+        def place_pair(text_field, uri_field, text_prop, uri_prop):
+            places = first_record(text_field, "literal")[:1]
+            uris = sorted((v for v in merged_facts.get(uri_field, []) if v[3] == "uri"), key=order)
+            if places:
+                out.add((page, IRI(text_prop), lit(places[0][0].strip())))
+            uri = next((u for u in uris if places and u[4] == places[0][4]), uris[0] if uris else None)
+            if uri:
+                out.add((page, IRI(uri_prop), iri(uri[0])))
+
+        if c == "Work":
+            for v in first_record("creator", "uri"):
+                out.add((page, IRI(DCT + "creator"), iri(v[0])))
+            dated("issued", DCT + "issued", JLO + "issuedNormalized")
+            place_pair("pubPlace", "pubPlaceURI", JLO + "placeOfPublication", JLO + "placeOfPublicationURI")
+            for v in first_record("language", "uri") or first_record("language", "literal"):
+                out.add((page, IRI(DCT + "language"), iri(v[0]) if v[3] == "uri" else lit(v[0].strip())))
+            for v in first_record("publisher", "uri"):
+                out.add((page, IRI(DCT + "publisher"), iri(v[0])))
+        if c == "Organization":
+            dated("estab", GNDO_S + "dateOfEstablishment", JLO + "establishmentDateNormalized", need_year=True)
+            dated("term", GNDO_S + "dateOfTermination", JLO + "terminationDateNormalized", need_year=True)
+            for v in first_record("seat", "uri"):
+                out.add((page, IRI(GNDO_S + "placeOfBusiness"), iri(v[0])))
+        if c == "Subject":
+            for v in first_record("broader", "uri"):
+                out.add((page, IRI(SKOS + "broader"), iri(v[0])))
 
         if c == "Place":
             w = wkt_of(merged_facts, rank_of)

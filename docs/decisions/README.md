@@ -43,3 +43,4 @@ consequences. Short is better than complete; link to the documentation that has 
 | [0035](0035-dates-edtf.md) | Normalised dates: `xsd:date`/`gYearMonth`/`gYear` where the value fits, else EDTF (LC datatype); a source's normalised form is stated by the record dataset | 2026-10-25 |
 | [0036](0036-several-places-through-geonames.md) | Places joined through GeoNames may hold several records of one dataset (city and administrative unit); other unions keep one record per dataset | 2026-10-26 |
 | [0037](0037-judged-linksets.md) | Links of a unit below the threshold may be judged one by one (rules, then an LLM); the correct ones form a linkset of their own (methods `rule-based`, `llm-judged`), which joins | 2026-10-26 |
+| [0038](0038-facts-per-class.md) | The facts of an entity page per class (works, organisations, subjects), chosen as for persons: first record by precedence, values that belong together from one record | 2026-10-26 |
