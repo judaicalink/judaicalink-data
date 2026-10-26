@@ -93,7 +93,7 @@ the legacy NLI pages carried over (no exception), splits and merges by compariso
 
 ## Version 2026-10-26
 
-Made from ep 2026-10-19 and the stable versions of 2026-10-26: footprints from the API (decision 0034) with
+Made from ep 2026-10-19 and the stable versions of 2026-10-26: footprints from the API (decision 0034; 2026-10-26-2) with
 record-classes, the authority datasets and linksets of the cascade of 2026-10-26 (without the withdrawn 2014links),
 and ls-footprints-viaf, the VIAF numbers of Footprints judged correct one by one (decision 0037). New rule: places
 joined through a GeoNames key may hold several records of one dataset (decision 0036; 14 such joins, all of

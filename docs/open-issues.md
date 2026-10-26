@@ -53,9 +53,9 @@ solved is in the decisions, the changelogs of the versions and the git history.
 - **Footprints** (decision 0034): versions footprints and record-classes 2026-10-26 (from the API; GeoNames ids
   confirmed by the API for 983 of 1,027 places), the cascade and the authority datasets and linksets of 2026-10-26.
   Link quality (`docs/reports/2026-10-26-link-quality-footprints.md`): GeoNames 100%, joins; VIAF 94% (lower bound
-  87%), below the threshold; every VIAF link judged, 1,185 correct in ls-footprints-viaf (0037). The site pages of
-  works, imprints, copies and persons (for `jl:describedAt`) are not checked yet (only `/footprint/<id>/` occurs in
-  the data; the site answers scripts with a challenge of its firewall). To tell Footprints: the GeoNames ids and the
+  87%), below the threshold; every VIAF link judged, 1,185 correct in ls-footprints-viaf (0037). Site pages (checked
+  2026-10-26 in a browser; the site answers scripts with a challenge of its firewall): works and footprints have one
+  (linked since footprints 2026-10-26-2), imprints, copies, persons and places none. To tell Footprints: the GeoNames ids and the
   digital objects of persons, imprints and copies in the API; the 16 places whose GeoNames id the API gives to
   another place record (second records, e.g. "Wien" and Vienna, "Vilna" and Vilnius), and the places of which it has
   two records (city and administrative unit; joined on the entity pages since 0036); the 140 VIAF numbers judged
