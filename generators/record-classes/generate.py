@@ -26,7 +26,7 @@ yw = load_shared("ls-yivo-wikidata", "yivo_wikidata")
 
 INPUTS = {
     "yivo": "yivo/2020-09-30",
-    "footprints": "footprints/run-20261025T193354Z",
+    "footprints": "footprints/run-20261026T072438Z",
     "viaf": "viaf/2026-10-19",
     "items": "inputs:web-caches/wikidata-yivo-2026-10-12/p8569.tsv",
     "classes": "inputs:web-caches/wikidata-yivo-2026-10-12/classes-top.tsv",
