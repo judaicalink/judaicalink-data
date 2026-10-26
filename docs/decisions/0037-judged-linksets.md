@@ -14,7 +14,8 @@ them right, join nothing, and the Footprints persons get pages of their own besi
 - The threshold stays. For a unit below it, every link may be judged: rules first (the target exists in our
   authority dataset, the classes do not contradict), then an LLM reads the evidence of both sides (names, classes,
   dates, roles, places; the target's linked authority records) and judges the link correct, wrong or undecidable,
-  with one instruction for all links.
+  with one instruction for all links. Where several judges share the work, a second pass judges again the cases they
+  decided differently, with added rules, so that the same rules hold for all links.
 - The links judged correct form a **linkset of their own** (`ls-<dataset>-<target>`, kind `linkset`), with the
   methods `rule-based` and `llm-judged` (new value: automated; the judgements can be wrong and were not checked by
   people). It is our statement (`jl:sameAs`) and joins like the other linksets; it is not measured again by the

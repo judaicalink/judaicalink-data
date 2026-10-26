@@ -5,9 +5,12 @@ below the quality threshold (0032), so ls-viaf leaves them out. This linkset tak
 person to our record of the cluster (jl:sameAs, as ls-viaf) if
 - the cluster is in the dataset viaf (the dump states no successors of merged clusters),
 - the classes do not contradict (jl.linksets: a person and a work or place),
-- and the verdict of the judging (inputs:footprints/viaf-verdicts-2026-10-26: an LLM read the evidence of both
-  sides, made by evidence.py, and judged each link with instruction.md) is "correct"; "wrong" and "undecidable" are
-  left out.
+- and the verdict of the judging is "correct"; "wrong" and "undecidable" are left out. The judging
+  (inputs:footprints/viaf-verdicts-2026-10-26): an LLM read the evidence of both sides (made by evidence.py) and judged
+  each link by instruction.md, ten judges on ten chunks; a second pass judged the links of the first pass's "correct"
+  that fall under rules the judges had applied differently (several persons or a press in the label, institutions
+  and their parts, dates outside the lifetime, a person that mixes persons) again by instruction-review.md; its
+  verdict replaces the first.
 Writes the links and ls-footprints-viaf-decisions.tsv.gz: for every link of footprints the outcome and why (the rule,
 or the verdict with its reason).
 """
@@ -43,7 +46,8 @@ def generate(run):
     clusters = {str(s) for s, p, o in run.triples("viaf") if p == SAME and str(s).startswith(VIAF)}
     kind_of = kinds(run, ["record_classes", "viaf"])
     with open(run.input("verdicts"), encoding="utf-8", newline="") as f:
-        verdicts = {(r["person"], r["viaf"]): (r["verdict"], r["reason"]) for r in csv.DictReader(f, delimiter="\t")}
+        verdicts = {(r["person"], r["viaf"]): (r["verdict"], r["reason"], r["pass"])
+                    for r in csv.DictReader(f, delimiter="\t")}
     out, rows, c = set(), [], Counter()
     for s, n in links:
         v = VIAF + n
@@ -54,8 +58,9 @@ def generate(run):
         elif (s, n) not in verdicts:
             raise GeneratorError(f"no verdict for {s} viaf {n}")
         else:
-            verdict, reason = verdicts[(s, n)]
-            outcome, why = ("linked" if verdict == "correct" else "left out"), f"judged {verdict}: {reason}"
+            verdict, reason, n_pass = verdicts[(s, n)]
+            outcome = "linked" if verdict == "correct" else "left out"
+            why = f"judged {verdict}" + (" in the second pass" if n_pass == "2" else "") + f": {reason}"
             if outcome == "linked":
                 out.add((IRI(s), IRI(JLSAME), IRI(v)))
         c[f"{outcome}: {why.split(':')[0]}"] += 1
