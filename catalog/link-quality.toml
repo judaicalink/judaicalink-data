@@ -245,59 +245,31 @@ report = "docs/reports/2026-10-18-link-quality.md"
 
 [[unit]]
 dataset = "footprints"
-property = "gndo:gndIdentifier"
-source = "gnd"
-accuracy = 0.507
-lower = 0.424
-upper = 0.591
-correct = 68
-wrong = 66
-undecidable = 5
-links = 139
-sample = 139
-report = "docs/reports/2026-10-18-link-quality.md"
-
-[[unit]]
-dataset = "footprints"
 property = "owl:sameAs"
-source = "gnd"
-accuracy = 0.917
-lower = 0.844
-upper = 0.957
-correct = 88
-wrong = 8
-undecidable = 4
-links = 812
+source = "geonames"
+accuracy = 1.000
+lower = 0.960
+upper = 1.000
+correct = 93
+wrong = 0
+undecidable = 7
+links = 983
 sample = 100
-report = "docs/reports/2026-10-18-link-quality.md"
-
-[[unit]]
-dataset = "footprints"
-property = "owl:sameAs"
-source = "lc-names"
-accuracy = 0.000
-lower = 0.000
-upper = 0.793
-correct = 0
-wrong = 1
-undecidable = 0
-links = 1
-sample = 1
-report = "docs/reports/2026-10-18-link-quality.md"
+report = "docs/reports/2026-10-26-link-quality-footprints.md"
 
 [[unit]]
 dataset = "footprints"
 property = "owl:sameAs"
 source = "viaf"
-accuracy = 0.886
-lower = 0.803
-upper = 0.937
-correct = 78
-wrong = 10
-undecidable = 12
-links = 1478
+accuracy = 0.940
+lower = 0.868
+upper = 0.974
+correct = 79
+wrong = 5
+undecidable = 16
+links = 1556
 sample = 100
-report = "docs/reports/2026-10-18-link-quality.md"
+report = "docs/reports/2026-10-26-link-quality-footprints.md"
 
 [[unit]]
 dataset = "gba"
