@@ -1,0 +1,84 @@
+{
+ "slug": "ls-footprints-viaf",
+ "run": "run-20261026T103026Z",
+ "generator": "generators/ls-footprints-viaf/generate.py",
+ "commit": "4147e17e10b2e7d3752aa9e5ce7b10455b38c639",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-10-26T10:30:26Z",
+ "inputs": [
+  {
+   "name": "footprints",
+   "ref": "footprints/2026-10-26/footprints-vocabulary.ttl.gz",
+   "file": "footprints-vocabulary.ttl.gz",
+   "sha256": "692d9631989bbe4c11d04f4bdf645dd91e11b489d9dcad37c5204e70e0214add",
+   "bytes": 1623
+  },
+  {
+   "name": "footprints",
+   "ref": "footprints/2026-10-26/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "c4c2c21ae0a2664267b66b9cf06b863e5202daa16f5175747fbf6accc23faa8b",
+   "bytes": 5533393
+  },
+  {
+   "name": "record_classes",
+   "ref": "record-classes/2026-10-26/record-classes.ttl.gz",
+   "file": "record-classes.ttl.gz",
+   "sha256": "fe59603fca41f2a9f8e012d221e8ecd98573fe909424da66ca8ea41e5d4568a0",
+   "bytes": 51080
+  },
+  {
+   "name": "viaf",
+   "ref": "viaf/2026-10-26/viaf.ttl.gz",
+   "file": "viaf.ttl.gz",
+   "sha256": "c33131702b851856b18f4d970c6ade3d091cae8852cef0b11bcbd6a9078f7b88",
+   "bytes": 22731604
+  },
+  {
+   "name": "verdicts",
+   "ref": "inputs:footprints/viaf-verdicts-2026-10-26/verdicts.tsv",
+   "file": "verdicts.tsv",
+   "sha256": "e40e1b49614eb126eb146596a0e8cf27c71530eb410c808db7ad4bf68f122cd2",
+   "bytes": 189203
+  }
+ ],
+ "input_descriptions": {
+  "inputs:footprints/viaf-verdicts-2026-10-26": {
+   "title": "Footprints: the VIAF numbers of the persons, judged by an LLM (2026-10-26)",
+   "origin": "LLM judging (Claude Opus 5.5, Claude Code agents) of the evidence made by generators/ls-footprints-viaf/evidence.py",
+   "description": "The judgements behind ls-footprints-viaf (decision 0037). evidence.jsonl: for each of the 1,556 VIAF numbers of the persons of footprints 2026-10-26 what both sides say (evidence.py, from the store versions of footprints, record-classes, viaf, gnd and wikidata of 2026-10-26). First pass: ten agents judged the 1,447 links whose cluster is in viaf and not a work, one chunk each, by instruction.md (verdicts-pass1.jsonl: 1,219 correct, 122 wrong, 106 undecidable). Second pass: one agent judged again the 115 links of the first pass's correct that fall under rules the judges had applied differently, by instruction-review.md (review.jsonl: the evidence with the first verdict and why it was reviewed; verdicts-pass2.jsonl: 81 kept, 18 wrong, 16 undecidable). verdicts.tsv: the final verdict per link (person, viaf, verdict, reason, pass): 1,185 correct, 140 wrong, 122 undecidable.",
+   "date": "2026-10-26",
+   "note": "Not published as such: the decisions file of the linkset gives the outcome and reason of every link."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-10-26T10:30:52Z",
+ "seconds": 26.0,
+ "notes": [
+  "1,185 links of 1,556 VIAF numbers of footprints; left out: classes contradict 10, left out: cluster not in the dataset viaf 99, left out: judged undecidable 106, left out: judged undecidable in the second pass 16, left out: judged wrong 122, left out: judged wrong in the second pass 18, linked: judged correct 1,104, linked: judged correct in the second pass 81."
+ ],
+ "files": [
+  {
+   "path": "ls-footprints-viaf-decisions.tsv.gz",
+   "bytes": 53017,
+   "sha256": "4eacc8a8763b5427a0466392ce12968ed534bef48370497ddf90f3fbc3b10c45"
+  },
+  {
+   "path": "ls-footprints-viaf.ttl.gz",
+   "bytes": 11000,
+   "sha256": "61b64b5c2ba49da42472374bf47e2ec5a7734613f55c72d111a092165321218a",
+   "triples": 1185
+  }
+ ],
+ "version": "2026-10-26"
+}
