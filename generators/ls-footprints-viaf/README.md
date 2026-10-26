@@ -17,7 +17,7 @@ quality threshold (0032: 94% on a sample, lower bound 87%), so ls-viaf leaves th
 ## Rules
 
 1. The cluster is in the dataset viaf (99 of 1,556 are not: merged or made after the dump).
-2. The classes do not contradict (`jl.linksets`: a person and a work or a place; 10 clusters are works).
+2. The classes do not contradict: the cluster is no work or place (10 are works), and `jl.linksets` finds no contradiction.
 3. The verdict is "correct".
 
 ## The judging

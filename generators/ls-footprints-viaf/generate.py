@@ -4,7 +4,7 @@ Footprints gives 1,556 of its persons a VIAF number (owl:sameAs in footprints). 
 below the quality threshold (0032), so ls-viaf leaves them out. This linkset takes every one of them and links the
 person to our record of the cluster (jl:sameAs, as ls-viaf) if
 - the cluster is in the dataset viaf (the dump states no successors of merged clusters),
-- the classes do not contradict (jl.linksets: a person and a work or place),
+- the classes do not contradict (the cluster is a work or a place; jl.linksets: a person and a work or place),
 - and the verdict of the judging is "correct"; "wrong" and "undecidable" are left out. The judging
   (inputs:footprints/viaf-verdicts-2026-10-26): an LLM read the evidence of both sides (made by evidence.py) and judged
   each link by instruction.md, ten judges on ten chunks; a second pass judged the links of the first pass's "correct"
@@ -53,7 +53,7 @@ def generate(run):
         v = VIAF + n
         if v not in clusters:
             outcome, why = "left out", "cluster not in the dataset viaf"
-        elif contradict(kind_of.get(s, set()), kind_of.get(v, set())):
+        elif kind_of.get(v) and kind_of[v] <= {"Work", "Place"} or contradict(kind_of.get(s, set()), kind_of.get(v, set())):
             outcome, why = "left out", "classes contradict"
         elif (s, n) not in verdicts:
             raise GeneratorError(f"no verdict for {s} viaf {n}")
