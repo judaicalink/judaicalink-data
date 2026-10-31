@@ -277,6 +277,9 @@ DATASET = {
     "several_per_entity": TEXT,   # why several records of the dataset may belong to one entity (0032)
 }
 REQUIRED = ("slug", "title", "author", "license")
+# pictures of an entry (decision 0040): files in catalog/pictures/<slug>/, small images the sites copy
+PICTURE_TYPES = {".png", ".jpg", ".jpeg", ".svg", ".webp"}
+PICTURE_MAX_BYTES = 500_000
 
 
 def check_list_of_tables(r, where, value, fields, required=()):
@@ -298,6 +301,17 @@ def check_entry(r, e, slugs, decisions):
 
     if "license" in d:
         check_table(r, f"{where} license", d["license"], LICENSE, ("name",))
+    pic = d.get("picture")
+    if isinstance(pic, str):
+        path = e.path.parent / pic
+        if not pic.startswith(f"pictures/{e.name}/") or ".." in pic.split("/"):
+            r.error(where, f"picture: a file in pictures/{e.name}/, relative to catalog/ (decision 0040)")
+        elif not path.is_file():
+            r.error(where, f"picture: {pic} does not exist")
+        elif path.suffix.lower() not in PICTURE_TYPES:
+            r.error(where, f"picture: {pic} is not one of {', '.join(sorted(PICTURE_TYPES))}")
+        elif path.stat().st_size > PICTURE_MAX_BYTES:
+            r.warn(where, f"picture: {pic} has {path.stat().st_size:,} bytes (more than {PICTURE_MAX_BYTES:,})")
     if isinstance(d.get("identity"), dict):
         from . import identifiers
         for prop, sources in d["identity"].items():

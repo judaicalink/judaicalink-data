@@ -23,6 +23,12 @@ The entry format is defined in [0013](../docs/decisions/0013-catalogue-format.md
 changelog); locations are not part of the entries ([0014](../docs/decisions/0014-locations-dataindex-finder.md)).
 `./jl check-catalog` (repository root) checks all entries (until 2026-10-11: `catalog.py check`).
 
+## Pictures
+
+[`pictures/<slug>/`](pictures/) holds the pictures of an entry; `picture` names the logo by its path relative to this
+folder ([0040](../docs/decisions/0040-pictures-of-entries.md)). The sites copy them with the entries (`jl sync-site`).
+The logos belong to their institutions; they are here only to name the source on its entry.
+
 ## Agents
 
 [`agents.toml`](agents.toml) is the registry of the persons (numbered, never reused) and software agents that

@@ -39,7 +39,7 @@ is ready; Frankfurt gets the catalogue and its documentation and adapts their sy
 | `website` | the source of the data: the institution, project, website, API or dump location that owns or provides it (details in the body) |
 | `links` | list of related links without predefined purpose: `[[links]]` with `url`, `label` (e.g. the online source, a generator, a paper, related support data) |
 | `example` | an example entity URI |
-| `picture` | logo of the source |
+| `picture` | logo of the source: a file in `catalog/pictures/<slug>/`, the path relative to `catalog/` ([0040](0040-pictures-of-entries.md)) |
 | `kind` | `records`, `complement`, `linkset`, `entity-pages`, `ontology`, `vocabulary`, `support` (definitions: `catalog/vocabulary.toml`, 0018) |
 | `method` | how the data was made, list: `curated`, `scraped`, `converted`, `deterministic`, `rule-based`, `lookup`, `statistical`, `ai-generated` |
 | `namespaces` | URI namespaces the dataset coins, list, relative to `http://data.judaicalink.org/data/` (sub-paths allowed: `nli/record`) |

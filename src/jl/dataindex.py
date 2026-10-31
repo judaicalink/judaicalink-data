@@ -13,6 +13,7 @@ they are named explicitly and never removes any.
 
 import datetime
 import json
+import shutil
 import time
 import tomllib
 import urllib.error
@@ -122,6 +123,15 @@ def sync(site, index_path=INDEX, add=(), out=print):
         if old != new:
             target.write_text(new, encoding="utf-8")
             out(f"{slug}: {'added' if old is None else 'updated'}")
+        # the pictures of the entry (decision 0040), at /catalog/pictures/<slug>/ of the site
+        pictures = CATALOG / "pictures" / slug
+        if pictures.is_dir():
+            dest = site / "static" / "catalog" / "pictures" / slug
+            dest.mkdir(parents=True, exist_ok=True)
+            for f in sorted(pictures.iterdir()):
+                if f.is_file() and (not (dest / f.name).exists() or (dest / f.name).read_bytes() != f.read_bytes()):
+                    shutil.copyfile(f, dest / f.name)
+                    out(f"{slug}: picture {f.name}")
     missing = sorted(set(cat.entries) - present - set(add))
     if missing:
         out(f"not in the site (add with --add): {', '.join(missing)}")
