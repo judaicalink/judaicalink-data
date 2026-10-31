@@ -92,9 +92,9 @@ solved is in the decisions, the changelogs of the versions and the git history.
   2014links and interlinks.
 - **stolpersteine:** the Wikipedia lists now hold about 382 stones (we have 223) with address, coordinates and date;
   first the licence (Wikipedia CC BY-SA, our entry CC0; or base it on Wikidata, CC0).
-- **occupations:** never a version; records-normalized uses 484 occupation IRIs that nothing describes (the portal
-  links them from every person, and they answer 404); licence in
-  the entry CC BY 4.0, the rest CC0.
+- **occupations** (0039, version 2026-10-31): records-normalized still matches literals to the older
+  `data/occupation/` IRIs; whether it should match them to the GND headings instead. The showcase Occupations could
+  read the dataset instead of the GND dump; improvements for it (female forms, English names) go into `occupations`.
 - **jre:** the wiki's API is open; licence not stated.
 - **nrwbibdjg** (2026-10-18) reaches about 2,250 of the about 7,500 titles (search by GND number only); two GND
   numbers look wrong in the source (121918424, 128477008).
@@ -132,8 +132,6 @@ solved is in the decisions, the changelogs of the versions and the git history.
 
 - **Catalogue, open questions** (0013): DOIs for versions (would need a location that promises permanence, e.g.
   Zenodo; 0019); redirects for the paths of the old `archive.judaicalink.org/dumps/` (deleted 2026-10-16).
-- **Logos in descriptions:** djh, rujen, rujen-translation and yivo show logos by paths relative to
-  web.judaicalink.org (`/img/…`), which are missing wherever else the catalogue is shown (the portal): absolute URLs.
 - **Site:** show the changelog and the derived contributors on the dataset pages (0013); the finder page
   `/dataindex/`; deploy (the state of 2026-10-16 is built, not deployed).
 - **Process details:** which versions each dumps location offers; when to prune historical versions (0019).
@@ -155,9 +153,8 @@ data.judaicalink.org already forwards every path), the search indexes made from 
 Left:
 
 - Merge and deploy the branch; what is left before and after is in the review notes.
-- BEACON: `generate_beacon` queries the `http` form of gndo and finds 6,112 of about 63,000 persons; its `#TARGET` is
-  `https://data.judaicalink.org/data/gnd/{ID}`, so DNB EntityFacts spreads the `https` form of our IRIs. Fix on the
-  branch, then ask the DNB to take the `http` target.
+- BEACON: fixed on the branch (from the records of `gnd`, 61,634 persons; target
+  `http://data.judaicalink.org/data/gnd/{ID}`); once deployed, ask the DNB to take the `http` target for EntityFacts.
 - Files: the dataset pages link them at `LABS_DUMPS_WEBROOT`; stable access URLs on data.judaicalink.org (`/dumps/`
   is served there) once Frankfurt has copied the store (0014).
 - Compact Memory: copy the bundle `cm_meta_2026-10-05-v2` to Frankfurt for `load_cm_fulltext`.
