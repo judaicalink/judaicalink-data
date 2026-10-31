@@ -60,6 +60,11 @@ replaces 287 (8), freimann 587 (10), ubffm-authors 33,161 (223), previous 35,301
 replaced; 9 cited numbers deleted; 1,422 cited numbers are in neither the dump nor the redirect file (mostly from
 ubffm-persons, presumably former undifferentiated name records). About four minutes.
 
+## Version 2026-10-31
+
+As 2026-10-26, plus the occupations: 50,944 records with 100,079 occupations, 2,132 GND subject headings
+(`jl:occupationURI`, `gndo:professionOrOccupation`); 2,477,347 triples.
+
 ## Reproduction
 
 **Reproducible** from the inputs. A newer dump, or a new cascade, is a new input and gives a new version
