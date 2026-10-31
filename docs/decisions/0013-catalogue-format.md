@@ -68,6 +68,7 @@ enters the catalogue only when it is added explicitly; experimental runs are not
 | ~~`graph`~~ | *removed 2026-10-11 ([0018](0018-generator-framework.md)): every version is loaded into the graph of its dataset IRI; the former graph names of the legacy versions are not kept* |
 | `description` | short remark on this version |
 | `withdrawn` | reason, if this version should not be used (known error) |
+| `pruned` | date the version was taken off the public dumps locations; its files stay listed ([0041](0041-pruning.md)) |
 | `[[versions.files]]` | the files of this version: `path` (**required**, relative to `<slug>/<version>/`), optional `description` (overrides `[files]`), `bytes`, `sha256`, `triples` |
 
 **Stable pointer.** `stable` names the recommended version. Versions listed above it are previews (newer, not

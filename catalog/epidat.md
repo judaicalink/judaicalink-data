@@ -43,6 +43,7 @@ description = "Made from the epidat repository as 2026-10-16; the cemetery is th
 
 [[versions]]
 version = "2026-10-16"
+pruned = "2026-10-31"
 issued = "2026-10-16"
 author = "Kai Eckert"
 commit = "b57d381e790de0f9ccfb6feabfbc775b62afe03b"
@@ -95,6 +96,11 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 2183
   sha256 = "100ec89226d9b71fecab2386fae4cdd2b9f2078f2564e20e469ef564db747141"
   triples = 60
+
+[[changelog]]
+date = "2026-10-31"
+author = "Kai Eckert"
+text = "Pruned the version 2026-10-16 (decision 0041): taken off the public dumps locations; the catalogue keeps its files and checksums."
 
 [[changelog]]
 date = "2026-10-18"

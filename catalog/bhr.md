@@ -61,6 +61,7 @@ description = "Made from the portal harvest of 2026-10-16; the vocabulary links 
 
 [[versions]]
 version = "2026-10-16"
+pruned = "2026-10-31"
 issued = "2026-10-16"
 author = "Kai Eckert"
 commit = "3d369ecc9c1c074d22784a88bd22a09e4bb0a6de"
@@ -135,6 +136,11 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 2646
   sha256 = "38843d50dc0f7f3e2281f466b21643d4990121fa64e9f9699fb042086e413090"
   triples = 83
+
+[[changelog]]
+date = "2026-10-31"
+author = "Kai Eckert"
+text = "Pruned the version 2026-10-16 (decision 0041): taken off the public dumps locations; the catalogue keeps its files and checksums."
 
 [[changelog]]
 date = "2026-10-18"

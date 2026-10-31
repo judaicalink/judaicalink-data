@@ -40,6 +40,7 @@ description = "The ontology as of judaicalink-ontology 918d57c: the common layer
 
 [[versions]]
 version = "2026-10-17"
+pruned = "2026-10-31"
 issued = "2026-10-17"
 author = "Kai Eckert"
 commit = "99431d119c508fdb07ca1a28aa378ba254ff8f53"
@@ -59,6 +60,7 @@ description = "The ontology as of judaicalink-ontology d7abf5f: the common layer
 
 [[versions]]
 version = "2026-10-12"
+pruned = "2026-10-31"
 issued = "2026-10-12"
 author = "Kai Eckert"
 commit = "cc6b596ee5b2945858e78cc31841de925d903604"
@@ -92,6 +94,11 @@ description = "The ontology as of judaicalink-ontology b26c961, as served on ont
   bytes = 1710
   sha256 = "21762f0fca59f12e4326358643be3cac98db973d49409ac306143e31138561c8"
   triples = 57
+
+[[changelog]]
+date = "2026-10-31"
+author = "Kai Eckert"
+text = "Pruned the versions 2026-10-12 and 2026-10-17 (decision 0041): taken off the public dumps locations; the catalogue keeps their files and checksums."
 
 [[changelog]]
 date = "2026-10-18"

@@ -70,12 +70,15 @@ class Entry:
         return [x for x in c if isinstance(x, dict)] if isinstance(c, list) else []
 
     def status(self, vid):
-        """stable, preview (listed above stable, or no stable at all), older (below stable), withdrawn."""
+        """stable, preview (listed above stable, or no stable at all), older (below stable), withdrawn, pruned (taken off
+        the public dumps locations, decision 0041)."""
         v = self.version(vid)
         if v is None:
             return None
         if "withdrawn" in v:
             return "withdrawn"
+        if "pruned" in v:
+            return "pruned"
         if self.stable is None:
             return "preview"
         if vid == self.stable:
@@ -254,7 +257,8 @@ VERSION = {"version": (lambda v: isinstance(v, str) and SLUG.match(v),
                        "a slug (lower-case letters, digits, '-', '.')"),
            "issued": DATE, "author": AUTHOR,
            "commit": (lambda v: isinstance(v, str) and re.match(r"^[0-9a-f]{7,40}$", v), "a commit hash"),
-           "description": TEXT, "withdrawn": TEXT, "files": (lambda v: True, "")}
+           "description": TEXT, "withdrawn": TEXT, "files": (lambda v: True, ""),
+           "pruned": DATE}   # the date the version was taken off the public dumps locations (0041)
 
 # Dataset fields; tables and lists of tables are checked separately.
 DATASET = {
@@ -399,10 +403,13 @@ def sha256(path):
     return h.hexdigest()
 
 
-def check_local_files(r, e, dumps, complete=False):
+def check_local_files(r, e, dumps, complete=False, pruned=False):
     """Compare bytes and sha256 of each version file with local copies under the dump directories;
-    with complete, a file missing from a dump directory is an error."""
+    with complete, a file missing from a dump directory is an error. The dumps hold the versions that are not
+    pruned; with pruned, the dumps are the pruned area and hold the pruned versions (decision 0041)."""
     for v in e.versions():
+        if bool(v.get("pruned")) != pruned:
+            continue
         vid = v.get("version")
         files = v.get("files", [])
         if not isinstance(vid, str) or not isinstance(files, list):
@@ -485,7 +492,7 @@ def check_agents(r, cat, registry):
             r.error(registry.path.name, f"'{name}' (named in {', '.join(slugs)}) is not registered")
 
 
-def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
+def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None, pruned_area=None):
     """Check all entries (format of 0013, reserved names of 0018), the agents registry; with dumps, the local
     copies. Returns (entries, errors, warnings)."""
     from .agents import Registry
@@ -500,12 +507,14 @@ def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
         check_corrections(r, e, dumps)
         if dumps:
             check_local_files(r, e, dumps, complete)
+        if pruned_area:
+            check_local_files(r, e, [pruned_area], complete, pruned=True)
     check_agents(r, cat, registry)
     check_vocabulary(r, cat)
     check_version_inputs(r, cat)
     if dumps and complete:
         named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
-                 for f in v.get("files", []) if isinstance(f, dict)}
+                 if not v.get("pruned") for f in v.get("files", []) if isinstance(f, dict)}
         for root in dumps:
             for p in sorted(root.rglob("*")):
                 if p.is_file() and p.relative_to(root).as_posix() not in named:

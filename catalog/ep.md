@@ -56,6 +56,7 @@ description = "As 2026-10-26-2, with the GND occupations of gnd 2026-10-31 (99,6
 
 [[versions]]
 version = "2026-10-26-2"
+pruned = "2026-10-31"
 issued = "2026-10-26"
 author = "Kai Eckert"
 commit = "06ce8eeadb1e57d9d03f38e07eeebf38861b1534"
@@ -81,6 +82,7 @@ description = "As 2026-10-26, with the facts of works, organisations and subject
 
 [[versions]]
 version = "2026-10-26"
+pruned = "2026-10-31"
 issued = "2026-10-26"
 author = "Kai Eckert"
 commit = "09d07e5a0360b0588a53a7af775fbed2592ad80f"
@@ -106,6 +108,7 @@ description = "Made from ep 2026-10-19 and the stable versions of 2026-10-26 (fo
 
 [[versions]]
 version = "2026-10-19"
+pruned = "2026-10-31"
 issued = "2026-10-19"
 author = "Kai Eckert"
 commit = "396294c9a26ac8c730cbb6a709df2d2a3e49e18a"
@@ -131,6 +134,7 @@ description = "Made from ep 2026-10-12 and the stable versions of 2026-10-19, id
 
 [[versions]]
 version = "2026-10-12"
+pruned = "2026-10-31"
 issued = "2026-10-12"
 author = "Kai Eckert"
 commit = "75c5921ff58df3ecdb3602144958f703b40e4cff"
@@ -194,6 +198,11 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 3193
   sha256 = "5536fb2339d73221953443aae454102fecba25b31c09bd09b4e626ce0008e5ef"
   triples = 124
+
+[[changelog]]
+date = "2026-10-31"
+author = "Kai Eckert"
+text = "Pruned the versions 2026-10-12, 2026-10-19, 2026-10-26 and 2026-10-26-2 (decision 0041): taken off the public dumps locations; the catalogue keeps their files and checksums."
 
 [[changelog]]
 date = "2026-10-31"

@@ -50,6 +50,7 @@ description = "Made in the cascade of the authority datasets of 2026-10-26 (deci
 
 [[versions]]
 version = "2026-10-19"
+pruned = "2026-10-31"
 issued = "2026-10-19"
 author = "Kai Eckert"
 commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
@@ -95,6 +96,11 @@ description = "The GeoNames features JudaicaLink uses, from the GeoNames dump of
   bytes = 3338
   sha256 = "a0113ca9de471be0b7eaf835b5f2061a3a0af965d7eb51fbcb98892edb4ad708"
   triples = 159
+
+[[changelog]]
+date = "2026-10-31"
+author = "Kai Eckert"
+text = "Pruned the version 2026-10-19 (decision 0041): taken off the public dumps locations; the catalogue keeps its files and checksums."
 
 [[changelog]]
 date = "2026-10-26"
