@@ -1,23 +1,39 @@
-# occupations: generator history
+# occupations: generator
 
-Occupations as concepts, linked from the occupation literals of the graph, by Benjamin Schnabel (2025-12, for the
-FID portal). The catalogue has no version: no dump of it is known.
+The occupations of JudaicaLink as concepts (kind vocabulary): the GND subject headings that `gnd` names as occupations,
+with their broader headings, and the occupation IRIs of the older datasets, linked to them. All statements about
+occupations are here; the datasets only link to them (decided 2026-10-31).
 
 ## History
 
 - 2025-12-16: notebook `occupation_selector.ipynb` (workflow repository).
 - 2025-12-18/19: `occupations/scripts/build.py` on Benjamin Schnabel's generator framework (`generator/`), commits
   `cba4b0e` … `0cfd7da`. `original/` has the build script, its documentation and the framework modules it uses.
+- 2026-10-31 (Kai Eckert): `generate.py` on the framework, a new design: the data of 2025 was never found, and its
+  build made lowercase IRIs (`occupation/rabbiner`) from the literals, which did not describe the IRIs in use
+  (`occupation/Rabbiner`).
 
 ## Inputs
 
-The union graph of a JudaicaLink SPARQL endpoint (all `jl:occupation` literals), the entity-page graph, DBpedia and
-GND SPARQL.
+- `inputs:gnd/lds-2026-02-17`: the complete GND, for the names, broader terms and subject categories of the headings.
+- the stable versions of `gnd` (the headings named as occupations) and of records-normalized, bhr, sosy and dbpedia
+  (the older occupation IRIs).
+
+## Rules
+
+- GND headings: those `gnd` states as `jl:occupationURI`, the ones the older IRIs are linked to, and all their broader
+  headings (general, generic, instantial and partitive broader terms of the GND); `skos:Concept`, the preferred name as
+  `skos:prefLabel`, the variant names as `skos:altLabel` (German), `skos:broader`, `gndo:gndSubjectCategory`.
+- Older IRIs (`data/occupation/<name>`): `skos:Concept`, the name from the IRI as `skos:prefLabel`, `skos:exactMatch`
+  the GND heading. English names (dbpedia-persons) by the table `NAMES` in `generate.py`, chosen by hand: matched by
+  name they find false friends (the GND's "Artist" is a circus or variety artiste; its "Rabbi" are the sages of the
+  Talmudic period, while bhr and DBpedia mean rabbis of all times: Rabbiner). German names (gnd-persons): the heading
+  of that preferred name, else the one heading with that variant name (older spellings: "Lexikograph",
+  "Wallfahrer"), preferring headings used as occupations.
 
 ## Reproduction
 
-**Partly**: needs the whole graph loaded in an endpoint and the external endpoints. The URIs are coined under
-`data/occupation/`, while the catalogue entry says `namespaces = ["occupations"]` (to be corrected).
+**Reproducible** from the inputs. About two minutes (one pass over the GND dump).
 
 ## Original files
 
