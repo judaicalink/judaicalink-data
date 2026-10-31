@@ -91,6 +91,11 @@ key normalisation (DBpedia titles, hyphenated ISNIs) and the use of `prov:wasDer
 errors of the port, corrected before the version. Compared with `ep-2026-10-06` (first made on 2026-10-12, before the YIVO and epidat records): 295,384 instead of 294,129 pages,
 the legacy NLI pages carried over (no exception), splits and merges by comparison instead of growing clusters.
 
+## Version 2026-10-31
+
+As 2026-10-26-2 (the same entities, IRIs and history), with the GND occupations of gnd 2026-10-31 (decision 0039):
+99,607 `jl:occupationURI` with a GND subject heading on 50,468 pages; 58,288 pages have an occupation IRI.
+
 ## Version 2026-10-26-2
 
 As 2026-10-26 (the same entities, IRIs and history), with the facts of the other classes (decision 0038): works
