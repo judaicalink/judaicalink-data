@@ -6,7 +6,7 @@ date = "2021-01-22"
 example = "http://data.judaicalink.org/data/ep/1000037"
 namespaces = ["ep"]
 aliases = ["/datasets/ep-supp/"]
-stable = "2026-10-26-2"
+stable = "2026-10-31"
 kind = "entity-pages"
 method = ["rule-based"]
 
@@ -28,6 +28,31 @@ path = "generators/ep"
 "subcategorization.ttl.gz" = "Subcategorization dataset for local Judaicalink resources."
 "ep.ttl.gz" = "The entity pages: class, names, life dates and places, occupations, descriptions, coordinates, the records they represent (jl:represents) and their external identifiers (owl:sameAs)."
 "ep-history.ttl.gz" = "IRIs that are no longer entity pages, one statement per event with its date: merged (jl:mergedInto), split (jl:splitInto), retired (jl:retiredDate); the history of earlier versions unchanged."
+
+[[versions]]
+version = "2026-10-31"
+issued = "2026-10-31"
+author = "Kai Eckert"
+commit = "da00df1614a974a79a2cf26d4c788c4d4c63af7f"
+description = "As 2026-10-26-2, with the GND occupations of gnd 2026-10-31 (99,607 on 50,468 pages)."
+
+  [[versions.files]]
+  path = "ep-history.ttl.gz"
+  bytes = 4417177
+  sha256 = "258fe03a6f3b435c58b6b92d834a156452268f0c6de6cabf2909aed140ea417a"
+  triples = 1502918
+
+  [[versions.files]]
+  path = "ep.ttl.gz"
+  bytes = 55523249
+  sha256 = "f7e9e10b015c3ffd22167e71f40722f39336584d0433acd4a41dc68c31e73ec3"
+  triples = 4433806
+
+  [[versions.files]]
+  path = "ep-meta.ttl.gz"
+  bytes = 3714
+  sha256 = "7ae1fc3dc9d3f89f7aea5c7410a1f971d491586da4e69ad2a9b2421d5aa34e3a"
+  triples = 176
 
 [[versions]]
 version = "2026-10-26-2"
@@ -169,6 +194,12 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 3193
   sha256 = "5536fb2339d73221953443aae454102fecba25b31c09bd09b4e626ce0008e5ef"
   triples = 124
+
+[[changelog]]
+date = "2026-10-31"
+version = "2026-10-31"
+author = "Kai Eckert"
+text = "The GND occupations of the records (gnd 2026-10-31, decision 0039); the entities, IRIs and history are those of 2026-10-26-2."
 
 [[changelog]]
 date = "2026-10-26"
