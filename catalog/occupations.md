@@ -8,6 +8,7 @@ namespaces = ["occupation"]
 kind = "vocabulary"
 method = ["converted", "rule-based", "curated"]
 inputs = ["gnd", "records-normalized", "bhr", "sosy", "dbpedia"]
+stable = "2026-10-31"
 
 [license]
 name = "CC0"
@@ -18,15 +19,35 @@ image = "https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.
 repo = "https://github.com/judaicalink/judaicalink-data"
 path = "generators/occupations"
 
+[[versions]]
+version = "2026-10-31"
+issued = "2026-10-31"
+author = "Kai Eckert"
+commit = "e6cb5ca8e1accf22ee7de48fd456fb56042e99e6"
+description = "The 2,535 GND subject headings of the occupations of gnd and their broader headings; the 484 older occupation IRIs, 482 linked to their heading."
+
+  [[versions.files]]
+  path = "occupations.ttl.gz"
+  bytes = 87268
+  sha256 = "ff4350dc706d166346a99a055d7dca939562445abc31adf26fc6f78c502954ad"
+  triples = 16279
+
+  [[versions.files]]
+  path = "occupations-meta.ttl.gz"
+  bytes = 2335
+  sha256 = "5e9f3091bfab79c921a7aba58a18053f84eddee959738e9994b3bb3ab450a699"
+  triples = 80
+
+[[changelog]]
+date = "2026-10-31"
+version = "2026-10-31"
+author = "Kai Eckert"
+text = "First version, from a new generator (decision 0039): the GND subject headings that gnd names as occupations, and the occupation IRIs of the older datasets, which nothing described, linked to them. CC0 like the rest of the data."
+
 [[changelog]]
 date = "2025-12-18"
 author = "Benjamin Schnabel"
 text = "Entry and generator added (judaicalink-generators); no dump of this dataset was found."
-
-[[changelog]]
-date = "2026-10-31"
-author = "Kai Eckert"
-text = "A new generator: the occupations the data uses, as concepts. The GND subject headings that gnd names as occupations, and the occupation IRIs of the older datasets, which nothing described, linked to them. CC0 like the rest of the data."
 +++
 
 The occupations of JudaicaLink as concepts. All statements about occupations are in this dataset; the other datasets
