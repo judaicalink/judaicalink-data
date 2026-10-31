@@ -156,7 +156,8 @@ Left:
 - BEACON: fixed on the branch (from the records of `gnd`, 61,634 persons; target
   `http://data.judaicalink.org/data/gnd/{ID}`); once deployed, ask the DNB to take the `http` target for EntityFacts.
 - Files: the dataset pages link them at `LABS_DUMPS_WEBROOT`; stable access URLs on data.judaicalink.org (`/dumps/`
-  is served there) once Frankfurt has copied the store (0014).
+  is served there) once Frankfurt has copied the store (0014). The store as one file for them:
+  <https://archive.judaicalink.org/bundles/judaicalink-store-2026-10-31.zip> (with a `.sha256`).
 - Compact Memory: copy the bundle `cm_meta_2026-10-05-v2` to Frankfurt for `load_cm_fulltext`.
 
 ## Other threads
