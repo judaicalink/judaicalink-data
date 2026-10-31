@@ -41,7 +41,9 @@ not in the GND any more). A record is included if any row names it; the data has
 Each record `data/gnd/<n>` keeps the GND's statements (IRIs in canonical form, `docs/iri-forms.md`) and gets
 `owl:sameAs <https://d-nb.info/gnd/<n>>`, the classes the entity pages know (`foaf:Person`, `foaf:Organization`,
 `jl:Place`, `jl:Work`), `skos:prefLabel`/`altLabel`, `jl:birthDate`/`deathDate`, `jl:birthLocation(URI)`/
-`deathLocation(URI)` (the name of the GND place), `jl:occupation` (the name of the GND subject heading), the geometry
+`deathLocation(URI)` (the name of the GND place), `jl:occupationURI` (the GND subject heading; the GND lists the occupations of a person in an
+`rdf:Seq`, whose members become statements of the record; the names of the headings and their links are in the
+dataset `occupations`, not here), the geometry
 as `geosparql:asWKT`, and the links of EntityFacts (without the GND itself, without our own IRIs, which
 EntityFacts takes from our BEACON, and without links whose identifier is an unfilled `[ID]`). Left out: the description document (`…/about`: licence, dates of change), the
 qualified relations (`gndo:hasRelation`, blank nodes) and the qualified variant names (blank nodes).

@@ -17,7 +17,8 @@
 2. The data (gnd.ttl.gz): every current record named by the list, read from the GND dump in one pass. Each record
    data/gnd/<n> keeps the GND's statements (subject replaced by the record IRI, IRIs in canonical form, jl.iris) and
    gets owl:sameAs <https://d-nb.info/gnd/<n>>, the standard and JudaicaLink terms the other datasets use (classes,
-   skos:prefLabel/altLabel, jl:birthDate/deathDate, jl:birthLocation(URI)/deathLocation(URI), jl:occupation), the
+   skos:prefLabel/altLabel, jl:birthDate/deathDate, jl:birthLocation(URI)/deathLocation(URI), jl:occupationURI: the GND lists
+   occupations in an rdf:Seq; their names and links are in the dataset occupations), the
    geometry as geo:asWKT, and the links of EntityFacts to other authority files. Left out: the description document
    (…/about, licence, dates of change), the qualified relations (gndo:hasRelation, blank nodes) and the GND's
    owl:sameAs and dnb:deprecatedUri to its own former numbers, which become:
@@ -63,6 +64,7 @@ GNDO = "https://d-nb.info/standards/elementset/gnd#"
 DNB = "https://d-nb.info/standards/elementset/dnb#"
 JLO, SKOS, OWL, FOAF, DCT, GEO = (PREFIXES[p] for p in ("jl", "skos", "owl", "foaf", "dcterms", "geosparql"))
 SAME, REPLACED = OWL + "sameAs", DCT + "isReplacedBy"
+RDF = RDF_TYPE[:-len("type")]
 
 NUMBER = r"[0-9]+[0-9X-]*"
 GND_IRI = re.compile(r"^https?://d-nb\.info/gnd/(" + NUMBER + r")(?:/about.*)?/?$", re.I)
@@ -71,7 +73,7 @@ SUBJECT = re.compile(r"^<https://d-nb\.info/gnd/(" + NUMBER + r")(?:/about)?>")
 DEPRECATED = re.compile(r'dnb#deprecatedUri> "https://d-nb\.info/gnd/(' + NUMBER + ')"')
 FORMER = re.compile(r'owl#sameAs> <https://d-nb\.info/gnd/(' + NUMBER + ')>')
 NAME_OF = re.compile(r'<https://d-nb\.info/gnd/(' + NUMBER + r')> <https://d-nb\.info/standards/elementset/gnd#'
-                     r'preferredNameFor(?:ThePlaceOrGeographicName|TheSubjectHeading)> "((?:[^"\\]|\\.)*)"')
+                     r'preferredNameForThePlaceOrGeographicName> "((?:[^"\\]|\\.)*)"')
 
 # GND classes and the classes the entity pages know (ep CLASS_OF_TYPE); the GND's own classes stay as given
 PERSON = {"DifferentiatedPerson", "UndifferentiatedPerson", "Pseudonym", "RoyalOrMemberOfARoyalHouse",
@@ -190,11 +192,11 @@ def generate(run):
     run.log(f"listed {len(listed):,} numbers; {sum(1 for n in listed if n in to):,} redirected, "
             f"{sum(1 for n in listed if n in deleted):,} deleted")
 
-    # the dump: select the records, keep their lines; names of places and subject headings for the literals
+    # the dump: select the records, keep their lines; names of places for the literals
     kept, names, former_of, area = {}, {}, defaultdict(set), {}
     for n, lines in blocks(run.input("lds")):
         text = "".join(lines)
-        if "preferredNameForThePlaceOrGeographicName" in text or "preferredNameForTheSubjectHeading" in text:
+        if "preferredNameForThePlaceOrGeographicName" in text:
             for m in NAME_OF.finditer(text):
                 names[number(m.group(1))] = unescape_string(m.group(2))
         formers = set(DEPRECATED.findall(text)) | set(FORMER.findall(text))
@@ -222,7 +224,19 @@ def generate(run):
         rec = IRI(JL + "gnd/" + n)
         rec_of[n] = rec
         t.add((rec, IRI(SAME), IRI(GND + n)))
-        for s, p, o in parse_ntriples(kept[n].splitlines()):
+        triples = list(parse_ntriples(kept[n].splitlines()))
+        # the GND gives the occupations as a list (an rdf:Seq, a blank node): its members as statements of the record
+        members = defaultdict(list)
+        for s, p, o in triples:
+            if isinstance(s, BNode) and p.startswith(RDF + "_") and p[len(RDF) + 1:].isdigit():
+                members[s].append((int(p[len(RDF) + 1:]), o))
+        expanded = []
+        for s, p, o in triples:
+            if isinstance(o, BNode) and o in members:
+                expanded += [(s, p, m) for _i, m in sorted(members[o])]
+            else:
+                expanded.append((s, p, o))
+        for s, p, o in dict.fromkeys(expanded):
             if not s.startswith(GND) or s.endswith("/about") or p in LEFT_OUT:
                 if p == GEO + "hasGeometry":
                     continue
@@ -256,9 +270,7 @@ def generate(run):
                 if name:
                     t.add((rec, IRI(JLO + which + "Location"), Literal(name)))
             elif local == "professionOrOccupation" and not isinstance(o, Literal):
-                name = names.get(gnd_number(o))
-                if name:
-                    t.add((rec, IRI(JLO + "occupation"), Literal(name)))
+                t.add((rec, IRI(JLO + "occupationURI"), o))   # its names and links: the dataset occupations
         for x in links.get(n, []):
             if run.params["drop_placeholders"] and "[ID]" in x:
                 placeholders[x] += 1   # a BEACON link template, the same IRI for every record (e.g. epidat)
