@@ -56,8 +56,6 @@ solved is in the decisions, the changelogs of the versions and the git history.
   <geometry>`, `<geometry> a geo:Geometry ; geo:asWKT "POINT(…)"^^geo:wktLiteral`, the geometry IRI coined in the
   complement's namespace from the place IRI (e.g. `data/geometries/geonames/281184`), generated from all stable
   datasets; then test GeoSPARQL queries (distance, within) in Fuseki and QLever on the platform.
-- In Frankfurt, ontology term IRIs do not resolve (`data.judaicalink.org/ontology/<term>` → a 404 page): suggest a
-  redirect to ontology.judaicalink.org.
 - The catalogue names ontology version 2025-11-27 (in `lokal/dumps-additions/ontology/2025-11-27/`, not published);
   `ontology-complements` redefines six terms of it (`belongsToIssue`, `belongsToJournal`, `birthLocationURI`,
   `deathLocationURI`, `gitCommit`, `gitWeb`): rebuild it and load both in an endpoint (with the platform, 0016).
@@ -94,7 +92,8 @@ solved is in the decisions, the changelogs of the versions and the git history.
   2014links and interlinks.
 - **stolpersteine:** the Wikipedia lists now hold about 382 stones (we have 223) with address, coordinates and date;
   first the licence (Wikipedia CC BY-SA, our entry CC0; or base it on Wikidata, CC0).
-- **occupations:** never a version; records-normalized uses 484 occupation IRIs that nothing describes; licence in
+- **occupations:** never a version; records-normalized uses 484 occupation IRIs that nothing describes (the portal
+  links them from every person, and they answer 404); licence in
   the entry CC BY 4.0, the rest CC0.
 - **jre:** the wiki's API is open; licence not stated.
 - **nrwbibdjg** (2026-10-18) reaches about 2,250 of the about 7,500 titles (search by GND number only); two GND
@@ -133,6 +132,8 @@ solved is in the decisions, the changelogs of the versions and the git history.
 
 - **Catalogue, open questions** (0013): DOIs for versions (would need a location that promises permanence, e.g.
   Zenodo; 0019); redirects for the paths of the old `archive.judaicalink.org/dumps/` (deleted 2026-10-16).
+- **Logos in descriptions:** djh, rujen, rujen-translation and yivo show logos by paths relative to
+  web.judaicalink.org (`/img/…`), which are missing wherever else the catalogue is shown (the portal): absolute URLs.
 - **Site:** show the changelog and the derived contributors on the dataset pages (0013); the finder page
   `/dataindex/`; deploy (the state of 2026-10-16 is built, not deployed).
 - **Process details:** which versions each dumps location offers; when to prune historical versions (0019).
@@ -144,20 +145,27 @@ solved is in the decisions, the changelogs of the versions and the git history.
 
 ## Frankfurt
 
-- Hand over the catalogue and its documentation.
-- They can drop `cmtest`, `ep-supp`, `cm-tagme-supp`, `rujen-translation-supp` and `beacon-persons` (0015); their
-  catalogue has `stolperstein.md` (now `stolpersteine`, 0017) and the `https` examples fixed in ours.
-- Stable access URLs on data.judaicalink.org instead of web.judaicalink.org (0014); their catalogue pages could link
-  to our finder; they adopt `<slug>/<version>/<path>` when they next take over files; their named graphs `data/<x>`
-  become the dataset IRIs `datasets/<slug>` (0018); their loader expects `<slug>.meta.ttl` in one shared metadata
-  graph (0006); their pubby takes the graph from `dataslug` (sometimes a namespace, e.g. `epi`).
-- The BEACON `#TARGET` is `https://data.judaicalink.org/data/gnd/{ID}`, so DNB EntityFacts spreads our IRIs in the
-  `https` form: ask for `http://`.
-- The authority datasets and linksets of 2026-10-19 (0029, 0032), kind `authority`.
+The portal branch `judaicalink-vibe` (GitLab `wagtail-common-base`; not merged or deployed yet; review notes for Aaron:
+<https://claude.ai/artifact/F6dDpsHoCM7LVmHbosWaYM>) takes over what was listed here: the catalogue (identical to
+`catalog/`, so `cmtest`, the `-supp` datasets, `beacon-persons` and `stolperstein.md` are gone and the examples are
+`http`), the data finder link on the dataset pages, loading the stable versions from the store
+(`<slug>/<version>/<path>`) into the graphs `datasets/<slug>` and `datasets/<slug>/meta` (`load_fuseki`, also the
+authority datasets and linksets), data views instead of pubby (IRIs with capitals, dataset and ontology IRIs resolve;
+data.judaicalink.org already forwards every path), the search indexes made from the graph and the CM full-text loader.
+Left:
+
+- Merge and deploy the branch; what is left before and after is in the review notes.
+- BEACON: `generate_beacon` queries the `http` form of gndo and finds 6,112 of about 63,000 persons; its `#TARGET` is
+  `https://data.judaicalink.org/data/gnd/{ID}`, so DNB EntityFacts spreads the `https` form of our IRIs. Fix on the
+  branch, then ask the DNB to take the `http` target.
+- Files: the dataset pages link them at `LABS_DUMPS_WEBROOT`; stable access URLs on data.judaicalink.org (`/dumps/`
+  is served there) once Frankfurt has copied the store (0014).
+- Compact Memory: copy the bundle `cm_meta_2026-10-05-v2` to Frankfurt for `load_cm_fulltext`.
 
 ## Other threads
 
 - mannheim.judaicalink.org: the platform and its decisions are in `../judaicalink-mannheim/` (`docs/decisions/`, not
   on GitHub yet); engine comparison (QLever, Fuseki) in `../endpoints/`.
-- Compact Memory full-text index for the portal (handover to Frankfurt): `../NOTES-2026-10-05-cm-fulltext-portal.md`.
+- Compact Memory full-text index for the portal (handover to Frankfurt): `../NOTES-2026-10-05-cm-fulltext-portal.md`;
+  the loader is now `load_cm_fulltext` in the portal (judaicalink-vibe).
 - Further items of the data improvement plan: `../PLAN-2026-10-05-data-improvements.md`.
