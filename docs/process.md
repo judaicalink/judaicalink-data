@@ -13,7 +13,7 @@ use it. Decisions referred to are in `decisions/`.
 | **published** | at one or more dumps locations, `<location>/<slug>/<version>/<path>` (archive.judaicalink.org, mannheim.judaicalink.org; loaded in the Mannheim SPARQL endpoint where useful) | found by the index, appears in `dataindex.json` and the finder |
 | **in Frankfurt** | in their catalogue / dumps | found by the index (their catalogue page; their files once they use the same structure); we keep no marker |
 | **superseded** | dumps stay unchanged, may be pruned later | the successor's entry has `replaces`; `replaced_by` is derived |
-| **pruned** | no longer at any public location; kept in the pruned area (`lokal/pruned`, 0041) | `pruned = "<date>"` on the version, changelog entry |
+| **pruned** | no longer at any public location; kept in the pruned area (`lokal/pruned`, 0041) | removed from the entry; its changelog entries stay, plus one for the pruning |
 
 The dumps locations are equal and none promises completeness or permanence; the files of a version are never
 changed wherever they are (except `-meta`), and the git history of this repository is the permanent record
@@ -118,8 +118,9 @@ outputs and private inputs). Which
 versions a location offers can change: a location may drop versions, and historical versions, above all
 superseded ones, may be pruned from all public locations at some point. Pruning gets a changelog entry; before
 a version is pruned, check that nothing depends on what only it contains ([0019](decisions/0019-dumps-locations-equal.md)).
-Which versions are pruned: [0041](decisions/0041-pruning.md) (the oldest, the newest and one per month stay public); a
-pruned version stays in the catalogue (`pruned`), its files move to the private pruned area.
+Which versions are pruned: [0041](decisions/0041-pruning.md) (the oldest, the newest and one per month stay published,
+with the stable version and the inputs of the newest versions); a pruned version leaves the entry (its changelog
+stays), its files move to the private pruned area.
 
 ## Checklist for every change
 

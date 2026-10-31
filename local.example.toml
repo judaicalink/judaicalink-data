@@ -1,8 +1,7 @@
 # Local settings of jl. Copy to local.toml (not committed) and adjust.
 # Paths are relative to the repository root.
 
-store = "../lokal/store"              # the store: the files of every published version, <slug>/<version>/<path> (0019, 0021)
-pruned = "../lokal/pruned"            # the files of pruned versions, not public, layout of the store (0041)
+store = "../lokal/store"              # the store: the files of every version, <slug>/<version>/<path> (0019, 0021)
 build = "../lokal/build"              # build area: <slug>/<run-id>/ (decision 0018)
 # cache = "../lokal/build/.cache"     # canonical forms, by file checksum (default: <build>/.cache)
 legacy_dumps = ["../lokal/dumps"]     # older dump trees in any layout, searched by checksum (collect-store)

@@ -164,7 +164,7 @@ def resolve(cfg, cat, ref):
         if v is None:
             raise GeneratorError(f"input {ref!r}: no such version in the catalogue")
         files = {f["path"]: f.get("sha256") for f in v.get("files", []) if isinstance(f, dict)}
-        base = cfg.version_dir(slug, v)
+        base = cfg.require("store") / slug / head
     if path:
         if path not in files:
             raise GeneratorError(f"input {ref!r}: {path} is not a file of {slug}/{head}")

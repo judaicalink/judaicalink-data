@@ -50,7 +50,6 @@ description = "Made from the crawl of 2020; records typed with the classes of th
 
 [[versions]]
 version = "2026-10-16"
-pruned = "2026-10-31"
 issued = "2026-10-16"
 author = "Kai Eckert"
 commit = "e1a85a3ceb9e4170a88e269930ecc6a6b1e5debe"
@@ -94,11 +93,6 @@ description = "Data files of the catalogue state judaicalink-site 81b42a5 (the s
   bytes = 2141
   sha256 = "abdcc232b23d7ce6c00fb9e7d82b4749e650790dce90cfb201c3fffdea5ac977"
   triples = 69
-
-[[changelog]]
-date = "2026-10-31"
-author = "Kai Eckert"
-text = "Pruned the version 2026-10-16 (decision 0041): taken off the public dumps locations; the catalogue keeps its files and checksums."
 
 [[changelog]]
 date = "2026-10-18"

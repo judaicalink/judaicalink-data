@@ -70,15 +70,12 @@ class Entry:
         return [x for x in c if isinstance(x, dict)] if isinstance(c, list) else []
 
     def status(self, vid):
-        """stable, preview (listed above stable, or no stable at all), older (below stable), withdrawn, pruned (taken off
-        the public dumps locations, decision 0041)."""
+        """stable, preview (listed above stable, or no stable at all), older (below stable), withdrawn."""
         v = self.version(vid)
         if v is None:
             return None
         if "withdrawn" in v:
             return "withdrawn"
-        if "pruned" in v:
-            return "pruned"
         if self.stable is None:
             return "preview"
         if vid == self.stable:
@@ -257,8 +254,7 @@ VERSION = {"version": (lambda v: isinstance(v, str) and SLUG.match(v),
                        "a slug (lower-case letters, digits, '-', '.')"),
            "issued": DATE, "author": AUTHOR,
            "commit": (lambda v: isinstance(v, str) and re.match(r"^[0-9a-f]{7,40}$", v), "a commit hash"),
-           "description": TEXT, "withdrawn": TEXT, "files": (lambda v: True, ""),
-           "pruned": DATE}   # the date the version was taken off the public dumps locations (0041)
+           "description": TEXT, "withdrawn": TEXT, "files": (lambda v: True, "")}
 
 # Dataset fields; tables and lists of tables are checked separately.
 DATASET = {
@@ -281,6 +277,7 @@ DATASET = {
     "several_per_entity": TEXT,   # why several records of the dataset may belong to one entity (0032)
 }
 REQUIRED = ("slug", "title", "author", "license")
+PRUNING = "0041"   # the decision a changelog entry refers to when it records a pruned version
 # pictures of an entry (decision 0040): files in catalog/pictures/<slug>/, small images the sites copy
 PICTURE_TYPES = {".png", ".jpg", ".jpeg", ".svg", ".webp"}
 PICTURE_MAX_BYTES = 500_000
@@ -386,9 +383,11 @@ def check_entry(r, e, slugs, decisions):
 
     # changelog
     if "changelog" in d:
-        for i, c in enumerate(check_list_of_tables(r, f"{where} changelog", d["changelog"], CHANGE,
-                                                   ("date", "text")), 1):
-            if isinstance(c.get("version"), str) and c["version"] not in ids:
+        entries = check_list_of_tables(r, f"{where} changelog", d["changelog"], CHANGE, ("date", "text"))
+        # pruned versions (0041) leave the versions; the changelog entry of their pruning refers to 0041
+        pruned = {c.get("version") for c in entries if PRUNING in (c.get("refs") or [])}
+        for i, c in enumerate(entries, 1):
+            if isinstance(c.get("version"), str) and c["version"] not in ids and c["version"] not in pruned:
                 r.warn(f"{where} changelog[{i}]", f"version '{c['version']}' is not among the versions")
             for ref in c.get("refs", []) if isinstance(c.get("refs"), list) else []:
                 if isinstance(ref, str) and re.match(r"^\d{4}$", ref) and ref not in decisions:
@@ -403,13 +402,10 @@ def sha256(path):
     return h.hexdigest()
 
 
-def check_local_files(r, e, dumps, complete=False, pruned=False):
+def check_local_files(r, e, dumps, complete=False):
     """Compare bytes and sha256 of each version file with local copies under the dump directories;
-    with complete, a file missing from a dump directory is an error. The dumps hold the versions that are not
-    pruned; with pruned, the dumps are the pruned area and hold the pruned versions (decision 0041)."""
+    with complete, a file missing from a dump directory is an error."""
     for v in e.versions():
-        if bool(v.get("pruned")) != pruned:
-            continue
         vid = v.get("version")
         files = v.get("files", [])
         if not isinstance(vid, str) or not isinstance(files, list):
@@ -453,15 +449,16 @@ def check_corrections(r, e, dumps):
 
 
 def check_version_inputs(r, cat):
-    """Every catalogued version that a version's run record names (input, applied correction) is in the catalogue: a
-    version that a later one was made from is not removed (0018)."""
+    """Every version that a version's run record names (input, applied correction) is in the catalogue: a version that a
+    later one was made from is not removed (0018), unless it was pruned (0041): then its changelog names it."""
     from . import runs, versions
     for e in cat.entries.values():
         for v in e.versions():
             rec = runs.version_record(e.name, v.get("version"))
             for slug, vid in sorted(versions.version_refs(rec or {})):
                 other = cat.get(slug)
-                if other is None or other.version(vid) is None:
+                if other is None or (other.version(vid) is None
+                                     and vid not in {c.get("version") for c in other.changelog()}):
                     r.error(f"{e.path.name} {e.name}/{v.get('version')}", f"made from {slug}/{vid}, which is not in the catalogue")
 
 
@@ -492,7 +489,7 @@ def check_agents(r, cat, registry):
             r.error(registry.path.name, f"'{name}' (named in {', '.join(slugs)}) is not registered")
 
 
-def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None, pruned_area=None):
+def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None):
     """Check all entries (format of 0013, reserved names of 0018), the agents registry; with dumps, the local
     copies. Returns (entries, errors, warnings)."""
     from .agents import Registry
@@ -507,14 +504,12 @@ def check(catalog=CATALOG, dumps=(), complete=False, out=print, registry=None, p
         check_corrections(r, e, dumps)
         if dumps:
             check_local_files(r, e, dumps, complete)
-        if pruned_area:
-            check_local_files(r, e, [pruned_area], complete, pruned=True)
     check_agents(r, cat, registry)
     check_vocabulary(r, cat)
     check_version_inputs(r, cat)
     if dumps and complete:
         named = {f"{e.name}/{v.get('version')}/{f.get('path')}" for e in cat.entries.values() for v in e.versions()
-                 if not v.get("pruned") for f in v.get("files", []) if isinstance(f, dict)}
+                 for f in v.get("files", []) if isinstance(f, dict)}
         for root in dumps:
             for p in sorted(root.rglob("*")):
                 if p.is_file() and p.relative_to(root).as_posix() not in named:

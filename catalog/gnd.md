@@ -50,7 +50,6 @@ description = "The occupations of the records (50,944), as GND subject headings;
 
 [[versions]]
 version = "2026-10-26"
-pruned = "2026-10-31"
 issued = "2026-10-26"
 author = "Kai Eckert"
 commit = "7f1572d6c0ba5fdc5ddabcbee2d7370744df4870"
@@ -75,7 +74,6 @@ description = "Made in the cascade of the authority datasets of 2026-10-26 (deci
 
 [[versions]]
 version = "2026-10-19"
-pruned = "2026-10-31"
 issued = "2026-10-19"
 author = "Kai Eckert"
 commit = "a925699a8fcec1c453a3634722f5c3625f385e78"
@@ -121,11 +119,6 @@ description = "The GND records JudaicaLink uses, from the DNB dumps (GND 2026-02
   bytes = 4048
   sha256 = "55e42219b662342d6c6acc524ed3fb9e7a37154ff0399860676a6f834f3ae0d9"
   triples = 179
-
-[[changelog]]
-date = "2026-10-31"
-author = "Kai Eckert"
-text = "Pruned the versions 2026-10-19 and 2026-10-26 (decision 0041): taken off the public dumps locations; the catalogue keeps their files and checksums."
 
 [[changelog]]
 date = "2026-10-31"

@@ -46,15 +46,6 @@ class Config:
         return self.path("store")
 
     @property
-    def pruned(self):
-        """Where the files of pruned versions are kept (decision 0041): not public, layout of the store."""
-        return self.path("pruned")
-
-    def version_dir(self, slug, version):
-        """The directory of a version's files: the store, or for a pruned version the pruned area."""
-        return self.require("pruned" if version.get("pruned") else "store") / slug / version["version"]
-
-    @property
     def build(self):
         return self.path("build")
 

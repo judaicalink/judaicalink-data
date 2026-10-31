@@ -59,8 +59,8 @@ def version_files(cfg, e, v, verify=False):
         info = {"path": p, "bytes": f.get("bytes"), "sha256": f.get("sha256"),
                 "triples": f.get("triples", counted.get(p)), "public": True,
                 "description": e.file_description(p, v)}
-        if cfg.path("pruned" if v.get("pruned") else "store"):
-            local = cfg.version_dir(e.name, v) / p
+        if cfg.store:
+            local = cfg.store / e.name / v["version"] / p
             info["local"] = str(local) if local.is_file() else None
             if not local.is_file():
                 info["store"] = "missing"
@@ -699,11 +699,9 @@ def cmd_render_meta(args, cfg):
 
 def cmd_check_catalog(args, cfg):
     dumps = list(args.dumps)
-    pruned_area = None
     if args.store:
         dumps.append(cfg.require("store"))
-        pruned_area = cfg.pruned
-    n, errors, warnings = catalog.check(dumps=dumps, complete=args.complete, pruned_area=pruned_area)
+    n, errors, warnings = catalog.check(dumps=dumps, complete=args.complete)
     print(f"{n} entries, {errors} errors, {warnings} warnings", file=sys.stderr)
     return 1 if errors else 0
 
