@@ -144,7 +144,7 @@ solved is in the decisions, the changelogs of the versions and the git history.
 ## Frankfurt
 
 The portal branch `judaicalink-vibe` (GitLab `wagtail-common-base`; not merged or deployed yet; review notes for Aaron:
-<https://claude.ai/artifact/F6dDpsHoCM7LVmHbosWaYM>) takes over what was listed here: the catalogue (identical to
+`../REVIEW-judaicalink-vibe.md`) takes over what was listed here: the catalogue (identical to
 `catalog/`, so `cmtest`, the `-supp` datasets, `beacon-persons` and `stolperstein.md` are gone and the examples are
 `http`), the data finder link on the dataset pages, loading the stable versions from the store
 (`<slug>/<version>/<path>`) into the graphs `datasets/<slug>` and `datasets/<slug>/meta` (`load_fuseki`, also the
