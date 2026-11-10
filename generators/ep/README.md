@@ -91,6 +91,17 @@ key normalisation (DBpedia titles, hyphenated ISNIs) and the use of `prov:wasDer
 errors of the port, corrected before the version. Compared with `ep-2026-10-06` (first made on 2026-10-12, before the YIVO and epidat records): 295,384 instead of 294,129 pages,
 the legacy NLI pages carried over (no exception), splits and merges by comparison instead of growing clusters.
 
+## Version 2026-11-10
+
+As 2026-10-31 (the same 323,117 entities, IRIs and history), with geo-enriched and records-normalized 2026-11-10
+(decisions 0043, 0044) and the place IRI of a page stated by a source, Wikidata included, before one derived from the
+text of a place (decision 0042). 25,558 of 148,055 place IRIs changed: derived GeoNames, geo-coordinates and DBpedia
+IRIs gave way to the GND's (about 13,700) and Wikidata's (about 7,000). Moses Hess (`ep/1025124`) and 83 other persons
+born or died in "Bonn" were linked to Cologne Bonn Airport, 56 born in "Königsberg" to Königsberg in Bayern; now GND
+Bonn and Königsberg. 564 pages lost a place IRI: 442 death places derived from texts of the replaced gnd-persons that
+the GND no longer states, and texts now ambiguous in our data (Holland 58). 786 place IRIs are of places without a
+page of their own (Wikidata items without a GeoNames id, LC, GND), so they have no coordinates.
+
 ## Version 2026-10-31
 
 As 2026-10-26-2 (the same entities, IRIs and history), with the GND occupations of gnd 2026-10-31 (decision 0039):
