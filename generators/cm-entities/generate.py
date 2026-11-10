@@ -35,6 +35,8 @@ INPUTS = {
     "dbpedia_persons": "dbpedia-persons/2018-10-24",
     "interlinks": "interlinks/2018-07-18",
 }
+PINNED = {"dbpedia_persons": "TagMe linked the 2018 IRIs data/dbpedia/<name>, which dbpedia-persons names; dbpedia names "
+                             "them only through their replacements (porting it would change the selection)"}
 PARAMS = {}
 
 JLO = PREFIXES["jl"]

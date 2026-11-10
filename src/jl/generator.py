@@ -166,6 +166,17 @@ def outdated_inputs(cat, slug, refs, pinned=None):
     return out
 
 
+def made_from(cat, slug, version_ref):
+    """Whether the stable version of slug was made from version_ref ("<slug>/<version>"), by its run record."""
+    e = cat.get(slug)
+    rp = runs.record_path(slug, e.stable) if e and e.stable else None
+    if not rp or not rp.is_file():
+        return False
+    rec = json.loads(rp.read_text(encoding="utf-8"))
+    return any(str(i.get("ref", "")).startswith(version_ref + "/") or i.get("ref") == version_ref
+               for i in rec.get("inputs", []))
+
+
 def check_generators(cat, out=print):
     """For every generator of a catalogued dataset: the outdated inputs it declares, and those its stable version was
     made from (then the version must be made again). Returns the number of warnings."""
@@ -196,6 +207,9 @@ def check_generators(cat, out=print):
                        if i.get("name") == n and version_of(i.get("ref")) == version_of(declared.get(n, ""))},
                     **rec.get("pinned", {})}
             found = outdated_inputs(cat, slug, [(i.get("name"), i.get("ref")) for i in rec.get("inputs", [])], pins)
+            # datasets that read each other (gnd and geo-enriched): an input whose stable version was made from this
+            # stable version is newer than it, not outdated
+            found = [f for f in found if not made_from(cat, f[1].split("/")[0], f"{slug}/{stable}")]
             if found:
                 out(f"warning: {slug}/{stable} (stable) was made from " + "; ".join(
                     f"{ref} ({why})" for _n, ref, why in found) + ": make it again")

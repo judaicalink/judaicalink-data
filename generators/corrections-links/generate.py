@@ -8,7 +8,7 @@ all other datasets); additions, if there are any: corrections-links.ttl.gz.
 """
 
 from jl import corrections
-from jl.generator import GeneratorError
+from jl.generator import GeneratorError, stable_inputs
 from jl.rdf import IRI, Literal
 from jl.turtle import PREFIXES
 
@@ -17,14 +17,17 @@ INPUTS = {
     "dbpedia_persons": "dbpedia-persons/2018-10-24",
     "gnd_persons": "gnd-persons/2018-11-29",
     "ubffm_persons": "ubffm-persons/2019-01-24",
-    "hhkeydocs": "hhkeydocs/2025-03-21",
+    "hhkeydocs": stable_inputs()["hhkeydocs"],
     "nli_records": "nli-records/2026-10-12",
     "ls_nli_legacy": "ls-nli-legacy/2026-10-12",
     "dbp_wiki_geo_linking": "dbp-wiki-geo-linking/2021-01-13",
     "cm_entities": "cm-entities/2026-10-12/cm-entities-wikidata.ttl.gz",
-    "footprints": "footprints/2026-10-12",
+    "footprints": stable_inputs()["footprints"],
     "haskala": "haskala/2026-10-12/haskala.ttl.gz",
 }
+PINNED = {"dbpedia_persons": "replaced by dbpedia; the corrections delete triples of this version, which stay loaded "
+                             "where it is",
+          "gnd_persons": "replaced by gnd; the corrections delete triples of this version"}
 PARAMS = {}
 
 J = "http://data.judaicalink.org/data/"
@@ -91,16 +94,6 @@ CORRECTIONS = [
     ("ubffm_persons", [
         "ubffm-persons: the same link for Sherira Gaon.",
     ], same("ubffm/Šerîrâ_Gāôn", "http://dbpedia.org/resource/Hai_Gaon"), []),
-    ("hhkeydocs", [
-        "hhkeydocs: Otto Warburg (1859-1938, botanist, GND 117565725) is not the physiologist Otto Heinrich Warburg",
-        "(1883-1970, GND 118629158, VIAF 112658460).",
-    ], [(J + "hhkeydocs/Otto_Warburg", GNDID, Literal("118629158"))]
-        + same("hhkeydocs/Otto_Warburg", "https://viaf.org/viaf/http://viaf.org/viaf/112658460/"), []),
-    ("hhkeydocs", [
-        "hhkeydocs: Kurt Singer (1885-1944, neurologist and musicologist, GND 117402362) is not the philosopher Kurt Singer",
-        "(1886-1962, GND 120639734, VIAF 59920664).",
-    ], [(J + "hhkeydocs/Kurt_Singer", GNDID, Literal("120639734"))]
-        + same("hhkeydocs/Kurt_Singer", "https://viaf.org/viaf/http://viaf.org/viaf/59920664/"), []),
     ("nli_records", [
         "nli-records: LC n2008069970 is Nili Goren (Lieneke, 1933-; id.loc.gov), not Jacob van der Hoeden;",
         "LC n82018212 is the photographer Stefan Moses, not Stéphane Mosès; LC n82089580 is the work Goethe, Faust",
@@ -142,13 +135,12 @@ CORRECTIONS = [
         "Baruch ben Isaac to his Sefer Terumah; Moses ben Jacob of Coucy to his Sefer mitsvot gadol; Bahya ibn Paquda to",
         "his al-Hidaja (Duties of the Heart); Judah ben Samuel ha-Levi to Samuel Edels, Hiddushi Halachot; Raphael Levi",
         "Hannover to his Luhot Ha-Ibbur.",
-    ], same("footprints/30aa893b-8880-5548-9003-70ad30da0e73", "https://viaf.org/viaf/178212074/")
-        + same("footprints/3bcbbdc2-1b0e-5398-8b73-046bfbca08f3", "https://viaf.org/viaf/21145304384378571647/")
-        + same("footprints/69042b94-1349-5b54-9068-99ea16d24a59", "https://viaf.org/viaf/181391513/")
-        + same("footprints/78efcb24-87bd-5922-ad15-12f2095e2320", "https://viaf.org/viaf/306078411/")
-        + same("footprints/919635b6-dc25-533d-8758-b0f1a7df8d8d", "https://viaf.org/viaf/180286221/")
-        + same("footprints/a9b1231a-6499-52d7-81a0-cc01658a990d", "https://viaf.org/viaf/308265424/")
-        + same("footprints/df14b9c6-8e87-5ab5-9af7-1dece6c0a2a6", "https://viaf.org/viaf/3876147484331149360004/"), []),
+    ], same("footprints/person/2836", "https://viaf.org/viaf/178212074")   # the 2024 IRIs (footprints/<uuid>) are
+        + same("footprints/person/6325", "https://viaf.org/viaf/21145304384378571647")   # replaced by these since
+        + same("footprints/person/10086", "https://viaf.org/viaf/181391513")             # footprints 2026-10-26 (the
+        + same("footprints/person/4484", "https://viaf.org/viaf/306078411")              # API ids, decision 0034);
+        + same("footprints/person/1228", "https://viaf.org/viaf/180286221")              # the record linked to VIAF
+        + same("footprints/person/4950", "https://viaf.org/viaf/3876147484331149360004"), []),   # 308265424 is gone
     ("haskala", [
         "haskala: persons whose VIAF id (database field viaf_id, kept as given) is now the cluster of a work (nli-records):",
         "Friedrich Wilhelm (person 1715) to Hegel, Phenomenology of Spirit (Hebrew translation); Abraham ben Aryeh Leib",

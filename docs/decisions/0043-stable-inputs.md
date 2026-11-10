@@ -22,6 +22,8 @@ the entity pages of 2026-10-31 linked 84 persons born in Bonn to Cologne Bonn Ai
 - **`jl check-catalog` warns** about the outdated inputs of every generator, and about every stable version made from
   inputs that are outdated now: it must be made again. Moving `stable` is an edit of the catalogue, so this is where
   the datasets that depend on it show up.
+- Datasets that read each other (gnd takes seeds from geo-enriched, geo-enriched evidence from gnd): an input whose
+  stable version was made from this dataset's stable version is newer than it, not outdated.
 
 ## Consequences
 

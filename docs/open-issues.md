@@ -23,6 +23,12 @@ solved is in the decisions, the changelogs of the versions and the git history.
   outdated now (0043; 13 on 2026-11-10, the linksets of 2026-10-26 among them), and the generators that still read
   outdated inputs: corrections-links (replaced versions: check whether its corrections still apply) and cm-entities
   (reads dbpedia-persons, replaced by dbpedia).
+- **hhkeydocs 2026-10-16** replaces Otto Warburg and Kurt Singer each by two records, one per GND number, among them
+  the physiologist Otto Heinrich Warburg (118629158) and the philosopher Kurt Singer (120639734), whom the corrections of
+  2026-10-12 had excluded (the botanist, 117565725; the neurologist, 117402362): check against the source whether both
+  are meant; the corrections no longer apply (corrections-links 2026-11-11).
+- **cm-entities** reads dbpedia-persons (pinned): TagMe linked its 2018 IRIs; porting it to dbpedia would change
+  which entities get their own Wikidata lookup.
 - **Intermediate inputs of 2026-10-18** that no version uses: `web-caches/wikidata-2026-10-18*`,
   `web-caches/dbpedia-2026-10-18*`, `cascade/2026-10-18` (the first cascade attempts); to remove or keep.
 - **gnd selection:** whether a broader selection (e.g. persons by GND area code, the rule of 2017, which `gnd` keeps
