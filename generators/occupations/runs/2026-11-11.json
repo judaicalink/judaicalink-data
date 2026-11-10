@@ -1,0 +1,126 @@
+{
+ "slug": "occupations",
+ "run": "run-20261110T235327Z",
+ "generator": "generators/occupations/generate.py",
+ "commit": "ab71aadc4c0349c853ae424957b2beae398541e0",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-11-10T23:53:27Z",
+ "use": {
+  "geo-enriched": "2026-11-11",
+  "ls-footprints-viaf": "2026-11-11",
+  "record-classes": "2026-11-11",
+  "records-normalized": "2026-11-11"
+ },
+ "inputs": [
+  {
+   "name": "lds",
+   "ref": "inputs:gnd/lds-2026-02-17/authorities-gnd_lds_20260217.nt.gz",
+   "file": "authorities-gnd_lds_20260217.nt.gz",
+   "sha256": "e773583749c425a815e923a4c4a4dcbe26e33c607a4111d8efb56992b42f9a75",
+   "bytes": 2591266134
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-18/bhr-beacon.ttl.gz",
+   "file": "bhr-beacon.ttl.gz",
+   "sha256": "4474eeebbd4469688fc9d63c4dc2c1a88afd6ff46e968fb1439d4bc59b4ed0ea",
+   "bytes": 6684
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-18/bhr-vocabulary.ttl.gz",
+   "file": "bhr-vocabulary.ttl.gz",
+   "sha256": "0b660e99e29cc378b22266a949a27d77897d120ff342a302e01f3678a08dbf2b",
+   "bytes": 563
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-18/bhr.ttl.gz",
+   "file": "bhr.ttl.gz",
+   "sha256": "d623747814a001ba82bf00617872d840a0d01ab3c794b17453afa4569f0affa3",
+   "bytes": 2352277
+  },
+  {
+   "name": "dbpedia",
+   "ref": "dbpedia/2026-11-11/dbpedia.ttl.gz",
+   "file": "dbpedia.ttl.gz",
+   "sha256": "0ee37cb1b3cc3b0871683c9e8b4240cc0d4990c17e4e303c8e3975776be1b283",
+   "bytes": 2866410
+  },
+  {
+   "name": "gnd",
+   "ref": "gnd/2026-11-11/gnd.ttl.gz",
+   "file": "gnd.ttl.gz",
+   "sha256": "969d99d6b859f64db3c7582a18aa5e4781c0f7314fbc18be0f88d5845848ffb0",
+   "bytes": 20356215
+  },
+  {
+   "name": "records_normalized",
+   "ref": "records-normalized/2026-11-11/records-normalized-dates.ttl.gz",
+   "file": "records-normalized-dates.ttl.gz",
+   "sha256": "c8ee3f2b2041d5278942f147eeaffdb6d21b1f119d5458ab0026dffb4149eb44",
+   "bytes": 1519902,
+   "read_as": "records-normalized/run-20261110T235208Z/records-normalized-dates.ttl.gz"
+  },
+  {
+   "name": "records_normalized",
+   "ref": "records-normalized/2026-11-11/records-normalized-occupations.ttl.gz",
+   "file": "records-normalized-occupations.ttl.gz",
+   "sha256": "20a259964c9a9b1490eb6e509088974b1d1e7096df21cb8862c964584afebe12",
+   "bytes": 80749,
+   "read_as": "records-normalized/run-20261110T235208Z/records-normalized-occupations.ttl.gz"
+  },
+  {
+   "name": "records_normalized",
+   "ref": "records-normalized/2026-11-11/records-normalized-places.ttl.gz",
+   "file": "records-normalized-places.ttl.gz",
+   "sha256": "f0aa5622acd32abbf188888bb3cc775b71a28313f16e6ced4b7f60d3f1f86dac",
+   "bytes": 4999,
+   "read_as": "records-normalized/run-20261110T235208Z/records-normalized-places.ttl.gz"
+  },
+  {
+   "name": "sosy",
+   "ref": "sosy/2026-10-12/sosy-final-01.ttl.gz",
+   "file": "sosy-final-01.ttl.gz",
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "bytes": 12555
+  }
+ ],
+ "input_descriptions": {
+  "inputs:gnd/lds-2026-02-17": {
+   "title": "GND, complete (Linked Data Service, N-Triples), 2026-02-17",
+   "origin": "https://data.dnb.de/opendata/authorities-gnd_lds_20260217.nt.gz",
+   "description": "The complete Gemeinsame Normdatei (all entity types) as published by the Deutsche Nationalbibliothek in its Linked Data Service, N-Triples, state 2026-02-17 (file dated 2026-03-02), downloaded 2026-10-16. Licence CC0 1.0 (data.dnb.de/opendata).",
+   "date": "2026-02-17",
+   "note": "Not published: a copy of a public source, the input of the dataset gnd (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-11-10T23:55:09Z",
+ "seconds": 102.5,
+ "notes": [
+  "2,132 GND headings used as occupations (100,079 statements in gnd), 2,531 described with their broader headings; 75 older occupation IRIs, 73 linked to a GND heading (2 without)"
+ ],
+ "deleted_by_corrections": {
+  "gnd": 1
+ },
+ "files": [
+  {
+   "path": "occupations.ttl.gz",
+   "bytes": 80751,
+   "sha256": "230541ce9f21652bb22240830e6e04108d34197a5fa3dd627b7b3545959ac3ec",
+   "triples": 15029
+  }
+ ],
+ "version": "2026-11-11"
+}

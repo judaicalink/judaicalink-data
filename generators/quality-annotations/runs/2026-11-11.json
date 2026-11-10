@@ -1,0 +1,232 @@
+{
+ "slug": "quality-annotations",
+ "run": "run-20261110T235509Z",
+ "generator": "generators/quality-annotations/generate.py",
+ "commit": "ab71aadc4c0349c853ae424957b2beae398541e0",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-11-10T23:55:09Z",
+ "use": {
+  "geo-enriched": "2026-11-11",
+  "ls-footprints-viaf": "2026-11-11",
+  "occupations": "2026-11-11",
+  "record-classes": "2026-11-11",
+  "records-normalized": "2026-11-11"
+ },
+ "pinned": {
+  "nrwbibdjg": "the problems of this version are annotated on it (dcterms:created as plain strings)"
+ },
+ "shared_code": [
+  "generators/records-normalized/generate.py"
+ ],
+ "inputs": [
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-18/bhr-beacon.ttl.gz",
+   "file": "bhr-beacon.ttl.gz",
+   "sha256": "4474eeebbd4469688fc9d63c4dc2c1a88afd6ff46e968fb1439d4bc59b4ed0ea",
+   "bytes": 6684
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-18/bhr-vocabulary.ttl.gz",
+   "file": "bhr-vocabulary.ttl.gz",
+   "sha256": "0b660e99e29cc378b22266a949a27d77897d120ff342a302e01f3678a08dbf2b",
+   "bytes": 563
+  },
+  {
+   "name": "bhr",
+   "ref": "bhr/2026-10-18/bhr.ttl.gz",
+   "file": "bhr.ttl.gz",
+   "sha256": "d623747814a001ba82bf00617872d840a0d01ab3c794b17453afa4569f0affa3",
+   "bytes": 2352277
+  },
+  {
+   "name": "dbpedia",
+   "ref": "dbpedia/2026-11-11/dbpedia.ttl.gz",
+   "file": "dbpedia.ttl.gz",
+   "sha256": "0ee37cb1b3cc3b0871683c9e8b4240cc0d4990c17e4e303c8e3975776be1b283",
+   "bytes": 2866410
+  },
+  {
+   "name": "djh",
+   "ref": "djh/2018-10-22/djh.ttl.gz",
+   "file": "djh.ttl.gz",
+   "sha256": "b77f295c62f8687a18a4a14783add3a952248a4182d13573a3e6a8e5419e7019",
+   "bytes": 104832
+  },
+  {
+   "name": "epidat",
+   "ref": "epidat/2026-10-18/epidat.ttl.gz",
+   "file": "epidat.ttl.gz",
+   "sha256": "cd108ec89541404736dc13ae0b4875a008762f72790f82b40883e3f22019beee",
+   "bytes": 1848653
+  },
+  {
+   "name": "footprints",
+   "ref": "footprints/2026-10-26-2/footprints-vocabulary.ttl.gz",
+   "file": "footprints-vocabulary.ttl.gz",
+   "sha256": "3a631b4c790e6c477b39a9d4dd97e07bf702bc9b869c800782c4f0c0fbfd57be",
+   "bytes": 1623
+  },
+  {
+   "name": "footprints",
+   "ref": "footprints/2026-10-26-2/footprints.ttl.gz",
+   "file": "footprints.ttl.gz",
+   "sha256": "a8c3f82c7ccf32b52c97f7d0325689767974c3db8bd9481c3c8d6e013797f659",
+   "bytes": 5548113
+  },
+  {
+   "name": "geo_enriched",
+   "ref": "geo-enriched/2026-11-11/geo-enriched.ttl.gz",
+   "file": "geo-enriched.ttl.gz",
+   "sha256": "750819bda6a93ad45bb3296dc7ff4ccdf43f7308d0f6672dda770d293b994fe8",
+   "bytes": 310373,
+   "read_as": "geo-enriched/run-20261110T235044Z/geo-enriched.ttl.gz"
+  },
+  {
+   "name": "gnd",
+   "ref": "gnd/2026-11-11/gnd.ttl.gz",
+   "file": "gnd.ttl.gz",
+   "sha256": "969d99d6b859f64db3c7582a18aa5e4781c0f7314fbc18be0f88d5845848ffb0",
+   "bytes": 20356215
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-gnd-2019.ttl.gz",
+   "file": "haskala-gnd-2019.ttl.gz",
+   "sha256": "1d96ec95b4954865b0c2a912e5db1fc9ce352328b6eb4b07a9ef7c6afcd7f0f7",
+   "bytes": 1257
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-net.ttl.gz",
+   "file": "haskala-net.ttl.gz",
+   "sha256": "d2b6283f9ea5e15d426aeaa2ecbb983d4afd3389ca9d43762c471457e92c7cbc",
+   "bytes": 5941
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala-vocabulary.ttl.gz",
+   "file": "haskala-vocabulary.ttl.gz",
+   "sha256": "2bc6a01ce4bb316b4efd715533899be52bfdd273b78619f8499268b79f179440",
+   "bytes": 13093
+  },
+  {
+   "name": "haskala",
+   "ref": "haskala/2026-10-12/haskala.ttl.gz",
+   "file": "haskala.ttl.gz",
+   "sha256": "03c3c988a5abf8cd72c3fa9f963345cfa3798f77f8c5ce3482e900a874d26b2a",
+   "bytes": 871677
+  },
+  {
+   "name": "hhkeydocs",
+   "ref": "hhkeydocs/2026-10-16/hhkeydocs.ttl.gz",
+   "file": "hhkeydocs.ttl.gz",
+   "sha256": "e36abbab400c9a32d21e705fa625289ef110358ef0fec6a4bd472a94fa2ac489",
+   "bytes": 258738
+  },
+  {
+   "name": "hirsch_family",
+   "ref": "hirsch-family/2018-10-30/HirschFamily.ttl.gz",
+   "file": "HirschFamily.ttl.gz",
+   "sha256": "3e0d15737004352dd8aa63d3a82ec40b4ff4de2de329734ffa10adc94210919e",
+   "bytes": 4656
+  },
+  {
+   "name": "jre",
+   "ref": "jre/2019-11-29/jre.ttl.gz",
+   "file": "jre.ttl.gz",
+   "sha256": "938de30400eef55d65f129553a8c1e0156ac57aa2e1b81fb373f883bc464c932",
+   "bytes": 12926
+  },
+  {
+   "name": "nli_records",
+   "ref": "nli-records/2026-10-12/nli-records.ttl.gz",
+   "file": "nli-records.ttl.gz",
+   "sha256": "bd276fe6239583d8e2e6f44108add9dacb282cf4ad24ab3e8e871b5ffed5f93e",
+   "bytes": 10690626
+  },
+  {
+   "name": "sosy",
+   "ref": "sosy/2026-10-12/sosy-final-01.ttl.gz",
+   "file": "sosy-final-01.ttl.gz",
+   "sha256": "c16c4f706682012415cc6234024018e525d071197dc3198d9dc0f2b24ec93484",
+   "bytes": 12555
+  },
+  {
+   "name": "ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors.ttl.gz",
+   "file": "ubffm-authors.ttl.gz",
+   "sha256": "6cc3ae3df6bb6972230cb77c87a269cc9cffd0d63047f62164a77ba3771f0364",
+   "bytes": 505187
+  },
+  {
+   "name": "ubffm_persons",
+   "ref": "ubffm-persons/2019-01-24/ubffm-authors-02.ttl.gz",
+   "file": "ubffm-authors-02.ttl.gz",
+   "sha256": "a6ab1fe57f453fe962fdc0066cca216207a55e0f45d35d7ad0eb526b3cce50e2",
+   "bytes": 408010
+  },
+  {
+   "name": "compact_memory",
+   "ref": "compact-memory/2026-10-12/compact-memory-journals.ttl.gz",
+   "file": "compact-memory-journals.ttl.gz",
+   "sha256": "a772acceb7afcec44e37c253d64b9bef74e7ecf655353d9436311248e1ee5cb3",
+   "bytes": 29685
+  },
+  {
+   "name": "compact_memory",
+   "ref": "compact-memory/2026-10-12/compact-memory-pages.ttl.gz",
+   "file": "compact-memory-pages.ttl.gz",
+   "sha256": "f6a8f335d9fc4e7b03c9ac9b29eabc3f81307f1fe382682701caaef251fef04c",
+   "bytes": 11842228
+  },
+  {
+   "name": "geo_coordinates",
+   "ref": "geo-coordinates/2026-10-12/geo-coordinates.ttl.gz",
+   "file": "geo-coordinates.ttl.gz",
+   "sha256": "b059aeb643db2567c8f9988cc4df0080d62494006fc55ede2a93fc2b4ab01ad2",
+   "bytes": 155920
+  },
+  {
+   "name": "nrwbibdjg",
+   "ref": "nrwbibdjg/2024-05-24/nrwbibdjg.ttl.gz",
+   "file": "nrwbibdjg.ttl.gz",
+   "sha256": "08f2b63608d13f203b4a1c81f97227849585923049e0f1be7b1d9d62408ab466",
+   "bytes": 371256
+  }
+ ],
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-11-10T23:56:06Z",
+ "seconds": 57.0,
+ "notes": [
+  "Dates left out by records-normalized: {'a bound': 48, 'a negative year': 349, 'a range': 340, 'death before birth': 33, 'no recognised form': 3085, 'the year is outside 1–2030': 5}.",
+  "Compact Memory: 16 issues in isolated years, of 84,639 dated issues with pages.",
+  "Annotations by kind: {'data error': 1, 'datatype': 1, 'date': 3876, 'vocabulary': 1}."
+ ],
+ "deleted_by_corrections": {
+  "gnd": 1,
+  "haskala": 2,
+  "nli_records": 11,
+  "ubffm_persons": 1
+ },
+ "files": [
+  {
+   "path": "quality-annotations.ttl.gz",
+   "bytes": 95916,
+   "sha256": "a351fcdd73368a865f1e2261e40e4886bf1f7d52b393d87df4e95a071031a125",
+   "triples": 23274
+  }
+ ],
+ "version": "2026-11-11"
+}
