@@ -32,6 +32,7 @@ INPUTS = {
     "viaf": "viaf/2026-10-26",
     "verdicts": "inputs:footprints/viaf-verdicts-2026-10-26/verdicts.tsv",
 }
+PINNED = {"footprints": "the verdicts judged the evidence of the Footprints persons of this version"}
 PARAMS = {}
 
 JL = "http://data.judaicalink.org/data/"

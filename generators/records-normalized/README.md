@@ -40,3 +40,8 @@ Made again on 2026-10-12 (unpublished, with ep) for epidat, sosy and geo-coordin
 normalised (epidat now one record per person), 58 records with the death before the birth; the places of
 geo-coordinates are linked under their new IRIs (`data/geo-coordinates/<name>`); 28,213 place and 18,961 occupation
 triples (epidat states its places as IRIs itself).
+
+Since 2026-11-10 the inputs are the stable versions of the catalogue (`stable_inputs`), no longer pinned: version
+2026-10-12 had read geo-enriched 2019 after geo-enriched 2026-10-16 replaced its first-hit links, and gave 97 records
+named "Bonn" the GeoNames feature of Cologne Bonn Airport (decision 0042). dbpedia replaces dbpedia-persons. Place
+texts are compared in Unicode NFC (the GND writes "Königsberg" decomposed, haskala composed).

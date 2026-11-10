@@ -18,7 +18,7 @@ import re
 from collections import Counter
 
 from jl import classes
-from jl.generator import load_shared
+from jl.generator import load_shared, stable_inputs
 from jl.rdf import IRI, RDF_TYPE, Literal
 from jl.turtle import PREFIXES
 
@@ -26,8 +26,8 @@ yw = load_shared("ls-yivo-wikidata", "yivo_wikidata")
 
 INPUTS = {
     "yivo": "yivo/2020-09-30",
-    "footprints": "footprints/2026-10-26",
-    "viaf": "viaf/2026-10-19",
+    "footprints": stable_inputs()["footprints"],
+    "viaf": stable_inputs()["viaf"],
     "items": "inputs:web-caches/wikidata-yivo-2026-10-12/p8569.tsv",
     "classes": "inputs:web-caches/wikidata-yivo-2026-10-12/classes-top.tsv",
 }

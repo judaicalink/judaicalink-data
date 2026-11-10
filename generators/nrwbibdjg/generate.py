@@ -10,7 +10,7 @@ the title and names only the first author, so the list's own text is taken.
 
 Records:
 - one per GND number of the BEACON, data/nrwbibdjg/<GND number> (the IRIs of 2024-05-24): the class of the GND entry
-  (foaf:Person, foaf:Organization, schema:Place) from gnd/2026-10-16, as the source does not say; foaf:Person for a
+  (foaf:Person, foaf:Organization, schema:Place) from the stable gnd, as the source does not say; foaf:Person for a
   number the GND has deleted (undifferentiated names); skos:prefLabel and foaf:name the name the bibliography gives;
   owl:sameAs the GND; jl:describedAt the OPAC's list of its titles.
 - one per title, data/nrwbibdjg/work/<UUID>, schema:CreativeWork: dcterms:title ("[Online-Ressource]" taken off),
@@ -34,15 +34,15 @@ import urllib.parse
 from collections import Counter, defaultdict
 
 from jl import classes
-from jl.generator import GeneratorError
+from jl.generator import GeneratorError, stable_inputs
 from jl.iris import canonical_triples
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
 INPUTS = {"pages": "inputs:nrwbibdjg/opac-2026-10-17/nrwbibdjg-pages-2026-10-17.tar.gz",
           "beacon": "inputs:nrwbibdjg/opac-2026-10-17/beacon.txt",
-          "gnd": "gnd/2026-10-16/gnd.ttl.gz",
-          "gnd-selection": "gnd/2026-10-16/gnd-selection.tsv.gz",
+          "gnd": stable_inputs()["gnd"] + "/gnd.ttl.gz",
+          "gnd-selection": stable_inputs()["gnd"] + "/gnd-selection.tsv.gz",
           "previous": "nrwbibdjg/2024-05-24"}
 PARAMS = {}
 

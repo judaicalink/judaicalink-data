@@ -23,6 +23,7 @@ from jl.turtle import PREFIXES
 nli = load_shared("nli-records", "nli_export")
 
 INPUTS = {"export": "inputs:nli/authority-export-2019/auth.json.gz", "legacy": "nli-persons/2019-01-25"}
+PINNED = {"legacy": "the legacy URIs are those of nli-persons, which this linkset reproduces and links"}
 PARAMS = {"data_annotation_iris": True}
 
 DCT = PREFIXES["dcterms"]

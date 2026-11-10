@@ -19,9 +19,10 @@ solved is in the decisions, the changelogs of the versions and the git history.
   parents (`gn:parentADM2`–`4`, not yet in `geonames`) would be a better rule.
 - **Link quality of the new units:** dbpedia (its Wikidata links) and the linksets (`jl:sameAs` of ls-gnd, …,
   ls-dbpedia) are not measured yet.
-- **Made again on the new versions:** records-normalized and quality-annotations (they still read the versions of
-  2026-10-12), judaicalink-terms; corrections-links reads gnd-persons (deprecated): check whether its corrections still
-  apply.
+- **Made again on the new versions:** `jl check-catalog` lists the stable versions made from inputs that are
+  outdated now (0043; 13 on 2026-11-10, the linksets of 2026-10-26 among them), and the generators that still read
+  outdated inputs: corrections-links (replaced versions: check whether its corrections still apply) and cm-entities
+  (reads dbpedia-persons, replaced by dbpedia).
 - **Intermediate inputs of 2026-10-18** that no version uses: `web-caches/wikidata-2026-10-18*`,
   `web-caches/dbpedia-2026-10-18*`, `cascade/2026-10-18` (the first cascade attempts); to remove or keep.
 - **gnd selection:** whether a broader selection (e.g. persons by GND area code, the rule of 2017, which `gnd` keeps

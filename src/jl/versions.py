@@ -1,7 +1,8 @@
 """From a run to a version, and rendering the -meta of a version (decision 0018).
 
-add-version <slug>/<run-id> …: refuses runs that failed, ran uncommitted code or used runs as inputs (except runs
-of the same call, which become versions together: the authority datasets); gives the
+add-version <slug>/<run-id> …: refuses runs that failed, ran uncommitted code, used runs as inputs (except runs
+of the same call, which become versions together: the authority datasets) or read outdated inputs (decision 0043,
+unless allowed); gives the
 version id (default the run date, "-2", "-3" … if taken); writes the header comments into the Turtle files
 the generator wrote; renders the -meta; copies the run record to generators/<slug>/runs/<version>.json (with
 the files as they are in the version); adds the version and a changelog entry to the catalogue entry; moves
@@ -223,17 +224,19 @@ def default_version(cat_entry, store_dir, slug, run):
 
 
 def add_version(cfg, slug, run_id, version=None, author=None, description=None, text=None, issued=None,
-                dry_run=False, log=print):
+                dry_run=False, log=print, allow_old_inputs=False):
     """Make a run a version. Returns (version id, directory, the version table, warnings)."""
-    return add_versions(cfg, [(slug, run_id)], version, author, description, text, issued, dry_run, log)[0]
+    return add_versions(cfg, [(slug, run_id)], version, author, description, text, issued, dry_run, log,
+                        allow_old_inputs)[0]
 
 
 def add_versions(cfg, items, version=None, author=None, description=None, text=None, issued=None, dry_run=False,
-                 log=print):
+                 log=print, allow_old_inputs=False):
     """Make several runs versions together: [(slug, run id)]. A run may read another run of the list (the authority
     datasets, which select from each other); its run record then names the version that run becomes, with the
     checksums of its files in the version (the same triples; the version adds header comments). Returns
-    [(version id, directory, the version table, warnings)]."""
+    [(version id, directory, the version table, warnings)]. allow_old_inputs: make versions also of runs with
+    outdated inputs (decision 0043); the run record of the version names them."""
     cat = catalog.Catalog()
     if len({s for s, _ in items}) != len(items):
         raise VersionError("one run per dataset")
@@ -252,7 +255,7 @@ def add_versions(cfg, items, version=None, author=None, description=None, text=N
 
     jobs = []
     for slug, run_id in items:
-        e, run, rec = check_run(cfg, cat, slug, run_id, batch)
+        e, run, rec = check_run(cfg, cat, slug, run_id, batch, allow_old_inputs)
         vid = version or default_version(e, store, slug, run)
         if not catalog.SLUG.match(vid) or vid in catalog.RESERVED_VERSIONS:
             raise VersionError(f"'{vid}' is not a valid version id")
@@ -276,7 +279,7 @@ def add_versions(cfg, items, version=None, author=None, description=None, text=N
     return [finish(j, dry_run) for j in jobs]
 
 
-def check_run(cfg, cat, slug, run_id, batch=None):
+def check_run(cfg, cat, slug, run_id, batch=None, allow_old_inputs=False):
     """The entry, run and run record; refuses what cannot become a version. batch: {slug: run id} of the call. An
     input may be a run of a dataset of the batch: its run there, or another run with the same file (when the cascade
     of the authority datasets has converged, the last runs read the runs before them)."""
@@ -307,6 +310,14 @@ def check_run(cfg, cat, slug, run_id, batch=None):
                 if not same:
                     raise VersionError(f"input {i.get('name')} ({ref}) differs from {s}/{batch[s]} of this call: "
                                        f"run {slug} again with --use {s}/{batch[s]}")
+    old = generator.outdated_inputs(cat, slug, [(i.get("name"), i.get("ref")) for i in rec.get("inputs", [])],
+                                    rec.get("pinned", {}))
+    if old and not allow_old_inputs:
+        raise VersionError(f"{slug}/{run_id} read outdated inputs (decision 0043): " + "; ".join(
+            f"{n} {r} ({w})" for n, r, w in old) + ". Run it again on the stable versions, declare the input in "
+            "PINNED with the reason, or give --allow-old-inputs")
+    if old:
+        rec = dict(rec, outdated_inputs_allowed=[{"name": n, "ref": r, "why": w} for n, r, w in old])
     became = runs.version_of_run(slug, run_id)
     if became:
         raise VersionError(f"{slug}/{run_id} is already the version {became}")

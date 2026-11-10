@@ -412,6 +412,9 @@ def cmd_generate(args, cfg):
     print(f"  {d}")
     if rec["uncommitted"]:
         print(f"  uncommitted code: {', '.join(rec['uncommitted'])} (cannot become a version)")
+    for i in rec.get("outdated_inputs", []):
+        print(f"  warning: input {i['name']} reads {i['ref']} ({i['why']}); add-version refuses the run "
+              "(decision 0043)")
     for f in rec["files"]:
         t = f" {f['triples']:>10,} triples" if "triples" in f else ""
         print(f"  {f['path']:<32} {f['bytes']:>12,} bytes{t}")
@@ -523,7 +526,7 @@ def cmd_add_version(args, cfg):
         items.append((slug, run_id))
     results = versions.add_versions(cfg, items, version=args.version, author=args.author,
                                     description=args.description, text=args.text, issued=args.issued,
-                                    dry_run=args.dry_run)
+                                    dry_run=args.dry_run, allow_old_inputs=args.allow_old_inputs)
     for (slug, _run_id), (vid, d, v, warnings) in zip(items, results):
         print(f"{slug}/{vid}" + (" (dry run, nothing changed)" if args.dry_run else "") + f": {d}")
         for f in v["files"]:
@@ -702,6 +705,7 @@ def cmd_check_catalog(args, cfg):
     if args.store:
         dumps.append(cfg.require("store"))
     n, errors, warnings = catalog.check(dumps=dumps, complete=args.complete)
+    warnings += generator.check_generators(catalog.Catalog())   # outdated inputs (decision 0043)
     print(f"{n} entries, {errors} errors, {warnings} warnings", file=sys.stderr)
     return 1 if errors else 0
 
@@ -795,6 +799,9 @@ def parser():
         (("--issued",), {"metavar": "YYYY-MM-DD", "help": "the date the data was made (default: the run date)"}),
         (("--dry-run",), {"action": "store_true",
                           "help": "write the version into the build area only; catalogue, store, run unchanged"}),
+        (("--allow-old-inputs",), {"action": "store_true",
+                                   "help": "also a run that read outdated inputs (decision 0043); the run record of "
+                                           "the version names them"}),
         json_out=False)
     add("check-authorities", cmd_check_authorities,
         "list per authority dataset the identifiers our datasets name that it does not have (decision 0029)",

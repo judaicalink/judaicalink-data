@@ -2,9 +2,9 @@
 
 Transformation only, a port of four builders of kg-complements (2026-10-06; decision 0020) without changes to their
 logic (except the date rules, below): dates_normalized and places_linked (datasets_algorithmic.py), occupation_concepts and occupation_fix
-(datasets_deterministic.py). They queried "all graphs" of the endpoint; here the inputs are the versions that hold
-the values they read (checked 2026-10-12 against all stable versions and the kg-complements outputs). Facts about
-records, never about entity pages (0008).
+(datasets_deterministic.py). They queried "all graphs" of the endpoint; here the inputs are the stable versions of
+the datasets that hold the values they read (RECORD_SLUGS, PLACE_SLUGS). Facts about records, never about entity
+pages (0008).
 
 Files:
 - records-normalized-dates.ttl.gz: jl:birthDateNormalized / jl:deathDateNormalized (xsd:date, gYearMonth, gYear) for the
@@ -26,23 +26,24 @@ jl:occupation in records-normalized-occupation-fix.ttl.gz), to check the port ag
 """
 
 import re
+import unicodedata
 from collections import Counter, defaultdict
 from urllib.parse import unquote
 
 from jl import classes
+from jl.generator import slug_of, stable_inputs
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
 
-RECORDS = {
-    "bhr": "bhr/2026-10-12", "dbpedia_persons": "dbpedia-persons/2018-10-24", "djh": "djh/2018-10-22",
-    "epidat": "epidat/2026-10-12", "footprints": "footprints/2026-10-12", "geo_enriched": "geo-enriched/2019-12-18",
-    "gnd": "gnd/2026-10-16",   # replaces gnd-persons and gnd-persons-entityfacts (decision 0029)
-    "haskala": "haskala/2026-10-12", "hhkeydocs": "hhkeydocs/2025-03-21", "hirsch_family": "hirsch-family/2018-10-30",
-    "jre": "jre/2019-11-29", "nli_records": "nli-records/2026-10-12", "sosy": "sosy/2026-10-12",
-    "ubffm_persons": "ubffm-persons/2019-01-24",
-}
-PLACES = {"rujen": "rujen/2020-09-28", "geo_coordinates": "geo-coordinates/2026-10-12",
-          "cm_entities": "cm-entities/2026-10-12/cm-entities-wikidata.ttl.gz"}
+# the stable versions of the record datasets and of the datasets of the place dictionaries (since 2026-11-10; the
+# versions were pinned before, and records-normalized 2026-10-12 still read geo-enriched 2019 after its replacement)
+RECORD_SLUGS = {"bhr", "dbpedia", "djh", "epidat", "footprints", "geo-enriched", "gnd", "haskala", "hhkeydocs",
+                "hirsch-family", "jre", "nli-records", "sosy", "ubffm-persons"}
+PLACE_SLUGS = {"rujen", "geo-coordinates", "cm-entities"}
+_STABLE = stable_inputs(kinds=None)
+RECORDS = {k: v for k, v in _STABLE.items() if slug_of(v) in RECORD_SLUGS}
+PLACES = {k: v + ("/cm-entities-wikidata.ttl.gz" if slug_of(v) == "cm-entities" else "")
+          for k, v in _STABLE.items() if slug_of(v) in PLACE_SLUGS}
 INPUTS = {**RECORDS, **PLACES}
 PARAMS = {"legacy_terms": False}
 
@@ -228,7 +229,8 @@ def death_before_birth(parsed):
 # --- places ----------------------------------------------------------------------------------------
 
 def place_key(s):
-    return re.sub(r"\s+", " ", s).strip().lower()
+    """Texts compared in Unicode NFC (GND writes "Königsberg" decomposed, haskala composed), spaces collapsed, lower case."""
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s)).strip().lower()
 
 
 def places(run, values, dictionaries):

@@ -4,7 +4,13 @@ A generator is a Python file with module constants and one function:
 
     INPUTS = {"crawl": "rujen/2020-09-28/rujen.jsonl.gz"}   # name -> input reference
     PARAMS = {"limit": 0}                                    # defaults; jl generate --param limit=10
+    PINNED = {"crawl": "the crawl of 2020, the source"}      # optional: inputs read at a fixed version, with the reason
     def generate(run): ...
+
+Inputs of other datasets are their stable versions (stable_inputs). An input that reads another dataset at another
+version, or a replaced or withdrawn dataset, is outdated unless PINNED declares it (decision 0043): jl generate warns,
+the run record names it, add-version refuses the run (--allow-old-inputs), check-catalog lists it, and also the
+stable versions that were made from inputs that are outdated now.
 
 Input references:
     "<slug>/<version>/<path>"   one file of a version (from the store, checked against its checksum)
@@ -122,6 +128,79 @@ def stable_inputs(prefix="", exclude=(), add=None, kinds=None, replaced=False):
 def slug_of(ref):
     """The dataset of an input reference "<slug>/<version>[/<path>]"."""
     return ref.split("/", 1)[0]
+
+
+# --- outdated inputs (decision 0043) ---------------------------------------------------------------
+
+def outdated_inputs(cat, slug, refs, pinned=None):
+    """The inputs that read another dataset at a version that is not its stable one, or a replaced or withdrawn
+    dataset (decision 0043): [(name, "<slug>/<version>", why)]. refs: [(name, ref)]; pinned: {name: reason}, the
+    generator's PINNED. Not counted: the dataset's own versions and those of the datasets it replaces (a generator may
+    make its dataset again from an earlier version or the original dump), pinned inputs, files of the repository and
+    of the inputs area, runs (add-version refuses them). A withdrawn or replaced dataset gets no new versions and is
+    not checked."""
+    pinned = pinned or {}
+    e = cat.get(slug)
+    replaced_by = {r: s for s, x in cat.entries.items() for r in catalog.as_list(x.data.get("replaces"))}
+    if e is None or e.withdrawn or slug in replaced_by:
+        return []
+    own = {slug, *catalog.as_list(e.data.get("replaces"))}
+    out, seen = [], set()
+    for name, ref in refs:
+        if not isinstance(ref, str) or ref.startswith(("repo:", "inputs:")) or name in pinned:
+            continue
+        parts = ref.split("/")
+        if len(parts) < 2 or runs.is_run_id(parts[1]) or parts[0] in own:
+            continue
+        s, v = parts[0], parts[1]
+        if (name, s, v) in seen:
+            continue
+        seen.add((name, s, v))
+        x = cat.get(s)
+        if s in replaced_by:
+            out.append((name, f"{s}/{v}", f"replaced by {replaced_by[s]}"))
+        elif x is not None and x.withdrawn:
+            out.append((name, f"{s}/{v}", "withdrawn"))
+        elif x is not None and x.stable and v != x.stable:
+            out.append((name, f"{s}/{v}", f"the stable version is {x.stable}"))
+    return out
+
+
+def check_generators(cat, out=print):
+    """For every generator of a catalogued dataset: the outdated inputs it declares, and those its stable version was
+    made from (then the version must be made again). Returns the number of warnings."""
+    warnings = 0
+    for path in sorted(GENERATORS.glob("*/generate.py")):
+        slug = path.parent.name
+        if cat.get(slug) is None:
+            continue
+        try:
+            module = load_generator(slug)
+        except Exception as e:
+            out(f"warning: generators/{slug}: not loaded ({type(e).__name__}: {e})")
+            warnings += 1
+            continue
+        pinned = getattr(module, "PINNED", {})
+        for name, ref, why in outdated_inputs(cat, slug, getattr(module, "INPUTS", {}).items(), pinned):
+            out(f"warning: generators/{slug}: input {name} reads {ref} ({why}); read the stable version "
+                "(stable_inputs) or declare the input in PINNED with the reason")
+            warnings += 1
+        stable = cat.get(slug).stable
+        rp = runs.record_path(slug, stable) if stable else None
+        if rp and rp.is_file():
+            rec = json.loads(rp.read_text(encoding="utf-8"))
+            declared = getattr(module, "INPUTS", {})
+            version_of = lambda ref: "/".join(str(ref).split("/")[:2])
+            # the generator's PINNED covers the version too where it pins the same version (records before 0043)
+            pins = {**{n: why for n, why in pinned.items() for i in rec.get("inputs", [])
+                       if i.get("name") == n and version_of(i.get("ref")) == version_of(declared.get(n, ""))},
+                    **rec.get("pinned", {})}
+            found = outdated_inputs(cat, slug, [(i.get("name"), i.get("ref")) for i in rec.get("inputs", [])], pins)
+            if found:
+                out(f"warning: {slug}/{stable} (stable) was made from " + "; ".join(
+                    f"{ref} ({why})" for _n, ref, why in found) + ": make it again")
+                warnings += 1
+    return warnings
 
 
 def is_meta(name):
@@ -338,6 +417,11 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print, use=None
             raise GeneratorError(f"unknown input {k!r} (INPUTS: {', '.join(declared) or 'none'})")
         declared[k] = v
     params = parse_params(getattr(module, "PARAMS", {}), given_params)
+    pinned = dict(getattr(module, "PINNED", {}))
+    unknown = sorted(set(pinned) - set(declared))
+    if unknown:
+        raise GeneratorError(f"PINNED names inputs that are not declared: {', '.join(unknown)}")
+    outdated = outdated_inputs(cat, slug, declared.items(), pinned)
     shared = getattr(module, "_jl_shared", [])
     commit, dirty = code_state(slug, [r[5:] for r in declared.values() if isinstance(r, str) and r.startswith("repo:")]
                                + shared)
@@ -355,6 +439,10 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print, use=None
               "input_overrides": list(input_overrides), "started": utc(started)}
     if use:
         record["use"] = dict(sorted(use.items()))
+    if pinned:
+        record["pinned"] = pinned
+    if outdated:
+        record["outdated_inputs"] = [{"name": n, "ref": r, "why": w} for n, r, w in outdated]
     if shared:
         record["shared_code"] = shared
     run = None
@@ -379,6 +467,8 @@ def generate(cfg, slug, given_params=(), input_overrides=(), log=print, use=None
                     record["corrections"] = applied
             run = Run(slug, run_id, d, params, resolved, logf, frozenset(deleted))
             run.log(f"{slug}/{run_id}: commit {commit}" + (f" (uncommitted: {', '.join(dirty)})" if dirty else ""))
+            for n, r, w in outdated:
+                run.log(f"warning: input {n} reads {r} ({w})")
             module.generate(run)
             record["status"] = "ok"
         except Exception as e:
