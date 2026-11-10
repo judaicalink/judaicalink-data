@@ -43,6 +43,7 @@ PROVINCE_POP = 100000
 # qualifiers that are no place: parts of a city, kinds of places
 QUALIFIER_IGNORED = {"ost", "west", "nord", "süd", "region", "seebad", "kurort", "dorf", "gut", "land"}
 RATIO = 10
+FREQ_RATIO = 3   # the place named most often in our data against the next one
 MIN_POP = 1000
 NOT_NAMES = {"link", "wkdt", "post", "iata", "icao", "faac", "abbr", "unlc", "tcid", "fr_1793", "phon"}
 # the United States: postal codes and the abbreviations of the AP style, as qualifiers ("Boston, Mass.")
@@ -105,8 +106,10 @@ def km(a, b):
 class Gazetteer:
     """The candidates for a set of names (and qualifiers), read from the dump once."""
 
-    def __init__(self, all_countries, alternate_names, names, qualifiers=()):
+    def __init__(self, all_countries, alternate_names, names, qualifiers=(), ids=()):
         wanted = {key(n) for n in names}
+        wanted_ids = set(ids)
+        self.by_id = {}   # the records of the given ids (any class), for the places chosen by evidence
         wanted_q = {key(q) for q in qualifiers} | {re.sub(UNIT_WORDS, "", key(q)) for q in qualifiers}
         # tiers of the alternate names: (name key, GeoNames id) -> best tier
         alt_tier = {}
@@ -131,6 +134,10 @@ class Gazetteer:
             for row in io.TextIOWrapper(f, encoding="utf-8"):
                 c = row.rstrip("\n").split("\t")
                 fclass, fcode = c[6], c[7]
+                if c[0] in wanted_ids:
+                    self.by_id[c[0]] = {"id": c[0], "name": c[1], "class": fclass, "code": fcode, "cc": c[8],
+                                        "admin1": c[10], "admin2": c[11], "pop": int(c[14] or 0),
+                                        "lat": float(c[4]), "lng": float(c[5])}
                 if fcode in ("STM", "STMH"):
                     self.rivers.update(({key(c[1]), key(c[2])} | {key(a) for a in c[3].split(",") if a}) & wanted_q)
                 if fclass not in ("P", "A") and fcode not in ("RGN", "RGNH"):
@@ -157,6 +164,12 @@ class Gazetteer:
                 for k, tier in tiers.items():
                     self.cands[k].append(dict(rec, tier=tier))
 
+    @staticmethod
+    def place_of(cluster):
+        """Of the forms of one place, the populated place with the largest population, else the first."""
+        places = sorted((r for r in cluster if r["class"] == "P"), key=lambda r: (-pop(r), int(r["id"])))
+        return places[0] if places else sorted(cluster, key=lambda r: int(r["id"]))[0]
+
     def qualified(self, cands, qualifier):
         """(the candidates the qualifier fits, whether the qualifier names anything known)."""
         q = key(qualifier)
@@ -182,29 +195,63 @@ class Gazetteer:
         inside = [r for r in cands if any(km(p, (r["lat"], r["lng"])) <= REGION_KM for p in regions)]
         return inside, bool(points or regions or any(qs & names for names in self.region_names.values()))
 
-    def choose_text(self, literal):
+    def choose_text(self, literal, prefer=(), freq=None):
         """(GeoNames record or None, how) for a place text: the whole text, else its name and qualifier."""
         name, qualifier = clean(literal)
         if name is None:
             return None, qualifier
         if self.cands.get(key(normal(literal))):
-            return self.choose(normal(literal))
-        return self.choose(name, qualifier)
+            return self.choose(normal(literal), prefer=prefer, freq=freq)
+        return self.choose(name, qualifier, prefer, freq)
 
-    def choose(self, name, qualifier=None):
-        """(GeoNames record or None, how)."""
+    @staticmethod
+    def with_cluster(cands, chosen):
+        """The chosen candidates and those of the same place in another form (same country, within CLUSTER_KM)."""
+        return [r for r in cands if r in chosen or any(
+            r["class"] != "L" and x["class"] != "L" and r["cc"] == x["cc"]
+            and km((r["lat"], r["lng"]), (x["lat"], x["lng"])) <= CLUSTER_KM for x in chosen)]
+
+    def choose(self, name, qualifier=None, prefer=(), freq=None):
+        """(GeoNames record or None, how).
+
+        prefer: GeoNames ids that a source states for this very text (one record): taken before anything else.
+        freq: {GeoNames id: how often our sources name the place} (decided 2026-11-10): among the candidates of all
+        tiers that fit the qualifier, the place named most often in our data (a place with its other forms counts
+        once, with the sum), if it is named at least FREQ_RATIO times as often as the next one; if not, the text
+        is ambiguous in our data. Only if no candidate is named in our data: the tiers and population, as before.
+        If the qualifier leaves only places not named in our data although others are, the text is left out."""
+        freq = freq or {}
         cands = self.cands.get(key(name), [])
         if not cands:
             return None, "no candidate"
+        stated = [r for r in cands if r["id"] in prefer]
+        if stated:   # a source states the place for this very text: before tiers and qualifier
+            return self.place_of(self.with_cluster(cands, stated)), "stated for this text"
+        how = ""
+        if qualifier:
+            q, named = self.qualified(cands, qualifier)
+            if q:
+                if not any(freq.get(r["id"]) for r in q) and any(freq.get(r["id"]) for r in cands):
+                    return None, "the qualifier fits only places not named in our data"
+                cands, how = q, " and qualifier"
+            elif named:
+                return None, "qualifier fits no candidate"
+        known = sorted((r for r in cands if freq.get(r["id"])), key=lambda r: (-freq[r["id"]], int(r["id"])))
+        if known:
+            weights, seen = [], set()
+            for r in known:
+                if r["id"] in seen:
+                    continue
+                cluster = self.with_cluster(cands, [r])
+                seen.update(x["id"] for x in cluster)
+                weights.append((sum(freq.get(x["id"], 0) for x in cluster), cluster))
+            (w, cluster), rest = weights[0], weights[1:]
+            if not rest or w >= FREQ_RATIO * rest[0][0]:
+                return self.place_of(cluster), f"named most often in our data{how} ({w} of {sum(x for x, _ in weights)})"
+            return None, f"ambiguous in our data ({len(weights)} places)"
         tier = min(r["tier"] for r in cands)
         cands = [r for r in cands if r["tier"] == tier]
-        how = "name" if tier == 1 else "alternate name without language"
-        if qualifier:
-            q, known = self.qualified(cands, qualifier)
-            if q:
-                cands, how = q, how + " and qualifier"
-            elif known:
-                return None, "qualifier fits no candidate"
+        how = ("name" if tier == 1 else "alternate name without language") + how
         cands = sorted(cands, key=lambda r: (-pop(r), r["class"] != "P", int(r["id"])))
         best = cands[0]
         cluster = [r for r in cands if r is best or (

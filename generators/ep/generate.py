@@ -365,6 +365,18 @@ def date_text(text):
     return t if re.fullmatch(r"\d{4}(-\d{2}(-\d{2})?)?", t) else None
 
 
+# datasets whose place links were made by matching the text of a place (automatically, not stated by a source)
+ENRICHED_PLACES = {"geo-enriched", "records-normalized"}
+
+
+def place_uri(uris, places):
+    """The place IRI of a page (decision 0042): a link stated by a source (Wikidata included) before one we derived from
+    the text of a place; then the link of the record whose text the page shows; then the order of the facts. uris and
+    places are sorted fact tuples (value, lang, dataset, kind, record)."""
+    record = places[0][4] if places else None
+    return min(uris, key=lambda u: (u[2] in ENRICHED_PLACES, u[4] != record), default=None)   # min is stable
+
+
 def wkt_of(facts, rank_of):
     """geo:asWKT of the first record; else jl:lat/jl:lon as given."""
     if facts.get("wkt"):
@@ -749,14 +761,14 @@ def generate(run):
             uris = sorted([v for v in merged_facts.get(kind + "PlaceURI", []) if v[3] == "uri"], key=order)
             if places:
                 out.add((page, IRI(JLO + f"{kind}Location"), lit(places[0][0].strip())))
-            uri = next((u for u in uris if places and u[4] == places[0][4]), uris[0] if uris else None)
+            uri = place_uri(uris, places)
             if uri:
                 out.add((page, IRI(JLO + f"{kind}LocationURI"), iri(uri[0])))
         places = sorted([v for v in merged_facts.get("burialPlace", []) if v[3] == "literal" and v[0].strip()], key=order)
         uris = sorted([v for v in merged_facts.get("burialPlaceURI", []) if v[3] == "uri"], key=order)
         if places:
             out.add((page, IRI(JLO + "burialLocation"), lit(places[0][0].strip())))
-        uri = next((u for u in uris if places and u[4] == places[0][4]), uris[0] if uris else None)
+        uri = place_uri(uris, places)
         if uri:
             out.add((page, IRI(JLO + "burialLocationURI"), iri(uri[0])))
 
@@ -810,7 +822,7 @@ def generate(run):
             uris = sorted((v for v in merged_facts.get(uri_field, []) if v[3] == "uri"), key=order)
             if places:
                 out.add((page, IRI(text_prop), lit(places[0][0].strip())))
-            uri = next((u for u in uris if places and u[4] == places[0][4]), uris[0] if uris else None)
+            uri = place_uri(uris, places)
             if uri:
                 out.add((page, IRI(uri_prop), iri(uri[0])))
 

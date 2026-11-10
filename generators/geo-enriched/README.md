@@ -67,6 +67,33 @@ is linked to Golenice, Bad Bramstedt to a place 115 km away) and leaves out 416 
 `records-normalized` reads geo-enriched (pairs of text and IRI as its strongest dictionary; records linked here are
 skipped there), so it must be made again with the new version, and so must `ep`.
 
+## What our sources state (2026-11-10)
+
+The places our sources state come first (decision 0044). Checked against Wikidata (P19/P20 of the persons, via the
+entity pages), version 2026-10-16 still gave about 40 links to a namesake: Bethlehem as Belém, Jarosław as
+Yaroslavl, Carlsbad as Carlsbad (California), Hollywood as Hollywood (Florida), Rostov as Rostov Veliky; the
+population of a large place that has the name only as an exonym beat the small place of that name.
+
+1. **Evidence:** a text that two or more records state together with a place IRI (GND, LC, …; not Wikidata, the
+   benchmark) gets the place of at least two thirds of them (GeoNames ids from the `owl:sameAs` of the place records),
+   before the geo-coordinates labels: Bonn 129 of 129 records, Königsberg 103 of 103 (Kaliningrad), Lissa 23 of 23
+   (Leszno). Without such a majority the text is ambiguous in our data and left out. One record makes its place the
+   preferred candidate of the gazetteer.
+2. **The place our data names most often:** among the gazetteer's candidates (all tiers that fit the qualifier),
+   the place named most often by our sources (place statements, place records, geo-coordinates places; a place with
+   its other forms counts once) if it is named at least three times as often as the next (`FREQ_RATIO`); else the
+   text is ambiguous. Population decides only among places our data does not name. A qualifier that leaves only
+   places not named in our data, although others are, leaves the text out.
+
+The inputs of the GeoNames dump are named `geonames_dump`, `geonames_dump_alt`: `geonames` is the authority dataset
+among the stable sources.
+
+Against the Wikidata check, on the 31,100 links both have: 29 links better than 2026-10-16 (Hollywood, Rostov,
+Glukhov, Jarosław, Sverdlovsk, Oranienbaum …), 8 worse, most of them records with two place texts. Wrong namesakes
+73 → 61 with more links checked. Still wrong: Bethlehem (Pennsylvania is named more often in our data), Petersburg
+(GeoNames does not give Saint Petersburg that name), Salem (an alternate name of Jerusalem in GeoNames), "Hebron,
+Israel" (a place named Israel lies near Hebron in Kentucky).
+
 ## Original files
 
 `original/` holds copies of the files below, unchanged unless noted, under `<repository>@<commit>/<path>`. They are the record of what was used; they are not run from here.
