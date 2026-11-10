@@ -29,6 +29,11 @@ Imported like 2026-10-12: `judaicalink-ontology.ttl` at `d7abf5f` (pull requests
 `918d57c` (pull requests 24 and 25: terms used by several datasets, `dcterms:` only); `generate.py` gives the same
 bytes.
 
+## Version 2026-11-11
+
+Imported like 2026-10-12: `judaicalink-ontology.ttl` at `1e35339` (pull requests 26–29: facts of the entity pages
+per class, EDTF dates of Footprints, `jl:onProperty`); `generate.py` gives the same bytes.
+
 ## Inputs
 
 `judaicalink-ontology.md` in the judaicalink-ontology repository.
