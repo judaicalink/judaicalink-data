@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-31T13:24:47Z",
+ "checked": "2026-11-10T20:03:08Z",
  "locations": {
   "dumps": {
    "archive": "https://archive.judaicalink.org/store/",
@@ -624,6 +624,39 @@
     }
    ]
   },
+  "conflicts": {
+   "title": "Conflicting statements of the records of one person",
+   "stable": "2026-11-10",
+   "replaces": [],
+   "replaced_by": [],
+   "withdrawn": null,
+   "catalogues": [],
+   "versions": [
+    {
+     "version": "2026-11-10",
+     "issued": "2026-11-10",
+     "status": "stable",
+     "files": [
+      {
+       "path": "conflicts.ttl.gz",
+       "bytes": 183992,
+       "sha256": "4177dd33364e6953b965826486271a05eb6feda69f44607357eefe6fa02b63a4",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "conflicts-meta.ttl.gz",
+       "bytes": 2359,
+       "sha256": "d99b89c595e7d0893b0f041d84bcf0027837f6ef7560bb3f75b254204d2f73cb",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    }
+   ]
+  },
   "corrections-links": {
    "title": "Corrections of identity links",
    "stable": "2026-10-12-2",
@@ -924,7 +957,7 @@
   },
   "ep": {
    "title": "Entity Pages - Judaicalink",
-   "stable": "2026-10-31",
+   "stable": "2026-11-10",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -934,9 +967,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-10",
+     "issued": "2026-11-10",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ep-history.ttl.gz",
+       "bytes": 4417178,
+       "sha256": "31d8679b303d772932385a59264f053732086ddea67218b175b8719d3c5f8de6",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep.ttl.gz",
+       "bytes": 55544591,
+       "sha256": "428175222bede1b6045d4ddd94ecc6af6a2601fa8bb97689edf33c391b4ce7fa",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep-meta.ttl.gz",
+       "bytes": 3650,
+       "sha256": "0f6504c1519ec70f9a07d755c5c816448a7ee88d2fa0375af292ab0bdcf4170c",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-31",
      "issued": "2026-10-31",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ep-history.ttl.gz",
@@ -1429,7 +1493,7 @@
   },
   "geo-enriched": {
    "title": "Geographic Enrichment",
-   "stable": "2026-10-16",
+   "stable": "2026-11-10",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -1439,9 +1503,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-10",
+     "issued": "2026-11-10",
+     "status": "stable",
+     "files": [
+      {
+       "path": "geo-enriched.ttl.gz",
+       "bytes": 307820,
+       "sha256": "a3b15e8aac1ef9cc704796101b985a6c0927b1e405b89058aaac4557bb353e99",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geo-enriched-meta.ttl.gz",
+       "bytes": 3142,
+       "sha256": "755696b7f6b36f4ff379158dad81ee3f2f0880eeae08d5faab7136d1bc7c7a98",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-16",
      "issued": "2026-10-16",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "geo-enriched.ttl.gz",
@@ -3185,7 +3272,7 @@
   },
   "records-normalized": {
    "title": "Normalised dates, places and occupations of the records",
-   "stable": "2026-10-12",
+   "stable": "2026-11-10",
    "replaces": [
     "date-enriched"
    ],
@@ -3196,9 +3283,48 @@
    ],
    "versions": [
     {
+     "version": "2026-11-10",
+     "issued": "2026-11-10",
+     "status": "stable",
+     "files": [
+      {
+       "path": "records-normalized-dates.ttl.gz",
+       "bytes": 1519902,
+       "sha256": "1a7885f849cd5a04db053138f53e5dc22c6183cf0b551cb7b583043f3a3d846b",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "records-normalized-occupations.ttl.gz",
+       "bytes": 80751,
+       "sha256": "b396b1c015a965aeddded8cf5052e8669e33e65547111843933cdd82f8b27b4a",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "records-normalized-places.ttl.gz",
+       "bytes": 6784,
+       "sha256": "c8cc4b7b88e3f8fa1e583dd4131933e423f9936d021ac261c3a34da3e1e8c4f7",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "records-normalized-meta.ttl.gz",
+       "bytes": 3456,
+       "sha256": "e8797acb1afd8eaff5bba1ba975695216aa97e359f758971cea687ba5bb0ffa7",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-12",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "records-normalized-dates.ttl.gz",
