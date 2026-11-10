@@ -24,6 +24,8 @@ the entity pages of 2026-10-31 linked 84 persons born in Bonn to Cologne Bonn Ai
   the datasets that depend on it show up.
 - Datasets that read each other (gnd takes seeds from geo-enriched, geo-enriched evidence from gnd): an input whose
   stable version was made from this dataset's stable version is newer than it, not outdated.
+- The authority datasets of one cascade are made together with one version id and read each other's previous
+  versions (process 2a): among them, that is not outdated either.
 
 ## Consequences
 

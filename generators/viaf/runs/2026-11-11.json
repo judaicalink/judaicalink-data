@@ -1,0 +1,124 @@
+{
+ "slug": "viaf",
+ "run": "run-20261110T232329Z",
+ "generator": "generators/viaf/generate.py",
+ "commit": "5c1925e013a0eb6bf7147855d97790dd995572ff",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-11-10T23:23:29Z",
+ "inputs": [
+  {
+   "name": "dump",
+   "ref": "inputs:viaf/clusters-2024-08-04/viaf-20240804-clusters-rdf.nt.gz",
+   "file": "viaf-20240804-clusters-rdf.nt.gz",
+   "sha256": "e3e3f46fae45a82dbeffa464eb5c38d1314e766b01188ab46b36b6c06bc3f217",
+   "bytes": 14653578835
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-11-11/viaf-selection.tsv.gz",
+   "file": "viaf-selection.tsv.gz",
+   "sha256": "5fec79bd37393b64803698f441d215cd1e0186a26de5a5fcfe70929fb590bd8d",
+   "bytes": 2436610
+  }
+ ],
+ "input_descriptions": {
+  "inputs:viaf/clusters-2024-08-04": {
+   "title": "VIAF clusters (RDF, N-Triples), 2024-08-04",
+   "origin": "https://downloads.viaf.org/download/yearly/viaf-20240804-clusters-rdf.nt.gz",
+   "description": "The yearly VIAF dump of 2024-08-04, all clusters in RDF as N-Triples, sorted by line, as offered on https://viaf.org/en/viaf/data (the only RDF file of the dump). Downloaded on the labs VM 2026-10-17/18 (downloads.viaf.org ignores byte ranges, so interrupted downloads cannot be resumed), copied here, unchanged; SHA-256 checked against the copy on the labs VM. Licence ODC Attribution 1.0 (viaf.org/en/viaf/data).",
+   "date": "2024-08-04",
+   "note": "Not published: a copy of a public source, the input of the dataset viaf (decision 0029)."
+  },
+  "inputs:cascade/2026-11-11": {
+   "title": "The cascade of the authority datasets, 2026-11-11",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-11-11 (geo-enriched, records-normalized, ep and conflicts 2026-11-10 new), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-11-11",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-11-10T23:29:23Z",
+ "seconds": 354.6,
+ "notes": [
+  "213,529 clusters of 231,412 linked VIAF numbers; 17,883 not in the dump; lines that are not valid N-Triples, left out 21; links without an identifier left out (e.g. http://data.bnf.fr/#foaf:Person) 8,454."
+ ],
+ "files": [
+  {
+   "path": "viaf-selection.tsv.gz",
+   "bytes": 2349054,
+   "sha256": "eeb6c65fa1c6bf08deeb27d7ca015a9003289ffe74f560d40b2f4b8a7554424d"
+  },
+  {
+   "path": "viaf.ttl.gz",
+   "bytes": 22777924,
+   "sha256": "8277bf9d4d0078dca5256153d8c74de47d45c33dbceb78b0c1c4d363d911a42a",
+   "triples": 2962078
+  }
+ ],
+ "authority_links": {
+  "gnd": {
+   "dataset": "gnd",
+   "named": 66115,
+   "new": 202,
+   "examples": [
+    "10016472-9",
+    "10021410-1",
+    "10025941-8",
+    "10079379-4",
+    "10116421-X"
+   ],
+   "selection": "gnd/2026-10-31"
+  },
+  "lc": {
+   "dataset": "lc",
+   "named": 89066,
+   "new": 125,
+   "examples": [
+    "n00035174",
+    "n00046895",
+    "n2002021822",
+    "n2002111438",
+    "n2003080457"
+   ],
+   "selection": "lc/2026-10-26"
+  },
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 58976,
+   "new": 199,
+   "examples": [
+    "Q1003559",
+    "Q101081",
+    "Q1018879",
+    "Q1020609",
+    "Q1021"
+   ],
+   "selection": "wikidata/2026-10-26"
+  },
+  "dbpedia (wikipedia-en)": {
+   "dataset": "dbpedia",
+   "named": 31175,
+   "new": 158,
+   "examples": [
+    "Abanda,_Alabama",
+    "Addis_Ababa",
+    "Alginet",
+    "Alpine,_New_Jersey",
+    "Appenzell_(village)"
+   ],
+   "selection": "dbpedia/2026-10-26"
+  }
+ },
+ "version": "2026-11-11"
+}

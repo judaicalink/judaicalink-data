@@ -22,14 +22,15 @@ import re
 from collections import Counter
 
 from jl.generator import GeneratorError
+from jl.generator import stable_inputs
 from jl.linksets import JLSAME, contradict, kinds
 from jl.rdf import IRI
 from jl.turtle import PREFIXES
 
 INPUTS = {
     "footprints": "footprints/2026-10-26",
-    "record_classes": "record-classes/2026-10-26",
-    "viaf": "viaf/2026-10-26",
+    "record_classes": stable_inputs()["record_classes"],
+    "viaf": stable_inputs()["viaf"],
     "verdicts": "inputs:footprints/viaf-verdicts-2026-10-26/verdicts.tsv",
 }
 PINNED = {"footprints": "the verdicts judged the evidence of the Footprints persons of this version"}

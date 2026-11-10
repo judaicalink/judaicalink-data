@@ -1,0 +1,112 @@
+{
+ "slug": "dbpedia",
+ "run": "run-20261110T233000Z",
+ "generator": "generators/dbpedia/generate.py",
+ "commit": "5c1925e013a0eb6bf7147855d97790dd995572ff",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-11-10T23:30:00Z",
+ "shared_code": [
+  "generators/dbpedia/query.py"
+ ],
+ "inputs": [
+  {
+   "name": "titles_en",
+   "ref": "inputs:cascade/2026-11-11/titles-en.jsonl",
+   "file": "titles-en.jsonl",
+   "sha256": "e6cc2c9995f02ddc7a4eb923ff48523e250b66808c1ab8248b228882646d0305",
+   "bytes": 3880985
+  },
+  {
+   "name": "titles_de",
+   "ref": "inputs:cascade/2026-11-11/titles-de.jsonl",
+   "file": "titles-de.jsonl",
+   "sha256": "00d71882999e99954127d14209ad84d4a306e5ef5cd40e3c6aaff206bc5faea8",
+   "bytes": 3445875
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-11-11/dbpedia-selection.tsv.gz",
+   "file": "dbpedia-selection.tsv.gz",
+   "sha256": "4670f4c5bdca5260683267ea00b8b7c056a78fb7a2aeb7d0eba03ed32c173bde",
+   "bytes": 1184390
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/generated_persons_DBPedia_enriched_02.ttl.gz",
+   "file": "generated_persons_DBPedia_enriched_02.ttl.gz",
+   "sha256": "34e353fd9b7bf20e8c53a673503eeeb400e4bef4c14a6f532041fde3191c96b3",
+   "bytes": 710023
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/persons-gndid.ttl.gz",
+   "file": "persons-gndid.ttl.gz",
+   "sha256": "e8d8cdab643f0b98840c5181299b7c6a00ea0274331ffd3420b2fe9ff68392f8",
+   "bytes": 30570
+  },
+  {
+   "name": "previous",
+   "ref": "dbpedia-persons/2018-10-24/Entityfacts-dbpedia-sameas.ttl.gz",
+   "file": "Entityfacts-dbpedia-sameas.ttl.gz",
+   "sha256": "c1ff0f22f44f0c244aec4f609822cccc5710b706ca1b4b21e8c68ab750844105",
+   "bytes": 135800
+  }
+ ],
+ "input_descriptions": {
+  "inputs:cascade/2026-11-11": {
+   "title": "The cascade of the authority datasets, 2026-11-11",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-11-11 (geo-enriched, records-normalized, ep and conflicts 2026-11-10 new), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-11-11",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-11-10T23:30:07Z",
+ "seconds": 6.8,
+ "notes": [
+  "dbpedia-persons records moved 5,230; dbpedia-persons records of no English or German article 0; dbpedia-persons records without an article (deprecated) 64; records de 34,918; records en 38,835; titles missing de 256; titles missing en 143; titles replaced de 391; titles replaced en 1,146; selection rows 177,478."
+ ],
+ "deleted_by_corrections": {
+  "previous": 72
+ },
+ "files": [
+  {
+   "path": "dbpedia-selection.tsv.gz",
+   "bytes": 1184390,
+   "sha256": "946a46c4ca6f05849ff18df1897c413f29cb4c59d1b7318b7a94ded5fb239d98"
+  },
+  {
+   "path": "dbpedia.ttl.gz",
+   "bytes": 2866410,
+   "sha256": "0ee37cb1b3cc3b0871683c9e8b4240cc0d4990c17e4e303c8e3975776be1b283",
+   "triples": 403663
+  }
+ ],
+ "authority_links": {
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 48200,
+   "new": 1189,
+   "examples": [
+    "Q1001315",
+    "Q1003559",
+    "Q101081",
+    "Q101333",
+    "Q1018879"
+   ],
+   "selection": "wikidata/2026-10-26"
+  }
+ },
+ "version": "2026-11-11"
+}

@@ -1,0 +1,143 @@
+{
+ "slug": "wikidata",
+ "run": "run-20261110T232937Z",
+ "generator": "generators/wikidata/generate.py",
+ "commit": "5c1925e013a0eb6bf7147855d97790dd995572ff",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-11-10T23:29:37Z",
+ "inputs": [
+  {
+   "name": "entities",
+   "ref": "inputs:cascade/2026-11-11/entities.jsonl.gz",
+   "file": "entities.jsonl.gz",
+   "sha256": "d2dd5feeeb7beb39e2143558cc8c1617e9bc16321d86b394fd7a5da741460d46",
+   "bytes": 11491847
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-11-11/wikidata-selection.tsv.gz",
+   "file": "wikidata-selection.tsv.gz",
+   "sha256": "f4e2ebf7a3f66ba7ead4b5a40b069dfbbe9922b04454b488f8ad04abe298c82a",
+   "bytes": 3495958
+  }
+ ],
+ "input_descriptions": {
+  "inputs:cascade/2026-11-11": {
+   "title": "The cascade of the authority datasets, 2026-11-11",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-11-11 (geo-enriched, records-normalized, ep and conflicts 2026-11-10 new), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-11-11",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-11-10T23:29:52Z",
+ "seconds": 15.5,
+ "notes": [
+  "90,357 items; by reason: linked 77,834 (77,834 not in the reasons before), replaces 32 (0 not in the reasons before), by-gnd 62,029 (276 not in the reasons before), by-viaf 83,417 (10,907 not in the reasons before), by-lc-names 60,880 (44 not in the reasons before), by-geonames 7,928 (1,016 not in the reasons before), by-isni 61,907 (28 not in the reasons before); 845 named items merged, 18 named items deleted; 0 identifier statements left out because they cite JudaicaLink."
+ ],
+ "files": [
+  {
+   "path": "wikidata-selection.tsv.gz",
+   "bytes": 3422368,
+   "sha256": "e64253e15670d9fa8814e62e3cdae73b0c7415903050e98174e01b360bcb4358"
+  },
+  {
+   "path": "wikidata.ttl.gz",
+   "bytes": 8420403,
+   "sha256": "fc1f8649b8b3ca1356eee4a18f7bb6c39e096f1a2643be17dc43f5f6de682585",
+   "triples": 1240788
+  }
+ ],
+ "authority_links": {
+  "geonames": {
+   "dataset": "geonames",
+   "named": 8123,
+   "new": 354,
+   "examples": [
+    "11306461",
+    "11352571",
+    "11395827",
+    "11609031",
+    "11609034"
+   ],
+   "selection": "geonames/2026-10-26"
+  },
+  "gnd": {
+   "dataset": "gnd",
+   "named": 62609,
+   "new": 1476,
+   "examples": [
+    "10021410-1",
+    "1024171515",
+    "1024289117",
+    "1024289230",
+    "1026854334"
+   ],
+   "selection": "gnd/2026-10-31"
+  },
+  "lc": {
+   "dataset": "lc",
+   "named": 61321,
+   "new": 721,
+   "examples": [
+    "n00035174",
+    "n00046895",
+    "n2002111438",
+    "n2003064590",
+    "n2003080457"
+   ],
+   "selection": "lc/2026-10-26"
+  },
+  "viaf": {
+   "dataset": "viaf",
+   "named": 88382,
+   "new": 222,
+   "examples": [
+    "101144647638162723991",
+    "123150783",
+    "123339986",
+    "124192419",
+    "124281423"
+   ],
+   "selection": "viaf/2026-10-26"
+  },
+  "dbpedia (wikipedia-de)": {
+   "dataset": "dbpedia",
+   "named": 35153,
+   "new": 1065,
+   "examples": [
+    "Abgeordneter",
+    "Absatzmittler",
+    "Abt",
+    "Abteilungsleiter",
+    "Addis_Abeba"
+   ],
+   "selection": "dbpedia/2026-10-26"
+  },
+  "dbpedia (wikipedia-en)": {
+   "dataset": "dbpedia",
+   "named": 39142,
+   "new": 1043,
+   "examples": [
+    "Abanda",
+    "Abanda,_Alabama",
+    "Abbot",
+    "Academic_degree",
+    "Activism"
+   ],
+   "selection": "dbpedia/2026-10-26"
+  }
+ },
+ "version": "2026-11-11"
+}

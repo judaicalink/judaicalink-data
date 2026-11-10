@@ -1,0 +1,99 @@
+{
+ "slug": "geonames",
+ "run": "run-20261110T232314Z",
+ "generator": "generators/geonames/generate.py",
+ "commit": "5c1925e013a0eb6bf7147855d97790dd995572ff",
+ "uncommitted": [],
+ "python": "3.15.0",
+ "params": {},
+ "input_overrides": [],
+ "started": "2026-11-10T23:23:14Z",
+ "inputs": [
+  {
+   "name": "all",
+   "ref": "inputs:geonames/dump-2026-10-15/allCountries.zip",
+   "file": "allCountries.zip",
+   "sha256": "2fbf54cea14028837ed0571fc424402fd6a84afe09ed5208b0553bcd2815223b",
+   "bytes": 422029404
+  },
+  {
+   "name": "alternate",
+   "ref": "inputs:geonames/dump-2026-10-15/alternateNamesV2.zip",
+   "file": "alternateNamesV2.zip",
+   "sha256": "8f3e7b963d0bd31c3465df489fc59f2eda4930f1b28d0c0a6a4d0b37bb3dbe51",
+   "bytes": 204846759
+  },
+  {
+   "name": "admin1",
+   "ref": "inputs:geonames/dump-2026-10-15/admin1CodesASCII.txt",
+   "file": "admin1CodesASCII.txt",
+   "sha256": "1da92a6323a5fec3176f3f743bf4cf4040fd56a876da55e46fbca23c863aa60a",
+   "bytes": 151583
+  },
+  {
+   "name": "selection",
+   "ref": "inputs:cascade/2026-11-11/geonames-selection.tsv.gz",
+   "file": "geonames-selection.tsv.gz",
+   "sha256": "ff1e38a5adee4fcf2668a74b97fd9a45b5aafc975dbd0ef721b82871ccc01036",
+   "bytes": 87810
+  }
+ ],
+ "input_descriptions": {
+  "inputs:geonames/dump-2026-10-15": {
+   "title": "GeoNames: the full dump (allCountries), alternate names, admin1 codes and country info (2026-10-15)",
+   "origin": "https://download.geonames.org/export/dump/",
+   "description": "The GeoNames data dump as offered on 2026-10-15 (files dated 2026-10-15 by the server): allCountries.zip (all features, one line per GeoNames record: id, name, ASCII name, alternate names, coordinates, feature class and code, country, admin codes, population, ...), alternateNamesV2.zip (the alternate names with their language, preferred/short/colloquial/historic flags), admin1CodesASCII.txt (names of the first-level administrative divisions), countryInfo.txt (countries), readme.txt (the format). Licence CC BY 4.0 (readme.txt). Used to find GeoNames ids for place names offline and deterministically.",
+   "date": "2026-10-15",
+   "note": "Not published: a copy of a third-party dump (CC BY 4.0), kept to make datasets that match places against GeoNames again without network access."
+  },
+  "inputs:cascade/2026-11-11": {
+   "title": "The cascade of the authority datasets, 2026-11-11",
+   "origin": "jl cascade (src/jl/cascade.py) on the stable versions of 2026-11-11 (geo-enriched, records-normalized, ep and conflicts 2026-11-10 new), with the lookups of generators/<slug>/lookup.py: the indexes of the GND, LC, VIAF and GeoNames dumps (the inputs of those generators) and the Wikidata and Wikipedia APIs (answers cached)",
+   "description": "<slug>-selection.tsv.gz: the selection of each authority dataset (gnd, lc, geonames, viaf, wikidata, dbpedia; source, identifier, current identifier, reason, detail); entities.jsonl.gz, find-<P>.tsv: the Wikidata answers for the selected items; titles-<lang>.jsonl: the Wikipedia answers for the selected titles; cascade.json: rounds and sizes.",
+   "date": "2026-11-11",
+   "note": "Not published: the intermediate result the authority generators read (decision 0029)."
+  }
+ },
+ "corrections": [
+  {
+   "ref": "corrections-links/2026-10-12-2/corrections-links-deletions.ru.gz",
+   "sha256": "e84a2cd9a6b8f2970a90be28747415512755603018c491802c1414582837c79c",
+   "deletions": 85
+  }
+ ],
+ "status": "ok",
+ "finished": "2026-11-10T23:23:27Z",
+ "seconds": 13.4,
+ "notes": [
+  "9,240 records of 9,261 linked ids (21 not in the dump); by dataset: wikidata 8,123, gnd 4,036, geo-enriched 3,337, geo-coordinates 2,600, cm-entities 1,504, footprints 983, records-normalized 18, epidat 5, lc 1; 8,632 Wikipedia articles, 2,602 Wikidata items."
+ ],
+ "files": [
+  {
+   "path": "geonames-selection.tsv.gz",
+   "bytes": 91098,
+   "sha256": "3e3f3f2ca60937c3c7682f63442f47ecee6174fe70ad8cc2c6a140248a7270c6"
+  },
+  {
+   "path": "geonames.ttl.gz",
+   "bytes": 1638609,
+   "sha256": "e92891ca6b1ce4ea2047ae502e65d6792d094982d98c28e00ea575c0a01e71d9",
+   "triples": 255386
+  }
+ ],
+ "authority_links": {
+  "wikidata": {
+   "dataset": "wikidata",
+   "named": 2562,
+   "new": 113,
+   "examples": [
+    "Q1003559",
+    "Q1018879",
+    "Q1025067",
+    "Q1025401",
+    "Q1052658"
+   ],
+   "selection": "wikidata/2026-10-26"
+  }
+ },
+ "version": "2026-11-11"
+}

@@ -177,6 +177,13 @@ def made_from(cat, slug, version_ref):
                for i in rec.get("inputs", []))
 
 
+def same_batch(cat, other, slug):
+    """Whether the stable versions of two datasets were made together: one add-version call gives them one version id,
+    as the authority datasets of one cascade (decision 0029, process 2a), which read each other's previous versions."""
+    a, b = cat.get(other), cat.get(slug)
+    return bool(a and b and a.stable and a.stable == b.stable and b.data.get("kind") == a.data.get("kind") == "authority")
+
+
 def check_generators(cat, out=print):
     """For every generator of a catalogued dataset: the outdated inputs it declares, and those its stable version was
     made from (then the version must be made again). Returns the number of warnings."""
@@ -209,7 +216,8 @@ def check_generators(cat, out=print):
             found = outdated_inputs(cat, slug, [(i.get("name"), i.get("ref")) for i in rec.get("inputs", [])], pins)
             # datasets that read each other (gnd and geo-enriched): an input whose stable version was made from this
             # stable version is newer than it, not outdated
-            found = [f for f in found if not made_from(cat, f[1].split("/")[0], f"{slug}/{stable}")]
+            found = [f for f in found if not made_from(cat, f[1].split("/")[0], f"{slug}/{stable}")
+                     and not same_batch(cat, f[1].split("/")[0], slug)]
             if found:
                 out(f"warning: {slug}/{stable} (stable) was made from " + "; ".join(
                     f"{ref} ({why})" for _n, ref, why in found) + ": make it again")
