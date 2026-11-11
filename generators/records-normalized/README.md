@@ -45,3 +45,8 @@ Since 2026-11-10 the inputs are the stable versions of the catalogue (`stable_in
 2026-10-12 had read geo-enriched 2019 after geo-enriched 2026-10-16 replaced its first-hit links, and gave 97 records
 named "Bonn" the GeoNames feature of Cologne Bonn Airport (decision 0042). dbpedia replaces dbpedia-persons. Place
 texts are compared in Unicode NFC (the GND writes "Königsberg" decomposed, haskala composed).
+
+German dates (2026-11-11): day, month name written out or abbreviated (Jan., Febr., März, Sep, Sept., Okt., Dez. …,
+with or without a dot) and year, or month and year: 17. Sept. 1834, 23. März 1963, März 1963, 17.Sept.1834; also with a
+remark after the date (18. Juli 1823 das …, 16. Juni 1902 auf der Reise …), not with alternatives or ranges
+(10. Mai 1880 oder 1881). Hebrew month names stay out. Most of them are in bhr.

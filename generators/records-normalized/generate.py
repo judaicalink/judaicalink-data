@@ -12,7 +12,8 @@ Files:
   were extended on 2026-10-12, before the first version was published, for the forms that quality-annotations found
   left out: English dates (October 28, 1905), year and month (1914-11), dateTimes, 1942-- and 1347-06/07 (the year),
   XX.10.1944, 9.1749, years 1–999, Hebrew years as numbers (5676) and Hebrew-Gregorian pairs (5559-1798), equal years
-  (1831-1831), the EDTF value of the footprints dictionaries; a record whose one death date is before its one
+  (1831-1831), the EDTF value of the footprints dictionaries, German dates (17. Sept. 1834, 23. März 1963, März 1963,
+  also with a remark after the date; 2026-11-11); a record whose one death date is before its one
   birth date gets neither. Ranges, bounds (vor 1593) and years before the common era stay out;
 - records-normalized-places.ttl.gz: jl:birthLocationURI / jl:deathLocationURI for the text places, where a dictionary
   gives exactly one IRI (pairs already in the data, places of cm-entities, places of rujen and geo-coordinates);
@@ -74,6 +75,12 @@ HEBREW_YEAR_RE = re.compile(r"^(?:[א-ת]['׳])?[א-ת]{1,3}[\"״][א-ת]$")
 DICT_DATE = re.compile(r"^\{.*'edtf_format': '([^']*)'")
 MONTHS = {m: i for i, m in enumerate(("january", "february", "march", "april", "may", "june", "july", "august",
                                       "september", "october", "november", "december"), 1)}
+# German month names, written out and abbreviated (17. Sept. 1834, 23. März 1963; decided 2026-11-11)
+MONATE = {**{m: i for i, m in enumerate(("januar", "februar", "märz", "april", "mai", "juni", "juli", "august",
+                                         "september", "oktober", "november", "dezember"), 1)},
+          "jänner": 1, "jan": 1, "jän": 1, "feb": 2, "febr": 2, "mrz": 3, "mär": 3, "apr": 4, "jun": 6, "jul": 7,
+          "aug": 8, "sep": 9, "sept": 9, "okt": 10, "nov": 11, "dez": 12}
+GERMAN_DATE = re.compile(r"(?:(\d{1,2})\.\s*)?([A-Za-zÄäÖöÜü]+)(?:\.\s*|\s+)(\d{4})")   # Sep, Sept., 17.Sept.1834
 YEARS = (1, 2030)   # years before the common era (-0126) are left out: standards number them differently
 HEBREW_YEARS = (5000, 5800)   # a year written as a number in this span is a Hebrew year (anno mundi)
 
@@ -128,6 +135,15 @@ def normalize_date(raw):
     m = re.fullmatch(r"(\d{1,2})\.(\d{4})", core)   # M.YYYY
     if m and 1 <= int(m.group(1)) <= 12:
         return ymd(int(m.group(2)), int(m.group(1))), uncertain
+    m = GERMAN_DATE.fullmatch(core)   # German: 17. Sept. 1834, 23. März 1963, März 1963
+    if not m:   # the date followed by a remark: 18. Juli 1823 das …, 16. Juni 1902 auf der Reise …
+        m = GERMAN_DATE.match(core)
+        rest = core[m.end():] if m and m.group(1) else ""
+        if not (rest[:1].isspace() and re.match(r"\s+[a-zäöü]", rest) and not re.search(r"\boder\b|[-–/]\s*\d", rest)):
+            m = None
+    if m and m.group(2).lower() in MONATE:
+        d = int(m.group(1)) if m.group(1) else None
+        return ymd(int(m.group(3)), MONATE[m.group(2).lower()], d), uncertain
     m = re.fullmatch(r"([A-Za-z]+)\.? (\d{1,2}), (\d{4})", core)   # English: October 28, 1905
     if m and m.group(1).lower() in MONTHS:
         return ymd(int(m.group(3)), MONTHS[m.group(1).lower()], int(m.group(2))), uncertain
