@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-10T20:03:08Z",
+ "checked": "2026-11-11T05:18:06Z",
  "locations": {
   "dumps": {
    "archive": "https://archive.judaicalink.org/store/",
@@ -626,16 +626,41 @@
   },
   "conflicts": {
    "title": "Conflicting statements of the records of one person",
-   "stable": "2026-11-10",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
-   "catalogues": [],
+   "catalogues": [
+    "web"
+   ],
    "versions": [
+    {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "conflicts.ttl.gz",
+       "bytes": 184605,
+       "sha256": "5a3580717aa756fc85da578f05bb49c38016f7afe601346a5a93c11256777f42",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "conflicts-meta.ttl.gz",
+       "bytes": 2352,
+       "sha256": "7829c43af21984af5c4789a4fe52552d98426cf89021bab4f09c79e144d0fc2a",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
     {
      "version": "2026-11-10",
      "issued": "2026-11-10",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "conflicts.ttl.gz",
@@ -659,7 +684,7 @@
   },
   "corrections-links": {
    "title": "Corrections of identity links",
-   "stable": "2026-10-12-2",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -668,9 +693,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "corrections-links-deletions.ru.gz",
+       "bytes": 2903,
+       "sha256": "63ca6b0e332f1c98d32a10a67769c7d3e3ac26e8a2866383b62640e5bfd12cf1",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "corrections-links-meta.ttl.gz",
+       "bytes": 2062,
+       "sha256": "f29a48c9e7f5ee932067939ff8dfbe66ce7039390d8333d3b55257df551c422f",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-12-2",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "corrections-links-deletions.ru.gz",
@@ -791,7 +839,7 @@
   },
   "dbpedia": {
    "title": "Wikipedia and DBpedia: the English and German articles JudaicaLink uses",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [
     "dbpedia-persons"
    ],
@@ -802,9 +850,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "dbpedia-selection.tsv.gz",
+       "bytes": 1184390,
+       "sha256": "946a46c4ca6f05849ff18df1897c413f29cb4c59d1b7318b7a94ded5fb239d98",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "dbpedia.ttl.gz",
+       "bytes": 2866410,
+       "sha256": "0ee37cb1b3cc3b0871683c9e8b4240cc0d4990c17e4e303c8e3975776be1b283",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "dbpedia-meta.ttl.gz",
+       "bytes": 2441,
+       "sha256": "0682bcca5308ee575124adb860da36baf2b3f894e3ac120ac117ac273e2f018e",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "dbpedia-selection.tsv.gz",
@@ -957,7 +1036,7 @@
   },
   "ep": {
    "title": "Entity Pages - Judaicalink",
-   "stable": "2026-11-10",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -967,9 +1046,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ep-history.ttl.gz",
+       "bytes": 4417318,
+       "sha256": "764c478d37b6e918d5d707a56a41f3f901a2e16a79b442f141c45c0f703fce16",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep.ttl.gz",
+       "bytes": 55573443,
+       "sha256": "750f79833484b9d44b755ed1e057b9f0b2c09f49d7c85060e58b1a964f1039c6",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ep-meta.ttl.gz",
+       "bytes": 3655,
+       "sha256": "ea3f559541c95018ba5ed8ade30a039a2c87d87f76876471be3d2472405aa483",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-11-10",
      "issued": "2026-11-10",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ep-history.ttl.gz",
@@ -1493,7 +1603,7 @@
   },
   "geo-enriched": {
    "title": "Geographic Enrichment",
-   "stable": "2026-11-10",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -1503,9 +1613,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "geo-enriched.ttl.gz",
+       "bytes": 310373,
+       "sha256": "750819bda6a93ad45bb3296dc7ff4ccdf43f7308d0f6672dda770d293b994fe8",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geo-enriched-meta.ttl.gz",
+       "bytes": 3113,
+       "sha256": "53dc79c31135a3607d86e9ec984edf4dd6a99ad0f787964c609a2c63cc14bccc",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-11-10",
      "issued": "2026-11-10",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "geo-enriched.ttl.gz",
@@ -1623,7 +1756,7 @@
   },
   "geonames": {
    "title": "GeoNames: the places JudaicaLink uses",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -1632,9 +1765,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "geonames-selection.tsv.gz",
+       "bytes": 91098,
+       "sha256": "3e3f3f2ca60937c3c7682f63442f47ecee6174fe70ad8cc2c6a140248a7270c6",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geonames.ttl.gz",
+       "bytes": 1638609,
+       "sha256": "e92891ca6b1ce4ea2047ae502e65d6792d094982d98c28e00ea575c0a01e71d9",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "geonames-meta.ttl.gz",
+       "bytes": 2897,
+       "sha256": "1b525bbfda799d376e6e015d99f145d75f3f4319504f6bd20a3fdd409df0152a",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "geonames-selection.tsv.gz",
@@ -1728,7 +1892,7 @@
   },
   "gnd": {
    "title": "GND (Gemeinsame Normdatei): the records JudaicaLink uses",
-   "stable": "2026-10-31",
+   "stable": "2026-11-11",
    "replaces": [
     "gnd-persons",
     "gnd-persons-entityfacts"
@@ -1740,9 +1904,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "gnd-selection.tsv.gz",
+       "bytes": 1133032,
+       "sha256": "79c460977e3600455f317eddee574478082fd0acad692aa3f92a46aa0da90618",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "gnd.ttl.gz",
+       "bytes": 20356215,
+       "sha256": "969d99d6b859f64db3c7582a18aa5e4781c0f7314fbc18be0f88d5845848ffb0",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "gnd-meta.ttl.gz",
+       "bytes": 4337,
+       "sha256": "1a896d22c92b083c7b5eaaa46741a7df274ba6765da6d2e65b423c93be0ceadc",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-31",
      "issued": "2026-10-31",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "gnd-selection.tsv.gz",
@@ -2380,7 +2575,7 @@
   },
   "lc": {
    "title": "LC Name Authority File: the records JudaicaLink uses",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -2389,9 +2584,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "lc-selection.tsv.gz",
+       "bytes": 1246261,
+       "sha256": "2e8e383a7f5ac142c69f84f34ab0fb8de060c81c304d4af8bf7a36db29526a84",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "lc.ttl.gz",
+       "bytes": 10657639,
+       "sha256": "2b753bca0c632a977fa22306714d12d05043817007891e3b1fb314a7c0eb58e1",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "lc-meta.ttl.gz",
+       "bytes": 2944,
+       "sha256": "8eef29d073a8b33cd639b72090908c9d10522341c2ec1375a6ba4d729a4f90cb",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "lc-selection.tsv.gz",
@@ -2485,7 +2711,7 @@
   },
   "ls-dbpedia": {
    "title": "Links to the Wikipedia articles",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -2494,9 +2720,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-dbpedia.ttl.gz",
+       "bytes": 2100960,
+       "sha256": "d0f27f44d6b7dc0d4707311de5a9c269780d4e90e841cca61e7eecb7aa00f14a",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-dbpedia-meta.ttl.gz",
+       "bytes": 2505,
+       "sha256": "6fbb7da74c55823dd7f61d27e1a8876618c4de5c0718c28776f98986b54e9cbd",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ls-dbpedia.ttl.gz",
@@ -2543,7 +2792,7 @@
   },
   "ls-footprints-viaf": {
    "title": "Footprints persons linked to VIAF, judged one by one",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -2552,9 +2801,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-footprints-viaf-decisions.tsv.gz",
+       "bytes": 53017,
+       "sha256": "4eacc8a8763b5427a0466392ce12968ed534bef48370497ddf90f3fbc3b10c45",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-footprints-viaf.ttl.gz",
+       "bytes": 10999,
+       "sha256": "eb4ded2e998d8b34c5bbf164d926ed78c2e40d2be03a6c5fbd685997ff354486",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-footprints-viaf-meta.ttl.gz",
+       "bytes": 2515,
+       "sha256": "eb9d5f91a3b386f2e0d52a030deb7d1528acabebc508a2e257a65c7185315ae3",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ls-footprints-viaf-decisions.tsv.gz",
@@ -2586,7 +2866,7 @@
   },
   "ls-geonames": {
    "title": "Links to the GeoNames records",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -2595,9 +2875,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-geonames.ttl.gz",
+       "bytes": 144091,
+       "sha256": "c3d9c8671330b92d87754d3c2e5ede473c93907fc178aecd5e2f69a453b2ad8f",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-geonames-meta.ttl.gz",
+       "bytes": 2470,
+       "sha256": "c54dd7ac04bee42ee04a1386769a8001d948260ad3e42ec2c9946bf049725cfb",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ls-geonames.ttl.gz",
@@ -2644,7 +2947,7 @@
   },
   "ls-gnd": {
    "title": "Links to the GND records",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -2653,9 +2956,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-gnd.ttl.gz",
+       "bytes": 1393888,
+       "sha256": "1d54123faf6e2c5a9cbdb5bdbdf2446410f623f429e82a8116ea9012456d054d",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-gnd-meta.ttl.gz",
+       "bytes": 2607,
+       "sha256": "2b7ed00d29000fa608f74595a8253926b9056ca19245c1331c53397c47676b8d",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ls-gnd.ttl.gz",
@@ -2702,7 +3028,7 @@
   },
   "ls-lc": {
    "title": "Links to the LC Name Authority File records",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -2711,9 +3037,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-lc.ttl.gz",
+       "bytes": 3241735,
+       "sha256": "065b731a185d11c6c28074f949020332244e76eb5f90c572ed88894226948a30",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-lc-meta.ttl.gz",
+       "bytes": 2534,
+       "sha256": "2e386c3bff22459ce7f11232ebe7fd861abc3428043b15569d52519e1c6510e1",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ls-lc.ttl.gz",
@@ -2795,7 +3144,7 @@
   },
   "ls-viaf": {
    "title": "Links to the VIAF clusters",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -2804,9 +3153,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-viaf.ttl.gz",
+       "bytes": 4969128,
+       "sha256": "ed080b7d4d27de978651afd6f32442e28c11d557e9f01e8365165c0eb9aed955",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-viaf-meta.ttl.gz",
+       "bytes": 2673,
+       "sha256": "61629d5f14ab158d253ad53ec6ad6235a14cdd215d8109d6dadf986e52932c3b",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ls-viaf.ttl.gz",
@@ -2853,7 +3225,7 @@
   },
   "ls-wikidata": {
    "title": "Links to the Wikidata records",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [
     "ls-yivo-wikidata"
    ],
@@ -2864,9 +3236,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "ls-wikidata.ttl.gz",
+       "bytes": 2244167,
+       "sha256": "76c988d6ba540344d6627e5d77f5f9e656c12b8203bdb8927a313bde6cf99a66",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ls-wikidata-meta.ttl.gz",
+       "bytes": 2724,
+       "sha256": "b1773b177e55221371c298f5f60ffbdb0edfc973fed01e5287dbe574ca64df1d",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "ls-wikidata.ttl.gz",
@@ -3084,7 +3479,7 @@
   },
   "occupations": {
    "title": "Occupations",
-   "stable": "2026-10-31",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -3094,9 +3489,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "occupations.ttl.gz",
+       "bytes": 80751,
+       "sha256": "230541ce9f21652bb22240830e6e04108d34197a5fa3dd627b7b3545959ac3ec",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "occupations-meta.ttl.gz",
+       "bytes": 2310,
+       "sha256": "a09eee224068013bf4b87216561a0e64a3e20216a7ed66add0a61b997ec013dc",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-31",
      "issued": "2026-10-31",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "occupations.ttl.gz",
@@ -3120,7 +3538,7 @@
   },
   "ontology": {
    "title": "JudaicaLink Ontology",
-   "stable": "2026-10-18",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -3130,9 +3548,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "judaicalink-ontology.ttl.gz",
+       "bytes": 9608,
+       "sha256": "d2bd7744a3b2c54bf0ef7691ae4f55cc4d971d51a9ba7814823683c24d55cab6",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "ontology-meta.ttl.gz",
+       "bytes": 1638,
+       "sha256": "1b2a81d870dadc4b62dcf2112ceee7a49fd26acd9202d02c33c57b700bdf4994",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-18",
      "issued": "2026-10-18",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "judaicalink-ontology.ttl.gz",
@@ -3179,7 +3620,7 @@
   },
   "quality-annotations": {
    "title": "Quality annotations for the JudaicaLink datasets",
-   "stable": "2026-10-12",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -3188,9 +3629,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "quality-annotations.ttl.gz",
+       "bytes": 95916,
+       "sha256": "a351fcdd73368a865f1e2261e40e4886bf1f7d52b393d87df4e95a071031a125",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "quality-annotations-meta.ttl.gz",
+       "bytes": 2523,
+       "sha256": "04355173a07bbea781aeb84b28ee4a0537575126c16a0e622857a42ca45013d1",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-12",
      "issued": "2026-10-12",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "quality-annotations.ttl.gz",
@@ -3214,7 +3678,7 @@
   },
   "record-classes": {
    "title": "Classes of untyped records",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -3223,9 +3687,32 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "record-classes.ttl.gz",
+       "bytes": 51081,
+       "sha256": "70d175f4748e9b2150e492cea515f976193e819e2f0ac9271226d6b8ff9d9607",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "record-classes-meta.ttl.gz",
+       "bytes": 2609,
+       "sha256": "5515feb854e2a72606e0ae4d8b9a8441ec42a3077ea2438536b3d429005d5a34",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "record-classes.ttl.gz",
@@ -3272,7 +3759,7 @@
   },
   "records-normalized": {
    "title": "Normalised dates, places and occupations of the records",
-   "stable": "2026-11-10",
+   "stable": "2026-11-11",
    "replaces": [
     "date-enriched"
    ],
@@ -3283,9 +3770,48 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "records-normalized-dates.ttl.gz",
+       "bytes": 1519902,
+       "sha256": "c8ee3f2b2041d5278942f147eeaffdb6d21b1f119d5458ab0026dffb4149eb44",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "records-normalized-occupations.ttl.gz",
+       "bytes": 80749,
+       "sha256": "20a259964c9a9b1490eb6e509088974b1d1e7096df21cb8862c964584afebe12",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "records-normalized-places.ttl.gz",
+       "bytes": 4999,
+       "sha256": "f0aa5622acd32abbf188888bb3cc775b71a28313f16e6ced4b7f60d3f1f86dac",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "records-normalized-meta.ttl.gz",
+       "bytes": 3446,
+       "sha256": "d6251170611d555ba554df9c334b617b8babb488060abe0dd793222fba8f36b4",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-11-10",
      "issued": "2026-11-10",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "records-normalized-dates.ttl.gz",
@@ -3746,7 +4272,7 @@
   },
   "viaf": {
    "title": "VIAF: the clusters JudaicaLink uses",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -3755,9 +4281,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "viaf-selection.tsv.gz",
+       "bytes": 2349054,
+       "sha256": "eeb6c65fa1c6bf08deeb27d7ca015a9003289ffe74f560d40b2f4b8a7554424d",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "viaf.ttl.gz",
+       "bytes": 22777924,
+       "sha256": "8277bf9d4d0078dca5256153d8c74de47d45c33dbceb78b0c1c4d363d911a42a",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "viaf-meta.ttl.gz",
+       "bytes": 2662,
+       "sha256": "e1d443434801bc17f869b05d54d1d419b9456f482c7dc02c35a8ed6cb19a6141",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "viaf-selection.tsv.gz",
@@ -3820,7 +4377,7 @@
   },
   "wikidata": {
    "title": "Wikidata: the items JudaicaLink uses",
-   "stable": "2026-10-26",
+   "stable": "2026-11-11",
    "replaces": [],
    "replaced_by": [],
    "withdrawn": null,
@@ -3829,9 +4386,40 @@
    ],
    "versions": [
     {
+     "version": "2026-11-11",
+     "issued": "2026-11-11",
+     "status": "stable",
+     "files": [
+      {
+       "path": "wikidata-selection.tsv.gz",
+       "bytes": 3422368,
+       "sha256": "e64253e15670d9fa8814e62e3cdae73b0c7415903050e98174e01b360bcb4358",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "wikidata.ttl.gz",
+       "bytes": 8420403,
+       "sha256": "fc1f8649b8b3ca1356eee4a18f7bb6c39e096f1a2643be17dc43f5f6de682585",
+       "locations": [
+        "archive"
+       ]
+      },
+      {
+       "path": "wikidata-meta.ttl.gz",
+       "bytes": 2793,
+       "sha256": "08c36a9175bab95ba08c92d5cc93a4091a9c3da2ad379b9bcb6910f3fb948a6c",
+       "locations": [
+        "archive"
+       ]
+      }
+     ]
+    },
+    {
      "version": "2026-10-26",
      "issued": "2026-10-26",
-     "status": "stable",
+     "status": "older",
      "files": [
       {
        "path": "wikidata-selection.tsv.gz",
