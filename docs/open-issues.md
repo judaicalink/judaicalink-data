@@ -23,6 +23,10 @@ solved is in the decisions, the changelogs of the versions and the git history.
   outdated now (0043; 13 on 2026-11-10, the linksets of 2026-10-26 among them), and the generators that still read
   outdated inputs: corrections-links (replaced versions: check whether its corrections still apply) and cm-entities
   (reads dbpedia-persons, replaced by dbpedia).
+- **Gaps after the cascade of 2026-11-11** (`jl check-authorities` on the versions of 2026-11-11): geonames lacks 26
+  ids that our data names (most from geo-enriched 2026-11-11, made after the cascade), wikidata 287 items, dbpedia
+  404 English and 1 German title, viaf 32, lc 3. The next cascade selects them; geo-enriched counts place records,
+  so the two may change each other once more.
 - **hhkeydocs 2026-10-16** replaces Otto Warburg and Kurt Singer each by two records, one per GND number, among them
   the physiologist Otto Heinrich Warburg (118629158) and the philosopher Kurt Singer (120639734), whom the corrections of
   2026-10-12 had excluded (the botanist, 117565725; the neurologist, 117402362): check against the source whether both
