@@ -32,6 +32,7 @@ from collections import Counter, defaultdict
 from urllib.parse import unquote
 
 from jl import classes
+from jl import dates as jldates
 from jl.generator import slug_of, stable_inputs
 from jl.rdf import IRI, RDF_TYPE, XSD, Literal
 from jl.turtle import PREFIXES
@@ -68,7 +69,7 @@ HEBREW_VALUES = {"א": 1, "ב": 2, "ג": 3, "ד": 4, "ה": 5, "ו": 6, "ז": 7, 
                  "ל": 30, "מ": 40, "ם": 40, "נ": 50, "ן": 50, "ס": 60, "ע": 70, "פ": 80, "ף": 80, "צ": 90, "ץ": 90,
                  "ק": 100, "ר": 200, "ש": 300, "ת": 400}
 # approximate dates; "vor"/"nach" (before/after) are bounds, not approximations, and stay unparsed
-UNCERTAIN = re.compile(r"\?|\bca\.?|\bum\b|\bcirca\b|\bc\.\s|בערך|~", re.I)
+UNCERTAIN = re.compile(r"\?|\bca\.?|\bum\b|\bcirca\b|\bc\.\s|בערך|~|\bvermutlich\b|\bwahrscheinlich\b|\bvielleicht\b|\betwa\b|\bprobably\b|\[sic!?\]", re.I)
 # a Hebrew year in letters is one word with geresh/gershayim: תרע"ג, ה'תרע"ג, תר״ס
 HEBREW_YEAR_RE = re.compile(r"^(?:[א-ת]['׳])?[א-ת]{1,3}[\"״][א-ת]$")
 # footprints writes some dates as Python dictionaries: {'id': 996, 'edtf_format': '1663/1711', 'display': '1663 - 1711'}
@@ -80,7 +81,7 @@ MONATE = {**{m: i for i, m in enumerate(("januar", "februar", "märz", "april", 
                                          "september", "oktober", "november", "dezember"), 1)},
           "jänner": 1, "jan": 1, "jän": 1, "feb": 2, "febr": 2, "mrz": 3, "mär": 3, "apr": 4, "jun": 6, "jul": 7,
           "aug": 8, "sep": 9, "sept": 9, "okt": 10, "nov": 11, "dez": 12}
-GERMAN_DATE = re.compile(r"(?:(\d{1,2})\.\s*)?([A-Za-zÄäÖöÜü]+)(?:\.\s*|\s+)(\d{4})")   # Sep, Sept., 17.Sept.1834
+GERMAN_DATE = re.compile(r"(?:(\d{1,2})\.?\s*)?([A-Za-zÄäÖöÜü]+)(?:\.\s*|\s+)(\d{4})")   # Sep, Sept., 17.Sept.1834
 YEARS = (1, 2030)   # years before the common era (-0126) are left out: standards number them differently
 HEBREW_YEARS = (5000, 5800)   # a year written as a number in this span is a Hebrew year (anno mundi)
 
@@ -139,7 +140,7 @@ def normalize_date(raw):
     if not m:   # the date followed by a remark: 18. Juli 1823 das …, 16. Juni 1902 auf der Reise …
         m = GERMAN_DATE.match(core)
         rest = core[m.end():] if m and m.group(1) else ""
-        if not (rest[:1].isspace() and re.match(r"\s+[a-zäöü]", rest) and not re.search(r"\boder\b|[-–/]\s*\d", rest)):
+        if not (rest[:1].isspace() and re.match(r"\s+[A-Za-zÄäÖöÜü]", rest) and not re.search(r"\boder\b|[-–/]\s*\d", rest)):
             m = None
     if m and m.group(2).lower() in MONATE:
         d = int(m.group(1)) if m.group(1) else None
@@ -154,7 +155,7 @@ def normalize_date(raw):
             return ymd(a), uncertain
         if HEBREW_YEARS[0] < a < HEBREW_YEARS[1] and b - (a - 3760) in (0, 1):   # Hebrew and Gregorian: 5559-1798
             return ymd(b), uncertain
-        return None
+        return edtf_date(core, uncertain, s)
     m = re.fullmatch(r"\d{3,4}", core)
     if m:
         y = int(core)
@@ -165,18 +166,174 @@ def normalize_date(raw):
         y = hebrew_year(core)
         if y:
             return lit(str(y), XSD + "gYear"), True  # a Hebrew year spans two Gregorian years
+    return edtf_date(core, uncertain, s)
+
+
+# --- EDTF (decision 0035) and Hebrew dates (decided 2026-11-11) --------------------------------------
+
+BOUNDS = {"vor": "before", "before": "before", "bis": "before", "nach": "after", "after": "after", "ab": "after",
+          "seit": "after"}
+HEBREW_DATE = re.compile(r"(?:(\d{1,2})\.?\s*)?(" + "|".join(sorted(jldates.HEBREW_MONTHS, key=len, reverse=True))
+                         + r")\.?\s+(\d{4})(?:\s*/\s*(\d{2,4}))?", re.I)
+
+
+def edtf(value):
+    return lit(value, jldates.EDTF)
+
+
+def full_year(a, b):
+    """The second year of a pair written short: 1944/45 -> 1945."""
+    if len(b) < 4:
+        b = a[:4 - len(b)] + b
+    return int(b)
+
+
+def edtf_date(core, uncertain, raw=""):
+    """The forms only EDTF expresses: unknown digits (194X), ranges (1610-1624, 1944/45), bounds (vor 1722), and
+    Hebrew dates as Gregorian dates or intervals. (literal, uncertain) or None."""
+    m = re.fullmatch(r"\[?(\d{4})\?-(\d{2})-(\d{2})\]?", raw.strip())   # a doubtful year in an ISO date: 1863?-10-22
+    if m:
+        return ymd(*map(int, m.groups())), True
+    m = re.fullmatch(r"(\d{4})\s*~\s*(\d{4})", raw.strip())   # 1670~1720: about these years
+    if m and int(m.group(1)) < int(m.group(2)):
+        return edtf(f"{m.group(1)}/{m.group(2)}"), True
+    s = core.strip(" „“\"'")
+    rest = re.sub(r"^(?:am|im|den|der)\s+", "", s, flags=re.I)   # am 16. Februar 1859
+    if rest != s:
+        inner = normalize_date(rest)
+        return (inner[0], uncertain or inner[1]) if inner else None
+    m = re.fullmatch(r"(\d{2})([\dXx])([Xx])|(\d{3})([Xx])|(1)([Xx]{3})", s)   # unknown digits: 19XX, 194X, 1XXX
+    if m:
+        return edtf(s.upper()), uncertain
+    m = re.fullmatch(r"(\d{3})0er(?: Jahre)?", s)   # 1870er
+    if m:
+        return edtf(m.group(1) + "X"), uncertain
+    m = re.fullmatch(r"(?:(anfang|mitte|ende)\s+(?:des\s+)?)?(\d{1,2})(?:\.\s*(?:jh|jhs|jahrhunderts?)\.?|(?:st|nd|rd|th)\s+century)",
+                     s, re.I)   # 18. Jh., 19th century, Mitte des 19. Jhs.: the hundred years 1800-1899
+    if m and 1 <= int(m.group(2)) <= 21:
+        return edtf(f"{int(m.group(2)) - 1:02d}XX"), uncertain or bool(m.group(1))
+    m = re.fullmatch(r"(frühjahr|frühling|sommer|herbst|winter)\s+(\d{4})", s, re.I)   # EDTF seasons 21-24
+    if m:
+        season = {"frühjahr": 21, "frühling": 21, "sommer": 22, "herbst": 23, "winter": 24}[m.group(1).lower()]
+        return edtf(f"{m.group(2)}-{season}"), uncertain
+    m = re.fullmatch(r"(?:anfang|mitte|ende|beginn)\s+(\d{4})", s, re.I)   # Ende 1849: the year
+    if m:
+        return ymd(int(m.group(1))), uncertain
+    m = re.fullmatch(r"(\d{1,2})\./(\d{1,2})\.\s*(\S+?)\.?\s+(\d{4})", s)   # 13./14. Sept. 1828: one night
+    if m and m.group(3).lower().rstrip(".") in MONATE and int(m.group(2)) == int(m.group(1)) + 1:
+        mo, y = MONATE[m.group(3).lower().rstrip(".")], int(m.group(4))
+        a, b = ymd(y, mo, int(m.group(1))), ymd(y, mo, int(m.group(2)))
+        if a.datatype == b.datatype == XSD + "date":
+            return edtf(f"{a.value}/{b.value}"), uncertain
+    m = re.fullmatch(r"(\d{4})\.(\d{2})\.(\d{2})", s)   # 1898.02.28
+    if m:
+        return ymd(*map(int, m.groups())), uncertain
+    m = re.fullmatch(r"(\d{2})/(\d{2})/(\d{4})", s)   # 04/01/1786: day and month in an unknown order
+    if m:
+        return ymd(int(m.group(3))), uncertain
+    m = re.fullmatch(r"(\d{4})-+(\d{2})", s)   # 1880--10: the month unknown
+    if m:
+        return ymd(int(m.group(1))), uncertain
+    m = re.fullmatch(r"\[?(\d{4})\?-(\d{2})\]?", (raw or s).strip())   # 1839?-06
+    if m:
+        return ymd(int(m.group(1)), int(m.group(2))), True
+    m = re.fullmatch(r"(\d{4}),\s*(vor|nach)", s, re.I)   # 1739, nach
+    if m:
+        return edtf(f"../{m.group(1)}" if m.group(2).lower() == "vor" else f"{m.group(1)}/.."), uncertain
+    m = re.fullmatch(r"(\d{4})\s+(?:das|im|in|zu|ebd)\b.*", s)   # 1886 das …, 1757 im Elsaß: the year
+    if m and not re.search(r"\boder\b", s):
+        return ymd(int(m.group(1))), uncertain
+    m = re.fullmatch(r"(\d{4})\?-(\d{2})-(\d{2})", s)   # a doubtful year in an ISO date: 1863?-10-22
+    if m:
+        return ymd(*map(int, m.groups())), True
+    m = re.fullmatch(r"(\d{4})\s*[-–/~]\s*(\d{2,4})", s)   # a range of years
+    if m:
+        a, b = int(m.group(1)), full_year(m.group(1), m.group(2))
+        if a < b <= a + 200:
+            return edtf(f"{a:04d}/{b:04d}"), uncertain
+        return None
+    m = re.fullmatch(r"(vor|before|bis|nach|after|ab|seit)\s+(?:dem\s+|the\s+)?(.+)", s, re.I)   # a bound
+    if m:
+        inner = normalize_date(m.group(2))
+        if inner and inner[0].datatype != jldates.EDTF:
+            v = inner[0].value
+            return edtf(f"../{v}" if BOUNDS[m.group(1).lower()] == "before" else f"{v}/.."), uncertain or inner[1]
+        return None
+    base = (raw or s).strip()
+    stripped = re.sub(r"\s*[(\[][^)\]]*[)\]]", "", base).strip(" .„“\"")   # remarks in brackets: the date outside counts
+    if stripped != base.strip(" .„“\"") and stripped:
+        doubt = bool(re.search(r"\?|vielleicht|vermutlich|lt\.|nach\s+\w+:|oder", base, re.I))
+        inner = normalize_date(stripped)
+        if inner:
+            return inner[0], uncertain or inner[1] or doubt
+    m = HEBREW_DATE.search(s)
+    if m and not re.search(r"\boder\b", s):
+        return hebrew_date(m, uncertain)
     return None
 
 
+def hebrew_date(m, uncertain):
+    """A Hebrew day and month with a year: a Hebrew year (5000-5800), a Gregorian one (the Hebrew year that puts the date
+    into it), or a pair (Kislew 1836/37: the Hebrew year that begins in the first). Without a day: the month as an EDTF
+    interval. Adar without I or II in a leap year, a day that does not exist, or two dates in one year: the year only."""
+    day = int(m.group(1)) if m.group(1) else None
+    month = jldates.HEBREW_MONTHS[m.group(2).lower()]
+    y = int(m.group(3))
+    if HEBREW_YEARS[0] < y < HEBREW_YEARS[1]:
+        candidates, gregorian = [y], None
+    elif m.group(4):
+        candidates, gregorian = [y + 3761], None
+    else:
+        candidates, gregorian = [y + 3760, y + 3761], y
+    found, adar = [], False
+    for hy in candidates:
+        if month == 12 and jldates.hebrew_leap(hy) and m.group(2).lower() == "adar":
+            adar = True   # Adar I or Adar II: the Gregorian year is still certain
+            continue
+        mo = 13 if month == 13 and not jldates.hebrew_leap(hy) else month
+        if mo == 13 and not jldates.hebrew_leap(hy):
+            mo = 12
+        if day:
+            g = jldates.hebrew_to_gregorian(hy, mo, day)
+            if g and (gregorian is None or g.year == gregorian):
+                found.append((g, g))
+        else:
+            first = jldates.hebrew_to_gregorian(hy, mo, 1)
+            last = jldates.hebrew_to_gregorian(hy, mo, jldates.hebrew_month_days(hy, mo))
+            if gregorian is None or gregorian in (first.year, last.year):
+                found.append((first, last))
+    if len(found) == 1:
+        a, b = found[0]
+        if a == b:
+            return ymd(a.year, a.month, a.day), uncertain
+        return edtf(f"{a.isoformat()}/{b.isoformat()}"), uncertain
+    if gregorian:
+        return ymd(gregorian), uncertain or not (found or adar)
+    return None
+
+
+def years_of(value):
+    """(earliest, latest) year of a normalised value; None for an open end; X as 0 and 9."""
+    ends = value.value.split("/")
+    out = []
+    for e in (ends[0], ends[-1]):
+        m = re.match(r"-?([0-9Xx]{4})", e)
+        out.append(m.group(1) if m else None)
+    lo = int(out[0].upper().replace("X", "0")) if out[0] else None
+    hi = int(out[1].upper().replace("X", "9")) if out[1] else None
+    return lo, hi
+
+
 def year_of(value):
-    return int(value.value[:4])
+    lo, hi = years_of(value)
+    return lo if lo is not None else hi
 
 
 def parse_date(raw):
     """normalize_date, with years outside YEARS left out: (literal, uncertain) or None. Also used by
     quality-annotations for the dates left out (shared code)."""
     result = normalize_date(raw)
-    if result and YEARS[0] <= year_of(result[0]) <= YEARS[1]:
+    if result and all(y is None or YEARS[0] <= y <= YEARS[1] for y in years_of(result[0])):
         return result
     return None
 
@@ -239,7 +396,10 @@ def death_before_birth(parsed):
     """parsed: {"birthDate": [(literal, uncertain)], "deathDate": [...]}; compared by year, for records with one birth
     and one death date (records with several, e.g. in epidat, may stand for several people and keep them)."""
     births, deaths = parsed.get("birthDate", []), parsed.get("deathDate", [])
-    return len(births) == 1 and len(deaths) == 1 and year_of(deaths[0][0]) < year_of(births[0][0])
+    if not (len(births) == 1 and len(deaths) == 1):
+        return False
+    death_hi, birth_lo = years_of(deaths[0][0])[1], years_of(births[0][0])[0]
+    return death_hi is not None and birth_lo is not None and death_hi < birth_lo
 
 
 # --- places ----------------------------------------------------------------------------------------

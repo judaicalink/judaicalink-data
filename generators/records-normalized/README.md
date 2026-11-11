@@ -50,3 +50,9 @@ German dates (2026-11-11): day, month name written out or abbreviated (Jan., Feb
 with or without a dot) and year, or month and year: 17. Sept. 1834, 23. März 1963, März 1963, 17.Sept.1834; also with a
 remark after the date (18. Juli 1823 das …, 16. Juni 1902 auf der Reise …), not with alternatives or ranges
 (10. Mai 1880 oder 1881). Hebrew month names stay out. Most of them are in bhr.
+
+EDTF and Hebrew dates (2026-11-11, decisions 0035, 0046): the forms XSD cannot express are written as EDTF (unknown
+digits, decades, centuries, ranges, bounds, seasons, one night, a Hebrew month without a day); Hebrew dates are
+converted to Gregorian dates; doubt words (vermutlich, vielleicht, etwa, [sic!]) mark a date uncertain; a remark
+after a date or year is left aside (1886 das …, 1757 im Elsaß). The test run of 2026-11-11: 229,114 dates normalised,
+554 left out (3,827 before), 349 of them negative years.

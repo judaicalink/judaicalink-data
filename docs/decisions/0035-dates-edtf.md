@@ -29,3 +29,7 @@ value. Footprints writes every date in the Extended Date/Time Format (EDTF, ISO 
   to judaicalink-ontology).
 - Consumers that need a year read the first year of an EDTF value (the Atlas does).
 - First use: footprints 2026-10 (0034).
+- records-normalized writes EDTF since 2026-11-11: unknown digits (194X, 1XXX), decades (1870er → 187X), centuries
+  (18. Jh., 19th century → 17XX, 18XX), ranges (1610-1624, 1944/45), bounds (vor 1722 → ../1722), seasons (Herbst
+  1810 → 1810-23), one night (13./14. Sept. 1828), Hebrew months without a day (0046). Negative years stay out
+  (sources count the years before the common era differently), and so do alternatives (1753 oder 1757).
