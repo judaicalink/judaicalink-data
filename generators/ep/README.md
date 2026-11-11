@@ -91,6 +91,13 @@ key normalisation (DBpedia titles, hyphenated ISNIs) and the use of `prov:wasDer
 errors of the port, corrected before the version. Compared with `ep-2026-10-06` (first made on 2026-10-12, before the YIVO and epidat records): 295,384 instead of 294,129 pages,
 the legacy NLI pages carried over (no exception), splits and merges by comparison instead of growing clusters.
 
+## Version 2026-11-11
+
+As 2026-11-10, with the authority datasets and linksets of the cascade of 2026-11-11 and the datasets made again on
+them (geo-enriched, records-normalized, record-classes, ls-footprints-viaf, occupations, corrections-links 2026-11-11;
+decision 0043). 323,283 pages, 198 new IRIs, no merges or splits; 32 retired: places that only authority records
+name now, among them Mount Hagen, a namesake of geo-enriched 2019. conflicts 2026-11-11: 3,294.
+
 ## Version 2026-11-10
 
 As 2026-10-31 (the same 323,117 entities, IRIs and history), with geo-enriched and records-normalized 2026-11-10
